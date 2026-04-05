@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tectonic Briefing</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source Sans 3',system-ui,sans-serif;font-size:16px;line-height:1.7;min-height:100vh}
+:root{--bg:#0b1120;--card:#111827;--alt:#141c2e;--str:#162035;--blu:#4b8ef2;--blub:#6da8ff;--blup:#a3c8ff;--teal:#38d9c8;--tealm:#2a9e92;--gold:#e5b84c;--goldm:#c9a03a;--red:#f06050;--redm:#c04a3e;--purp:#a78bfa;--grn:#4ade80;--t1:#eaf0f8;--t2:#cdd6e4;--t3:#8e9bb5;--t4:#5f6d87;--brd:rgba(75,142,242,0.18);--brds:rgba(75,142,242,0.35)}
+.w{max-width:1140px;margin:0 auto;padding:0 1.8rem}
+header{padding:2.8rem 0 1.8rem;border-bottom:1px solid var(--brd);margin-bottom:2rem}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2.6rem;color:var(--t1);letter-spacing:.025em}
+h1 em{font-style:normal;color:var(--blub);font-weight:500}
+.sub{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--t4);letter-spacing:.14em;text-transform:uppercase;margin-top:.4rem}
+.epi{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.02rem;color:var(--t3);margin-top:1rem;max-width:680px;line-height:1.55;padding-left:1rem;border-left:2px solid var(--brds)}
+nav{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--brd)}
+nav button{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .7rem;border:1px solid var(--brd);border-radius:2px;background:transparent;color:var(--t3);cursor:pointer;transition:all .25s}
+nav button:hover{border-color:var(--brds);color:var(--blup)}
+nav button.on{border-color:var(--blu);color:var(--blub);background:rgba(75,142,242,.06)}
+nav button.gld{border-color:rgba(229,184,76,.3)}nav button.gld:hover,nav button.gld.on{border-color:var(--gold);color:var(--gold);background:rgba(229,184,76,.06)}
+nav button.rd{border-color:rgba(240,96,80,.3)}nav button.rd:hover,nav button.rd.on{border-color:var(--red);color:var(--red);background:rgba(240,96,80,.06)}
+nav button.tl{border-color:rgba(56,217,200,.3)}nav button.tl:hover,nav button.tl.on{border-color:var(--teal);color:var(--teal);background:rgba(56,217,200,.06)}
+nav button.pr{border-color:rgba(167,139,250,.3)}nav button.pr:hover,nav button.pr.on{border-color:var(--purp);color:var(--purp);background:rgba(167,139,250,.06)}
+nav button.gn{border-color:rgba(74,222,128,.3)}nav button.gn:hover,nav button.gn.on{border-color:var(--grn);color:var(--grn);background:rgba(74,222,128,.06)}
+.bn{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--t4);letter-spacing:.08em;margin-bottom:.3rem}
+.bd{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--t1);margin-bottom:.2rem}
+.bt{font-size:.95rem;color:var(--t3);font-style:italic;margin-bottom:2rem}
+.s{display:none;animation:fu .35s ease}.s.v{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.c{background-color:var(--card);border:1px solid var(--brd);border-radius:3px;padding:1.8rem 2rem;margin-bottom:1.4rem}
+.c.lim{border-left:3px solid var(--gold);background-color:var(--alt)}.c.cri{border-left:3px solid var(--red);background-color:var(--alt)}.c.act{border-left:3px solid var(--teal);background-color:var(--alt)}.c.inf{border-left:3px solid var(--purp);background-color:var(--alt)}.c.env{border-left:3px solid var(--grn);background-color:var(--alt)}.c.gov{border-left:3px solid #f59e0b;background-color:var(--alt)}
+.lb{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blu);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.lb.gl{color:var(--gold)}.lb.tl{color:var(--teal)}.lb.rl{color:var(--red)}.lb.pl{color:var(--purp)}.lb.gnl{color:var(--grn)}.lb.aml{color:#f59e0b}
+.tg{padding:.12rem .45rem;border-radius:2px;font-size:.58rem}
+.tu{background:rgba(75,142,242,.14);color:var(--blup)}.te{background:rgba(56,217,200,.14);color:var(--teal)}.tc{background:rgba(167,139,250,.14);color:var(--purp)}.ta{background:rgba(229,184,76,.14);color:var(--gold)}.tr{background:rgba(240,96,80,.14);color:#fca5a5}.tg2{background:rgba(74,222,128,.14);color:var(--grn)}
+.c h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:var(--t1);margin-bottom:.9rem;line-height:1.3}
+.c p{margin-bottom:.9rem;color:var(--t2);line-height:1.75}.c p:last-child{margin-bottom:0}.c strong{color:var(--t1);font-weight:600}
+.i{margin-top:1rem;padding:.9rem 1.2rem;border-radius:0 2px 2px 0}.i p{font-size:.93rem;color:var(--t2)}
+.il{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.4rem}
+.i.so{background:rgba(75,142,242,.05);border-left:2px solid rgba(75,142,242,.35)}.i.so .il{color:var(--t4)}
+.i.rs{background:rgba(56,217,200,.05);border-left:2px solid rgba(56,217,200,.3)}.i.rs .il{color:var(--tealm)}
+.i.cf{background:rgba(229,184,76,.05);border-left:2px solid rgba(229,184,76,.3)}.i.cf .il{color:var(--goldm)}.i.cf p{font-style:italic}
+.i.in{background:rgba(167,139,250,.05);border-left:2px solid rgba(167,139,250,.3)}.i.in .il{color:var(--purp)}
+.th{background-color:var(--str);border:1px solid var(--brds);border-radius:3px;padding:1.6rem 1.8rem;margin:1.8rem 0}
+.th h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:500;color:var(--blub);margin-bottom:.8rem}.th p{color:var(--t2);line-height:1.75}
+.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;margin:1.2rem 0}
+.vi{background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:1rem 1.2rem}
+.vi h4{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--blub);margin-bottom:.4rem;letter-spacing:.04em}.vi p{font-size:.88rem;color:var(--t3);line-height:1.5;margin:0}
+.mr{display:flex;align-items:flex-start;gap:.8rem;padding:.8rem 0;border-bottom:1px solid rgba(75,142,242,.08)}
+.mf{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--blu);min-width:170px;padding-top:.2rem;letter-spacing:.04em}
+.me{font-size:.92rem;color:var(--t2)}.md{font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.1rem .4rem;border-radius:2px;white-space:nowrap}
+.amp{background:rgba(240,96,80,.12);color:#fca5a5}.dmp{background:rgba(56,217,200,.12);color:var(--teal)}
+.pr{max-width:800px;margin-bottom:1.8rem}.pr p{margin-bottom:1rem;color:var(--t2);line-height:1.8}
+.sh{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--t1);margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid var(--brd)}
+.sh2{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;margin:2rem 0 1rem}
+/* Source archive */
+.src{background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:.8rem 1.2rem;margin-bottom:.6rem;font-size:.88rem}
+.src-cat{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.2rem}
+.src a{color:var(--blub);text-decoration:none;border-bottom:1px solid rgba(109,168,255,.3)}.src a:hover{border-color:var(--blub)}
+.src .src-note{color:var(--t3);font-size:.85rem;margin-top:.3rem}
+/* Thinker */
+.tk{display:inline-block;background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:.5rem .9rem;margin:0 .4rem .4rem 0;font-size:.85rem}
+.tk strong{color:var(--t1);font-weight:500}.tk span{color:var(--t3);font-size:.8rem}
+/* Deep Dive Marker */
+.dd{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blub);background:rgba(75,142,242,.08);border:1px solid rgba(75,142,242,.25);border-radius:2px;padding:.25rem .6rem;margin-left:.5rem;vertical-align:middle}
+.dd::before{content:'\25C9';font-size:.7rem}
+/* Wise Action expanded */
+.wa-section{margin-bottom:2.5rem}
+.wa-section h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:500;color:var(--t1);margin:1.4rem 0 .7rem;padding-top:.8rem;border-top:1px solid rgba(75,142,242,.1)}
+.wa-section h4:first-of-type{border-top:none;padding-top:0}
+footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--brd);text-align:center}
+footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
+@media(max-width:768px){.w{padding:0 1rem}h1{font-size:2rem}.c{padding:1.3rem 1.2rem}.vg{grid-template-columns:1fr}.mr{flex-direction:column;gap:.3rem}.mf{min-width:unset}}
+</style>
+</head>
+<body>
+<div class="w">
+<header>
+<h1><em>Tectonic</em> Briefing</h1>
+<div class="sub">Structural forces &middot; Inference engine &middot; Wise action &middot; Source archive</div>
+<div class="epi">"We soon observe that little or nothing is really fixed but all is a perpetual flux. That which seemed permanent when superficially viewed is seen as the result or product of indefinite transformations." &mdash; Frank Knight (1913)</div>
+</header>
+
+<nav id="nav">
+<button class="on" onclick="go('ov')">Overview</button>
+<button class="rd" onclick="go('ge')">Geopolitical</button>
+<button onclick="go('te')">Technological</button>
+<button onclick="go('ec')">Economic</button>
+<button onclick="go('sc')">Scientific</button>
+<button onclick="go('so')">Social</button>
+<button class="gn" onclick="go('en')">Ecological</button>
+<button onclick="go('ig')">Institutional</button>
+<button class="gld" onclick="go('li')">Liminal Signals</button>
+<button class="pr" onclick="go('ie')">Inference Engine</button>
+<button class="tl" onclick="go('wa')">Wise Action</button>
+<button onclick="go('sa')">Source Archive</button>
+</nav>
+
+<div class="bn">BRIEFING NO. 001</div>
+<div class="bd">5 April 2026</div>
+<div class="bt">The world is at war in the Persian Gulf, and the structural consequences are only beginning to propagate.</div>
+
+<!-- ========== OVERVIEW ========== -->
+<div class="s v" id="s-ov">
+<div class="pr">
+<p>Today's briefing launches under urgent conditions. The US-Israeli war on Iran, now in its sixth week, has closed the Strait of Hormuz and produced the largest disruption to global energy supply in history. Oil trades above $109/barrel. An American fighter jet has been shot down over Iran. The conflict has killed over 3,500 Iranians including more than 1,600 civilians and 244 children, triggered a concurrent war in Lebanon, and drawn in at least nine countries. Trump has issued an ultimatum: reopen the Strait by April 6 or face attacks on civilian infrastructure. Iran has refused.</p>
+<p>Beneath the war, tectonic forces continue their slower work: the shift from AI scaling to agentic infrastructure, the fragmentation of the rules-based order, a quiet revolution in biomedicine, ecological tipping points approaching simultaneously, and an unprecedented constitutional collision between federal and state AI governance. These forces interact. The war accelerates deglobalization. Energy shocks stress AI's compute ambitions. The governance vacuum widens as institutions designed for the old order confront the new one.</p>
+</div>
+<div class="th"><h3>Unifying Thread: The Collapse of Buffer Systems</h3>
+<p>Across every domain, the pattern repeats: systems designed to absorb shocks are failing, saturated, or being dismantled. The Strait of Hormuz buffered global energy. Emergency reserves buffer supply disruptions. The rules-based order buffered great-power competition. Pre-training scaling laws buffered AI labs from architectural innovation. Coral reefs buffer coastal ecosystems. State AI regulations buffer citizens from unaccountable deployment. Each buffer's failure forces a reckoning with the problem it masked. What new equilibrium forms when the buffer is gone?</p></div>
+
+<h3 class="sh2" style="color:var(--blub)">Structural Vocabulary (Accumulating)</h3>
+<div class="vg">
+<div class="vi"><h4>Buffer Collapse</h4><p>When a shock-absorbing system fails, exposing the structural problem it masked. Briefing 001.</p></div>
+<div class="vi"><h4>Chokepoint Cascade</h4><p>Failure at a single bottleneck propagates through every system that assumed it would remain open.</p></div>
+<div class="vi"><h4>Optionality Arbitrage</h4><p>Competitive advantage existing only in crisis. Valueless in peacetime, decisive under stress.</p></div>
+<div class="vi"><h4>Category Collapse</h4><p>When a distinction assumed stable dissolves. Combatant/civilian tech. Ethics as philosophy/engineering.</p></div>
+<div class="vi"><h4>Tipping Cascade</h4><p>When crossing one threshold triggers others. Ecological, technological, and institutional tipping points can interact.</p></div>
+<div class="vi"><h4>Governance Vacuum</h4><p>When institutional capacity lags behind the pace of change, creating a space filled by courts, norms, or power.</p></div>
+</div>
+
+<h3 class="sh2" style="color:var(--red)">Anomaly Detection: What Should Be Happening But Isn't</h3>
+<div class="c">
+<p><strong>China's muted response.</strong> China receives a third of its oil via the Strait and holds a billion barrels in reserve. Yet no strong public position or forceful diplomatic intervention. Possible readings: strategic ambiguity, or calculating the war weakens both US and Iran, creating a vacuum to fill later.</p>
+<p><strong>AI companies' silence on assassination targeting.</strong> The IRGC named 18 US tech companies as targets. No major public statements. No framework exists for responding to reclassification as combatants.</p>
+<p><strong>The renewable transition is not accelerating.</strong> Fossil fuel chokepoint fragility should be the strongest argument for transition in decades. Discourse dominated by "reopen Hormuz" not "reduce dependence on Hormuz."</p>
+<p><strong>No Congressional war authorization.</strong> Six weeks into active combat with F-15s shot down and thousands killed, Congress has not voted on war authorization. The constitutional war power is not being exercised. This is institutional buffer collapse in real time.</p>
+</div>
+</div>
+
+<!-- ========== GEOPOLITICAL ========== -->
+<div class="s" id="s-ge">
+<div class="sh">Geopolitical Forces</div>
+<div class="c cri">
+<div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span> <span class="tg tr">Active Conflict</span></div>
+<h3>The Iran War and the End of Calibrated Deterrence <span class="dd">Deep Dive Available</span></h3>
+<p>The US-Israeli attack, launched during nuclear negotiations on February 28, killed Supreme Leader Khamenei and expanded into a multi-front regional war involving nine countries. The structural force: <strong>multipolar fragmentation transforms escalation dynamics without reducing escalation risk.</strong> Conflicts expand horizontally (Houthis, Hezbollah, Azerbaijan) rather than vertically through formal declarations.</p>
+<div class="i so"><div class="il">Second-Order</div><p>The GCC economic model faces systemic stress. 80% of caloric intake imported through the closed waterway. Desalination plants (99% of Kuwait/Qatar water) under attack. Lost oil supply doubles to ~10% of global production by mid-April.</p></div>
+<div class="i rs"><div class="il">Cross-Domain Resonance</div><p>Helium (35% from Qatar) critical for semiconductors; disruption constrains AI compute buildout simultaneously with energy shock. Buffer failure begets buffer failure.</p></div>
+<div class="i cf"><div class="il">Counterfactual</div><p>What if Hormuz closure forces permanent Red Sea bypass pipelines, paradoxically making the energy system more resilient through forced redundancy?</p></div>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>Multipolarity as Operating System</h3>
+<p>75% of CEOs have localized production. Supply chains reorganize around regional blocs. The structural force: <strong>fragmentation of the rules-based order is a Kuhnian regime change.</strong> The emerging system assumes permanent divergence managed through bilateral deals, coercion, and hedging.</p>
+</div>
+</div>
+
+<!-- ========== TECHNOLOGICAL ========== -->
+<div class="s" id="s-te">
+<div class="sh">Technological Forces</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span></div>
+<h3>The End of Scaling, the Beginning of Architecture <span class="dd">Deep Dive Available</span></h3>
+<p>Pre-training results flattened, data exhausted, innovation shifted to post-training and architectural innovation. TurboQuant, world models, MoE architectures. The structural force: <strong>AI undergoes a phase transition from resource-intensive to design-intensive regime.</strong> Isomorphic to post-Dennard semiconductors. When brute force stops, wisdom in design becomes scarce.</p>
+<div class="i so"><div class="il">Second-Order</div><p>Democratization accelerates. Open-source base models (DeepSeek, Gemma 4, GLM-5.1) shift advantage to knowledge-intensive fine-tuning. Chinese open-source erodes frontier gap from months to weeks.</p></div>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>MCP and the Agentic Infrastructure Layer</h3>
+<p>Anthropic's MCP: 97M installs, Linux Foundation, adopted by OpenAI/Microsoft/Google. <strong>AI value shifts from model to ecosystem.</strong> Same transition as mainframes&rarr;networks, switches&rarr;protocols, genes&rarr;regulatory networks.</p>
+<div class="i cf"><div class="il">Counterfactual</div><p>Does agentic standardization produce correlated fragility? Common protocol failure propagates everywhere. The 2008 analogy: standardized mortgage securities as single point of systemic failure.</p></div>
+</div>
+</div>
+
+<!-- ========== ECONOMIC ========== -->
+<div class="s" id="s-ec">
+<div class="sh">Economic Forces</div>
+<div class="c cri">
+<div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span> <span class="tg tr">Active Crisis</span></div>
+<h3>The Energy Shock as Systemic Stress Test <span class="dd">Deep Dive Available</span></h3>
+<p>IEA: "largest supply disruption in history." Brent peaked above $120, trades ~$109. Dallas Fed: 2.9% quarterly GDP decline from single-quarter closure. Goldman: 25% recession odds. Gas at $4/gallon. Jet fuel doubled. Philippines four-day week. Airlines grounding. The structural force: <strong>dependence on a single maritime chokepoint is the defining systemic vulnerability of the 21st century.</strong></p>
+<div class="i so"><div class="il">Second-Order</div><p>Consumers bear 55% of tariff costs (up from 22%). Fed faces impossible trilemma. $580M suspicious short positions placed 15min before Trump's March 23 pause announcement.</p></div>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span></div>
+<h3>Tariffs as Permanent Architecture</h3>
+<p>After "Liberation Day" (April 2025), tariff permanence became clear through bilateral deals. Goldman: importers bear only 8% by mid-2026. <strong>Protectionism is a structural feature of the multipolar order, not a reversible policy choice.</strong></p>
+</div>
+</div>
+
+<!-- ========== SCIENTIFIC ========== -->
+<div class="s" id="s-sc">
+<div class="sh">Scientific &amp; Paradigmatic Forces</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>From Observation to Intervention</h3>
+<p>Science shifts from documenting to redesigning systems. Ocean alkalinity enhancement in field trials. In vivo CAR-T eliminates ex vivo engineering. Multi-cancer blood detection (50 types) in UK trials. Perovskite-silicon solar at 34%. Prime editing offers search-and-replace genetics. The structural force: <strong>the boundary between understanding and engineering nature dissolves.</strong> The knowledge problem is ambiguity: unclear what we should want to happen.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span></div>
+<h3>Simultaneous Foundational Transitions</h3>
+<p>IBM: first quantum advantage on a real problem. China's EAST beyond the Greenwald limit. Photonic processors for PDEs. LHC final runs. Multiple technologies (quantum, fusion, photonics, spatial omics) transition from proof-of-concept to deployment simultaneously. Historical precedent: such convergences produce transformations exceeding any single technology.</p>
+</div>
+</div>
+
+<!-- ========== SOCIAL ========== -->
+<div class="s" id="s-so">
+<div class="sh">Social &amp; Cultural Forces</div>
+<div class="c"><div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span></div>
+<h3>The War's Demographic Shock</h3>
+<p>1M+ displaced in Lebanon. Hundreds of thousands in Iran. Syria closed its border. Gulf states face humanitarian crisis: 80% of caloric intake imported through closed waterway, desalination plants struck. Displaced populations reshape politics and labor for decades.</p></div>
+<div class="c"><div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span></div>
+<h3>The K-Shaped Economy Deepens</h3>
+<p>ExxonMobil +11% while consumers face $4/gallon. Philippines grounds planes. China adds flights via Russian airspace. <strong>Shocks distribute according to existing structural advantages.</strong> The system amplifies inequality.</p></div>
+<div class="c"><div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>AI-Driven Entrepreneurship Surge</h3>
+<p>33% of US adults plan ventures (94% jump). 65% will use AI. 67% increase in post-layoff ventures. Christensen: modularization lowers barriers but limits scale without new demand. More entrepreneurs, but potentially fragmented "invisible" informal economy.</p></div>
+</div>
+
+<!-- ========== ECOLOGICAL ========== -->
+<div class="s" id="s-en">
+<div class="sh">Environmental &amp; Ecological Forces</div>
+<div class="c env">
+<div class="lb gnl"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span> <span class="tg tg2">Slow-Moving, High-Impact</span></div>
+<h3>Tipping Points Are Not Metaphors <span class="dd">Deep Dive Available</span></h3>
+<p>At 1.4&deg;C warming, warm-water coral reefs are already crossing their thermal tipping point (~1.2&deg;C). The 2025 Global Tipping Points Report identifies up to eight tipping points reachable below 2&deg;C: Greenland and West Antarctic ice sheets, permafrost, coral die-offs, Labrador Sea circulation, Amazon dieback, boreal forest shift, and AMOC weakening. These are not predictions; several are <em>observations of processes already underway</em>.</p>
+<p>The structural force: <strong>planetary systems operate on timescales that make human political and economic cycles irrelevant, but their consequences are not gradual; they are threshold-dependent and often irreversible.</strong> A Mongabay analysis argues that climate tipping points and biodiversity loss are the clearest existential threat precisely because they attack the foundations of everything: food security, water systems, public health, economic confidence, social cohesion. Once those fail simultaneously, security risks multiply and states intervene in supply chains. The downstream effects look like geopolitics, but the upstream drivers are biophysical.</p>
+<div class="i rs"><div class="il">Cross-Domain Resonance</div><p>The war is the <em>opposite</em> of what ecological tipping points demand. The Hormuz crisis locks attention onto fossil fuel logistics precisely when the structural case for energy transition is strongest. COP30 ended without mentioning fossil fuels. US environmental policy has been rolled back. The political attention budget is zero-sum, and the war absorbs it entirely. This is a temporal mismatch: ecological forces operate on century timescales while political attention operates on news cycles.</p></div>
+<div class="i cf"><div class="il">Counterfactual</div><p>What if ecological tipping points are the structural force that ultimately makes all others secondary? Every geopolitical, economic, and technological force analyzed in this briefing assumes a functioning biosphere. If coral reef collapse cascades into fisheries collapse cascades into food insecurity for hundreds of millions, the "buffer collapse" pattern applies to the planet itself. The ecological lens is not one lens among eight; it may be the container within which all other lenses operate.</p></div>
+</div>
+<div class="c env">
+<div class="lb gnl"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span></div>
+<h3>The War's Environmental Shadow</h3>
+<p>The Iran war has environmental dimensions that receive zero analytical attention. Strikes on petrochemical infrastructure release toxic compounds. Damaged LNG facilities at Qatar will take five years to repair. Sulfur supply disruption (45% global supply from Gulf) affects agriculture. The war's environmental footprint operates on a different timescale than its military and economic footprint, and will persist long after any ceasefire.</p>
+</div>
+</div>
+
+<!-- ========== INSTITUTIONAL ========== -->
+<div class="s" id="s-ig">
+<div class="sh">Institutional &amp; Governance Forces</div>
+<div class="c gov">
+<div class="lb aml"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span></div>
+<h3>The Constitutional Collision Over AI Governance <span class="dd">Deep Dive Available</span></h3>
+<p>Trump's December 2025 executive order established a DOJ task force to challenge state AI laws in federal court. 38 states passed AI legislation in 2025 (1,000+ bills). California's transparency requirements took effect January 1, 2026. The DOJ task force launched January 10 to challenge them. This is the most significant federalism challenge since the New Deal era. Federal courts will begin ruling throughout 2026, with potential Supreme Court review in 2027-28.</p>
+<p>The structural force: <strong>AI governance is being shaped by courts, professional associations, and institutional norms rather than democratic legislation.</strong> Congress has failed to enact comprehensive AI law, creating a governance vacuum filled by executive orders, state experiments, and judicial interpretation. When institutions designed for the industrial age confront digital-age problems, the gap between institutional capacity and technological velocity becomes the defining governance challenge.</p>
+<div class="i so"><div class="il">Second-Order</div><p>97% of Americans support AI regulation, but Congress has done nothing. The gap between public demand and institutional response creates legitimacy crisis. Meanwhile, the ABA is shaping AI practice norms that function as binding rules without ever being voted on. Governance by default, not design.</p></div>
+</div>
+<div class="c gov">
+<div class="lb aml"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>War Without Constitutional Authorization</h3>
+<p>The Iran war was launched under executive authority without congressional authorization. Article I, Section 8 grants Congress exclusive war power. The Supreme Court is already scheduled to rule on executive tariff authority. The constitutional questions compound: if the executive can wage war and set tariffs without Congress, the institutional buffer of separated powers is collapsing. The structural force: <strong>the concentration of executive power is itself a tipping point in institutional architecture.</strong></p>
+</div>
+<div class="c gov">
+<div class="lb aml"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span></div>
+<h3>AI Malpractice and the Judiciary's Scramble</h3>
+<p>729+ documented cases of lawyers filing AI-hallucinated legal authorities. Courts moving toward mandatory "hyperlink rules" for citations. The Philippine Supreme Court adopted AI governance framework requiring human oversight. The legal profession is retrofitting centuries-old institutional frameworks to handle AI in real time, creating what one analyst calls governance where "Law as Physics" replaces "Code is Law." The deeper question: can institutions designed for human-speed change adapt to machine-speed change?</p>
+</div>
+</div>
+
+<!-- ========== LIMINAL SIGNALS ========== -->
+<div class="s" id="s-li">
+<div class="sh">Liminal Signals</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1.5rem">Signals that resist clean categorization. The water that wears away the stone doesn't announce itself.</p>
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg ta">Category Collapse</span></div>
+<h3>Tech Companies as Military Targets</h3>
+<p>IRGC named 18 US tech companies as assassination targets. <strong>In a world of pervasive digital infrastructure, there may be no non-combatant technology company.</strong></p></div>
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg ta">Category Collapse</span></div>
+<h3>The Suspicious Oil Shorts ($580M)</h3>
+<p>$580M in shorts placed 15min before Trump's pause announcement. <strong>When war becomes a market event, escalation incentives become entangled with financial positions.</strong></p></div>
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg ta">Optionality Arbitrage</span></div>
+<h3>Chinese Airlines Through Russian Airspace</h3>
+<p>Chinese carriers add flights to Europe via Russian airspace while others ground planes. <strong>Relationship value defined by crisis enablement, not peacetime utility.</strong> The logic of optionality, not optimization.</p></div>
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg ta">Category Collapse</span></div>
+<h3>Ethics as Engineering</h3>
+<p>Capgemini: ethics "becomes an engineering topic" in 2026. <strong>Engineering ethics may produce systems reliably ethical in predictable situations and catastrophically unethical in novel ones.</strong> Knowledge problems applied to governance: situations needing wisdom most resist specification.</p></div>
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg ta">Governance Vacuum</span></div>
+<h3>Governance by Procurement</h3>
+<p>Legal analysts predict that procurement becomes the real AI regulator in 2026: RFPs start requiring proof of data boundaries, governance, and audit trails. When democratic institutions can't keep pace, market mechanisms fill the vacuum. The deeper signal: <strong>when formal governance fails, informal governance emerges through commercial relationships.</strong> The question is whether commercial governance serves public interests or only commercial ones.</p></div>
+</div>
+
+<!-- ========== INFERENCE ENGINE ========== -->
+<div class="s" id="s-ie">
+<div class="sh">Inference Engine</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1.5rem">Conditional mappings of possibility space. Not predictions but structured explorations of how forces interact.</p>
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg tu">High Uncertainty</span></div>
+<h3>If Hormuz Remains Closed Past Mid-April&hellip;</h3>
+<p><strong>Then</strong> lost supply doubles to ~10M bpd &rarr; reserves deplete faster than they buffer &rarr; oil $140-170 &rarr; eurozone, UK, Japan enter contraction &rarr; Fed impossible trilemma &rarr; midterms become war referendum &rarr; strategy constrained by domestic political timeline.</p>
+<p>Futures imply ~60% ceasefire by September. Structural analysis suggests markets underpricing duration risk.</p></div>
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg tc">Complexity</span></div>
+<h3>If Helium Prices Continue Doubling&hellip;</h3>
+<p>Semiconductor fab timelines slip &rarr; agentic AI buildout faces hardware constraints by Q3-Q4 &rarr; post-scaling efficiency revolution accelerates &rarr; open-source efficient models gain ground. Paradox: a Gulf war may accelerate the transition making AI less hardware-dependent.</p></div>
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg te">Equivocality</span></div>
+<h3>If AI Entrepreneurship Barriers Keep Falling&hellip;</h3>
+<p>94% intent surge &rarr; AI-native micro-ventures &rarr; <strong>But</strong> Christensen predicts they stay small without demand &rarr; <strong>Unless</strong> crisis creates demand for resilient alternatives &rarr; then crisis paradoxically catalyzes what AI-native entrepreneurs need.</p></div>
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg tc">Tipping Cascade</span></div>
+<h3>If Ecological Tipping Points Interact&hellip;</h3>
+<p>Coral die-off &rarr; fisheries collapse (food security for hundreds of millions) &rarr; migration pressure &rarr; political destabilization &rarr; weakened institutional capacity &rarr; reduced ability to address climate drivers. Meanwhile: Amazon dieback &rarr; reduced carbon absorption &rarr; accelerated warming &rarr; further tipping points. This is a self-reinforcing cascade with no external buffer.</p></div>
+
+<h3 class="sh2" style="color:var(--purp)">Force Interaction Matrix</h3>
+<div class="c">
+<div class="mr"><div class="mf">Energy Shock &times; Tariffs</div><span class="md amp">AMPLIFY</span><div class="me">Compounding stagflation through tariff-inflated supply chains.</div></div>
+<div class="mr"><div class="mf">Energy Shock &times; AI Compute</div><span class="md amp">AMPLIFY</span><div class="me">Helium + energy costs constrain hardware. Accelerates efficiency-first AI.</div></div>
+<div class="mr"><div class="mf">Energy Shock &times; Renewables</div><span class="md dmp">DAMPEN (long-term)</span><div class="me">Fossil fragility strengthens transition case. Short-term costs slow deployment.</div></div>
+<div class="mr"><div class="mf">AI Tools &times; Job Displacement</div><span class="md amp">AMPLIFY</span><div class="me">Creates both supply of founders and necessity for them.</div></div>
+<div class="mr"><div class="mf">Multipolarity &times; Open Source</div><span class="md dmp">DAMPEN</span><div class="me">Chinese open-source circumvents technology fragmentation.</div></div>
+<div class="mr"><div class="mf">War &times; Ecology</div><span class="md amp">AMPLIFY</span><div class="me">War absorbs political attention, damages infrastructure, delays transition. Ecological forces continue regardless.</div></div>
+<div class="mr"><div class="mf">Governance Vacuum &times; AI</div><span class="md amp">AMPLIFY</span><div class="me">AI deployment accelerates while institutional frameworks lag. Gap widens daily.</div></div>
+</div>
+</div>
+
+<!-- ========== WISE ACTION ========== -->
+<div class="s" id="s-wa">
+<div class="sh">Wise Action</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1.5rem">知行合一 &mdash; Knowing and acting are one. Understanding the structural landscape is incomplete without asking: what does this enable, foreclose, or demand?</p>
+
+<div class="c act wa-section"><div class="lb tl"><span>WHAT IS CHANGING ENTREPRENEURSHIP</span> <span class="dd">Deep Dive Available</span></div>
+<h3>The Structural Transformation of Entrepreneurial Action</h3>
+
+<h4>1. The Modularization of Capability</h4>
+<p>AI tools have modularized tasks that previously required teams: market research, branding, code, content creation, customer service, financial modeling. One in three US adults plans to start a venture in 2026 (a 94% increase year-over-year), and 65% of aspiring entrepreneurs plan to use AI in the launch process. This is the most significant democratization of startup capability in history.</p>
+<p>The Christensen insight is precise here: when capability becomes modular and abundant, competitive power shifts from component makers to assemblers. The entrepreneur who can orchestrate modular AI capabilities into a coherent offering gains structural advantage over both traditional businesses (slower, heavier cost structures) and other AI-using entrepreneurs (who may use the same tools without the integration insight). This is why the cyborg ensemble framework matters operationally, not just theoretically: the quality of human-AI integration is the differentiator when the tools themselves are commoditized.</p>
+<p>But modularity without new demand creation produces fragmentation, not growth. A 67% increase in post-layoff ventures suggests necessity-driven entrepreneurship, which historically yields smaller, more vulnerable businesses. The critical question: does the current crisis environment create the demand catalysts that give these ventures somewhere to grow? The answer depends on the next structural force.</p>
+
+<h4>2. The Resilience Premium</h4>
+<p>The Hormuz crisis has revealed a structural truth that was theoretically known but operationally ignored: global supply chains optimized for efficiency are catastrophically fragile. Every industry that assumed stable access to energy, logistics, and materials now faces repricing. This is not generic "disruption" language; it is a specific, measurable structural shift with identifiable entrepreneurial implications.</p>
+<p>The opportunities cluster around four themes. First, <strong>supply chain resilience</strong>: businesses that can provide localized, redundant, or alternative-source supply for industries exposed to Gulf dependence. This includes everything from regional food systems to domestic chemical manufacturing to alternative helium sources for semiconductor fabs. Second, <strong>energy independence at small scale</strong>: microgrids, distributed solar-plus-storage, energy management software for businesses facing volatile energy costs. Perovskite tandem solar at 34% efficiency is not a laboratory curiosity; it is a structural shift that the crisis makes commercially urgent. Third, <strong>logistics innovation</strong>: the war has revealed that the global logistics network has single points of failure (Hormuz, Suez) that affect everything from oil to fertilizer to helium. Entrepreneurs who can design around these chokepoints have a structural tailwind. Fourth, <strong>trust and verification infrastructure</strong>: in a world of deepfakes, AI-generated content, and information warfare ($580M in suspicious insider trades), businesses that can verify authenticity have growing demand.</p>
+<p>The structural insight: <strong>the resilience premium is the demand catalyst that resolves the modularity-without-demand problem.</strong> AI tools lower the cost of entering these markets. The crisis creates the demand. The entrepreneurs who connect these two forces occupy a structural sweet spot.</p>
+
+<h4>3. The Cyborg Ensemble as Competitive Unit</h4>
+<p>As AI tools plateau in raw capability and shift to ecosystem integration (MCP, agentic protocols), competitive advantage increasingly resides in the quality of the human-AI ensemble design, not in access to any particular model. The 97 million MCP installs mean the connective tissue is becoming standardized; what remains scarce is the wisdom to configure it well.</p>
+<p>This directly maps onto the cyborg entrepreneurship framework. The four ensemble configurations (adaptation, collaboration, extension, integration) describe a gradient from superficial tool use to deep structural coupling. The entrepreneurs who will thrive in 2026 are those operating at the integration end: where human judgment and AI capability become jointly necessary and produce emergent abilities neither could achieve alone. The binding constraints are epistemic coupling (can the human and AI reliably interpret each other?) and agentic synchrony (can they coordinate in real time without friction?). These are not just theoretical categories; they are operational design challenges that determine competitive performance.</p>
+
+<div class="i in"><div class="il">Research Program Relevance</div>
+<p>The Hormuz crisis is a live case study that activates the full knowledge problems framework. Entrepreneurs in affected supply chains face genuine Knightian uncertainty (cannot assign probabilities to regime changes, ceasefire timing, or supply chain reconfiguration), equivocality (the same oil price data supports opposing business strategies), ambiguity (unclear what a "good outcome" even looks like for Gulf-dependent businesses), and complexity (non-linear propagation from energy through helium through semiconductors through AI capabilities).</p>
+<p>The Glimpse ABM's innovation equilibrium trap is being enacted in real markets. If every new entrepreneur uses the same AI tools (ChatGPT for ideation, Canva for branding, Shopify for commerce), the competitive landscape homogenizes. Premium AI users in the ABM showed lower survival rates precisely because tool uniformity eliminated the heterogeneity that drives competitive advantage. The 94% surge in entrepreneurial intent, largely driven by AI accessibility, is the population-level version of this dynamic. "Escaping the Trap Is the Trap" is not a simulation artifact; it is becoming a market observation.</p>
+<p>The IRGC naming tech companies as assassination targets suggests a dimension the cyborg framework has not yet theorized: <strong>geopolitical coupling</strong>. When the infrastructure composing the ensemble (Google, Microsoft, cloud services) is itself embedded in geopolitical conflict, the ensemble's risk profile extends beyond task performance into sovereignty, targeting, and supply continuity. This may warrant explicit treatment as a fourth enabling factor alongside task complexity, epistemic coupling, and agentic synchrony.</p></div>
+</div>
+
+<div class="c act wa-section"><div class="lb tl"><span>WHAT IS CHANGING GLOBAL MARKETS</span> <span class="dd">Deep Dive Available</span></div>
+<h3>The Structural Repricing of Everything</h3>
+
+<h4>Energy Is Repricing Geography</h4>
+<p>Countries with domestic energy production (US, Norway, Canada, Brazil) are structurally advantaged in a way that may persist for a generation. The US is a net energy exporter, meaning the oil shock has asymmetric effects: it hurts US consumers at the pump but strengthens US geopolitical leverage, energy sector profitability, and relative economic positioning. Import-dependent nations (Japan receives 70% of its Middle Eastern oil through Hormuz; South Korea, Taiwan, and much of Europe are similarly exposed) face persistent cost pressure that reshapes comparative advantage across every industry where energy is a significant input — which is nearly every industry.</p>
+<p>The second-order implication: the geography of manufacturing advantage is shifting. Industries that require cheap, reliable energy (semiconductors, chemicals, aluminum, data centers) will migrate toward domestic energy abundance. The US CHIPS Act and IRA investment programs align with this structural force. The war accelerates a trend that was already underway but politically contested.</p>
+
+<h4>Protectionism Is Repricing Supply Chains</h4>
+<p>Tariffs are permanent architecture, not negotiating tactics. The evidence is now conclusive: after "Liberation Day," bilateral deals made clear that tariff levels would not return to pre-2025 baselines. Consumers now bear 55% of tariff costs (up from 22% six months earlier). Goldman projects importers will absorb only 8% by mid-2026 as they complete the pass-through cycle. The 75% of CEOs who have already localized production are ahead of this curve. The remaining 25% face compounding costs from tariffs + energy shock + logistics disruption simultaneously — a triple structural headwind that may be existential for businesses with thin margins and inflexible supply chains.</p>
+
+<h4>Risk Is Repricing Insurance</h4>
+<p>This is an underappreciated signal. Maritime insurance for the Strait of Hormuz has been withdrawn entirely. War risk premiums make Gulf shipping uneconomic even if the Strait technically reopens. Insurance markets are leading indicators with a specific structural property: when insurers refuse to price a risk, the underlying economic activity stops regardless of physical possibility. The Strait could be physically navigable and still economically closed because no insurer will cover the cargo. This is the same dynamic that shut down construction in wildfire-prone California — not physical destruction, but insurance withdrawal. Watch for this pattern to spread: as climate risks, geopolitical risks, and AI liability risks compound, the insurance industry becomes the de facto regulator of which economic activities are viable.</p>
+
+<h4>Volatility Is Repricing Time Horizons</h4>
+<p>The market is bifurcated between two incompatible views. One camp believes Trump can end the war quickly (his social media posts have repeatedly claimed talks are imminent and the war will end soon). The other sees structural duration: Iran has demonstrated willingness to absorb enormous punishment without capitulating, Hormuz remains closed, and no clear off-ramp exists. Oil futures price ~60% ceasefire odds by September and ~80% by year-end. But the structural analysis suggests markets may be systematically underpricing duration risk for three reasons: (1) they are overweighting Trump's social media signals, which have proven unreliable as indicators of actual military decisions; (2) Iran's stated position (reparations, new legal regime for Hormuz) is incompatible with US demands (unconditional reopening); and (3) financial actors profiting from volatility ($580M in suspicious shorts) have structural incentives to maintain uncertainty.</p>
+</div>
+
+<div class="c act wa-section"><div class="lb tl"><span>INVESTMENT LANDSCAPE</span> <span class="dd">Deep Dive Available</span></div>
+<h3>Structural Positioning, Not War Trading</h3>
+<p>The honest framing: actively trading the war is, as analyst Peter St Onge puts it, "collecting dimes in front of steamrollers." Trump is chaotic — at 2 PM the war is ending, by 4 PM Tehran faces obliteration. If you repositioned after the war started, you already absorbed the initial shock; flipping into a war portfolio now risks double-slammed losses if a surprise ceasefire materializes. The wise action is positioning for structural forces that persist regardless of the war's specific duration or resolution.</p>
+
+<h4>Structural Positions (Persist Regardless of War Duration)</h4>
+<p><strong>Energy transition infrastructure.</strong> Perovskite tandem solar at 34% efficiency is a structural shift that the war makes commercially urgent, not a war trade. Grid storage, microgrid technology, and energy management software all benefit from the demonstrated fragility of centralized fossil fuel logistics. These positions gain value whether the war ends next week or next year, because the <em>revealed vulnerability</em> permanently changes investment calculus even after the Strait reopens.</p>
+<p><strong>Domestic US energy production ("Permian Premium").</strong> US shale producers (Occidental Petroleum, Diamondback Energy, EOG Resources) supply stable, non-chokepoint-dependent oil. Occidental sold OxyChem for $9.7B, positioning for $1.2B in incremental free cash flow even before the war premium. The structural advantage: supply security now commands a permanent premium over supply efficiency. Berkshire Hathaway's 29% stake in OXY is a structural bet on this thesis.</p>
+<p><strong>Critical mineral supply chains.</strong> China controls ~90% of the metallization step for defense-grade rare earth metals. The war dramatically increases demand for non-China-dependent supply. MP Materials (Mountain Pass, the only scaled US rare earth mine) and REalloys (only North American operational facility for defense-grade alloys, 80% offtake from Saskatchewan's China-free refinery) sit at structural chokepoints with multi-year demand tailwinds. This is not a war trade; it is a critical infrastructure thesis that extends across any plausible geopolitical scenario.</p>
+<p><strong>Domestic fertilizer and food security.</strong> CF Industries benefits from disruption of Gulf fertilizer exports (30-35% of global urea, 20-30% of ammonia normally transit Hormuz). With $1.79B in free cash and a $2B buyback program, CF has the financial position to capitalize. Its domestic logistics network becomes more valuable as shipping costs surge. This is structural food security repricing.</p>
+
+<h4>The Deeper Thesis: Investing in the Next Buffer System</h4>
+<p>The most interesting investment opportunity may be the one least discussed: companies building the replacement buffer systems for those currently failing. The old buffers (Hormuz, emergency reserves, the rules-based order, pre-training scaling) are exhausted or collapsing. What replaces them? <strong>Distributed energy</strong> (microgrids, local solar + storage) replaces centralized chokepoint-dependent power. <strong>AI-optimized resilient supply chains</strong> (multi-source, dynamically rerouting) replace single-path logistics. <strong>Alternative transport corridors</strong> (Arctic routes, Red Sea bypass pipelines, new rail links) replace Hormuz dependence. <strong>Agentic coordination infrastructure</strong> (MCP-based protocols for supply chain management) replaces manual coordination. Companies building these replacement buffers are positioned for structural growth independent of any specific conflict resolution.</p>
+
+<h4>Caution Zones</h4>
+<p><strong>Pure oil-price trades</strong> are binary bets on war duration. Morningstar maintains a long-term medium-cycle oil forecast of $65/bbl. The gap between current price ($109) and long-term value ($65) is entirely war premium. A surprise ceasefire would close that gap rapidly, creating sharp losses for late entrants.</p>
+<p><strong>Defense stocks</strong> (Lockheed Martin, RTX) have already priced in high-intensity operations and the Pentagon's $1.1T budget request. Further upside requires the war to exceed already-elevated expectations. Lockheed's F-35 program and Golden Dome shield are real catalysts, but the risk-reward ratio has shifted after the initial surge.</p>
+<p><strong>Gold and silver</strong> crashed post-war onset (gold -11%, silver -23% in March). Precious metals are not reliable hedges in this specific conflict because the war creates an unusual combination of inflation (bullish) and liquidity demands (bearish, as investors sell winners to cover losses). The pre-war rally (gold +22%, silver +32% in Jan-Feb) reversed entirely.</p>
+</div>
+
+<div class="c wa-section"><div class="lb"><span>RESEARCH PROGRAM RELEVANCE</span> <span class="dd">Deep Dive Available</span></div>
+<h3>What Today's Landscape Means for the Work</h3>
+<p><strong>For the knowledge problems framework:</strong> The Hormuz crisis is a textbook case of Knightian uncertainty cascading through complex systems. It simultaneously generates equivocality (same oil data supports opposing Fed interpretations), ambiguity (unclear what a "good outcome" looks like for Gulf-dependent entrepreneurs), and complexity (non-linear propagation through helium, semiconductors, AI capability, entrepreneurial tool access). A single real-world case that activates all four knowledge problems simultaneously is analytically rare and could serve as an extended example in the cyborg entrepreneurship book or a JBV case study.</p>
+<p><strong>For the cyborg entrepreneurship framework:</strong> The crisis reveals that AI tools composing the ensemble are not neutral instruments but geopolitically embedded infrastructure. When the IRGC names Google and Microsoft as assassination targets, the infrastructure of the cyborg ensemble becomes a source of risk, not just capability. This suggests a new dimension worth theorizing: <em>geopolitical coupling</em> — the degree to which the ensemble's infrastructure is entangled with state-level conflict. High geopolitical coupling means the ensemble's operational continuity depends on factors entirely outside the human or AI partner's control. This has direct implications for the four ensemble configurations: integration-level ensembles may be more vulnerable to geopolitical coupling than adaptation-level ones, because deeper coupling means deeper dependency on specific infrastructure providers.</p>
+<p><strong>For the Glimpse ABM and "Escaping the Trap":</strong> The 94% surge in entrepreneurial intent, driven by AI tool accessibility, is the population-level enactment of the AI augmentation paradox. If every new entrepreneur uses identical tools, the competitive landscape homogenizes — precisely the mechanism that produces the innovation equilibrium trap in the ABM. The crisis-driven demand for resilient alternatives may be what breaks the trap, by creating heterogeneous opportunity landscapes where AI tools are necessary but insufficient. Worth tracking whether the entrepreneurs who succeed are those who combine AI capability with domain-specific, location-specific, or relationship-specific knowledge that resists commoditization. This would validate the ABM's prediction that the trap is broken by heterogeneity, not by better tools.</p>
+<p><strong>For "Entrepreneurs Authoring Time" (AMR R2):</strong> The war introduces radical discontinuity in entrepreneurial temporality. Entrepreneurs in Gulf-dependent supply chains face temporal horizons that have collapsed from quarters to weeks. The "authoring" metaphor is being tested under extreme conditions: can entrepreneurs rewrite their temporal narratives fast enough when the structural context shifts this violently? The contrast between entrepreneurs who successfully re-author (pivoting supply chains, finding alternative routes) and those who cannot may provide exactly the kind of temporal discontinuity case the paper needs for its theoretical claims to land with force.</p>
+</div>
+</div>
+
+<!-- ========== SOURCE ARCHIVE ========== -->
+<div class="s" id="s-sa">
+<div class="sh">Source Archive &amp; Reading List</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1rem">Annotated by structural insight contributed. Accumulates across briefings.</p>
+
+<h3 class="sh2" style="color:var(--blub)">Thinker Registry</h3>
+<p style="color:var(--t3);margin-bottom:1rem;font-size:.9rem">Voices whose frameworks proved most useful in this briefing. Tracked across sessions.</p>
+<div style="margin-bottom:1.5rem">
+<span class="tk"><strong>Rapha&euml;l Dosson</strong> <span>&middot; Multipolar escalation logic</span></span>
+<span class="tk"><strong>Peter St Onge</strong> <span>&middot; "Dimes in front of steamrollers" war-trading frame</span></span>
+<span class="tk"><strong>Clayton Christensen</strong> <span>&middot; Modularity theory applied to AI entrepreneurship</span></span>
+<span class="tk"><strong>Marko Papic (BCA)</strong> <span>&middot; Oil supply loss quantification and timeline</span></span>
+<span class="tk"><strong>David Beier</strong> <span>&middot; Federal-state AI governance compact</span></span>
+<span class="tk"><strong>Paul Ritchie (Exeter)</strong> <span>&middot; Tipping point overshoot dynamics</span></span>
+<span class="tk"><strong>Mark Roberts (Capgemini)</strong> <span>&middot; Ethics as engineering problem</span></span>
+</div>
+
+<h3 class="sh2" style="color:var(--gold)">Serendipity Queue</h3>
+<p style="color:var(--t3);margin-bottom:1rem;font-size:.9rem">Sources encountered that don't fit today's briefing but contain signals worth returning to.</p>
+<div class="src"><div class="src-cat">Held for future briefing</div>
+<a href="https://www.nature.com/articles/d41586-026-00188-6">Nature: Seven technologies to watch in 2026</a>
+<div class="src-note">Self-driving laboratories and photonic computing for PDEs. The "physics-native computing" concept may connect to structural isomorphisms between computation and physical systems.</div></div>
+<div class="src"><div class="src-cat">Held for future briefing</div>
+<a href="https://www.christenseninstitute.org/blog/three-predictions-for-2026-on-development-disruption-and-entrepreneurship/">Christensen Institute: Three predictions for 2026</a>
+<div class="src-note">Modularity theory applied to AI-driven entrepreneurship. Deep connection to knowledge problems: "Education must force decisions with incomplete information."</div></div>
+
+<h3 class="sh2" style="color:var(--blub)">Geopolitical &amp; Conflict Sources</h3>
+<div class="src"><div class="src-cat">Primary</div><a href="https://en.wikipedia.org/wiki/2026_Iran_war">Wikipedia: 2026 Iran war</a><div class="src-note">Comprehensive timeline. Contributed the nine-country expansion scope and casualty figures.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.geopoliticalmonitor.com/how-multipolarity-shifts-the-logic-of-escalation-in-iran/">Geopolitical Monitor: Dosson on multipolar escalation</a><div class="src-note">Key analytical contribution: multipolar fragmentation transforms escalation without reducing risk.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.csis.org/programs/latest-analysis-war-iran">CSIS: Latest analysis on Iran war</a><div class="src-note">Cyber threats to US energy infrastructure; Houthi entry; Iran escalation strategy mapping.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://commonslibrary.parliament.uk/research-briefings/cbp-10521/">UK House of Commons: US/Israel-Iran conflict 2026</a><div class="src-note">UK perspective. Hormuz deadline, UK base attacks, diplomatic context.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.bcg.com/publications/2025/geopolitical-forces-shaping-business-in-2026">BCG: Geopolitical forces 2026</a><div class="src-note">Six arenas of multipolar competition. 75% CEO localization stat.</div></div>
+
+<h3 class="sh2" style="color:var(--blub)">Economic &amp; Energy Sources</h3>
+<div class="src"><div class="src-cat">Data</div><a href="https://www.dallasfed.org/research/economics/2026/0320">Dallas Fed: Strait of Hormuz closure modeling</a><div class="src-note">2.9% quarterly GDP decline estimate. Rigorous quantitative framework.</div></div>
+<div class="src"><div class="src-cat">Data</div><a href="https://www.iea.org/reports/oil-market-report-march-2026">IEA: Oil Market Report March 2026</a><div class="src-note">"Largest supply disruption in history." 10M bpd production cuts. Emergency reserve coordination.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.cnbc.com/2026/03/28/oil-gas-prices-iran-war-hormuz.html">CNBC: Next few weeks decisive for economy</a><div class="src-note">Papic's supply loss doubling timeline. Mid-April structural threshold.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.profstonge.com/p/investment-newsletter-april-2026">St Onge: Investment Newsletter April 2026</a><div class="src-note">"Dimes in front of steamrollers." Pre/post-war asset performance data. Ceasefire odds analysis.</div></div>
+<div class="src"><div class="src-cat">Data</div><a href="https://en.wikipedia.org/wiki/Economic_impact_of_the_2026_Iran_war">Wikipedia: Economic impact of 2026 Iran war</a><div class="src-note">$580M suspicious shorts. GCC food import disruption. Systemic collapse of GCC economic model.</div></div>
+
+<h3 class="sh2" style="color:var(--blub)">Technology &amp; AI Sources</h3>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://techcrunch.com/2026/01/02/in-2026-ai-will-move-from-hype-to-pragmatism/">TechCrunch: AI hype to pragmatism</a><div class="src-note">End of scaling, MCP adoption, world models. LeCun departure for world model lab.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.technologyreview.com/2026/01/05/1130662/whats-next-for-ai-in-2026/">MIT Tech Review: What's next for AI</a><div class="src-note">Chinese open-source models. AlphaEvolve. Content licensing deals. Five hot trends.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.devflokers.com/blog/ai-breakthroughs-open-source-march-2026">devFlokers: AI breakthroughs March 2026</a><div class="src-note">GPT-5.4 as "digital collaborator." Agentic era transition. TurboQuant controversy.</div></div>
+
+<h3 class="sh2" style="color:var(--blub)">Ecological &amp; Climate Sources</h3>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://theecologist.org/2026/mar/04/climate-nears-tipping-points">The Ecologist: Climate nears tipping points</a><div class="src-note">8 tipping points reachable below 2&deg;C. Coral reefs already crossing. Overshoot dynamics.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://news.mongabay.com/2026/02/tipping-points-and-ecosystem-collapse-are-the-real-geopolitical-risk-commentary/">Mongabay: Tipping points as geopolitical risk</a><div class="src-note">Key frame: "downstream effects look like geopolitics, upstream drivers are biophysical." Modeling critique.</div></div>
+<div class="src"><div class="src-cat">Report</div><a href="https://global-tipping-points.org/">Global Tipping Points Report 2025</a><div class="src-note">Five systems already at risk. Positive tipping points (clean tech, social). COP30 implications.</div></div>
+
+<h3 class="sh2" style="color:var(--blub)">Institutional &amp; Governance Sources</h3>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://introl.com/blog/federal-state-ai-law-showdown-trump-executive-order-2026">Introl: Federal-state AI law showdown</a><div class="src-note">DOJ task force timeline. 38 states, 1000+ bills. Constitutional collision mapped in detail.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.techpolicy.press/expert-predictions-on-whats-at-stake-in-ai-policy-in-2026/">TechPolicy.Press: Expert AI policy predictions</a><div class="src-note">"Red lines" year. AI bubble concerns. 97% public support for regulation vs. zero Congressional action.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.theregreview.org/2026/01/12/beier-a-new-state-and-federal-compact-for-artificial-intelligence/">Regulatory Review: Federal-state AI compact</a><div class="src-note">Beier's governance framework. Self-regulation insufficient. Congressional role argument.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.texaspolicyresearch.com/ai-governance-is-shifting-from-legislatures-to-courts-and-bureaucrats/">Texas Policy: AI governance shift</a><div class="src-note">ABA norms functioning as binding rules without democratic vote. Governance by default, not design.</div></div>
+
+<h3 class="sh2" style="color:var(--blub)">Entrepreneurship Sources</h3>
+<div class="src"><div class="src-cat">Data</div><a href="https://quickbooks.intuit.com/r/small-business-data/entrepreneurship-in-2026/">QuickBooks: Entrepreneurship in 2026</a><div class="src-note">33% intent (94% jump). 65% AI usage plans. Gen Z leads intent at 43%.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.christenseninstitute.org/blog/three-predictions-for-2026-on-development-disruption-and-entrepreneurship/">Christensen Institute: Three predictions</a><div class="src-note">Modularity theory on AI entrepreneurship. Entry-level labor substitution. "Oceans of nonconsumption."</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.entrepreneur.com/starting-a-business/5-businesses-to-start-in-2026-that-will-thrive-despite/501822">Entrepreneur: AI-safe businesses</a><div class="src-note">67% increase in post-layoff ventures. AI displacement as entrepreneurship catalyst.</div></div>
+</div>
+
+<footer>
+<p>Tectonic Briefing &middot; No. 001 &middot; 5 April 2026</p>
+<p style="margin-top:.3rem">Eight analytical lenses &middot; Inference engine &middot; Wise action &middot; Source archive &middot; Temporal tracking begins</p>
+</footer>
+</div>
+<script>
+function go(id){document.querySelectorAll('.s').forEach(s=>s.classList.remove('v'));document.getElementById('s-'+id).classList.add('v');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('on'));event.target.classList.add('on');window.scrollTo({top:document.querySelector('.bn').offsetTop-16,behavior:'smooth'})}
+</script>
+</body>
+</html>
