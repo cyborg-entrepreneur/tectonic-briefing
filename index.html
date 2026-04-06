@@ -54,6 +54,23 @@ h1 em{font-style:normal;color:var(--blub);font-weight:500}
 
 .sh2{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--blub);margin:2rem 0 .8rem}
 
+/* Sort controls */
+.sort-bar{display:flex;gap:.5rem;align-items:center;margin-bottom:1.2rem}
+.sort-bar span{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
+.sort-btn{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.06em;padding:.3rem .6rem;border:1px solid var(--brd);border-radius:2px;background:transparent;color:var(--t3);cursor:pointer;transition:all .25s}
+.sort-btn:hover{border-color:var(--brds);color:var(--blup)}
+.sort-btn.active{border-color:var(--blu);color:var(--blub);background:rgba(75,142,242,.06)}
+
+/* Section visibility */
+.section{display:none}
+.section.visible{display:block}
+
+/* Threads section */
+.thread-item{background:var(--card);border:1px solid var(--brd);border-radius:3px;padding:1.2rem 1.5rem;margin-bottom:.8rem}
+.thread-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--t1);margin-bottom:.3rem}
+.thread-desc{color:var(--t3);font-size:.9rem;margin-bottom:.4rem}
+.thread-appearances{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);letter-spacing:.08em}
+
 footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--brd);text-align:center}
 footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
 @media(max-width:768px){.w{padding:0 1rem}h1{font-size:2rem}.stats{gap:1.2rem}.vocab-grid{grid-template-columns:1fr}}
@@ -70,19 +87,24 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);
 
 <div class="stats">
 <div class="stat"><div class="stat-num" id="count">2</div><div class="stat-label">Briefings</div></div>
-<div class="stat"><div class="stat-num" id="vocab-count">6</div><div class="stat-label">Named Patterns</div></div>
+<div class="stat"><div class="stat-num" id="vocab-count">9</div><div class="stat-label">Named Patterns</div></div>
 <div class="stat"><div class="stat-num" id="thinker-count">7</div><div class="stat-label">Thinkers Tracked</div></div>
 <div class="stat"><div class="stat-num" id="source-count">25</div><div class="stat-label">Sources Archived</div></div>
 </div>
 
 <div class="nav-links">
-<a href="#briefings" class="active">Briefings</a>
-<a href="#vocabulary">Vocabulary</a>
-<a href="#threads">Threads</a>
+<a href="#" class="active" onclick="showSection('briefings',this);return false">Briefings</a>
+<a href="#" onclick="showSection('vocabulary',this);return false">Vocabulary</a>
+<a href="#" onclick="showSection('threads',this);return false">Threads</a>
 </div>
 
 <!-- BRIEFING ARCHIVE -->
-<div id="briefings">
+<div id="briefings" class="section visible">
+<div class="sort-bar">
+<span>Sort by:</span>
+<button class="sort-btn active" onclick="sortBriefings('newest',this)">Newest First</button>
+<button class="sort-btn" onclick="sortBriefings('oldest',this)">Oldest First</button>
+</div>
 <!-- Briefings are listed newest-first. Add new entries at the top. -->
 
 <a class="entry" href="briefings/2026-04-06.html">
@@ -129,7 +151,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);
 </div>
 
 <!-- VOCABULARY ARCHIVE -->
-<div class="vocab-archive" id="vocabulary">
+<div class="vocab-archive section" id="vocabulary">
 <h3 class="sh2">Structural Vocabulary</h3>
 <p style="color:var(--t3);font-size:.9rem;margin-bottom:1rem">Named patterns accumulating across briefings. When a new event matches a pattern, analysis compresses and hidden structure becomes visible.</p>
 <div class="vocab-grid">
@@ -139,13 +161,41 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);
 <div class="vi"><h4>Category Collapse</h4><p>When a distinction assumed stable dissolves under pressure.</p><div class="origin">Briefing 001 · 5 Apr 2026</div></div>
 <div class="vi"><h4>Tipping Cascade</h4><p>Crossing one threshold triggers others. Ecological, technological, and institutional tipping points interact.</p><div class="origin">Briefing 001 · 5 Apr 2026</div></div>
 <div class="vi"><h4>Governance Vacuum</h4><p>When institutional capacity lags the pace of change, creating space filled by courts, norms, or power.</p><div class="origin">Briefing 001 · 5 Apr 2026</div></div>
+<div class="vi"><h4>Deadline Revelation</h4><p>An ultimatum that reveals more about the issuer's constraints than the recipient's. The deadline itself becomes the diagnostic.</p><div class="origin">Briefing 002 · 6 Apr 2026</div></div>
+<div class="vi"><h4>Shadow Settlement</h4><p>Parallel negotiations proceeding beneath official diplomatic channels, where actual terms are being shaped while public postures remain rigid.</p><div class="origin">Briefing 002 · 6 Apr 2026</div></div>
+<div class="vi"><h4>Capacity Hollowing</h4><p>When an institution retains its formal authority while losing the analytical capacity to exercise it. The shell persists; the substance dissolves.</p><div class="origin">Briefing 002 · 6 Apr 2026</div></div>
 </div>
 </div>
 
-<!-- THREADS (future) -->
-<div class="vocab-archive" id="threads" style="display:none">
+<!-- THREADS -->
+<div class="vocab-archive section" id="threads">
 <h3 class="sh2">Structural Threads</h3>
-<p style="color:var(--t3);font-size:.9rem">Forces tracked across multiple briefings. Coming soon as the archive accumulates.</p>
+<p style="color:var(--t3);font-size:.9rem;margin-bottom:1.2rem">Forces persisting across multiple briefings. Threads emerge when the same structural dynamic appears in consecutive analyses.</p>
+
+<div class="thread-item">
+<div class="thread-name">Buffer Collapse &rarr; Chokepoint Cascade</div>
+<div class="thread-desc">The Strait of Hormuz closure propagates through energy, semiconductor supply (helium), shipping insurance, and food systems. Each buffer failure exposes the next dependency.</div>
+<div class="thread-appearances">Briefing 001 (identified) &rarr; Briefing 002 (quantified: 95% shipping collapse, insurance withdrawal)</div>
+</div>
+
+<div class="thread-item">
+<div class="thread-name">Governance Vacuum</div>
+<div class="thread-desc">Institutional capacity lags the pace of change across AI regulation, war powers, and trade policy. Courts fill the gap (IEEPA ruling), creating constitutional incoherence.</div>
+<div class="thread-appearances">Briefing 001 (identified) &rarr; Briefing 002 (deepened: IEEPA tariffs struck down, Congressional war authorization absent)</div>
+</div>
+
+<div class="thread-item">
+<div class="thread-name">AI Phase Transition</div>
+<div class="thread-desc">Shift from scaling-era to architecture-era AI. Pre-training returns flatten; value migrates to post-training, agentic infrastructure, and protocol standardization (MCP/A2A).</div>
+<div class="thread-appearances">Briefing 001 (identified) &rarr; Briefing 002 (extended: AI scheming incidents, autonomy doubling every 7 months)</div>
+</div>
+
+<div class="thread-item">
+<div class="thread-name">Renewable Transition Non-Acceleration</div>
+<div class="thread-desc">Despite the largest energy disruption in decades, the political attention budget is consumed by crisis response rather than structural transition. War delays the very transformation it makes urgent.</div>
+<div class="thread-appearances">Briefing 001 (flagged as anomaly) &rarr; Briefing 002 (persists)</div>
+</div>
+
 </div>
 
 <footer>
@@ -153,5 +203,29 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);
 </footer>
 
 </div>
+<script>
+function showSection(id, el) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+    document.getElementById(id).classList.add('visible');
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    el.classList.add('active');
+}
+
+function sortBriefings(order, btn) {
+    var container = document.getElementById('briefings');
+    var entries = Array.from(container.querySelectorAll('.entry'));
+    entries.sort(function(a, b) {
+        var dateA = a.querySelector('.entry-date').textContent;
+        var dateB = b.querySelector('.entry-date').textContent;
+        var dA = new Date(dateA);
+        var dB = new Date(dateB);
+        return order === 'newest' ? dB - dA : dA - dB;
+    });
+    // Re-append in sorted order (after sort-bar)
+    entries.forEach(function(entry) { container.appendChild(entry); });
+    container.querySelectorAll('.sort-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+}
+</script>
 </body>
 </html>
