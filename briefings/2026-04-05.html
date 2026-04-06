@@ -64,8 +64,21 @@ nav button.gn{border-color:rgba(74,222,128,.3)}nav button.gn:hover,nav button.gn
 .tk{display:inline-block;background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:.5rem .9rem;margin:0 .4rem .4rem 0;font-size:.85rem}
 .tk strong{color:var(--t1);font-weight:500}.tk span{color:var(--t3);font-size:.8rem}
 /* Deep Dive Marker */
-.dd{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blub);background:rgba(75,142,242,.08);border:1px solid rgba(75,142,242,.25);border-radius:2px;padding:.25rem .6rem;margin-left:.5rem;vertical-align:middle}
+.dd{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blub);background:rgba(75,142,242,.08);border:1px solid rgba(75,142,242,.25);border-radius:2px;padding:.25rem .6rem;margin-left:.5rem;vertical-align:middle;cursor:pointer;transition:all .3s}
 .dd::before{content:'\25C9';font-size:.7rem}
+.dd:hover{background:rgba(75,142,242,.18);border-color:rgba(75,142,242,.5);color:var(--blup)}
+.dd.active{background:rgba(75,142,242,.15);border-color:var(--blu);color:var(--blup)}
+.dd.active::before{content:'\25CE'}
+/* Deep Dive Panel */
+.dd-panel{display:none;margin-top:1.2rem;padding:1.4rem 1.6rem;background:linear-gradient(135deg,rgba(75,142,242,.04),rgba(167,139,250,.04));border:1px solid rgba(75,142,242,.2);border-radius:3px;animation:fu .35s ease}
+.dd-panel.open{display:block}
+.dd-panel .dd-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--purp);margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem}
+.dd-panel .dd-label::before{content:'\25C9';font-size:.65rem}
+.dd-panel h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:500;color:var(--t1);margin-bottom:.6rem}
+.dd-panel p{color:var(--t2);line-height:1.75;margin-bottom:.8rem;font-size:.93rem}
+.dd-panel p:last-child{margin-bottom:0}
+.dd-panel strong{color:var(--t1)}
+.dd-panel .dd-question{font-style:italic;color:var(--t3);border-left:2px solid var(--purp);padding-left:.8rem;margin:.8rem 0}
 /* Wise Action expanded */
 .wa-section{margin-bottom:2.5rem}
 .wa-section h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:500;color:var(--t1);margin:1.4rem 0 .7rem;padding-top:.8rem;border-top:1px solid rgba(75,142,242,.1)}
@@ -443,6 +456,36 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);
 </div>
 <script>
 function go(id){document.querySelectorAll('.s').forEach(s=>s.classList.remove('v'));document.getElementById('s-'+id).classList.add('v');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('on'));event.target.classList.add('on');window.scrollTo({top:document.querySelector('.bn').offsetTop-16,behavior:'smooth'})}
+
+// Deep Dive toggle
+document.addEventListener('DOMContentLoaded',function(){
+document.querySelectorAll('.dd').forEach(function(dd,idx){
+dd.setAttribute('data-dd-id','dd-'+idx);
+dd.setAttribute('title','Click to expand deep dive analysis');
+dd.addEventListener('click',function(e){
+e.stopPropagation();
+var panel=this.closest('.c').querySelector('.dd-panel');
+if(!panel){
+// Create panel dynamically if it doesn't exist yet
+panel=document.createElement('div');
+panel.className='dd-panel';
+panel.innerHTML='<div class="dd-label">Deep Dive Analysis</div>'
++'<h4>Extended Analysis</h4>'
++'<p>This structural force warrants deeper examination. The surface-level developments described above are symptoms of a more fundamental transformation in the underlying system architecture.</p>'
++'<p class="dd-question">Key question for further analysis: What are the second- and third-order consequences that current frameworks are not equipped to anticipate? Where does Knightian uncertainty — the inability to even specify the probability distribution of outcomes — govern rather than calculable risk?</p>'
++'<p>This deep dive marker signals a topic for extended conversation in the next briefing session. Use it to flag which structural forces deserve sustained attention across multiple briefings rather than single-day treatment.</p>';
+this.closest('.c').appendChild(panel);
+}
+panel.classList.toggle('open');
+this.classList.toggle('active');
+if(this.classList.contains('active')){
+this.innerHTML='Deep Dive Open';
+}else{
+this.innerHTML='Deep Dive Available';
+}
+});
+});
+});
 </script>
 </body>
 </html>
