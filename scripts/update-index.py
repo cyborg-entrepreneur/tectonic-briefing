@@ -13,7 +13,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-REPO_DIR = Path.home() / "workflow" / "tectonic-briefing"
+REPO_DIR = Path(__file__).resolve().parent.parent
 BRIEFINGS_DIR = REPO_DIR / "briefings"
 INDEX_FILE = REPO_DIR / "index.html"
 

@@ -6,7 +6,7 @@
 
 set -e
 
-REPO_DIR="$HOME/workflow/tectonic-briefing"
+REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO_DIR"
 
 # Check for uncommitted changes
