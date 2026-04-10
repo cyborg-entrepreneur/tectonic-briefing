@@ -3,3 +3,7 @@
 *.swo
 *~
 .env
+
+# Article drafts staged here are adapted into the cyborg-entrepreneurship
+# Next.js site separately. They must NOT be published to GitHub Pages.
+articles/
