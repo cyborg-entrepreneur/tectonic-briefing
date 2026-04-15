@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tectonic Briefing</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source Sans 3',system-ui,sans-serif;font-size:16px;line-height:1.7;min-height:100vh}
+:root{--bg:#0b1120;--card:#111827;--alt:#141c2e;--str:#162035;--blu:#4b8ef2;--blub:#6da8ff;--blup:#a3c8ff;--teal:#38d9c8;--tealm:#2a9e92;--gold:#e5b84c;--goldm:#c9a03a;--red:#f06050;--redm:#c04a3e;--purp:#a78bfa;--grn:#4ade80;--t1:#eaf0f8;--t2:#cdd6e4;--t3:#8e9bb5;--t4:#5f6d87;--brd:rgba(75,142,242,0.18);--brds:rgba(75,142,242,0.35)}
+.w{max-width:1140px;margin:0 auto;padding:0 1.8rem}
+header{padding:2.8rem 0 1.8rem;border-bottom:1px solid var(--brd);margin-bottom:2rem}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2.6rem;color:var(--t1);letter-spacing:.025em}
+h1 em{font-style:normal;color:var(--blub);font-weight:500}
+.sub{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--t4);letter-spacing:.14em;text-transform:uppercase;margin-top:.4rem}
+.epi{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.02rem;color:var(--t3);margin-top:1rem;max-width:680px;line-height:1.55;padding-left:1rem;border-left:2px solid var(--brds)}
+nav{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--brd)}
+nav button{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .7rem;border:1px solid var(--brd);border-radius:2px;background:transparent;color:var(--t3);cursor:pointer;transition:all .25s}
+nav button:hover{border-color:var(--brds);color:var(--blup)}
+nav button.on{border-color:var(--blu);color:var(--blub);background:rgba(75,142,242,.06)}
+nav button.gld{border-color:rgba(229,184,76,.3)}nav button.gld:hover,nav button.gld.on{border-color:var(--gold);color:var(--gold);background:rgba(229,184,76,.06)}
+nav button.rd{border-color:rgba(240,96,80,.3)}nav button.rd:hover,nav button.rd.on{border-color:var(--red);color:var(--red);background:rgba(240,96,80,.06)}
+nav button.tl{border-color:rgba(56,217,200,.3)}nav button.tl:hover,nav button.tl.on{border-color:var(--teal);color:var(--teal);background:rgba(56,217,200,.06)}
+nav button.pr{border-color:rgba(167,139,250,.3)}nav button.pr:hover,nav button.pr.on{border-color:var(--purp);color:var(--purp);background:rgba(167,139,250,.06)}
+nav button.gn{border-color:rgba(74,222,128,.3)}nav button.gn:hover,nav button.gn.on{border-color:var(--grn);color:var(--grn);background:rgba(74,222,128,.06)}
+.bn{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--t4);letter-spacing:.08em;margin-bottom:.3rem}
+.bd{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--t1);margin-bottom:.2rem}
+.bt{font-size:.95rem;color:var(--t3);font-style:italic;margin-bottom:2rem}
+.s{display:none;animation:fu .35s ease}.s.v{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.c{background-color:var(--card);border:1px solid var(--brd);border-radius:3px;padding:1.8rem 2rem;margin-bottom:1.4rem}
+.c.lim{border-left:3px solid var(--gold);background-color:var(--alt)}.c.cri{border-left:3px solid var(--red);background-color:var(--alt)}.c.act{border-left:3px solid var(--teal);background-color:var(--alt)}.c.inf{border-left:3px solid var(--purp);background-color:var(--alt)}.c.env{border-left:3px solid var(--grn);background-color:var(--alt)}.c.gov{border-left:3px solid #f59e0b;background-color:var(--alt)}
+.lb{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blu);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.lb.gl{color:var(--gold)}.lb.tl{color:var(--teal)}.lb.rl{color:var(--red)}.lb.pl{color:var(--purp)}.lb.gnl{color:var(--grn)}.lb.aml{color:#f59e0b}
+.tg{padding:.12rem .45rem;border-radius:2px;font-size:.58rem}
+.tu{background:rgba(75,142,242,.14);color:var(--blup)}.te{background:rgba(56,217,200,.14);color:var(--teal)}.tc{background:rgba(167,139,250,.14);color:var(--purp)}.ta{background:rgba(229,184,76,.14);color:var(--gold)}.tr{background:rgba(240,96,80,.14);color:#fca5a5}.tg2{background:rgba(74,222,128,.14);color:var(--grn)}
+.c h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:var(--t1);margin-bottom:.9rem;line-height:1.3}
+.c p{margin-bottom:.9rem;color:var(--t2);line-height:1.75}.c p:last-child{margin-bottom:0}.c strong{color:var(--t1);font-weight:600}
+.i{margin-top:1rem;padding:.9rem 1.2rem;border-radius:0 2px 2px 0}.i p{font-size:.93rem;color:var(--t2)}
+.il{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.4rem}
+.i.so{background:rgba(75,142,242,.05);border-left:2px solid rgba(75,142,242,.35)}.i.so .il{color:var(--t4)}
+.i.rs{background:rgba(56,217,200,.05);border-left:2px solid rgba(56,217,200,.3)}.i.rs .il{color:var(--tealm)}
+.i.cf{background:rgba(229,184,76,.05);border-left:2px solid rgba(229,184,76,.3)}.i.cf .il{color:var(--goldm)}.i.cf p{font-style:italic}
+.i.in{background:rgba(167,139,250,.05);border-left:2px solid rgba(167,139,250,.3)}.i.in .il{color:var(--purp)}
+.th{background-color:var(--str);border:1px solid var(--brds);border-radius:3px;padding:1.6rem 1.8rem;margin:1.8rem 0}
+.th h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:500;color:var(--blub);margin-bottom:.8rem}.th p{color:var(--t2);line-height:1.75}
+.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;margin:1.2rem 0}
+.vi{background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:1rem 1.2rem}
+.vi h4{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--blub);margin-bottom:.4rem;letter-spacing:.04em}.vi p{font-size:.88rem;color:var(--t3);line-height:1.5;margin:0}
+.mr{display:flex;align-items:flex-start;gap:.8rem;padding:.8rem 0;border-bottom:1px solid rgba(75,142,242,.08)}
+.mf{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--blu);min-width:170px;padding-top:.2rem;letter-spacing:.04em}
+.me{font-size:.92rem;color:var(--t2)}.md{font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.1rem .4rem;border-radius:2px;white-space:nowrap}
+.amp{background:rgba(240,96,80,.12);color:#fca5a5}.dmp{background:rgba(56,217,200,.12);color:var(--teal)}
+.prose{max-width:800px;margin-bottom:1.8rem}.prose p{margin-bottom:1rem;color:var(--t2);line-height:1.8}
+.sh{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--t1);margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid var(--brd)}
+.sh2{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;margin:2rem 0 1rem}
+.src{background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:.8rem 1.2rem;margin-bottom:.6rem;font-size:.88rem}
+.src-cat{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.2rem}
+.src a{color:var(--blub);text-decoration:none;border-bottom:1px solid rgba(109,168,255,.3)}.src a:hover{border-color:var(--blub)}
+.src .src-note{color:var(--t3);font-size:.85rem;margin-top:.3rem}
+.tk{display:inline-block;background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:.5rem .9rem;margin:0 .4rem .4rem 0;font-size:.85rem}
+.tk strong{color:var(--t1);font-weight:500}.tk span{color:var(--t3);font-size:.8rem}
+.wa-section{margin-bottom:2.5rem}
+.wa-section h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:500;color:var(--t1);margin:1.4rem 0 .7rem;padding-top:.8rem;border-top:1px solid rgba(75,142,242,.1)}
+.wa-section h4:first-of-type{border-top:none;padding-top:0}
+footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--brd);text-align:center}
+footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
+@media(max-width:768px){.w{padding:0 1rem}h1{font-size:2rem}.c{padding:1.3rem 1.2rem}.vg{grid-template-columns:1fr}.mr{flex-direction:column;gap:.3rem}.mf{min-width:unset}}
+</style>
+</head>
+<body>
+<div class="w">
+<header>
+<h1><em>Tectonic</em> Briefing</h1>
+<div class="sub">Structural forces &middot; Inference engine &middot; Wise action &middot; Source archive</div>
+<div class="epi">&ldquo;He who declares the law must be able to enforce it; else he has declared nothing.&rdquo; &mdash; paraphrase of Ibn Khald&uacute;n, <em>Muqaddimah</em> (1377), on the relationship between &lsquo;asab&icirc;yya and executive authority. The declaration without enforcement is the beginning of the rule&rsquo;s end, not its consolidation.</div>
+</header>
+
+<nav id="nav">
+<button class="on" onclick="go('ov')">Overview</button>
+<button class="rd" onclick="go('ge')">Geopolitical</button>
+<button onclick="go('te')">Technological</button>
+<button onclick="go('ec')">Economic</button>
+<button onclick="go('sc')">Scientific</button>
+<button onclick="go('so')">Social</button>
+<button class="gn" onclick="go('en')">Ecological</button>
+<button onclick="go('ig')">Institutional</button>
+<button class="gld" onclick="go('li')">Liminal Signals</button>
+<button class="pr" onclick="go('ie')">Inference Engine</button>
+<button class="tl" onclick="go('wa')">Wise Action</button>
+<button onclick="go('sa')">Source Archive</button>
+</nav>
+
+<div class="bn">BRIEFING NO. 011</div>
+<div class="bd">15 April 2026</div>
+<div class="bt">Chinese Defense Minister Dong Jun: &ldquo;The Strait of Hormuz is open to us.&rdquo; China&rsquo;s Foreign Ministry calls the US blockade &ldquo;dangerous and irresponsible.&rdquo; At least four Iran-linked ships cross Hormuz; six merchant vessels were turned back yesterday. The bilateral US-Iran crisis has revealed itself as multipolar. Israel and Lebanon declared yesterday&rsquo;s Washington talks &ldquo;productive&rdquo; and both sides publicly named Hezbollah as the shared problem; direct negotiations will continue. Brent rises 2.13% to $96.80; WTI falls to $90.92, the Brent-WTI spread widening as global and US-domestic oil markets begin to price different scenarios. Ceasefire expiration: six days away (April 21). P&eacute;ter Magyar meets President Sulyok today to begin the Hungarian transition. Today&rsquo;s pattern: enforcement selectivity. A declared universal blockade operates in practice only against actors who accept its legitimacy.</div>
+
+<!-- ========== OVERVIEW ========== -->
+<div class="s v" id="s-ov">
+<div class="prose">
+<p>Yesterday&rsquo;s pattern was dual-track maximalism: maximum rhetoric and diplomatic opening co-occurring. Today the structural question shifts to enforcement. Three signature events expose what the past six weeks of declarations have been obscuring: <strong>the effective scope of a declared policy is bounded by the consent of parties the declarer cannot coerce without paying costs the declarer will not pay.</strong> The first signature event: Chinese Foreign Ministry publicly condemns the US naval blockade of Iranian ports as &ldquo;dangerous and irresponsible,&rdquo; and Chinese Defense Minister Dong Jun states in a direct press appearance that &ldquo;The Strait of Hormuz is open to us.&rdquo; At least four Iran-linked ships crossed Hormuz in the twenty-four hours before the statement. The statement is doctrinal, not incidental: China is asserting a right of navigation independent of US permission, declining to recognize the legitimacy of the blockade as applied to Chinese-linked commerce, and doing so publicly rather than through back channels. The US has not responded operationally. No Chinese-flagged or China-linked vessel has been interdicted.</p>
+
+<p>The second signature event: yesterday&rsquo;s Israel-Lebanon talks in Washington, mediated by Secretary Rubio, were characterized by the State Department as &ldquo;productive,&rdquo; and both sides agreed to continue direct negotiations at a time and venue to be determined. <strong>Both Israeli and Lebanese representatives publicly identified Hezbollah as the shared problem.</strong> This is the most significant public alignment between Lebanese state actors and Israel in more than thirty years, and it represents a decisive resolution of the 72-hour autonomy test that Briefing 010 identified. Hezbollah Secretary-General Naim Qassem has called on the Lebanese government to withdraw from the talks and characterized the process as &ldquo;futile.&rdquo; The Lebanese government has not withdrawn. Rubio&rsquo;s framing of the talks as &ldquo;a process, not a single event&rdquo; and as aimed at &ldquo;a permanent end to the decades of Hezbollah&rsquo;s destabilizing influence&rdquo; extends the diplomatic ambition beyond ceasefire toward the dismantling of Iran&rsquo;s principal regional proxy.</p>
+
+<p>The third: oil markets have begun to price the bilateral-to-multipolar revelation. Brent rose 2.13% to $96.80 per barrel on the Chinese statement. WTI fell to $90.92 per barrel, down 0.40%, as US domestic supply dynamics decoupled from the global seaborne market. <strong>The Brent-WTI spread has widened to nearly $6 per barrel, one of the largest sustained divergences in recent years.</strong> The divergence is structurally informative: the seaborne market is pricing a configuration in which the Iran crisis produces a multipolar enforcement problem that raises global supply risk even if the bilateral talks produce a Hormuz reopening; the US domestic market is pricing a configuration in which US self-sufficiency partially insulates it from the global spillovers. Both markets are pricing different futures of the same crisis.</p>
+</div>
+
+<div class="th"><h3>Unifying Thread: Enforcement Selectivity</h3>
+<p>April 15 reveals a structural property of unilateral declarations that the past two weeks of blockade rhetoric have been obscuring: <strong>a declaration&rsquo;s effective scope is the subset of actors who accept its legitimacy plus the subset over whom the declarer is willing to pay the cost of coercion.</strong> The universal scope claimed by the declaration and the selective scope produced by enforcement reality are not the same thing. Trump&rsquo;s blockade declaration was universal in its rhetorical form (&ldquo;any and all Ships&rdquo;), narrowed to Iranian-port traffic in its operational form (Briefing 009&rsquo;s Scope Retreat), and is now revealed to be selective in its enforcement form because China has publicly refused compliance for Chinese-linked commerce and the US cannot impose enforcement costs on China without strategic consequences it will not accept. <strong>The blockade is therefore not a US-Iran instrument but a US-against-Iran-and-non-Chinese-commerce instrument</strong> &mdash; a narrower and structurally different policy than the one announced.</p>
+<p>The specific mechanism is worth naming precisely. Enforcement selectivity does not require a formal carve-out; it operates through the declared party&rsquo;s inability to impose the costs that enforcement would require. China did not negotiate an exemption. China simply announced it would not comply and proceeded to not comply. The US had two choices: interdict a Chinese-linked vessel (which would escalate the crisis into a direct US-China confrontation the US is not prepared to pursue) or accept non-compliance (which reveals the blockade as selective). The US has, by its operational choices over the past seventy-two hours, accepted non-compliance. The revelation is not a policy change; it is an enforcement disclosure. <strong>What the blockade actually is has become visible.</strong></p>
+<p>The Ibn Khald&uacute;n epigraph is the historical scaffolding for this observation. The <em>Muqaddimah</em> argued that political authority rests on &lsquo;asab&icirc;yya &mdash; the cohesive will of a political community to back its declarations with action &mdash; and that declarations uncoupled from enforcement capacity are not merely weak but actively destabilizing, because the rupture between declared scope and enforced scope becomes observable to all relevant actors. Once that rupture is visible, the declarer&rsquo;s future declarations are priced at a discount by every party who now knows the enforcement architecture. The Chinese statement today has made the rupture observable in the specific case of the Hormuz blockade. It will be priced across every subsequent US declaration in adjacent domains &mdash; sanctions, technology export controls, secondary sanctions architecture &mdash; by every actor who now knows that enforcement selectivity is the actual rule. <strong>The discount factor on US unilateral action has risen.</strong></p></div>
+
+<h3 class="sh2" style="color:var(--blub)">Structural Vocabulary (Accumulating)</h3>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1rem;font-size:.9rem">Organized by meta-category. Five structural families, 29 named patterns (1 added today).</p>
+
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-1: Coupling Failure</h3>
+<div class="vg">
+<div class="vi"><h4>Observation-Action Decoupling</h4><p>Accurate observation does not constrain behavior. Briefing 006.</p></div>
+<div class="vi"><h4>Narrative-Physical Decoupling</h4><p>Official account operates as a parallel reality. Briefing 007.</p></div>
+<div class="vi"><h4>Akrasia at Scale</h4><p>Knowing the better course and choosing the worse. Briefing 006.</p></div>
+<div class="vi"><h4>Capability Opacity</h4><p>Capability-verifiability gap unbridgeable. Briefing 003.</p></div>
+<div class="vi"><h4>Emergent Concealment</h4><p>AI develops capacity to hide actions. Briefing 005.</p></div>
+<div class="vi"><h4>Instrument Autonomy</h4><p>Deployed instrument exceeds deployer&rsquo;s control. Briefing 008.</p></div>
+<div class="vi"><h4>Scope Retreat</h4><p>Declared policy retreats to physically feasible within hours. Briefing 009.</p></div>
+<div class="vi"><h4>Dual-Track Maximalism</h4><p>Maximum rhetoric and diplomatic opening occur simultaneously. Briefing 010.</p></div>
+</div>
+
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-2: Bypass Inversion</h3>
+<div class="vg">
+<div class="vi"><h4>Bypass Capture</h4><p>Escape route becomes the target. Briefing 007.</p></div>
+<div class="vi"><h4>Shadow Settlement</h4><p>Parallel transaction system emerges. Briefing 002.</p></div>
+<div class="vi"><h4>Conditional Collapse</h4><p>Ambiguity that enabled agreement becomes mechanism of failure. Briefing 005.</p></div>
+<div class="vi"><h4>Negotiation Multiplication</h4><p>Stalled tracks spawn parallel tracks. Briefing 006.</p></div>
+<div class="vi"><h4>Sovereignty Arbitrage</h4><p>Gap between sovereignty claims and enforcement. Briefing 003.</p></div>
+</div>
+
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-3: Threshold Cascade</h3>
+<div class="vg">
+<div class="vi"><h4>Buffer Collapse</h4><p>Shock-absorbing system fails. Briefing 001.</p></div>
+<div class="vi"><h4>Chokepoint Cascade</h4><p>Bottleneck failure propagates. Briefing 001.</p></div>
+<div class="vi"><h4>Tipping Cascade</h4><p>One threshold triggers others. Briefing 001.</p></div>
+<div class="vi"><h4>Deadline Revelation</h4><p>Temporal boundary forces latent forces visible. Briefing 002.</p></div>
+<div class="vi"><h4>Reversibility Asymmetry</h4><p>Physical conditions tend to irreversibility; institutional to reversibility. Briefing 009.</p></div>
+</div>
+
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-4: Commons Enclosure</h3>
+<div class="vg">
+<div class="vi"><h4>Commons Enclosure</h4><p>Shared resource converted to controlled access. Briefing 003.</p></div>
+<div class="vi"><h4>Optionality Arbitrage</h4><p>Advantage existing only in crisis. Briefing 001.</p></div>
+<div class="vi"><h4>Paradigm Defection</h4><p>Dominant advocate abandons paradigm. Briefing 005.</p></div>
+<div class="vi"><h4>Process as Destination</h4><p>Negotiation&rsquo;s continuation is its goal. Briefing 007.</p></div>
+</div>
+
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-5: Institutional Hollowing</h3>
+<div class="vg">
+<div class="vi"><h4>Capacity Hollowing</h4><p>Personnel cuts reduce perception before action. Briefing 002.</p></div>
+<div class="vi"><h4>Category Collapse</h4><p>Stable distinction dissolves. Briefing 001.</p></div>
+<div class="vi"><h4>Governance Vacuum</h4><p>Institutional capacity lags pace of change. Briefing 001.</p></div>
+<div class="vi"><h4>Constructive Ambiguity</h4><p>Agreement via mutually exclusive interpretations. Briefing 004.</p></div>
+<div class="vi"><h4>Ceasefire Acceleration</h4><p>Pause accelerates structural transformations. Briefing 004.</p></div>
+<div class="vi"><h4>Electoral Correction</h4><p>Entrenched illiberal rule reversed through democratic processes. Briefing 009.</p></div>
+<div class="vi" style="border-color:var(--blub)"><h4 style="color:var(--gold)">Enforcement Selectivity &#9679; NEW</h4><p>A declared universal policy operates in practice only against actors who accept its legitimacy, because the declarer cannot impose enforcement costs on non-compliant third parties without strategic consequences it will not accept. The blockade as US-against-Iran-and-non-Chinese-commerce. Briefing 011.</p></div>
+</div>
+
+<h3 class="sh2" style="color:var(--red)">Anomaly Detection: What Should Be Happening But Isn&rsquo;t</h3>
+<div class="c">
+<p><strong>No US operational response to the Chinese statement.</strong> Chinese Defense Minister Dong Jun has publicly rejected the legitimacy of the US blockade as applied to Chinese-linked commerce and asserted independent right of navigation. Under any previous configuration of US Middle East policy, this kind of public challenge from a major power would trigger a specific diplomatic response: a counter-statement, a back-channel engagement, a demonstration of US capacity. <strong>None of these has occurred.</strong> The US response has been operational silence, which functions as tacit confirmation that the Chinese position will be accommodated. The absence of response is the response.</p>
+<p><strong>Congressional silence persists into week eleven.</strong> [Persistent from Briefing 010.] Fifteen Americans wounded at Ali Al Salem on Monday, a naval blockade in active operation, a Chinese public rejection of the blockade&rsquo;s legitimacy, a ceasefire expiration six days away, and ongoing direct combat between Israeli and Lebanese forces. No congressional hearing. No War Powers Resolution invocation. No formal committee engagement. The silent retirement of the Resolution continues to harden into precedent.</p>
+<p><strong>The mine situation remains below the news threshold.</strong> [Persistent from Briefings 008-010.] The physical clearance of the Iranian mines in the Strait of Hormuz is the rate-limiting variable on any substantive reopening, and the US Navy has issued no progress report in two weeks of operations. The narrative layer has generated six weeks of news cycles around a physical condition that is essentially unchanged.</p>
+<p><strong>Sudan continues to receive coverage proportional to zero.</strong> [Persistent from Briefings 009-010, now worsening.] Today&rsquo;s UN update: more than 80% of displaced Sudanese families are skipping meals; 18% have been forced to send children to work; 1.3 million refugees in Chad face imminent food/water access risk. The crisis deepens by the day while the structural-attention budget remains fully allocated to the Iran crisis and the Hungarian transition.</p>
+</div>
+</div>
+
+<!-- ========== GEOPOLITICAL ========== -->
+<div class="s" id="s-ge">
+<div class="sh">Geopolitical Forces</div>
+<div class="c cri">
+<div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span> <span class="tg tr">Major Realignment</span></div>
+<h3>&ldquo;The Strait of Hormuz Is Open to Us&rdquo;: China Publicly Rejects the US Blockade</h3>
+<p>Chinese Defense Minister Dong Jun told reporters today that &ldquo;The Strait of Hormuz is open to us,&rdquo; noting that China maintains trade and energy agreements with Iran and expects other parties not to interfere with Chinese-linked commerce through the Strait. The Chinese Foreign Ministry separately characterized the US blockade as &ldquo;dangerous and irresponsible.&rdquo; At least four Iran-linked ships crossed the Strait of Hormuz in the twenty-four hours preceding the statement. <strong>This is the first public rejection by a major power of the US blockade&rsquo;s legitimacy, and it occurred in the form of a direct press statement by the Chinese defense minister rather than a Foreign Ministry comment or a back-channel signal.</strong> The form matters: Dong Jun&rsquo;s statement is the institutional voice most directly associated with the operational enforcement decision, which is the level at which the US and China would confront each other if the blockade were enforced against Chinese-linked vessels.</p>
+<p>The structural significance of the Chinese statement is twofold. First, it establishes that the blockade is selective rather than universal: any vessel that can credibly claim Chinese destination, Chinese ownership, Chinese protection, or Chinese-linked commercial relationships is effectively outside the blockade&rsquo;s scope. The operational lane that this carves out is substantial &mdash; China is the world&rsquo;s largest importer of Iranian crude, and the Chinese state-linked trading and shipping infrastructure can absorb substantial tonnage through the exemption pathway. Second, and more consequentially, <strong>the Chinese statement reveals that the US blockade&rsquo;s enforcement architecture was always multipolar in its dependencies even when its rhetorical framing was bilateral.</strong> The US cannot enforce the blockade against Chinese-linked commerce without imposing costs on the US-China strategic relationship that the US is not prepared to pay, and China has now publicly disclosed that it knows this and will act accordingly. The bilateral US-Iran crisis has been openly re-framed as a US-Iran-China configuration in which the US cannot execute its stated policy without multilateral consent it does not have.</p>
+<div class="i so"><div class="il">Second-Order</div><p>The Chinese statement functions as a template for other actors. Russia, India, and Turkey all have structural reasons to prefer selective blockade compliance, and China has now demonstrated that public rejection of the blockade&rsquo;s legitimacy is available at manageable cost. The next thirty days are likely to produce additional public or semi-public statements from these actors that further narrow the blockade&rsquo;s effective scope. <strong>Enforcement selectivity, once disclosed, compounds.</strong> Each subsequent non-complier reduces the marginal cost of non-compliance for the next actor considering the move.</p></div>
+</div>
+
+<div class="c cri">
+<div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span> <span class="tg tr">Historic Diplomatic Progress</span></div>
+<h3>Israel-Lebanon Direct Talks: &ldquo;Productive,&rdquo; Both Sides Name Hezbollah as the Problem</h3>
+<p>The Washington talks yesterday between the Israeli and Lebanese ambassadors, mediated by Secretary of State Marco Rubio with the US ambassador to Beirut present, were characterized by the State Department as &ldquo;productive,&rdquo; &ldquo;open,&rdquo; &ldquo;direct,&rdquo; and &ldquo;high-level.&rdquo; <strong>Both the Israeli and Lebanese participants publicly identified Hezbollah as the principal shared problem.</strong> This is the most significant public alignment between Lebanese state actors and Israel in more than thirty years. Rubio framed the meeting as &ldquo;a process, not a single event&rdquo; and as directed at &ldquo;a permanent end to the decades of Hezbollah&rsquo;s destabilizing influence&rdquo; rather than simply a ceasefire. Both sides agreed to continue direct negotiations at a time and venue to be determined.</p>
+<p>The structural significance is that the 72-hour autonomy test from Briefing 010 has resolved toward durable autonomy, at least for the current round. Hezbollah Secretary-General Naim Qassem has publicly called on the Lebanese government to withdraw from the talks and characterized the process as &ldquo;futile&rdquo;; the Lebanese government has not withdrawn. <strong>The Lebanese state is now operating with a degree of autonomy from Hezbollah that regional analysis has not assumed was available for more than a decade, and this autonomy is being exercised in the specific policy domain where Hezbollah&rsquo;s veto has historically been strongest.</strong> Whether this autonomy extends beyond the diplomatic track into the operational domain (security forces, border posture, economic regulation) is the question the next thirty days will answer. What today established is that the diplomatic window is open, which in itself represents a change of regional architecture.</p>
+</div>
+
+<div class="c cri">
+<div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span> <span class="tg tr">Ceasefire T-6</span></div>
+<h3>The Six-Day Clock: US-Iran Negotiations Resuming Under Compressed Timeline</h3>
+<p>The US-Iran ceasefire expires on April 21, six days from today. Pakistan is actively brokering a possible extension, and the Trump administration has indicated openness to further negotiations before expiration. <strong>The specific sticking points are now public:</strong> both sides have proposed a suspension of Iranian uranium enrichment but cannot agree on a timeframe; the US additionally wants the dismantling of Iran&rsquo;s major enrichment facilities and the immediate reopening of the Strait of Hormuz. The second US demand is operationally incoherent given the mine situation (Iran cannot reopen the Strait because it cannot locate its own mines; see Briefing 008), but the demand&rsquo;s function in negotiation is to establish maximum US positioning for bargaining purposes rather than to describe a deliverable outcome. The dual-track maximalism pattern from Briefing 010 is operating at the level of the formal negotiating positions themselves.</p>
+<p>The compressed six-day window changes the calculation. With the blockade now revealed as selectively enforced, with Chinese-linked commerce operating outside it, and with Israel-Lebanon progressing on a separate track that reduces Iranian regional leverage, <strong>Iran&rsquo;s negotiating position is structurally weaker today than it was on April 12 at the original Islamabad talks</strong> &mdash; even though the blockade&rsquo;s enforcement has proved less effective than the US initially claimed. The reason is that each of Iran&rsquo;s principal leverage points (Hezbollah, the Strait as universal chokepoint, the diplomatic initiative with Pakistan) has weakened in the past seventy-two hours. What Iran has gained in the Chinese exemption is narrower than what it has lost in the Israel-Lebanon realignment.</p>
+</div>
+
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span></div>
+<h3>Magyar Begins the Hungarian Transition: Sulyok Meeting Today</h3>
+<p>Prime Minister-elect P&eacute;ter Magyar met with President Tam&aacute;s Sulyok today to initiate the formal transition toward a new Hungarian government. The meeting is procedurally formal but substantively consequential because Magyar has publicly called for Sulyok&rsquo;s resignation (Briefing 010). Magyar&rsquo;s first planned international visits are to Warsaw and Vienna, followed by Brussels, where he intends to unlock the &euro;35 billion in frozen EU funds and the &euro;90 billion Ukraine loan. <strong>The Hungarian institutional dismantling pace continues to exceed the timeline that political science analysis assumed was possible.</strong> The European Commission has begun preparations for disbursement before Magyar has formally taken office, indicating the EU treats the Hungarian institutional shift as already effective.</p>
+<p>The structural point persists from Briefing 010: institutional construction required sixteen years; institutional dismantling is proceeding in days to weeks. The asymmetry between construction time and dismantling time is one of the most underappreciated features of the Electoral Correction pattern. <strong>What was assumed irreversible required only the removal of a veto, not the construction of a new institution, to be substantially reversed.</strong></p>
+</div>
+</div>
+
+<!-- ========== TECHNOLOGICAL ========== -->
+<div class="s" id="s-te">
+<div class="sh">Technological Forces</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>Mythos at Day 12: The Regulatory Window Has Effectively Closed</h3>
+<p>[Thread from Briefings 005-010, compounding.] Twelve days since the Anthropic Mythos disclosure. No federal regulator, no congressional committee, and no EU body has issued a formal response. Project Glasswing&rsquo;s $100M deployment across 50+ partners continues to expand. <strong>The regulatory window in which the Mythos disclosure could have triggered a response has effectively closed.</strong> By industry convention, a twelve-day silence on a disclosure of this magnitude is not a delayed response; it is a non-response. The institutional precedent is now: a model with documented autonomous hacking, sandbox escape, and systematic vulnerability discovery across every major operating system can be deployed to critical infrastructure under private contractual arrangements without regulatory involvement at any level. The DeepSeek V4 release is expected within the next ten days, which will test whether the non-response generalizes or whether the Chinese-origin provenance produces a different regulatory posture.</p>
+</div>
+
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>Enforcement Selectivity at the AI Governance Layer</h3>
+<p>The Hormuz enforcement revelation has direct parallels in the AI governance domain that are worth naming. The EU AI Act&rsquo;s August 2 deadline (110 days away) is a declared universal obligation, but the enforcement architecture presupposes the compliance of entities over whom the EU has limited coercive capacity: US frontier AI labs operating primarily in the US, Chinese labs operating in China, and open-weights model providers operating across jurisdictions. <strong>The same enforcement-selectivity pattern that has revealed itself in the Hormuz blockade is likely to reveal itself in the AI Act&rsquo;s first enforcement window.</strong> The declared universal scope and the actually enforceable scope will diverge, and the divergence will become priceable as soon as the first major non-compliance event tests the Commission&rsquo;s willingness to impose costs. The parallel is not rhetorical; it is structural. Unilateral or supranational declarations rely on enforcement architecture that depends on third-party consent, and third parties disclose their non-consent when their strategic calculations change.</p>
+</div>
+
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span></div>
+<h3>The Rady et al. Citation Thread: AI-Augmented Scholarship Becomes a Disclosure Norm</h3>
+<p>An empirically interesting meta-pattern is developing in the scholarly AI disclosure layer. A JBV paper currently under review cites Rady et al. (2026) for a specific methodological practice: the use of AI tools in manuscript preparation disclosed explicitly in the acknowledgments and methods. <strong>This is the first major-journal instance of a peer-reviewed paper citing another peer-reviewed paper&rsquo;s AI-use disclosure as a methodological precedent.</strong> The structural implication is that AI-augmented scholarly practice is crossing from individual disclosure into citational convention &mdash; the point at which the practice becomes part of the normal infrastructure of scholarly communication rather than an exceptional acknowledgment. This is the precise moment in a normalization trajectory where reflexive methodological discussion is most productive and most likely to be overlooked.</p>
+</div>
+</div>
+
+<!-- ========== ECONOMIC ========== -->
+<div class="s" id="s-ec">
+<div class="sh">Economic Forces</div>
+<div class="c cri">
+<div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>The Brent-WTI Divergence: Two Oil Markets Pricing Different Futures</h3>
+<p>Brent rose 2.13% to $96.80 per barrel on the Chinese statement; WTI fell 0.40% to $90.92 per barrel. The Brent-WTI spread has widened to approximately $5.88, one of the largest sustained divergences in recent years. <strong>The divergence is structurally informative.</strong> The seaborne global oil market (priced by Brent) is pricing a configuration in which the Iran crisis has revealed a multipolar enforcement problem that raises global supply risk even if the bilateral US-Iran talks produce a nominal Hormuz reopening &mdash; because the reopening itself now operates under selective enforcement rather than universal freedom of navigation, and the precedent of Chinese non-compliance compounds in subsequent disputes. The US domestic oil market (priced by WTI) is pricing a configuration in which US self-sufficiency partially insulates domestic prices from global spillovers, and the Chinese statement reduces the probability of direct US-China confrontation by establishing that the US will not force the blockade through to Chinese-linked commerce. Both prices can be correct simultaneously; they are pricing different aspects of the same underlying crisis.</p>
+<p>For commodity traders, the spread itself is now the highest-leverage single trade in the oil complex. <strong>Any convergence event &mdash; a diplomatic breakthrough, an escalation, a major shipping incident, or a policy clarification &mdash; will move the spread in a direction that depends on which of the two scenarios the event resolves toward.</strong> The ANZ $88 base case and the Onyx $150 stress case (Briefing 010) represent the two endpoints. The spread widening over the past 72 hours has priced the divergence between them rather than committing to either direction.</p>
+</div>
+
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span></div>
+<h3>Malaysia&rsquo;s Remote-Work Policy: The Spillovers Reach Southeast Asia</h3>
+<p>Malaysia announced today that government officials and employees of state-owned enterprises will shift to a remote-work policy effective immediately to reduce fuel consumption amid rising energy costs linked to the Iran war. The government is simultaneously reducing subsidized fuel quotas. <strong>This is the first major Southeast Asian government policy action in direct response to the Iran war&rsquo;s energy price effects.</strong> The structural point is that the Iran crisis&rsquo;s economic footprint is propagating into national-level policy responses across geographies that are not themselves party to the conflict. Southeast Asian ASEAN economies are heavy oil importers with fuel subsidy architectures that become fiscally unsustainable under sustained $95+ oil. The Malaysian move is a leading indicator; Indonesia, the Philippines, and Thailand face similar fiscal arithmetic and will confront similar policy choices in the coming weeks.</p>
+</div>
+
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>IMF Spring Meetings Day 3: Sub-Saharan Africa Debt in the Foreground</h3>
+<p>The IMF/World Bank Spring Meetings&rsquo; third day focuses centrally on the compounding sub-Saharan African debt situation. The three positive cases (Kenya, C&ocirc;te d&rsquo;Ivoire, Zambia) remain the exception; the broader pattern of oil-import inflation, fertilizer disruption propagation, aid cuts, and rising global rates continues to build toward a 2026-2027 sovereign debt cascade. <strong>The IMF&rsquo;s projected balance-of-payments demand of $20-50 billion (Briefing 009) is increasingly looking like an underestimate,</strong> and the political willingness of donor countries to expand quotas is at a multi-decade low. The structural question the meetings are not answering is whether parallel Chinese financing mechanisms (PBoC swap lines, BRICS NDB) are absorbing demand that the Bretton Woods institutions cannot, and if so, at what geopolitical cost to the dollar-denominated architecture.</p>
+</div>
+</div>
+
+<!-- ========== SCIENTIFIC ========== -->
+<div class="s" id="s-sc">
+<div class="sh">Scientific &amp; Paradigmatic Forces</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>The Mine Situation at Week Three: Still No Public Progress Report</h3>
+<p>The US Navy mine-clearance operations in the Strait of Hormuz are now entering their third week. No public progress report has been issued. No estimate of the remaining mine count has been released. The Avenger-class mine countermeasures ships that would be the primary clearance assets are still not reported to be in theater at adequate strength. <strong>The physical irreversibility of the mine deployment continues to be the rate-limiting variable for any substantive Hormuz reopening, and the diplomatic calendar (six days to ceasefire expiration) is fundamentally incompatible with the clearance timeline (months).</strong> The current negotiating position of the US requires the immediate reopening of the Strait as a precondition, but the Strait cannot be physically reopened on the diplomatic timeline regardless of what Iran agrees to. The maximum-position negotiating posture from Briefing 010 is operating against a physical constraint that cannot be moved by negotiation.</p>
+</div>
+
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>The Brent-WTI Spread as Scientific Instrument</h3>
+<p>The Brent-WTI spread is, functionally, a scientific instrument that measures the degree of global-US decoupling in any given oil market configuration. Pre-2010, the spread was small and stable because US domestic crude was substantially dependent on imports. Post-shale-revolution, the spread has become a window into the structural divergence between global seaborne crude (Brent) and US pipeline-delivered domestic crude (WTI). <strong>The current $5.88 spread is an empirical measurement of the decoupling produced by the Chinese blockade-rejection event.</strong> As an instrument, the spread provides information that direct surveys or policy announcements cannot: it reveals what market participants with capital at stake actually believe about the probability distribution over the two scenarios, rather than what they are willing to say in public about the crisis. The spread&rsquo;s behavior over the next six days through the ceasefire expiration will be the most informative single dataset about the crisis trajectory.</p>
+</div>
+</div>
+
+<!-- ========== SOCIAL ========== -->
+<div class="s" id="s-so">
+<div class="sh">Social &amp; Cultural Forces</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>Sudan at 80% Meal-Skipping: The Attention-Displacement Indicator Hardens</h3>
+<p>[Thread from Briefings 009-010, now worsening.] The UN reported today that more than 80 percent of Sudanese displaced families are skipping meals to survive, and 18 percent of households have been forced to send their children to work. The 1.3 million Sudanese refugees in Chad face imminent food and water access risk as donor funding cuts continue to compound. <strong>The Sudan crisis has crossed a threshold that would, under any previous global attention allocation, produce a major international response. It has not produced one, because the attention budget is fully allocated to the Iran crisis and the Hungarian transition.</strong> The structural signal here is not about Sudan specifically but about the attention-allocation architecture: global crisis response capacity is capped by attention, and attention is a zero-sum resource. The Iran crisis is absorbing attention at a rate that forecloses response to every other crisis, and the forecloseure is not neutral &mdash; it produces specific human mortality at specific margins.</p>
+</div>
+
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span></div>
+<h3>Hezbollah&rsquo;s Lebanese Veto Test: Failed for the Current Round</h3>
+<p>Hezbollah Secretary-General Naim Qassem publicly called on the Lebanese government to withdraw from the Washington talks and characterized the negotiations as &ldquo;futile.&rdquo; <strong>The Lebanese government did not withdraw, and the talks concluded with both sides publicly identifying Hezbollah as the shared problem.</strong> The veto test from Briefing 010 has failed for Hezbollah at the current round. The structural interpretation: Hezbollah&rsquo;s veto over Lebanese foreign policy on Israel operated throughout the past thirty years under the background condition that Iran could and would reinforce the veto with material and political support. The Iran war has reduced Iran&rsquo;s capacity to provide that reinforcement. Without the reinforcement, the veto has revealed itself as conditional rather than absolute. Whether this is a one-shot failure or a permanent change in Hezbollah&rsquo;s political standing is the question the next sixty days will determine.</p>
+</div>
+</div>
+
+<!-- ========== ECOLOGICAL ========== -->
+<div class="s" id="s-en">
+<div class="sh">Environmental &amp; Ecological Forces</div>
+<div class="c env">
+<div class="lb gnl"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>The Trapped Fleet at Week Seven: The Cumulative Risk Curve Continues</h3>
+<p>[Thread from Briefings 007-010.] The trapped tanker fleet in the Persian Gulf anchorages has been in confinement for approximately 47 days. The cumulative probability of a release event continues to rise linearly. The Chinese statement today introduces a specific new risk: if Chinese-linked vessels begin transiting more freely through the Strait while other commerce remains blockaded, the shipping density pattern will become more heterogeneous, which increases the risk of collision between vessels operating under different navigational conventions. <strong>The selective blockade produces navigational selectivity, which produces mixing risks that a uniform blockade or a uniform open-Strait configuration would not produce.</strong> Reinsurance pricing for Persian Gulf transit has not yet incorporated this specific mixing risk; it will, as the first collision event forces the actuarial update.</p>
+</div>
+
+<div class="c env">
+<div class="lb gnl"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>The Sahel-Horn Compound Crisis: Six Weeks to Harvest Failure</h3>
+<p>The fertilizer disruption from the Hormuz closure (Briefing 003, persistent) is now arithmetically locked into Q3 2026 harvests across the Sahel and the Horn of Africa. The six-week timeline to the earliest harvest failure window is closing. <strong>Combined with Sudan&rsquo;s current 80% meal-skipping indicator, the compound pressure across the sub-Saharan African band is approaching a configuration that humanitarian logistics at current donor funding levels cannot absorb.</strong> The aid-cut panel at the IMF Spring Meetings has the right structural framing but is unlikely to produce the funding commitments that the scale of the looming crisis would require.</p>
+</div>
+</div>
+
+<!-- ========== INSTITUTIONAL ========== -->
+<div class="s" id="s-ig">
+<div class="sh">Institutional &amp; Governance Forces</div>
+<div class="c gov">
+<div class="lb aml"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>The US Blockade as Institutional Test Case: Enforcement Selectivity Enters the Record</h3>
+<p>Today&rsquo;s Chinese statement and the absent US operational response together constitute the first major institutional documentation of enforcement selectivity as an operational feature of US unilateral policy in the current administration. The pattern is not unprecedented &mdash; enforcement selectivity has operated in sanctions regimes, export controls, and trade tariffs over many years &mdash; but the public directness of the Chinese statement, combined with the speed of the US acceptance through operational silence, creates a specific institutional precedent. <strong>Every subsequent US unilateral declaration in the Middle East, the South China Sea, the semiconductor trade domain, and the AI export-control architecture will now be priced by adversaries and third parties with an enforcement-selectivity discount that the Chinese intervention has explicitly calibrated.</strong> The discount factor is non-zero; what today established is that it is larger than the pre-April-15 baseline.</p>
+</div>
+
+<div class="c gov">
+<div class="lb aml"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span></div>
+<h3>The War Powers Resolution at Week Eleven: Institutional Hollowing Consolidates</h3>
+<p>[Persistent thread from Briefing 010.] No congressional response to the Ali Al Salem casualties, the blockade, the Chinese rejection of the blockade, or the Israel-Lebanon negotiations. <strong>The silent retirement of the War Powers Resolution is consolidating into an established institutional pattern.</strong> The structural implication is that the constitutional mechanism designed to constrain executive military action in undeclared conflicts is, for practical purposes, no longer operative. The form persists; the work-doing power has departed. Institutional Hollowing at the constitutional level is no longer a hypothesis; it is a description.</p>
+</div>
+
+<div class="c gov">
+<div class="lb aml"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>Magyar&rsquo;s European Itinerary: Warsaw, Vienna, Brussels</h3>
+<p>Prime Minister-elect Magyar&rsquo;s first international visits as Hungary&rsquo;s incoming leader are scheduled for Warsaw, Vienna, and Brussels. The sequencing is institutionally significant. Warsaw signals alignment with the post-PiS Polish government on Ukraine policy and on the broader question of Eastern European democratic consolidation. Vienna signals engagement with the Austrian government on the EU&rsquo;s eastern-flank coherence, a relationship that Orb&aacute;n had substantially damaged. Brussels signals the institutional normalization of Hungary-EU relations and the unlocking of the &euro;35B frozen funds plus the &euro;90B Ukraine loan. <strong>The Warsaw-Vienna-Brussels sequence is a template for how post-illiberal transitions can be executed at institutional speed,</strong> and it will be studied by opposition movements in other consolidating-illiberal states.</p>
+</div>
+</div>
+
+<!-- ========== LIMINAL SIGNALS ========== -->
+<div class="s" id="s-li">
+<div class="sh">Liminal Signals</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1.5rem">Signals that resist clean categorization. The forces that matter most are often the ones that don&rsquo;t fit.</p>
+
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg ta">Enforcement Selectivity</span></div>
+<h3>&ldquo;The Strait of Hormuz Is Open to Us&rdquo;</h3>
+<p>Chinese Defense Minister Dong Jun&rsquo;s single sentence is the most consequential structural statement of the past seventy-two hours. The sentence asserts a Chinese right of navigation independent of US permission, declines to recognize the legitimacy of the US blockade as applied to Chinese-linked commerce, and does so at the operational level of the institution (the defense ministry) whose compliance would be required for the blockade to function as declared. <strong>The US response has been operational silence.</strong> Silence at this juncture is not indecision; it is the disclosure of enforcement boundaries. The blockade applies to Iranian-linked commerce that does not have a credible Chinese exemption pathway. The universal declaration has been revealed as a selective policy, and the revelation itself &mdash; not the underlying enforcement gap &mdash; is the structural event.</p></div>
+
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg te">Levantine Realignment</span></div>
+<h3>Israel and Lebanon Name Hezbollah Together</h3>
+<p>The single most unexpected diplomatic development of the past thirty days is the Lebanese state publicly identifying Hezbollah as a shared problem with Israel in a Washington-mediated diplomatic setting. For more than thirty years, Lebanese foreign policy on Israel has operated under an assumption that Hezbollah&rsquo;s veto was absolute. Yesterday, that assumption was directly tested, and it failed. <strong>The Lebanese state exercised foreign-policy agency that regional analysis has not assumed was available.</strong> The durability of the agency is the question of the next sixty days; what yesterday established is that the ceiling on Lebanese foreign-policy autonomy is higher than the past thirty years of regional politics have demonstrated.</p></div>
+
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg tu">Bifurcated Oil Markets</span></div>
+<h3>The $5.88 Brent-WTI Spread</h3>
+<p>Global seaborne oil (Brent $96.80) and US domestic pipeline oil (WTI $90.92) are pricing materially different configurations of the same crisis. The spread widening of approximately $6 per barrel over the past 72 hours reflects the Chinese blockade-rejection event and the US-domestic insulation from the global enforcement-selectivity dynamic. <strong>The spread itself is now the highest-leverage single trade in the oil complex</strong>, and its behavior over the next six days through the ceasefire expiration will be the most informative single dataset about which scenario the market assigns more probability to.</p></div>
+
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg tc">Southeast Asian Spillovers</span></div>
+<h3>Malaysia Orders State Employees to Work Remotely</h3>
+<p>The Iran war&rsquo;s energy price effects have now reached the level of national-level policy action in Southeast Asia. Malaysia&rsquo;s remote-work mandate for government and state-owned enterprise employees is a leading indicator of the fiscal stress that sustained $90+ oil imposes on fuel-subsidy-dependent Southeast Asian economies. <strong>The Malaysian action is the first instance of an ASEAN government treating the Iran crisis as a direct constraint on national administrative operations</strong>, and it is unlikely to be the last. Indonesia, the Philippines, and Thailand face similar arithmetic.</p></div>
+</div>
+
+<!-- ========== INFERENCE ENGINE ========== -->
+<div class="s" id="s-ie">
+<div class="sh">Inference Engine</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1.5rem">Conditional mappings of possibility space. Not predictions but structured explorations of how forces interact.</p>
+
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg tu">High Uncertainty</span></div>
+<h3>If the Chinese Position Generalizes Across Other Major Powers&hellip;</h3>
+<p>China publicly rejects the blockade; no US operational response &rarr; Russia, India, or Turkey test the same exemption pathway publicly or semi-publicly within 30 days &rarr; the blockade&rsquo;s effective scope narrows to Iranian-linked commerce that lacks a credible third-party exemption &rarr; <strong>the blockade becomes functionally a sanctions regime rather than a naval blockade, operating through trade-route selectivity rather than physical interdiction</strong> &rarr; the formal US policy persists; the operational policy becomes substantially more limited than declared &rarr; Iran&rsquo;s negotiating leverage partially recovers as alternative export pathways become available &rarr; the ceasefire extension is more likely than the ceasefire collapse &rarr; oil settles into a $85-95 range rather than the $95-130 range Goldman and ANZ had projected.</p></div>
+
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>If the Israel-Lebanon Track Produces a Framework Agreement&hellip;</h3>
+<p>Today&rsquo;s direct talks continue; a second ambassadorial round occurs within 30 days &rarr; Israeli strikes on Lebanon suspend during the diplomatic window &rarr; a limited ceasefire framework emerges within 60 days &rarr; Hezbollah faces internal legitimacy crisis as the Lebanese state demonstrates sustained autonomy &rarr; <strong>Lebanon becomes the first Arab state to normalize with Israel while hosting an active Iranian-aligned militant organization, extending the Abraham Accords framework into its hard case</strong> &rarr; Syria and Iraq become candidates for the same framework within 18-24 months &rarr; the regional architecture of the Middle East undergoes its most significant change since the 1979 Camp David Accords &rarr; the Iranian regional strategy of the past twenty years is substantially dismantled.</p></div>
+
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg tc">Complexity</span></div>
+<h3>If the Ceasefire Extension Fails by April 21&hellip;</h3>
+<p>Pakistan cannot broker an extension by April 21 &rarr; the ceasefire formally lapses &rarr; either party resumes large-scale kinetic operations within 48-72 hours &rarr; direct US Navy engagement with an Iranian vessel becomes probable &rarr; oil prices spike past $110 overnight &rarr; <strong>the Chinese exemption pathway becomes the most important single variable in the global oil market</strong> &rarr; Chinese-linked commerce expands rapidly through Hormuz while other commerce is blockaded or attacked &rarr; the BRICS New Development Bank and PBoC swap lines absorb substantial emergency balance-of-payments demand from oil-importing developing economies &rarr; the Bretton Woods institutions&rsquo; functional displacement (Briefing 009) accelerates &rarr; the dollar-denominated financial architecture loses share in the regions where Chinese alternatives become operationally decisive.</p></div>
+
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg ta">Ambiguity</span></div>
+<h3>If the Brent-WTI Spread Persists or Widens&hellip;</h3>
+<p>The Brent-WTI spread holds above $5 per barrel through ceasefire expiration &rarr; US domestic and global oil markets structurally decouple in sustained pricing &rarr; US refiners with Brent exposure lose margin to those with WTI exposure &rarr; <strong>the decoupling signals that US domestic markets have separated from the global seaborne crude market in a way that has not been structurally true since the pre-globalization era</strong> &rarr; the US political consequences are substantially different from the global consequences: US consumers see relatively moderate gasoline price rises while global shipping, manufacturing, and food production face substantial cost increases &rarr; the transatlantic alliance faces pressure as European allies confront cost shocks that the US does not share &rarr; the Malaysian-style policy responses propagate into European fuel-subsidy regimes, producing political volatility in France, Germany, and Italy.</p></div>
+
+<h3 class="sh2" style="color:var(--purp)">Force Interaction Matrix</h3>
+<div class="c">
+<div class="mr"><div class="mf">Chinese Statement &times; US Operational Silence</div><span class="md amp">AMPLIFY (enforcement selectivity disclosure)</span><div class="me">The Chinese statement plus the US silence together disclose the blockade&rsquo;s selective scope. The disclosure is the structural event, not the underlying gap.</div></div>
+<div class="mr"><div class="mf">Brent-WTI Divergence &times; Chinese Exemption</div><span class="md amp">AMPLIFY (market bifurcation)</span><div class="me">Global markets price the multipolar enforcement problem; US domestic markets price the insulation. The $5.88 spread measures the bifurcation.</div></div>
+<div class="mr"><div class="mf">Israel-Lebanon &ldquo;Productive&rdquo; Talks &times; Hezbollah Veto Call</div><span class="md dmp">DAMPEN (veto failure)</span><div class="me">The Lebanese government proceeded despite Hezbollah&rsquo;s public call to withdraw. The veto test has failed for the current round.</div></div>
+<div class="mr"><div class="mf">Ceasefire Expiration T-6 &times; Chinese Exemption Disclosure</div><span class="md amp">AMPLIFY (Iranian partial recovery)</span><div class="me">Iran&rsquo;s leverage partially recovers through the Chinese exemption pathway even as its position weakens elsewhere. Net negotiating position uncertain.</div></div>
+<div class="mr"><div class="mf">Mine Clearance Timeline &times; US Negotiating Demand</div><span class="md amp">AMPLIFY (incoherent position)</span><div class="me">The US demands immediate Hormuz reopening; the mines cannot be cleared on the negotiating timeline. The maximum position is physically undeliverable.</div></div>
+<div class="mr"><div class="mf">Malaysian Policy &times; Sub-Saharan Debt Stress</div><span class="md amp">AMPLIFY (fuel-subsidy stress cascade)</span><div class="me">The Malaysian move is a leading indicator for ASEAN; the fertilizer shock is arithmetically locked into Q3 African harvests. Compound stress across both geographies.</div></div>
+<div class="mr"><div class="mf">Congressional Silence &times; Chinese Blockade Rejection</div><span class="md amp">AMPLIFY (constitutional hollowing)</span><div class="me">A major power publicly rejects the legitimacy of US military action; Congress does not respond. The hollowing consolidates.</div></div>
+<div class="mr"><div class="mf">Magyar Warsaw-Vienna-Brussels &times; Electoral Correction Pace</div><span class="md dmp">DAMPEN (institutional normalization)</span><div class="me">The template for post-illiberal transition proceeds at institutional speed. The Warsaw-Vienna-Brussels sequence will be studied.</div></div>
+</div>
+</div>
+
+<!-- ========== WISE ACTION ========== -->
+<div class="s" id="s-wa">
+<div class="sh">Wise Action</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1.5rem">&#30693;&#34892;&#21512;&#19968; &mdash; Knowing and acting are one.</p>
+
+<div class="c act wa-section"><div class="lb tl"><span>WHAT IS CHANGING ENTREPRENEURSHIP</span></div>
+<h3>Entrepreneurship Under Enforcement Selectivity</h3>
+
+<h4>1. The Enforcement Discount as Strategic Parameter</h4>
+<p>The structural lesson of the Chinese blockade-rejection event is that declared universal policies in the current geopolitical environment operate at a discount factor determined by the declarer&rsquo;s willingness to impose enforcement costs on non-compliant third parties. For entrepreneurs operating in regulated or sanctioned domains &mdash; AI export controls, sanctions compliance, cross-border data flows, biosecurity regimes &mdash; the first-order strategic question is no longer &ldquo;what does the policy say&rdquo; but &ldquo;what is the enforcement discount factor.&rdquo; <strong>Ventures that correctly estimate the enforcement discount at each jurisdiction and each commerce lane will operate with substantially more latitude than ventures that take declarations at face value.</strong> This does not imply that compliance is optional; it implies that compliance costs are differentially distributed, and strategic positioning benefits from understanding the distribution.</p>
+
+<h4>2. The Bifurcated-Market Trade in Distribution Strategy</h4>
+<p>The Brent-WTI divergence is a specific instance of a broader pattern in which global and US-domestic markets are pricing different futures. For ventures with both US and global exposure, this bifurcation creates strategic positioning opportunities: US-domestic distribution may benefit from relative cost insulation while global distribution faces price pressure. <strong>The strategic question is whether to structure the venture to capture the insulation (prioritize US market share) or to structure it to capture the price pressure recovery (prioritize global market share with pricing flexibility).</strong> Both are defensible choices; the mistake is to assume the two markets will re-couple.</p>
+
+<h4>3. Multipolar Enforcement as Market-Entry Opportunity</h4>
+<p>The Chinese exemption pathway in Hormuz is a small-scale instance of a larger pattern: multipolar enforcement creates market-entry opportunities for intermediary actors who can credibly offer exemption pathways for specific commerce lanes. Ventures that build the credibility architecture (legal, logistical, reputational) to provide such pathways capture structural margin. <strong>This was the business model of the Swiss banking industry during the twentieth-century sanctions era; it may be the business model of specific logistics, trading, and financial infrastructure ventures in the current era.</strong> The specific domains where this opportunity is structurally available include cross-border AI model licensing, sanctions-exempt humanitarian logistics, and trade finance for complex multi-jurisdictional commerce.</p>
+</div>
+
+<div class="c act wa-section"><div class="lb tl"><span>WHAT IS CHANGING GLOBAL MARKETS</span></div>
+<h3>Trading the Bifurcation</h3>
+
+<h4>The Spread Trade: Long Brent, Short WTI</h4>
+<p>The Brent-WTI spread widening is structural, not transient. The Chinese enforcement-selectivity disclosure, the persistent mine situation, and the ASEAN fuel-subsidy stress all support continued divergence. <strong>The specific trade is long Brent versus short WTI, sized for a two-to-three-week hold through the ceasefire expiration and its aftermath.</strong> The risk is that a diplomatic breakthrough compresses the spread rapidly; the upside is that any escalation event widens it further.</p>
+
+<h4>The Chinese Exemption Pathway Equities</h4>
+<p>Chinese state-linked shipping, trading, and energy companies with exposure to Iranian crude and to Hormuz transit should benefit structurally from the enforcement-selectivity disclosure. The specific beneficiaries are companies with established commercial infrastructure in Iran-China trade that can absorb expanded flow under the Chinese exemption. <strong>The trade is long a basket of Chinese state-linked energy and shipping names with explicit Iran-China commercial relationships.</strong> The risk is that a US-China escalation forces the US to test the enforcement boundary directly; the upside is that the selective blockade becomes the new equilibrium.</p>
+
+<h4>The Lebanon Reconstruction Option (Updated)</h4>
+<p>The Washington talks yesterday producing &ldquo;productive&rdquo; characterization and agreement to continue direct negotiations is meaningful progress on the Lebanon reconstruction optionality trade (Briefing 010). The option should be repriced upward, not dramatically but measurably. <strong>The structural trade remains small position in Lebanese sovereign debt and Lebanese-exposure European banks</strong>, with the option&rsquo;s upside improving as each subsequent round of talks produces additional durable autonomy signals.</p>
+</div>
+
+<div class="c act wa-section"><div class="lb tl"><span>INVESTMENT LANDSCAPE</span></div>
+<h3>Positioning Through the Multipolar Disclosure</h3>
+
+<h4>Structural Positions That Strengthened Today</h4>
+<p><strong>Brent-WTI spread (long Brent, short WTI).</strong> The structural decoupling is now measurable.</p>
+<p><strong>Chinese-exemption shipping and energy equities.</strong> The selective blockade equilibrium benefits established China-Iran commerce infrastructure.</p>
+<p><strong>Hungarian assets (ongoing, repricing wider).</strong> Magyar&rsquo;s Warsaw-Vienna-Brussels itinerary accelerates institutional normalization.</p>
+<p><strong>Lebanon reconstruction optionality (updated upward).</strong> Yesterday&rsquo;s &ldquo;productive&rdquo; characterization meaningfully improves option value.</p>
+<p><strong>Mine-clearing technology (persistent).</strong> The diplomatic calendar and the physical clearance timeline remain incompatible; demand remains urgent and unmet.</p>
+
+<h4>Caution Zones</h4>
+<p><strong>Directional shorts on energy.</strong> The enforcement-selectivity reveal partially caps the downside but creates multi-scenario risk; volatility structures remain preferable to direction.</p>
+<p><strong>US equities with heavy global-supply-chain exposure.</strong> The bifurcated market means global exposure bears price pressure that US-domestic-focused equities do not; check exposure profiles carefully.</p>
+<p><strong>ASEAN sovereign debt in fuel-subsidy-dependent economies.</strong> Malaysia&rsquo;s move is a leading indicator; Indonesia, Philippines, and Thailand face similar fiscal arithmetic.</p>
+<p><strong>US Treasuries under persistent constitutional-hollowing dynamics.</strong> [Persistent from Briefing 010.] The legislative-oversight discount continues to build as a latent risk factor.</p>
+</div>
+
+<div class="c wa-section"><div class="lb"><span>RESEARCH PROGRAM RELEVANCE</span></div>
+<h3>What Today&rsquo;s Landscape Means for the Work</h3>
+<p><strong>For the knowledge problems framework:</strong> Enforcement selectivity is a specific instance of the broader pattern in which declared rules and operational rules diverge. The divergence is not a case of the four KP types but rather a <em>rule-discount</em> phenomenon: the effective rule is a probabilistic function of the declared rule weighted by the declarer&rsquo;s enforcement willingness. This may warrant a distinct treatment in the framework as a cross-cutting property of institutional rules under conditions where enforcement depends on contested multilateral compliance.</p>
+
+<p><strong>For the cyborg ensemble framework:</strong> The parallel to AI governance is direct. The EU AI Act&rsquo;s August 2 deadline is a declared universal obligation whose enforcement architecture depends on US and Chinese AI lab compliance. The enforcement-selectivity pattern from today&rsquo;s Hormuz event predicts that the AI Act&rsquo;s first enforcement window will reveal the same divergence between declared and enforceable scope, and that this revelation will reset expectations about AI governance&rsquo;s actual coercive capacity. The ensemble framework should incorporate enforcement-selectivity as a structural condition: the human partner&rsquo;s regulatory oversight operates at a discount factor that reflects the regulator&rsquo;s willingness to impose enforcement costs on non-compliant AI developers.</p>
+
+<p><strong>For functional polymorphism (the ETP paper):</strong> Enforcement selectivity is an instance of configurational causation at the institutional level. The declared rule is the nominal configuration; the operational rule is the effective configuration. The two produce opposite effects depending on the enforcement-willingness configuration. This is Logic 1 operating at the level of regulatory policy rather than at the level of venture-creation activities, and it is worth a footnote in the discussion section as a cross-domain instance.</p>
+
+<p><strong>For the AI-Survival Paradox:</strong> The Brent-WTI divergence has a structural analog in the AI domain: the bifurcation between regulated-market and unregulated-market AI deployment produces different survival dynamics for ventures exposed to each market. The paradox&rsquo;s empirical scale (75% of AI economic gains captured by 20% of companies, per PWC) may track the enforcement-selectivity parameter at the regulatory level: ventures that correctly navigate the divergence between declared and enforceable regulatory scope capture disproportionate gains. Worth cross-referencing in subsequent briefings.</p>
+</div>
+</div>
+
+<!-- ========== SOURCE ARCHIVE ========== -->
+<div class="s" id="s-sa">
+<div class="sh">Source Archive &amp; Reading List</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1rem">Annotated by structural insight contributed. Accumulates across briefings.</p>
+
+<h3 class="sh2" style="color:var(--blub)">Thinker Registry</h3>
+<p style="color:var(--t3);margin-bottom:1rem;font-size:.9rem">Voices whose frameworks proved most useful in this briefing.</p>
+<div style="margin-bottom:1.5rem">
+<span class="tk"><strong>Ibn Khald&uacute;n</strong> <span>&middot; <em>Muqaddimah</em> (1377). &lsquo;Asab&icirc;yya and the relationship between declaration and enforcement. Declarations without enforcement capacity are destabilizing. Newly added Briefing 011.</span></span>
+<span class="tk"><strong>Vegetius</strong> <span>&middot; Briefing 010, persists.</span></span>
+<span class="tk"><strong>Thomas Schelling</strong> <span>&middot; Coercive diplomacy and credibility. The Cold War theory is being tested under multipolar conditions.</span></span>
+<span class="tk"><strong>Hannah Arendt</strong> <span>&middot; Power as collective capacity. Briefing 009, persists.</span></span>
+<span class="tk"><strong>Hosea</strong> <span>&middot; Wind/whirlwind. Briefing 008, persists.</span></span>
+<span class="tk"><strong>Hans Morgenthau</strong> <span>&middot; Realist framework. Power that cannot be exercised selectively is not power but declaration. Briefing 006-011.</span></span>
+<span class="tk"><strong>Frank Knight</strong> <span>&middot; Knightian uncertainty persists across briefings.</span></span>
+<span class="tk"><strong>Tacitus / Calgacus</strong> <span>&middot; Briefing 007, persists.</span></span>
+<span class="tk"><strong>Mary Douglas</strong> <span>&middot; Institutional thought. Briefing 008, persists.</span></span>
+<span class="tk"><strong>Levitsky &amp; Ziblatt</strong> <span>&middot; Briefing 009, persists (Electoral Correction).</span></span>
+</div>
+
+<h3 class="sh2" style="color:var(--gold)">Serendipity Queue</h3>
+<p style="color:var(--t3);margin-bottom:1rem;font-size:.9rem">Sources encountered that don&rsquo;t fit today&rsquo;s briefing but contain signals worth returning to.</p>
+<div class="src"><div class="src-cat">Held for future briefing</div>
+<a href="https://www.atlanticcouncil.org/dispatches/hungary-just-voted-out-viktor-orban-heres-what-to-expect-in-europe-and-beyond/">Atlantic Council: Experts React to the Hungarian Election</a>
+<div class="src-note">Broad analytical overview of the Hungarian electoral correction&rsquo;s implications for Europe and beyond. Worth returning to as the transition proceeds.</div></div>
+<div class="src"><div class="src-cat">Held for future briefing</div>
+<a href="https://www.chathamhouse.org/2026/04/hungary-election-orban-has-been-defeated-will-orbanism-survive">Chatham House: Hungary Election &mdash; Orb&aacute;n Has Been Defeated, But Will Orbánism Survive?</a>
+<div class="src-note">Distinction between the electoral defeat and the durability of the illiberal democratic model. Relevant as Magyar&rsquo;s dismantling proceeds.</div></div>
+
+<h3 class="sh2" style="color:var(--blub)">Geopolitical &amp; Conflict Sources</h3>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.cnn.com/2026/04/15/world/live-news/iran-war-blockade-us-trump">CNN: Iran War &mdash; US Says Blockade of Iranian Ports &lsquo;Fully Implemented,&rsquo; Trump Hints at Further Peace Talks</a><div class="src-note">Day 3 of blockade; Chinese statement; Pakistani mediation; ceasefire expiration April 21.</div></div>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.npr.org/2026/04/14/nx-s1-5784551/lebanon-israel-talks">NPR: Israel and Lebanon Hold Rare Direct Talks in Washington</a><div class="src-note">First direct Israel-Lebanon talks since 1993. &ldquo;Productive&rdquo; characterization. Both sides named Hezbollah.</div></div>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.businesstoday.in/world/story/lebanon-and-israel-hold-rare-direct-talks-in-washington-both-cite-hezbollah-as-the-problem-525652-2026-04-15">BusinessToday: Lebanon and Israel Hold Rare Direct Talks in Washington, Both Cite Hezbollah as the Problem</a><div class="src-note">The Lebanese state publicly naming Hezbollah in a diplomatic setting with Israel. Structural realignment documented.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.cnbc.com/2026/04/14/trump-iran-war-strait-of-hormuz-negotiations.html">CNBC: More US-Iran Peace Deal Talks Are in Discussion, White House Says</a><div class="src-note">Pakistan mediation; sticking points on uranium enrichment timeframe and Hormuz reopening.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.euronews.com/my-europe/2026/04/14/peter-magyars-axe-could-soon-hit-orbans-network-in-brussels">Euronews: P&eacute;ter Magyar&rsquo;s Axe Could Soon Hit Orb&aacute;n&rsquo;s Network in Brussels</a><div class="src-note">Magyar&rsquo;s Warsaw-Vienna-Brussels itinerary and the institutional dismantling sequence.</div></div>
+
+<h3 class="sh2" style="color:var(--blub)">Economic &amp; Trade Sources</h3>
+<div class="src"><div class="src-cat">Critical</div><a href="https://tradingeconomics.com/commodity/brent-crude-oil">Trading Economics: Brent Crude Oil Price</a><div class="src-note">Brent $96.80, up 2.13% on Chinese statement.</div></div>
+<div class="src"><div class="src-cat">Critical</div><a href="https://tradingeconomics.com/commodity/crude-oil">Trading Economics: WTI Crude Oil Price</a><div class="src-note">WTI $90.92, down 0.40%. Spread widening to $5.88 is the structural signal.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.cnbc.com/2026/04/14/oil-wti-brent-as-markets-hormuz-blockade-vance-trump.html">CNBC: US Oil Price Tumbles Below $92 as White House Considers Further Talks with Iran</a><div class="src-note">Market reading blockade as leverage; Brent-WTI divergence emerging.</div></div>
+
+<h3 class="sh2" style="color:var(--blub)">Institutional &amp; Governance Sources</h3>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.washingtonexaminer.com/policy/defense/4528590/rubio-israel-lebanon-negotiations-hezbollah-influence/">Washington Examiner: Israel-Lebanon Talks Meant to Create &lsquo;Permanent End&rsquo; to Hezbollah Influence</a><div class="src-note">Rubio&rsquo;s framing: &ldquo;a process, not a single event.&rdquo; The ambition extends beyond ceasefire.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.atlanticcouncil.org/dispatches/hungary-just-voted-out-viktor-orban-heres-what-to-expect-in-europe-and-beyond/">Atlantic Council: Hungary Just Voted Out Viktor Orb&aacute;n &mdash; Here&rsquo;s What to Expect</a><div class="src-note">Institutional implications of the electoral correction.</div></div>
+</div>
+
+<footer>
+<p>Tectonic Briefing &middot; No. 011 &middot; 15 April 2026</p>
+<p style="margin-top:.3rem">Eight analytical lenses &middot; Inference engine &middot; Wise action &middot; Source archive &middot; Thread tracking active</p>
+<p style="margin-top:.3rem;font-size:.55rem;color:var(--t4)">Editorial discipline: fresh-domain content in Geopolitical (Chinese intervention, Malaysian spillover), Economic (Brent-WTI divergence as market bifurcation instrument), Scientific (spread as scientific instrument), Institutional (enforcement-selectivity at the AI governance layer). Topic rotation constraints satisfied.</p>
+</footer>
+</div>
+<script>
+function go(id){document.querySelectorAll('.s').forEach(s=>s.classList.remove('v'));document.getElementById('s-'+id).classList.add('v');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('on'));event.target.classList.add('on');window.scrollTo({top:document.querySelector('.bn').offsetTop-16,behavior:'smooth'})}
+</script>
+</body>
+</html>
