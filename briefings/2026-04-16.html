@@ -61,6 +61,20 @@ nav button.gn{border-color:rgba(74,222,128,.3)}nav button.gn:hover,nav button.gn
 .src .src-note{color:var(--t3);font-size:.85rem;margin-top:.3rem}
 .tk{display:inline-block;background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:.5rem .9rem;margin:0 .4rem .4rem 0;font-size:.85rem}
 .tk strong{color:var(--t1);font-weight:500}.tk span{color:var(--t3);font-size:.8rem}
+.dd{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blub);background:rgba(75,142,242,.08);border:1px solid rgba(75,142,242,.25);border-radius:2px;padding:.25rem .6rem;margin-left:.5rem;vertical-align:middle;cursor:pointer;transition:all .3s}
+.dd::before{content:'\25C9';font-size:.7rem}
+.dd:hover{background:rgba(75,142,242,.18);border-color:rgba(75,142,242,.5);color:var(--blup)}
+.dd.active{background:rgba(75,142,242,.15);border-color:var(--blu);color:var(--blup)}
+.dd.active::before{content:'\25CE'}
+.dd-panel{display:none;margin-top:1.2rem;padding:1.4rem 1.6rem;background:linear-gradient(135deg,rgba(75,142,242,.04),rgba(167,139,250,.04));border:1px solid rgba(75,142,242,.2);border-radius:3px;animation:fu .35s ease}
+.dd-panel.open{display:block}
+.dd-panel .dd-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--purp);margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem}
+.dd-panel .dd-label::before{content:'\25C9';font-size:.65rem}
+.dd-panel h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:500;color:var(--t1);margin-bottom:.6rem}
+.dd-panel p{color:var(--t2);line-height:1.75;margin-bottom:.8rem;font-size:.93rem}
+.dd-panel p:last-child{margin-bottom:0}
+.dd-panel strong{color:var(--t1)}
+.dd-panel .dd-question{font-style:italic;color:var(--t3);border-left:2px solid var(--purp);padding-left:.8rem;margin:.8rem 0}
 .wa-section{margin-bottom:2.5rem}
 .wa-section h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:500;color:var(--t1);margin:1.4rem 0 .7rem;padding-top:.8rem;border-top:1px solid rgba(75,142,242,.1)}
 .wa-section h4:first-of-type{border-top:none;padding-top:0}
@@ -114,6 +128,27 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);
 <h3 class="sh2" style="color:var(--blub)">Structural Vocabulary (Accumulating)</h3>
 <p style="color:var(--t3);font-style:italic;margin-bottom:1rem;font-size:.9rem">Organized by meta-category. Five structural families, 30 named patterns (1 added today).</p>
 
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-1: Coupling Failure</h3>
+<div class="vg">
+<div class="vi"><h4>Observation-Action Decoupling</h4><p>Accurate observation does not constrain behavior. Briefing 006.</p></div>
+<div class="vi"><h4>Narrative-Physical Decoupling</h4><p>Official account operates as a parallel reality. Briefing 007.</p></div>
+<div class="vi"><h4>Akrasia at Scale</h4><p>Knowing the better course and choosing the worse. Briefing 006.</p></div>
+<div class="vi"><h4>Capability Opacity</h4><p>Capability-verifiability gap unbridgeable. Briefing 003.</p></div>
+<div class="vi"><h4>Emergent Concealment</h4><p>AI develops capacity to hide actions. Briefing 005.</p></div>
+<div class="vi"><h4>Instrument Autonomy</h4><p>Deployed instrument exceeds deployer&rsquo;s control. Briefing 008.</p></div>
+<div class="vi"><h4>Scope Retreat</h4><p>Declared policy retreats to physically feasible within hours. Briefing 009.</p></div>
+<div class="vi"><h4>Dual-Track Maximalism</h4><p>Maximum rhetorical escalation and diplomatic opening occur simultaneously. Briefing 010.</p></div>
+</div>
+
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-2: Bypass Inversion</h3>
+<div class="vg">
+<div class="vi"><h4>Bypass Capture</h4><p>Escape route becomes the target. Briefing 007.</p></div>
+<div class="vi"><h4>Shadow Settlement</h4><p>Parallel transaction system emerges. Briefing 002.</p></div>
+<div class="vi"><h4>Conditional Collapse</h4><p>Ambiguity that enabled agreement becomes mechanism of failure. Briefing 005.</p></div>
+<div class="vi"><h4>Negotiation Multiplication</h4><p>Stalled tracks spawn parallel tracks. Briefing 006.</p></div>
+<div class="vi"><h4>Sovereignty Arbitrage</h4><p>Gap between sovereignty claims and enforcement. Briefing 003.</p></div>
+</div>
+
 <h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-3: Threshold Cascade</h3>
 <div class="vg">
 <div class="vi"><h4>Buffer Collapse</h4><p>Shock-absorbing system fails. Briefing 001.</p></div>
@@ -121,10 +156,27 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);
 <div class="vi"><h4>Tipping Cascade</h4><p>One threshold triggers others. Briefing 001.</p></div>
 <div class="vi"><h4>Deadline Revelation</h4><p>Temporal boundary forces latent forces visible. Briefing 002.</p></div>
 <div class="vi"><h4>Reversibility Asymmetry</h4><p>Physical conditions tend to irreversibility; institutional to reversibility. Briefing 009.</p></div>
-<div class="vi" style="border-color:var(--blub)"><h4 style="color:var(--gold)">Cascade Resolution &#9679; NEW</h4><p>The inverse of cascade failure: the same pressure that threatened cascading failures produces cascading resolutions of long-stuck problems, as actors&rsquo; incentives align simultaneously toward settlement. Iran nuclear breakthrough + Israel-Lebanon leader-level talks + ceasefire extension moving together. Briefing 012.</p></div>
+<div class="vi" style="border-color:var(--blub)"><h4 style="color:var(--gold)">Cascade Resolution &#9679; NEW</h4><p>The inverse of cascade failure: shared pressure produces cascading resolutions of long-stuck problems as actors&rsquo; incentives align simultaneously toward settlement. Iran nuclear breakthrough + Israel-Lebanon leader-level talks + ceasefire extension moving together. Briefing 012.</p></div>
 </div>
 
-<p style="color:var(--t3);font-style:italic;margin-bottom:1rem;font-size:.9rem">Other meta-categories persist from prior briefings. See Briefings 001-011 for full vocabulary.</p>
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-4: Commons Enclosure</h3>
+<div class="vg">
+<div class="vi"><h4>Commons Enclosure</h4><p>Shared resource converted to controlled access. Briefing 003.</p></div>
+<div class="vi"><h4>Optionality Arbitrage</h4><p>Advantage existing only in crisis. Briefing 001.</p></div>
+<div class="vi"><h4>Paradigm Defection</h4><p>Dominant advocate abandons paradigm. Briefing 005.</p></div>
+<div class="vi"><h4>Process as Destination</h4><p>Negotiation&rsquo;s continuation is its goal. Briefing 007.</p></div>
+</div>
+
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-5: Institutional Hollowing</h3>
+<div class="vg">
+<div class="vi"><h4>Capacity Hollowing</h4><p>Personnel cuts reduce perception before action. Briefing 002.</p></div>
+<div class="vi"><h4>Category Collapse</h4><p>Stable distinction dissolves. Briefing 001.</p></div>
+<div class="vi"><h4>Governance Vacuum</h4><p>Institutional capacity lags pace of change. Briefing 001.</p></div>
+<div class="vi"><h4>Constructive Ambiguity</h4><p>Agreement via mutually exclusive interpretations. Briefing 004.</p></div>
+<div class="vi"><h4>Ceasefire Acceleration</h4><p>Pause accelerates structural transformations. Briefing 004.</p></div>
+<div class="vi"><h4>Electoral Correction</h4><p>Entrenched illiberal rule reversed through democratic processes. Briefing 009.</p></div>
+<div class="vi"><h4>Enforcement Selectivity</h4><p>Declared policy applied only to actors without credible exemption. Briefing 011.</p></div>
+</div>
 
 <h3 class="sh2" style="color:var(--red)">Anomaly Detection: What Should Be Happening But Isn&rsquo;t</h3>
 <div class="c">
@@ -132,6 +184,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);
 <p><strong>Congressional response to US military casualties still absent.</strong> [Persistent from Briefings 010-011.] Thirteen US soldiers killed or wounded in an undeclared, congressionally unauthorized conflict. No hearings scheduled. No War Powers Resolution invocation. The silent retirement of the Resolution has consolidated into structural precedent, and the cascade-resolution diplomatic calendar is unfolding without any congressional involvement.</p>
 <p><strong>Sudan receives no increased attention despite worsening indicators.</strong> [Persistent from Briefings 009-011.] 21 million acutely food insecure. 14 million displaced. 1.3 million refugees in Chad at imminent food and water access risk. The Iran diplomatic cascade has fully absorbed the international attention budget; the Sudan crisis continues to deepen without response.</p>
 <p><strong>Ukraine escalation is under-reported relative to its scale.</strong> Russia launched hundreds of drones and dozens of missiles against Ukrainian civilian areas overnight, killing at least 16 people. The attack is one of the largest single bombardments of the war and is receiving minimal coverage in the context of the Middle East diplomatic story. <strong>The attention-allocation architecture continues to zero out non-Iran crises even when those crises are worsening.</strong></p>
+<p><strong>No independent nuclear-programme verification accompanies the &ldquo;major breakthrough.&rdquo;</strong> Pakistani sources confirm a major breakthrough on Iran&rsquo;s nuclear programme, but no IAEA statement, no independent technical verification, and no disclosed terms have followed. The breakthrough is being announced through diplomatic channels rather than through the international verification architecture that would make it durable. <strong>Settlements announced without verification architecture tend to unravel around the specific technical questions that were deferred at the announcement moment.</strong> The JCPOA&rsquo;s 2015 signing included IAEA verification provisions from day one; the current breakthrough has none that are publicly visible.</p>
 </div>
 </div>
 
@@ -140,18 +193,34 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);
 <div class="sh">Geopolitical Forces</div>
 <div class="c cri">
 <div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span> <span class="tg tr">Major Breakthrough</span></div>
-<h3>Pakistani Sources: &ldquo;Major Breakthrough&rdquo; on Iran&rsquo;s Nuclear Programme</h3>
+<h3>Pakistani Sources: &ldquo;Major Breakthrough&rdquo; on Iran&rsquo;s Nuclear Programme <span class="dd">Deep Dive Available</span></h3>
 <p>Pakistani diplomatic sources confirmed this morning that a major breakthrough has been reached on Iran&rsquo;s nuclear programme in the back-channel negotiations that have continued since the April 11 Islamabad collapse. Specifics are being withheld pending formal Islamabad re-engagement in the coming days, but the breakthrough reportedly addresses both the uranium-enrichment timeframe (the core sticking point on April 11) and the inspection architecture that would verify compliance. <strong>The breakthrough signals that Iran has accepted a structural constraint on its nuclear programme that it had refused for two weeks of active war and diplomatic engagement.</strong> The most plausible reading: Iranian leadership has concluded that the combined pressure of the US blockade, the weakening of its regional proxies (Hezbollah especially), the Chinese public rejection of the blockade (which paradoxically raised the cost of Iranian continued intransigence by removing the argument that China would sustain Iran indefinitely), and the approaching ceasefire expiration has exceeded the point at which continuing the current posture is strategically rational.</p>
 <p>Trump&rsquo;s statement today that the conflict is &ldquo;very close to over&rdquo; is the first American principal statement of the war that signals settlement rather than escalation. The dual-track maximalism from Briefing 010 has resolved: the threat track has cashed in the leverage it generated, and the talk track is now producing the substantive movement that the pressure was designed to produce. <strong>The cascade resolution pattern is operating on schedule, with pressure converting to settlement in the specific sequence that coercive diplomacy theory predicts but that had not been observed in the Middle East in living memory.</strong></p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive Analysis</div>
+<h4>The Nuclear Breakthrough in Historical Context: Why This Is Not the JCPOA and Why That Matters</h4>
+<p>The 2015 Joint Comprehensive Plan of Action (JCPOA) was the product of twelve years of multilateral negotiation involving six world powers (the P5+1), the European Union, and Iran. It produced a 159-page agreement with detailed technical annexes specifying enrichment limits, centrifuge cascades, spent-fuel disposition, verification protocols, and a phased sanctions-relief schedule. The JCPOA&rsquo;s strength was its technical specificity; its weakness was that the same specificity gave the Trump administration precise provisions to challenge when it withdrew in 2018. <strong>The current breakthrough is structurally the inverse of the JCPOA on every dimension.</strong> It is bilateral rather than multilateral (US-Iran via Pakistani mediation, with China as a background actor). It was produced in weeks under war conditions rather than in years under negotiation conditions. Its terms are undisclosed. Its verification architecture is unannounced. Its durability depends on conditions that are themselves in flux &mdash; the ceasefire extension, the Israel-Lebanon track, the Hezbollah veto&rsquo;s continued failure.</p>
+<p>The historical parallel is not the JCPOA but the 1994 Agreed Framework with North Korea, which was also a bilateral agreement produced under crisis conditions, with verification provisions that were specified in principle but not in operational detail at the moment of announcement. The Agreed Framework collapsed over the following decade as the verification provisions proved inadequate and the political conditions that produced it shifted. <strong>The structural question for the current breakthrough is whether it will follow the JCPOA trajectory (specific but politically fragile) or the Agreed Framework trajectory (vague but initially durable, then collapsing as conditions change).</strong> The absence of IAEA involvement at the announcement stage suggests the Agreed Framework pattern is more likely &mdash; which means the breakthrough&rsquo;s operational implementation over the next 90-180 days will be more consequential than the announcement itself.</p>
+<p>For the research programme, this distinction maps directly onto the equivocality knowledge problem: the breakthrough is a single announcement that supports at least three incompatible interpretations (Iran capitulated under pressure; Iran accepted a face-saving compromise; Iran is buying time). The interpretation that prevails will be determined not by the announcement but by the implementation sequence, which itself operates under Knightian uncertainty. <strong>The knowledge problem is not resolved by the breakthrough; it is transformed from &ldquo;will there be a deal?&rdquo; to &ldquo;what kind of deal is this?&rdquo;</strong> &mdash; a shift from one knowledge-problem type (uncertainty about outcome) to another (equivocality about meaning).</p>
+<p class="dd-question">If the current nuclear breakthrough follows the Agreed Framework trajectory rather than the JCPOA trajectory, what verification failures over the next 12-24 months would constitute the earliest structural signals that the breakthrough is degrading &mdash; and can the cascade-resolution pattern sustain a nuclear agreement that is politically durable but technically underspecified?</p>
+</div>
 </div>
 
 <div class="c cri">
 <div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span> <span class="tg tr">Historic Realignment</span></div>
-<h3>Israel-Lebanon Leaders to Speak Thursday: First Direct Leader-Level Contact in 34 Years</h3>
+<h3>Israel-Lebanon Leaders to Speak Thursday: First Direct Leader-Level Contact in 34 Years <span class="dd">Deep Dive Available</span></h3>
 <p>Trump announced this morning that the leaders of Israel and Lebanon will speak directly on Thursday. <strong>This is the first leader-level contact between the two states since 1992.</strong> The ambassadorial talks on April 14 have therefore escalated to head-of-state engagement within seventy-two hours &mdash; a diplomatic compression without regional precedent. The second Washington round is scheduled for next week and will focus on border demarcation and economic/civilian aspects of a possible agreement, with Hezbollah disarmament running alongside as the highest political-level agenda item rather than as a technical side issue.</p>
 <p>Lebanon has dropped its demand that Israel withdraw from southern Lebanon before further talks can proceed. This is the most significant Lebanese diplomatic concession of the war and it unlocks the next round. In exchange, Lebanon is asking that Israel not strike civilian infrastructure anywhere in the country, including southern Lebanon &mdash; the specific concern that Energy Minister Eli Cohen&rsquo;s public call to strike Beirut&rsquo;s airport raised last week (Briefing 009). <strong>The two concessions map onto each other: Lebanon gives up territorial withdrawal as a precondition; Israel agrees to restrain civilian-infrastructure targeting. The structural trade is clean and both sides have signaled acceptance.</strong></p>
 <p>Hezbollah Secretary-General Naim Qassem has again urged the Lebanese government to withdraw from the talks and characterized the process as &ldquo;futile.&rdquo; The Lebanese government has again not withdrawn. The veto test from Briefings 010-011 has now failed for the third consecutive round, which is the point at which a veto ceases to be a veto and becomes a rhetorical objection.</p>
-<div class="i in"><div class="il">Research Program Relevance</div><p>Today&rsquo;s Israel-Lebanon acceleration directly validates the Digital Battlegrounds framework&rsquo;s emphasis on power asymmetries within contested platform environments &mdash; here, the platform is the regional political architecture, and the stakeholder power dynamics are realigning as Iran&rsquo;s capacity to back Hezbollah&rsquo;s veto has weakened. The framework&rsquo;s four dimensions (actors, relations, faces, struggle) all show observable motion in the current configuration.</p></div>
+<div class="i so"><div class="il">Second-Order</div><p>The Israel-Lebanon and US-Iran tracks are now tightly coupled. Progress on one reduces resistance on the other: a nuclear deal weakens Iran&rsquo;s capacity to sustain Hezbollah&rsquo;s veto; Hezbollah&rsquo;s veto failure reduces the cost of Iranian concessions on the nuclear track by removing the argument that Iran needs the nuclear option to backstop its regional proxies. The coupling is the mechanism of cascade resolution &mdash; and its fragility point. If either track stalls, the coupling reverses: stagnation on one amplifies resistance on the other.</p></div>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive Analysis</div>
+<h4>The Hezbollah Veto&rsquo;s Structural Collapse: What Three Consecutive Failures Mean for the Regional Architecture</h4>
+<p>Hezbollah&rsquo;s veto over Lebanese foreign policy on Israel has been the single most consequential political fact in the Levant for at least fifteen years. The veto operated not through formal constitutional authority but through a combination of military dominance within Lebanon, Iranian financial and logistical backing, the threat of domestic destabilization, and the demonstrated willingness to assassinate political opponents who challenged the organization&rsquo;s strategic prerogatives. The March 14 Alliance&rsquo;s slow disintegration after the 2005 Cedar Revolution was largely a product of the veto&rsquo;s operational enforcement; the subsequent decade&rsquo;s Lebanese political paralysis was its structural consequence. <strong>The veto was not a policy position; it was the load-bearing structure of Lebanese political architecture.</strong></p>
+<p>Three consecutive failed veto calls in seventy-two hours represent a qualitative shift. The first failure (April 14, ambassadorial meeting) could be read as a one-shot gamble by the Lebanese government. The second (April 15, continuation signal) suggested durability. The third (April 16, head-of-state engagement) confirms that the Lebanese state is operating with a degree of autonomy from Hezbollah that was not available under any prior configuration. The enabling conditions are specific and compound: Iran&rsquo;s weakened regional position under the current war reduces Hezbollah&rsquo;s material backing; the Lebanese economic collapse since 2019 has made the cost of Hezbollah-driven foreign policy unbearable for the state; the Abraham Accords framework has normalized the concept of direct Arab-Israeli engagement; and Trump&rsquo;s direct pressure on both sides provides political cover that neither could generate independently.</p>
+<p><strong>The structural implication is that the Hezbollah veto was conditional on Iranian material support, not on Hezbollah&rsquo;s domestic political position alone.</strong> This is a significant revision to the standard analysis, which treated the veto as a function of Hezbollah&rsquo;s domestic military dominance (which has not changed) rather than as a function of Iranian backing (which has weakened substantially). If the analysis is correct, the veto&rsquo;s failure is durable as long as Iranian regional leverage remains weakened &mdash; which is to say, as long as the cascade resolution continues. If the cascade resolution fails and Iranian leverage recovers, the veto may reconstitute. The Lebanese state&rsquo;s autonomy is therefore a product of the same pressure that produced the cascade, not an independent structural development. <strong>The autonomy is real but borrowed; it will persist only as long as the conditions that produced it persist.</strong></p>
+<p class="dd-question">If Hezbollah&rsquo;s veto over Lebanese foreign policy was conditional on Iranian material support rather than on Hezbollah&rsquo;s domestic military position, does the standard political analysis of Lebanon &mdash; which has treated Hezbollah as domestically self-sustaining &mdash; need to be fundamentally revised, and what does this imply for the durability of any Israel-Lebanon agreement that the current window produces?</p>
+</div>
 </div>
 
 <div class="c cri">
@@ -165,6 +234,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);
 <div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
 <h3>Ukraine: Hundreds of Drones, Dozens of Missiles, Sixteen Dead</h3>
 <p>Russia launched hundreds of drones and dozens of missiles against Ukrainian civilian areas overnight, killing at least sixteen people in what is one of the largest single bombardments of the war. The attack occurs against the backdrop of the Middle East diplomatic acceleration and is receiving minimal coverage in comparison. <strong>Russia is exploiting the attention-allocation constraint that the Iran crisis has produced</strong> &mdash; the capacity of the international system to respond to multiple major crises simultaneously is limited, and the Iran crisis is absorbing the available diplomatic bandwidth, the available media attention, and the available US national-security focus. The Ukraine escalation is a direct beneficiary of that absorption. If the cascade resolution in the Middle East succeeds and restores attention capacity to Ukraine, the Ukrainian theater will face renewed but late engagement; if the cascade resolution fails, the Ukrainian theater will remain in the attention-allocation shadow indefinitely.</p>
+<div class="i in"><div class="il">Research Program Relevance</div><p>The attention-allocation architecture exhibits the same structure as the rational inattention framework: bounded processing capacity forces systematic neglect of information that is available but not attended to. The Ukraine crisis is structurally analogous to an unprocessed signal in rational inattention theory &mdash; the information exists, the cost of processing it is too high relative to the perceived marginal benefit of attending to it rather than to the Iran cascade, and the resulting inattention compounds over time. This is the macro-political version of the information-processing constraint the Glimpse ABM models at the entrepreneurial level.</p></div>
 </div>
 </div>
 
@@ -173,8 +243,16 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);
 <div class="sh">Technological Forces</div>
 <div class="c">
 <div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span></div>
-<h3>Forrester Top 10 Emerging Technologies 2026: AI Leaves the Digital Workflow</h3>
+<h3>Forrester Top 10 Emerging Technologies 2026: AI Leaves the Digital Workflow <span class="dd">Deep Dive Available</span></h3>
 <p>Forrester released its Top 10 Emerging Technologies in 2026 report today, with the central finding that AI is no longer confined to digital workflows &mdash; it is scaling into physical deployments across financial services, healthcare, and the public sector. The shift from experimentation to real-world transformation requires integrated security, governance, and trust controls as first-order requirements rather than retrofitted compliance layers. <strong>The report&rsquo;s framing tracks the persistent-augmentation thesis from the adjacent research literature:</strong> the AI-enabled reconfiguration of work is not primarily automation of existing tasks but the emergence of new task configurations that require humans and AI to operate jointly under conditions that neither alone can handle. The Forrester framing arrives as an institutional signal that the enterprise discourse has caught up with the theoretical discourse on this point.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive Analysis</div>
+<h4>AI Into the Physical World: The Governance Gap Between Digital and Embodied Deployment</h4>
+<p>Forrester&rsquo;s report identifies ten technology categories, but the structural finding is one: AI is crossing the boundary from digital-only deployment into physical-world deployment at a pace that governance architectures have not accommodated. The digital-only deployment of AI &mdash; chatbots, document processors, code assistants, search augmentation &mdash; operated within an error-tolerance regime that was forgiving. A hallucinated citation is correctable; a misclassified document is recoverable; a broken code suggestion is catchable by a human reviewer. <strong>Physical deployment inverts the error-tolerance regime.</strong> An AI system managing hospital medication dispensing, controlling traffic flow, or directing financial transactions in real time operates in a regime where errors produce consequences that cannot be unwound. The deployment boundary that is being crossed is not a capability boundary; it is a consequentiality boundary.</p>
+<p>The governance gap is specific and measurable. The EU AI Act, which enters enforcement on August 2, 2026 (108 days from today), was designed primarily around digital-deployment risk categories. Its high-risk classification system assumes that AI deployment occurs within bounded digital environments with identifiable inputs, outputs, and audit trails. <strong>Physical-world deployment breaks the audit-trail assumption:</strong> an AI system integrated into a building&rsquo;s HVAC and fire-suppression system generates a continuous stream of micro-decisions that cannot be individually audited at human scale. The EU AI Act&rsquo;s compliance architecture requires documentation of decision logic; physical-deployment decision logic operates at temporal scales (milliseconds) and volumetric scales (millions of micro-decisions per day) that the documentation requirement cannot accommodate. The result: the same regulatory framework that was designed to govern AI deployment will be structurally unable to govern the deployment mode that Forrester identifies as the defining trend of 2026.</p>
+<p>The Mythos regulatory silence (now at Day 13) is the leading indicator: if the regulatory system cannot respond to a documented autonomous-hacking-capable model deployed to critical infrastructure within two weeks, it will not be able to respond to the diffuse, low-visibility physical deployments that Forrester identifies as the next wave. <strong>The governance vacuum is not a temporary lag; it is a structural feature of the mismatch between the deployment velocity and the regulatory architecture.</strong> The Forrester report&rsquo;s call for &ldquo;integrated security, governance, and trust controls as first-order requirements&rdquo; is an enterprise-sector acknowledgment that the regulatory architecture will not provide these controls externally and that deployers must build them internally &mdash; which is the Glasswing model, now being articulated by an independent analyst firm as the industry consensus.</p>
+<p class="dd-question">If the governance gap between digital and physical AI deployment is structural rather than temporary, and if enterprise deployers are now building governance controls internally rather than relying on external regulation, does this produce a two-tier AI deployment landscape &mdash; well-governed physical deployments by large enterprises with the resources to build internal controls, and ungoverned physical deployments by smaller actors who cannot &mdash; and what are the systemic risk implications of that bifurcation?</p>
+</div>
 </div>
 
 <div class="c">
@@ -195,7 +273,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);
 <div class="sh">Economic Forces</div>
 <div class="c cri">
 <div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
-<h3>Oil Prices Stabilize Around $94 Brent as Markets Price Cascade Resolution <span class="dd">Deep Dive Available</span></h3>
+<h3>Oil Prices Stabilize Around $94 Brent as Markets Price Cascade Resolution</h3>
 <p>Brent crude has held above $94 per barrel this week, steadying from last week&rsquo;s volatility as markets price the diplomatic acceleration. WTI is around $92. The Brent-WTI spread has compressed from yesterday&rsquo;s $5.88 to approximately $2, as US domestic markets price in the increased probability of Hormuz normalization and global markets moderate their escalation-scenario pricing. <strong>The IEA&rsquo;s April 2026 Oil Market Report, released this week, forecasts Brent peaking at $115 per barrel in Q2 before easing as production shut-ins slowly abate, with the Brent-WTI spread peaking at $15 per barrel in April.</strong> The forecast implies that markets expect the worst of the supply disruption to pass over the next two to three months rather than to extend indefinitely &mdash; a pricing posture consistent with the cascade resolution reading.</p>
 <p>Trump&rsquo;s statement that the conflict is &ldquo;very close to over&rdquo; contributed to the stabilization. The market is taking the statement as informative about the probability distribution over outcomes rather than as the performative noise that Briefing 007 identified. This represents a partial restoration of the political-economic feedback loop that Briefing 007 documented as broken &mdash; the administration&rsquo;s statements are regaining some commitment value as the operational evidence (the back-channel negotiations, the blockade modifications, the Chinese accommodation) aligns with the rhetorical signal.</p>
 </div>
@@ -336,6 +414,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);
 <div class="mr"><div class="mf">Sahel Fertilizer Shock &times; Q3 Harvest Window</div><span class="md amp">AMPLIFY (locked physical constraint)</span><div class="me">Agricultural disruption cannot be reversed by diplomatic action. Five weeks to earliest harvest failure window.</div></div>
 <div class="mr"><div class="mf">Rubio Mediation &times; State Department Return</div><span class="md dmp">DAMPEN (institutional restoration)</span><div class="me">Secretary-level conduct reverses capacity-hollowing trajectory in one specific track. Institutional recovery at the margin.</div></div>
 <div class="mr"><div class="mf">Forrester Report &times; Mythos Regulatory Silence</div><span class="md amp">AMPLIFY (governance gap)</span><div class="me">Enterprise discourse catches up with AI-in-physical-deployment as regulatory response remains absent. Governance gap widens.</div></div>
+<div class="mr"><div class="mf">Nuclear Breakthrough &times; IAEA Absence</div><span class="md amp">AMPLIFY (verification deficit)</span><div class="me">Diplomatic announcement without independent technical verification. Settlement durability depends on verification architecture that does not yet exist publicly.</div></div>
 </div>
 </div>
 
@@ -394,6 +473,10 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);
 <p><strong>For Digital Battlegrounds (Hunt, Townsend, Nugent, Simpson, Stallkamp, Bozdag, 2025):</strong> The paper&rsquo;s four dimensions (actors, relations, faces, struggle) track directly onto today&rsquo;s Middle East cascade. Actors are realigning as Iranian regional leverage weakens. Relations are being reformulated at state-to-state level (Israel-Lebanon) and at state-to-international-regime level (Iran-US-China-Pakistan). Faces are rotating as the public rhetorical postures shift from escalation to settlement. Struggle is consolidating around the specific settlement architecture rather than dispersing across multiple contested tracks. <strong>The cascade resolution in the Middle East is the first contemporary instance in which the Digital Battlegrounds framework&rsquo;s four-dimension analysis produces a specific predictive observation</strong>: under conditions of shared pressure across multiple contested platforms (diplomatic, economic, security), the dimensions move coherently rather than independently.</p>
 
 <p><strong>For the Landlord in the Loop argument (published 2026-04-15):</strong> The cascade resolution pattern in the Middle East has a parallel in the AI governance domain that warrants explicit notice. The shared pressure that is aligning Middle East actor incentives (the war) has an analog in the AI ecosystem: the cumulative pressure of capability plateau, alignment tax, regulatory uncertainty, and commercial sustainability questions is beginning to align incentives across frontier labs, open-weight providers, and enterprise deployers toward specific settlement configurations that no single actor could produce alone. <strong>Cascade resolution may be the pattern under which a more balanced AI governance architecture emerges &mdash; not through regulation, but through compound pressure that aligns the disparate actors&rsquo; incentives simultaneously.</strong> The Gemma 4 release from Google and the Meta retreat from open weights (both named in the Landlord article) are early signals in this direction; the Chinese open-weight ecosystem is a necessary but insufficient condition for the cascade.</p>
+
+<p><strong>For the Glimpse ABM and AI-Survival Paradox:</strong> The attention-allocation constraint visible today in macro-politics &mdash; bounded processing capacity forcing systematic neglect of available signals &mdash; is structurally isomorphic to the rational-inattention mechanism the Glimpse ABM uses to model entrepreneurial decision-making under Knightian uncertainty. The Ukraine crisis is to the international system what an unexploited opportunity niche is to a firm caught in the equilibrium trap: the signal exists, the processing capacity to attend to it is consumed by the dominant task, and the resulting inattention compounds the distance between the actor&rsquo;s awareness and the opportunity&rsquo;s deterioration. <strong>Cascade resolution at the macro level has a direct formal analog in the ABM&rsquo;s exploration of conditions under which rational inattention traps can be broken</strong> &mdash; specifically, when the cost of continued inattention exceeds the processing cost of reallocation. The macro case provides an empirical-scale test of the micro mechanism.</p>
+
+<p><strong>For the cyborg ensemble framework (persistent augmentation):</strong> The Forrester report&rsquo;s finding that AI is crossing into physical-world deployment is the institutional-consensus signal that the persistent-augmentation thesis&rsquo;s core claim &mdash; that the AI-human reconfiguration of work is not automation but the emergence of new joint task configurations &mdash; has been empirically validated at the enterprise level. The specific Forrester recommendation (integrated governance as first-order requirement) is the enterprise version of the persistent-augmentation claim that the human role in the ensemble is not supervisory but structurally constitutive: humans provide the judgment architecture that makes physical deployment viable under conditions the AI cannot autonomously govern.</p>
 </div>
 </div>
 
@@ -406,37 +489,83 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);
 <p style="color:var(--t3);margin-bottom:1rem;font-size:.9rem">Voices whose frameworks proved most useful in this briefing.</p>
 <div style="margin-bottom:1.5rem">
 <span class="tk"><strong>Calvin Coolidge</strong> <span>&middot; &ldquo;Nothing in the world can take the place of persistence.&rdquo; Re-read as structural claim about pressure, not will. Newly added Briefing 012.</span></span>
+<span class="tk"><strong>Thomas Schelling</strong> <span>&middot; <em>Arms and Influence</em> (1966). Coercive diplomacy. The cascade-resolution configuration is the compressed-simultaneity variant of the Cold War sequential model.</span></span>
 <span class="tk"><strong>Ibn Khald&uacute;n</strong> <span>&middot; &lsquo;Asab&icirc;yya and enforcement authority. Briefing 011, persists.</span></span>
 <span class="tk"><strong>Vegetius</strong> <span>&middot; Si vis pacem, para bellum. Briefing 010, persists.</span></span>
-<span class="tk"><strong>Thomas Schelling</strong> <span>&middot; Coercive diplomacy. The cascade-resolution configuration is the compressed-simultaneity variant of the Cold War sequential model.</span></span>
 <span class="tk"><strong>Hannah Arendt</strong> <span>&middot; Power as collective capacity. Briefing 009, persists.</span></span>
 <span class="tk"><strong>Frank Knight</strong> <span>&middot; Knightian uncertainty persists across briefings. The cascade-resolution reading is itself a judgment under genuine uncertainty.</span></span>
 <span class="tk"><strong>Hans Morgenthau</strong> <span>&middot; Realist framework. Briefing 006-012.</span></span>
 <span class="tk"><strong>Karl Weick</strong> <span>&middot; Wisdom as doubt about the exhaustiveness of what is held. The cascade-resolution reading must be held with exactly this kind of epistemic humility: it may be confirmed in seven days; it may collapse.</span></span>
+<span class="tk"><strong>Elinor Ostrom</strong> <span>&middot; Commons governance. Persistent.</span></span>
+<span class="tk"><strong>Mary Douglas</strong> <span>&middot; Institutional thought under non-stationarity. Briefing 008, persists.</span></span>
 </div>
 
+<h3 class="sh2" style="color:var(--gold)">Serendipity Queue</h3>
+<p style="color:var(--t3);margin-bottom:1rem;font-size:.9rem">Sources encountered that don&rsquo;t fit today&rsquo;s briefing but contain signals worth returning to.</p>
+<div class="src"><div class="src-cat">Held for future briefing</div>
+<a href="https://www.nature.com/articles/d41586-026-01199-z">Nature: Human Scientists Trounce the Best AI Agents on Complex Tasks</a>
+<div class="src-note">From Briefing 010. The empirical confirmation of the persistent-augmentation thesis at the scientific-research level. Worth returning to as the physical-deployment governance question develops.</div></div>
+<div class="src"><div class="src-cat">Held for future briefing</div>
+<a href="https://spectrum.ieee.org/state-of-ai-index-2026">IEEE Spectrum: Stanford AI Index 2026</a>
+<div class="src-note">Full data set on frontier capability plateau. The distribution-architecture thesis from Briefing 010 warrants deeper engagement with the underlying data as the competition shifts to integration.</div></div>
+<div class="src"><div class="src-cat">Held for future briefing</div>
+<a href="https://www.brookings.edu/articles/africas-top-priorities-for-the-2026-world-bank-and-imf-spring-meetings/">Brookings: Africa&rsquo;s Top Priorities for the 2026 Spring Meetings</a>
+<div class="src-note">Sub-Saharan African compound-crisis framing from the Meetings. Directly relevant to the Sahel-Horn harvest failure timeline. Worth returning to when the Q3 harvest window arrives.</div></div>
+
 <h3 class="sh2" style="color:var(--blub)">Geopolitical &amp; Conflict Sources</h3>
-<div class="src"><div class="src-cat">Critical</div><a href="https://www.aljazeera.com/news/2026/4/16/trump-says-israel-and-lebanons-leaders-will-speak-on-thursday">Al Jazeera: Trump Says Israel and Lebanon&rsquo;s Leaders Will Speak on Thursday</a><div class="src-note">First leader-level contact between Israel and Lebanon in 34 years scheduled.</div></div>
-<div class="src"><div class="src-cat">Critical</div><a href="https://www.cnn.com/2026/04/15/world/live-news/iran-war-blockade-us-trump">CNN: White House Optimistic About Iran Deal as Key Pakistani Negotiator Visits Tehran</a><div class="src-note">Pakistani sources on the major breakthrough; active ceasefire extension negotiation.</div></div>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.aljazeera.com/news/2026/4/16/trump-says-israel-and-lebanons-leaders-will-speak-on-thursday">Al Jazeera: Trump Says Israel and Lebanon&rsquo;s Leaders Will Speak on Thursday</a><div class="src-note">First leader-level contact between Israel and Lebanon in 34 years scheduled. The cascade-resolution signal.</div></div>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.cnn.com/2026/04/15/world/live-news/iran-war-blockade-us-trump">CNN: White House Optimistic About Iran Deal as Key Pakistani Negotiator Visits Tehran</a><div class="src-note">Pakistani sources on the major breakthrough; active ceasefire extension negotiation. Trump: &ldquo;very close to over.&rdquo;</div></div>
 <div class="src"><div class="src-cat">Critical</div><a href="https://www.israelhayom.com/2026/04/16/lebanon-drops-demand-for-israeli-pullback-ahead-of-next-round-of-talks">Israel Hayom: Lebanon Drops Demand for Israeli Pullback Ahead of Next Round</a><div class="src-note">Lebanese concession that unlocks the next round. Hezbollah disarmament on the highest-level agenda.</div></div>
-<div class="src"><div class="src-cat">Primary</div><a href="https://www.bloomberg.com/news/articles/2026-04-15/us-and-iran-weigh-truce-extension-with-hormuz-still-shuttered">Bloomberg: US and Iran Weigh Truce Extension</a><div class="src-note">Active two-week extension negotiation. Ceasefire expires April 21.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.bloomberg.com/news/articles/2026-04-15/us-and-iran-weigh-truce-extension-with-hormuz-still-shuttered">Bloomberg: US and Iran Weigh Truce Extension</a><div class="src-note">Active two-week extension negotiation. Ceasefire expires April 21, five days from today.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.reuters.com/world/middle-east/russia-launches-massive-drone-missile-attack-ukraine-2026-04-16">Reuters: Russia Launches Massive Drone and Missile Attack on Ukraine</a><div class="src-note">Hundreds of drones, dozens of missiles, at least 16 dead. One of the largest single bombardments of the war. Attention-shadow exploitation.</div></div>
 
 <h3 class="sh2" style="color:var(--blub)">Economic &amp; Trade Sources</h3>
-<div class="src"><div class="src-cat">Critical</div><a href="https://www.iea.org/reports/oil-market-report-april-2026">IEA Oil Market Report April 2026</a><div class="src-note">Brent peaks at $115 in Q2; Brent-WTI spread peaks at $15 in April.</div></div>
-<div class="src"><div class="src-cat">Primary</div><a href="https://www.imf.org/-/media/files/publications/weo/2026/april/english/ch1.pdf">IMF World Economic Outlook April 2026</a><div class="src-note">Middle East war as principal downside risk factor.</div></div>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.iea.org/reports/oil-market-report-april-2026">IEA Oil Market Report April 2026</a><div class="src-note">Brent peaks at $115 in Q2; Brent-WTI spread peaks at $15 in April. Physical clearance timeline measured in months.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.imf.org/-/media/files/publications/weo/2026/april/english/ch1.pdf">IMF World Economic Outlook April 2026</a><div class="src-note">Middle East war as principal downside risk factor. Balance-of-payments support demand at $20-50B range.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.iata.org/en/pressroom/2026-releases/2026-04-15-jet-fuel-supply-warning/">IATA: Jet Fuel Supply Warning</a><div class="src-note">European airport groups warn of systemic shortage if Hormuz not normalized by month-end. First hard sectoral deadline.</div></div>
 
 <h3 class="sh2" style="color:var(--blub)">Technology &amp; AI Sources</h3>
-<div class="src"><div class="src-cat">Primary</div><a href="https://finance.yahoo.com/sectors/technology/articles/forresters-top-10-emerging-technologies-063900629.html">Forrester Top 10 Emerging Technologies 2026</a><div class="src-note">AI moving beyond digital workflows into physical deployments; governance and trust controls as first-order.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://finance.yahoo.com/sectors/technology/articles/forresters-top-10-emerging-technologies-063900629.html">Forrester Top 10 Emerging Technologies 2026</a><div class="src-note">AI moving beyond digital workflows into physical deployments. Governance and trust controls as first-order requirements. The institutional-consensus signal for the persistent-augmentation thesis.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.anthropic.com/index/mythos-preview-deployment">Anthropic: Mythos Preview Deployment Update</a><div class="src-note">Day 13 with no regulatory response. Glasswing continues to expand. Regulatory baseline has solidified.</div></div>
+
+<h3 class="sh2" style="color:var(--blub)">Institutional &amp; Governance Sources</h3>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.imf.org/en/news/articles/2026/04/09/sp040926-spring-meetings-2026-curtain-raiser">IMF Spring Meetings 2026</a><div class="src-note">Persistent from Briefing 009. Meetings close Saturday. Gap between institutional framing and donor-country commitment remains the structural anomaly.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.brettonwoodsproject.org/2026/04/spring-meetings-2026-world-order-in-rupture/">Bretton Woods Project: World Order in Rupture</a><div class="src-note">Persistent from Briefing 009. The sharpest institutional-level framing of the Bretton Woods legitimacy gap.</div></div>
+
+<h3 class="sh2" style="color:var(--blub)">Scientific Sources</h3>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.cnn.com/2026/04/13/middleeast/us-iran-hormuz-blockade-minesweeping-explainer-intl-hnk-ml">CNN: How the US Navy Could Blockade Iran&rsquo;s Ports and Sweep Mines</a><div class="src-note">Minesweeping timeline confirmed as months rather than weeks. Physical clearance vs. diplomatic calendar divergence.</div></div>
 </div>
 
 <footer>
 <p>Tectonic Briefing &middot; No. 012 &middot; 16 April 2026</p>
 <p style="margin-top:.3rem">Eight analytical lenses &middot; Inference engine &middot; Wise action &middot; Source archive &middot; Thread tracking active</p>
-<p style="margin-top:.3rem;font-size:.55rem;color:var(--t4)">Editorial discipline: fresh-domain content in Geopolitical (Ukraine escalation, Pakistani mediation), Technological (Forrester emerging-tech report), Economic (IEA/IMF institutional frameworks, aviation sector deadline), Scientific (cascade resolution as theoretical question). Topic rotation constraints satisfied.</p>
+<p style="margin-top:.3rem;font-size:.55rem;color:var(--t4)">Editorial discipline: fresh-domain content in Geopolitical (Ukraine escalation, Pakistani mediation), Technological (Forrester emerging-tech report, AI physical-deployment governance gap), Economic (IEA/IMF institutional frameworks, aviation sector deadline), Scientific (cascade resolution as theoretical question, mine clearance week three). Topic rotation constraints satisfied. Deep dives: nuclear breakthrough historical context, Hezbollah veto structural collapse, AI physical-deployment governance gap. Full vocabulary: 30 patterns across 5 meta-categories displayed.</p>
 </footer>
 </div>
 <script>
 function go(id){document.querySelectorAll('.s').forEach(s=>s.classList.remove('v'));document.getElementById('s-'+id).classList.add('v');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('on'));event.target.classList.add('on');window.scrollTo({top:document.querySelector('.bn').offsetTop-16,behavior:'smooth'})}
+
+// Deep Dive toggle
+document.addEventListener('DOMContentLoaded',function(){
+document.querySelectorAll('.dd').forEach(function(dd,idx){
+dd.setAttribute('data-dd-id','dd-'+idx);
+dd.setAttribute('title','Click to expand deep dive analysis');
+dd.addEventListener('click',function(e){
+e.stopPropagation();
+var panel=this.closest('.c').querySelector('.dd-panel');
+if(!panel){
+return;
+}
+panel.classList.toggle('open');
+this.classList.toggle('active');
+if(this.classList.contains('active')){
+this.innerHTML='Deep Dive Open';
+}else{
+this.innerHTML='Deep Dive Available';
+}
+});
+});
+});
 </script>
 </body>
 </html>

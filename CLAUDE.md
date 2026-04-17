@@ -27,6 +27,31 @@ Repository location: `~/workflow/tectonic-briefing/`
 4. Run: `~/workflow/tectonic-briefing/scripts/publish.sh`
 
 ### Or use Claude Code directly:
+
+**IMPORTANT — Context management for briefing generation (calibrated 2026-04-16):**
+
+When generating a tectonic briefing in Claude Code, use the **Agent tool** with a dedicated sub-agent rather than generating in the main conversation context. Long sessions accumulate context that compresses briefing depth — deep dives drop, structural vocabulary gets abbreviated, and analyses shorten. A spawned agent operates in a fresh context window.
+
+The agent prompt MUST include:
+1. This CLAUDE.md file (read in full)
+2. `STRUCTURAL_CONCEPTS.md` (read in full)
+3. The designated quality-benchmark briefing (currently Briefing 010, 2026-04-14.html) as a format template
+4. Today's research results and events summary
+5. The full list of all named structural vocabulary patterns (currently 30)
+6. Explicit instruction to include 2-4 deep dive panels, full five-meta-category vocabulary display, and all 12 section IDs
+
+**Post-generation quality checklist (run before committing):**
+After the HTML is written, verify:
+- [ ] Count `dd-panel` elements → target 2-4 deep dives
+- [ ] Count `.vi` vocabulary entries displayed → target all 30 (or current total)
+- [ ] All 12 section IDs present: ov, ge, te, ec, sc, so, en, ig, li, ie, wa, sa
+- [ ] Anomaly Detection has 4+ specific anomalies
+- [ ] Research Program Relevance section has per-project connections
+- [ ] Source Archive has categorized entries across 3+ subsections
+- [ ] Editorial discipline note in footer confirms fresh-domain rotation
+
+If any check fails, regenerate the missing sections before publishing.
+
 ```bash
 # Save briefing content to file
 cat > ~/workflow/tectonic-briefing/briefings/2026-04-06.html << 'EOF'
