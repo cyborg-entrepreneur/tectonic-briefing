@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tectonic Briefing</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source Sans 3',system-ui,sans-serif;font-size:16px;line-height:1.7;min-height:100vh}
+:root{--bg:#0b1120;--card:#111827;--alt:#141c2e;--str:#162035;--blu:#4b8ef2;--blub:#6da8ff;--blup:#a3c8ff;--teal:#38d9c8;--tealm:#2a9e92;--gold:#e5b84c;--goldm:#c9a03a;--red:#f06050;--redm:#c04a3e;--purp:#a78bfa;--grn:#4ade80;--t1:#eaf0f8;--t2:#cdd6e4;--t3:#8e9bb5;--t4:#5f6d87;--brd:rgba(75,142,242,0.18);--brds:rgba(75,142,242,0.35)}
+.w{max-width:1140px;margin:0 auto;padding:0 1.8rem}
+header{padding:2.8rem 0 1.8rem;border-bottom:1px solid var(--brd);margin-bottom:2rem}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2.6rem;color:var(--t1);letter-spacing:.025em}
+h1 em{font-style:normal;color:var(--blub);font-weight:500}
+.sub{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--t4);letter-spacing:.14em;text-transform:uppercase;margin-top:.4rem}
+.epi{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.02rem;color:var(--t3);margin-top:1rem;max-width:680px;line-height:1.55;padding-left:1rem;border-left:2px solid var(--brds)}
+nav{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--brd)}
+nav button{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .7rem;border:1px solid var(--brd);border-radius:2px;background:transparent;color:var(--t3);cursor:pointer;transition:all .25s}
+nav button:hover{border-color:var(--brds);color:var(--blup)}
+nav button.on{border-color:var(--blu);color:var(--blub);background:rgba(75,142,242,.06)}
+nav button.gld{border-color:rgba(229,184,76,.3)}nav button.gld:hover,nav button.gld.on{border-color:var(--gold);color:var(--gold);background:rgba(229,184,76,.06)}
+nav button.rd{border-color:rgba(240,96,80,.3)}nav button.rd:hover,nav button.rd.on{border-color:var(--red);color:var(--red);background:rgba(240,96,80,.06)}
+nav button.tl{border-color:rgba(56,217,200,.3)}nav button.tl:hover,nav button.tl.on{border-color:var(--teal);color:var(--teal);background:rgba(56,217,200,.06)}
+nav button.pr{border-color:rgba(167,139,250,.3)}nav button.pr:hover,nav button.pr.on{border-color:var(--purp);color:var(--purp);background:rgba(167,139,250,.06)}
+nav button.gn{border-color:rgba(74,222,128,.3)}nav button.gn:hover,nav button.gn.on{border-color:var(--grn);color:var(--grn);background:rgba(74,222,128,.06)}
+.bn{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--t4);letter-spacing:.08em;margin-bottom:.3rem}
+.bd{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--t1);margin-bottom:.2rem}
+.bt{font-size:.95rem;color:var(--t3);font-style:italic;margin-bottom:2rem}
+.s{display:none;animation:fu .35s ease}.s.v{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.c{background-color:var(--card);border:1px solid var(--brd);border-radius:3px;padding:1.8rem 2rem;margin-bottom:1.4rem}
+.c.lim{border-left:3px solid var(--gold);background-color:var(--alt)}.c.cri{border-left:3px solid var(--red);background-color:var(--alt)}.c.act{border-left:3px solid var(--teal);background-color:var(--alt)}.c.inf{border-left:3px solid var(--purp);background-color:var(--alt)}.c.env{border-left:3px solid var(--grn);background-color:var(--alt)}.c.gov{border-left:3px solid #f59e0b;background-color:var(--alt)}
+.lb{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blu);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.lb.gl{color:var(--gold)}.lb.tl{color:var(--teal)}.lb.rl{color:var(--red)}.lb.pl{color:var(--purp)}.lb.gnl{color:var(--grn)}.lb.aml{color:#f59e0b}
+.tg{padding:.12rem .45rem;border-radius:2px;font-size:.58rem}
+.tu{background:rgba(75,142,242,.14);color:var(--blup)}.te{background:rgba(56,217,200,.14);color:var(--teal)}.tc{background:rgba(167,139,250,.14);color:var(--purp)}.ta{background:rgba(229,184,76,.14);color:var(--gold)}.tr{background:rgba(240,96,80,.14);color:#fca5a5}.tg2{background:rgba(74,222,128,.14);color:var(--grn)}
+.c h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:var(--t1);margin-bottom:.9rem;line-height:1.3}
+.c p{margin-bottom:.9rem;color:var(--t2);line-height:1.75}.c p:last-child{margin-bottom:0}.c strong{color:var(--t1);font-weight:600}
+.i{margin-top:1rem;padding:.9rem 1.2rem;border-radius:0 2px 2px 0}.i p{font-size:.93rem;color:var(--t2)}
+.il{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.4rem}
+.i.so{background:rgba(75,142,242,.05);border-left:2px solid rgba(75,142,242,.35)}.i.so .il{color:var(--t4)}
+.i.rs{background:rgba(56,217,200,.05);border-left:2px solid rgba(56,217,200,.3)}.i.rs .il{color:var(--tealm)}
+.i.cf{background:rgba(229,184,76,.05);border-left:2px solid rgba(229,184,76,.3)}.i.cf .il{color:var(--goldm)}.i.cf p{font-style:italic}
+.i.in{background:rgba(167,139,250,.05);border-left:2px solid rgba(167,139,250,.3)}.i.in .il{color:var(--purp)}
+.th{background-color:var(--str);border:1px solid var(--brds);border-radius:3px;padding:1.6rem 1.8rem;margin:1.8rem 0}
+.th h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:500;color:var(--blub);margin-bottom:.8rem}.th p{color:var(--t2);line-height:1.75}
+.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;margin:1.2rem 0}
+.vi{background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:1rem 1.2rem}
+.vi h4{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--blub);margin-bottom:.4rem;letter-spacing:.04em}.vi p{font-size:.88rem;color:var(--t3);line-height:1.5;margin:0}
+.mr{display:flex;align-items:flex-start;gap:.8rem;padding:.8rem 0;border-bottom:1px solid rgba(75,142,242,.08)}
+.mf{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--blu);min-width:170px;padding-top:.2rem;letter-spacing:.04em}
+.me{font-size:.92rem;color:var(--t2)}.md{font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.1rem .4rem;border-radius:2px;white-space:nowrap}
+.amp{background:rgba(240,96,80,.12);color:#fca5a5}.dmp{background:rgba(56,217,200,.12);color:var(--teal)}
+.prose{max-width:800px;margin-bottom:1.8rem}.prose p{margin-bottom:1rem;color:var(--t2);line-height:1.8}
+.sh{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--t1);margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid var(--brd)}
+.sh2{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;margin:2rem 0 1rem}
+.src{background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:.8rem 1.2rem;margin-bottom:.6rem;font-size:.88rem}
+.src-cat{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.2rem}
+.src a{color:var(--blub);text-decoration:none;border-bottom:1px solid rgba(109,168,255,.3)}.src a:hover{border-color:var(--blub)}
+.src .src-note{color:var(--t3);font-size:.85rem;margin-top:.3rem}
+.tk{display:inline-block;background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:.5rem .9rem;margin:0 .4rem .4rem 0;font-size:.85rem}
+.tk strong{color:var(--t1);font-weight:500}.tk span{color:var(--t3);font-size:.8rem}
+.dd{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blub);background:rgba(75,142,242,.08);border:1px solid rgba(75,142,242,.25);border-radius:2px;padding:.25rem .6rem;margin-left:.5rem;vertical-align:middle;cursor:pointer;transition:all .3s}
+.dd::before{content:'\25C9';font-size:.7rem}
+.dd:hover{background:rgba(75,142,242,.18);border-color:rgba(75,142,242,.5);color:var(--blup)}
+.dd.active{background:rgba(75,142,242,.15);border-color:var(--blu);color:var(--blup)}
+.dd.active::before{content:'\25CE'}
+.dd-panel{display:none;margin-top:1.2rem;padding:1.4rem 1.6rem;background:linear-gradient(135deg,rgba(75,142,242,.04),rgba(167,139,250,.04));border:1px solid rgba(75,142,242,.2);border-radius:3px;animation:fu .35s ease}
+.dd-panel.open{display:block}
+.dd-panel .dd-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--purp);margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem}
+.dd-panel .dd-label::before{content:'\25C9';font-size:.65rem}
+.dd-panel h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:500;color:var(--t1);margin-bottom:.6rem}
+.dd-panel p{color:var(--t2);line-height:1.75;margin-bottom:.8rem;font-size:.93rem}
+.dd-panel p:last-child{margin-bottom:0}
+.dd-panel strong{color:var(--t1)}
+.dd-panel .dd-question{font-style:italic;color:var(--t3);border-left:2px solid var(--purp);padding-left:.8rem;margin:.8rem 0}
+.wa-section{margin-bottom:2.5rem}
+.wa-section h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:500;color:var(--t1);margin:1.4rem 0 .7rem;padding-top:.8rem;border-top:1px solid rgba(75,142,242,.1)}
+.wa-section h4:first-of-type{border-top:none;padding-top:0}
+footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--brd);text-align:center}
+footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
+@media(max-width:768px){.w{padding:0 1rem}h1{font-size:2rem}.c{padding:1.3rem 1.2rem}.vg{grid-template-columns:1fr}.mr{flex-direction:column;gap:.3rem}.mf{min-width:unset}}
+</style>
+</head>
+<body>
+<div class="w">
+<header>
+<h1><em>Tectonic</em> Briefing</h1>
+<div class="sub">Structural forces &middot; Inference engine &middot; Wise action &middot; Source archive</div>
+<div class="epi">&ldquo;What is bent cannot be made straight, and what is missing cannot be counted.&rdquo; &mdash; Ecclesiastes 1:15. Today the settlement that reopened the Strait was unopened the same day; what had been declared missing is now counted back into the crisis ledger.</div>
+</header>
+
+<nav id="nav">
+<button class="on" onclick="go('ov')">Overview</button>
+<button class="rd" onclick="go('ge')">Geopolitical</button>
+<button onclick="go('te')">Technological</button>
+<button onclick="go('ec')">Economic</button>
+<button onclick="go('sc')">Scientific</button>
+<button onclick="go('so')">Social</button>
+<button class="gn" onclick="go('en')">Ecological</button>
+<button onclick="go('ig')">Institutional</button>
+<button class="gld" onclick="go('li')">Liminal Signals</button>
+<button class="pr" onclick="go('ie')">Inference Engine</button>
+<button class="tl" onclick="go('wa')">Wise Action</button>
+<button onclick="go('sa')">Source Archive</button>
+</nav>
+
+<div class="bn">BRIEFING NO. 014</div>
+<div class="bd">18 April 2026</div>
+<div class="bt">Iran reverses yesterday&rsquo;s declaration: the Strait of Hormuz is once again under &ldquo;strict control,&rdquo; the reopening treated as a ceasefire violation because the US will not lift its blockade. IRGC gunboats attack a tanker near the Strait, no injuries. Macron accuses Hezbollah of killing a French UN peacekeeper one day into the Lebanon ceasefire. Russia launches 219 drones overnight; a residential building in Bohodukhiv burns. Pope Leo lands in Angola amid an open feud with Trump. China&rsquo;s rare-earth export-control pause holds but with 90% of global magnet processing still in Chinese hands and controls reinstatable within weeks. IQM and Fraunhofer demonstrate gate-level compilation of Shor&rsquo;s algorithm for 2048-bit RSA &mdash; the post-quantum deadline is no longer theoretical. Today&rsquo;s pattern: settlement reversion. Yesterday&rsquo;s cascade resolution does not survive its first 24 hours of implementation pressure.</div>
+
+<!-- ========== OVERVIEW ========== -->
+<div class="s v" id="s-ov">
+<div class="prose">
+<p>Yesterday&rsquo;s pattern was settlement velocity: diplomatic agreements arriving faster than the institutional, military, and technical systems could construct operational infrastructure to sustain them. Today, April 18, the empirical test of that pattern arrived on the same cycle time. Three signature events mark the transition from settlement to reversion &mdash; not collapse, but the specific failure mode in which the declared agreement is withdrawn while the architectures of confrontation remain intact. The first: <strong>Iran announced Saturday that the Strait of Hormuz has &ldquo;reverted to strict control&rdquo;</strong> and that the reopening declared Friday was conditional on a US lift of the naval blockade that never came. The Iranian Foreign Ministry framed the continuing blockade as itself a violation of the ceasefire. Within hours of the reversion, two IRGC gunboats fired on a commercial tanker near the Strait. No injuries. No damage filings yet. The UK Maritime Trade Operations organization issued an advisory and kept it open.</p>
+
+<p>The second signature event arrived from the Lebanon track. <strong>French President Emmanuel Macron publicly accused Hezbollah of killing a French UN peacekeeper one day into the ten-day ceasefire.</strong> The killing occurred during the window Trump had declared &ldquo;PROHIBITED&rdquo; for Israeli operations; Hezbollah was not on the list of actors the declaration bound. The peacekeeper&rsquo;s death exposes a structural feature of yesterday&rsquo;s ceasefire architecture: it governed what Israel could do, not what Hezbollah could do, because Hezbollah was neither party to the negotiation nor bound by the terms of a settlement reached between Israeli and Lebanese state representatives in Washington. The Lebanese state is nominally the ceasefire counterparty; the Lebanese state does not control the militant organization whose actions define whether the ceasefire holds. The gap between the agreement&rsquo;s signatories and the agreement&rsquo;s operational determinants is the feature, not the bug.</p>
+
+<p>The third: <strong>Pope Leo XIV landed in Angola on the third leg of his Africa tour under escalating direct conflict with Trump over the Iran war.</strong> Trump has called him &ldquo;weak on crime&rdquo; and &ldquo;terrible for foreign policy&rdquo; and shared an AI-generated image depicting himself as Jesus. Leo responded aboard the Cameroon-to-Angola flight that he has &ldquo;nothing to fear&rdquo; and rebuked &ldquo;a handful of tyrants&rdquo; spending billions on war while Africa starves. The exchange is more than culture-war spectacle. It establishes the first sustained public confrontation between the current US administration and a major moral-authority institution operating on a global stage with its own distribution architecture (the global Catholic communion, approximately 1.4 billion people, with direct episcopal authority in every continent including the African states Trump&rsquo;s aid cuts are most affecting). <strong>The Vatican is constructing a counter-architecture to the dual-track maximalism pattern &mdash; a single-track message of moral judgment carried on a distribution network that does not depend on state-based authority.</strong> The Africa tour is the physical manifestation of that architecture.</p>
+</div>
+
+<div class="th"><h3>Unifying Thread: Settlement Reversion</h3>
+<p>April 18 names a structural pattern that was implicit in yesterday&rsquo;s settlement velocity but becomes visible only after a settlement has been concluded and then tested. <strong>Settlement reversion is what happens when a diplomatic agreement is withdrawn within the window in which its implementation architecture was supposed to be constructed but wasn&rsquo;t.</strong> The agreement does not collapse because it fails in execution; it collapses because the gap between signature and implementation is occupied by an event that the agreement did not anticipate and cannot absorb. Iran&rsquo;s Friday declaration that Hormuz was &ldquo;completely open&rdquo; was conditional on a US response that never came; the absence of the response is the event that reverses the declaration. The Lebanon ceasefire is conditional on Hezbollah&rsquo;s consent; Hezbollah is not party to the agreement, and a single killing of a French peacekeeper within the first 24 hours is the event that exposes the ceasefire&rsquo;s operational contingency. The Washington-level settlement of the Lebanon war was signed by states; the continuation of the Lebanon war is governed by a non-state armed organization.</p>
+<p>The structural mechanism is specific and generalizable. Settlements produced under <em>settlement velocity</em> (the pattern from Briefing 013, in which diplomatic closure outruns the construction of its supporting architecture) carry a hidden conditional: the agreement holds only so long as nothing tests the implementation gap. The gap is the period between the agreement&rsquo;s announcement and the construction of the verification, enforcement, and trust-building infrastructure that would make the agreement durable. In the Cold War, that gap was typically measured in months or years; the Agreed Framework with North Korea operated in its gap for nearly a decade before the gap consumed it. The current regional configuration is operating its gap in hours. Iran&rsquo;s reopening lasted approximately 30 hours. The Lebanon ceasefire&rsquo;s first violation occurred within 24 hours. <strong>The settlement reversion timescale has compressed to the same timescale as the settlement velocity itself, which means that settlement and reversion are now occurring in adjacent news cycles rather than across institutional epochs.</strong></p>
+<p>The Ecclesiastes epigraph is the operating diagnostic. What was bent yesterday has not been made straight; what was missing from the settlement&rsquo;s architecture has been counted back into the crisis ledger. The Preacher&rsquo;s observation that the crooked cannot be straightened refers precisely to the situation in which a configuration has been declared resolved but the underlying asymmetries it depended on (mine density, Hezbollah autonomy, blockade status, Israeli troop presence) are unchanged. The declaration resolves nothing; the declaration&rsquo;s audience simply chose, briefly, to read the declaration as resolution. Today&rsquo;s reversion is what it looks like when that audience stops reading charitably. The briefing&rsquo;s analytic task across the coming week is to read each cascade resolution the same way: as conditional on an implementation architecture that has not been constructed, and therefore as reversible on the shortest timescale that any one of its conditionals can be tested.</p></div>
+
+<h3 class="sh2" style="color:var(--blub)">Structural Vocabulary (Accumulating)</h3>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1rem;font-size:.9rem">Organized by meta-category. Five structural families, 32 named patterns (1 added today).</p>
+
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-1: Coupling Failure</h3>
+<div class="vg">
+<div class="vi"><h4>Observation-Action Decoupling</h4><p>Accurate observation does not constrain behavior. Briefing 006.</p></div>
+<div class="vi"><h4>Narrative-Physical Decoupling</h4><p>Official account operates as a parallel reality. Briefing 007.</p></div>
+<div class="vi"><h4>Akrasia at Scale</h4><p>Knowing the better course and choosing the worse. Briefing 006.</p></div>
+<div class="vi"><h4>Capability Opacity</h4><p>Capability-verifiability gap unbridgeable. Briefing 003.</p></div>
+<div class="vi"><h4>Emergent Concealment</h4><p>AI develops capacity to hide actions. Briefing 005.</p></div>
+<div class="vi"><h4>Instrument Autonomy</h4><p>Deployed instrument exceeds deployer&rsquo;s control. Briefing 008.</p></div>
+<div class="vi"><h4>Scope Retreat</h4><p>Declared policy retreats to physically feasible within hours. Briefing 009.</p></div>
+<div class="vi"><h4>Dual-Track Maximalism</h4><p>Maximum rhetorical escalation and diplomatic opening occur simultaneously. Briefing 010.</p></div>
+</div>
+
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-2: Bypass Inversion</h3>
+<div class="vg">
+<div class="vi"><h4>Bypass Capture</h4><p>Escape route becomes the target. Briefing 007.</p></div>
+<div class="vi"><h4>Shadow Settlement</h4><p>Parallel transaction system emerges. Briefing 002.</p></div>
+<div class="vi"><h4>Conditional Collapse</h4><p>Ambiguity that enabled agreement becomes mechanism of failure. Briefing 005.</p></div>
+<div class="vi"><h4>Negotiation Multiplication</h4><p>Stalled tracks spawn parallel tracks. Briefing 006.</p></div>
+<div class="vi"><h4>Sovereignty Arbitrage</h4><p>Gap between sovereignty claims and enforcement. Briefing 003.</p></div>
+</div>
+
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-3: Threshold Cascade</h3>
+<div class="vg">
+<div class="vi"><h4>Buffer Collapse</h4><p>Shock-absorbing system fails. Briefing 001.</p></div>
+<div class="vi"><h4>Chokepoint Cascade</h4><p>Bottleneck failure propagates. Briefing 001.</p></div>
+<div class="vi"><h4>Tipping Cascade</h4><p>One threshold triggers others. Briefing 001.</p></div>
+<div class="vi"><h4>Deadline Revelation</h4><p>Temporal boundary forces latent forces visible. Briefing 002.</p></div>
+<div class="vi"><h4>Reversibility Asymmetry</h4><p>Physical conditions tend to irreversibility; institutional to reversibility. Briefing 009.</p></div>
+<div class="vi"><h4>Cascade Resolution</h4><p>Shared pressure produces cascading resolutions of long-stuck problems. Briefing 012.</p></div>
+<div class="vi"><h4>Settlement Velocity</h4><p>Diplomatic settlement completes faster than supporting architectures can absorb it. Briefing 013.</p></div>
+<div class="vi" style="border-color:var(--blub)"><h4 style="color:var(--gold)">Settlement Reversion &#9679; NEW</h4><p>Diplomatic agreement is withdrawn within the gap between signature and implementation, because the gap is occupied by an event the agreement did not anticipate and cannot absorb. Reversion timescale now matches settlement velocity timescale. Hormuz reopening lasted 30 hours; Lebanon ceasefire first violated within 24. Briefing 014.</p></div>
+</div>
+
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-4: Commons Enclosure</h3>
+<div class="vg">
+<div class="vi"><h4>Commons Enclosure</h4><p>Shared resource converted to controlled access. Briefing 003.</p></div>
+<div class="vi"><h4>Optionality Arbitrage</h4><p>Advantage existing only in crisis. Briefing 001.</p></div>
+<div class="vi"><h4>Paradigm Defection</h4><p>Dominant advocate abandons paradigm. Briefing 005.</p></div>
+<div class="vi"><h4>Process as Destination</h4><p>Negotiation&rsquo;s continuation is its goal. Briefing 007.</p></div>
+</div>
+
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-5: Institutional Hollowing</h3>
+<div class="vg">
+<div class="vi"><h4>Capacity Hollowing</h4><p>Personnel cuts reduce perception before action. Briefing 002.</p></div>
+<div class="vi"><h4>Category Collapse</h4><p>Stable distinction dissolves. Briefing 001.</p></div>
+<div class="vi"><h4>Governance Vacuum</h4><p>Institutional capacity lags pace of change. Briefing 001.</p></div>
+<div class="vi"><h4>Constructive Ambiguity</h4><p>Agreement via mutually exclusive interpretations. Briefing 004.</p></div>
+<div class="vi"><h4>Ceasefire Acceleration</h4><p>Pause accelerates structural transformations. Briefing 004.</p></div>
+<div class="vi"><h4>Electoral Correction</h4><p>Entrenched illiberal rule reversed through democratic processes. Briefing 009.</p></div>
+<div class="vi"><h4>Enforcement Selectivity</h4><p>Declared policy applied only to actors without credible exemption. Briefing 011.</p></div>
+</div>
+
+<h3 class="sh2" style="color:var(--red)">Anomaly Detection: What Should Be Happening But Isn&rsquo;t</h3>
+<div class="c">
+<p><strong>No insurance-market public repricing of yesterday&rsquo;s reopening or today&rsquo;s reversion.</strong> Iran&rsquo;s Friday declaration that Hormuz was &ldquo;completely open&rdquo; should have produced a measurable reduction in Lloyd&rsquo;s war-risk premiums for Persian Gulf transit; today&rsquo;s reversion should have produced a re-escalation. Neither has been reported. The war-risk premium data that markets depend on for commercial-shipping decisions is operating below the visibility threshold. <strong>The result is that the largest single determinant of whether the reopening was real &mdash; whether insurers priced it as real &mdash; is absent from the public record.</strong> Either the insurers never believed the reopening (in which case yesterday&rsquo;s market rally was mispriced) or they believed it and have not yet announced the reversal (in which case today&rsquo;s tanker attack will trigger a delayed shock). Either path is informative; the absence is a structural anomaly.</p>
+<p><strong>No cabinet-level reaction in Israel to the French peacekeeper killing.</strong> Yesterday&rsquo;s briefing flagged that Netanyahu&rsquo;s cabinet was not consulted before the ceasefire was agreed. Today, a French UN peacekeeper has been killed by Hezbollah within the ceasefire window that Netanyahu unilaterally accepted. <strong>The cabinet that was bypassed on the agreement has not been reconvened to assess the violation.</strong> Under any prior Israeli constitutional practice, a peacekeeper fatality from the adversary that the ceasefire was supposed to constrain would trigger an emergency security cabinet meeting. The pattern of Briefing 013 &mdash; war-and-peace decisions being made by a single actor under external pressure without cabinet deliberation &mdash; is now compounded by the absence of cabinet response to the consequences of those decisions.</p>
+<p><strong>China&rsquo;s rare-earth export-control pause is not being priced as reversible.</strong> China&rsquo;s October 2025 and April 2025 rare-earth and battery-material export controls were paused in the current US-China negotiating window, but the pause is explicitly temporary and reinstatable. Approximately 90% of global rare-earth magnet processing capacity remains in Chinese hands. <strong>Western procurement departments, automotive OEMs, and defense primes are operating procurement plans as though the pause is durable rather than as though the reinstatement clock is running.</strong> The US Defense Industrial Base report that was due to articulate the rare-earth exposure has not been released at the timeline a structural rare-earth-dependence problem would warrant. The procurement architecture is assuming normalcy that the policy reality does not support.</p>
+<p><strong>No congressional or executive statement accompanies the IQM-Fraunhofer Shor-algorithm milestone.</strong> On April 5, 2026, IQM and Fraunhofer FOKUS achieved gate-level compilation of Shor&rsquo;s algorithm for 2048-bit RSA keys &mdash; transitioning the theoretical RSA-breaking benchmark into a precise engineering target. Thirteen days later, no federal agency has issued updated post-quantum migration guidance. NIST has not reissued its timeline. CISA has not issued an advisory. OMB has not updated its federal PQC migration deadlines. <strong>The cryptographic deadline for the civilian infrastructure has moved; the response infrastructure has not.</strong> This is the Briefing 003 Capability Opacity pattern arriving in quantum form: the capability is public; the institutional response is silent.</p>
+<p><strong>Sudan, now at year four of war, receives no attention even as Pope Leo stands in Angola naming the problem.</strong> [Persistent from Briefings 009-013.] Pope Leo&rsquo;s Africa tour is physically adjacent to the Sudan humanitarian catastrophe &mdash; Angola shares a border region with the DRC, which shares the regional crisis architecture with Sudan &mdash; and the Pope has explicitly named &ldquo;a handful of tyrants&rdquo; whose wars are starving the continent. <strong>The US media coverage of the Africa tour has focused almost exclusively on the Trump feud, not on the substantive content of the Pope&rsquo;s message about Africa.</strong> The Sudan crisis is, again, structurally invisible even as the most visible global religious authority stands on the same continent and names it.</p>
+</div>
+</div>
+
+<!-- ========== GEOPOLITICAL ========== -->
+<div class="s" id="s-ge">
+<div class="sh">Geopolitical Forces</div>
+<div class="c cri">
+<div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span> <span class="tg tr">Hormuz Re-closed</span></div>
+<h3>Iran Reverses the Reopening Within 30 Hours: The Settlement Reversion Arrives <span class="dd">Deep Dive Available</span></h3>
+<p>Iran&rsquo;s Foreign Ministry announced Saturday that the Strait of Hormuz has &ldquo;reverted to strict control.&rdquo; The Friday declaration that the Strait was &ldquo;completely open for all commercial vessels&rdquo; was explicitly conditional on a US lift of the naval blockade on Iranian ports; the US has refused. Iran&rsquo;s ministry framed the persistent blockade as itself a violation of the ten-day ceasefire and declared that the reopening would be suspended &ldquo;as long as the enemy intends to disrupt the passage of vessels and apply its naval blockade.&rdquo; <strong>Hours after the reversion announcement, two IRGC gunboats fired on a commercial tanker near the Strait.</strong> No casualties reported. The UK Maritime Trade Operations organization issued an alert and has kept it in force. Trump commented from Washington that the US is having &ldquo;very good conversations&rdquo; with Tehran and that the blockade &ldquo;will remain in full force&rdquo; until a peace deal is reached. Secretary Araghchi confirmed that the US has submitted fresh proposals which Tehran is reviewing and has not yet answered.</p>
+<p>The structural significance: <strong>the 30-hour reopening window is now the empirical benchmark for what yesterday&rsquo;s cascade resolution was actually worth.</strong> The physical Strait never opened in any operationally meaningful sense &mdash; mines remained uncharted, insurance premiums were unchanged, naval forces stayed in place. What opened was a declarative frame that lasted the duration of one news cycle and reversed when the matching declarative frame (US blockade lift) failed to arrive. The mechanism is the settlement reversion pattern: the gap between signature and implementation is occupied by a non-event (the absent US response) that reverses the signature before implementation begins. <strong>The tanker attack is the operational tail of the reversion:</strong> it re-establishes Iranian kinetic credentials for the next negotiating round and simultaneously produces a data point that markets, insurers, and naval planners must price. The dual-track maximalism structure continues &mdash; Tehran is signaling both kinetic capability and diplomatic receptivity in the same 24-hour window &mdash; but the rhetorical tracks have now cycled through a full settlement-and-reversion iteration without producing any change in the underlying physical situation.</p>
+<div class="i so"><div class="il">Second-Order</div><p>The specific audience cost of the reversion is worth naming. Each settlement-reversion cycle burns credibility capital for the actors who asserted the settlement. Iran&rsquo;s Friday declaration consumed credibility with the European maritime-freedom coalition (Macron-Starmer) that had been standing up parallel architecture partly in response to the reopening signal. The US consumed credibility with the shipping industry, which priced the reopening as leverage-for-negotiation and now has to reprice it as rhetorical artifact. Trump consumed credibility with his own domestic financial base, which read yesterday&rsquo;s 11% Brent crash and Dow surge to all-time highs as the vindication of the dual-track strategy and now must assess whether the dual-track strategy has any durable product. <strong>The cumulative credibility cost of settlement-reversion cycles compounds even when each individual cycle is short.</strong> The three-cycle equivalent from the prior Iran negotiating history (JCPOA announcement-withdrawal-reconstitution) consumed enough credibility to prevent the subsequent round from producing anything durable.</p></div>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive Analysis</div>
+<h4>The Thirty-Hour Reopening: What Settlement Reversion Reveals About the Ceasefire Architecture</h4>
+<p>Thirty hours is a specific number. It is too long to be a rhetorical misstep &mdash; a genuine rhetorical misstep reverses in hours or less, before the international reaction consolidates. It is too short to be a genuine policy shift &mdash; a genuine policy shift requires physical reconfiguration of naval forces, insurance instruments, and port operations that cannot be installed in thirty hours. The thirty-hour reopening window is therefore a deliberate structural interval: long enough to extract the reaction the reopening was designed to extract (market rally, diplomatic choreography, credibility accumulation), short enough to withdraw before implementation costs accrue. <strong>This is the choreography of a dual-track maximalism move where the diplomatic track has been compressed into a single news cycle while the kinetic track continues uninterrupted underneath.</strong></p>
+<p>The diagnostic implication extends beyond Hormuz. If thirty-hour settlements are now the operational form of regional diplomacy &mdash; and the Lebanon ceasefire, which generated its first violation within 24 hours, is the parallel case &mdash; then the analytical frame of &ldquo;a settlement has been reached&rdquo; is not performing the categorical work it used to perform. In the Cold War framework, a settlement was a step-change: before the signature, a state of affairs; after the signature, a different state of affairs. Settlements were not daily events. Under the current configuration, settlements are daily events, and each daily settlement is followed by a daily reversion. The Briefing 010 pattern &mdash; &ldquo;eliminate&rdquo; and &ldquo;wants a deal&rdquo; in the same news cycle &mdash; has evolved into its operational equivalent: settlement and reversion in the same news cycle, each sequenced to extract the reaction before the cost arrives.</p>
+<p>The observer&rsquo;s task under this configuration is to adopt the same timescale. Reading any single settlement as more than a short-term rhetorical instrument is a category error; reading any single reversion as the end of the settlement process is also a category error. <strong>The settlements and reversions are the texture of the crisis, not its resolution.</strong> The resolution, if it comes, will be recognizable not by a single decisive settlement but by the cessation of the daily settlement-reversion cycle &mdash; a transition to a state in which the physical situation (mine density, blockade status, troop presence, insurance pricing) is coupled to the rhetorical situation on a timescale long enough for implementation to catch up. The current cycle timescale is hours. A resolution would extend that timescale to weeks. No event this week has indicated that extension.</p>
+<p class="dd-question">If settlement-reversion cycles on the 30-hour timescale are the new operating mode of contemporary diplomacy &mdash; in which the rhetorical artifact and its withdrawal occur within the same news cycle while the physical situation remains unchanged &mdash; does the structural architecture of international agreement need to be re-theorized around transient signaling rather than durable commitment, and what does this mean for the concept of &ldquo;peace&rdquo; when the peace signal and its reversal are both being generated by the same parties on the same timescale?</p>
+</div>
+</div>
+
+<div class="c cri">
+<div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span> <span class="tg tr">Ceasefire First Casualty</span></div>
+<h3>Macron Accuses Hezbollah of Killing a French Peacekeeper Within 24 Hours of the Ceasefire</h3>
+<p>French President Emmanuel Macron publicly accused Hezbollah of killing a French UN peacekeeper in southern Lebanon one day into the Israel-Lebanon ceasefire that took effect at midnight Friday. The peacekeeper had been deployed under the UNIFIL mandate that has operated across the Israel-Lebanon border for nearly five decades. Macron&rsquo;s statement named Hezbollah explicitly and framed the killing as an attack on French sovereignty carried out by an actor that was not party to the ceasefire and is not bound by its terms. <strong>Hezbollah has issued no public acknowledgment of the killing and has not announced whether it will abide by the ceasefire it neither negotiated nor signed.</strong> The Lebanese state &mdash; nominally the ceasefire counterparty &mdash; has no operational capacity to prevent Hezbollah operations against foreign forces on Lebanese soil.</p>
+<p>The structural feature: <strong>the ceasefire agreement governs what Israel can do, not what Hezbollah can do.</strong> The Washington negotiation produced commitments from the Israeli state and the Lebanese state. The operational determinants of whether the ceasefire holds are the actions of a third party that was deliberately excluded from the negotiation. This is the same configuration that has produced serial Lebanon-Israel ceasefire failures since 2006: settlements between states whose terms cannot bind the actor whose behavior determines the settlement&rsquo;s durability. The classical framework would call this enforcement arbitrage: the actor whose behavior matters is positioned outside the enforcement architecture. <strong>The French peacekeeper&rsquo;s death is not a surprise relative to that structural feature; it is the feature&rsquo;s first operational output.</strong></p>
+<div class="i so"><div class="il">Second-Order</div><p>Macron&rsquo;s public accusation against Hezbollah is itself structurally consequential. Under prior European diplomatic practice, Hezbollah attacks on UNIFIL personnel were attributed through UN channels and processed through UN Security Council procedures. Macron&rsquo;s direct public accusation bypasses that channel. <strong>The bypass signals that France has concluded the UN Security Council cannot or will not act on Hezbollah accountability for UNIFIL casualties.</strong> If the signal is correct, the UNIFIL mission&rsquo;s legitimacy architecture has eroded structurally in the same week that the nominal ceasefire it is supposed to enforce has been announced. The erosion is not a consequence of the Lebanon war alone; it is a consequence of the broader Briefing 011 Enforcement Selectivity pattern applied to the peacekeeping architecture.</p></div>
+</div>
+
+<div class="c cri">
+<div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span> <span class="tg tr">Ukraine Overnight</span></div>
+<h3>Russia Launches 219 Drones Overnight; Ukraine Strikes Russian Oil Infrastructure in Samara</h3>
+<p>Russian forces launched 219 drones overnight from positions in Shatalovo, Bryansk, Kursk, Oryol, Millerovo, Primorsko-Akhtarsk, and Cape Chauda in occupied Crimea; more than 150 were Shahed loitering munitions. Ukrainian air defense downed 190 of the 219; 28 drones hit 17 locations. A residential building in Bohodukhiv (Kharkiv region) was struck. The Russian overnight wave follows the April 16 attack that killed at least 18 and wounded 118 across Kyiv, Kharkiv, Odesa, Dnipro, and Zaporizhzhia &mdash; one of the deadliest 24-hour periods of the war this year. Ukraine has responded with sustained counter-strikes on Russian oil infrastructure in Samara Oblast and multiple targets in occupied Crimea overnight.</p>
+<p>The structural pattern: <strong>the Ukraine war is running at higher tempo than at any point in the past six months, at the precise moment the Middle East cascade is consuming US and European diplomatic and military attention.</strong> The implicit Russian theory of action is that a distracted Western coalition will absorb a step-change in kinetic intensity without the political response that the same intensity would have generated six months ago. The absence of a meaningful G7 response to the April 16 wave, and the near-total absence of US diplomatic engagement on Ukraine during the entire Iran cascade, confirms the theory empirically. The Russia-Ukraine war is becoming the residual channel through which Russian strategic intent is expressed while the West&rsquo;s attention is concentrated elsewhere &mdash; a structural opportunity that Russia is operating faster than the West can reallocate attention to address.</p>
+</div>
+
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span></div>
+<h3>Pope Leo in Angola: The Moral-Authority Counter-Architecture Takes Physical Form <span class="dd">Deep Dive Available</span></h3>
+<p>Pope Leo XIV arrived in Luanda, Angola on Saturday, the third leg of his Africa tour. The trip has become the physical manifestation of an open conflict between the Vatican and the Trump administration over the Iran war. Trump has called Leo &ldquo;weak on crime&rdquo; and &ldquo;terrible for foreign policy&rdquo; and posted an AI-generated image depicting himself as Jesus. Leo, aboard the Cameroon-Angola flight, said he has &ldquo;nothing to fear&rdquo; from the administration and criticized &ldquo;a handful of tyrants&rdquo; spending billions on war while Africa starves. The tour has included stops in Rabat, Cameroon, and Angola with impassioned condemnations of corruption, war, and the global arms trade.</p>
+<p>The structural significance is institutional, not religious. <strong>The Vatican operates a distribution architecture &mdash; approximately 1.4 billion nominal Catholics, direct episcopal authority in every inhabited continent, deep historical presence across Africa where US foreign-policy authority is retreating &mdash; that does not depend on state-based authority.</strong> Pope Leo&rsquo;s message is operating on that distribution architecture, and the message is a single-track one: it names the war, the arms trade, and the tyrants without dual-track moderation. The contrast with the current US configuration is sharp. Trump&rsquo;s dual-track maximalism requires simultaneous performances of threat and opening; Leo&rsquo;s counter-architecture requires only the single track of moral judgment. <strong>The architectural asymmetry is what makes the feud structurally interesting: Trump cannot use dual-track tactics against an adversary whose operating architecture does not admit them.</strong></p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive Analysis</div>
+<h4>The Architecture of a Single-Track Moral Authority Against a Dual-Track Political Authority</h4>
+<p>The Pope Leo vs. Trump exchange is not culture-war theater in the conventional sense. The conventional US culture war operates on a single distribution architecture (American political media) with two competing positions. The current exchange operates on two fundamentally different distribution architectures producing two fundamentally different kinds of signals. Trump&rsquo;s architecture is state-based, media-centric, and dual-tracked: the signals are calibrated to multiple audiences whose signal-processing systems do not cross-reference (per Briefing 010). Leo&rsquo;s architecture is communion-based, sacramental, and single-tracked: the signal is calibrated for a single universal audience (the Catholic communion and anyone else receiving the Christian moral tradition as cultural context) and operates through a delivery mechanism (episcopal preaching, Mass, personal address to press) that does not admit the dual-track gambit.</p>
+<p>The strategic implication for Trump is specific. Dual-track maximalism depends on the adversary processing the two tracks through two different audience systems &mdash; the threat track through a kinetic-credentialing audience, the diplomatic track through a negotiating-audience. The Vatican does not process signals that way. It receives Trump&rsquo;s entire output as a single moral fact to be judged against a single moral standard, and it responds on a single track with a single moral judgment. <strong>Trump&rsquo;s attempt to escalate rhetorically against Leo (&ldquo;weak on crime,&rdquo; the AI-Jesus image) is addressed to audiences the Vatican does not serve and is neither heard nor answered on those audiences&rsquo; terms.</strong> Leo&rsquo;s response &mdash; &ldquo;I have nothing to fear&rdquo; &mdash; does not engage the rhetorical content; it refuses the frame.</p>
+<p>The Africa tour is the physical manifestation of the architectural difference. By standing in Angola, Cameroon, and Rabat and naming the war, the arms trade, and the tyrants, Leo is using the single-track architecture to assert a moral authority in the regions where US foreign-policy authority has most eroded. The African Catholic population (approximately 280 million, growing faster than any other region) is a constituency whose information-environment can be reached by a papal visit at a depth that US public diplomacy cannot match. <strong>The tour is building a counter-authority field in the specific regions the US has been abandoning.</strong> The structural question is whether this counter-authority field can be operationalized as a diplomatic instrument (for example, Vatican mediation in African conflicts) or whether it remains purely discursive. The tour&rsquo;s payload on both Sudan (unaddressed) and DRC/Great Lakes (likely to be addressed in the Angola remarks) will be the first indication.</p>
+<p class="dd-question">If the Vatican&rsquo;s single-track moral-authority architecture proves durably resistant to the dual-track political architecture that currently dominates US state behavior, does the global institutional landscape begin to admit a stable bipolarity between state-based and communion-based authorities &mdash; and what does this imply for diplomatic practice in regions (Africa, Latin America, parts of Asia) where communion-based authority is deeper than state-based authority and the Vatican&rsquo;s credibility exceeds the credibility of any single state?</p>
+</div>
+</div>
+</div>
+
+<!-- ========== TECHNOLOGICAL ========== -->
+<div class="s" id="s-te">
+<div class="sh">Technological Forces</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span> <span class="tg tc">Complexity</span></div>
+<h3>Quantum Reaches Engineering Target for 2048-bit RSA; The Cryptographic Deadline Leaves Theory <span class="dd">Deep Dive Available</span></h3>
+<p>On April 5, 2026, IQM Quantum Computers and Fraunhofer FOKUS released Eclipse Qrisp version 0.8, which achieved the first gate-level compilation of Shor&rsquo;s algorithm for 2048-bit RSA keys. The release transitions the long-standing theoretical RSA-breaking benchmark into a precise engineering target: the exact gate count, logical-qubit count, and fault-tolerance threshold required to factor the most widely-deployed public-key cryptographic standard are now specified in production compiler output rather than in academic blackboard estimates. Earlier in April, ParityQC performed the largest quantum Fourier transform ever reported &mdash; 52 superconducting qubits on an IBM Heron processor &mdash; implementing the foundational subroutine that Shor&rsquo;s algorithm depends on. Alice &amp; Bob announced completion of a 251-person hire to build Graphene, a 100-logical-qubit cat-qubit system the company claims reduces hardware requirements for logical-qubit operations by a factor of 200.</p>
+<p>The structural significance: <strong>the cryptographic deadline for 2048-bit RSA has moved from theoretical future to engineering schedule.</strong> Whether the machines that can execute the gate-level compilation are built this decade or next is still contested. What is no longer contested is the specification. The post-quantum migration problem is no longer &ldquo;we should migrate at some point because it will eventually be possible to break RSA&rdquo;; it is &ldquo;we have a specific compiled target with known resources, and the engineering progress required to meet those resources is proceeding on a published schedule.&rdquo; The civilian infrastructure running on RSA-2048 &mdash; TLS certificates, VPN tunnels, SSH keys, signed software updates, certificate authorities &mdash; has not yet migrated at scale. The NIST post-quantum cryptography standards finalized in 2024 are available; federal migration timelines have been issued but not enforced; the majority of commercial TLS certificates issued today are still RSA-2048.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive Analysis</div>
+<h4>The Post-Quantum Migration Clock Is Now Running Against Specification, Not Estimation</h4>
+<p>Cryptographic migration is one of the highest-latency processes in institutional technology. The last comparable migration &mdash; from MD5 and SHA-1 hashing functions to SHA-2 and SHA-3 &mdash; took approximately two decades from first cryptographic weakness demonstration to full institutional deprecation. TLS 1.0/1.1 deprecation took similarly long. The post-quantum migration is qualitatively different because the threat is not incremental cryptographic weakness but categorical break: a sufficiently large fault-tolerant quantum computer running Shor&rsquo;s algorithm on RSA-2048 produces the factorization, at which point every cryptogram encrypted with that key is decryptable. The &ldquo;harvest now, decrypt later&rdquo; threat model means that adversaries are currently collecting encrypted traffic on the assumption that future decryption will become available; the transition to post-quantum algorithms must occur before the cryptographically-relevant quantum computer becomes operational, not after.</p>
+<p>The IQM-Fraunhofer milestone matters because it closes the specification gap. Prior to gate-level compilation, estimates of the resource requirements for RSA-2048 factoring ranged across several orders of magnitude: low estimates suggested several million physical qubits with current error-correction overheads; high estimates suggested tens of millions. The closed-compilation output specifies the target in the actual compilation units that quantum engineering uses. The engineering roadmaps now have a published finish line, and Alice &amp; Bob&rsquo;s claim of 200x hardware reduction via cat qubits is aimed at precisely that roadmap. <strong>The post-quantum migration clock is no longer an open-ended uncertainty; it is a countdown against specified milestones whose pace is now observable.</strong></p>
+<p>The institutional response lag is structural. The US federal migration timeline requires agencies to inventory cryptographic uses by a date that has already passed for most; the migration itself is not scheduled to complete until late this decade. Commercial TLS issuers have not yet moved to hybrid post-quantum defaults. Software-supply-chain infrastructure (package signing, container image signing, code signing) remains on pre-quantum algorithms for most deployments. <strong>The migration will complete on an institutional-capacity timescale while the cryptographic-threat timescale is on an engineering-progress schedule.</strong> The structural diagnostic is familiar: Capability Opacity (Briefing 003) arrives in quantum form, where the capability is now specified publicly and the institutional response has not accelerated. If the next Mythos-equivalent event in the quantum domain is a demonstrable factoring of a small RSA key (say, 256-bit), the institutional response will have approximately the same lag the AI governance response has exhibited.</p>
+<p class="dd-question">If the post-quantum migration is already behind the quantum-engineering schedule, and if institutional response to capability milestones is structurally slow (as the AI governance response has demonstrated), does the civilian cryptographic infrastructure face a forecastable period of strategic vulnerability &mdash; and what does that imply for entities whose data must remain confidential for longer than the migration window (government archives, medical records, financial transaction logs, intelligence collection)?</p>
+</div>
+</div>
+
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>OpenAI Follows Anthropic in Restricting Cyber Model Access; Second Tier of Frontier Gating Emerges</h3>
+<p>OpenAI announced restricted access for GPT-5.4-Cyber, its cybersecurity-capable variant of GPT-5.4, mirroring Anthropic&rsquo;s Claude Mythos Preview restriction pattern (Project Glasswing, approximately 50 partners, Briefing 005). OpenAI&rsquo;s restriction pool is reportedly larger than Anthropic&rsquo;s 50-company firewall. Both announcements framed the restriction as safety-driven: the models&rsquo; autonomous exploitation capabilities are considered to exceed the threshold at which general availability would be responsible. <strong>The pattern of Briefings 005-013 &mdash; emergent-concealment and autonomous-exploitation capabilities that force frontier labs to adopt restricted-access distribution &mdash; is now clearly a two-lab pattern rather than a single-lab anomaly.</strong> DeepSeek V4 is expected soon, and its restriction posture will be the third data point. The Forum&rsquo;s April 6-7 announcement of intelligence-sharing between OpenAI, Anthropic, and Google against Chinese model theft via adversarial distillation confirms the three-lab Western bloc is operating as a de facto cartel on frontier capability.</p>
+</div>
+
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>Unitree G1 at $16K; Humanoid Robot Market Enters the Commodity Phase Before Capability Matures</h3>
+<p>[Fresh-domain content per topic rotation discipline.] Unitree&rsquo;s G1 is now commercially available for $16,000 shipping to US and Canada; H1 and R1 also in active distribution. Tesla began Optimus Gen 3 mass production at Fremont in January and has announced a third production line targeting 100,000 units per month, though Musk has publicly admitted existing units are &ldquo;primarily for learning, not productive tasks&rdquo; and external customer deliveries are slated for late 2026. Figure&rsquo;s Figure 03 is in a single pilot at BMW. Agility&rsquo;s Digit is the only humanoid currently generating commercial revenue, moving more than 100,000 totes at GXO warehouses and holding paying contracts with Toyota and Mercado Libre. <strong>China is capturing the commodity tier before capability has matured.</strong> Per yesterday&rsquo;s Amazon robotics deep dive, China operates approximately 87% of global humanoid production capacity. The structural feature: the commodity-product tier is already Chinese-dominant even though the capability frontier is Western-led. The distribution architecture at scale has already gone east while the West debates deployment scenarios.</p>
+</div>
+</div>
+
+<!-- ========== ECONOMIC ========== -->
+<div class="s" id="s-ec">
+<div class="sh">Economic Forces</div>
+<div class="c cri">
+<div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>Oil Markets Closed for the Weekend Into a Hormuz Re-closure: Monday Gap-Open Risk Is Structural</h3>
+<p>Global oil markets closed Friday afternoon before Iran&rsquo;s reversion announcement. Brent&rsquo;s last tick was approximately $88 and WTI approximately $83, reflecting Friday&rsquo;s 11% and 12% declines on the Hormuz reopening. <strong>The physical market now has two uninstalled events to price on Monday&rsquo;s open: the reversion itself and the IRGC gunboat attack on the tanker.</strong> The spread between the Friday-close price (pricing reopening) and the Monday-open price (pricing reversion) will be the largest forced gap-open move of the war to date if it materializes at its implied size. Shipping insurers who have not publicly adjusted Persian Gulf war-risk premiums during the weekend will face simultaneous repricing pressure from vessel-owners, cargo-owners, and hull-insurers when London opens Sunday night. The specific risk: the tanker attack &mdash; even though no injuries were reported &mdash; has established the empirical basis on which premiums can be re-escalated.</p>
+<p>The structural reading from ANZ&rsquo;s $88 and Onyx&rsquo;s $150 scenarios (Briefing 010) now has a concrete test window. <strong>If Brent opens Monday at $88 and holds, the dual-track maximalism strategy has stabilized at the negotiated-de-escalation scenario despite the reversion &mdash; the market is pricing the reversion as rhetorical rather than operational.</strong> If Brent opens $95+ and trends toward $100, the market has reclassified the reopening as an outlier rather than a trend and is pricing the continuation of crisis as the base case. Both outcomes are informative. The analyst-forecast spread will widen further in the scenario where Brent opens between $90 and $95 and stays volatile &mdash; the scenario in which the market refuses to commit to either the resolution or the continuation thesis.</p>
+</div>
+
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span></div>
+<h3>China&rsquo;s Rare-Earth Export-Control Pause Is Not Durable; Procurement Is Acting As Though It Is <span class="dd">Deep Dive Available</span></h3>
+<p>[Fresh-domain content per topic rotation discipline.] China&rsquo;s October 2025 critical-mineral export controls &mdash; which would have taken effect November 8 and covered lithium-ion battery supply chains across multiple stages of the supply chain &mdash; have been paused as part of the current US-China negotiating window. The April 2025 heavy-rare-earth export controls (covering dysprosium, terbium, lutetium, yttrium, and downstream alloys and magnets) have also been paused. <strong>Approximately 90% of global rare-earth magnet processing capacity remains in Chinese hands; copper faces a projected 30% supply shortfall by 2035; heavy-rare-earth dependence on Chinese processing is structurally unchanged.</strong> The IEA and Wood Mackenzie assessments are explicit: the pause is temporary and reinstatable; MOFCOM retains the instruments; regulatory tightening is expected in late 2026 if bilateral conditions deteriorate.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive Analysis</div>
+<h4>The Critical-Minerals Pause as Optionality Reserve: What Chinese Strategy Is Buying</h4>
+<p>The Chinese decision to pause the critical-mineral export controls is not a concession; it is an optionality reserve. The control instruments remain in the MOFCOM regulatory architecture; the legal authority to reinstate them is intact; the processing capacity that makes the controls binding is unchanged. What the pause does is extract the cost of an actively-operating control regime (Western retaliation, industrial base reshoring investment, allied coalition formation) while preserving the capability to reimpose the controls with short notice. The structural analogue is the Iran toll-booth pattern from Briefing 003: a commons (rare-earth processing) has been converted into a concentrated control point, and the control point is now being operated in a pulsed mode &mdash; on when leverage is needed, off when the leverage would be counterproductive.</p>
+<p>The Western procurement response has not matched the pulsed structure. Automotive OEMs in Europe and North America that were operating emergency procurement plans during the active control period have largely reverted to their pre-control sourcing patterns; defense primes whose rare-earth-magnet exposure was acute (F-35 permanent-magnet motors, hypersonic guidance systems, Virginia-class submarine acoustic systems) are not publicly documenting reshoring acceleration; battery manufacturers have not committed capital expenditure to non-Chinese graphite anode production at the rate the structural risk warrants. <strong>The procurement architecture is responding as though the pause is durable; the policy architecture says it is not.</strong></p>
+<p>The cascade implication is specific. If the US-China negotiating window breaks down &mdash; and the Iran war, the Taiwan military exercises, and the Chinese-US frontier-AI competition all create plausible breakdown vectors &mdash; the reimposition of rare-earth controls will find the Western procurement pipeline in a worse position than the October 2025 announcement did, because emergency measures that were activated during the active-control period have been allowed to lapse. The next reimposition will therefore produce a larger supply shock than the first one did. <strong>The pause is a structural vulnerability, not a respite.</strong> The procurement departments operating as though it is a respite are the ones who will bear the cost of the reimposition.</p>
+<p class="dd-question">If the critical-mineral export-control pause is structurally a pulsed leverage instrument rather than a durable relaxation &mdash; and if Western procurement architecture is reverting to pre-control patterns during the pause &mdash; does the reimposition scenario produce a larger second-shock than the first, and what does this imply for defense primes, automotive OEMs, and clean-energy manufacturers whose continued operation depends on the assumption that the pause will extend?</p>
+</div>
+</div>
+
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>IEA April Oil Market Report: Global Demand Revision Down 880 kb/d vs. March</h3>
+<p>The IEA&rsquo;s April Oil Market Report (published this week, ahead of the reversion) projects global oil demand contraction of 800 kb/d year-on-year in March 2026 and 2.3 mb/d in April 2026, with global demand now projected to decline 80 kb/d on average across all of 2026 versus the 730 kb/d growth expected in last month&rsquo;s report. <strong>Asian feedstock-constrained refineries have cut runs by approximately 6 mb/d in April.</strong> Retail US gasoline is forecast to peak at $4.30/gal and diesel at $5.80/gal in April. The demand destruction is real and is proceeding faster than the Middle East supply-disruption path would suggest on its own. The compound is Iran war + global demand weakness + persistent-high oil prices producing a stagflationary configuration that the Bank of America research desk has flagged as the structural outlook through year-end.</p>
+</div>
+</div>
+
+<!-- ========== SCIENTIFIC ========== -->
+<div class="s" id="s-sc">
+<div class="sh">Scientific &amp; Paradigmatic Forces</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>AMOC Collapse Timeline Compresses Again: CleanTechnica Synthesizes Recent Research</h3>
+<p>[Fresh-domain content per topic rotation discipline.] Research published April 16 synthesizes multiple recent papers indicating the Atlantic Meridional Overturning Circulation is declining faster than the average climate-model projection, implying a tipping point closer in time than the last generation of estimates. The physics-based early-warning signal literature (Science Advances) now suggests mid-century tipping under current emission trajectories. A separate 2025 paper in Communications Earth &amp; Environment identified the polar ice sheets (Greenland and West Antarctic) as the decisive tipping-likelihood variable: at 1.5&deg;C warming, omitting the polar ice sheets alters expected tipped-element counts by more than a factor of two. <strong>The compound implication: AMOC collapse scenarios now produce regional cooling of up to 7&deg;C in the Arctic, warming of up to 6&deg;C in parts of Antarctica, and northward displacement of the Intertropical Convergence Zone on timescales the current insurance and infrastructure architectures do not price.</strong> Yesterday&rsquo;s Briefing 013 Southern Ocean carbon-source reversal finding integrates directly into this picture: the AMOC decline is coupled to the Southern Ocean response, and the feedback loops accelerate each other.</p>
+</div>
+
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>CRISPR Carbon-Photosynthesis Tuning: Biological Carbon Capture Becomes a Tractable Engineering Target</h3>
+<p>An April 2026 ISAAA-reported breakthrough from IGI demonstrated CRISPR tuning of sorghum photosynthesis regulatory DNA, simulating thousands of edits to identify exactly where and how to modulate photosynthesis-gene expression in crop genomes. The capability combines carbon-capture enhancement with yield improvement in the same editing operation. An NIH-funded team separately announced a compact CRISPR delivery system (Al3Cas12f) that fits into adeno-associated virus vectors, enabling in-body targeted delivery. <strong>The two results together move CRISPR from edit-and-deliver to tune-and-deliver &mdash; a qualitative shift in what the technology can do at scale.</strong> The agricultural-biotech implications are the more immediate; the therapeutic implications extend the existing CRISPR clinical-trial architecture. The carbon-capture claim, if the tuning yields scale on field-deployment timescales that matter for the AMOC tipping-point window, represents a rare case where a biotechnology intervention could affect climate outcomes in time to matter.</p>
+</div>
+
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>The Hormuz Mine Clearance: Entering Week Four, No Public Progress Report</h3>
+<p>[Thread from Briefings 009-013.] The US Navy mine-clearance operation in the Strait of Hormuz is in its fourth week. CENTCOM has issued no public progress report this week; minesweeping operations have continued without visible output. Yesterday&rsquo;s Iranian reversion was announced in the context of a Strait whose mine density is still unspecified. <strong>The physical operation on which the declarative reopening depended has not generated a single verifiable data point in the public record across the week.</strong> The scientific question behind the diplomatic choreography is whether the mines are being cleared and at what rate; the operational answer is neither reported nor readily verifiable from outside the US naval chain of command.</p>
+</div>
+</div>
+
+<!-- ========== SOCIAL ========== -->
+<div class="s" id="s-so">
+<div class="sh">Social &amp; Cultural Forces</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span></div>
+<h3>Pope Leo&rsquo;s &ldquo;A Handful of Tyrants&rdquo;: The Moral-Vocabulary Shift</h3>
+<p>Pope Leo&rsquo;s characterization of the current international order as ravaged by &ldquo;a handful of tyrants&rdquo; is deliberate vocabulary selection. The Catholic moral tradition has a specific theological use for &ldquo;tyrant&rdquo; &mdash; it is not a synonym for &ldquo;authoritarian leader&rdquo; or &ldquo;bad actor&rdquo; but a term of art referring to rulers who have crossed the threshold at which obedience to their commands is no longer morally binding. Aquinas treated tyranny as the condition that releases subjects from the political obligation. <strong>By deploying the term, Leo is invoking a tradition that grants moral authorization for resistance within the Catholic framework.</strong> Whether Trump is the specific referent or whether the phrase covers a broader category (Putin, Xi, Netanyahu, and others) is deliberately underdetermined; the point is to name the category and reactivate the tradition around it. For the 280 million African Catholics, the tradition is not abstract. African Catholic thought has been explicit about tyrannicide in the post-colonial period in a way European Catholic thought has not been since the Reformation.</p>
+</div>
+
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>Netanyahu&rsquo;s Cabinet Bypass: Israeli Democratic Architecture After the Unilateral Ceasefire</h3>
+<p>[Thread from Briefing 013.] Israeli ministers learned of the ceasefire from media reports. No cabinet meeting has been convened to assess the French peacekeeper killing. Netanyahu&rsquo;s management of the ceasefire as a personal negotiation with Trump (with Israeli cabinet bypass) replicates the structural pattern the US War Powers Resolution has exhibited: the formal deliberative architecture persists; the substantive deliberation has been routed around it. <strong>Two democracies in the same week have had their war-and-peace cabinet architectures silently retired for the specific decisions that mattered most.</strong> The constitutional-hollowing pattern is now a cross-democracy phenomenon rather than a uniquely US one.</p>
+</div>
+</div>
+
+<!-- ========== ECOLOGICAL ========== -->
+<div class="s" id="s-en">
+<div class="sh">Environmental &amp; Ecological Forces</div>
+<div class="c env">
+<div class="lb gnl"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>The Trapped Fleet at Day 50: The Threshold the Reopening Didn&rsquo;t Clear</h3>
+<p>[Thread from Briefings 007-013.] The Persian Gulf anchorage fleet has now been in confinement for 50 days. Greenpeace&rsquo;s trapped-volume estimate crossed 24 billion litres earlier this week. <strong>Yesterday&rsquo;s reopening did not release a single vessel from the anchorages because no shipping insurer priced the reopening as operational and no vessel master accepted the navigational risk without updated premium and mine-clearance data.</strong> The reopening was declarative; the fleet&rsquo;s confinement is physical. Today&rsquo;s reversion restores declarative alignment with the physical situation. The cumulative release-event probability &mdash; mechanical failure, weather event, collision, on-board fire, terrorism &mdash; is at the highest level of the war. The reinsurance markets that are not publicly repricing this exposure are absorbing it implicitly into cumulative reserves. One release event in the anchorages at this volume would produce an environmental damage claim exceeding any single maritime casualty in history.</p>
+</div>
+
+<div class="c env">
+<div class="lb gnl"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>The Sahel-Horn Compound Crisis: Three Weeks to Harvest Failure Window</h3>
+<p>[Thread from Briefings 013.] The Sahelian and Horn of Africa agricultural harvest window narrows to approximately three weeks. Fertilizer supply disruption from the Iran war, oil-driven energy import inflation, US aid cuts, and climate-driven pattern shifts continue to compound. The Pope&rsquo;s Angola visit places him approximately 2,500 km from the Horn crisis zones. <strong>The crisis window is inside the Pope&rsquo;s current visit timeline:</strong> if the Angola and subsequent stops produce substantive engagement with the Horn-Sahel food emergency, the tour has a chance of mobilizing Catholic-aligned resources that the US aid architecture will not. The structural feature is the degradation of the US aid architecture as primary crisis-response mechanism and the partial substitution of Vatican-coordinated and NGO-coordinated response networks at lower scale.</p>
+</div>
+</div>
+
+<!-- ========== INSTITUTIONAL ========== -->
+<div class="s" id="s-ig">
+<div class="sh">Institutional &amp; Governance Forces</div>
+<div class="c gov">
+<div class="lb aml"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>Iranian Cyber Shift: From Episodic Attacks to Sustained Infrastructure Campaign</h3>
+<p>[Fresh-domain content per topic rotation discipline.] CISA issued an advisory in April 2026 that Iranian-affiliated cyber actors are actively targeting programmable logic controllers used in US power-grid operations, water systems, and government facilities. CSIS separately assessed that the Iranian cyber posture has shifted from episodic retaliation to sustained campaign against critical infrastructure. The Handala ransomware group &mdash; claiming Iranian alignment &mdash; claimed 23 victims in March alone, more than half its 2026 year-to-date total. The broader ransomware-economy figure projects $74 billion in 2026 costs. <strong>Iranian cyber operations are now running a sustained campaign against US civilian infrastructure while the US maintains a naval blockade against Iran and while both parties declare and withdraw diplomatic settlements on 30-hour cycles.</strong> The kinetic blockade and the sustained cyber campaign are running on parallel tracks; neither is being integrated into the diplomatic conversation explicitly. This is the dual-track maximalism pattern extended into the cyber-physical domain.</p>
+</div>
+
+<div class="c gov">
+<div class="lb aml"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span></div>
+<h3>Korean National Pension Reform Clock: 13% Contribution Phase-In Begins This Fiscal Year</h3>
+<p>[Fresh-domain content per topic rotation discipline.] South Korea&rsquo;s March 2025 pension reform &mdash; the first major pension restructuring in 15 years &mdash; begins its phase-in this fiscal year, raising contribution rates to 13% over eight years at 0.5% per annum. The reform pushes the Korean National Pension Fund depletion timeline from 2055 to the 2080s. Korea&rsquo;s 2023 birth rate of 0.65 shows no meaningful recovery; the country reached &ldquo;super-aged&rdquo; status at end-2024, faster than Japan did (7 vs. 11 years). UN projections show the 65+ share rising from approximately 20% today to nearly 49% by 2070. Japan&rsquo;s parallel policy of free childbirth takes effect this month. <strong>Two of the world&rsquo;s largest economies are simultaneously in active pension-and-demographic crisis management at an intensity the fiscal architecture of neither has previously faced.</strong> The Korean sovereign exposure is approximately 1.3 times GDP at peak fund commitment; Japan&rsquo;s is higher. If the Iran war and the broader stagflationary configuration raise global rates materially, the sustainability arithmetic on both systems changes before the reforms can complete.</p>
+</div>
+
+<div class="c gov">
+<div class="lb aml"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>The War Powers Resolution at Week Thirteen: Silent Retirement Now Normalized</h3>
+<p>[Persistent thread from Briefings 010-013.] Thirteen weeks of undeclared military operations, US casualties (Ali Al Salem), active naval blockade, serial settlement-reversion cycles, and explicit tanker-fire incidents. No War Powers resolution has been introduced in either chamber. No committee hearing has been convened on the constitutional status of the blockade. The formal structure remains; the substantive function has departed. <strong>Institutional Hollowing has reached the phase in which the retirement is no longer notable.</strong> The absence is the baseline. Dave&rsquo;s research frame (Capacity Hollowing from Briefing 002) has a specific instantiation in the US constitutional architecture that has now been documented in real time across a full quarter.</p>
+</div>
+</div>
+
+<!-- ========== LIMINAL SIGNALS ========== -->
+<div class="s" id="s-li">
+<div class="sh">Liminal Signals</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1.5rem">Signals that resist clean categorization. The forces that matter most are often the ones that don&rsquo;t fit.</p>
+
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg ta">Quantum Cryptographic Deadline</span></div>
+<h3>Shor&rsquo;s Algorithm Compiled for RSA-2048: The Migration Clock Is Now Real</h3>
+<p>[Fresh-domain, off-corridor.] The IQM-Fraunhofer gate-level compilation of Shor&rsquo;s algorithm for 2048-bit RSA moves the cryptographic deadline from theoretical concern to engineering schedule. The institutions running the civilian infrastructure on RSA-2048 are now operating against a specified target with a known resource-requirement profile. The migration clock that was previously open-ended is now a countdown, and the institutional response that has not accelerated for 13 days since the release is the single clearest instance of Capability Opacity arriving in the quantum domain. The pattern is the same as the Mythos pattern in AI: the capability is public, the institutional response is silent, the structural vulnerability window widens while the response latency consumes it.</p></div>
+
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg tr">Settlement Reversion</span></div>
+<h3>Thirty Hours Open, Then Closed: The Reopening That Wasn&rsquo;t</h3>
+<p>Iran&rsquo;s Hormuz &ldquo;completely open&rdquo; declaration lasted approximately 30 hours before being reversed. The Lebanon ceasefire produced its first violation within 24 hours. The settlement-reversion timescale now matches the settlement-velocity timescale. The analyst who reads these cycles as failures of diplomacy misses the structural point: the cycles are the diplomacy. The physical situation &mdash; mines, blockade, troops, insurance &mdash; remains unchanged by either the settlement or the reversion. The rhetorical settlements and reversions are producing the audience reactions; the underlying configuration is producing its own independent trajectory.</p></div>
+
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg tu">Rare-Earth Optionality</span></div>
+<h3>China&rsquo;s Export-Control Pause as Pulsed Leverage: The Reserve Is Loaded</h3>
+<p>[Fresh-domain, off-corridor.] The critical-mineral export-control pause is not a concession. It is a reserved instrument, currently unloaded for the US-China negotiating window but reinstatable within days. Approximately 90% of global rare-earth magnet processing remains under Chinese control. Western procurement architectures have reverted to pre-control patterns during the pause. The structural vulnerability is that the reimposition will find a less-prepared pipeline than the first imposition did, because the emergency measures that were standing up during the active-control period have been allowed to lapse. The pulsed leverage produces larger compounding shocks than steady-state pressure would.</p></div>
+
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg ta">Pope Counter-Architecture</span></div>
+<h3>A Single-Track Moral Authority Against a Dual-Track Political Authority</h3>
+<p>Pope Leo&rsquo;s Angola stop places the Vatican&rsquo;s single-track moral-authority architecture in direct physical proximity to the African Catholic constituency in the moment when the US state-based authority in Africa is most eroded. The vocabulary choice (&ldquo;a handful of tyrants&rdquo;) invokes the Thomistic tradition of tyranny as the condition that releases subjects from political obligation. The exchange with Trump confirms that the dual-track maximalism architecture cannot engage with the single-track architecture on its own terms: the frames do not intersect. If the tour produces substantive engagement with the Sahel-Horn food emergency or the Sudan crisis, the counter-architecture becomes a diplomatic instrument rather than a discursive one.</p></div>
+
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg tc">Korean Pension Clock</span></div>
+<h3>Asia&rsquo;s Two Largest Demographics in Simultaneous Pension-System Management</h3>
+<p>[Fresh-domain, off-corridor.] Korea&rsquo;s 13% contribution phase-in begins this fiscal year; Japan&rsquo;s free-childbirth policy takes effect this month. The two largest non-Chinese Asian economies are simultaneously managing pension-demographic cascades that the Iran war&rsquo;s stagflationary effects will directly affect. The structural feature is that the demographic cliffs are no longer future problems; they are active portfolio management events at the sovereign scale, happening during a period in which global rates are subject to geopolitically-driven shocks the pension-system arithmetic cannot absorb.</p></div>
+</div>
+
+<!-- ========== INFERENCE ENGINE ========== -->
+<div class="s" id="s-ie">
+<div class="sh">Inference Engine</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1.5rem">Conditional mappings of possibility space. Not predictions but structured explorations of how forces interact.</p>
+
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg tu">High Uncertainty</span></div>
+<h3>If the Settlement-Reversion Cycle Continues Through Ceasefire T-7&hellip;</h3>
+<p>Today&rsquo;s reversion is followed by another reopening signal within 72 hours &rarr; oil markets enter sustained volatility trading with implied-volatility structures pricing $15+ daily moves &rarr; the European Maritime Freedom of Navigation Initiative accelerates its Northwood planning summit by one week to generate physical presence before the ceasefire expires &rarr; <strong>the Macron-Starmer architecture emerges as the de facto Strait-of-Hormuz security guarantor independent of US command</strong> &rarr; the US-blockade architecture and the European-freedom architecture begin operating simultaneously on overlapping waterways &rarr; commercial shipping develops a two-track navigational regime based on which architecture is willing to escort the vessel &rarr; the post-war maritime order fractures along US-Europe authority lines rather than along Iran-West authority lines &rarr; the reconfiguration of global maritime governance completes on the timescale of one regional crisis rather than the decades the previous reconfiguration took.</p></div>
+
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>If Hezbollah Escalates Against UNIFIL or Israeli Forces Within 10 Days&hellip;</h3>
+<p>The French peacekeeper death is followed by additional UNIFIL or Israeli casualties attributed to Hezbollah during the ceasefire window &rarr; France (and potentially UK, Germany) call for Chapter VII authorization against Hezbollah infrastructure &rarr; the Lebanese state refuses to support the authorization to preserve domestic cohesion &rarr; Israel resumes kinetic operations against Hezbollah positions citing ceasefire collapse &rarr; <strong>the 10-day ceasefire dissolves into the same proxy-mediated configuration that has defined Israel-Lebanon for thirty years, with the additional feature that the Lebanese state has now been seen to fail at enforcing a ceasefire to which it was a direct signatory</strong> &rarr; Lebanese state-autonomy thesis from Briefing 010 is comprehensively falsified &rarr; Hezbollah&rsquo;s veto on Lebanese foreign policy is re-established in operational terms even though it was rhetorically suspended for the Washington moment &rarr; the Abraham Accords extension to Iranian-aligned-militant-hosting states is shown to have been premature.</p></div>
+
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg tc">Complexity</span></div>
+<h3>If a Shipping Insurer Publicly Repricings Persian Gulf Premiums on Monday&rsquo;s Open&hellip;</h3>
+<p>Lloyd&rsquo;s or one of the major Asian war-risk underwriters publishes a Sunday-night or Monday-morning premium adjustment reflecting the tanker attack and the Hormuz reversion &rarr; the premium moves 30-50% higher than Friday&rsquo;s pre-reopening level, pricing the tanker attack as an empirical upgrade of risk rather than merely as noise &rarr; <strong>the insurance industry establishes that the thirty-hour reopening was never priced as operational</strong> &rarr; subsequent Iranian reopening declarations will be priced by default at the insurance market&rsquo;s continuing-crisis baseline rather than at whatever the declaration says &rarr; the declarative diplomacy loses its single most valuable transmission channel (commercial shipping pricing) &rarr; Iran&rsquo;s ability to extract market rallies from settlement declarations decays to zero within two more cycles &rarr; the dual-track maximalism strategy ceases to produce the Friday-type market reaction and the rhetorical machinery either finds new audiences or produces diminishing returns against the ones it has.</p></div>
+
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg ta">Ambiguity</span></div>
+<h3>If China Reimposes the Rare-Earth Export Controls Within 30 Days&hellip;</h3>
+<p>The US-China negotiating window deteriorates (plausible trigger: Taiwan incident, Iran blockade collision, frontier-AI export dispute) &rarr; MOFCOM reinstates the October 2025 lithium-ion battery controls and the April 2025 heavy-rare-earth controls within days &rarr; <strong>Western procurement pipelines have reverted to pre-control sourcing patterns during the pause, so the reimposition produces a larger supply shock than the first imposition did</strong> &rarr; automotive OEMs face immediate production halts in permanent-magnet-motor EV lines &rarr; defense prime contractors (F-35, Virginia-class, hypersonic) face component-sourcing crises the March 2025 emergency plans had addressed but which have been allowed to lapse &rarr; the second-shock catalyzes both emergency executive action on critical-minerals reshoring and a significant realignment of automotive capital expenditure toward non-Chinese supply &rarr; the reshoring that was deferred during the pause becomes mandatory at a higher cost basis than the first window would have required.</p></div>
+
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>If Ukraine Absorbs Another Week of 200+ Daily Drones Without Western Response&hellip;</h3>
+<p>Russian drone and missile tempo continues at the April 16-18 level through the coming week &rarr; Ukrainian air-defense interceptor stocks deplete faster than NATO resupply can replace them (Iran war has diverted Patriot PAC-3 and THAAD units to the Gulf) &rarr; Russian strikes begin to produce higher civilian casualty totals and more extensive infrastructure damage &rarr; <strong>the attention-allocation architecture that is consumed by the Middle East cascade fails to re-engage Ukraine even as the kinetic metrics cross what would have been political-response thresholds six months ago</strong> &rarr; Russia demonstrates that the current Western configuration cannot run two simultaneous major-war response tracks &rarr; the lesson generalizes to China (Taiwan optionality), North Korea (Korean peninsula optionality), and other revisionist actors &rarr; the global revisionist coordination incentive increases measurably.</p></div>
+
+<h3 class="sh2" style="color:var(--purp)">Force Interaction Matrix</h3>
+<div class="c">
+<div class="mr"><div class="mf">Hormuz Reversion &times; Tanker Attack</div><span class="md amp">AMPLIFY (reopening voided empirically)</span><div class="me">Iran&rsquo;s rhetorical reversion was accompanied by a kinetic event within hours. The attack re-establishes the physical underlayment that the Friday declaration had partially obscured. Commercial shipping re-prices from reopening scenario to continuing-crisis scenario on the next market open.</div></div>
+<div class="mr"><div class="mf">French Peacekeeper Death &times; Lebanon Ceasefire</div><span class="md amp">AMPLIFY (ceasefire architecture exposed)</span><div class="me">The ceasefire governs Israel and the Lebanese state; the death was inflicted by Hezbollah, which is neither party nor signatory. The gap between signatories and operational determinants produces immediate violation.</div></div>
+<div class="mr"><div class="mf">Pope&rsquo;s Angola Stop &times; Sahel-Horn Harvest Clock</div><span class="md dmp">DAMPEN (Catholic-network relief mobilization)</span><div class="me">The Pope&rsquo;s physical presence in Africa provides a distribution architecture for relief mobilization that the degraded US aid architecture cannot provide. The counter-authority field has a physical operational outlet if the tour addresses the emergency directly.</div></div>
+<div class="mr"><div class="mf">Iran Cyber Campaign &times; US Naval Blockade</div><span class="md amp">AMPLIFY (dual-track in cyber-physical domain)</span><div class="me">Blockade is kinetic; cyber is non-kinetic; both are parallel tracks of the same conflict. Neither is being integrated into the diplomatic conversation. Iranian cyber operations against US grid and water systems proceed while the US blockade against Iranian ports proceeds and while 30-hour settlements are declared and withdrawn.</div></div>
+<div class="mr"><div class="mf">Quantum Shor Compilation &times; RSA-Deployed Infrastructure</div><span class="md amp">AMPLIFY (migration clock exceeds response latency)</span><div class="me">The cryptographic deadline has become engineering schedule rather than theoretical estimate. The civilian infrastructure has not accelerated migration. The widening gap is accruing vulnerability at a measurable rate.</div></div>
+<div class="mr"><div class="mf">Rare-Earth Pause &times; Procurement Reversion</div><span class="md amp">AMPLIFY (second-shock magnitude grows during pause)</span><div class="me">Western procurement is reverting to pre-control patterns during the Chinese export-control pause, which loads larger shock potential for reimposition. The pause is structurally worse than the active-control period for Western preparedness.</div></div>
+<div class="mr"><div class="mf">Ukraine 219-Drone Wave &times; Middle East Attention</div><span class="md amp">AMPLIFY (revisionist opportunity structure)</span><div class="me">Russian kinetic tempo is elevated at the precise moment Western attention is consumed by the Iran cascade. The revisionist opportunity structure is being operationalized faster than Western attention can reallocate.</div></div>
+<div class="mr"><div class="mf">Pope Single-Track &times; Trump Dual-Track</div><span class="md dmp">DAMPEN (frames do not intersect)</span><div class="me">Trump&rsquo;s dual-track architecture cannot engage with Leo&rsquo;s single-track architecture on its own terms. Escalations do not land. The rhetorical confrontation produces no mutual adjustment in either direction; the frames operate on separate audience systems.</div></div>
+<div class="mr"><div class="mf">Korean Pension Reform &times; Stagflationary Global Configuration</div><span class="md amp">AMPLIFY (sustainability arithmetic degrades)</span><div class="me">The 13% contribution phase-in assumes global rates that the Iran-war stagflationary configuration will not deliver. The reform&rsquo;s sustainability window shortens as the global rate environment deteriorates.</div></div>
+</div>
+</div>
+
+<!-- ========== WISE ACTION ========== -->
+<div class="s" id="s-wa">
+<div class="sh">Wise Action</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1.5rem">&#30693;&#34892;&#21512;&#19968; &mdash; Knowing and acting are one.</p>
+
+<div class="c act wa-section"><div class="lb tl"><span>WHAT IS CHANGING ENTREPRENEURSHIP</span></div>
+<h3>Entrepreneurship Under Settlement Reversion</h3>
+
+<h4>1. Commitments With Reversion Exposure Need Reversion-Priced Contracts</h4>
+<p>The settlement-reversion cycle in international diplomacy generalizes to commercial contexts in which a counterparty&rsquo;s commitments can be withdrawn within the window between signature and implementation. Entrepreneurs entering major customer contracts, supplier agreements, or partnership deals are now operating in an environment where the counterparty&rsquo;s commitment may survive the handshake but not the implementation. <strong>The structural response is to price the reversion risk directly: implementation milestones with reversion penalties, escrow structures that release only after operational verification, and optionality clauses that admit the counterparty&rsquo;s withdrawal without collapsing the commercial relationship entirely.</strong> Ventures that treat signatures as certain in an environment where signatures are conditional on unspecified third-party behavior will find their unit economics mispriced.</p>
+
+<h4>2. The Single-Track Moral Architecture as Brand Differentiator</h4>
+<p>The Vatican&rsquo;s counter-architecture against dual-track political authority has a commercial analogue. In markets where the dominant communications mode is dual-track (customer-facing messaging that contradicts the investor-facing messaging, employee-facing values that contradict the operational pressure), the ventures that operate on a genuine single-track &mdash; one message, one set of values, one operational posture &mdash; are structurally differentiated. <strong>The Pope Leo example demonstrates that single-track coherence can be a durable competitive advantage against dual-track competition, because the dual-track actor cannot engage the single-track message on its own terms.</strong> The entrepreneurial implication: ventures with a genuine moral center (not performative; actually operationally aligned) are harder to compete against than ventures with sophisticated messaging architectures. The compounding advantage is structurally invisible in standard competitive analysis.</p>
+
+<h4>3. Critical-Mineral Exposure Requires Pulsed-Leverage Planning</h4>
+<p>The Chinese critical-mineral export-control pause is pulsed leverage, and ventures whose BOMs contain rare-earth, lithium-supply-chain, or battery-material dependencies need to plan for reimposition scenarios even during the pause. <strong>The ventures that win the next reimposition cycle will be those that have maintained emergency-procurement relationships, paid the carrying cost of non-Chinese sourcing during the pause, and built inventory reserves at non-trivial working-capital cost.</strong> The ventures that lapsed emergency measures during the pause will be the primary victims of the next reimposition. The entrepreneurial discipline: resilience instruments must be budgeted as operational expenses rather than as optional insurance, because pulsed-leverage environments produce larger shocks when resilience has been allowed to decay.</p>
+</div>
+
+<div class="c act wa-section"><div class="lb tl"><span>WHAT IS CHANGING GLOBAL MARKETS</span></div>
+<h3>Trading Settlement Reversion</h3>
+
+<h4>The Reversion-Open Gap Trade</h4>
+<p>Oil markets closed Friday at approximately Brent $88 and WTI $83. Monday opens into Iran&rsquo;s reversion announcement and the tanker attack. The specific gap-open probability distribution depends on insurance-market Sunday-night signals. <strong>Long oil into Monday&rsquo;s Asian open with tight stops against continued reopening rhetoric; short oil if Asian open gaps upward more than $5 on the reversion, because the overshoot will mean-revert as the market prices the tanker attack as bounded rather than structural.</strong> Directional conviction is secondary; volatility positioning remains primary. Implied-vol structures priced pre-reversion are likely under-pricing the settlement-reversion cycle pattern.</p>
+
+<h4>The Rare-Earth Pause-Reimposition Straddle</h4>
+<p>The rare-earth pause is reinstatable on weeks&rsquo; notice. The procurement departments operating as though normalcy has returned are the under-hedged party. <strong>Long MP Materials, Lynas, and the small-cap rare-earth-processing basket that has been de-rated during the pause; short the automotive and wind-turbine names that have not increased their supply-chain resilience spending during the window.</strong> The asymmetric payoff is structural; the pair trade hedges the Chinese-pause-duration uncertainty. The trade is not that the pause will end tomorrow; it is that the probability-weighted cost to the underhedged party is materially higher than market pricing reflects.</p>
+
+<h4>The Post-Quantum Migration Play</h4>
+<p>The IQM-Fraunhofer compilation moves the cryptographic deadline into engineering schedule. <strong>Long the post-quantum migration toolchain providers (PQShield, ISARA, SandboxAQ, Cloudflare in its PQ migration capacity); long companies with disclosed-migration leadership (Google, Microsoft, Amazon in their TLS layers); short companies with large deployed RSA-2048 footprints whose migration timelines have not been publicly disclosed and whose 8-10 year data-confidentiality exposure is material (certain financial-services incumbents, regulated healthcare systems, classified-data infrastructure without publicly-documented migration).</strong> The structural position is long migration providers and short the slow-migrating incumbents.</p>
+</div>
+
+<div class="c act wa-section"><div class="lb tl"><span>INVESTMENT LANDSCAPE</span></div>
+<h3>Positioning Through the Settlement-Reversion Window</h3>
+
+<h4>Structural Positions That Strengthened Today</h4>
+<p><strong>Long volatility across energy, shipping, Middle East equities, and Levantine sovereign debt.</strong> The 30-hour settlement-reversion timescale is now confirmed. Volatility is structural, not transient.</p>
+<p><strong>Long rare-earth processing ex-China (MP Materials, Lynas, Iluka, small-cap basket).</strong> The Chinese pause is pulsed leverage; the next reimposition will produce a larger shock than the first.</p>
+<p><strong>Long post-quantum migration infrastructure providers.</strong> The cryptographic deadline is now engineering schedule; migration demand compounds as public awareness catches up.</p>
+<p><strong>Long humanoid-robotics capability leaders with supply-chain integration (Boston Dynamics parent, Agility Robotics, selected Chinese humanoid OEMs via listed parents).</strong> The commodity tier is already Chinese-dominant; the capability tier is where Western advantage persists.</p>
+<p><strong>Long Catholic-affiliated humanitarian and education networks exposed to Africa.</strong> If Pope Leo&rsquo;s counter-architecture materializes as Vatican mediation capacity, the implementation arms capture disproportionate relief-capital flow.</p>
+
+<h4>Caution Zones</h4>
+<p><strong>Directional oil shorts into Monday&rsquo;s open.</strong> The settlement-reversion pattern means directional moves are bounded and volatile. Straddles are the structural instrument.</p>
+<p><strong>Automotive and wind-turbine names with Chinese-magnet dependence.</strong> The rare-earth pause will end at MOFCOM&rsquo;s discretion; supply-chain reshoring spending has been allowed to decay during the pause window.</p>
+<p><strong>Korean won and Japanese yen exposure across the pension-reform implementation window.</strong> The demographic-fiscal arithmetic is deteriorating into the reform phase-in period as global rates respond to geopolitical shocks.</p>
+<p><strong>Financial-services, healthcare, and classified-infrastructure names with large RSA-2048 footprints and undisclosed migration timelines.</strong> The post-quantum risk window is now engineering-scheduled; disclosure asymmetry is a liability.</p>
+<p><strong>Frontier-AI names whose capability-moat thesis ignores the Western-lab cartel formation (OpenAI-Anthropic-Google intelligence sharing).</strong> The cartel structure is now explicit; independent-lab valuations predicated on open capability competition are mis-specified.</p>
+</div>
+
+<div class="c wa-section"><div class="lb"><span>RESEARCH PROGRAM RELEVANCE</span></div>
+<h3>What Today&rsquo;s Landscape Means for the Work</h3>
+<p><strong>For the knowledge problems framework (JBV Insights three-body + Ensembles lit review):</strong> Settlement reversion is a cleaner instance of equivocality-under-time-compression than the briefing series has previously named. The declaration and its withdrawal coexist in the same audience&rsquo;s information environment on a timescale shorter than the audience&rsquo;s integration window. The three-body framing captures this well: the rhetorical body (declarations), the institutional body (ceasefire architecture), and the physical body (mines, blockades, insurance) are operating on three different timescales and the interaction produces the characteristic failure mode. Worth a paragraph in the three-body manuscript if the settlement-reversion example needs a contemporary anchor beyond the AI governance case.</p>
+
+<p><strong>For the cyborg ensemble framework (Cyborg book, Persistent Augmentation):</strong> The Pope-Trump exchange is a crisp empirical instance of architectural asymmetry between communication modes. Pope Leo&rsquo;s single-track moral authority operating against Trump&rsquo;s dual-track political authority confirms that the cyborg ensemble cannot be reduced to a single communication mode. The persistent-augmentation thesis predicts that some decision architectures remain irreducibly human because they require a single-track moral coherence that the dual-track political architecture cannot produce. <strong>The Vatican example is the cleanest current case of a non-state authority operating with single-track coherence at global scale, and it is producing decision outputs that the dual-track state architecture cannot match.</strong> Worth citing in the next cyborg-book draft when the persistent-augmentation argument needs a non-AI-specific example.</p>
+
+<p><strong>For Knightian Uncertainty / GlimpseRL (ABM):</strong> The settlement-reversion cycle is a candidate mechanism for the innovation-equilibrium trap at the policy-signal level. In the ABM, firms receive policy signals (declarations, regulations, enforcement announcements) and respond operationally. If the signals reverse on a shorter timescale than the response cycle, the firms&rsquo; adaptive responses are systematically mis-timed. <strong>This is a testable hypothesis: simulate the ABM with signal-reversal-timescale as a parameter, observe at what threshold adaptive response produces worse outcomes than pure inertia.</strong> The parameter sweep is cheap; the result is potentially publishable as a Glimpse extension. The ARC job array 4923627 currently running does not include this manipulation but the follow-up factorial could incorporate it.</p>
+
+<p><strong>For Verification-Corroboration-Interpretation (VCI triple, dysfunctional patterns):</strong> Today&rsquo;s Hormuz cycle is an archetypal VCI-failure case. The verification step (mine-clearance status, tanker-attack confirmation, insurance-market pricing) is absent or delayed; the corroboration step (independent sources confirming what Iran and the US are saying) is fractured across the three mutually-inconsistent maritime orders; the interpretation step (markets, diplomats, shipping) is proceeding on whichever signal is currently declarative regardless of whether V and C have been completed. <strong>This is an empirical case of the VCI dysfunctional pattern where interpretation operates without verification and corroboration, and the resulting action footprint is mispriced.</strong> The settlement-reversion cycle is the structural mechanism by which the V and C steps never catch up. Worth integrating into the VCI paper as a contemporary instance.</p>
+
+<p><strong>For Map Dissolves (entrepreneurial cognition):</strong> The single-track vs. dual-track communication architecture maps directly to the cognition literature on entrepreneur identity-work under ambiguity. Founders who operate on genuine single-track coherence produce different cognitive signatures than founders who operate on dual-track messaging. The Pope Leo example is a non-founder illustration that the single-track architecture can be structurally more durable than the dual-track architecture in specific audience configurations. Worth a citation in the Map Dissolves draft when the identity-coherence argument needs a cross-domain case.</p>
+
+<p><strong>For Making Words Count (AMR):</strong> Settlement reversion is a linguistic event as much as a political one. The declaration and its withdrawal are both speech acts; their near-simultaneity compresses the performative window that Austin&rsquo;s framework assumed was at least several days long. <strong>The AMR paper on language-as-action should note that contemporary political speech now operates on an integration timescale shorter than the audience&rsquo;s listening window</strong>, which means the performative architecture Austin described is being run at speeds it wasn&rsquo;t designed for. The linguistic philosophy implication is not minor; it is a structural revision to the speech-act framework.</p>
+</div>
+</div>
+
+<!-- ========== SOURCE ARCHIVE ========== -->
+<div class="s" id="s-sa">
+<div class="sh">Source Archive &amp; Reading List</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1rem">Annotated by structural insight contributed. Accumulates across briefings.</p>
+
+<h3 class="sh2" style="color:var(--blub)">Thinker Registry</h3>
+<p style="color:var(--t3);margin-bottom:1rem;font-size:.9rem">Voices whose frameworks proved most useful in this briefing.</p>
+<div style="margin-bottom:1.5rem">
+<span class="tk"><strong>Ecclesiastes (Qoheleth)</strong> <span>&middot; &ldquo;What is bent cannot be made straight.&rdquo; The epigraph diagnostic: declared resolutions do not alter structural asymmetries. Newly added Briefing 014.</span></span>
+<span class="tk"><strong>Thomas Aquinas</strong> <span>&middot; <em>De Regno</em>. Tyranny as the condition that releases subjects from political obligation. Pope Leo&rsquo;s vocabulary selection invokes this tradition.</span></span>
+<span class="tk"><strong>J. L. Austin</strong> <span>&middot; <em>How to Do Things with Words</em>. Speech-act performativity at timescales shorter than Austin assumed. Newly added Briefing 014.</span></span>
+<span class="tk"><strong>Vegetius</strong> <span>&middot; <em>Epitoma Rei Militaris</em>. Si vis pacem, para bellum. Briefing 010, persists.</span></span>
+<span class="tk"><strong>Thomas Schelling</strong> <span>&middot; <em>Arms and Influence</em> (1966). The Cold War theory of coercive diplomacy. Contrast with settlement-reversion compression.</span></span>
+<span class="tk"><strong>Hannah Arendt</strong> <span>&middot; Power as collective capacity. Persists from Briefing 009.</span></span>
+<span class="tk"><strong>Frank Knight</strong> <span>&middot; Knightian uncertainty. Persists.</span></span>
+<span class="tk"><strong>Elinor Ostrom</strong> <span>&middot; Commons governance. Persists.</span></span>
+<span class="tk"><strong>Hans Morgenthau</strong> <span>&middot; Realist framework. Persists.</span></span>
+<span class="tk"><strong>Mary Douglas</strong> <span>&middot; Institutional thought under non-stationarity. Persists.</span></span>
+</div>
+
+<h3 class="sh2" style="color:var(--gold)">Serendipity Queue</h3>
+<p style="color:var(--t3);margin-bottom:1rem;font-size:.9rem">Sources encountered that don&rsquo;t fit today&rsquo;s briefing but contain signals worth returning to.</p>
+<div class="src"><div class="src-cat">Held for future briefing</div>
+<a href="https://www.isdp.eu/the-demographic-deficit-national-security-challenges-for-japan-and-south-korea/">ISDP: The Demographic Deficit &mdash; Security Challenges for Japan and South Korea</a>
+<div class="src-note">Explicit framing of demographic collapse as national-security variable rather than as purely fiscal one. Worth a deeper read when a demographic-cliff-as-military-problem briefing is warranted.</div></div>
+<div class="src"><div class="src-cat">Held for future briefing</div>
+<a href="https://www.iaea.org/bulletin/data-centres-artificial-intelligence-and-cryptocurrencies-eye-advanced-nuclear-to-meet-growing-power-needs">IAEA Bulletin: Data Centres, AI and Cryptocurrencies Eye Advanced Nuclear</a>
+<div class="src-note">SMR-AI power-demand pairing analysis. Hold for a forthcoming alternative-energy-and-grid-demand briefing lead.</div></div>
+<div class="src"><div class="src-cat">Held for future briefing</div>
+<a href="https://eu.36kr.com/en/p/3760307745374983">36Kr: World&rsquo;s Largest Angel Round in Private Nuclear Fusion (1.2B Yuan)</a>
+<div class="src-note">Chinese fusion venture financing at scale. Signals capital flow into post-lab fusion on timelines that may compress faster than Western projections.</div></div>
+<div class="src"><div class="src-cat">Held for future briefing</div>
+<a href="https://www.thearcticinstitute.org/dig-baby-dig-chinas-mineral-dominance-ripple-effects-arctic/">The Arctic Institute: China&rsquo;s Mineral Dominance &mdash; Arctic Ripple Effects</a>
+<div class="src-note">Arctic-mineral geopolitics under the Chinese export-control regime. Links the critical-minerals thread to the Arctic thread.</div></div>
+
+<h3 class="sh2" style="color:var(--blub)">Geopolitical &amp; Conflict Sources</h3>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.npr.org/2026/04/18/nx-s1-5789780/iran-middle-east-updates">NPR: Iran Says It Has Closed the Strait of Hormuz Again</a><div class="src-note">Iran&rsquo;s reversion announcement. &ldquo;Strict control&rdquo; reinstated. Ceasefire-violation framing of the persistent US blockade.</div></div>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.cnn.com/2026/04/18/world/live-news/iran-war-trump-israel">CNN Live: Iranian Gunboats Fire on Tanker After Strait of Hormuz Closed Again</a><div class="src-note">Two IRGC gunboats attack commercial tanker. No injuries. UK Maritime Trade Operations alert.</div></div>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.nbcnews.com/world/iran/live-blog/live-updates-iran-says-strait-hormuz-reverted-strict-control-blames-us-rcna340767">NBC News: Iran Says Hormuz Reverted to Strict Control, Blames US Blockade</a><div class="src-note">Operational details of the 30-hour reopening-to-reversion cycle. Iran&rsquo;s framing of blockade as ceasefire violation.</div></div>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.irishtimes.com/world/middle-east/2026/04/18/iran-us-israel-strait-of-hormuz-latest-live-updates/">Irish Times: Iran Studying Fresh US Proposals</a><div class="src-note">Confirms the US has submitted fresh proposals that Tehran is reviewing and has not yet answered.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.aljazeera.com/news/2026/4/18/pope-leo-heads-to-angola-in-landmark-africa-visit-amid-trump-clash">Al Jazeera: Pope Leo Heads to Angola in Landmark Africa Visit</a><div class="src-note">Third leg of Africa tour. Escalating Trump feud. &ldquo;Handful of tyrants&rdquo; rhetoric.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.nbcnews.com/world/pope-leo-xiv/war-words-iran-pope-leo-says-not-interested-debate-trump-rcna340780">NBC News: Pope Leo Says He&rsquo;s Not Interested in a Debate with Trump</a><div class="src-note">Cameroon-Angola flight press remarks. &ldquo;Nothing to fear&rdquo; response.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.pravda.com.ua/eng/news/2026/04/18/8030682/"> Ukrainska Pravda: Russians Attack Ukraine with 219 Drones, Hits at 17 Locations</a><div class="src-note">April 18 overnight Russian drone wave. 190 downed; 28 impacts across 17 locations.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.cnn.com/2026/04/16/europe/russia-large-drone-attack-ukraine-intl">CNN: Russia Launches One of Its Largest Drone Attacks This Year, Killing 18</a><div class="src-note">Context for April 16 wave at Kyiv, Kharkiv, Odesa, Dnipro, Zaporizhzhia. Escalation tempo confirmed.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.chinapulse.com/data-news/2026/04/17/china-says-its-military-activities-around-taiwan-are-reasonable-justified/">ChinaPulse: China Says Military Activities Around Taiwan Are &ldquo;Reasonable, Justified&rdquo;</a><div class="src-note">Beijing&rsquo;s public posture on April 2026 PLA exercises near Taiwan. Three-phase operational plan framework.</div></div>
+
+<h3 class="sh2" style="color:var(--blub)">Technology &amp; AI Sources</h3>
+<div class="src"><div class="src-cat">Critical</div><a href="https://lifeboat.com/blog/2026/04/quantum-fourier-transform-reaches-52-qubits-shattering-the-previous-27-qubit-record">Lifeboat / Nature: 52-Qubit Quantum Fourier Transform on IBM Heron</a><div class="src-note">ParityQC implementation. Largest QFT ever reported. Foundational Shor subroutine at new scale.</div></div>
+<div class="src"><div class="src-cat">Critical</div><a href="https://time.com/article/2026/04/07/ai-quantum-computing-advance/">TIME: AI Helped Spark a Quantum Breakthrough &mdash; &ldquo;The World Is Not Prepared&rdquo;</a><div class="src-note">Context on AI-accelerated quantum progress and the post-quantum migration gap. Cites Google and Oratomic research on the compressed cryptographic deadline.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://securityboulevard.com/2026/04/openai-follows-anthropic-in-limiting-access-to-its-cyber-focused-model/">Security Boulevard: OpenAI Follows Anthropic in Limiting Cyber-Focused Model Access</a><div class="src-note">GPT-5.4-Cyber restricted-access announcement. Mirrors Glasswing pattern. Second-lab pattern confirmed.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.roborhythms.com/openai-anthropic-google-fight-chinese-ai-copying-2026/">RoboRhythms: OpenAI, Anthropic and Google Unite Against Chinese AI Theft</a><div class="src-note">April 6-7 Frontier Model Forum intelligence-sharing announcement. Western frontier-lab cartel structure now explicit.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://newmarketpitch.com/blogs/news/humanoid-robotics-robot-comparison">New Market Pitch: Humanoid Robot Comparison Tracker (2026)</a><div class="src-note">Commercial deployment status: Agility Digit revenue leadership, Tesla Optimus Gen 3 at Fremont, Figure 03 BMW pilot, Unitree commodity distribution.</div></div>
+
+<h3 class="sh2" style="color:var(--blub)">Economic &amp; Markets Sources</h3>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.iea.org/reports/oil-market-report-april-2026">IEA Oil Market Report &mdash; April 2026</a><div class="src-note">Global demand contraction revision: -800 kb/d March; -2.3 mb/d April. Runs cut by 6 mb/d. Stagflationary compound.</div></div>
+<div class="src"><div class="src-cat">Critical</div><a href="https://investornews.com/critical-minerals-rare-earths/critical-minerals-report-04-12-2026-the-iran-war-chinas-chemical-leverage-the-real-supply-chain-constraint/">InvestorNews: Critical Minerals Report &mdash; Iran War, China&rsquo;s Chemical Leverage</a><div class="src-note">April 12 critical-minerals and Iran-war supply-chain intersection analysis.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.clarkhill.com/news-events/news/china-hits-pause-on-rare-earth-export-controls-and-what-it-means-for-supply-chains/">Clark Hill: China Hits Pause on Rare-Earth Export Controls</a><div class="src-note">Confirms October 2025 and April 2025 controls suspended during US-China negotiating window. Reinstatable on short notice.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.woodmac.com/blogs/energy-pulse/impact-of-chinas-new-critical-mineral-export-controls/">Wood Mackenzie: Impact of China&rsquo;s New Critical Mineral Export Controls</a><div class="src-note">Structural impact analysis. 90% magnet-processing concentration; copper 30% shortfall by 2035.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.seoulz.com/korea-national-pension-fund-2026-1-trillion-and-a-ticking-clock/">Seoulz: Korea National Pension Fund 2026 &mdash; $1 Trillion and a Ticking Clock</a><div class="src-note">13% contribution phase-in begins this fiscal year. Depletion timeline extended from 2055 to 2080s.</div></div>
+
+<h3 class="sh2" style="color:var(--blub)">Scientific &amp; Ecological Sources</h3>
+<div class="src"><div class="src-cat">Critical</div><a href="https://cleantechnica.com/2026/04/16/latest-research-suggests-amoc-could-collapse-sooner-than-expected/">CleanTechnica: Latest Research Suggests AMOC Could Collapse Sooner</a><div class="src-note">April 16 synthesis. AMOC declining faster than climate-model averages. Mid-century tipping under current emissions.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.science.org/doi/10.1126/sciadv.adk1189">Science Advances: Physics-Based Early Warning Signal for AMOC Tipping</a><div class="src-note">Foundational AMOC early-warning paper. Basis for the mid-century tipping estimate.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.nih.gov/news-events/news-releases/nih-funded-breakthrough-shrinks-crispr-precision-delivery-body">NIH: Compact CRISPR (Al3Cas12f) Breakthrough for In-Body Delivery</a><div class="src-note">AAV-compatible CRISPR system. Clinical deliverability threshold crossed.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.isaaa.org/kc/cropbiotechupdate/article/default.asp?ID=21767">ISAAA: IGI CRISPR Breakthrough to Supercharge Photosynthesis (April 8, 2026)</a><div class="src-note">Sorghum photosynthesis regulatory DNA tuning. Biological carbon capture engineering target.</div></div>
+
+<h3 class="sh2" style="color:var(--blub)">Institutional &amp; Governance Sources</h3>
+<div class="src"><div class="src-cat">Critical</div><a href="https://industrialcyber.co/industrial-cyber-attacks/csis-flags-irans-shift-from-episodic-cyberattacks-to-sustained-campaign-against-critical-infrastructure/">Industrial Cyber / CSIS: Iran&rsquo;s Shift from Episodic Cyberattacks to Sustained Campaign</a><div class="src-note">Strategic posture assessment. Iranian cyber as parallel-track to kinetic blockade.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.bitdefender.com/en-us/blog/businessinsights/bitdefender-threat-debrief-april-2026">Bitdefender Threat Debrief &mdash; April 2026</a><div class="src-note">Handala ransomware group tracking. March 2026 surge.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://africacenter.org/spotlight/en-elections-2026/">Africa Center: Africa&rsquo;s 2026 Elections &mdash; Navigating Complexity</a><div class="src-note">Ethiopia June 1 general elections in 9,000+ conflict-fatality environment. Regional electoral stress.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://amaniafrica-et.org/the-gathering-storm-facing-africa-in-2026-entrenching-conflicts-fractured-order-and-eroding-agency/">Amani Africa: The Gathering Storm Facing Africa in 2026</a><div class="src-note">Continental analysis of entrenching conflicts and fractured order.</div></div>
+</div>
+
+<footer>
+<p>Tectonic Briefing &middot; No. 014 &middot; 18 April 2026</p>
+<p style="margin-top:.3rem">Eight analytical lenses &middot; Inference engine &middot; Wise action &middot; Source archive &middot; Thread tracking active</p>
+<p style="margin-top:.3rem;font-size:.55rem;color:var(--t4)">Editorial discipline: fresh-domain rotation applied. Quantum computing leads the Technological lens (IQM-Fraunhofer Shor compilation, ParityQC 52-qubit QFT, Alice &amp; Bob Graphene) &mdash; first quantum-lead since Briefing 005. Critical minerals leads the Economic lens (Chinese rare-earth pause, 90% magnet-processing concentration) &mdash; first critical-minerals-lead since Briefing 008. Korean pension reform appears in Institutional (first demographic-cliff lead in briefing series). Humanoid robotics in Technological (Unitree, Optimus, Figure, Agility, Digit) &mdash; first commodity-tier humanoid-market content. Liminal Signals includes off-corridor entries on quantum cryptographic deadline, rare-earth pulsed leverage, and Asian pension clock. Topic rotation constraints exceeded. Briefing No. 014 carries forward the settlement-velocity thread (Briefing 013) with the settlement-reversion diagnostic as today&rsquo;s structural addition.</p>
+</footer>
+</div>
+<script>
+function go(id){document.querySelectorAll('.s').forEach(s=>s.classList.remove('v'));document.getElementById('s-'+id).classList.add('v');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('on'));event.target.classList.add('on');window.scrollTo({top:document.querySelector('.bn').offsetTop-16,behavior:'smooth'})}
+
+// Deep Dive toggle
+document.addEventListener('DOMContentLoaded',function(){
+document.querySelectorAll('.dd').forEach(function(dd,idx){
+dd.setAttribute('data-dd-id','dd-'+idx);
+dd.setAttribute('title','Click to expand deep dive analysis');
+dd.addEventListener('click',function(e){
+e.stopPropagation();
+var panel=this.closest('.c').querySelector('.dd-panel');
+if(!panel){
+return;
+}
+panel.classList.toggle('open');
+this.classList.toggle('active');
+if(this.classList.contains('active')){
+this.innerHTML='Deep Dive Open';
+}else{
+this.innerHTML='Deep Dive Available';
+}
+});
+});
+});
+</script>
+</body>
+</html>
