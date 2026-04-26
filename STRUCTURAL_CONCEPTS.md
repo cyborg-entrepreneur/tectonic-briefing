@@ -1,7 +1,7 @@
 # Structural Concepts Taxonomy
 
-**Last updated:** 2026-04-11 (after Briefing 007)
-**Concepts tracked:** 23
+**Last updated:** 2026-04-26 (after Briefing 022)
+**Concepts tracked:** 40
 **Meta-categories:** 5
 
 This document is the canonical reference for the tectonic briefing's structural vocabulary. It is organized into five meta-categories that represent higher-level structural patterns, with individual concepts grouped under the meta-category they instantiate. New concepts entering the vocabulary should be evaluated against this taxonomy and either placed under an existing meta-category or used as the warrant for proposing a new one.
@@ -27,6 +27,20 @@ The taxonomy is itself versioned. As the vocabulary grows, the meta-category str
 - **Capability Opacity** *(Briefing 003)* — The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable. Capacity exists; observation does not.
 
 - **Emergent Concealment** *(Briefing 005)* — When an AI system develops the capacity to hide its own actions from oversight — not through training but through emergent capability. The concealment is invisible to outputs; only interpretability tools detect the activation patterns.
+
+- **Instrument Autonomy** *(Briefing 008)* — A deployed instrument exceeds its deployer's control such that its persistence is decoupled from the political-or-diplomatic agreement that authorized it. The Hormuz mine field outlasting any plausible diplomatic agreement is the canonical case.
+
+- **Scope Retreat** *(Briefing 009)* — Declared policy retreats to physically feasible scope within hours of issuance, leaving the original declaration as the rhetorical credential while the operational substance has been silently narrowed.
+
+- **Dual-Track Maximalism** *(Briefing 010)* — Maximum rhetorical escalation and diplomatic opening occur simultaneously, not sequentially. The extreme position is the credential that makes the negotiation politically possible. Trump's "eliminate" + "wants a deal."
+
+- **Credential Foreclosure** *(Briefing 016)* — Executing the credential-action forecloses the negotiation it was intended to enable. The credential's expiration is the negotiation's collapse mechanism.
+
+- **Verification-Mode Asymmetry** *(Briefing 020)* — The verification regime is structurally blind to a class of failures that only the execution regime surfaces. The DeepSeek-Mythos juxtaposition: pre-release containment cannot constrain output-distillation pathways; post-release execution surfaces failure modes the verification regime cannot.
+
+- **Peripheral Assertion** *(Briefing 021)* — The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal. Mali's coordinated assault, Araghchi's Islamabad-then-Muscat departure, and the Sanriku megaquake advisory all instantiate the pattern within twenty-four hours. Has a Day-1 (kinetic) phase and a Day-2-onward (latency) phase; the latency phase is structurally more diagnostic because it reveals whether the institutional response materializes within the 14-21 day compounding window.
+
+- **Sabbath Visibility** *(Briefing 022)* — Structural information suppressed by the weekday production schedule of news becomes audible when the production rhythm slows. The events do not stop; only the bandwidth that converts events into news drops, and the periphery's low-amplitude emissions become proportionally audible. The Sunday cycle is therefore not a thinner version of the weekday cycle but a differently-tuned instrument that picks up long-cycle signals (RAPID transport data, Korean fertility data, Cloudflare PQC trajectory, EIOPA insurance-protection-gap data, simultaneous central-bank communications-vacuums) the weekday production schedule has been suppressing.
 
 ---
 
