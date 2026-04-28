@@ -1,7 +1,7 @@
 # Structural Concepts Taxonomy
 
-**Last updated:** 2026-04-26 (after Briefing 022)
-**Concepts tracked:** 40
+**Last updated:** 2026-04-28 (after Briefing 024)
+**Concepts tracked:** 42
 **Meta-categories:** 5
 
 This document is the canonical reference for the tectonic briefing's structural vocabulary. It is organized into five meta-categories that represent higher-level structural patterns, with individual concepts grouped under the meta-category they instantiate. New concepts entering the vocabulary should be evaluated against this taxonomy and either placed under an existing meta-category or used as the warrant for proposing a new one.
@@ -80,6 +80,8 @@ The taxonomy is itself versioned. As the vocabulary grows, the meta-category str
 
 - **Deadline Revelation** *(Briefing 002)* — When an imposed temporal boundary forces latent structural forces into visibility. The Section 122 tariff expiration date is the canonical case.
 
+- **Keystone Removal** *(Briefing 023)* — A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the keystone itself. The Witkoff-Kushner cancellation, the Camara assassination, and the Russian Africa Corps Kidal withdrawal occurred within seventy-two hours and instantiated the pattern in compressed sequence. Actor-scale companion to regime-scale Cartel Dissolution. Cross-references META-1 Coupling Failure and META-2 Bypass Inversion.
+
 ---
 
 ## META-4: Commons Enclosure
@@ -97,6 +99,8 @@ The taxonomy is itself versioned. As the vocabulary grows, the meta-category str
 - **Paradigm Defection** *(Briefing 005)* — When the most prominent advocate for a strategic paradigm abandons it under competitive pressure, redefining the competitive landscape for all remaining participants. Meta's open-source-to-proprietary pivot.
 
 - **Process as Destination** *(Briefing 007)* — When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome. Pakistan's "modest goal" for Islamabad: keep the talks going. Process consuming outcome and becoming the substantive purpose.
+
+- **Cartel Dissolution** *(Briefing 024)* — A multilateral coordination regime loses one of its load-bearing participants under conditions in which an external shock has suppressed the cost of defection and a parallel bilateral arrangement has substituted for the regime's coordination function. UAE's OPEC and OPEC+ withdrawal effective May 1, 2026, announced during the Strait of Hormuz closure and following the Bessent Treasury swap-line negotiation, instantiates the pattern. Regime-scale companion to actor-scale Keystone Removal. Cross-references META-1 Coupling Failure (coordination function decoupled from formal continuation), META-3 Threshold Cascade (third-largest defection propagates to second-largest's incentive recalculation), and META-5 Institutional Hollowing (form persists, work-doing power departs).
 
 ---
 
