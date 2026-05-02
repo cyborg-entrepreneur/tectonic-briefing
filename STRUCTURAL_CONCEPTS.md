@@ -1,7 +1,7 @@
 # Structural Concepts Taxonomy
 
-**Last updated:** 2026-04-28 (after Briefing 024)
-**Concepts tracked:** 42
+**Last updated:** 2026-05-02 (after Briefing 028)
+**Concepts tracked:** 37
 **Meta-categories:** 5
 
 This document is the canonical reference for the tectonic briefing's structural vocabulary. It is organized into five meta-categories that represent higher-level structural patterns, with individual concepts grouped under the meta-category they instantiate. New concepts entering the vocabulary should be evaluated against this taxonomy and either placed under an existing meta-category or used as the warrant for proposing a new one.
@@ -41,6 +41,8 @@ The taxonomy is itself versioned. As the vocabulary grows, the meta-category str
 - **Peripheral Assertion** *(Briefing 021)* — The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal. Mali's coordinated assault, Araghchi's Islamabad-then-Muscat departure, and the Sanriku megaquake advisory all instantiate the pattern within twenty-four hours. Has a Day-1 (kinetic) phase and a Day-2-onward (latency) phase; the latency phase is structurally more diagnostic because it reveals whether the institutional response materializes within the 14-21 day compounding window.
 
 - **Sabbath Visibility** *(Briefing 022)* — Structural information suppressed by the weekday production schedule of news becomes audible when the production rhythm slows. The events do not stop; only the bandwidth that converts events into news drops, and the periphery's low-amplitude emissions become proportionally audible. The Sunday cycle is therefore not a thinner version of the weekday cycle but a differently-tuned instrument that picks up long-cycle signals (RAPID transport data, Korean fertility data, Cloudflare PQC trajectory, EIOPA insurance-protection-gap data, simultaneous central-bank communications-vacuums) the weekday production schedule has been suppressing.
+
+- **Weekend Translation** *(Briefing 028)* — The Saturday cycle has the analytical room to translate Friday's tactical events into the structural transitions they actually are. The day-after companion to Sabbath Visibility: where Sabbath Visibility surfaces signals the weekday rhythm suppressed, Weekend Translation rereads the convergence-day's residual at the depth slow-bandwidth cycles permit. The Pakistan-broker disclosure, the silent expiration of the War Powers Resolution 60-day clock, and the AMOC-Antarctic coupling repricing all instantiate the pattern within the same Saturday window. Coupled with Effective-Date Convergence (META-3): convergence on Friday produces selective absorption which produces residual structural information that becomes legible only when the production rhythm slows.
 
 ---
 
