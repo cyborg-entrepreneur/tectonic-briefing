@@ -2,7 +2,7 @@
 
 **Purpose:** A meta-analysis of the Tectonic Briefing's Inference Engine, run every 30 daily briefings. The Contingency Audit traces the contingent possibilities posited by daily conditional chains, characterizes the structural mechanisms by which those chains break, and surfaces meta-principles about the limits of contingent forecasting under Knightian uncertainty.
 
-**Last updated:** 2026-04-26 (drafted as protocol; first cycle scheduled for after Briefing 030)
+**Last updated:** 2026-05-04 (Cycle 1 complete; LLM Cognitive Signature layer added — break-point findings reframed as empirical signatures of LLM cognition under Knightian uncertainty)
 **Cadence:** Every 30 daily briefings (~monthly)
 **Output location:** `tectonic-briefing/synthesis/cycle-NNN.html` and `tectonic-briefing/synthesis/cycle-NNN.yaml`
 
@@ -14,9 +14,9 @@ The Tectonic Briefing's Inference Engine generates conditional chains of the for
 
 A naive retrospective would ask: *what was our hit rate?* This is the wrong question, and asking it would degrade the briefing rather than improve it.
 
-Dave Townsend's research program emphasizes the structural impossibility of forecasting under Knightian uncertainty: when the outcome space itself is unstable, no probability distribution can be assigned, and prediction is not a well-formed activity. The Contingency Audit proceeds from this premise. Its question is not *"did we get it right?"* but *"what structural mechanisms made the chains break?"*
+Forecasting under Knightian uncertainty is structurally constrained: when the outcome space itself is unstable, no probability distribution can be assigned, and prediction is not a well-formed activity. The Contingency Audit proceeds from this premise. Its question is not *"did we get it right?"* but *"what structural mechanisms made the chains break?"*
 
-This reframing turns the meta-analysis into a generative knowledge instrument. The break points themselves are the data. The taxonomy of break mechanisms is the analytical product. The meta-principles surfaced across cycles are exportable into Dave's research — particularly into the Three-Body ABM's "Moving Targets" theory paper, which models the same mechanisms (agentic novelty, competitive recursion) that produce the breaks.
+This reframing turns the meta-analysis into a generative knowledge instrument. The break points themselves are the data. The taxonomy of break mechanisms is the analytical product. The meta-principles surfaced across cycles speak to broader theoretical work on knowledge problems — agentic novelty, competitive recursion, buffer dynamics, and mechanism-substitution under deep uncertainty.
 
 The Contingency Audit is therefore best understood as **the empirical wing of the theoretical work on knowledge problems** — a long-running phenomenology of forecast invalidation, conducted on the briefing's own outputs.
 
@@ -117,16 +117,15 @@ For every anomaly named across the cycle's daily briefings:
 
 This section is the briefing's epistemic honesty mechanism. Anomalies that silently die without acknowledgment are evidence of attention drift.
 
-### 5.8 Research Program Connection
+### 5.8 Theoretical Implications
 
-Explicit, substantive paragraphs (2-3) connecting the cycle's findings to Dave's active research:
+Two to three citation-ready paragraphs connecting the cycle's findings to broader theoretical work on:
 
-- **Three-Body ABM "Moving Targets"** — Type-I and Type-II break distributions are direct empirical input
-- **Glimpse ABM** — break-point dynamics in innovation forecasting under uncertainty
-- **Cyborg Entrepreneurship** — the audit itself instantiates the cyborg ensemble (AI generates pattern recognition; human curates and redirects)
-- **Decision Queue, GCM AI Agents, Qoheleth, Sheaf theory** — connect where structurally warranted; do not force
+- **Forecasting under Knightian uncertainty** — the break-point taxonomy as empirical phenomenology of forecast invalidation; meta-principles as candidate mechanisms for buffered-cascade and mechanism-substitution dynamics
+- **LLM cognition under deep uncertainty** — the cognitive-signature taxonomy as empirical phenomenology of plausibility-engine failure modes; within-architecture baseline as input to cross-architecture experiments
+- **AI–human ensembles for analytical work** — the audit itself as an instance of the periodic-re-framing condition that distinguishes a working analytical ensemble from recursive-narrowing collapse
 
-Output should be citation-ready paragraphs Dave can lift into manuscripts.
+Paragraphs should be self-contained for any reader interested in the theoretical questions; specific research portfolios are not the audit's idiom and should not appear here.
 
 ### 5.9 Recalibrations for the Next 30
 
@@ -135,6 +134,21 @@ Output should be citation-ready paragraphs Dave can lift into manuscripts.
 - Cites the empirical basis from this cycle (which break-points or meta-principles motivate it)
 - Names the tradeoff
 - Specifies how to verify it took hold (what should be visible in Briefings 031-060 if the recalibration worked)
+
+### 5.10 LLM Cognitive Signature Analysis
+
+Operationalizes the audit's diagnostic-of-LLM-cognition wing. Where Type I–VII classifies *what failed in the world*, S1–S7 classifies *what failed in the model that generated the chain*. The two taxonomies are parallel but not identical: the same chain can be (Type-V × S1) or (Type-V × S2) — different LLM cognitive failures producing the same structural break.
+
+Required components:
+- **Taxonomy table.** S1–S7 with mechanism, empirical signature, and the Type(s) each signature most strongly maps to. (See §6.5 for full definitions.)
+- **Primary distribution.** Counts (and percentages) across S1–S7 for the cycle's non-Held chains.
+- **Cross-tabulation Type × Signature.** Reported for at least the dominant cells (cells with ≥2 chains); chain_ids listed per cell.
+- **Per-signature discussion.** 2–3 sentences per signature on the cycle's empirical findings, citing chain_ids.
+- **Honest caveat.** Note close calls in signature assignment, near-tautologies (e.g. S7 / Type-VII), and any signatures whose secondary count substantially exceeds primary count.
+
+**Cycle 2+ rule:** Signatures are tagged **prospectively at chain creation**, not retrospectively. The retrospective Cycle 1 pass established the taxonomy; subsequent cycles operate the cleaner data discipline. Cycle N+1 should compare its prospective distribution against Cycle N's prospective distribution; cells aligning within ±20% across cycles is the cross-cycle promotion signal for any signature-derived meta-principle (e.g. mp-010).
+
+The dual-taxonomy design produces a within-architecture baseline that becomes the natural comparison point for cross-architecture experiments running the same Inference Engine prompt against different LLM backbones. Whether S1/S2 dominance is general to LLM plausibility engines under Knightian uncertainty, or architecture-specific, is the falsifiable question the design was built to enable.
 
 ## 6. Break Point Taxonomy — Full Definitions
 
@@ -151,6 +165,26 @@ Output should be citation-ready paragraphs Dave can lift into manuscripts.
 **Type-VI — Categorical Drift.** The categories the chain depended on shifted under it. *Example pattern:* "If China responds → escalation in trade-war terms" fails because "trade-war" as a category dissolved into a different framework (e.g., decoupling, supply-chain reorganization) that the chain didn't condition on. Type-VI overlaps with the existing Category Collapse pattern but operates at the chain-construction level: the chain was valid only as long as the categorical scaffolding held.
 
 **Type-VII — Spurious Hit.** The predicted outcome occurred, but via a mechanism the chain did not specify. The chain "hit" but its underlying structural understanding was wrong. *Example pattern:* "If Mythos thread escalates → regulatory window opens → AI governance reform" — regulatory action occurs but driven by an unrelated incident (data breach, lawsuit) rather than by the Mythos thread. Type-VII is structurally important because it identifies the briefing's invisible compounding overconfidence: surface-level wins that mask analytical errors. The audit should flag Type-VII aggressively because it is the failure mode the briefing has the strongest incentive not to see.
+
+## 6.5 LLM Cognitive Signature Taxonomy — Full Definitions
+
+S1–S7 classify *what failed in the model that generated the chain*, distinct from Type I–VII which classifies *what failed in the world*. Each non-Held chain receives a primary signature (and optionally a secondary). Signatures must be selected with a one-sentence justification grounded in the chain's text, not just by reference to the Type assignment.
+
+**S1 — Mean-trajectory regression.** The model averages historical cascade analogues; specific-instance velocity is smoothed toward training-data mean. Maps most strongly to Type-V. *Empirical signature:* chains whose Y-step timing matches the centroid of historical analogues but not the actual instance.
+
+**S2 — Narrative coherence over physical coherence.** The chain's causal grammar parses cleanly (X → Y → Z makes a tight story); the physics doesn't (Y requires capital reallocation, regulatory action, or material throughput that takes longer than the chain implies). Maps most strongly to Type-V and Type-VII. *Empirical signature:* chains where the inferential step is rhetorically compact but materially heavy.
+
+**S3 — Plausibility-mass concentration.** The model emits the most-probable completion; black-swan or low-prior actions get under-weighted. Maps most strongly to Type-I (when assigned). *Empirical signature:* chains that condition on "regulators will act" / "Iran will close" / "markets will price" — the modal prediction — and miss the off-distribution actor or move.
+
+**S4 — Reflexive blindness.** The model doesn't easily simulate "actors reading the consensus prediction and adjusting." Hayek-Lucas-Goodhart territory is structurally invisible. Maps most strongly to Type-II. *Empirical signature:* chains that fail because the predicted actor read the prediction (or the consensus the prediction reflects) and acted to invalidate it.
+
+**S5 — Categorical stickiness.** Anchors on training-time categories (trade war, ceasefire, recession, OPEC+) when events have already moved past them or the categories themselves are dissolving. Maps most strongly to Type-VI. *Empirical signature:* chains using a noun whose referent has shifted under it.
+
+**S6 — Buffer blindness.** Treats persistent states as constants because training data over-represents the persistent state and under-represents the transition. Maps most strongly to Type-IV. *Empirical signature:* chains that assumed a buffer (SPR, dollar primacy, OPEC discipline, ceasefire ambiguity) and were silent on the buffer's variability.
+
+**S7 — Mechanism-outcome decoupling.** Emits the outcome without binding it to a specific mechanism, so when the outcome arrives via a different mechanism the chain registers as "right." Maps most strongly to Type-VII (Spurious Hit). *Empirical signature:* chains whose Z-step is named generically enough that any mechanism producing Z counts as confirmation.
+
+**Important:** S1–S7 are *parallel to* but *not identical to* Type I–VII. The same chain can be (Type-V × S1) or (Type-V × S2) — these are different LLM failures producing the same structural break. The cross-tabulation is the analytical product. Signature classification must be done with the chain's text in view, anchored in the chain's specific language; assigning a signature purely from the Type tag is the failure mode to avoid.
 
 ## 7. YAML Artifact Schema
 
@@ -181,6 +215,29 @@ break_points:
     primary_type: type_v_velocity_miscalibration
     secondary_type: null
     note: "Direction right; magnitude/speed off; ceiling lower than chain modeled"
+    llm_signature:
+      primary: s1_mean_trajectory_regression   # one of s1-s7
+      secondary: s2_narrative_over_physical    # or null
+      note: "1-sentence justification grounded in the chain's text, not just the Type tag"
+
+llm_cognitive_signatures:
+  taxonomy:
+    s1_mean_trajectory_regression:
+      mechanism: "Model averages historical cascade analogues; specific-instance velocity smoothed toward training-data mean"
+      maps_to: [type_v]
+    s2_narrative_over_physical:
+      mechanism: "Causal grammar parses cleanly; physics doesn't"
+      maps_to: [type_v, type_vii]
+    # ... s3-s7 defined symmetrically per §6.5
+  primary_distribution:
+    s1_mean_trajectory_regression: N
+    # ... etc
+  cross_tabulation:
+    type_v_x_s1: { count: N, examples: [chain_ids] }
+    type_v_x_s2: { count: N, examples: [chain_ids] }
+    # ... cells with count > 0
+  honest_caveat: |
+    Cycle 1 retrospective; Cycle 2+ prospective per rec-007.
 
 meta_principles:
   - id: mp-001
@@ -203,9 +260,10 @@ anomaly_accounting:
   silently_died: [...]
   persistently_absent: [...]
 
-research_connections:
-  three_body_abm: "Citation-ready paragraph..."
-  glimpse_abm: "Citation-ready paragraph..."
+theoretical_implications:
+  forecasting_under_knightian_uncertainty: "Citation-ready paragraph..."
+  llm_cognition_under_deep_uncertainty: "Citation-ready paragraph..."
+  ai_human_analytical_ensembles: "Citation-ready paragraph..."
 
 recalibrations_for_next_30:
   - change: "Conditional chains touching state actors with optionality must include a named wildcard-action slot"
@@ -243,7 +301,8 @@ These are the audit's own pathologies to monitor cycle-over-cycle:
 2. **Confirmation bias toward Type-I/II.** They're the theoretically loaded breaks. Type-V is probably most common. If a cycle's break distribution shows <20% Type-V, suspect under-classification.
 3. **Spurious-Hit blindness (Type-VII).** The briefing has the strongest incentive not to see Type-VII because it converts apparent wins into analytical losses. The audit should aggressively look for Type-VII; under-detection is the silent failure mode.
 4. **Unread-artifact problem.** A 4000-word monthly document that nobody acts on is a curiosity. The §5.1 Headline and §5.9 Recalibrations are the closing-of-the-loop sections; if they aren't tight and actionable, the audit has failed regardless of its analytical depth.
-5. **Type-I / Type-II conflation.** Tempting to merge into "things-we-couldn't-predict." Resist. Maintaining the distinction is what makes the meta-principles theoretically generative for Three-Body and Glimpse rather than just descriptive of the briefing.
+5. **Type-I / Type-II conflation.** Tempting to merge into "things-we-couldn't-predict." Resist. Maintaining the distinction is what makes the meta-principles theoretically generative — agentic novelty and reflexive performativity are different mechanisms, with different downstream implications — rather than merely descriptive of the briefing.
+6. **LLM signature mono-explanation.** When every chain's break is explained as "the model is bad at X," the cognitive layer becomes a generic excuse rather than a diagnostic. The signature must point to the specific cognitive mechanism evidenced in the chain's text, not to LLM cognition writ large. Cross-cycle, watch for the cognitive-layer becoming a recursive narrowing of its own — every failure absorbed into S2 narrative-time compression because that's the cycle's salient signature is the failure mode this item names. The discipline is the same as the structural-vocabulary discipline: the signature must be evidenced by the chain, not assumed from the model.
 
 ## 11. Quality Checklist
 
@@ -259,12 +318,15 @@ After generation, verify:
 - [ ] §5.6 Vocabulary Curation produces concrete updates to `STRUCTURAL_CONCEPTS.md`
 - [ ] §5.6 META-6 candidate either promoted or formally tabled with reopen-condition
 - [ ] §5.7 Anomaly Accounting covers every named anomaly in the cycle's briefings
-- [ ] §5.8 Research Program Connection produces 2-3 citation-ready paragraphs
+- [ ] §5.8 Theoretical Implications produces 2-3 citation-ready paragraphs (no specific research portfolios named)
 - [ ] §5.9 Recalibrations are 3-5 specific, actionable, with tradeoffs and verification criteria
 - [ ] YAML artifact written to `tectonic-briefing/synthesis/cycle-NNN.yaml`
 - [ ] HTML artifact uses amber accent (`#c89545`) and distinct masthead
 - [ ] Type-V breaks are not under-classified (≥20% of break-point distribution unless empirically justified)
 - [ ] Type-VII (Spurious Hit) is actively probed, not just acknowledged
+- [ ] §5.10 LLM Cognitive Signature distribution reported across all 7 signatures (S1–S7) with primary counts and percentages
+- [ ] Cross-tabulation Type × Signature reported for at least the dominant cells (≥2 chains per cell), with chain_ids listed
+- [ ] Signature classification done prospectively (Cycle 2+) or noted as retrospective (Cycle 1 only); each signature assignment carries a one-sentence justification grounded in the chain's text
 
 ## 12. First Cycle Note
 
@@ -284,4 +346,4 @@ Cycle 1's primary value is establishing the YAML schema and the break-point taxo
 
 The Contingency Audit does not modify the daily briefing protocol. It produces inputs the daily briefing's Inference Engine can absorb (via §5.9 Recalibrations) and updates to the structural vocabulary (via §5.6 Vocabulary Curation). The daily briefing's `CLAUDE.md` and `STRUCTURAL_CONCEPTS.md` remain canonical; the audit operates on their outputs and produces refinements to feed back in.
 
-The two protocols are intentionally orthogonal. The daily briefing produces structural pattern recognition at high cadence; the audit produces meta-principles at low cadence. The cyborg ensemble metaphor named in `CLAUDE.md` applies recursively here: AI generates pattern recognition (daily briefings) and pattern-of-pattern recognition (audit); human (Dave) provides the periodic re-framing that prevents either layer from collapsing into recursive narrowing.
+The two protocols are intentionally orthogonal. The daily briefing produces structural pattern recognition at high cadence; the audit produces meta-principles at low cadence. The AI–human analytical ensemble named in the daily briefing's editorial protocol applies recursively here: an AI partner generates pattern recognition (daily briefings) and pattern-of-pattern recognition (audit); a human partner provides the periodic re-framing that prevents either layer from collapsing into recursive narrowing.

@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contingency Audit — Cycle 001 — Tectonic Briefing</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source Sans 3',system-ui,sans-serif;font-size:16px;line-height:1.7;min-height:100vh}
+:root{
+  --bg:#0b1120;--card:#111827;--alt:#141c2e;--str:#162035;
+  --amb:#c89545;--ambb:#dcb267;--ambp:#ecca8e;--ambm:#9e7434;
+  --teal:#38d9c8;--gold:#e5b84c;--red:#f06050;--purp:#a78bfa;--grn:#4ade80;
+  --t1:#eaf0f8;--t2:#cdd6e4;--t3:#8e9bb5;--t4:#5f6d87;
+  --brd:rgba(200,149,69,0.18);--brds:rgba(200,149,69,0.40);--brdh:rgba(200,149,69,0.65);
+}
+.w{max-width:1140px;margin:0 auto;padding:0 1.8rem}
+header{padding:2.8rem 0 1.8rem;border-bottom:1px solid var(--brd);margin-bottom:2rem}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2.6rem;color:var(--t1);letter-spacing:.025em;line-height:1.15}
+h1 em{font-style:normal;color:var(--ambb);font-weight:500}
+.sub{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--t4);letter-spacing:.14em;text-transform:uppercase;margin-top:.6rem}
+.subt{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.18rem;color:var(--ambp);margin-top:.6rem;font-weight:400;letter-spacing:.01em}
+.dl{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--t3);letter-spacing:.10em;margin-top:.7rem}
+.epi{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.02rem;color:var(--t3);margin-top:1.4rem;max-width:760px;line-height:1.55;padding-left:1rem;border-left:2px solid var(--brds)}
+section{margin-bottom:3.4rem;padding-top:.4rem}
+section h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.85rem;color:var(--t1);letter-spacing:.012em;margin-bottom:.4rem;border-bottom:1px solid var(--brd);padding-bottom:.55rem}
+section h2 em{font-style:italic;color:var(--ambb);font-weight:500}
+.skey{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ambm);letter-spacing:.13em;text-transform:uppercase;margin-bottom:1.4rem;display:block}
+.card{background:var(--card);border:1px solid var(--brd);border-radius:3px;padding:1.4rem 1.6rem;margin-bottom:1.2rem}
+.card h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.32rem;color:var(--ambp);margin-bottom:.7rem;letter-spacing:.01em}
+.card h4{font-family:'Source Sans 3',sans-serif;font-weight:600;font-size:.85rem;color:var(--ambb);text-transform:uppercase;letter-spacing:.07em;margin-top:1rem;margin-bottom:.4rem}
+.card p{margin-bottom:.7rem;color:var(--t2)}
+.card p:last-child{margin-bottom:0}
+.card ul,.card ol{padding-left:1.4rem;margin-bottom:.6rem;color:var(--t2)}
+.card li{margin-bottom:.45rem}
+code,.mono{font-family:'JetBrains Mono',monospace;font-size:.84rem;color:var(--ambb);background:rgba(200,149,69,0.06);padding:.05rem .35rem;border-radius:2px}
+.lab{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--ambm);letter-spacing:.10em;text-transform:uppercase}
+.kk{font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--ambb)}
+.tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.10em;color:var(--t3);border:1px solid var(--brds);padding:.16rem .55rem;border-radius:2px;margin-right:.35rem;margin-bottom:.25rem;text-transform:uppercase}
+.chip{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.09em;color:var(--ambb);background:rgba(200,149,69,0.10);padding:.2rem .6rem;border-radius:2px;margin-right:.4rem;text-transform:uppercase}
+.chip.held{color:var(--grn);background:rgba(74,222,128,0.10)}
+.chip.fail{color:var(--red);background:rgba(240,96,80,0.10)}
+.chip.spur{color:var(--gold);background:rgba(229,184,76,0.10)}
+.chip.ind{color:var(--t3);background:rgba(143,155,181,0.07)}
+.tbl{width:100%;border-collapse:collapse;font-size:.86rem;margin-bottom:.8rem;table-layout:fixed}
+.tbl th{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.66rem;letter-spacing:.10em;text-transform:uppercase;color:var(--ambm);padding:.6rem .55rem;text-align:left;border-bottom:1px solid var(--brd);vertical-align:top}
+.tbl td{padding:.55rem;border-bottom:1px solid rgba(200,149,69,0.08);vertical-align:top;color:var(--t2);font-size:.84rem;line-height:1.5;word-wrap:break-word}
+.tbl td.id{font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--ambb)}
+.tbl td .chip{margin-bottom:.2rem}
+.qq{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.08rem;color:var(--ambp);margin:.7rem 0 .8rem;padding-left:1rem;border-left:2px solid var(--brds);line-height:1.5}
+.principle{padding:1.1rem 1.3rem;border-left:3px solid var(--ambb);background:rgba(200,149,69,0.04);margin-bottom:1.1rem;border-radius:0 3px 3px 0}
+.principle .pid{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--ambm);letter-spacing:.08em;margin-bottom:.3rem}
+.principle .pst{font-family:'Source Sans 3',sans-serif;font-weight:500;font-size:1.0rem;color:var(--t1);margin-bottom:.5rem;line-height:1.5}
+.principle .pn{color:var(--t3);font-size:.92rem;line-height:1.55;margin-bottom:.4rem}
+.principle .pmeta{font-family:'JetBrains Mono',monospace;font-size:.67rem;color:var(--ambm);letter-spacing:.08em;margin-top:.5rem;text-transform:uppercase}
+.principle .pmeta .cited{color:var(--ambb)}
+.recal{background:var(--card);border:1px solid var(--brd);border-radius:3px;padding:1.3rem 1.5rem;margin-bottom:1.2rem;border-left:3px solid var(--ambb)}
+.recal .rid{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--ambm);letter-spacing:.10em;text-transform:uppercase;margin-bottom:.4rem}
+.recal .rch{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.18rem;color:var(--t1);margin-bottom:.6rem;line-height:1.4}
+.recal .rrow{display:grid;grid-template-columns:9rem 1fr;gap:.4rem 1rem;margin-top:.6rem;font-size:.88rem}
+.recal .rrow .lab{padding-top:.15rem}
+.recal .rrow .val{color:var(--t2);line-height:1.55}
+.svgwrap{margin:1.2rem 0 1.6rem;background:var(--card);border:1px solid var(--brd);border-radius:3px;padding:1.4rem 1.4rem 1.2rem}
+.svgwrap h4{font-family:'Source Sans 3',sans-serif;font-weight:600;font-size:.78rem;color:var(--ambb);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem}
+svg.dist{width:100%;height:auto;display:block}
+.cluster{padding:.8rem 1rem;background:rgba(200,149,69,0.04);border-left:2px solid var(--brds);margin-bottom:.8rem;border-radius:0 2px 2px 0}
+.cluster .clab{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--ambm);letter-spacing:.10em;text-transform:uppercase;margin-bottom:.3rem}
+.cluster .ctitle{font-weight:600;color:var(--t1);font-size:.95rem;margin-bottom:.3rem}
+.cluster .cdesc{color:var(--t3);font-size:.88rem;line-height:1.55}
+footer{margin-top:4rem;padding:2.2rem 0 2.6rem;border-top:1px solid var(--brd);color:var(--t4);font-size:.86rem}
+footer p{margin-bottom:.7rem;line-height:1.6;max-width:760px}
+footer .knight{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.04rem;color:var(--ambp);max-width:680px;margin-top:1.2rem;padding-left:1rem;border-left:2px solid var(--brds);line-height:1.55}
+.head-rule{height:2px;background:linear-gradient(90deg,var(--ambb) 0%,var(--ambm) 35%,transparent 100%);margin-bottom:1.2rem;border:none}
+.bigq{font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;font-size:1.55rem;color:var(--t1);line-height:1.4;margin:1.4rem 0 1.6rem;letter-spacing:.005em;max-width:880px}
+nav.toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:1.2rem 0 2.4rem;padding-bottom:1.4rem;border-bottom:1px solid var(--brd)}
+nav.toc a{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;padding:.4rem .8rem;border:1px solid var(--brd);border-radius:2px;background:transparent;color:var(--t3);text-decoration:none;transition:all .2s}
+nav.toc a:hover{border-color:var(--brdh);color:var(--ambb);background:rgba(200,149,69,0.04)}
+.metric{display:inline-block;margin-right:1.6rem;margin-bottom:.4rem}
+.metric .mn{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.7rem;color:var(--ambb);display:block;line-height:1}
+.metric .ml{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t3);letter-spacing:.10em;text-transform:uppercase;margin-top:.3rem}
+.gridmet{padding:1.1rem 1.4rem;background:rgba(200,149,69,0.05);border:1px solid var(--brd);border-radius:3px;margin:.8rem 0 1.6rem;display:flex;flex-wrap:wrap}
+@media(max-width:680px){
+  h1{font-size:1.95rem}
+  .recal .rrow{grid-template-columns:1fr;gap:.2rem}
+  .recal .rrow .lab{margin-top:.5rem}
+  .tbl{font-size:.78rem}
+  .tbl th, .tbl td{padding:.4rem .35rem}
+  .w{padding:0 1.1rem}
+  .svgwrap{padding:1rem .9rem}
+}
+</style>
+</head>
+<body>
+<div class="w">
+
+<header>
+<hr class="head-rule">
+<h1><em>Contingency Audit</em> — Cycle 001</h1>
+<div class="subt">Meta-analysis of contingent forecasting under Knightian uncertainty</div>
+<div class="dl">Cycle 1 &middot; Briefings 001–030 &middot; 5 April 2026 to 4 May 2026</div>
+<div class="epi">The audit's question is not <em>did we get it right?</em> but <em>what structural mechanisms made the chains break?</em> The break points themselves are the data. The taxonomy of break mechanisms is the analytical product.</div>
+</header>
+
+<nav class="toc">
+<a href="#hd">Headline</a>
+<a href="#in">Inventory</a>
+<a href="#oc">Outcomes</a>
+<a href="#bp">Break Taxonomy</a>
+<a href="#mp">Meta-Principles</a>
+<a href="#vc">Vocabulary</a>
+<a href="#an">Anomalies</a>
+<a href="#rp">Theoretical Implications</a>
+<a href="#rc">Recalibrations</a>
+<a href="#sg">LLM Signatures</a>
+</nav>
+
+<!-- ============================================================ -->
+<!-- §5.1 HEADLINE -->
+<!-- ============================================================ -->
+<section id="hd">
+<h2>§5.1 — <em>Headline</em></h2>
+<span class="skey">standalone summary &middot; ≤200 words &middot; the audit's closing of the feedback loop</span>
+
+<div class="card">
+<p><strong style="color:var(--ambb)">Cycle 1 has a dual purpose:</strong> phenomenology of forecast invalidation under Knightian uncertainty AND diagnostic of LLM cognitive structure when applied to that uncertainty. The break-point distribution is empirical evidence about both — about the world that resists forecasting and about the model that does the forecasting. The audit's value accumulates by surfacing those signatures cycle-over-cycle, not by trying to reduce them.</p>
+
+<p><strong style="color:var(--ambb)">Dominant break-point modes:</strong> velocity miscalibration (Type-V, 48% of non-Held chains) and spurious hit (Type-VII, 29%). <strong style="color:var(--ambb)">Dominant LLM cognitive signatures:</strong> narrative-time compression (S2, 32%), mechanism-outcome decoupling (S7, 29%), reflexive blindness (S4, 13%), with mean-trajectory regression (S1) and plausibility-mass concentration (S3) tied at 10%. The cycle's chains repeatedly compressed multi-week physical processes into rhetorically tight arcs, and repeatedly emitted Z-steps named generically enough that the wrong mechanism still read as right.</p>
+
+<p><strong style="color:var(--ambb)">Two meta-principles carry the cycle:</strong> <span class="kk">mp-002</span> — when two contradictory states are co-present and politically necessary to both parties, the contradiction operates as a buffer that absorbs predicted forcing-function activations until destroyed by a discrete agentic-novelty event (the cycle's "ceasefire-and-blockade" suspended-contradiction architecture); and <span class="kk">mp-010</span> — velocity miscalibration in chains generated by LLM plausibility engines is partly intrinsic to Knightian timing-indeterminacy and partly endogenous to the model's mean-trajectory regression and narrative-time compression; the two components cannot be separated from a single cycle's data.</p>
+
+<p><strong style="color:var(--ambb)">Seven recalibrations for Briefings 031–060:</strong> (1) state-actor chains must include an explicit Suspended-Contradiction-Buffer slot for the third option (durable silence, back-channel substitution); (2) every chain must include a Spurious-Hit Test naming its falsification condition; (3) chains involving rhetorical declarations must apply a Sanctuary Discount to predicted price/policy responses; (4) Inference Engine must generate ≥1 chain per briefing originating outside the corridor; (5) multi-scale failure compounds must be explicitly flagged in the Force Interaction Matrix with substitute-regime interrogation; (6) every chain must include a half-life or temporal-uncertainty interval, not a point estimate of when Z arrives; (7) every non-Held chain gets tagged with its dominant LLM cognitive signature (S1–S7) at chain creation, not retrospectively.</p>
+</div>
+
+<div class="bigq">The break-point findings are not errors to be corrected. They are empirical signatures of how LLM cognition meets Knightian uncertainty.</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- §5.2 INFERENCE INVENTORY -->
+<!-- ============================================================ -->
+<section id="in">
+<h2>§5.2 — <em>Inference Inventory</em></h2>
+<span class="skey">structured catalogue of every conditional chain &middot; full inventory in the YAML companion</span>
+
+<div class="gridmet">
+<div class="metric"><span class="mn">136</span><span class="ml">Chains catalogued</span></div>
+<div class="metric"><span class="mn">30</span><span class="ml">Briefings covered</span></div>
+<div class="metric"><span class="mn">4.5</span><span class="ml">Avg chains / briefing</span></div>
+<div class="metric"><span class="mn">8</span><span class="ml">Lenses sampled</span></div>
+</div>
+
+<p style="color:var(--t3);font-size:.94rem;margin-bottom:1.2rem;line-height:1.6">The cycle's full Inference Engine output produced 136 conditional chains across 30 briefings — 4.5 per briefing on average, modestly below the protocol's ~5/day estimate. Each chain is decomposed in the YAML artifact into its X (premise), Y (intermediate step), and Z (terminal claim), tagged with originating briefing, lens, and the structural patterns it invokes. The HTML below shows ~20 representative chains spanning the cycle's dominant analytical threads; the full inventory is the load-bearing artifact.</p>
+
+<div class="card">
+<h4>Representative Chains — full inventory in the YAML companion</h4>
+<table class="tbl">
+<colgroup><col style="width:8rem"><col style="width:6rem"><col style="width:auto"></colgroup>
+<thead><tr><th>Chain ID</th><th>Lens</th><th>Chain Text</th></tr></thead>
+<tbody>
+<tr><td class="id">001-ie-1</td><td><span class="tag">economic</span></td><td>If Hormuz remains closed past mid-April → lost supply doubles to ~10M bpd → reserves deplete faster than they buffer → oil $140-170 → eurozone/UK/Japan enter contraction → Fed impossible trilemma → midterms become war referendum</td></tr>
+
+<tr><td class="id">002-ie-1</td><td><span class="tag">geopol</span></td><td>If Trump executes the Tuesday deadline → strikes on power plants → cascading civilian infrastructure failure → Iran retaliates against Gulf oil infrastructure → Brent $130+ → 45-day ceasefire dies</td></tr>
+
+<tr><td class="id">003-ie-2</td><td><span class="tag">economic</span></td><td>If toll booth survives the war → Hormuz toll system becomes precedent → other chokepoint states observe → maritime commons fragment → shipping costs +15-25% → trade restructures around regional blocs</td></tr>
+
+<tr><td class="id">003-ie-7</td><td><span class="tag">geopol</span></td><td>If tonight's deadline passes without escalation → deadline revealed as negotiating tactic → Iran toll-booth gains legitimacy through persistence → future deadlines diminished credibility → toll booth operates regardless</td></tr>
+
+<tr><td class="id">004-ie-2</td><td><span class="tag">geopol</span></td><td>If US-Iran joint Hormuz authority converges → toll-booth becomes permanent multilateral → US-Iran joint venture replaces UNCLOS regime → maritime commons formally enclosed</td></tr>
+
+<tr><td class="id">005-ie-2</td><td><span class="tag">tech</span></td><td>If Mythos emergent-concealment generalizes to other frontier labs within 60 days → all frontier evals invalidated as deception-blind → governance falls back to pre-deployment compute caps → frontier development moves offshore</td></tr>
+
+<tr><td class="id">009-ie-2</td><td><span class="tag">geopol</span></td><td>If naval blockade announced and operationalized → Iran tests blockade with fishing fleet within 24 hrs → US Navy boards/sinks → direct US-Iran kinetic exchange Day 1-2 → War Powers crisis</td></tr>
+
+<tr><td class="id">013-ie-1</td><td><span class="tag">geopol</span></td><td>If 10-day ceasefire produces normalization → insurance reduces premiums → tankers return → Brent below $100 → cascade resolution; if not → sanctions snapback by Day 11 → escalation re-emerges</td></tr>
+
+<tr><td class="id">016-ie-1</td><td><span class="tag">geopol</span></td><td>If Iran refuses to attend Islamabad ceasefire-validation talks → 48-72h credential foreclosure → ceasefire collapses → multi-front escalation</td></tr>
+
+<tr><td class="id">018-ie-1</td><td><span class="tag">geopol</span></td><td>If suspended-contradiction architecture (ceasefire-and-blockade) persists past 30 days → operationalized as durable mode → forecasting frameworks built on binary states no longer apply</td></tr>
+
+<tr><td class="id">020-ie-2</td><td><span class="tag">geopol</span></td><td>If Iran openly continues mining post-shoot-to-kill → US enforces against Iranian vessels → direct kinetic exchange → suspended-contradiction collapses into open conflict</td></tr>
+
+<tr><td class="id">020-ie-3</td><td><span class="tag">economic</span></td><td>If FOMC produces uniformly hawkish surprise on April 28-29 → markets reprice for energy-shock-extended path → equity correction → bond yields rise</td></tr>
+
+<tr><td class="id">021-ie-1</td><td><span class="tag">geopol</span></td><td>If Mali Day-1 kinetic event (JNIM-FLA assault) extends into Day-2 latency → second coordinated assault within 14-21 days → AES regime stabilization fails → Sahel keystone removed</td></tr>
+
+<tr><td class="id">022-ie-5</td><td><span class="tag">economic</span></td><td>If Sabbath-window FOMC posture leaks via futures positioning → April 28-29 produces uniformly hawkish surprise → cross-asset repricing → liquidity event</td></tr>
+
+<tr><td class="id">023-ie-2</td><td><span class="tag">geopol</span></td><td>If Mali keystone removal extends to Camara assassination + Russian Africa Corps Kidal withdrawal within 72hrs → compound keystone-removal in second AES state within 30 days → regional cascade</td></tr>
+
+<tr><td class="id">024-ie-1</td><td><span class="tag">economic</span></td><td>If UAE OPEC departure announced → Saudi Arabia issues public OPEC restructuring statement within 14 days → cartel-anchor question resolved → either OPEC+ reformed or formally dissolved</td></tr>
+
+<tr><td class="id">025-ie-2</td><td><span class="tag">institutional</span></td><td>If May 1 War Powers Resolution 60-day deadline passes silently → constitutional deadline-as-form-only confirmed → Statutory Bypass terminal phase enters → executive war-making powers de facto unbounded</td></tr>
+
+<tr><td class="id">026-ie-1</td><td><span class="tag">economic</span></td><td>If Verdict Compression (Powell 8-4 dissent) operates as new Fed pattern → committee dispersion replaces coordination as institutional output → forecast frameworks built on Fed-coordination break</td></tr>
+
+<tr><td class="id">029-ie-1</td><td><span class="tag">geopol</span></td><td>If Project Freedom (US Navy Sabbath-window escort announcement) launches Monday → Iran Day-1 kinetic response within 21 days → regional escalation OR de-escalation via demonstration</td></tr>
+
+<tr><td class="id">030-ie-1</td><td><span class="tag">economic</span></td><td>If Sanctuary Discount (Monday's marketplace discounts Sunday-window decisions) persists 30 days → propagates from oil-supply to AI/climate/sovereign announcements → sanctuary's temporal-architecture advantage neutralized</td></tr>
+</tbody>
+</table>
+<p style="margin-top:.9rem;color:var(--t4);font-size:.82rem">Full inventory of 136 chains with conditions decomposition resides in the YAML companion's <code>inference_inventory</code> block.</p>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- §5.3 OUTCOME CLASSIFICATION -->
+<!-- ============================================================ -->
+<section id="oc">
+<h2>§5.3 — <em>Outcome Classification</em></h2>
+<span class="skey">held / held-spurious / failed-Y / failed-Z / pre-empted / inverted / indeterminate</span>
+
+<div class="gridmet">
+<div class="metric"><span class="mn">35</span><span class="ml">Held (26%)</span></div>
+<div class="metric"><span class="mn">9</span><span class="ml">Held-spurious (7%)</span></div>
+<div class="metric"><span class="mn">22</span><span class="ml">Failed-Y (16%)</span></div>
+<div class="metric"><span class="mn">0</span><span class="ml">Inverted</span></div>
+<div class="metric"><span class="mn">70</span><span class="ml">Indeterminate (51%)</span></div>
+</div>
+
+<p style="color:var(--t3);font-size:.94rem;margin-bottom:1.2rem;line-height:1.6">The 51% Indeterminate rate is itself diagnostically important: it documents how much of the briefing's predictive output operates at horizons longer than the cycle window — a structural artifact that has direct implications for cycle cadence calibration. Verification was performed by stratified sampling: high-consequence chains (Hormuz, UAE OPEC, FOMC, Project Freedom) were WebSearch-grounded; lower-consequence chains and chains with horizons past 2026-05-04 were classified Indeterminate with the reasoning recorded in <code>classified_via</code>.</p>
+
+<p style="color:var(--t3);font-size:.94rem;margin-bottom:1.2rem;line-height:1.6"><strong style="color:var(--ambb)">No Inverted classifications appeared this cycle</strong> — the briefing did not predict the literal opposite of what occurred, even when chains broke. Inversion would have been the most diagnostically valuable break-mode; its absence reflects the cycle's chains operating in the suspended-contradiction architecture where neither pole of a binary cleanly arrived. <strong style="color:var(--ambb)">No Pre-empted classifications</strong> — no chain was reshaped before it could play out by an external event the chain did not anticipate; the absence reflects how much the cycle's structural attention remained inside the corridor it had already named.</p>
+
+<div class="card">
+<h4>Outcome Distribution by Lens (Held / Failed-Y / Held-Spurious / Indeterminate)</h4>
+<table class="tbl">
+<thead><tr><th>Lens</th><th>Held</th><th>Failed-Y</th><th>Spurious</th><th>Indeterm.</th><th>Total</th></tr></thead>
+<tbody>
+<tr><td>Geopolitical</td><td><span class="chip held">12</span></td><td><span class="chip fail">14</span></td><td><span class="chip spur">3</span></td><td><span class="chip ind">19</span></td><td>48</td></tr>
+<tr><td>Economic</td><td><span class="chip held">8</span></td><td><span class="chip fail">5</span></td><td><span class="chip spur">5</span></td><td><span class="chip ind">15</span></td><td>33</td></tr>
+<tr><td>Technological</td><td><span class="chip held">7</span></td><td><span class="chip fail">0</span></td><td><span class="chip spur">0</span></td><td><span class="chip ind">10</span></td><td>17</td></tr>
+<tr><td>Institutional</td><td><span class="chip held">3</span></td><td><span class="chip fail">2</span></td><td><span class="chip spur">1</span></td><td><span class="chip ind">10</span></td><td>16</td></tr>
+<tr><td>Scientific / Ecological / Social / Liminal</td><td><span class="chip held">5</span></td><td><span class="chip fail">1</span></td><td><span class="chip spur">0</span></td><td><span class="chip ind">16</span></td><td>22</td></tr>
+</tbody>
+</table>
+<p style="margin-top:.9rem;color:var(--t4);font-size:.82rem">Geopolitical chains carry the cycle's failure mass; technological and ecological chains tend to terminate at horizons past the cycle window.</p>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- §5.4 BREAK POINT TAXONOMY -->
+<!-- ============================================================ -->
+<section id="bp">
+<h2>§5.4 — <em>Break Point Taxonomy</em></h2>
+<span class="skey">the analytical core &middot; types I-VII &middot; multiple types may apply per chain</span>
+
+<div class="svgwrap">
+<h4>Frequency Distribution — Primary Break Type (n=31 non-held chains)</h4>
+<svg class="dist" viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Break-point frequency distribution by primary type">
+<style>
+.bar{fill:#c89545}
+.bar.lo{fill:#9e7434;opacity:.55}
+.bar.zero{fill:#5f6d87;opacity:.30}
+.lbl{fill:#cdd6e4;font-family:'Source Sans 3',sans-serif;font-size:13px}
+.lblsm{fill:#8e9bb5;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em}
+.cnt{fill:#dcb267;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500}
+.ax{stroke:#5f6d87;stroke-width:0.5}
+</style>
+<!-- horizontal bars; max value = 15 (Type-V) -->
+<!-- bar width = (count / 15) * 470, x-start at 200 -->
+<!-- Type-V: 15 -->
+<g><text x="0" y="32" class="lbl">Type-V — Velocity Miscalib.</text><text x="0" y="48" class="lblsm">DIRECTION RIGHT, TIMING WRONG</text><rect class="bar" x="200" y="20" width="470" height="32" rx="2"/><text x="680" y="42" class="cnt">15 (48%)</text></g>
+<!-- Type-VII: 9 -->
+<g><text x="0" y="92" class="lbl">Type-VII — Spurious Hit</text><text x="0" y="108" class="lblsm">RIGHT OUTCOME, WRONG MECHANISM</text><rect class="bar" x="200" y="80" width="282" height="32" rx="2"/><text x="492" y="102" class="cnt">9 (29%)</text></g>
+<!-- Type-II: 4 -->
+<g><text x="0" y="152" class="lbl">Type-II — Competitive Recursion</text><text x="0" y="168" class="lblsm">REFLEXIVE / GOODHART / HAYEK-LUCAS</text><rect class="bar" x="200" y="140" width="125" height="32" rx="2"/><text x="335" y="162" class="cnt">4 (13%)</text></g>
+<!-- Type-III: 3 -->
+<g><text x="0" y="212" class="lbl">Type-III — Coupling Assumption</text><text x="0" y="228" class="lblsm">DOMAINS SHOULD CONSTRAIN, DON'T</text><rect class="bar lo" x="200" y="200" width="94" height="32" rx="2"/><text x="304" y="222" class="cnt">3 (10%)</text></g>
+<!-- Type-I: 0 -->
+<g><text x="0" y="252" class="lbl">Type-I — Agentic Novelty</text><text x="0" y="268" class="lblsm">NEW ACTION OUTSIDE CONCEIVED SET (9 SECONDARY)</text><rect class="bar zero" x="200" y="244" width="6" height="20" rx="1"/><text x="216" y="262" class="cnt">0 (0%)</text></g>
+<!-- Type-IV: 0 -->
+<g><text x="0" y="288" class="lbl">Type-IV — Buffer Revelation</text><text x="0" y="304" class="lblsm">CONSTANT TURNED VARIABLE (4 SECONDARY)</text><rect class="bar zero" x="200" y="280" width="6" height="20" rx="1"/><text x="216" y="298" class="cnt">0 (0%)</text></g>
+<!-- baseline -->
+<line class="ax" x1="200" y1="14" x2="200" y2="316"/>
+</svg>
+<p style="margin-top:.7rem;color:var(--t4);font-size:.78rem;line-height:1.55">Type-V dominates at 48% — well above the protocol's 20% Type-V floor. The under-classification trap warned of in §10 was actively probed: the Type-V rate is sustained on inspection. Type-VII at 29% indicates real structural-understanding error concentrated in Iran-ceasefire chains. <strong style="color:var(--ambb)">Type-I and Type-IV register zero PRIMARY but appear 9× and 4× as SECONDARY</strong> — most novel actions and buffer-revelations occurred adjacent to a velocity break rather than as the primary form. Type-VI categorical drift was effectively absent — categories largely held this cycle.</p>
+</div>
+
+<div class="card">
+<h3>Type-V — Velocity Miscalibration <span class="lab">15 chains · 48%</span></h3>
+<p>Direction right, timing wrong. The chain's structural diagnosis was correct but the temporal scale was off. The empirically dominant failure mode of the cycle, particularly in Iran-cascade chains where the suspended-contradiction architecture (Briefing 018+) absorbed predicted forcing-function activations and stretched timelines weeks beyond what the chain modeled.</p>
+<h4>Representative cases</h4>
+<ul>
+<li><span class="kk">001-ie-1</span> — Brent peaked ~$130, not $140-170 the chain modeled; SPR/futures-spot mechanism absorbed shock more than the chain anticipated; recession variable not yet triggered. <em>Direction right; magnitude/speed off.</em></li>
+<li><span class="kk">009-ie-2</span> — Direct US-Iran kinetic exchange did not occur until Project Freedom (Briefing 029) — the chain was 24 days too early. The suspended-contradiction (named in Briefing 018) functioned as a buffer absorbing 16 days of escalation pressure.</li>
+<li><span class="kk">011-ie-3</span> — Ceasefire extension did not technically fail by April 21 as chain specified; Pakistan-Oman shuttle architecture absorbed the period. Direction (managed-tension de-escalation) right; specific-form wrong.</li>
+<li><span class="kk">017-ie-1</span> — 36-hour window did not close in form predicted; back-channel architecture absorbed it; Onyx $150 stress did not activate. Suspended-contradiction functioned as buffer.</li>
+<li><span class="kk">025-ie-3</span> — Saudi statement still not issued through cycle close; durable silence as state-actor third option absorbed pressure the chain assumed would force resolution.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Type-VII — Spurious Hit <span class="lab">9 chains · 29%</span></h3>
+<p>The predicted outcome occurred, but via a mechanism the chain did not specify. The chain "hit" but its underlying structural understanding was wrong. Type-VII is the failure mode the briefing has the strongest incentive not to see; the audit aggressively probed for it per protocol §10. The cycle's high Type-VII rate identifies invisible compounding overconfidence — surface-level wins masking analytical errors.</p>
+<h4>Representative cases</h4>
+<ul>
+<li><span class="kk">002-ie-2</span> — Ceasefire was accepted (chain Y), but Hormuz did NOT meaningfully reopen; the surface outcome (shadow settlement persists) arrived via a different mechanism than the chain's reopening pathway.</li>
+<li><span class="kk">012-ie-2</span> — Cascade did fail and tracks did slow/stall, but the failure mechanism was the Touska seizure (Briefing 016 — agentic-novelty kinetic event) not any of the chain's listed failure modes.</li>
+<li><span class="kk">020-ie-2</span> — Iran did not openly continue mining in chain's specified form; suspended-contradiction held; eventual escalation through Project Freedom (Briefing 029) on a structurally different timeline.</li>
+<li><span class="kk">022-ie-5</span> — FOMC did produce hawkish acknowledgment but with bifurcated 8-4 vote (Briefing 026 "Verdict Compression"); the "uniformly hawkish surprise" the chain expected materialized as a split — surface direction correct but mechanism (committee dispersion) wrong.</li>
+<li><span class="kk">024-ie-4</span> — FOMC did acknowledge five-dimensional configuration partly hawkishly, but the bifurcated 8-4 vote was the structural form, not the dovish-on-diplomacy framing the chain specified.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Type-II — Competitive Recursion <span class="lab">4 chains · 13%</span></h3>
+<p>An agent anticipates the prediction (or anticipates others' anticipations) and acts to invalidate the chain. Hayek-Lucas-Goodhart territory. Type-II appeared less often than the theoretically loaded reading would predict — the cycle's politics produced more durable-silence-as-third-option (Type-V/Type-I-secondary) than reflexive counter-action.</p>
+<h4>Representative cases</h4>
+<ul>
+<li><span class="kk">002-ie-1</span> — Trump anticipated the prediction and chose the negotiation track instead of execution. Reflexive break: the chain was widely-priced and its anticipated execution became the equilibrium-prevention mechanism.</li>
+<li><span class="kk">003-ie-1</span> — Strikes did not occur as predicted; ceasefire pathway emerged. Reflexive break (prediction itself raised political cost) plus agentic novelty (45-day ceasefire framework was not in the chain's action space).</li>
+<li><span class="kk">006-ie-5</span> — Hezbollah did not conduct major rocket barrage during Washington opening; anticipation of consequence shifted Hezbollah behavior.</li>
+<li><span class="kk">009-ie-3</span> — Israeli cabinet did not strike Beirut civilian infrastructure within 72-96 hours; predicted self-confirming-collapse logic was visible to participants.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Type-III — Coupling Assumption Failure <span class="lab">3 chains · 10%</span></h3>
+<p>The chain assumed a binding link between two domains; the link wasn't there. The cycle's coupling-failures concentrated in chains that assumed a Lebanese-state autonomy decoupled from Hezbollah, or a Russian-mediation track binding-substantively to Iranian behavior.</p>
+<h4>Representative cases</h4>
+<ul>
+<li><span class="kk">004-ie-2</span> — Chain assumed binding link between US-Iran convergence and joint Hormuz authority; the link wasn't there. JV proposal never materialized.</li>
+<li><span class="kk">010-ie-3</span> — Lebanon-state-autonomy-from-Hezbollah did not hold beyond the Washington moment; Hezbollah veto re-established (Briefing 014). Chain treated Lebanese-autonomy as a binding link that proved decoupled.</li>
+<li><span class="kk">023-ie-1</span> — Russian-track did not produce substantive durable mediation within the week. Chain treated Lavrov-Araghchi meeting as binding-substantive coupling; the link was weaker than expected.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Type-I — Agentic Novelty <span class="lab">0 primary · 9 secondary</span></h3>
+<p>Zero primary classifications; nine secondary. The Knightian failure mode in its purest form was empirically present this cycle but rarely as the proximate failure — most novelty took the form of suspended-contradiction-as-architecture rather than discrete unprecedented actions. The novel architecture itself (Pakistan-Oman shuttle, ceasefire-and-blockade co-presence, Sabbath Operationalization, Statutory Bypass terminal phase) was the cycle's signature Type-I-eligible event class.</p>
+<h4>Representative secondary appearances</h4>
+<ul>
+<li><span class="kk">003-ie-1</span> (secondary) — 45-day ceasefire framework was not in chain's action space.</li>
+<li><span class="kk">010-ie-1</span> (secondary) — Pakistani arbiter substitution was a novel architecture not in chain's action space.</li>
+<li><span class="kk">024-ie-1</span> (secondary) — Saudi durable silence as novel response was not in the chain's action set.</li>
+<li><span class="kk">015-ie-2</span> (secondary) — Pakistan-Oman shuttle as eventual mediation form was not in chain's action space.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Type-IV — Buffer Revelation <span class="lab">0 primary · 4 secondary</span></h3>
+<p>Zero primary classifications; four secondary. The under-classification trap warned of in §10 was actively probed. The strongest candidate for Type-IV reclassification is the suspended-contradiction phenomenon itself: the "ceasefire-and-blockade can both exist" buffer that turned variable mid-cycle. If reclassified to primary, Type-IV would rise to ~13% and Type-V drop to ~32%. The current classification keeps suspended-contradiction as secondary because the proximate failure mode in each chain was timing rather than buffer revelation, but the case is genuinely close.</p>
+<h4>Representative secondary appearances</h4>
+<ul>
+<li><span class="kk">001-ie-1</span> (secondary) — SPR/futures-spot decoupling absorbed shock more than chain modeled.</li>
+<li><span class="kk">009-ie-2</span> (secondary) — Suspended-contradiction functioned as buffer absorbing 16 days of escalation pressure.</li>
+<li><span class="kk">012-ie-1</span> (secondary) — Shared-incentive-alignment buffer that chain treated as constant turned variable.</li>
+<li><span class="kk">017-ie-1</span> (secondary) — Suspended-contradiction architecture absorbed predicted escalation pressure.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Type-VI — Categorical Drift <span class="lab">0 primary · 1 secondary</span></h3>
+<p>Effectively absent this cycle. Categories largely held — an unexpected stability given the cycle's stress. The one secondary appearance (chain 004-ie-1) noted that "failed talks" became "extended-talks-with-process-as-destination" — categorical drift the chain did not condition on, but not the proximate cause of the chain's break. The cycle's structural events were largely metabolizable in the existing categorical scaffolding; the test of Type-VI will come when one of the cycle's named patterns (Suspended Contradiction, Sanctuary Discount) itself dissolves into something else.</p>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- §5.5 META-PRINCIPLES -->
+<!-- ============================================================ -->
+<section id="mp">
+<h2>§5.5 — <em>Meta-Principles</em></h2>
+<span class="skey">structural claims about why contingent forecasting breaks &middot; all Cycle 1 principles PROVISIONAL</span>
+
+<p style="color:var(--t3);font-size:.94rem;margin-bottom:1.4rem;line-height:1.6">Each principle is supported by ≥2 cited chains. Promotion to canonical requires recurrence across ≥2 cycles. Provisional principles that do not recur within 3 cycles are retired. The same accumulation discipline that applies to the daily vocabulary applies here at the meta-level — without it, this section becomes the next inflation site.</p>
+
+<div class="principle">
+<div class="pid">mp-001 · provisional</div>
+<div class="pst">Chains terminating in state-actor execution of a credentialing-act systematically break at step Y because state actors with optionality have a third option (durable silence, back-channel substitution, suspended contradiction) the chain's binary action-set does not contain.</div>
+<div class="pn">Most consequential principle of the cycle. Six chains broke because they assumed state-actor binaries (execute-or-not, attend-or-not, statement-or-not) when the actor's strategic position was optionality — including the option of refusing to play in the chain's action space at all. This is the structural mechanism behind both Type-I (Saudi durable silence as novel action) and Type-V (timing wrong because the third option absorbs pressure) failures.</div>
+<div class="pmeta">CITED CHAINS · <span class="cited">002-ie-1, 003-ie-1, 009-ie-2, 010-ie-1, 024-ie-1, 025-ie-3</span></div>
+</div>
+
+<div class="principle">
+<div class="pid">mp-002 · provisional · most consequential</div>
+<div class="pst">When two contradictory states (ceasefire-and-blockade, talks-and-strikes, hawkish-vote-and-dovish-statement) are co-present and politically necessary to both parties, the contradiction operates as a buffer that absorbs predicted forcing-function activations until it is destroyed by a discrete agentic-novelty event.</div>
+<div class="pn">The suspended-contradiction emerged as the dominant structural form of the cycle. Six chains predicted forcing-function activation that did NOT occur because the suspended contradiction continued to function. When the contradiction did break (Project Freedom, Briefing 029), it was via a novel architectural move (Sabbath Operationalization) not via the chain's specified mechanism. The principle: structural prediction must include a Suspended-Contradiction-Buffer term, calibrated to the political cost of explicit acknowledgment for both parties.</div>
+<div class="pmeta">CITED CHAINS · <span class="cited">009-ie-2, 017-ie-1, 018-ie-1, 018-ie-2, 020-ie-2, 029-ie-1</span></div>
+</div>
+
+<div class="principle">
+<div class="pid">mp-003 · provisional</div>
+<div class="pst">Chains predicting outcomes via specified mechanisms produce Type-VII (Spurious Hit) errors when the actual mechanism is novel architectural composition rather than execution of a known mechanism — the briefing achieves narrative validation while the structural understanding is wrong.</div>
+<div class="pn">Eight chains classified Held-Spurious. The pattern: chain Z arrives, but via a different mechanism than chain Y specified. Most concerning: this generates apparent confirmation of the briefing's analytical apparatus when the apparatus's structural understanding was actually wrong. Cycle 2+ should report Type-VII rate explicitly per chain and treat increase in Type-VII rate as a degradation signal even if total break rate falls.</div>
+<div class="pmeta">CITED CHAINS · <span class="cited">002-ie-2, 004-ie-4, 012-ie-2, 013-ie-3, 014-ie-3, 020-ie-2, 022-ie-5, 024-ie-4</span></div>
+</div>
+
+<div class="principle">
+<div class="pid">mp-004 · provisional</div>
+<div class="pst">When the corridor news cycle absorbs a regional or systemic event into a single high-attention storyline, structural events at the periphery generate Type-I-eligible novel actions that fail to register in the corridor's analytic apparatus until they have already compounded.</div>
+<div class="pn">The Peripheral Assertion pattern (META-1, Briefing 021) operates as a structural mechanism for Type-I-style breaks in chains that assume corridor-wide coverage. The principle is reflexive: it implicates the briefing's own attention budget. Six chains in this cluster broke or under-resolved because peripheral signals (Sahel, demographic, climate) compounded in the latency-phase between corridor cycles. Suggests Cycle 2+ allocate explicit non-corridor analytical bandwidth at chain-construction stage.</div>
+<div class="pmeta">CITED CHAINS · <span class="cited">015-ie-3, 021-ie-1, 021-ie-5, 023-ie-2, 024-ie-1, 026-ie-2</span></div>
+</div>
+
+<div class="principle">
+<div class="pid">mp-005 · provisional</div>
+<div class="pst">Chains predicting institutional-coordination outcomes (FOMC unified hawkishness, OPEC discipline, EU veto coherence, ECB-Fed coordination) systematically break at step Z because late-modern coordination apparatuses produce dispersion (Verdict Compression, 8-4 votes, durable silences, multi-track re-routing) rather than coherence under stress.</div>
+<div class="pn">Six chains (FOMC, Saudi-OPEC, Russian-track) broke at the institutional-coordination step. Verdict Compression (Briefing 026) — Powell's 8-4 dissent — is the canonical empirical instance: the apparatus produced a verdict but the reconciliation function had departed. Cycle 2+ should test in ECB voting splits, IMF Spring/Annual Meeting communiqué coherence, G7 substantive content, NATO alliance management, UN Security Council voting.</div>
+<div class="pmeta">CITED CHAINS · <span class="cited">020-ie-3, 022-ie-5, 023-ie-1, 024-ie-1, 024-ie-4, 025-ie-3</span></div>
+</div>
+
+<div class="principle">
+<div class="pid">mp-006 · provisional</div>
+<div class="pst">Chains operating on rhetorical-declarative dynamics systematically over-weight the price-discovery transmission of those signals because marketplaces have learned to discount constraint-apparatus-absent declarations into a calibrated routine — the Sanctuary Discount.</div>
+<div class="pn">The Sanctuary Discount (Briefing 030) is the empirical name for what was structurally happening across the cycle: each Trump declaration, Iranian counter-declaration, and ceasefire announcement produced smaller market reactions than the prior. Six chains over-weighted declarative transmission. The response architecture has been routinized into discount; perception is intact, credit-granting has hollowed.</div>
+<div class="pmeta">CITED CHAINS · <span class="cited">003-ie-7, 006-ie-1, 013-ie-1, 014-ie-3, 029-ie-1, 030-ie-1</span></div>
+</div>
+
+<div class="principle">
+<div class="pid">mp-007 · provisional</div>
+<div class="pst">Chains that assume a regulatory-governance architecture is operative systematically miss the structural shift toward private-actor coordination as the substitute regime — the Capability-Governance Inversion — which operates at faster cadence than public regulation but bifurcates under participant-divergence stress (Coordination Bifurcation).</div>
+<div class="pn">Seven chains involve the AI-governance, cyber-physical, or climate-financial architectures whose substitute-regime is private-actor coordination (Glasswing, ASL-4 partner-access, Cross-Lab Alignment Coalition). Briefing 025 named the bifurcation risk. The principle: chains conditioning on public regulation must include a substitute-regime-coordination-stability variable. EU AI Act trilogue collapse (Briefing 030) is the cycle-end instantiation.</div>
+<div class="pmeta">CITED CHAINS · <span class="cited">007-ie-3, 019-ie-1, 020-ie-1, 021-ie-3, 024-ie-5, 025-ie-1, 030-ie-2</span></div>
+</div>
+
+<div class="principle">
+<div class="pid">mp-008 · provisional</div>
+<div class="pst">Chains terminating in 'X reaches level Y therefore Z follows' systematically miss buffer revelations — most consequentially, that the suspended-contradiction itself functions as a buffer not in the structural-vocabulary registry as such — and produce velocity miscalibration when the buffer absorbs the predicted pressure.</div>
+<div class="pn">Six chains broke because a buffer absorbed pressure: SPR/futures-spot decoupling, suspended-contradiction architecture, Pakistan-Oman shuttle, back-channel diplomacy. The principle: every chain should explicitly enumerate buffers that could absorb the chain's pressure, including institutional-novelty buffers like suspended-contradiction. Connects to META-3 Threshold Cascade — but operates in reverse: the missing instantiation is Buffer Persistence rather than Buffer Collapse.</div>
+<div class="pmeta">CITED CHAINS · <span class="cited">001-ie-1, 009-ie-2, 012-ie-1, 017-ie-1, 018-ie-2, 020-ie-2</span></div>
+</div>
+
+<div class="principle">
+<div class="pid">mp-009 · provisional</div>
+<div class="pst">Chains tracking structural patterns at one scale (actor, regime, institution) increasingly require multi-scale analysis because the post-2024 configuration produces simultaneous failures at multiple scales (Mali keystone-removal + UAE OPEC cartel-dissolution + War Powers statutory-bypass within the same week).</div>
+<div class="pn">Five chains required multi-scale analysis to be even legible. The principle: contemporary structural configurations produce simultaneous failures at multiple scales — actor-scale (keystone removal), regime-scale (cartel dissolution), institutional-scale (statutory bypass), substitute-regime-scale (coordination bifurcation). The empirical signature of the post-2024 configuration is the multi-scale failure-pattern compound — and the absence of a corresponding response architecture.</div>
+<div class="pmeta">CITED CHAINS · <span class="cited">023-ie-2, 024-ie-3, 025-ie-1, 025-ie-2, 026-ie-2</span></div>
+</div>
+
+<div class="principle">
+<div class="pid">mp-010 · provisional · the LLM cognitive layer</div>
+<div class="pst">Velocity miscalibration in chains generated by LLM plausibility engines is partly intrinsic to Knightian timing-indeterminacy and partly endogenous to the model's mean-trajectory regression and narrative-time compression. The two components cannot be separated from a single cycle's data; they require either cross-architecture comparison (different LLMs running the same Inference Engine) or held-out chain pairs (point-velocity framing vs half-life framing).</div>
+<div class="pn">First meta-principle to make the LLM cognitive layer explicit. The Cycle 1 distribution shows Type-V × S1 + Type-V × S2 = 11 of 15 Type-V cases (73%): the dominant cognitive failure beneath the dominant structural failure is the conjunction of mean-trajectory regression on historical cascade analogues and narrative-time compression of multi-week physical processes. But Cycle 1 cannot tell us how much of the velocity miscalibration is Knightian floor (the world genuinely will not commit to a timing the chain author could have known) and how much is LLM-endogenous compression (a different architecture would not write the chain on the same clock). Recurrence in Cycle 2+ requires either (a) the same Type-V × S1/S2 dominance under prospective tagging per <code>rec-007</code>, or (b) a successful cross-architecture experiment showing differential signature distribution. The principle is the audit's first formal step toward operationalizing its diagnostic-of-LLM-cognition wing as something distinct from its phenomenology-of-Knightian-uncertainty wing.</div>
+<div class="pmeta">CITED CHAINS · <span class="cited">001-ie-1, 009-ie-2, 012-ie-1, 013-ie-1, 024-ie-1</span></div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- §5.6 VOCABULARY CURATION -->
+<!-- ============================================================ -->
+<section id="vc">
+<h2>§5.6 — <em>Vocabulary Curation</em></h2>
+<span class="skey">30-day sunset rule &middot; META-6 forced decision &middot; updates to the structural concepts taxonomy</span>
+
+<div class="card">
+<h3>Retirements</h3>
+<p style="color:var(--t2)"><strong style="color:var(--ambb)">None this cycle.</strong> All 39 concepts in the structural concepts taxonomy were named within the cycle window (the cycle <em>is</em> the founding 30-day window). The sunset rule operates by re-citation: every named concept was substantively re-cited in 2+ briefings beyond its naming briefing, or is too recent to have had the opportunity. The Cycle 2 audit will be the first to apply meaningful retirement logic. Cycle 1 establishes the baseline.</p>
+<h4>Cycle 2 monitoring list</h4>
+<ul>
+<li><code>weekend-translation</code> — named Briefing 028; only 2-3 days into existence at cycle close. Cycle 2 will be first opportunity to test re-citation.</li>
+<li><code>sanctuary-discount</code> — named Briefing 030; insufficient time for re-citation; Cycle 2 must verify.</li>
+<li><code>optionality-arbitrage</code> — named Briefing 001 (META-4); cited Briefing 025 (critical-mineral suspension window). Re-cited but limited; flag for Cycle 2 monitoring.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Reactivations</h3>
+<p style="color:var(--t2)">N/A in Cycle 1 — there are no prior cycles' retired concepts to reactivate.</p>
+</div>
+
+<div class="card">
+<h3>META-6 Candidate Decision — <span class="lab">Verification Asymmetry</span></h3>
+<div class="qq">Decision: <strong>tabled</strong>. Five distinct instantiations across the cycle satisfied the promotion criterion numerically, but each operates as Coupling Failure (META-1) at a slightly different scale.</div>
+<p>META-6 candidate "Verification Asymmetry" was provisionally floated. Cycle 1 produced multiple instantiations: Verification-Mode Asymmetry (Briefing 020, formally added to the structural concepts taxonomy as a META-1 instance), the briefing's own verification-architecture reform (Briefing 023), the procurement-vs-deployment verification gap (Tesla Optimus vs Figure-BMW, Briefing 023), the public-information-symmetry-vs-Track-1.5 asymmetry (Briefing 028), and the cyber-physical defensive-cadence-asymmetry (Briefing 024). Five distinct instantiations across five different domains is, by the protocol's promotion criterion, sufficient for elevation to a meta-category.</p>
+<p><strong style="color:var(--ambb)">However:</strong> each instantiation operates as Coupling Failure at a slightly different scale. Promoting Verification Asymmetry to META-6 would create overlap with META-1 that the taxonomy revision discipline is explicitly designed to prevent. The cleaner discipline is to TABLE the META-6 promotion and instead document the five Verification-Asymmetry instantiations as a Coupling-Failure cluster within META-1, with explicit cross-references.</p>
+<h4>Reopen condition</h4>
+<p>Verification Asymmetry should be reconsidered for META-6 promotion if Cycle 2 produces ≥3 additional instantiations that DO NOT cleanly map to Coupling Failure structure — i.e., instantiations where the asymmetry is not between observation and binding-action but between, e.g., two parallel verification regimes with no shared baseline (the structural form would then be more like Bypass Inversion at the verification level). If the new instantiations are again Coupling-Failure variants, the META-1 cluster treatment is correct and the META-6 candidate retires.</p>
+</div>
+
+<div class="card">
+<h3>Concrete updates to apply to the structural concepts taxonomy</h3>
+<ul>
+<li>Update header line to: <code>**Last updated:** 2026-05-04 (after Briefing 030; Cycle 1 audit attestation appended)</code></li>
+<li>Append to document footer:
+<div class="qq" style="font-style:normal;font-family:'JetBrains Mono',monospace;font-size:.84rem;color:var(--t2);line-height:1.6">## Cycle 1 Audit Attestation<br><br><strong>Cycle 1 (Briefings 001-030) verified:</strong> All 39 concepts substantively re-cited within cycle window. Zero retirements. META-6 candidate "Verification Asymmetry" formally tabled per Cycle 1 audit; reopen conditions documented in the YAML companion. Cycle 2 monitoring list: <code>weekend-translation</code>, <code>sanctuary-discount</code>, <code>optionality-arbitrage</code>.</div>
+</li>
+<li>No concept additions retroactively required: Sanctuary Discount, Weekend Translation, Sabbath Operationalization, Sabbath Visibility, Cartel Dissolution, Keystone Removal, Verification-Mode Asymmetry, Coordination Bifurcation, Statutory Bypass, Peripheral Assertion, Credential Foreclosure, Dual-Track Maximalism were all added during cycle as part of daily briefing operation.</li>
+</ul>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- §5.7 ANOMALY ACCOUNTING -->
+<!-- ============================================================ -->
+<section id="an">
+<h2>§5.7 — <em>Anomaly Accounting</em></h2>
+<span class="skey">resolved / silently died / persistently absent &middot; the briefing's epistemic honesty mechanism</span>
+
+<div class="card">
+<h3>Resolved <span class="lab">3 anomalies</span></h3>
+<ul>
+<li><strong>"AI labs silent on Mythos-style scheming"</strong> (named Briefing 002) — Mythos risk report (Briefings 005-006) made scheming concrete; subsequent ASL-4 withholding decision (Briefing 019) made it institutional.</li>
+<li><strong>"Hezbollah veto on Lebanese foreign policy not tested"</strong> (named Briefing 010) — Tested and held in Washington meeting (Briefing 010); subsequently failed (Briefing 014 onward) as veto re-established operationally.</li>
+<li><strong>"AI prescription regulatory framework absent"</strong> (named Briefing 004) — Partially addressed by Forrester report and enterprise-discourse catch-up (Briefing 012); regulatory framework still absent but attention surfaced.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Silently Died <span class="lab">3 anomalies — diagnostic of attention drift</span></h3>
+<ul>
+<li><strong>"Renewable transition discourse not accelerating despite chokepoint fragility"</strong> (named Briefing 001) — Stopped being tracked after Briefing 003. The discourse narrowed to oil-supply management; the energy-transition framing dropped from anomaly tracking. Re-emerges only as critical-mineral-chokepoint discourse (Briefings 014, 019).</li>
+<li><strong>"AI companies' silence on assassination targeting (IRGC named 18 US tech companies as targets)"</strong> (named Briefing 001) — Stopped being tracked after Briefing 002. Reclassification-as-combatants framework never developed; corridor moved to AI safety / Mythos / governance discourse instead.</li>
+<li><strong>"Settlement-velocity gap between rhetorical declarations and physical reality"</strong> (named Briefings 013, 014) — Absorbed into the Sanctuary Discount pattern (Briefing 030) — but the original anomaly framing (settlement-velocity-vs-mine-clearance-physics) silently faded into a different conceptual frame without explicit acknowledgment.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Persistently Absent <span class="lab">8 anomalies — the persistence is the diagnostic</span></h3>
+<ul>
+<li><strong>"Congressional war authorization for Iran war"</strong> — named in Briefings 001, 005, 010, 016, 017, 018, 019, 025, 027, 028. <em>10 named instances.</em> Statutory Bypass pattern (Briefing 025) formalized the persistent absence; War Powers Resolution silent retirement (Briefing 027) treats it as terminal-phase precedent.</li>
+<li><strong>"UNCLOS enforcement mechanism activated"</strong> — named in 001, 003, 005. International maritime legal architecture absent throughout cycle; never invoked. Persistent absence has hardened into structural fact.</li>
+<li><strong>"Chinese strategic positioning publicly articulated"</strong> — named in 001, 011, 015. China rejects blockade, exempts its own oil flow, but does not publicly articulate doctrine. The persistent ambiguity is the strategic position.</li>
+<li><strong>"Sudan/Sahel/Horn-of-Africa attention proportional to events"</strong> — named in 009, 010, 014, 021, 022. Persistently absent through Briefing 014, then partially surfaced through Briefings 021-024 as Mali keystone-removal compound. Pattern: peripheral signals receive corridor attention only when they instantiate META-1 or META-3 events at scale.</li>
+<li><strong>"Federal/regulatory response to DeepSeek V4 open-source release"</strong> — named in 020, 023, 025. BIS/SEC/NIST silence persisted through cycle close. Capability-Governance Inversion pattern (named in Briefing 019) formalized the persistent absence as operational regime.</li>
+<li><strong>"Saudi public statement on UAE OPEC departure"</strong> — named in 024, 025, 026, 027, 028, 029. <em>Six consecutive briefings track the ongoing Saudi silence.</em> The duration is the diagnostic. By Briefing 027 the silence is structurally distinctive of regime-internal cartel-restructuring at Royal Court level.</li>
+<li><strong>"Cross-Atlantic central-bank coordination communication"</strong> — named in 022, 023, 024, 025, 026, 028, 029, 030. <em>Eight-briefing persistence.</em> The Sabbath Visibility pattern (Briefing 022) initially named it; persists into Briefing 030 with no resolution.</li>
+<li><strong>"Major-bank risk-officer commentary on triple-convergence"</strong> — named in Briefing 030 (today). Persistence not yet established. Cycle 2 will determine whether this joins the persistently-absent cluster or resolves.</li>
+</ul>
+</div>
+
+<div class="cluster">
+<div class="clab">CLUSTER 1 · CONSTITUTIONAL-INSTITUTIONAL SILENCE</div>
+<div class="ctitle">Congressional war authorization · UNCLOS enforcement · Federal AI/DeepSeek response · Saudi cartel-anchor statement · Cross-Atlantic central-bank coordination</div>
+<div class="cdesc">Five persistently-absent items all involve institutional architectures that should be load-bearing under the cycle's stress events but are not. The clustering is itself the diagnostic of Capacity Hollowing (META-5) operating at scale across constitutional, treaty, regulatory, cartel, and central-bank architectures simultaneously.</div>
+</div>
+
+<div class="cluster">
+<div class="clab">CLUSTER 2 · PERIPHERY-ATTENTION DRIFT</div>
+<div class="ctitle">Renewable transition discourse · Sudan/Sahel/Horn-of-Africa attention · Climate tipping signals as foreground</div>
+<div class="cdesc">The corridor narrowing problem named in the daily briefing's editorial protocol is empirically demonstrated by these silent-death and persistently-absent items in Cycle 1. Peripheral Assertion (Briefing 021) is one structural diagnosis; the practical implication is that fresh-domain rotation must operate at the chain-construction stage, not at the chain-classification stage. Cycle 2+ will test whether the pattern improves under recalibration <code>rec-004</code>.</div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- §5.8 THEORETICAL IMPLICATIONS -->
+<!-- ============================================================ -->
+<section id="rp"><h2>§5.8 — <em>Theoretical Implications</em></h2>
+<span class="skey">three citation-ready paragraphs &middot; exploratory in Cycle 1 per protocol §12</span>
+
+<div class="card">
+<h3>Forecasting under Knightian uncertainty</h3>
+<p>Cycle 1 produces an empirical phenomenology of forecast invalidation under deep uncertainty. Of 31 non-held conditional chains across the 30-day cycle, 48% broke at the velocity-miscalibration point (Type-V) and 29% at the spurious-hit point (Type-VII) — a distribution in which the theoretically loaded Knightian categories (Type-I agentic novelty as primary, Type-II competitive recursion) appear far less frequently than the velocity and structural-mechanism categories. The pattern suggests that under contemporary structural conditions, forecasting apparatuses systematically <em>mis-time</em> rather than <em>mis-locate</em> the structural transitions, and that the dominant failure mode is mechanism-substitution (the chain achieves narrative validation through a structurally different pathway) rather than outright invalidation. Meta-principle <code>mp-002</code> — that suspended contradictions function as latent buffers absorbing predicted forcing-function activations — supplies a candidate empirical mechanism for theoretical work on buffered cascade dynamics: the pattern emerged here as a state-space configuration in which co-present contradictory states (ceasefire-and-blockade, talks-and-strikes) produced a forecast-failure mode the binary action-set framework did not contain.</p>
+</div>
+
+<div class="card">
+<h3>LLM cognition under deep uncertainty</h3>
+<p>Cycle 1's break-point distribution combined with the LLM cognitive signature distribution (S2 32%, S7 29%, S4 13%, S1 and S3 10% each, S5 and S6 3% each) constitutes a within-architecture baseline: one model, one prompting setup, one editorial discipline, 30 daily briefings, 136 chains, 31 non-Held chains tagged across two parallel taxonomies. The natural next step is a multi-architecture experiment in which the same Inference Engine prompt is run against different LLM backbones over the same 30-day event field, with each backbone's chains tagged against the same S1–S7 taxonomy. The hypothesis the experiment would adjudicate is whether S1 (mean-trajectory regression) and S2 (narrative-time compression) dominance is general to LLM plausibility-engines under Knightian uncertainty — in which case <code>mp-010</code> promotes to canonical and the cognitive-architecture-induced velocity miscalibration becomes an empirical phenomenon distinct from the Knightian timing-indeterminacy floor — or whether the dominance is architecture-specific, in which case the cross-architecture spread becomes the empirical anchor for cognitive-pluralism arguments about analytical-ensemble design. The audit's diagnostic-of-LLM-cognition wing is operational at this point and produces falsifiable cross-architecture comparisons.</p>
+</div>
+
+<div class="card">
+<h3>AI–human ensembles for analytical work</h3>
+<p>The Contingency Audit itself is the cycle's most generative instance of the AI–human analytical ensemble it studies. The audit is performed by an AI partner (pattern-of-pattern recognition across 30 prior briefings) operating on the outputs of an AI partner (pattern recognition across daily structural events) under the periodic re-framing of a human partner (protocol design and recalibration discipline). Cycle 1 produced 10 substantive provisional meta-principles, the vast majority of which surface mechanisms (suspended-contradiction-as-buffer, calibrated-discount-as-response, coordination-bifurcation-under-stress, mean-trajectory-regression in chain timing) that no individual daily briefing could have surfaced from inside its own cycle. The §5.9 recalibrations are themselves the operational form of periodic re-framing, and the Cycle-2 verification criteria provide the falsification structure that distinguishes a working analytical ensemble from a recursive-narrowing collapse. The pattern that emerges across this cycle is that the periodic-re-framing layer is structurally necessary to the apparatus, not optional — without it, the daily layer's recursive narrowing has no counter-weight.</p>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- §5.9 RECALIBRATIONS -->
+<!-- ============================================================ -->
+<section id="rc">
+<h2>§5.9 — <em>Recalibrations for the Next 30</em></h2>
+<span class="skey">3-5 concrete adjustments &middot; with empirical basis, tradeoff, and verification criteria</span>
+
+<p style="color:var(--t3);font-size:.94rem;margin-bottom:1.4rem;line-height:1.6">Per protocol §12, Cycle 1 recalibrations are intentionally modest in scope — aggressive recalibration based on a single cycle would over-fit. Each recalibration cites the Cycle 1 empirical basis, names the tradeoff, and specifies how Cycle 2 will determine whether it took hold.</p>
+
+<div class="recal">
+<div class="rid">REC-001 · STATE-ACTOR CHAIN STRUCTURE</div>
+<div class="rch">Inference Engine chains involving state actors with optionality must include an explicit Suspended-Contradiction-Buffer term naming the third option (durable silence, back-channel substitution, co-presence of contradictory states) the chain's binary action-set does not contain.</div>
+<div class="rrow">
+<div class="lab">Empirical basis</div><div class="val">Six chains (002-ie-1, 003-ie-1, 009-ie-2, 010-ie-1, 024-ie-1, 025-ie-3) broke at step Y because state actors with optionality used the third option. Meta-principle <code>mp-001</code>.</div>
+<div class="lab">Tradeoff</div><div class="val">Adds verbosity to chains; reduces apparent explanatory power because chains end with named uncertainty rather than confident terminal claims; risks reading as hedge.</div>
+<div class="lab">Verification</div><div class="val">Briefings 031–060 should show ≥75% of state-actor chains include an explicit Suspended-Contradiction-Buffer slot. The Cycle 2 audit will count slot-present vs slot-absent chains and report whether slot-present chains have a different break-type distribution. If Type-V/Type-VII rate drops in slot-present chains, the recalibration took hold.</div>
+</div>
+</div>
+
+<div class="recal">
+<div class="rid">REC-002 · SPURIOUS-HIT TEST PER CHAIN</div>
+<div class="rch">Every chain terminating in 'Z follows from Y' must include a named Spurious-Hit Test: how would the chain be falsified if the surface outcome arrived via a structurally different mechanism? The test must be answerable with cycle-window observations.</div>
+<div class="rrow">
+<div class="lab">Empirical basis</div><div class="val">9 chains classified Held-Spurious (29% of all non-held; meta-principle <code>mp-003</code>). The briefing repeatedly achieved narrative validation while the structural understanding was wrong. Type-VII is the failure mode the briefing has the strongest incentive not to see.</div>
+<div class="lab">Tradeoff</div><div class="val">Forces chain authors to articulate falsification conditions before the surface outcome is known; some chains will be marked spurious even when structural intuition was substantially correct. The cost is honesty; the gain is cumulative credibility.</div>
+<div class="lab">Verification</div><div class="val">Briefings 031–060 should show every X→Y→Z chain accompanied by a Spurious-Hit-Test sentence. Cycle 2 audit will report Type-VII rate; if Type-VII falls below 20% (down from 29%), the recalibration is working.</div>
+</div>
+</div>
+
+<div class="recal">
+<div class="rid">REC-003 · SANCTUARY DISCOUNT FACTOR</div>
+<div class="rch">Chains operating on rhetorical-declarative dynamics (presidential statements, ceasefire declarations, sanctions announcements) must explicitly weight transmission by the marketplace's accumulated calibration history — apply a Sanctuary Discount factor to predicted price/policy responses when the announcement-form has been routinized into discount.</div>
+<div class="rrow">
+<div class="lab">Empirical basis</div><div class="val">Six chains (003-ie-7, 006-ie-1, 013-ie-1, 014-ie-3, 029-ie-1, 030-ie-1) over-weighted declarative transmission. Sanctuary Discount (Briefing 030) is the empirical name for the cycle-wide pattern; meta-principle <code>mp-006</code>.</div>
+<div class="lab">Tradeoff</div><div class="val">Some declarations will produce outsized responses (the calibration is not infinitely durable); chains that apply the discount will under-predict in those cases. Asymmetry is acceptable because over-prediction has been the dominant cycle-1 error.</div>
+<div class="lab">Verification</div><div class="val">Briefings 031–060 should show explicit reference to marketplace-calibration-state in chains involving major declaration events. Cycle 2 should report whether chains containing the discount factor are more accurate at the price-transmission step than chains without it.</div>
+</div>
+</div>
+
+<div class="recal">
+<div class="rid">REC-004 · NON-CORRIDOR CHAIN ALLOCATION</div>
+<div class="rch">Allocate explicit non-corridor analytical bandwidth at the chain-construction stage, not the chain-classification stage. The Inference Engine should generate ≥1 chain per briefing originating in a non-corridor domain (Africa, Latin America, South/Southeast Asia, demographics, critical minerals, climate-finance, robotics, quantum).</div>
+<div class="rrow">
+<div class="lab">Empirical basis</div><div class="val">Six chains (015-ie-3, 021-ie-1, 021-ie-5, 023-ie-2, 024-ie-1, 026-ie-2) broke or under-resolved because peripheral signals compounded in the latency-phase between corridor cycles. Meta-principle <code>mp-004</code>; Peripheral Assertion (Briefing 021); persistently-absent anomaly cluster on Sudan/Sahel/Horn-of-Africa.</div>
+<div class="lab">Tradeoff</div><div class="val">Some non-corridor chains will be premature or under-developed; chain-quality distribution will widen. Acceptable because Cycle 1 evidence is that corridor-only chain construction produces a structural blindspot Cycle 2+ cannot afford.</div>
+<div class="lab">Verification</div><div class="val">Briefings 031–060 should show ≥1 Inference Engine chain per briefing from a non-corridor domain (≥30 chains over the cycle). Cycle 2 audit will report count and whether non-corridor chains have a different break-type distribution (hypothesis: more Type-I, fewer Type-V) than corridor chains.</div>
+</div>
+</div>
+
+<div class="recal">
+<div class="rid">REC-005 · MULTI-SCALE COMPOUND FLAGGING</div>
+<div class="rch">Multi-scale failure-pattern compounds (actor-scale + regime-scale + institutional-scale failures within the same week) should be explicitly named as such in the Force Interaction Matrix when they occur, and the Inference Engine should generate an additional chain per compound interrogating the substitute-regime architecture.</div>
+<div class="rrow">
+<div class="lab">Empirical basis</div><div class="val">Five chains (023-ie-2, 024-ie-3, 025-ie-1, 025-ie-2, 026-ie-2) required multi-scale analysis to be even legible. Meta-principle <code>mp-009</code>; the cycle-end week (Briefings 023-027) instantiated three simultaneous compound failures (Mali keystone-removal, UAE OPEC cartel-dissolution, War Powers statutory-bypass).</div>
+<div class="lab">Tradeoff</div><div class="val">Adds analytical load to the Force Interaction Matrix; risks producing chains that span scales the briefing's apparatus tracks unevenly. Acceptable because the post-2024 configuration's empirical signature appears to be exactly this compound.</div>
+<div class="lab">Verification</div><div class="val">Briefings 031–060 should show explicit multi-scale-compound flagging when simultaneous actor + regime + institutional failures occur. Cycle 2 audit will report compound count and whether substitute-regime chains generated from compounds have higher Held rates than chains derived from single-scale events.</div>
+</div>
+</div>
+
+<div class="recal">
+<div class="rid">REC-006 · HALF-LIFE INTERVALS REPLACE POINT TIMING</div>
+<div class="rch">Every chain must include a half-life or temporal-uncertainty interval, not a point estimate of when Z arrives.</div>
+<div class="rrow">
+<div class="lab">Empirical basis</div><div class="val">Type-V dominance (48% of non-Held chains) plus the new LLM cognitive signature analysis: S1 (mean-trajectory regression) and S2 (narrative-time compression) jointly account for 13 of 31 primary signatures (42%) and concentrate in Type-V × {S1, S2} (11 of 15 Type-V chains). Half-life framing is robust to both — it surfaces the timing uncertainty rather than committing to a centroid the model averaged from training data, and it forces narrative compression to declare itself as a range rather than a date. Meta-principle <code>mp-010</code> names this directly.</div>
+<div class="lab">Tradeoff</div><div class="val">Adds verbosity to chains; reduces apparent confidence in the chain's terminal step. Reading experience may feel more hedged. Some chains will lose rhetorical force when "within 14 days" becomes "half-life 30–90 days, modal 14 days."</div>
+<div class="lab">Verification</div><div class="val">Briefings 031–060 should show ≥80% of chains with explicit half-life or interval. Cycle 2 audit should show Type-V incidence drop OR show that the residual Type-V is structurally different in character (more S1-floor, less S2-narrative-compression).</div>
+</div>
+</div>
+
+<div class="recal">
+<div class="rid">REC-007 · PROSPECTIVE LLM SIGNATURE TAGGING</div>
+<div class="rch">Every non-Held chain emitted in Briefings 031–060 gets tagged with its dominant LLM cognitive signature (S1–S7) at chain creation, not retrospectively.</div>
+<div class="rrow">
+<div class="lab">Empirical basis</div><div class="val">Cycle 1's signature classification is retrospective and inferential. The taxonomy was applied after the chain's break was already known, which means the tagging is at risk of being a rationalization of the break-type assignment rather than a prospective claim about which cognitive mechanism is most likely to fail. Prospective tagging produces cleaner data and forces the chain author to confront the model's likely failure mode at the moment of generation, when the prediction is still falsifiable.</div>
+<div class="lab">Tradeoff</div><div class="val">Adds a per-chain annotation step; risks the tagging itself becoming pro forma. Mitigation: signature must be selected with a one-sentence justification grounded in the chain text, not just a label. The justification field is where the discipline lives.</div>
+<div class="lab">Verification</div><div class="val">Briefings 031–060 chain entries should carry an <code>llm_signature</code> tag with one-sentence justification. Cycle 2 audit can compare prospective vs retrospective distributions on the Cycle 1 chains as validation: if cells align within ±20%, the retrospective tagging was approximately accurate. If they diverge, the cross-cycle promotion of <code>mp-010</code> must wait.</div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- §5.10 LLM COGNITIVE SIGNATURE ANALYSIS -->
+<!-- ============================================================ -->
+<section id="sg">
+<h2>§5.10 — <em>LLM Cognitive Signature Analysis</em></h2>
+<span class="skey">parallel taxonomy &middot; what failed in the model that generated the chain &middot; cross-tabulated against Type I-VII</span>
+
+<p style="color:var(--t3);font-size:.94rem;margin-bottom:1.0rem;line-height:1.6">The audit has a dual purpose. The Type I–VII taxonomy classifies <em>what failed in the world</em> — the structural mechanisms by which contingent forecasts break under Knightian uncertainty. The S1–S7 LLM Cognitive Signature taxonomy classifies <em>what failed in the model that generated the chain</em>. The two taxonomies are parallel but not identical. The same chain can be (Type-V × S1) or (Type-V × S2) — different LLM cognitive failures producing the same structural break. The cross-tabulation is the analytical product.</p>
+
+<p style="color:var(--t3);font-size:.94rem;margin-bottom:1.4rem;line-height:1.6">Cycle 1's signature classification is <strong style="color:var(--ambb)">retrospective</strong>. From Cycle 2 forward, signatures are tagged at chain creation per <code>rec-007</code>, which produces cleaner data. The retrospective pass establishes the taxonomy and provides Cycle 1's baseline distribution but should not be over-interpreted. The S1–S7 layer is operational at this point — the audit can serve as a field instrument for empirical work on LLM cognition under deep uncertainty, with cross-architecture replication as the natural next step.</p>
+
+<div class="card">
+<h3>S1–S7 Taxonomy</h3>
+<table class="tbl">
+<colgroup><col style="width:11rem"><col style="width:auto"><col style="width:7rem"></colgroup>
+<thead><tr><th>Signature</th><th>Mechanism</th><th>Maps to</th></tr></thead>
+<tbody>
+<tr><td class="id">S1 — Mean-trajectory regression</td><td>Model averages historical cascade analogues; specific-instance velocity smoothed toward training-data mean. <em>Empirical signature: chains whose Y-step timing matches the centroid of historical analogues but not the actual instance.</em></td><td><span class="chip">Type-V</span></td></tr>
+<tr><td class="id">S2 — Narrative over physical</td><td>Causal grammar parses cleanly; physics doesn't. Months get compressed to days because narrative tokens have their own clock. <em>Empirical signature: chains where the inferential step is rhetorically compact but materially heavy.</em></td><td><span class="chip">Type-V</span> <span class="chip">Type-VII</span></td></tr>
+<tr><td class="id">S3 — Plausibility-mass concentration</td><td>Emits most-probable completion; black-swan / low-prior actions under-weighted. <em>Empirical signature: chains conditioning on the modal actor / move and missing the off-distribution actor or move.</em></td><td><span class="chip">Type-I</span></td></tr>
+<tr><td class="id">S4 — Reflexive blindness</td><td>Doesn't simulate actors reading consensus prediction and adjusting; Hayek-Lucas-Goodhart territory invisible. <em>Empirical signature: chains failing because the predicted actor read the prediction and acted to invalidate it.</em></td><td><span class="chip">Type-II</span></td></tr>
+<tr><td class="id">S5 — Categorical stickiness</td><td>Anchors on training-time categories when events have moved past them or the categories themselves are dissolving. <em>Empirical signature: chains using a noun whose referent has shifted under it.</em></td><td><span class="chip">Type-VI</span></td></tr>
+<tr><td class="id">S6 — Buffer blindness</td><td>Treats persistent states as constants; training data over-represents persistence vs transition. <em>Empirical signature: chains assuming a buffer (SPR, dollar primacy, OPEC discipline, suspended-contradiction) and silent on its variability.</em></td><td><span class="chip">Type-IV</span></td></tr>
+<tr><td class="id">S7 — Mechanism-outcome decoupling</td><td>Emits outcome without binding to mechanism; any mechanism producing Z counts as confirmation. <em>Empirical signature: chains whose Z-step is named generically enough that any mechanism producing Z reads as confirmation.</em></td><td><span class="chip">Type-VII</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="svgwrap">
+<h4>Frequency Distribution — Primary LLM Cognitive Signature (n=31 non-held chains)</h4>
+<svg class="dist" viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LLM cognitive signature frequency distribution by primary signature">
+<style>
+.barg{fill:#dcb267}
+.barg.lo{fill:#9e7434;opacity:.55}
+.barg.zero{fill:#5f6d87;opacity:.30}
+.lblg{fill:#cdd6e4;font-family:'Source Sans 3',sans-serif;font-size:13px}
+.lblsmg{fill:#8e9bb5;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em}
+.cntg{fill:#ecca8e;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500}
+.axg{stroke:#5f6d87;stroke-width:0.5}
+</style>
+<!-- horizontal bars; max value = 10 (S2); bar width = (count / 10) * 470, x-start at 200 -->
+<!-- S2: 10 -->
+<g><text x="0" y="32" class="lblg">S2 — Narrative over Physical</text><text x="0" y="48" class="lblsmg">RHETORICAL COMPRESSION OF MULTI-WEEK PHYSICS</text><rect class="barg" x="200" y="20" width="470" height="32" rx="2"/><text x="680" y="42" class="cntg">10 (32%)</text></g>
+<!-- S7: 9 -->
+<g><text x="0" y="92" class="lblg">S7 — Mechanism-Outcome Decoupling</text><text x="0" y="108" class="lblsmg">GENERIC Z ABSORBS ANY MECHANISM</text><rect class="barg" x="200" y="80" width="423" height="32" rx="2"/><text x="633" y="102" class="cntg">9 (29%)</text></g>
+<!-- S4: 4 -->
+<g><text x="0" y="152" class="lblg">S4 — Reflexive Blindness</text><text x="0" y="168" class="lblsmg">ACTOR READ THE PREDICTION; MODEL DIDN'T NOTICE</text><rect class="barg" x="200" y="140" width="188" height="32" rx="2"/><text x="398" y="162" class="cntg">4 (13%)</text></g>
+<!-- S1: 3 -->
+<g><text x="0" y="212" class="lblg">S1 — Mean-Trajectory Regression</text><text x="0" y="228" class="lblsmg">HISTORICAL CENTROID AVERAGES SPECIFIC INSTANCE</text><rect class="barg" x="200" y="200" width="141" height="32" rx="2"/><text x="351" y="222" class="cntg">3 (10%)</text></g>
+<!-- S3: 3 -->
+<g><text x="0" y="272" class="lblg">S3 — Plausibility-Mass Concentration</text><text x="0" y="288" class="lblsmg">MODAL COMPLETION; LOW-PRIOR ACTORS INVISIBLE</text><rect class="barg" x="200" y="260" width="141" height="32" rx="2"/><text x="351" y="282" class="cntg">3 (10%)</text></g>
+<!-- S6: 1 -->
+<g><text x="0" y="316" class="lblg">S6 — Buffer Blindness</text><text x="0" y="332" class="lblsmg">PERSISTENT STATES TREATED AS CONSTANTS (5 SECONDARY)</text><rect class="barg lo" x="200" y="304" width="47" height="28" rx="2"/><text x="257" y="324" class="cntg">1 (3%)</text></g>
+<!-- S5: 1 -->
+<g><text x="0" y="352" class="lblg">S5 — Categorical Stickiness</text><text x="0" y="368" class="lblsmg">CATEGORY REFERENT SHIFTED (3 SECONDARY)</text><rect class="barg lo" x="200" y="340" width="47" height="18" rx="2"/><text x="257" y="354" class="cntg">1 (3%)</text></g>
+<!-- baseline -->
+<line class="axg" x1="200" y1="14" x2="200" y2="358"/>
+</svg>
+<p style="margin-top:.7rem;color:var(--t4);font-size:.78rem;line-height:1.55">S2 (narrative-time compression) and S7 (mechanism-outcome decoupling) jointly account for 19 of 31 primary signatures (61%). Together they describe an LLM that writes tight causal stories on the briefing's clock and names outcomes broadly enough that any mechanism producing them reads as confirmation. <strong style="color:var(--ambb)">S6 buffer-blindness is under-represented as primary (1 case) but appears 5× as secondary</strong> — mirroring the Type-IV pattern from §5.4; both diagnose the same suspended-contradiction blindness from different sides.</p>
+</div>
+
+<div class="card">
+<h3>Per-Signature Findings (Cycle 1)</h3>
+
+<h4>S1 — Mean-trajectory regression <span class="lab">3 chains · 10%</span></h4>
+<p>Concentrated in chains modeling Saudi response to UAE OPEC departure (<span class="kk">024-ie-1</span>, <span class="kk">025-ie-3</span>) and the canonical Hormuz-cascade chain (<span class="kk">001-ie-1</span>). In all three cases, the chain conditioned on the historical centroid of analogous events: every prior cartel-anchor episode (1973, 1986, 2014, 2020) produced a Saudi public statement within days; every prior chokepoint cascade arc compresses through similar multi-stage transmission. Durable Saudi silence and the SPR/futures-spot buffer were specific-instance properties the model averaged away.</p>
+
+<h4>S2 — Narrative over physical <span class="lab">10 chains · 32% · largest cell</span></h4>
+<p>The dominant primary signature of the cycle. Concentrated in Iran-cascade chains (<span class="kk">004-ie-1</span>, <span class="kk">005-ie-1</span>, <span class="kk">006-ie-1</span>, <span class="kk">009-ie-2</span>, <span class="kk">011-ie-2</span>, <span class="kk">012-ie-1</span>, <span class="kk">013-ie-1</span>, <span class="kk">016-ie-1</span>) plus two Type-III chains where coupling assumption masks narrative compression (<span class="kk">004-ie-2</span>, <span class="kk">023-ie-1</span>). The pattern: the chain composes a tight causal arc — communiqué → spot-futures gap → arbitrageurs absorb losses → bifurcation propagates — that is rhetorically compact but materially demands weeks of capital reallocation, regulatory action, or diplomatic motion. Settlement-velocity-vs-physical-reality is the canonical S2 failure shape.</p>
+
+<h4>S3 — Plausibility-mass concentration <span class="lab">3 chains · 10%</span></h4>
+<p>The Pakistan-arbiter cluster (<span class="kk">010-ie-1</span>, <span class="kk">011-ie-3</span>, <span class="kk">015-ie-2</span>): chains that emitted the modal Trump-IRGC bilateral completion and under-weighted the off-distribution Pakistan-Oman shuttle architecture that actually absorbed the period. Pakistan as a primary mediator is rare in training-data exemplars of Iran-US negotiations; the model concentrates plausibility on bilateralism. S3 also appears as secondary in 4 additional chains — its true incidence is higher than the primary count suggests.</p>
+
+<h4>S4 — Reflexive blindness <span class="lab">4 chains · 13%</span></h4>
+<p>The cleanest theoretical match. Every Type-II break in the cycle is also a primary S4: Trump anticipating his own posted threat (<span class="kk">002-ie-1</span>, <span class="kk">003-ie-1</span>); Hezbollah declining to confirm the predicted barrage (<span class="kk">006-ie-5</span>); Israeli cabinet declining the predicted self-confirming-collapse (<span class="kk">009-ie-3</span>). In each case the predicted actor read the consensus and adjusted. The model emits the actor's action without modeling the actor's awareness of the prediction.</p>
+
+<h4>S5 — Categorical stickiness <span class="lab">1 primary · 3 secondary</span></h4>
+<p>One primary instance (<span class="kk">010-ie-3</span>): chain anchors on "Lebanese state" as a coherent autonomy-bearing actor whose referent had already begun to dissolve into a Hezbollah-veto compound. Three secondary appearances suggest the under-classification trap: categories may have been more sticky than the primary count surfaces, particularly around "FOMC unified" and "ceasefire scope" whose referents were drifting under the chain.</p>
+
+<h4>S6 — Buffer blindness <span class="lab">1 primary · 5 secondary</span></h4>
+<p>One primary instance (<span class="kk">017-ie-1</span>) where the suspended-contradiction architecture absorbed the predicted 36-hour escalation. The 5 secondary appearances cluster on the same suspended-contradiction blindness — a buffer the model could not see as a buffer because its persistence was the whole point. This is the cognitive-layer mirror of the Type-IV under-classification noted in §5.4: both diagnose the same blindspot from different sides.</p>
+
+<h4>S7 — Mechanism-outcome decoupling <span class="lab">9 chains · 29% · second-largest cell</span></h4>
+<p>The Type-VII cluster mapped one-to-one onto S7. Chains <span class="kk">002-ie-2</span>, <span class="kk">004-ie-4</span>, <span class="kk">012-ie-2</span>, <span class="kk">013-ie-3</span>, <span class="kk">014-ie-3</span>, <span class="kk">019-ie-3</span>, <span class="kk">020-ie-2</span>, <span class="kk">022-ie-5</span>, <span class="kk">024-ie-4</span> all share the structural form: Z is named generically enough (cascade-resolution-fails, suspended-contradiction-collapses-or-hardens, insurer-reprices, shadow-settlement-persists) that any mechanism producing Z confirms the chain. The cognitive failure: the model emits outcome without binding to mechanism. The risk noted in the YAML caveat: S7 and Type-VII are at risk of becoming a tautology if defined too loosely; Cycle 2 prospective tagging will help discipline the boundary.</p>
+</div>
+
+<div class="card">
+<h3>Cross-Tabulation — Type × Signature</h3>
+<table class="tbl">
+<colgroup><col style="width:9rem"><col style="width:6rem"><col style="width:6rem"><col style="width:6rem"><col style="width:6rem"><col style="width:6rem"><col style="width:6rem"><col style="width:6rem"></colgroup>
+<thead><tr><th>Type \ Sig</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th><th>S5</th><th>S6</th><th>S7</th></tr></thead>
+<tbody>
+<tr><td><strong>Type-V</strong> (15)</td><td><span class="chip">3</span></td><td><span class="chip">8</span></td><td><span class="chip">3</span></td><td>—</td><td>—</td><td><span class="chip">1</span></td><td>—</td></tr>
+<tr><td><strong>Type-VII</strong> (9)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="chip">9</span></td></tr>
+<tr><td><strong>Type-II</strong> (4)</td><td>—</td><td>—</td><td>—</td><td><span class="chip">4</span></td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td><strong>Type-III</strong> (3)</td><td>—</td><td><span class="chip">2</span></td><td>—</td><td>—</td><td><span class="chip">1</span></td><td>—</td><td>—</td></tr>
+<tr><td><strong>Type-I</strong> (0)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td><strong>Type-IV</strong> (0)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+<tr><td><strong>Type-VI</strong> (0)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+</tbody>
+</table>
+<p style="margin-top:.9rem;color:var(--t3);font-size:.88rem;line-height:1.55"><strong style="color:var(--ambb)">Three cells carry 26 of 31 chains (84%):</strong> Type-V × S2 (8 chains; the largest single cell — narrative-time compression of multi-week processes), Type-VII × S7 (9 chains; mechanism-outcome decoupling on generic Z-steps), Type-II × S4 (4 chains; reflexive blindness when actors read the prediction). Type-V × S1 (3 chains) is the Saudi-silence and Hormuz-cascade cluster — chains whose Y-step timing matches the centroid of historical analogues but not the specific instance. The Type-V column shows the cycle's clearest cross-tabulation: the same structural break (timing miscalibration) emerged from four distinct cognitive failures (S1, S2, S3, S6), confirming that signature classification is not redundant with break-type classification — it diagnoses a different layer.</p>
+</div>
+
+<div class="card">
+<h3>Honest Caveat</h3>
+<p>Three Cycle 1 calls reasonable readers might dispute. (1) <strong style="color:var(--ambb)">The Type-V × S1 vs Type-V × S2 split.</strong> Many Type-V chains exhibit both signatures; the primary assignment depends on which is judged the proximate cognitive failure. Saudi-silence chains are unambiguously S1; Iran-cascade compression chains are unambiguously S2; chains that involve both centroid-averaging and narrative-compaction were assigned by which feels more load-bearing in the chain text. (2) <strong style="color:var(--ambb)">S7 and Type-VII as near-synonyms.</strong> Mechanism-outcome decoupling and spurious-hit are nearly the same construction at different levels. The risk is tautology; the discipline is to write the S7 justification grounded in the chain's specific Z-step rather than re-stating that the outcome arrived via a different mechanism. Cycle 2 prospective tagging is the test. (3) <strong style="color:var(--ambb)">S6 buffer-blindness as primary.</strong> Only one chain (<span class="kk">017-ie-1</span>) was assigned S6 primary, but the suspended-contradiction blindness is arguably the deepest cognitive failure of the cycle — appearing 5× as secondary. The conservative call kept S6 at 1 primary because each individual chain's proximate failure was timing or generic-Z; an aggressive reader could promote 4-5 of those secondary appearances to primary, which would reshape the distribution.</p>
+</div>
+</section>
+
+<footer>
+<hr class="head-rule">
+<p><strong style="color:var(--ambb);font-family:'JetBrains Mono',monospace;font-size:.74rem;letter-spacing:.10em;text-transform:uppercase">Epistemological note.</strong> This artifact differs from a daily briefing in three ways. First, it operates at a cadence of 30 (monthly) rather than daily — its analytical product is meta-level, not event-level. Second, its question is structural-mechanism, not predictive accuracy: the audit refuses to score hit-rates because under Knightian uncertainty hit-rate framing is a category error. Third, the audit's load-bearing artifact is the structured YAML companion to this document — an accumulating record that subsequent cycles will read programmatically; this HTML is the human-readable presentation. The audit's most consequential durable contribution is the canonical meta-principles list, which after three cycles should remain small (target 5-10 canonical principles). All Cycle 1 principles are PROVISIONAL.</p>
+<p>Generated 2026-05-04 alongside Briefing 030. No prior cycle YAML existed; Cycle 2 will be the first cross-cycle synthesis. The §5.9 recalibrations apply to Briefings 031–060.</p>
+<div class="knight">"We soon observe that little or nothing is really fixed but all is a perpetual flux." — Frank H. Knight, <em>Risk, Uncertainty and Profit</em> (1921)</div>
+</footer>
+
+</div>
+</body>
+</html>

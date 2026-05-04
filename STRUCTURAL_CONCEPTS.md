@@ -1,6 +1,6 @@
 # Structural Concepts Taxonomy
 
-**Last updated:** 2026-05-04 (after Briefing 030)
+**Last updated:** 2026-05-04 (after Briefing 030; Cycle 1 audit attestation appended)
 **Concepts tracked:** 39
 **Meta-categories:** 5
 
@@ -166,3 +166,9 @@ The current 5-meta-category structure is the snapshot as of Briefing 007. As the
 - The grouping may need to be revised entirely if the vocabulary develops in directions the current structure cannot accommodate
 
 The taxonomy is a working tool, not a settled framework.
+
+---
+
+## Cycle 1 Audit Attestation
+
+**Cycle 1 (Briefings 001–030) verified, 2026-05-04.** All 39 concepts substantively re-cited within the cycle window. **Zero retirements.** No reactivations (Cycle 1 has no prior retirement list to draw from). META-6 candidate "Verification Asymmetry" formally **tabled** per Cycle 1 audit; reopen condition: Cycle 2 produces ≥3 instantiations that do not cleanly map to META-1 Coupling Failure structure. Full reasoning, the 136-chain inference inventory, and the Type-I–VII break-point distribution recorded in `synthesis/cycle-001.yaml`. Cycle 2 substantive-reuse monitoring list: `weekend-translation`, `sanctuary-discount`, `optionality-arbitrage`.
