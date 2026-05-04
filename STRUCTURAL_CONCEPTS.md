@@ -1,7 +1,7 @@
 # Structural Concepts Taxonomy
 
-**Last updated:** 2026-05-02 (after Briefing 028)
-**Concepts tracked:** 37
+**Last updated:** 2026-05-04 (after Briefing 030)
+**Concepts tracked:** 39
 **Meta-categories:** 5
 
 This document is the canonical reference for the tectonic briefing's structural vocabulary. It is organized into five meta-categories that represent higher-level structural patterns, with individual concepts grouped under the meta-category they instantiate. New concepts entering the vocabulary should be evaluated against this taxonomy and either placed under an existing meta-category or used as the warrant for proposing a new one.
@@ -123,6 +123,10 @@ The taxonomy is itself versioned. As the vocabulary grows, the meta-category str
 - **Constructive Ambiguity** *(Briefing 004)* — When a diplomatic agreement succeeds precisely because its terms support mutually exclusive interpretations. Works only as long as nobody tests it; the testing destroys the work-doing power of the ambiguity.
 
 - **Ceasefire Acceleration** *(Briefing 004)* — When a pause in kinetic conflict accelerates the structural, institutional, and economic transformations the conflict initiated. The nominal function of the ceasefire (pause) inverts under stress (acceleration).
+
+- **Electoral Correction** *(Briefing 009)* — Entrenched illiberal rule reversed through democratic processes; the form of the institution holds the work-doing power even when the substantive trajectory had appeared to decouple from it.
+
+- **Sanctuary Discount** *(Briefing 030)* — Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment. The announcement-form persists; the credit-granting response has hollowed. Project Freedom's ~$0.70 muted-Brent reception (versus the $78.10 analyst-baseline) on 2026-05-04 is the canonical instance. Inverse companion to Sabbath Operationalization (Briefing 029): the executive branch's temporal-architecture advantage is being neutralized at marketplace level by accumulated calibration. The Coupling Failure operates at the response-architecture level — perception is intact (arguably sharpened) while the price-reaction has been routinized into a calibrated discount.
 
 ---
 
