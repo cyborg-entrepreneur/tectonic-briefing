@@ -1,7 +1,7 @@
 # Structural Concepts Taxonomy
 
-**Last updated:** 2026-05-04 (after Briefing 030; Cycle 1 audit attestation appended)
-**Concepts tracked:** 39
+**Last updated:** 2026-05-05 (after Briefing 031)
+**Concepts tracked:** 40
 **Meta-categories:** 5
 
 This document is the canonical reference for the tectonic briefing's structural vocabulary. It is organized into five meta-categories that represent higher-level structural patterns, with individual concepts grouped under the meta-category they instantiate. New concepts entering the vocabulary should be evaluated against this taxonomy and either placed under an existing meta-category or used as the warrant for proposing a new one.
@@ -127,6 +127,8 @@ The taxonomy is itself versioned. As the vocabulary grows, the meta-category str
 - **Electoral Correction** *(Briefing 009)* — Entrenched illiberal rule reversed through democratic processes; the form of the institution holds the work-doing power even when the substantive trajectory had appeared to decouple from it.
 
 - **Sanctuary Discount** *(Briefing 030)* — Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment. The announcement-form persists; the credit-granting response has hollowed. Project Freedom's ~$0.70 muted-Brent reception (versus the $78.10 analyst-baseline) on 2026-05-04 is the canonical instance. Inverse companion to Sabbath Operationalization (Briefing 029): the executive branch's temporal-architecture advantage is being neutralized at marketplace level by accumulated calibration. The Coupling Failure operates at the response-architecture level — perception is intact (arguably sharpened) while the price-reaction has been routinized into a calibrated discount.
+
+- **Tail Calibration Failure** *(Briefing 031)* — The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk envelope; the rebound is amplified by the prior under-pricing as every dependency the modal discount entered is repriced simultaneously. The empirical signature is Brent $77.40 (Monday open, 2026-05-04) → $116.55 (Tuesday intraday peak, 2026-05-05) with $107.38 CME settlement after Hegseth's threshold-framing reassurance — a roughly 50% surge within twenty-four hours of the discount's operation. The structural mechanism: the marketplace's calibrated discount is constructed against the modal trajectory of accumulated weekend-window announcements without a separate tail-risk channel, so when the operational tail materializes the discount's prior under-pricing is repriced through every position that had embedded it. **Cross-references META-1 Coupling Failure** (the discount-architecture is decoupled from the tail-risk channel that would have constrained it) **and META-3 Threshold Cascade** (the rebound itself is a cascade through every dependency the prior under-pricing entered). **Recursive structural finding:** the pattern instantiates the Cycle 1 audit's S1 LLM Cognitive Signature (mean-trajectory regression) at marketplace level — a homology, not an identity. The operation by which an LLM averages historical analogues to emit modal completion and the operation by which the marketplace prices the modal trajectory of weekend-window announcements are the same operation at different scales, and they fail in the same way when the world is not modal.
 
 ---
 
