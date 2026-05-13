@@ -265,3 +265,73 @@ In addition to the existing structural checks (12 section IDs, 2-4 deep dives, f
 - **Does NOT collapse the deep-dive panels into shorter analyses.** Deep dives remain 3-6 paragraphs of sustained argument. The coherence is achieved within that length, not by abbreviating it.
 
 The discipline is a craft constraint, not a content constraint. The briefing's analytical ambition stays the same; the prose carrying it gets tightened.
+
+# ══════════════════════════════════════════════════════════════════
+# FACTUAL VERIFICATION DISCIPLINE — Calibrated 2026-05-13 (after Briefings 038-039)
+# ══════════════════════════════════════════════════════════════════
+
+## The Cross-Year Structural-Template-Projection Failure Mode
+
+On 2026-05-13 Dave flagged that Briefing 039 claimed Trump arrived in Riyadh that morning when he had actually landed in Beijing. Investigation revealed the sub-agent had projected May 2025 events onto May 2026 with high specificity. Affected fabrications: the Saudi Investment Forum + $600B + $142B deals + Gulf tour framing (all 2025 events); the Putin-Medinsky-Istanbul-Thursday delegation specifics (May 2025 template projected onto May 2026); Larry Fink on the Beijing delegation (actual delegation includes Musk, Cook, Huang). Briefing 038 had these fabrications projected forward as predictions; Briefing 039 had them as "confirmed" events.
+
+**The named failure mode: Cross-Year Structural-Template Projection.** The sub-agent's web searches retrieved results that included both 2025 and 2026 content. The search engine does not always cleanly disambiguate, and the sub-agent's confidence calibration treated structurally consistent narratives as factually verified. The May 14-15, 2025 Putin-Medinsky-Istanbul event had the same structural template as the 2026 briefing narrative (Putin declines personal attendance; sends Medinsky-led delegation; Lavrov + Ushakov excluded; Zelenskyy frames as "decorative"; Trump signals from external location). The structural template repeated across years made the 2025 facts indistinguishable from 2026 facts under structural pattern matching.
+
+**Why this matters:** tectonic briefings are externally-facing public artifacts. Factual errors damage credibility and contaminate the structural-vocabulary citation chain. The prose coherence discipline (calibrated 2026-05-13, above) does NOT catch factual errors. Adding factual verification explicitly is the architectural fix.
+
+## Five Rules — Apply on Every Briefing
+
+### Rule 1: Date-stamp every load-bearing factual claim
+
+Each claim that depends on a specific date or event must include the specific date (e.g., "Trump landed in Beijing at 7:51 a.m. ET on May 13, 2026"; "April CPI released May 12, 2026 at 8:30 ET"). If a sub-agent cannot supply the date with high confidence, the claim is provisional and must be flagged for verification before publish.
+
+### Rule 2: Cross-year disambiguation on all WebSearch results
+
+When WebSearch returns content, verify the publication date and event date of each cited result. Any result without a clear 2026 timestamp is treated as historical-context, not as today's-event. If a search result references a recurring annual event (Gulf tours, FOMC meetings, Victory Day, Manhattan Project commemorations) or a named conference (Saudi Investment Forum, Davos, Munich Security Conference), the date of the SPECIFIC instance being referenced must be explicit.
+
+**Specific anti-pattern**: search results from Wikipedia or topic-pages that aggregate multi-year content are particularly prone to causing this failure. When in doubt, prefer recent dated news articles over Wikipedia summaries for current-event verification.
+
+### Rule 3: Structural-template projection check
+
+Before claiming a 2026 event matches a 2025 structural template (Putin-Medinsky-Istanbul, Trump-Riyadh-Gulf-tour, Russian Victory Day mode-switch, FOMC pause-then-cut, OPEC+ production-cut announcement), require **independent 2026-specific confirmation** for the SPECIFIC instance. The same structural pattern occurring twice does not entitle the briefing to assume the second instance has happened; it must be empirically confirmed.
+
+### Rule 4: Five highest-risk factual categories require explicit verification
+
+Each requires verification (date + source + specific details) before publish:
+
+- **Diplomatic events** (summits, talks, ceasefires, treaties): verify date, attendees, venue, outcomes
+- **Economic data** (CPI, employment, GDP, market closes): verify exact numbers + release date + source publication
+- **Major movements of named principals** (Trump, Putin, Xi, Netanyahu, etc.): verify location + time + activity for the specific day claimed
+- **Vocabulary-promotion empirical anchors**: each cross-architecture instance must have a verified 2026 source. Promotion from Cycle 2 candidate to formal vocabulary requires 3 verified instances.
+- **Cycle 2 candidate empirical anchors**: each candidate's naming event must be verified before the candidate enters the monitoring pool
+
+### Rule 5: When in doubt, omit
+
+A briefing that omits a fabrication-prone claim is structurally healthier than a briefing that includes a fabricated claim. The structural-vocabulary apparatus can absorb omitted material; it cannot easily absorb fabricated material. **The sub-agent's prior confidence is not a substitute for factual verification.**
+
+## QC Checklist — Stage 1b (Factual Verification Pass)
+
+Inserted between Stage 1 (prose coherence) and Stage 2 (pre-publish review). Apply before any briefing is published:
+
+- [ ] **Date-stamp audit**: every load-bearing factual claim has a specific 2026 date attached or has been verified as a recurring established fact (e.g., "Mali Day 19" verified against an ongoing tracker).
+- [ ] **Cross-year disambiguation**: every WebSearch result cited as a 2026 event has a verified 2026 timestamp. Wikipedia / topic-page aggregators have been cross-checked against recent dated reporting.
+- [ ] **Structural-template projection check**: any claim that matches a known 2025 structural template (Trump-Gulf-tour, Putin-Medinsky-Istanbul, OPEC+ X, Fed-rate-decision Y) has independent 2026-specific confirmation. Flag and verify.
+- [ ] **High-risk-category verification**: diplomatic events, economic data, principal movements, vocabulary-promotion anchors, and Cycle 2 candidate anchors have all been individually verified against current dated sources.
+- [ ] **Omission preference**: any claim that resisted verification has been omitted rather than included.
+
+## Two-Pass Discipline (updated)
+
+**Stage 1 — Prose coherence (existing)**: apply five-rule coherence checks per the PROSE COHERENCE DISCIPLINE section above.
+
+**Stage 1b — Factual verification (NEW 2026-05-13)**: apply the five-rule factual-verification checks above. Briefing does NOT advance to Stage 2 until Stage 1b passes.
+
+**Stage 2 — Pre-publish review (existing)**: human/Claude pass catches remaining drift before `update-index.py` + `publish.sh`.
+
+## What This Discipline Does NOT Do
+
+- **Does NOT reduce analytical depth.** The feedback_briefing_depth.md rule still applies. Depth and factual accuracy are not in tension; the discipline preserves depth while restoring honesty.
+- **Does NOT strip structural vocabulary candidates.** Candidates can still be named; their empirical anchors just have to be verified before the candidate enters monitoring.
+- **Does NOT collapse deep-dive panels.** Deep dives remain 3-6 paragraphs of sustained argument. Verification operates at the claim level, not the section level.
+
+## Retroactive Scope Check
+
+After this calibration date, any briefing that surfaces a sub-agent's structural-pattern claim with a 2025 historical analog should be retroactively checked for cross-year projection. **Briefings 037, 038, 039 examined and remediated 2026-05-13** (038 received an erratum note; 039 received a surgical rewrite). **Earlier briefings have not yet been audited.** The Day-60 Cycle 2 audit should include a retroactive cross-year-projection check across Briefings 031-039 to verify no other instances of the failure mode are propagating downstream citations.
