@@ -188,3 +188,80 @@ The recursive narrowing problem cannot be fully solved from inside the briefing-
 **Dave's structurally necessary contribution to the briefing process is periodic conceptual redirection** — naming domains that should be added, pushing back on corridor concentration, flagging when a recurring topic has become recursive rather than substantive. This is the human-in-the-loop counterweight to the recursive narrowing, and it cannot be replaced by anything internal to the generation process. The briefing as a sustained intellectual practice is a cyborg ensemble in the strict sense: the AI partner generates structural pattern recognition at scale; the human partner provides the periodic re-framing that keeps the pattern recognition from collapsing into a corridor.
 
 This is named here because it is structurally important to remember on both sides of the partnership.
+
+# ══════════════════════════════════════════════════════════════════
+# PROSE COHERENCE DISCIPLINE — Calibrated 2026-05-13 (after Briefings 037-038)
+# ══════════════════════════════════════════════════════════════════
+
+## The Jargon-Density Drift Problem
+
+Dave flagged on 2026-05-13 that Briefings 037 and 038 had drifted toward dense compound-noun argumentation that obscures rather than carries the structural-analytical message. The structural vocabulary itself is fine — that's the apparatus working — but the prose around the vocabulary has been failing the strategic-concreteness discipline that the scholarly-writing skill already requires.
+
+**Empirical signature of the drift** (examples from 037-038):
+- "the cross-architecture cluster's pattern recognition acquires multi-temporal-scale operation" — five nouns, no concrete verb
+- "the chancellery-marketplace discrimination-gap" — abstract gap of abstract entities
+- "structural-information-arbitrage opportunity" — three hyphenated compounds stacked
+- Paragraphs deploying 5+ named structural-vocabulary patterns in a single analytical pass
+
+**Why this matters**: briefings are externally-facing analytical artifacts. The structural vocabulary's value depends on the prose remaining legible. Dense compound-noun stacking and vocabulary-deployment overload mean the message gets lost even when the analysis is sound.
+
+## Five Rules — Apply on Every Briefing
+
+### Rule 1: Compound-noun density limit
+
+**Maximum 2 multi-hyphen compounds per sentence.** If a sentence has 3+, restructure. Move one or more compounds into a separate sentence; replace one with a concrete entity acting concretely.
+
+Failing: *"The cross-architecture cluster's pattern recognition acquires multi-temporal-scale operation."*
+Passing: *"The pattern recognition now operates across three temporal scales. The cross-architecture cluster's coverage has widened accordingly."*
+
+### Rule 2: Concrete-anchoring frequency
+
+**Every 3 paragraphs of conceptual prose must include at least one concrete sentence** — a named entity (Putin, the Fed, the marketplace, Boeing, the CCP, FOMC) doing a specific concrete thing with a specific number or specific event. This is the briefing's analog of scholarly-writing.md's "strategic concreteness in abstract stretches" discipline.
+
+Failing: three paragraphs in a row using only abstract subjects ("the configuration", "the marketplace's discrimination capacity", "the cross-architecture cluster").
+Passing: one of those paragraphs ends with *"Brent settled $104.71 Monday on the back of this configuration"* or *"Putin's Tuesday statement made this concrete."*
+
+### Rule 3: Vocabulary deployment density
+
+**Maximum 3 named structural-vocabulary patterns deployed in any single analytical paragraph** (excluding the dedicated vocabulary display section, which lists all). When more than 3 patterns are relevant to a single analytical move, split into multiple paragraphs so each pattern carries weight rather than being stacked.
+
+Failing: a paragraph that names Mode-Switch Disarticulation + Channel Decomposition + Partial-Coupling + Recursive Re-Disclosure + Disclosure-Mode Discount in one analytical pass.
+Passing: that material distributed across 2-3 paragraphs, each foregrounding 1-3 patterns.
+
+### Rule 4: Subject-verb concreteness
+
+**Prefer concrete subjects** (Putin, the Fed, the marketplace, Trump, the CCP, ECOWAS, FOMC, named entities) **over abstract subjects** ("the chancellery-marketplace discrimination-gap", "the cross-architecture cluster's pattern recognition"). Abstract subjects are allowed in vocabulary-definition contexts and the Inference Engine section's conditional chains; elsewhere they require justification.
+
+Failing: *"The cross-architecture cluster's pattern recognition acquires multi-temporal-scale operation."*
+Passing: *"Across three architectures (Russia, Trump's, the Manhattan Project's), the same pattern now operates across three temporal scales."*
+
+### Rule 5: Short declarative punch frequency
+
+**Each deep-dive panel must include at least one short declarative sentence (≤15 words)** for rhythmic variation. Long compound-noun-dense sentences without rhythmic interruption flatten the analytical signal. This mirrors the scholarly-writing skill's "Short Declarative Punches" discipline.
+
+Failing: a deep-dive of 6 paragraphs, each 40+ words, no rhythmic interruption.
+Passing: same deep dive with at least one *"This is the third instance."* or *"The marketplace priced it within ninety minutes."* among the long sentences.
+
+## QC Checklist — New Items (post-generation, pre-publish)
+
+In addition to the existing structural checks (12 section IDs, 2-4 deep dives, full vocabulary display, anomaly count, etc.), every generated briefing must clear these prose-coherence checks before publish:
+
+- [ ] **Compound-noun density**: scan every sentence in the Overview, Unifying Thread, and Deep-Dive panels. Any sentence with 3+ multi-hyphen compounds? Restructure.
+- [ ] **Concrete-anchoring frequency**: examine each 3-paragraph stretch of conceptual prose. Does at least one paragraph include a concrete-named-entity sentence? If not, insert one or restructure.
+- [ ] **Vocabulary deployment density**: count named structural-vocabulary patterns per paragraph in the analytical prose (excluding the vocabulary display section). Any paragraph deploying 4+? Split.
+- [ ] **Subject-verb concreteness**: scan paragraph-opening sentences. What is the grammatical subject? If abstract ("the X's Y", "the X-Y Z-gap"), justify or rewrite with a concrete subject.
+- [ ] **Short declarative punches**: each deep-dive panel — count sentences ≤15 words. At least 1? If not, add one.
+
+## Two-Pass Discipline
+
+**Stage 1 — Post-generation, pre-Dave-review**: sub-agent or in-conversation pass applies the five rules to the freshly-generated HTML; rewrites failing sections. Default behavior on every briefing. Same workflow as `feedback_writing_reviewer.md` requires for externally-facing writing tasks.
+
+**Stage 2 — Pre-publish, after Dave skims**: human/Claude pass catches remaining drift before `update-index.py` + `publish.sh`. Skip only on explicit "publish as-is" instruction.
+
+## What This Discipline Does NOT Do
+
+- **Does NOT reduce analytical depth.** The feedback_briefing_depth.md rule (full depth regardless of session length) still applies. Depth and coherence are not in tension; the discipline preserves depth while restoring legibility.
+- **Does NOT strip the structural vocabulary.** The 42 named patterns + Cycle 2 candidates are load-bearing apparatus. The discipline applies to the prose *around* the vocabulary, keeping it legible enough that the vocabulary's analytical power lands rather than gets buried.
+- **Does NOT collapse the deep-dive panels into shorter analyses.** Deep dives remain 3-6 paragraphs of sustained argument. The coherence is achieved within that length, not by abbreviating it.
+
+The discipline is a craft constraint, not a content constraint. The briefing's analytical ambition stays the same; the prose carrying it gets tightened.
