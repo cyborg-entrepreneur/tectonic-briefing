@@ -81,9 +81,48 @@ nav button.gn{border-color:rgba(74,222,128,.3)}nav button.gn:hover,nav button.gn
 footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--brd);text-align:center}
 footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
 @media(max-width:768px){.w{padding:0 1rem}h1{font-size:2rem}.c{padding:1.3rem 1.2rem}.vg{grid-template-columns:1fr}.mr{flex-direction:column;gap:.3rem}.mf{min-width:unset}}
+<!-- TB-NAV-WRAP:STYLE -->
+/* Tectonic Briefing site-wide nav wrapper (injected by update-index.py) */
+.tb-nav-bar{position:sticky;top:0;z-index:80;background:rgba(11,17,32,.94);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(75,142,242,0.18);padding:.55rem 1.2rem;
+  display:flex;gap:.6rem;align-items:center;justify-content:space-between;
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;flex-wrap:wrap}
+.tb-nav-bar .tb-nav-left,.tb-nav-bar .tb-nav-right{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}
+.tb-nav-bar a{color:#8e9bb5;text-decoration:none;border:1px solid rgba(75,142,242,0.18);
+  padding:.32rem .62rem;border-radius:2px;transition:all .2s;white-space:nowrap}
+.tb-nav-bar a:hover{color:#6da8ff;border-color:rgba(75,142,242,0.45)}
+.tb-nav-bar .tb-nav-disabled{color:#5f6d87;border-color:rgba(75,142,242,0.08);pointer-events:none;opacity:.55}
+.tb-nav-bar .tb-nav-counter{color:#6da8ff;font-weight:500}
+.tb-nav-bar .tb-nav-archive{color:#cdd6e4;border-color:rgba(75,142,242,0.32)}
+.tb-nav-foot{margin-top:2rem;padding:1.4rem 1.6rem;border:1px solid rgba(75,142,242,0.18);
+  border-radius:3px;display:flex;gap:.6rem;align-items:center;justify-content:space-between;
+  background:#111827;font-family:'JetBrains Mono',monospace;font-size:.62rem;
+  letter-spacing:.1em;text-transform:uppercase;flex-wrap:wrap}
+.tb-nav-foot .tb-nav-left,.tb-nav-foot .tb-nav-right{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}
+.tb-nav-foot a{color:#8e9bb5;text-decoration:none;border:1px solid rgba(75,142,242,0.18);
+  padding:.32rem .62rem;border-radius:2px;transition:all .2s;white-space:nowrap}
+.tb-nav-foot a:hover{color:#6da8ff;border-color:rgba(75,142,242,0.45)}
+.tb-nav-foot .tb-nav-disabled{color:#5f6d87;border-color:rgba(75,142,242,0.08);pointer-events:none;opacity:.55}
+.tb-site-foot{margin-top:1.4rem;padding:1.2rem 0;text-align:center;
+  font-family:'JetBrains Mono',monospace;font-size:.55rem;color:#5f6d87;
+  letter-spacing:.12em;text-transform:uppercase}
+.tb-site-foot a{color:#8e9bb5;text-decoration:none;border-bottom:1px solid rgba(75,142,242,0.18)}
+.tb-site-foot a:hover{color:#6da8ff;border-color:#6da8ff}
+@media(max-width:560px){
+  .tb-nav-bar{font-size:.55rem;padding:.45rem .7rem}
+  .tb-nav-bar a{padding:.28rem .5rem}
+  .tb-nav-foot{font-size:.55rem;padding:1.1rem 1rem}
+}
+<!-- TB-NAV-WRAP:STYLE -->
 </style>
 </head>
 <body>
+<!-- TB-NAV-WRAP:TOP:START -->
+<div class="tb-nav-bar"><div class="tb-nav-left"><a href="2026-04-25.html" title="Briefing No. 021 · 25 April 2026">← Prev</a><span class="tb-nav-counter">Briefing No. 022</span><a href="2026-04-27.html" title="Briefing No. 023 · 27 April 2026">Next →</a></div><div class="tb-nav-right"><a href="../index.html" class="tb-nav-archive">Archive</a></div></div>
+<!-- TB-NAV-WRAP:TOP:END -->
+
 <div class="w">
 <header>
 <h1><em>Tectonic</em> Briefing</h1>
@@ -635,5 +674,9 @@ this.innerHTML='Deep Dive Available';
 });
 });
 </script>
+<!-- TB-NAV-WRAP:BOT:START -->
+<div class="tb-nav-foot"><div class="tb-nav-left"><a href="2026-04-25.html">← Briefing No. 021</a><a href="2026-04-27.html">Briefing No. 023 →</a></div><div class="tb-nav-right"><a href="../index.html">Archive</a><a href="https://github.com/cyborg-entrepreneur/tectonic-briefing/blob/main/briefings/2026-04-26.html" target="_blank" rel="noopener">View on GitHub</a></div></div>
+<div class="tb-site-foot">Tectonic Briefing No. 022 · 26 April 2026 · Cyborg Entrepreneurship Research Lab · <a href="../index.html">Return to archive</a></div>
+<!-- TB-NAV-WRAP:BOT:END -->
 </body>
 </html>

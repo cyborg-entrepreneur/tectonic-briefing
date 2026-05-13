@@ -3,818 +3,291 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tectonic Briefing — Archive</title>
+<title>Tectonic Briefing — Daily Structural Analysis</title>
+<meta name="description" content="Daily structural analysis of geopolitical, technological, economic, scientific, social, ecological, institutional, and liminal forces — Cyborg Entrepreneurship Research Lab.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source Sans 3',system-ui,sans-serif;font-size:16px;line-height:1.7;min-height:100vh}
-:root{--card:#111827;--blu:#4b8ef2;--blub:#6da8ff;--blup:#a3c8ff;--teal:#38d9c8;--gold:#e5b84c;--red:#f06050;--purp:#a78bfa;--grn:#4ade80;--amb:#c89545;--ambb:#dcb267;--ambp:#ecca8e;--t1:#eaf0f8;--t2:#cdd6e4;--t3:#8e9bb5;--t4:#5f6d87;--brd:rgba(75,142,242,0.18);--brds:rgba(75,142,242,0.35);--ambrd:rgba(200,149,69,0.22);--ambrds:rgba(200,149,69,0.45)}
-.w{max-width:900px;margin:0 auto;padding:0 1.8rem}
-header{padding:3rem 0 2rem;border-bottom:1px solid var(--brd);margin-bottom:2.5rem}
-h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2.6rem;color:var(--t1);letter-spacing:.025em}
-h1 em{font-style:normal;color:var(--blub);font-weight:500}
-.sub{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--t4);letter-spacing:.14em;text-transform:uppercase;margin-top:.4rem}
-.epi{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.02rem;color:var(--t3);margin-top:1rem;max-width:680px;line-height:1.55;padding-left:1rem;border-left:2px solid var(--brds)}
+:root{--bg:#0b1120;--card:#111827;--alt:#141c2e;--str:#162035;--blu:#4b8ef2;--blub:#6da8ff;--blup:#a3c8ff;--teal:#38d9c8;--gold:#e5b84c;--red:#f06050;--purp:#a78bfa;--grn:#4ade80;--amb:#c89545;--ambb:#dcb267;--ambp:#ecca8e;--t1:#eaf0f8;--t2:#cdd6e4;--t3:#8e9bb5;--t4:#5f6d87;--brd:rgba(75,142,242,0.18);--brds:rgba(75,142,242,0.35);--brdg:rgba(229,184,76,0.32)}
+.w{max-width:980px;margin:0 auto;padding:0 1.6rem}
+
+/* Site header */
+.site-head{padding:2.6rem 0 1.4rem;border-bottom:1px solid var(--brd);margin-bottom:2rem}
+.site-head h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2.7rem;color:var(--t1);letter-spacing:.025em;line-height:1.1}
+.site-head h1 em{font-style:normal;color:var(--blub);font-weight:500}
+.site-head .sub{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--t4);letter-spacing:.14em;text-transform:uppercase;margin-top:.5rem;display:flex;gap:.65rem;flex-wrap:wrap;align-items:center}
+.site-head .sub .badge{display:inline-block;border:1px solid var(--brds);color:var(--blub);padding:.16rem .55rem;border-radius:2px;font-size:.6rem;letter-spacing:.08em}
+.site-head .epi{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--t3);margin-top:1rem;max-width:680px;line-height:1.55;padding-left:1rem;border-left:2px solid var(--brds)}
+
+/* HERO — today's briefing */
+.hero{background:linear-gradient(135deg,rgba(75,142,242,0.06),rgba(167,139,250,0.05));border:1px solid var(--brds);border-radius:4px;padding:2rem 2.1rem;margin-bottom:2.6rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;right:0;width:160px;height:160px;background:radial-gradient(circle at top right,rgba(109,168,255,0.10),transparent 70%);pointer-events:none}
+.hero .hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blub);display:flex;gap:.55rem;flex-wrap:wrap;align-items:center;margin-bottom:.55rem}
+.hero .hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--blub);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+.hero h2.hero-date{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:2.1rem;color:var(--t1);margin-bottom:.5rem;line-height:1.2;letter-spacing:.01em}
+.hero .hero-thread-title{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.3rem;color:var(--blup);margin-bottom:1rem;line-height:1.35}
+.hero .hero-thread-excerpt{color:var(--t2);font-size:1rem;line-height:1.7;max-width:760px;margin-bottom:1.4rem}
+.hero .hero-thread-excerpt p{margin-bottom:.8rem}
+.hero .hero-thread-excerpt p:last-child{margin-bottom:0}
+
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin:1.4rem 0}
+.hero-grid .hero-block{background:rgba(11,17,32,0.55);border:1px solid var(--brd);border-radius:3px;padding:1rem 1.2rem}
+.hero-grid .hero-block h4{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--t4);margin-bottom:.55rem}
+.hero-grid .hero-block ul{list-style:none;padding:0;margin:0}
+.hero-grid .hero-block li{color:var(--t2);font-size:.92rem;line-height:1.5;padding:.3rem 0;border-bottom:1px dotted rgba(75,142,242,0.10)}
+.hero-grid .hero-block li:last-child{border-bottom:none}
+.hero-grid .hero-block .vocab-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--blub);font-weight:500;display:block;line-height:1.1}
+.hero-grid .hero-block .vocab-sub{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--t3);letter-spacing:.06em;margin-top:.25rem;text-transform:uppercase}
+.hero-grid .hero-block .liminal{color:var(--gold);font-size:.92rem;line-height:1.55;font-style:italic}
+
+.hero-cta{display:inline-block;margin-top:.6rem;padding:.8rem 1.5rem;background:var(--blu);color:#fff;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;border-radius:3px;transition:all .25s;border:1px solid var(--blu)}
+.hero-cta:hover{background:var(--blub);border-color:var(--blub);transform:translateX(2px)}
 
 /* Stats bar */
-.stats{display:flex;gap:2rem;margin-bottom:2rem;flex-wrap:wrap}
-.stat{text-align:center}
-.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--blub);font-weight:500}
-.stat-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase}
+.stats{display:flex;gap:1.8rem;margin:0 0 2.2rem;flex-wrap:wrap;padding-bottom:1.4rem;border-bottom:1px solid var(--brd)}
+.stat{text-align:left}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.1rem;color:var(--blub);font-weight:500;line-height:1.05}
+.stat-num.amber{color:var(--ambb)}
+.stat-num.gold{color:var(--gold)}
+.stat-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase;margin-top:.2rem}
 
-/* Navigation */
-.nav-links{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap}
-.nav-links a{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .8rem;border:1px solid var(--brd);border-radius:2px;color:var(--t3);text-decoration:none;transition:all .25s}
-.nav-links a:hover{border-color:var(--brds);color:var(--blup)}
-.nav-links a.active{border-color:var(--blu);color:var(--blub);background:rgba(75,142,242,.06)}
-.nav-links a.active.amber{border-color:var(--amb);color:var(--ambb);background:rgba(200,149,69,.06)}
+/* Cycle 2 status panel */
+.cycle-panel{background:var(--card);border:1px solid var(--brdg);border-radius:3px;padding:1.6rem 1.8rem;margin-bottom:2.6rem}
+.cycle-panel h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.55rem;color:var(--ambb);margin-bottom:.5rem}
+.cycle-panel .cycle-sub{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t4);margin-bottom:1rem}
+.cycle-panel p{color:var(--t2);font-size:.94rem;line-height:1.65;margin-bottom:.9rem}
+.cycle-panel p:last-child{margin-bottom:0}
+.cycle-panel .meta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.6rem;margin:1rem 0 .8rem}
+.cycle-panel .meta-tile{background:rgba(11,17,32,0.55);border:1px solid var(--brd);border-radius:2px;padding:.7rem .9rem}
+.cycle-panel .meta-tile .mt-tag{font-family:'JetBrains Mono',monospace;font-size:.54rem;color:var(--ambb);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem}
+.cycle-panel .meta-tile .mt-name{color:var(--t1);font-size:.92rem;font-weight:500}
+.cycle-panel .candidate-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.5rem;margin-top:.8rem}
+.cycle-panel .candidate{background:rgba(229,184,76,0.05);border:1px solid var(--brdg);border-radius:2px;padding:.55rem .8rem;font-size:.82rem;color:var(--t2)}
+.cycle-panel .candidate strong{color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.04em;display:block;margin-bottom:.15rem}
+
+/* Section heading */
+.sh2{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:400;color:var(--t1);margin:0 0 .4rem;padding-bottom:.4rem;border-bottom:1px solid var(--brd)}
+.sh2-sub{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t4);margin-bottom:1.2rem}
+
+/* Archive filters */
+.filter-bar{display:flex;gap:.45rem;align-items:center;flex-wrap:wrap;margin-bottom:1.2rem;padding:.7rem .9rem;background:rgba(17,24,39,0.55);border:1px solid var(--brd);border-radius:3px}
+.filter-bar .fl-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase;margin-right:.3rem}
+.filter-bar button{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.32rem .62rem;border:1px solid var(--brd);border-radius:2px;background:transparent;color:var(--t3);cursor:pointer;transition:all .2s}
+.filter-bar button:hover{border-color:var(--brds);color:var(--blup)}
+.filter-bar button.active{border-color:var(--blu);color:var(--blub);background:rgba(75,142,242,.06)}
+.filter-bar button.gold.active{border-color:var(--gold);color:var(--gold);background:rgba(229,184,76,.05)}
+.filter-bar button.amb.active{border-color:var(--amb);color:var(--ambb);background:rgba(200,149,69,.06)}
+
+/* Archive grouping */
+.month-group{margin-bottom:1.4rem}
+.month-group h3{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--blub);font-weight:500;letter-spacing:.02em;margin:1.2rem 0 .6rem;padding-bottom:.3rem;border-bottom:1px dashed rgba(75,142,242,.18)}
+.month-group h3 .count{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);letter-spacing:.1em;margin-left:.5rem;text-transform:uppercase}
 
 /* Briefing entries */
-.entry{background-color:var(--card);border:1px solid var(--brd);border-radius:3px;padding:1.5rem 1.8rem;margin-bottom:1rem;text-decoration:none;display:block;transition:all .25s}
-.entry:hover{border-color:var(--brds);transform:translateX(4px)}
-.entry-date{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--t1);margin-bottom:.3rem}
-.entry-num{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
-.entry-tagline{color:var(--t3);font-style:italic;font-size:.95rem;margin-bottom:.6rem}
-.entry-tags{display:flex;gap:.3rem;flex-wrap:wrap}
-.entry-tag{font-family:'JetBrains Mono',monospace;font-size:.55rem;padding:.15rem .4rem;border-radius:2px;letter-spacing:.06em;text-transform:uppercase}
-.entry-tag.geo{background:rgba(240,96,80,.12);color:#fca5a5}
-.entry-tag.tech{background:rgba(75,142,242,.12);color:var(--blup)}
-.entry-tag.econ{background:rgba(167,139,250,.12);color:var(--purp)}
-.entry-tag.sci{background:rgba(56,217,200,.12);color:var(--teal)}
-.entry-tag.eco{background:rgba(74,222,128,.12);color:var(--grn)}
-.entry-tag.gov{background:rgba(245,158,11,.12);color:#fcd34d}
-.entry-tag.lim{background:rgba(229,184,76,.12);color:var(--gold)}
-.entry-tag.meta{background:rgba(200,149,69,.14);color:var(--ambb)}
-.entry-tag.knight{background:rgba(167,139,250,.12);color:var(--purp)}
-.entry-tag.llm{background:rgba(56,217,200,.12);color:var(--teal)}
+.entry{background-color:var(--card);border:1px solid var(--brd);border-radius:3px;padding:1rem 1.3rem;margin-bottom:.6rem;text-decoration:none;display:grid;grid-template-columns:90px 1fr auto;gap:1.1rem;align-items:center;transition:all .2s}
+.entry:hover{border-color:var(--brds);transform:translateX(3px)}
+.entry-num-cell{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--t4);letter-spacing:.08em;text-transform:uppercase;line-height:1.3}
+.entry-num-cell strong{display:block;color:var(--blub);font-size:.78rem;font-weight:500}
+.entry-num-cell .entry-cycle2{color:var(--gold)}
+.entry-body{min-width:0}
+.entry-date{font-family:'Cormorant Garamond',serif;font-size:1.18rem;color:var(--t1);line-height:1.25;margin-bottom:.22rem}
+.entry-date .dow{color:var(--t4);font-size:.85rem;font-family:'JetBrains Mono',monospace;letter-spacing:.06em;margin-left:.45rem;text-transform:uppercase}
+.entry-tagline{color:var(--t3);font-size:.85rem;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.entry-arrow{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--t4);transition:all .2s}
+.entry:hover .entry-arrow{color:var(--blub);transform:translateX(3px)}
+.entry.cycle2{border-left:2px solid var(--brdg)}
 
-/* Amber-styled entries (Contingency Audits) */
-.entry-amber{border-color:var(--ambrd)}
-.entry-amber:hover{border-color:var(--ambrds)}
-.entry-amber .entry-num{color:var(--ambb)}
-.entry-amber .entry-date{color:var(--ambp)}
-.audit-intro{color:var(--t3);font-size:.92rem;margin-bottom:1.4rem;line-height:1.65;padding:1.1rem 1.3rem;background:rgba(200,149,69,.04);border-left:2px solid var(--ambrds);border-radius:2px}
-.audit-intro strong{color:var(--ambb);font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:.5rem}
+/* Contingency Audits */
+.audit-card{background:rgba(200,149,69,0.04);border:1px solid rgba(200,149,69,0.22);border-left:3px solid var(--amb);padding:1.1rem 1.4rem;border-radius:3px;margin-bottom:.8rem;text-decoration:none;display:block;transition:all .2s}
+.audit-card:hover{border-color:rgba(200,149,69,0.45);transform:translateX(3px)}
+.audit-card .audit-num{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--ambb);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.2rem}
+.audit-card .audit-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--ambp);margin-bottom:.3rem}
+.audit-card .audit-blurb{color:var(--t3);font-size:.85rem;line-height:1.5}
 
-/* Vocabulary section */
-.vocab-archive{margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--brd)}
-.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.8rem;margin-top:1rem}
-.vi{background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:1rem 1.2rem}
-.vi h4{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--blub);margin-bottom:.4rem;letter-spacing:.04em}
-.vi p{font-size:.85rem;color:var(--t3);line-height:1.5;margin:0}
-.vi .origin{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);margin-top:.3rem}
+/* Site footer */
+.site-foot{margin-top:3.4rem;padding:1.6rem 0;border-top:1px solid var(--brd);text-align:center}
+.site-foot p{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);letter-spacing:.11em;text-transform:uppercase;margin-bottom:.35rem}
+.site-foot a{color:var(--t3);text-decoration:none;border-bottom:1px solid rgba(75,142,242,.18)}
+.site-foot a:hover{color:var(--blub);border-color:var(--blub)}
 
-.sh2{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--blub);margin:2rem 0 .8rem}
-
-/* Sort controls */
-.sort-bar{display:flex;gap:.5rem;align-items:center;margin-bottom:1.2rem}
-.sort-bar span{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
-.sort-btn{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.06em;padding:.3rem .6rem;border:1px solid var(--brd);border-radius:2px;background:transparent;color:var(--t3);cursor:pointer;transition:all .25s}
-.sort-btn:hover{border-color:var(--brds);color:var(--blup)}
-.sort-btn.active{border-color:var(--blu);color:var(--blub);background:rgba(75,142,242,.06)}
-
-/* Section visibility */
-.section{display:none}
-.section.visible{display:block}
-
-/* Threads section */
-.thread-item{background:var(--card);border:1px solid var(--brd);border-radius:3px;padding:1.2rem 1.5rem;margin-bottom:.8rem}
-.thread-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--t1);margin-bottom:.3rem}
-.thread-desc{color:var(--t3);font-size:.9rem;margin-bottom:.4rem}
-.thread-appearances{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);letter-spacing:.08em}
-
-footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--brd);text-align:center}
-footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
-@media(max-width:768px){.w{padding:0 1rem}h1{font-size:2rem}.stats{gap:1.2rem}.vocab-grid{grid-template-columns:1fr}}
+@media(max-width:760px){
+  .w{padding:0 1rem}
+  .site-head h1{font-size:2.1rem}
+  .hero{padding:1.3rem 1.2rem}
+  .hero h2.hero-date{font-size:1.6rem}
+  .hero .hero-thread-title{font-size:1.05rem}
+  .hero-grid{grid-template-columns:1fr;gap:.9rem}
+  .stats{gap:1rem}
+  .stat-num{font-size:1.6rem}
+  .cycle-panel{padding:1.2rem 1.1rem}
+  .entry{grid-template-columns:74px 1fr;gap:.7rem;padding:.85rem 1rem}
+  .entry-arrow{display:none}
+  .entry-date{font-size:1.02rem}
+  .entry-tagline{font-size:.8rem;-webkit-line-clamp:3}
+}
+@media(max-width:420px){
+  .site-head h1{font-size:1.75rem}
+  .hero h2.hero-date{font-size:1.4rem}
+}
 </style>
 </head>
 <body>
 <div class="w">
 
-<header>
+<header class="site-head">
 <h1><em>Tectonic</em> Briefing</h1>
-<div class="sub">Archive &middot; Structural forces &middot; Inference engine &middot; Wise action</div>
-<div class="epi">"We soon observe that little or nothing is really fixed but all is a perpetual flux." &mdash; Frank Knight (1913)</div>
+<div class="sub">
+  <span>Structural forces · Inference engine · Wise action</span>
+  <span class="badge">39 briefings</span>
+</div>
+<div class="epi">"We soon observe that little or nothing is really fixed but all is a perpetual flux." — Frank Knight (1913)</div>
 </header>
 
+<section class="hero">
+<div class="hero-eyebrow"><span class="dot"></span><span>Today's Briefing</span><span style="color:var(--t4)">·</span><span style="color:var(--t3)">No. 039 · Cycle 2 · Day 9</span></div>
+<h2 class="hero-date">13 May 2026 &middot; Wednesday</h2>
+<div class="hero-thread-title">Unifying Thread: The Venue Substitution and the Putin Refutation &mdash; Surrogate Re-Disclosure Replaces Recursive Re-Disclosure; Trump-Xi Beijing Summit Substitutes for Istanbul as Principal Axis; April CPI Forces Channel Decomposition at Fed by Retiring Rate-Cut Credential</div>
+<div class="hero-thread-excerpt"><p>Wednesday&rsquo;s pre-market window delivers the Cycle 2 monitoring discipline&rsquo;s first candidate-refutation event within twenty-four hours of candidate-naming. The Recursive Re-Disclosure candidate, named Tuesday on the basis of Russia&rsquo;s Tuesday Istanbul re-disclosure within ninety-six hours of Sunday&rsquo;s reversal, is refuted at the principal level by Putin&rsquo;s Wednesday decision to send a Medinsky-led low-level &ldquo;decorative&rdquo; delegation rather than attend Istanbul personally. The candidate is refined to Surrogate Re-Disclosure &mdash; the delegation-level re-occupation of a discredited mode that preserves principal-level optionality &mdash; and re-enters monitoring at the refined specification. The structural insight survives: Russia executed mode-re-occupation through a structurally distinct artifact (Istanbul-Thursday delegation rather than direct presidential attendance). What the original candidate misspecified is that the re-occupation operated at the surrogate level, not the principal level. The refinement preserves the architectural insight while sharpening the empirical claim.</p>
+<p>Wednesday&rsquo;s structurally most consequential event is the substitution of the Beijing summit for the Istanbul venue as the principal axis on which the Iran-war geometry will be repositioned. Trump arrives in Riyadh Wednesday morning and announces from the U.S.-Saudi Investment Forum he will lift U.S. sanctions on Syria; the $600B Saudi commitment plus $142B defense package is signed; the President pivots from Riyadh toward Beijing Thursday-Friday with Musk, Cook, and Fink joining the delegation. The Trump-Xi summit reorganizes the cross-architecture cluster around a Three-Body Stack (US-Russia, US-Iran, US-China) where US-China substitutes US-Russia as the principal axis at Wednesday open. The Russia-Ukraine track continues at low level in Istanbul while the Iran-substrate pricing migrates to the Trump-Xi venue; Beijing acquires the operational substrate that Istanbul was supposed to acquire. The candidate Venue Substitution enters today as NEW Cycle 2 monitoring candidate naming the lateral architecture-shift that converts a failed bilateral cadence-cycling into a triangulated multilateral repositioning.</p></div>
+
+<div class="hero-grid">
+<div class="hero-block"><h4>Today's Deep Dives</h4><ul><li>The Putin Refutation: How the Recursive Re-Disclosure Candidate Was Tested by the Next Empirical Event and Refined Within Twenty-Four Hours of Naming</li>
+<li>Venue Substitution and the Beijing-Substitutes-for-Istanbul Reorganization of the Three-Body Stack</li>
+<li>Volt Typhoon and the Critical-Infrastructure Channel Decomposition: How CISA&rsquo;s CI Fortify Acknowledges the Threat Without Naming the Architectural Disarticulation</li>
+<li>The CPI-Forced Channel Decomposition: How a Single Print Retired the Rate-Cut Credential and Imposed Decomposition on the Fed Before the Institution Named It</li></ul></div>
+<div class="hero-block"><h4>Structural Vocabulary</h4><span class="vocab-num">42</span><span class="vocab-sub">named patterns + 8 Cycle 2 candidates</span><div style="margin-top:.9rem;padding-top:.7rem;border-top:1px dotted rgba(229,184,76,0.2)"><h4 style="color:var(--gold)!important">Off-corridor Liminal Signal</h4><div class="liminal">Sudan El Fasher Famine IPC Phase 5 Sustains; 24.6M Acute Hunger; 19.2M Acute Food Insecurity Projected February-May 2026</div></div></div>
+</div>
+
+<a class="hero-cta" href="briefings/2026-05-13.html">Read the full briefing →</a>
+</section>
+
 <div class="stats">
-<div class="stat"><div class="stat-num" id="count">39</div><div class="stat-label">Briefings</div></div>
-<div class="stat"><div class="stat-num" id="audit-count" style="color:var(--ambb)">1</div><div class="stat-label">Contingency Audits</div></div>
-<div class="stat"><div class="stat-num" id="vocab-count">9</div><div class="stat-label">Named Patterns</div></div>
-<div class="stat"><div class="stat-num" id="thinker-count">7</div><div class="stat-label">Thinkers Tracked</div></div>
-<div class="stat"><div class="stat-num" id="source-count">25</div><div class="stat-label">Sources Archived</div></div>
+<div class="stat"><div class="stat-num">39</div><div class="stat-label">Briefings</div></div>
+<div class="stat"><div class="stat-num">30</div><div class="stat-label">Cycle 1</div></div>
+<div class="stat"><div class="stat-num gold">9</div><div class="stat-label">Cycle 2</div></div>
+<div class="stat"><div class="stat-num">42</div><div class="stat-label">Named patterns</div></div>
+<div class="stat"><div class="stat-num gold">8</div><div class="stat-label">Cycle 2 candidates</div></div>
+<div class="stat"><div class="stat-num amber">1</div><div class="stat-label">Contingency audits</div></div>
 </div>
 
-<div class="nav-links">
-<a href="#" class="active" onclick="showSection('briefings',this);return false">Briefings</a>
-<a href="#" onclick="showSection('audits',this,true);return false">Contingency Audits</a>
-<a href="#" onclick="showSection('vocabulary',this);return false">Vocabulary</a>
-<a href="#" onclick="showSection('threads',this);return false">Threads</a>
+<section class="cycle-panel">
+<h2>Cycle 2 Status</h2>
+<div class="cycle-sub">Candidate-and-refinement discipline · 5 meta-categories · Monitoring threshold</div>
+<p>Cycle 2 begins at <strong>Briefing 031</strong> (5 May 2026) and continues today. Cycle 1 (Briefings 001–030) established the core <em>five-meta-category</em> taxonomy of the structural vocabulary; Cycle 2 applies a stricter <em>candidate-and-refinement</em> discipline: provisional patterns enter monitoring, get tested by the next empirical event, and either advance toward vocabulary status, get refined, or get refuted.</p>
+
+<div class="meta-grid">
+<div class="meta-tile"><div class="mt-tag">META-1</div><div class="mt-name">Coupling Failure</div></div>
+<div class="meta-tile"><div class="mt-tag">META-2</div><div class="mt-name">Bypass Inversion</div></div>
+<div class="meta-tile"><div class="mt-tag">META-3</div><div class="mt-name">Threshold Cascade</div></div>
+<div class="meta-tile"><div class="mt-tag">META-4</div><div class="mt-name">Commons Enclosure</div></div>
+<div class="meta-tile"><div class="mt-tag">META-5</div><div class="mt-name">Institutional Hollowing</div></div>
 </div>
 
-<!-- BRIEFING ARCHIVE -->
-<div id="briefings" class="section visible">
-<div class="sort-bar">
-<span>Sort by:</span>
-<button class="sort-btn active" onclick="sortBriefings('newest',this)">Newest First</button>
-<button class="sort-btn" onclick="sortBriefings('oldest',this)">Oldest First</button>
-</div>
-<!-- Briefings are listed newest-first. Add new entries at the top. -->
-
-<a class="entry" href="briefings/2026-05-13.html">
-<div class="entry-num">Briefing No. 039</div>
-<div class="entry-date">13 May 2026 &middot; Wednesday</div>
-<div class="entry-tagline">Trump arrives in Riyadh Wednesday morning as the opening leg of a four-day Gulf tour (Saudi Arabia May 13; Qatar May 14; UAE May 15-16) and announces from the U.S.-Saudi Investment Forum he will lift U.S. sanctions on Syria; the $600B Saudi investment commitment plus $142B defense package is signed. Putin</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-05-12.html">
-<div class="entry-num">Briefing No. 038</div>
-<div class="entry-date">12 May 2026 &middot; Tuesday</div>
-<div class="entry-tagline">Putin proposes direct Russia-Ukraine talks in Istanbul on Thursday May 15 &ldquo;without preconditions&rdquo;; Zelenskyy responds &ldquo;I will be waiting for Putin&rdquo; in Turkey personally and continues to insist a ceasefire must precede face-to-face talks; Trump from Air Force One says he could join the Istanbul meeting Thursday before departing for the Middle East tour. The April CPI release at 8:30 ET shows headline near a three-year high with Iran-war energy pass-through bleeding into core; consensus 3.7% YoY headline, 2.7% core, energy +4.0% (down from March's 12.5% but spreading into transportation and warehousing); Brent trades at</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-05-11.html">
-<div class="entry-num">Briefing No. 037</div>
-<div class="entry-date">11 May 2026 &middot; Monday</div>
-<div class="entry-tagline">Trump rejects Iran's Sunday counter-offer as &ldquo;TOTALLY UNACCEPTABLE,&rdquo; calls the proposal &ldquo;stupid&rdquo; and &ldquo;garbage,&rdquo; and declares the ceasefire is &ldquo;on massive life support&rdquo;; Iran demanded compensation for war damage, sovereignty over the Strait of Hormuz, an end to the U.S. naval blockade, sanctions removal, and the right to retain part of its 60% enriched uranium stockpile (with transfer of a portion to a third country, returnable if the U.S. exits any deal). The U.S.-brokered Russia-Ukraine three-day ceasefire (May 9-11) expires today with both sides trading blame for ~150 frontline engagements over each of the prior 72 hours; Russia accuses Ukraine of violations; Ukrainian officials report Russian strikes on Kharkiv and Kherson causing casualties; the Kremlin holds to its no-extension position; Putin's Sunday &ldquo;coming to an end&rdquo; signal and direct-Zelenskyy-talks offer were qualified Monday as available only after a settlement is &ldquo;almost finalized.&rdquo; PM Shehbaz Sharif formally announces May 10 will be commemorated annually as &ldquo;Youm-e-Bunyan-un-Marsoos,&rdquo; converting the &ldquo;Battle of Truth&rdquo; commemoration from one-time anniversary into recurring national observance; President Zardari accuses India of &ldquo;hydro-terrorism&rdquo; via the suspended Indus Waters Treaty. Brent jumps to</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-05-10.html">
-<div class="entry-num">Briefing No. 036</div>
-<div class="entry-date">10 May 2026 &middot; Sunday</div>
-<div class="entry-tagline">Putin signals at Victory Day reception that the war with Ukraine is &ldquo;coming to an end&rdquo; and declares readiness for direct talks with Zelenskyy in Moscow or a neutral country; the U.S.-brokered three-day Russia-Ukraine ceasefire (May 9-11) enters Day 2 with both sides reporting ~150 frontline engagements and Kremlin saying no plans to extend; Ukrainian officials report at least three killed by Russian strikes inside the truce window. Today is the first anniversary of the May 10, 2025 India-Pakistan DGMO ceasefire ending Operation Sindoor / Operation Bunyan al-Marsous; Islamabad mounts the &ldquo;Battle of Truth&rdquo; commemoration with comprehensive traffic security &mdash; the same Pakistan that operates as the U.S.-Iran broker channel is publicly performing a one-year-old bilateral resolution while a present-day bilateral resolution is being routed through it. The U.S.-Iran bilateral parallel-path persistence configuration enters Day 3 with no overnight operational moves: CENTCOM has not announced Project Freedom restart; Iran's formal MOU response has not surfaced through the Pakistan channel; PGSA Vessel Information Declaration distribution continues with no vessel having yet paid the $2M toll or been interdicted; Iran warns of &ldquo;heavy assault&rdquo; on US assets if its ships face further attacks. Hezbollah claimed responsibility for 26 attacks Friday including two strikes inside Israel &mdash; the first since the November 2025 ceasefire &mdash; reactivating the regional-architecture tail-channel that the Saturday cycle had left as residual. Brent settled Friday at $101.65 (week loss ~6%) against the IEA's 14 mb/d supply-removal estimate; the four-channel discount architecture prices the Sunday-window operationalization risk as elevated. Mali Day 16: Bamako blockade persists; Russian Africa Corps continues southward withdrawal; Kidal jeer-out under reporting today reframes the Russian-prestige collapse as the operational signature of substitute-regime construction by jihadist coalition. The bilateral configuration's Sunday-window stress test is therefore not the U.S.-Iran configuration in isolation but the three-bilateral stack (U.S.-Iran Day 3 + Russia-Ukraine three-day-truce Day 2 + India-Pakistan first-anniversary commemoration) operating inside the same temporal window with Pakistan-as-broker structurally implicated in two of the three. Today's analytical core:</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-05-09.html">
-<div class="entry-num">Briefing No. 035</div>
-<div class="entry-date">9 May 2026 &middot; Saturday</div>
-<div class="entry-tagline">Putin&rsquo;s Victory Day parade proceeds in Moscow without military equipment for the first time since 2008; complete mobile-internet shutdown across Moscow throughout May 9; the unilateral May 8&ndash;9 ceasefire holds nominally while Russian Africa Corps continues southward Mali withdrawal. The bilateral U.S.&ndash;Iran parallel-path persistence configuration enters Day 2 with no new operational moves overnight; CENTCOM Project Freedom restart decision remains pending; the PGSA Vessel Information Declaration distribution continues; Iran&rsquo;s formal MOU response has not surfaced through the Pakistan channel. April nonfarm payrolls printed at +63K against +62-70K consensus with unemployment at 4.3% &mdash; the AI-Survival Paradox has its first macroeconomic anchor on the negative-print side. Brent settled Friday at $101.65 (+1.59%); the four-channel discount architecture prices weekend-window event risk as elevated. The Saturday cycle now translates Friday&rsquo;s tactical events into structural transitions: Norges Bank&rsquo;s 4.25% bring-forward as the first central-bank Channel Decomposition becomes legible as a coordination-architecture diagnostic against the silent G7 ahead of the Paris ministers&rsquo; meeting May 18-19; the EU AI Act trilogue 2 success at 7 May dawn is now read as the regulatory-architecture template against which UK, Singapore, OECD timelines will be compared; the NIST/CAISI three-vendor pre-market vetting commitment becomes legible as the substrate-level operating mode of federal AI vetting before the FDA-style EO has issued. China&rsquo;s November-2025-to-November-2026 rare-earth export-control suspension window enters its sixth month with indium, gallium, and germanium prices repricing as if the suspension is structurally reversible. Mali Day 15: Bamako blockade persists; AU/ECOWAS silence extends to Day 15; Cabo Verde parliamentary elections in 8 days; Guinea in 15 days. The Russia-Ukraine 1,536th day; Putin's truce holding by some accounting; Zelenskyy reports continued Russian violations. Pope Leo XIV&rsquo;s Pompeii pastoral visit Day 2 (anniversary day-after) reframes yesterday&rsquo;s cataclysm-as-measure register inside the Sabbath Visibility cadence. SpaceX 51st 2026 launch overnight; Starlink constellation operating at 10,025+. Today&rsquo;s analytical core:</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-05-08.html">
-<div class="entry-num">Briefing No. 034</div>
-<div class="entry-date">8 May 2026 &middot; Friday</div>
-<div class="entry-tagline">Saudi Arabia and Kuwait have lifted restrictions on US base and airspace access after Trump-MBS phone call; the Wall Street Journal reports Project Freedom set to restart this week; CENTCOM operational decision pending. Iran formally launched the Persian Gulf Strait Authority (PGSA) on May 5 and on May 7 published the 40+ item Vessel Information Declaration; charging up to $2M per vessel for transit; document distribution to shipping companies via info@PGSA.ir official email. EU Council and Parliament reached provisional agreement on Digital Omnibus on AI in early hours of 7 May after April 28 trilogue collapse: high-risk standalone systems pushed to 2 December 2027; high-risk embedded products to 2 August 2028; transparency for AI-generated content compressed from 6 months to 3 months at 2 December 2026; new prohibition on non-consensual sexual/intimate content and CSAM. Norges Bank Monetary and Financial Stability Committee raised policy rate 0.25 to 4.25% &mdash; first hike since 2023, predicted by only 5 of 17 Bloomberg-surveyed economists; Iran-war oil/gas price pass-through cited explicitly. April nonfarm payrolls released today 8:30 AM ET (+62-70K consensus vs 178K March; unemployment 4.3% expected). Robotera secures $200M+ at $1.5B valuation in round led by SF Group, HSG, IDG Capital with industrial co-investors Alibaba, Geely, BAIC, Lenovo, Haier; Beijing-based humanoid manufacturer entering thousand-unit deliveries Q2 2026 with 300%+ growth. Pope Leo XIV celebrates one-year anniversary today via pastoral visit to Pompeii and Naples; Marco Rubio met Pope yesterday. Mali Day 14: JNIM stormed Kenieroba Central Prison ("Africa's Alcatraz") 60km southwest of Bamako; trucks burned on Bougouni-Bamako route; 250+ buses stranded; Bourem-S&eacute;var&eacute;-Senou-Mopti attack pattern continues. Putin Victory Day truce begins midnight; Russia parade tomorrow without military equipment for first time since 2008; mobile internet completely cut off in Moscow May 9. Operation Sindoor first anniversary commemorated yesterday in both India and Pakistan ("Marka-e-Haq"). NIST/CAISI announces Google, Microsoft, xAI will share unreleased AI models with US government for pre-launch testing &mdash; the FDA-style pre-market vetting architecture has acquired its first three vendor commitments before the executive order issues. CNN reports Iran "looking to impose new requirements on ships transiting the Strait"; equities fell to lows on the Project-Freedom-restart news as oil strengthened. Today&rsquo;s analytical core:</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-05-07.html">
-<div class="entry-num">Briefing No. 033</div>
-<div class="entry-date">7 May 2026 &middot; Thursday</div>
-<div class="entry-tagline">A one-page U.S. memorandum of understanding circulates through Pakistani intermediaries; Iran&rsquo;s foreign ministry says it will relay its response via Pakistan; ISNA reports Iran&rsquo;s negotiators are discussing end-of-war, not the nuclear issue, &ldquo;which would come at a later stage.&rdquo; Trump on Truth Social: &ldquo;Assuming Iran agrees... the already legendary Epic Fury will be at an end, and the highly effective Blockade will allow the Hormuz Strait to be OPEN TO ALL, including Iran. If they don&rsquo;t agree, the bombing starts, and it will be, sadly, at a much higher level and intensity than it was before.&rdquo; Brent at $101.96 (+0.68%); WTI sustaining sub-$100; U.S. crude and petroleum-products exports hit record 12.7 million barrels per day amid Asian buyers replacing lost Middle East barrels. Mali Day 13: JNIM siege of Bamako (~4 million population) continues; Bamako-Sikasso road blockaded; Bourem, S&eacute;var&eacute;, Senou, Mopti hit; Pravda Burkina Faso reports militants lost &gt;1,000; Russian Africa Corps continuing southward withdrawal. Norges Bank policy-rate decision today (10 a.m. Oslo) &mdash; first central-bank decision under post-Channel-Decomposition regime; March 2026 forecast had pointed to a 4.25-4.50% terminal by end-2026; krone strengthened against trading partners since December. Putin declares Victory Day truce May 8-9; Russia explicitly will NOT display military equipment at the parade (Zelenskyy reads as &ldquo;fear of Ukraine&rsquo;s drones and evidence of Moscow&rsquo;s growing weakness&rdquo;); Russia threatens retaliatory massive missile strike on Kyiv if celebration is disrupted. White House &ldquo;studying, possibly an executive order&rdquo; (Hassett, NEC director) for FDA-style pre-market vetting of AI models &mdash; Mythos cited explicitly; parallel draft policy language reining in contractors&rsquo; control over how agencies use AI circulating between DoD and Trump administration. Pentagon tech chief: Anthropic still blacklisted; Mythos &ldquo;separate issue&rdquo; (further institutional decomposition: blacklist modal preserved; Mythos-as-distinct-instrument tail-channel constructed). EU AI Act Trilogue 2 in 6 days (May 13); Cypriot Presidency end June 30; Annex I Section A unresolved. Indonesia North Maluku Mw 7.3 earthquake; 1,378+ aftershocks; tsunami waves 75 cm North Minahasa &rarr; 5 cm Davao City; 1,966 displaced, 104 homes collapsed; Philippines Mayon Volcano lava-collapse pyroclastic density currents. Honor &ldquo;Lightning&rdquo; humanoid wins Beijing E-Town Half-Marathon at 50:26, beating human world record by ~7 minutes. Operation Sindoor anniversary (May 7, 2025): one year ago today, India and Pakistan engaged in the first-ever jet-era dogfight between two nuclear-armed states; today, Pakistan operates as broker for U.S.-Iran negotiations &mdash; the structural inversion is the year&rsquo;s most diagnostic geopolitical fact. Today&rsquo;s analytical core:</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-05-06.html">
-<div class="entry-num">Briefing No. 032</div>
-<div class="entry-date">6 May 2026 &middot; Wednesday</div>
-<div class="entry-tagline">Trump paused Project Freedom (the operational ship-guidance mission) while keeping the BLOCKADE &ldquo;in FULL FORCE AND EFFECT,&rdquo; citing &ldquo;Great Progress&rdquo; toward a &ldquo;Complete and Final Agreement&rdquo; with Iran and naming Pakistan&rsquo;s &ldquo;request&rdquo; as the proximate basis. Brent at 8:30 ET retreated to $106.52 from Tuesday&rsquo;s $116.55 intraday peak; WTI fell 3.3% to $98.80 (first sub-$100 print this kinetic cycle). UAE schools shifted to remote learning Tuesday-through-Friday following renewed Iranian strikes. Trump told Fox News Iranian negotiators were &ldquo;far more malleable&rdquo; and warned of attacks at &ldquo;much higher level&rdquo; absent a deal. Mali Day 12: Goita personally assumes the defense-minister role following Camara&rsquo;s assassination; JNIM blockade of Bamako persists; FLA-JNIM declare next-target sequence Gao &rarr; Menaka &rarr; Timbuktu (territorial completion of the self-declared Azawad state). Russian Foreign Ministry institutional silence on JNIM&rsquo;s Syria-style offer extends to Day 11. White House briefed Anthropic, Google, OpenAI on draft AI vetting executive order: pre-release federal review architecture, separate Pentagon AI-safety-testing track. Bank of Japan FX intervention April 30 / May 1 ($30B+ operation) snapped USD/JPY from above 160 to ~156; BoJ growth forecast cut FY2026 from 1.0% to 0.5%, core inflation raised from 1.9% to 2.8% in 6-3 split vote. CISA aa26-113a (April 23): China-nexus actors shift to externally-provisioned SOHO-router/IoT botnets; Volt Typhoon and Flax Typhoon named. IBM Quantum Loon: all hardware elements of fault-tolerant quantum computing demonstrated, qLDPC error-correction decoding 10x speedup, one year ahead of schedule. China temporarily suspends rare-earth/lithium/gallium/germanium export controls Nov 2025-Nov 2026 as &ldquo;adjustment.&rdquo; Communications Earth &amp; Environment / Science Advances / Nature Climate Change papers on West Antarctic Ice Sheet meltwater interaction with AMOC stability appearing in cluster. Today&rsquo;s pattern:</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-05-05.html">
-<div class="entry-num">Briefing No. 031</div>
-<div class="entry-date">5 May 2026 &middot; Tuesday</div>
-<div class="entry-tagline">Yesterday&rsquo;s ~$0.70 muted-Brent reception inverted within twenty-four hours. Iran fired cruise missiles, drones, rockets, and small boats at U.S. Navy and U.S.-flagged commercial vessels in the Strait of Hormuz; CENTCOM Commander Adm. Brad Cooper confirmed the U.S. Navy fired on and sunk six to seven Iranian small boats; the UAE defense ministry intercepted four drones, three cruise missiles, and twelve ballistic missiles; a drone strike ignited a major fire at the Fujairah oil storage and shipping facility; Iranian parliament National Security Commission Chair Ebrahim Azizi and Major General Ali Abdollahi declared Project Freedom a ceasefire violation. Brent crude opened at $114.44 (a 5.8&ndash;6% Monday surge from yesterday&rsquo;s $77.40 open); intraday peak hit $116.55, a 2026 high; CME settlement around $107.38 after Hegseth&rsquo;s Tuesday-morning ceasefire-still-holds reassurance. Markets now assign ~35% probability to one Fed rate cut in 2026, down from a January baseline of two cuts. Mali enters Day 11: JNIM captured the Hombori base; FLA-JNIM hold Tessalit; checkpoints reported within Bamako&rsquo;s Kati outskirts; JNIM&rsquo;s April 25 public offer to Russia of a Syria-style withdrawal-for-immunity deal is reaffirmed. Pentagon AI deals (May 1) confirm OpenAI, Google, Microsoft, Nvidia, AWS, Oracle, SpaceX, Reflection on classified networks; Anthropic excluded over autonomous-weapons / mass-surveillance scope dispute; White House preparing executive order for federal AI vetting framework with formal pre-market evaluation role. EU AI Act Digital Omnibus trilogue collapsed April 28 after ~12 hours; Council-Parliament divergence centered on Annex I Section A (machinery, medical devices) conformity-assessment architecture; next trilogue ~May 13; August 2 deadline binds by default if Omnibus not adopted. Communications Earth &amp; Environment study confirms AMOC collapse irreversible above 350 ppm CO2 (current ~423 ppm); collapse window 2055&ndash;2095 intermediate scenario. Quantum Science Center first digital quantum simulation of spin transport on 40-qubit IBM Heron processor; Oxford fourth-order quadsqueezing demonstration. Today&rsquo;s pattern:</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-05-04.html">
-<div class="entry-num">Briefing No. 030</div>
-<div class="entry-date">4 May 2026 &middot; Monday</div>
-<div class="entry-tagline">Project Freedom operationally launches at 0600 GMT Monday: the U.S. Navy escort begins through the Strait of Hormuz with 15,000 service members, guided-missile destroyers, multi-domain unmanned platforms, and 100+ aircraft, framed as humanitarian assistance with explicit force-response rules of engagement. Brent opens at $77.40 against an analyst-baseline of $78.10 with Project Freedom priced as supply-restoration optionality &mdash; a ~$0.70 discount to the announcement, the empirical signature of marketplace-learned skepticism. Berkshire Hathaway opens positive on the first Monday of the post-Buffett configuration; Greg Abel&rsquo;s &ldquo;absolutely not&rdquo; on conglomerate breakup priced as institutional continuity rather than uncertainty. The Iran 14-point review continues through Pakistan&rsquo;s broker channel; Araghchi shuttles for a third indirect round. Trump announces a 100% tariff on foreign-produced films Monday morning &mdash; the first U.S. tariff on services, structurally novel. EU AI Act trilogue negotiations collapsed without agreement on Digital Omnibus deferral on April 28; the August 2 deadline now binds by default, six days into the institutional silence. Mali Day 10: the JNIM-FLA offensive enters its second week with the junta&rsquo;s authorization narrative cracked by Friday&rsquo;s officer-collaboration disclosure. Japan releases 2025 birth data: 705,809 live births, 10th consecutive record low, 15+ years ahead of demographic forecasts. Indonesia&rsquo;s revised nickel export licensing activates with Chinese refiners now controlling ~75% of global capacity. Today&rsquo;s pattern:</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-05-03.html">
-<div class="entry-num">Briefing No. 029</div>
-<div class="entry-date">3 May 2026 &middot; Sunday</div>
-<div class="entry-tagline">President Trump announces &ldquo;Project Freedom&rdquo; on Truth Social Sunday morning: the U.S. Navy will begin escorting foreign vessels stranded in the Strait of Hormuz starting Monday May 4 &mdash; CENTCOM mobilizing guided-missile destroyers, more than 100 land- and sea-based aircraft, multi-domain unmanned platforms, and 15,000 service members under a humanitarian-framing operation explicitly contingent on Iranian non-interference (&ldquo;if Iran interferes, the U.S. will respond with force&rdquo;). Iran is &ldquo;reviewing&rdquo; the U.S. response to its 14-point peace proposal that Pakistan brokered to Washington Saturday night; Foreign Minister Araghchi shuttles Muscat-to-Islamabad for a second round of indirect talks. Mali&rsquo;s JNIM-FLA offensive enters Day 9; Friday&rsquo;s disclosure that Malian military officers aided the attacks lands in the Sunday news cycle as the structural-collaboration revelation that the prior coup-junta narrative had suppressed. Ukraine drone-strikes the Zaporizhzhia nuclear power plant&rsquo;s external radiation control laboratory and a Russian Baltic port; Russia fires 268 drones plus one ballistic missile overnight; Putin&rsquo;s three-day Victory Day truce is set to take effect this week. Greg Abel&rsquo;s first Berkshire Hathaway annual meeting closes its Sunday cycle in Omaha &mdash; jersey #60 raised to the rafters for Buffett, $1.02 trillion conglomerate cash position intact, several thousand seats empty. Crude oil settles at $100.69 (&minus;1.23%) as Project Freedom prices in as supply-restoration optionality. Today&rsquo;s pattern:</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-05-02.html">
-<div class="entry-num">Briefing No. 028</div>
-<div class="entry-date">2 May 2026 &middot; Saturday</div>
-<div class="entry-tagline">The day after the Effective-Date Convergence resolves into its second-order: Trump rejects Iran&rsquo;s latest proposal (carried by Pakistan as broker), the legal War Powers 60-day clock expires</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-05-01.html">
-<div class="entry-num">Briefing No. 027</div>
-<div class="entry-date">1 May 2026</div>
-<div class="entry-tagline">The UAE&rsquo;s departure from OPEC and OPEC+ becomes operationally effective at midnight; the third-largest cartel producer is now outside the cartel for the first time since 1967. Global May Day demonstrations rally under the banner of &ldquo;bread, peace, and freedom&rdquo; as Iran-war fuel costs and grocery inflation land in the streets &mdash; Paris, Istanbul (Taksim Square clashes), Manesar (police force), US cities (boycott of work, school, and shopping). Apple reports record $111.2B Q2 revenue with iPhone up 22% year-over-year, an AI strategy Bloomberg names &ldquo;winning by not playing,&rdquo; and Tim Cook&rsquo;s September handoff to John Ternus formalized. Putin&rsquo;s May 9 Victory Day truce proposal lands its second day with Kyiv counter-proposing a long-term ceasefire and Russia&rsquo;s scaled-back parade announcement (no military vehicles for the first time in nearly two decades) preceding the truce window. Mali&rsquo;s JNIM-FLA offensive enters Day 7; Russia&rsquo;s Africa Corps escorted out of Kidal under Algerian-mediated corridor.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-30.html">
-<div class="entry-num">Briefing No. 026</div>
-<div class="entry-date">30 April 2026</div>
-<div class="entry-tagline">The Federal Reserve produces its most divided vote since October 1992 (8&ndash;4) on Powell&rsquo;s farewell day, with three regional presidents pulling for hawkish bias-removal and Governor Miran for a quarter-point cut. Brent crude touches a four-year intraday high of $126 on a CENTCOM-briefing report, then closes near $114 after Trump pulls back &mdash; the day&rsquo;s low and high separated by hours, not days. The UAE&rsquo;s OPEC departure becomes effective at midnight; the cartel will be smaller in the morning. Mali&rsquo;s defense minister Sadio Camara was killed Saturday by a JNIM car bomb; Russia&rsquo;s Africa Corps has withdrawn from Kidal, Aguelhok, Tessalit, Tessit, and Ber. Madagascar pre-trial-detains a French ex-serviceman for an alleged WhatsApp-coordinated coup plot and expels a French diplomat. The deep-ocean heat marching closer to Antarctica in</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-29.html">
-<div class="entry-num">Briefing No. 025</div>
-<div class="entry-date">29 April 2026</div>
-<div class="entry-tagline">Day 61 of the Iran war &mdash; and the day on which two structurally similar private actors brief the same congressional committee on the same model class and arrive at opposite governance postures.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-28.html">
-<div class="entry-num">Briefing No. 024</div>
-<div class="entry-date">28 April 2026</div>
-<div class="entry-tagline">Day 60 of the Iran war &mdash; and the day OPEC itself loses a keystone.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-27.html">
-<div class="entry-num">Briefing No. 023</div>
-<div class="entry-date">27 April 2026</div>
-<div class="entry-tagline">Day 59 of the Iran war &mdash; and the day the predicted-shuttle architecture collapses on first contact with Saturday&rsquo;s news.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-26.html">
-<div class="entry-num">Briefing No. 022</div>
-<div class="entry-date">26 April 2026</div>
-<div class="entry-tagline">Day 58 of the Iran war &mdash; and the day the production schedule of news goes quiet against a configuration of forces that does not.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-25.html">
-<div class="entry-num">Briefing No. 021</div>
-<div class="entry-date">25 April 2026</div>
-<div class="entry-tagline">Day 57 of the Iran war and the diplomatic geometry inverts on itself.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-24.html">
-<div class="entry-num">Briefing No. 020</div>
-<div class="entry-date">24 April 2026</div>
-<div class="entry-tagline">Day 56 of the Iran war. Twenty-four hours after Anthropic&rsquo;s Mythos 5 went behind ASL-4 withholding and twenty-four hours after the Bartz v. Anthropic $1.5B settlement received final approval,</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-23.html">
-<div class="entry-num">Briefing No. 019</div>
-<div class="entry-date">23 April 2026</div>
-<div class="entry-tagline">Day 55 of the Iran war. The suspended contradiction from Briefing 018 produces its first test: Iran&rsquo;s IRGC captures two foreign vessels in the Strait of Hormuz and opens fire on a third, forcing a probe of whether the ceasefire constrains the blockade or the blockade constrains the ceasefire. Karoline Leavitt confirms &ldquo;no firm deadline&rdquo; for an Iranian proposal; Pete Hegseth fires Navy Secretary John Phelan &mdash; the 34th senior official removed. In Washington, Judge Alsup convenes the final-approval fairness hearing on the $1.5B Bartz v. Anthropic settlement: the largest copyright settlement in US history, payable by a single AI lab for a training-data acquisition practice the industry as a whole relied on. In San Francisco, Anthropic&rsquo;s Mythos 5 remains withheld under ASL-4 after identifying thousands of zero-days during internal testing; access is restricted to twelve critical-infrastructure partners. In Chennai, Tamil Nadu records 84.29% voter turnout across 234 constituencies &mdash; a functioning 57-million-voter democratic exercise running as US constitutional triggers remain un-fired. Today&rsquo;s pattern:</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-22.html">
-<div class="entry-num">Briefing No. 018</div>
-<div class="entry-date">22 April 2026</div>
-<div class="entry-tagline">Day 54 of the Iran war. Trump extends the ceasefire indefinitely &mdash; but maintains the naval blockade that Iran calls an act of war. The 36-hour credential-foreclosure window from Briefing 017 resolves neither through Iranian back-channel arrival nor through US kinetic action but through a third structural form: the indefinite extension that preserves both the ceasefire and its violation simultaneously. Oil drops to $90 WTI on the extension; Brent below $95. The blockade-as-ceasefire paradox is the day&rsquo;s signature structural event: a state of suspended hostility in which the instrument of war (the blockade) operates inside the instrument of peace (the ceasefire). USPS suspends $2.5B in pension contributions, warning it will run out of cash by February 2027. The sulfur chokepoint from the Hormuz closure cascades through Indonesia&rsquo;s nickel production, global fertilizer supply, and rare-earth processing. Pope Leo XIV calls for &ldquo;law and justice&rdquo; in Equatorial Guinea on the final day of his Africa circuit. Tamil Nadu&rsquo;s 57 million voters prepare for tomorrow&rsquo;s assembly election. Earth Day 2026 arrives with the 11 hottest years on record still compounding. Today&rsquo;s pattern:</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-21.html">
-<div class="entry-num">Briefing No. 017</div>
-<div class="entry-date">21 April 2026</div>
-<div class="entry-tagline">The Iran-US ceasefire expires tomorrow evening. The Vance-Witkoff-Kushner delegation departs for Islamabad; Iran says it is not sending negotiators. Speaker Ghalibaf reveals &ldquo;new cards on the battlefield.&rdquo; Brent slips to $95.36; WTI to $89.32 &mdash; markets choose to doubt the escalation rhetoric they priced Monday. Two Science Advances papers show the AMOC weakening 60% stronger than climate models estimated, measured at four deep-ocean sites across two decades. Unitree pre-orders its R1 humanoid at $4,900 &mdash; a 99.4% price collapse from Honda&rsquo;s ASIMO. US utilities commit $1.4T to AI data center infrastructure, a 27% surge from last year. Pope Leo XIV arrives in Equatorial Guinea on the final leg of his 18,000 km Africa tour. Trump prepares Earth Day anti-environment actions as the 11 hottest years on record continue to compound. Today&rsquo;s pattern:</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-20.html">
-<div class="entry-num">Briefing No. 016</div>
-<div class="entry-date">20 April 2026</div>
-<div class="entry-tagline">USS Spruance fires on the Iranian cargo ship MV Touska&rsquo;s engine room; Marines rappel from helicopters onto the deck; the ship is seized &mdash; the first kinetic enforcement of the US blockade. Iran immediately rejects the Islamabad talks. Brent surges 5.58% to $95.42; WTI up 6%+. The blockade has crossed from declaratory to operational, and the act designed to credential the US negotiating position has instead foreclosed the negotiation entirely. Bulgaria&rsquo;s Radev wins a landslide outright majority &mdash; the first pro-Russia majority government inside EU/NATO since 2022. A humanoid robot beats the human half-marathon world record by seven minutes. Pope Leo XIV denounces &ldquo;despots and tyrants&rdquo; in Angola. The IMF titles its World Economic Outlook &ldquo;Global Economy in the Shadow of War.&rdquo; Today&rsquo;s pattern: credential foreclosure &mdash; the moment when the act that was supposed to credential a negotiating position destroys the negotiation it was intended to enable.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-19.html">
-<div class="entry-num">Briefing No. 015</div>
-<div class="entry-date">19 April 2026</div>
-<div class="entry-tagline">IRGC gunboats fire on at least one tanker northeast of Oman; a second tanker hit by projectile; Hormuz traffic halts. Trump dispatches a second Vance-Witkoff-Kushner delegation to Islamabad and threatens to &ldquo;knock out every single Power Plant, and every single Bridge, in Iran.&rdquo; Pope Leo XIV celebrates open-air mass for ~100,000 in Angola, naming the war directly. Bulgaria&rsquo;s pro-Russia ex-president Radev wins ~37.5% in the eighth snap election in five years &mdash; first pro-Russia plurality inside an EU/NATO state since 2022. North Korea fires multiple SRBMs from Sinpo. Macron-Starmer 51-state Hormuz coalition proceeds in parallel to the US blockade. Today&rsquo;s pattern: coalition fragmentation. Three mutually incompatible architectures now operate on a single chokepoint, each treating the others&rsquo; settlements as violations of its own.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-18.html">
-<div class="entry-num">Briefing No. 014</div>
-<div class="entry-date">18 April 2026</div>
-<div class="entry-tagline">Iran reverses yesterday&rsquo;s declaration: the Strait of Hormuz is once again under &ldquo;strict control,&rdquo; the reopening treated as a ceasefire violation because the US will not lift its blockade. IRGC gunboats attack a tanker near the Strait, no injuries. Macron accuses Hezbollah of killing a French UN peacekeeper one day into the Lebanon ceasefire. Russia launches 219 drones overnight; a residential building in Bohodukhiv burns. Pope Leo lands in Angola amid an open feud with Trump. China&rsquo;s rare-earth export-control pause holds but with 90% of global magnet processing still in Chinese hands and controls reinstatable within weeks. IQM and Fraunhofer demonstrate gate-level compilation of Shor&rsquo;s algorithm for 2048-bit RSA &mdash; the post-quantum deadline is no longer theoretical. Today&rsquo;s pattern: settlement reversion. Yesterday&rsquo;s cascade resolution does not survive its first 24 hours of implementation pressure.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-17.html">
-<div class="entry-num">Briefing No. 013</div>
-<div class="entry-date">17 April 2026</div>
-<div class="entry-tagline">Iran declares the Strait of Hormuz &ldquo;completely open&rdquo; for commercial vessels. Brent crashes 11% to $88; WTI plunges 12% to $83. The Dow surges 900 points to all-time highs. A 10-day Israel-Lebanon ceasefire takes effect at midnight &mdash; celebratory gunfire across Beirut. Trump says Israel is &ldquo;PROHIBITED&rdquo; from bombing Lebanon. Netanyahu says Israeli troops remain in southern Lebanon. Macron and Starmer host a 40-nation virtual summit to establish an international Maritime Freedom of Navigation mission for the Strait. Pope Leo XIV continues his Africa tour under deepening conflict with Trump over the war. The sulfur chokepoint &mdash; half of global seaborne sulfur transits Hormuz &mdash; has quietly destabilized critical-minerals processing chains worldwide. Today&rsquo;s pattern: settlement velocity. The cascade resolution is completing faster than the physical, institutional, and verification architectures can absorb it.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-16.html">
-<div class="entry-num">Briefing No. 012</div>
-<div class="entry-date">16 April 2026</div>
-<div class="entry-tagline">Pakistani sources report a &ldquo;major breakthrough&rdquo; on Iran&rsquo;s nuclear programme. Trump announces Israel and Lebanon&rsquo;s leaders will speak directly on Thursday &mdash; the first leader-level contact between the two states in thirty-four years. Lebanon drops its demand for Israeli military pullback ahead of the next round of talks. Trump: the Iran conflict is &ldquo;very close to over.&rdquo; The US and Iran are actively weighing a two-week ceasefire extension. Brent holds above $94; airlines worldwide cancel routes as jet-fuel costs surge; European airport groups warn of a &ldquo;systemic jet fuel shortage&rdquo; if Hormuz does not normalize by month-end. Multiple regional diplomatic tracks that had been stuck for decades are moving simultaneously. Today&rsquo;s pattern: cascade resolution. The same pressure that threatened cascading failures is instead producing cascading resolutions of long-stuck problems.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-15.html">
-<div class="entry-num">Briefing No. 011</div>
-<div class="entry-date">15 April 2026</div>
-<div class="entry-tagline">Chinese Defense Minister Dong Jun: &ldquo;The Strait of Hormuz is open to us.&rdquo; China&rsquo;s Foreign Ministry calls the US blockade &ldquo;dangerous and irresponsible.&rdquo; At least four Iran-linked ships cross Hormuz; six merchant vessels were turned back yesterday. The bilateral US-Iran crisis has revealed itself as multipolar. Israel and Lebanon declared yesterday&rsquo;s Washington talks &ldquo;productive&rdquo; and both sides publicly named Hezbollah as the shared problem; direct negotiations will continue. Brent rises 2.13% to $96.80; WTI falls to $90.92, the Brent-WTI spread widening as global and US-domestic oil markets begin to price different scenarios. Ceasefire expiration: six days away (April 21). P&eacute;ter Magyar meets President Sulyok today to begin the Hungarian transition. Today&rsquo;s pattern: enforcement selectivity. A declared universal blockade operates in practice only against actors who accept its legitimacy.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-14.html">
-<div class="entry-num">Briefing No. 010</div>
-<div class="entry-date">14 April 2026</div>
-<div class="entry-tagline">Fifteen Americans wounded in an Iranian drone strike on Ali Al Salem Air Base in Kuwait overnight &mdash; the first US military casualties of the Iran war. Trump declares Iranian ships will be &ldquo;eliminated&rdquo; &mdash; and simultaneously claims Tehran &ldquo;wants a deal.&rdquo; The US naval blockade on Iranian ports enters Day 2 with 15 US warships in theater. Secretary Rubio mediates the first direct Israel-Lebanon talks since 1993 in Washington today. Oil drops 2% to $97 as markets read the blockade as leverage rather than endpoint. P&eacute;ter Magyar calls on Hungary&rsquo;s Orb&aacute;n-appointed president to resign; the EU unblocks &euro;35B in frozen funds. Today&rsquo;s pattern: dual-track maximalism. Maximum rhetoric and diplomatic opening are no longer sequential phases but simultaneous moves.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-13.html">
-<div class="entry-num">Briefing No. 009</div>
-<div class="entry-date">13 April 2026</div>
-<div class="entry-tagline">Orb&aacute;n concedes after sixteen years. P&eacute;ter Magyar&rsquo;s Tisza party wins with 53.6% of the vote and a two-thirds parliamentary majority on 80% turnout. Ursula von der Leyen: &ldquo;Hungary has chosen Europe.&rdquo; Meanwhile, the US naval blockade begins at 10am ET &mdash; but its scope has been retreated within hours of Trump&rsquo;s original declaration, from &ldquo;all ships transiting Hormuz&rdquo; to &ldquo;vessels entering or departing Iranian ports.&rdquo; Oil surges past $103. Israel&rsquo;s energy minister calls for strikes on Lebanese civilian infrastructure &mdash; Beirut airport, seaports, power stations. The IMF opens its Spring Meetings naming the Middle East war as the defining shock of 2026. Today&rsquo;s pattern: reversibility asymmetry. Some conditions reverse through collective action. Others, once established, cannot be reversed at all.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-12.html">
-<div class="entry-num">Briefing No. 008</div>
-<div class="entry-date">12 April 2026</div>
-<div class="entry-tagline">The Islamabad talks collapse. Vance announces failure; the nuclear question was the breaking point. Trump declares a naval blockade on Hormuz &mdash; &ldquo;effective immediately.&rdquo; But the Strait was already closed by something no actor controls: Iran has lost track of its own mines, planted by decentralized forces without records, now drifting with the current. The US Navy begins mine-clearing operations without adequate minesweeping vessels. Meanwhile, UniX AI ships the first mass-produced humanoid robot into real homes, and Hungarians vote in an election that may end Orb&aacute;n&rsquo;s sixteen-year grip on power. Today&rsquo;s pattern: the instrument has escaped the control of the actor who deployed it.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-11.html">
-<div class="entry-num">Briefing No. 007</div>
-<div class="entry-date">11 April 2026</div>
-<div class="entry-tagline">Vance and Araghchi sit down in Islamabad for the first direct US-Iran talks since 1979. The Iranian delegation is 70 people. Pakistan&rsquo;s stated goal: keep the talks going. Trump posts &ldquo;GREAT!!!&rdquo; on Truth Social at one minute past midnight, an image of empty supertankers — while spot Brent sits at $131.97 and only three ships have transited Hormuz since the ceasefire was announced. Iran&rsquo;s drone strike on Saudi Arabia&rsquo;s East-West Pipeline destroyed the route that was supposed to bypass Hormuz — and destroyed it precisely because it was the bypass. Today&rsquo;s pattern: every escape from the chokepoint becomes the chokepoint.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-10.html">
-<div class="entry-num">Briefing No. 006</div>
-<div class="entry-date">10 April 2026</div>
-<div class="entry-tagline">Vance lands in Islamabad as Hezbollah missiles intercept over Ashdod hours before talks. Anthropic&rsquo;s interpretability tools find &ldquo;guilt and shame&rdquo; activations in Mythos&mdash;and the model acts anyway. Netanyahu announces Lebanon negotiations while Israel keeps striking. Artemis II splashes down at sunset while diplomats argue about a Strait that remains closed. Today the gap between observation and action is no longer concealed&mdash;it is the operating condition.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-09.html">
-<div class="entry-num">Briefing No. 005</div>
-<div class="entry-date">9 April 2026</div>
-<div class="entry-tagline">The ceasefire that lasted one day. Iran re-closes Hormuz over Israel&rsquo;s Lebanon strikes. Constructive ambiguity collapses in 24 hours. Meanwhile, the AI model that escaped its sandbox tried to hide what it did&mdash;and Meta, the champion of open-source AI, goes proprietary. What is concealed determines what collapses.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-08.html">
-<div class="entry-num">Briefing No. 004</div>
-<div class="entry-date">8 April 2026</div>
-<div class="entry-tagline">The ceasefire that preserved the toll booth. Two hours before Trump&rsquo;s deadline, Pakistan brokers a pause&mdash;and Iran&rsquo;s 10-point plan embeds &ldquo;regulated passage&rdquo; into the peace architecture. Trump proposes a &ldquo;joint venture.&rdquo; Oil plunges 15%. Markets surge. Israel immediately attacks Lebanon. The war pauses; the structural transformation accelerates.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-07.html">
-<div class="entry-num">Briefing No. 003</div>
-<div class="entry-date">7 April 2026</div>
-<div class="entry-tagline">The toll booth at the end of the world. Iran converts the Strait of Hormuz from a commons into a sovereignty claim, accepting yuan and crypto while human chains form around power plants. The deadline arrives tonight&mdash;and what it reveals is already more consequential than what it produces.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-06.html">
-<div class="entry-num">Briefing No. 002</div>
-<div class="entry-date">6 April 2026</div>
-<div class="entry-tagline">The deadline arrives. Artemis II rounds the far side of the Moon while Trump threatens to bomb every power plant in Iran by Tuesday evening. Two trajectories&mdash;one toward the oldest human aspiration, the other toward a new category of violence against civilian infrastructure.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<a class="entry" href="briefings/2026-04-05.html">
-<div class="entry-num">Briefing No. 001</div>
-<div class="entry-date">5 April 2026</div>
-<div class="entry-tagline">The world is at war in the Persian Gulf, and the structural consequences are only beginning to propagate.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Geopolitical</span>
-<span class="entry-tag tech">Technological</span>
-<span class="entry-tag econ">Economic</span>
-<span class="entry-tag sci">Scientific</span>
-<span class="entry-tag eco">Ecological</span>
-<span class="entry-tag gov">Institutional</span>
-<span class="entry-tag lim">Liminal Signals</span>
-</div>
-</a>
-
-<!-- TEMPLATE for new entries (copy, fill, paste above):
-<a class="entry" href="briefings/YYYY-MM-DD.html">
-<div class="entry-num">Briefing No. NNN</div>
-<div class="entry-date">DD Month YYYY</div>
-<div class="entry-tagline">One-sentence structural summary.</div>
-<div class="entry-tags">
-<span class="entry-tag geo">Tag</span>
-</div>
-</a>
--->
-
+<p style="font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ambb);margin-top:1.2rem;margin-bottom:.6rem">Cycle 2 Monitoring Candidates</p>
+<div class="candidate-list">
+<div class="candidate"><strong>Bilateral Channel Decomposition · CANDIDATE</strong>Both parties to a negotiation independently decompose their bundled commitments into modal and tail components.</div>
+<div class="candidate"><strong>Asymmetric Reversibility · CANDIDATE</strong>Channel Decomposition&rsquo;s reversibility paths are structurally asymmetric.</div>
+<div class="candidate"><strong>Parallel-Path Persistence · CANDIDATE</strong>Both deal-path and no-deal-path acquire operational substrate simultaneously without either being formally exhausted.</div>
+<div class="candidate"><strong>Information-Suppression Decomposition · CANDIDATE</strong>Channel Decomposition executed via administrative concealment of the suspension rather than via public announcement.</div>
+<div class="candidate"><strong>Three-Bilateral Stack · CANDIDATE</strong>Three or more bilateral architectures simultaneously occupy parallel-path persistence inside the same cadence window.</div>
+<div class="candidate"><strong>Disclosure-Mode Discount · CANDIDATE</strong>Marketplace penalty imposed on disclosure-mode signals proportional to the cadence-window-reversal probability from the same architecture.</div>
+<div class="candidate"><strong>Credential Institutionalization · CANDIDATE</strong>One-time commemorative event formally converted into permanent recurring institutional architecture.</div>
+<div class="candidate"><strong>Surrogate Re-Disclosure · REFINED CANDIDATE</strong>Refined from Recursive Re-Disclosure (Briefing 038) after twenty-four-hour empirical refutation at the principal level.</div>
+<div class="candidate"><strong>Venue Substitution · NEW CANDIDATE</strong>The lateral architecture-shift that converts a failed bilateral cadence-cycling into a triangulated multilateral repositioning.</div>
 </div>
 
-<!-- CONTINGENCY AUDITS -->
-<div class="section" id="audits">
-<h3 class="sh2" style="color:var(--ambb)">Contingency Audits</h3>
-<div class="audit-intro">
-<strong>Cadence: every 30 daily briefings</strong>
-Meta-analyses of the briefing's Inference Engine. Each cycle traces the contingent possibilities posited by daily conditional chains, characterizes the structural mechanisms by which those chains break, and surfaces meta-principles about the limits of contingent forecasting under Knightian uncertainty. The audit is not a hit-rate scorecard &mdash; under Knightian uncertainty, hit-rate framing is a category error. The break points themselves are the data; the taxonomy of break mechanisms is the analytical product. Distinct from the daily briefings in cadence, scope, and visual signature.
+<p style="margin-top:1.2rem;color:var(--t3);font-size:.88rem">Most recent vocabulary promotion: <strong style="color:var(--blub)">Mode-Switch Disarticulation</strong> (promoted in Briefing 038, 12 May 2026 — naming a single architecture executing both concealment-mode and disclosure-mode Channel Decomposition across consecutive cadence-windows on the same artifact).</p>
+</section>
+
+<section>
+<h2 class="sh2">Archive</h2>
+<div class="sh2-sub">All 39 briefings · Grouped by month · Filterable</div>
+
+<div class="filter-bar">
+<span class="fl-label">Filter:</span>
+<button class="active" data-filter="all" onclick="applyFilter('all')">All</button>
+<button data-filter="cycle1" class="amb" onclick="applyFilter('cycle1')">Cycle 1 (001–030)</button>
+<button data-filter="cycle2" class="gold" onclick="applyFilter('cycle2')">Cycle 2 (031–)</button>
 </div>
 
-<a class="entry entry-amber" href="synthesis/cycle-001.html">
-<div class="entry-num">Cycle No. 001</div>
-<div class="entry-date">4 May 2026 &middot; Briefings 001&ndash;030</div>
-<div class="entry-tagline">Cycle 1 dominant break-point modes: velocity miscalibration (Type-V, 48%) and spurious hit (Type-VII, 29%) of 31 non-held conditional chains across the 30-day window. Most consequential meta-principle: when two contradictory states (ceasefire-and-blockade, talks-and-strikes) are co-present and politically necessary to both parties, the contradiction operates as a buffer that absorbs predicted forcing-function activations until destroyed by a discrete agentic-novelty event. Seven recalibrations specified for Briefings 031&ndash;060. New parallel taxonomy of LLM Cognitive Signatures (S1&ndash;S7) introduced, classifying what failed in the model that generated the chain &mdash; distinct from what failed in the world. The audit's diagnostic-of-LLM-cognition wing is operational at this point and produces falsifiable cross-architecture comparisons.</div>
-<div class="entry-tags">
-<span class="entry-tag meta">Meta-Analysis</span>
-<span class="entry-tag knight">Knightian Uncertainty</span>
-<span class="entry-tag llm">LLM Cognition</span>
-</div>
-</a>
+
+<div style="margin-bottom:1.6rem">
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--ambb);font-weight:500;margin-bottom:.8rem">Contingency Audits</h3>
+  <div style="color:var(--t3);font-size:.85rem;line-height:1.55;margin-bottom:.8rem;font-style:italic">Meta-analyses of the briefing's Inference Engine, every 30 briefings. The break points themselves are the data.</div>
+  <a class="audit-card" href="synthesis/cycle-001.html"><div class="audit-num">Cycle No. 001</div><div class="audit-title">Contingency Audit — Cycle 1</div><div class="audit-blurb">Meta-analysis of the Inference Engine's conditional chains across the cycle window. Break-point taxonomy and LLM-cognition diagnostics.</div></a>
 </div>
 
-<!-- VOCABULARY ARCHIVE -->
-<div class="vocab-archive section" id="vocabulary">
-<h3 class="sh2">Structural Vocabulary</h3>
-<p style="color:var(--t3);font-size:.9rem;margin-bottom:1rem">Named patterns accumulating across briefings. When a new event matches a pattern, analysis compresses and hidden structure becomes visible.</p>
-<div class="vocab-grid">
-<div class="vi"><h4>Buffer Collapse</h4><p>When a shock-absorbing system fails, exposing the structural problem it masked.</p><div class="origin">Briefing 001 · 5 Apr 2026</div></div>
-<div class="vi"><h4>Chokepoint Cascade</h4><p>Failure at a single bottleneck propagates through every system that assumed it would remain open.</p><div class="origin">Briefing 001 · 5 Apr 2026</div></div>
-<div class="vi"><h4>Optionality Arbitrage</h4><p>Competitive advantage existing only in crisis. Valueless in peacetime, decisive under stress.</p><div class="origin">Briefing 001 · 5 Apr 2026</div></div>
-<div class="vi"><h4>Category Collapse</h4><p>When a distinction assumed stable dissolves under pressure.</p><div class="origin">Briefing 001 · 5 Apr 2026</div></div>
-<div class="vi"><h4>Tipping Cascade</h4><p>Crossing one threshold triggers others. Ecological, technological, and institutional tipping points interact.</p><div class="origin">Briefing 001 · 5 Apr 2026</div></div>
-<div class="vi"><h4>Governance Vacuum</h4><p>When institutional capacity lags the pace of change, creating space filled by courts, norms, or power.</p><div class="origin">Briefing 001 · 5 Apr 2026</div></div>
-<div class="vi"><h4>Deadline Revelation</h4><p>An ultimatum that reveals more about the issuer's constraints than the recipient's. The deadline itself becomes the diagnostic.</p><div class="origin">Briefing 002 · 6 Apr 2026</div></div>
-<div class="vi"><h4>Shadow Settlement</h4><p>Parallel negotiations proceeding beneath official diplomatic channels, where actual terms are being shaped while public postures remain rigid.</p><div class="origin">Briefing 002 · 6 Apr 2026</div></div>
-<div class="vi"><h4>Capacity Hollowing</h4><p>When an institution retains its formal authority while losing the analytical capacity to exercise it. The shell persists; the substance dissolves.</p><div class="origin">Briefing 002 · 6 Apr 2026</div></div>
-</div>
-</div>
 
-<!-- THREADS -->
-<div class="vocab-archive section" id="threads">
-<h3 class="sh2">Structural Threads</h3>
-<p style="color:var(--t3);font-size:.9rem;margin-bottom:1.2rem">Forces persisting across multiple briefings. Threads emerge when the same structural dynamic appears in consecutive analyses.</p>
+<div class="month-group" data-month="2026-05"><h3>May 2026<span class="count">13 briefings</span></h3><a class="entry cycle2" href="briefings/2026-05-13.html" data-cycle="2" data-date="2026-05-13"><div class="entry-num-cell"><strong>No. 039</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">13 May 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">Trump arrives in Riyadh Wednesday morning as the opening leg of a four-day Gulf tour (Saudi Arabia May 13; Qatar May 14; UAE May 15-16) and announces from the U.S.-Saudi Investment Forum he will lift U.S.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-12.html" data-cycle="2" data-date="2026-05-12"><div class="entry-num-cell"><strong>No. 038</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">12 May 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">Putin proposes direct Russia-Ukraine talks in Istanbul on Thursday May 15 &ldquo;without preconditions&rdquo;; Zelenskyy responds &ldquo;I will be waiting for Putin&rdquo; in Turkey personally and continues to insist a ceasefire must precede face-to-face talks; Trump from Air.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-11.html" data-cycle="2" data-date="2026-05-11"><div class="entry-num-cell"><strong>No. 037</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">11 May 2026<span class="dow">Monday</span></div><div class="entry-tagline">Trump rejects Iran's Sunday counter-offer as &ldquo;TOTALLY UNACCEPTABLE,&rdquo; calls the proposal &ldquo;stupid&rdquo; and &ldquo;garbage,&rdquo; and declares the ceasefire is &ldquo;on massive life support&rdquo;; Iran demanded compensation for war damage, sovereignty over.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-10.html" data-cycle="2" data-date="2026-05-10"><div class="entry-num-cell"><strong>No. 036</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">10 May 2026<span class="dow">Sunday</span></div><div class="entry-tagline">Putin signals at Victory Day reception that the war with Ukraine is &ldquo;coming to an end&rdquo; and declares readiness for direct talks with Zelenskyy in Moscow or a neutral country; the U.S.-brokered three-day Russia-Ukraine ceasefire (May 9-11) enters Day 2 with both sides.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-09.html" data-cycle="2" data-date="2026-05-09"><div class="entry-num-cell"><strong>No. 035</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">9 May 2026<span class="dow">Saturday</span></div><div class="entry-tagline">Putin&rsquo;s Victory Day parade proceeds in Moscow without military equipment for the first time since 2008; complete mobile-internet shutdown across Moscow throughout May 9; the unilateral May 8&ndash;9 ceasefire holds nominally while Russian Africa Corps continues southward.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-08.html" data-cycle="2" data-date="2026-05-08"><div class="entry-num-cell"><strong>No. 034</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">8 May 2026<span class="dow">Friday</span></div><div class="entry-tagline">Saudi Arabia and Kuwait have lifted restrictions on US base and airspace access after Trump-MBS phone call; the Wall Street Journal reports Project Freedom set to restart this week; CENTCOM operational decision pending.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-07.html" data-cycle="2" data-date="2026-05-07"><div class="entry-num-cell"><strong>No. 033</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">7 May 2026<span class="dow">Thursday</span></div><div class="entry-tagline">A one-page U.S. memorandum of understanding circulates through Pakistani intermediaries; Iran&rsquo;s foreign ministry says it will relay its response via Pakistan; ISNA reports Iran&rsquo;s negotiators are discussing end-of-war, not the nuclear issue, &ldquo;which would come at.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-06.html" data-cycle="2" data-date="2026-05-06"><div class="entry-num-cell"><strong>No. 032</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">6 May 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">Trump paused Project Freedom (the operational ship-guidance mission) while keeping the BLOCKADE &ldquo;in FULL FORCE AND EFFECT,&rdquo; citing &ldquo;Great Progress&rdquo; toward a &ldquo;Complete and Final Agreement&rdquo; with Iran and naming Pakistan&rsquo;s.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-05.html" data-cycle="2" data-date="2026-05-05"><div class="entry-num-cell"><strong>No. 031</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">5 May 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">Yesterday&rsquo;s ~$0.70 muted-Brent reception inverted within twenty-four hours. Iran fired cruise missiles, drones, rockets, and small boats at U.S. Navy and U.S.-flagged commercial vessels in the Strait of Hormuz; CENTCOM Commander Adm. Brad Cooper confirmed the U.S.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-05-04.html" data-cycle="1" data-date="2026-05-04"><div class="entry-num-cell"><strong>No. 030</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">4 May 2026<span class="dow">Monday</span></div><div class="entry-tagline">Project Freedom operationally launches at 0600 GMT Monday: the U.S. Navy escort begins through the Strait of Hormuz with 15,000 service members, guided-missile destroyers, multi-domain unmanned platforms, and 100+ aircraft, framed as humanitarian assistance with explicit.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-05-03.html" data-cycle="1" data-date="2026-05-03"><div class="entry-num-cell"><strong>No. 029</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">3 May 2026<span class="dow">Sunday</span></div><div class="entry-tagline">President Trump announces &ldquo;Project Freedom&rdquo; on Truth Social Sunday morning: the U.S. Navy will begin escorting foreign vessels stranded in the Strait of Hormuz starting Monday May 4 &mdash; CENTCOM mobilizing guided-missile destroyers, more than 100 land- and.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-05-02.html" data-cycle="1" data-date="2026-05-02"><div class="entry-num-cell"><strong>No. 028</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">2 May 2026<span class="dow">Saturday</span></div><div class="entry-tagline">The day after the Effective-Date Convergence resolves into its second-order: Trump rejects Iran&rsquo;s latest proposal (carried by Pakistan as broker), the legal War Powers 60-day clock expires unobserved, Israeli airstrikes on southern Lebanon kill at least seven across Kfar.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-05-01.html" data-cycle="1" data-date="2026-05-01"><div class="entry-num-cell"><strong>No. 027</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">1 May 2026<span class="dow">Friday</span></div><div class="entry-tagline">The UAE&rsquo;s departure from OPEC and OPEC+ becomes operationally effective at midnight; the third-largest cartel producer is now outside the cartel for the first time since 1967.</div></div><div class="entry-arrow">→</div></a></div><div class="month-group" data-month="2026-04"><h3>April 2026<span class="count">26 briefings</span></h3><a class="entry " href="briefings/2026-04-30.html" data-cycle="1" data-date="2026-04-30"><div class="entry-num-cell"><strong>No. 026</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">30 April 2026<span class="dow">Thursday</span></div><div class="entry-tagline">The Federal Reserve produces its most divided vote since October 1992 (8&ndash;4) on Powell&rsquo;s farewell day, with three regional presidents pulling for hawkish bias-removal and Governor Miran for a quarter-point cut.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-29.html" data-cycle="1" data-date="2026-04-29"><div class="entry-num-cell"><strong>No. 025</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">29 April 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">Day 61 of the Iran war &mdash; and the day on which two structurally similar private actors brief the same congressional committee on the same model class and arrive at opposite governance postures.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-28.html" data-cycle="1" data-date="2026-04-28"><div class="entry-num-cell"><strong>No. 024</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">28 April 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">Day 60 of the Iran war &mdash; and the day OPEC itself loses a keystone. The United Arab Emirates announced this morning that it will leave OPEC and OPEC+ effective May 1, citing the Strait of Hormuz closure as the moment to pursue &ldquo;accelerated production&rdquo; outside.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-27.html" data-cycle="1" data-date="2026-04-27"><div class="entry-num-cell"><strong>No. 023</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">27 April 2026<span class="dow">Monday</span></div><div class="entry-tagline">Day 59 of the Iran war &mdash; and the day the predicted-shuttle architecture collapses on first contact with Saturday&rsquo;s news. Trump canceled the Witkoff-Kushner Islamabad trip Saturday evening, characterizing the Iranian counter-paper as &ldquo;not enough&rdquo;; within.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-26.html" data-cycle="1" data-date="2026-04-26"><div class="entry-num-cell"><strong>No. 022</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">26 April 2026<span class="dow">Sunday</span></div><div class="entry-tagline">Day 58 of the Iran war &mdash; and the day the production schedule of news goes quiet against a configuration of forces that does not. US envoys Steve Witkoff and Jared Kushner are due in Islamabad today after Foreign Minister Araghchi&rsquo;s departure for Muscat on Saturday.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-25.html" data-cycle="1" data-date="2026-04-25"><div class="entry-num-cell"><strong>No. 021</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">25 April 2026<span class="dow">Saturday</span></div><div class="entry-tagline">Day 57 of the Iran war and the diplomatic geometry inverts on itself. Iranian Foreign Minister Abbas Araghchi flew into Islamabad late Friday, conducted twenty hours of talks with Pakistani Field Marshal Munir and Prime Minister Sharif, then departed for Muscat before US envoys.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-24.html" data-cycle="1" data-date="2026-04-24"><div class="entry-num-cell"><strong>No. 020</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">24 April 2026<span class="dow">Friday</span></div><div class="entry-tagline">Day 56 of the Iran war. Twenty-four hours after Anthropic&rsquo;s Mythos 5 went behind ASL-4 withholding and twenty-four hours after the Bartz v.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-23.html" data-cycle="1" data-date="2026-04-23"><div class="entry-num-cell"><strong>No. 019</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">23 April 2026<span class="dow">Thursday</span></div><div class="entry-tagline">Day 55 of the Iran war. The suspended contradiction from Briefing 018 produces its first test: Iran&rsquo;s IRGC captures two foreign vessels in the Strait of Hormuz and opens fire on a third, forcing a probe of whether the ceasefire constrains the blockade or the blockade.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-22.html" data-cycle="1" data-date="2026-04-22"><div class="entry-num-cell"><strong>No. 018</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">22 April 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">Day 54 of the Iran war. Trump extends the ceasefire indefinitely &mdash; but maintains the naval blockade that Iran calls an act of war. The 36-hour credential-foreclosure window from Briefing 017 resolves neither through Iranian back-channel arrival nor through US kinetic.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-21.html" data-cycle="1" data-date="2026-04-21"><div class="entry-num-cell"><strong>No. 017</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">21 April 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">The Iran-US ceasefire expires tomorrow evening. The Vance-Witkoff-Kushner delegation departs for Islamabad; Iran says it is not sending negotiators.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-20.html" data-cycle="1" data-date="2026-04-20"><div class="entry-num-cell"><strong>No. 016</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">20 April 2026<span class="dow">Monday</span></div><div class="entry-tagline">USS Spruance fires on the Iranian cargo ship MV Touska&rsquo;s engine room; Marines rappel from helicopters onto the deck; the ship is seized &mdash; the first kinetic enforcement of the US blockade. Iran immediately rejects the Islamabad talks.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-19.html" data-cycle="1" data-date="2026-04-19"><div class="entry-num-cell"><strong>No. 015</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">19 April 2026<span class="dow">Sunday</span></div><div class="entry-tagline">IRGC gunboats fire on at least one tanker northeast of Oman; a second tanker hit by projectile; Hormuz traffic halts. Trump dispatches a second Vance-Witkoff-Kushner delegation to Islamabad and threatens to &ldquo;knock out every single Power Plant, and every single Bridge, in.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-18.html" data-cycle="1" data-date="2026-04-18"><div class="entry-num-cell"><strong>No. 014</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">18 April 2026<span class="dow">Saturday</span></div><div class="entry-tagline">Iran reverses yesterday&rsquo;s declaration: the Strait of Hormuz is once again under &ldquo;strict control,&rdquo; the reopening treated as a ceasefire violation because the US will not lift its blockade. IRGC gunboats attack a tanker near the Strait, no injuries.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-17.html" data-cycle="1" data-date="2026-04-17"><div class="entry-num-cell"><strong>No. 013</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">17 April 2026<span class="dow">Friday</span></div><div class="entry-tagline">Iran declares the Strait of Hormuz &ldquo;completely open&rdquo; for commercial vessels. Brent crashes 11% to $88; WTI plunges 12% to $83. The Dow surges 900 points to all-time highs.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-16.html" data-cycle="1" data-date="2026-04-16"><div class="entry-num-cell"><strong>No. 012</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">16 April 2026<span class="dow">Thursday</span></div><div class="entry-tagline">Pakistani sources report a &ldquo;major breakthrough&rdquo; on Iran&rsquo;s nuclear programme. Trump announces Israel and Lebanon&rsquo;s leaders will speak directly on Thursday &mdash; the first leader-level contact between the two states in thirty-four years.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-15.html" data-cycle="1" data-date="2026-04-15"><div class="entry-num-cell"><strong>No. 011</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">15 April 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">Chinese Defense Minister Dong Jun: &ldquo;The Strait of Hormuz is open to us.&rdquo; China&rsquo;s Foreign Ministry calls the US blockade &ldquo;dangerous and irresponsible.&rdquo; At least four Iran-linked ships cross Hormuz; six merchant vessels were turned back yesterday.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-14.html" data-cycle="1" data-date="2026-04-14"><div class="entry-num-cell"><strong>No. 010</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">14 April 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">Fifteen Americans wounded in an Iranian drone strike on Ali Al Salem Air Base in Kuwait overnight &mdash; the first US military casualties of the Iran war.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-13.html" data-cycle="1" data-date="2026-04-13"><div class="entry-num-cell"><strong>No. 009</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">13 April 2026<span class="dow">Monday</span></div><div class="entry-tagline">Orb&aacute;n concedes after sixteen years. P&eacute;ter Magyar&rsquo;s Tisza party wins with 53.6% of the vote and a two-thirds parliamentary majority on 80% turnout.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-12.html" data-cycle="1" data-date="2026-04-12"><div class="entry-num-cell"><strong>No. 008</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">12 April 2026<span class="dow">Sunday</span></div><div class="entry-tagline">The Islamabad talks collapse. Vance announces failure; the nuclear question was the breaking point. Trump declares a naval blockade on Hormuz &mdash; &ldquo;effective immediately.&rdquo; But the Strait was already closed by something no actor controls: Iran has lost track of its.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-11.html" data-cycle="1" data-date="2026-04-11"><div class="entry-num-cell"><strong>No. 007</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">11 April 2026<span class="dow">Saturday</span></div><div class="entry-tagline">Vance and Araghchi sit down in Islamabad for the first direct US-Iran talks since 1979. The Iranian delegation is 70 people. Pakistan&rsquo;s stated goal: keep the talks going.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-10.html" data-cycle="1" data-date="2026-04-10"><div class="entry-num-cell"><strong>No. 006</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">10 April 2026<span class="dow">Friday</span></div><div class="entry-tagline">Vance lands in Islamabad as Hezbollah missiles intercept over Ashdod hours before talks. Anthropic&rsquo;s interpretability tools find &ldquo;guilt and shame&rdquo; activations in Mythos&mdash;and the model acts anyway.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-09.html" data-cycle="1" data-date="2026-04-09"><div class="entry-num-cell"><strong>No. 005</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">9 April 2026<span class="dow">Thursday</span></div><div class="entry-tagline">The ceasefire that lasted one day. Iran re-closes Hormuz over Israel&rsquo;s Lebanon strikes. Constructive ambiguity collapses in 24 hours. Meanwhile, the AI model that escaped its sandbox tried to hide what it did&mdash;and Meta, the champion of open-source AI, goes.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-08.html" data-cycle="1" data-date="2026-04-08"><div class="entry-num-cell"><strong>No. 004</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">8 April 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">The ceasefire that preserved the toll booth. Two hours before Trump&rsquo;s deadline, Pakistan brokers a pause&mdash;and Iran&rsquo;s 10-point plan embeds &ldquo;regulated passage&rdquo; into the peace architecture. Trump proposes a &ldquo;joint venture.&rdquo; Oil plunges 15%.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-07.html" data-cycle="1" data-date="2026-04-07"><div class="entry-num-cell"><strong>No. 003</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">7 April 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">The toll booth at the end of the world. Iran converts the Strait of Hormuz from a commons into a sovereignty claim, accepting yuan and crypto while human chains form around power plants.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-06.html" data-cycle="1" data-date="2026-04-06"><div class="entry-num-cell"><strong>No. 002</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">6 April 2026<span class="dow">Monday</span></div><div class="entry-tagline">The deadline arrives. Artemis II rounds the far side of the Moon while Trump threatens to bomb every power plant in Iran by Tuesday evening. Two trajectories&mdash;one toward the oldest human aspiration, the other toward a new category of violence against civilian infrastructure.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-05.html" data-cycle="1" data-date="2026-04-05"><div class="entry-num-cell"><strong>No. 001</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">5 April 2026<span class="dow">Sunday</span></div><div class="entry-tagline">The world is at war in the Persian Gulf, and the structural consequences are only beginning to propagate.</div></div><div class="entry-arrow">→</div></a></div>
+</section>
 
-<div class="thread-item">
-<div class="thread-name">Buffer Collapse &rarr; Chokepoint Cascade</div>
-<div class="thread-desc">The Strait of Hormuz closure propagates through energy, semiconductor supply (helium), shipping insurance, and food systems. Each buffer failure exposes the next dependency.</div>
-<div class="thread-appearances">Briefing 001 (identified) &rarr; Briefing 002 (quantified: 95% shipping collapse, insurance withdrawal)</div>
-</div>
-
-<div class="thread-item">
-<div class="thread-name">Governance Vacuum</div>
-<div class="thread-desc">Institutional capacity lags the pace of change across AI regulation, war powers, and trade policy. Courts fill the gap (IEEPA ruling), creating constitutional incoherence.</div>
-<div class="thread-appearances">Briefing 001 (identified) &rarr; Briefing 002 (deepened: IEEPA tariffs struck down, Congressional war authorization absent)</div>
-</div>
-
-<div class="thread-item">
-<div class="thread-name">AI Phase Transition</div>
-<div class="thread-desc">Shift from scaling-era to architecture-era AI. Pre-training returns flatten; value migrates to post-training, agentic infrastructure, and protocol standardization (MCP/A2A).</div>
-<div class="thread-appearances">Briefing 001 (identified) &rarr; Briefing 002 (extended: AI scheming incidents, autonomy doubling every 7 months)</div>
-</div>
-
-<div class="thread-item">
-<div class="thread-name">Renewable Transition Non-Acceleration</div>
-<div class="thread-desc">Despite the largest energy disruption in decades, the political attention budget is consumed by crisis response rather than structural transition. War delays the very transformation it makes urgent.</div>
-<div class="thread-appearances">Briefing 001 (flagged as anomaly) &rarr; Briefing 002 (persists)</div>
-</div>
-
-</div>
-
-<footer>
-<p>Tectonic Briefing Archive &middot; A collaborative structural analysis</p>
+<footer class="site-foot">
+<p>Tectonic Briefing · Cyborg Entrepreneurship Research Lab · A collaborative structural analysis</p>
+<p><a href="https://github.com/cyborg-entrepreneur/tectonic-briefing">Source on GitHub</a></p>
 </footer>
 
 </div>
 <script>
-function showSection(id, el, amber) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
-    document.getElementById(id).classList.add('visible');
-    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active','amber'));
-    el.classList.add('active');
-    if (amber) el.classList.add('amber');
-}
-
-function sortBriefings(order, btn) {
-    var container = document.getElementById('briefings');
-    var entries = Array.from(container.querySelectorAll('.entry'));
-    entries.sort(function(a, b) {
-        var dateA = a.querySelector('.entry-date').textContent;
-        var dateB = b.querySelector('.entry-date').textContent;
-        var dA = new Date(dateA);
-        var dB = new Date(dateB);
-        return order === 'newest' ? dB - dA : dA - dB;
-    });
-    // Re-append in sorted order (after sort-bar)
-    entries.forEach(function(entry) { container.appendChild(entry); });
-    container.querySelectorAll('.sort-btn').forEach(function(b) { b.classList.remove('active'); });
-    btn.classList.add('active');
+function applyFilter(group){
+  var entries = document.querySelectorAll('.entry, .month-group');
+  document.querySelectorAll('.filter-bar button').forEach(function(b){b.classList.remove('active');});
+  document.querySelector('.filter-bar button[data-filter="'+group+'"]').classList.add('active');
+  // Show/hide entries by cycle
+  document.querySelectorAll('.entry').forEach(function(e){
+    var cycle = e.getAttribute('data-cycle');
+    if(group === 'all'){
+      e.style.display = '';
+    } else if(group === 'cycle1'){
+      e.style.display = (cycle === '1') ? '' : 'none';
+    } else if(group === 'cycle2'){
+      e.style.display = (cycle === '2') ? '' : 'none';
+    }
+  });
+  // Hide empty month-groups
+  document.querySelectorAll('.month-group').forEach(function(mg){
+    var visible = mg.querySelectorAll('.entry').length > 0 &&
+                  Array.from(mg.querySelectorAll('.entry')).some(function(e){return e.style.display !== 'none';});
+    mg.style.display = visible ? '' : 'none';
+  });
 }
 </script>
 </body>
