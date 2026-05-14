@@ -78,8 +78,13 @@ def extract_metadata(filepath):
         'lenses': [],
     }
 
-    # Briefing number
-    num_match = re.search(r'BRIEFING NO\.\s*(\d+)', content, re.IGNORECASE)
+    # Briefing number — target the canonical <div class="bn"> block to avoid
+    # being tripped by in-body cross-references like "See Briefing No. 039..."
+    # added in errata. Fall back to a permissive search if the bn block is absent.
+    num_match = re.search(
+        r'class="bn"[^>]*>\s*BRIEFING NO\.\s*(\d+)', content, re.IGNORECASE)
+    if not num_match:
+        num_match = re.search(r'BRIEFING NO\.\s*(\d+)', content, re.IGNORECASE)
     if num_match:
         meta['number'] = num_match.group(1).zfill(3)
         meta['number_int'] = int(num_match.group(1))
