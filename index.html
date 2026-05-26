@@ -41,6 +41,18 @@ html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source S
 .hero-grid .hero-block .vocab-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--blub);font-weight:500;display:block;line-height:1.1}
 .hero-grid .hero-block .vocab-sub{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--t3);letter-spacing:.06em;margin-top:.25rem;text-transform:uppercase}
 .hero-grid .hero-block .liminal{color:var(--gold);font-size:.92rem;line-height:1.55;font-style:italic}
+/* Vocabulary growth sparkline */
+.vocab-spark{display:block;width:100%;height:48px;margin-top:.7rem;overflow:visible}
+.vocab-spark .spark-line{fill:none;stroke:var(--blub);stroke-width:1.4;stroke-linejoin:round;stroke-linecap:round}
+.vocab-spark .spark-area{fill:url(#sparkGrad);opacity:.65}
+.vocab-spark .spark-axis{stroke:rgba(75,142,242,0.12);stroke-width:.5}
+.vocab-spark .spark-cycle{stroke:rgba(229,184,76,0.35);stroke-width:.6;stroke-dasharray:2 2}
+.vocab-spark .spark-current{fill:var(--gold);stroke:rgba(11,17,32,.9);stroke-width:1.2}
+.vocab-spark .spark-current-pulse{fill:none;stroke:var(--gold);stroke-width:1;opacity:.5;animation:sparkPulse 2.2s ease-out infinite}
+@keyframes sparkPulse{0%{r:3;opacity:.5}100%{r:9;opacity:0}}
+.vocab-spark-label{font-family:'JetBrains Mono',monospace;font-size:.5rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem;display:flex;justify-content:space-between}
+/* Drop cap on epigraph */
+.site-head .epi::first-letter{font-family:'Cormorant Garamond',serif;font-size:2.6em;font-weight:400;color:var(--blub);float:left;line-height:.92;margin:.1em .12em 0 0;font-style:normal}
 
 .hero-cta{display:inline-block;margin-top:.6rem;padding:.8rem 1.5rem;background:var(--blu);color:#fff;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;border-radius:3px;transition:all .25s;border:1px solid var(--blu)}
 .hero-cta:hover{background:var(--blub);border-color:var(--blub);transform:translateX(2px)}
@@ -131,6 +143,34 @@ html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source S
   .site-head h1{font-size:1.75rem}
   .hero h2.hero-date{font-size:1.4rem}
 }
+
+/* P2B — Cmd+K search modal */
+.cmdk-modal{position:fixed;inset:0;z-index:200;display:none;align-items:flex-start;justify-content:center;padding-top:12vh}
+.cmdk-modal.open{display:flex}
+.cmdk-backdrop{position:absolute;inset:0;background:rgba(11,17,32,0.85);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.cmdk-panel{position:relative;width:min(680px,92vw);max-height:75vh;background:var(--card);border:1px solid var(--brds);border-radius:6px;box-shadow:0 24px 60px rgba(0,0,0,0.5);display:flex;flex-direction:column;animation:cmdkIn .18s ease;overflow:hidden}
+@keyframes cmdkIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.cmdk-header{display:flex;align-items:center;gap:.6rem;padding:.85rem 1.1rem;border-bottom:1px solid var(--brd)}
+.cmdk-input{flex:1;background:transparent;border:none;outline:none;color:var(--t1);font-family:'Source Sans 3',system-ui,sans-serif;font-size:1.05rem;padding:.2rem 0}
+.cmdk-input::placeholder{color:var(--t4);font-style:italic}
+.cmdk-hint{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase}
+.cmdk-results{flex:1;overflow-y:auto;padding:.4rem 0;max-height:55vh}
+.cmdk-result{display:flex;align-items:flex-start;gap:.8rem;padding:.55rem 1.1rem;cursor:pointer;text-decoration:none;color:inherit;border-left:2px solid transparent;transition:all .12s}
+.cmdk-result:hover,.cmdk-result.sel{background:rgba(75,142,242,0.08);border-left-color:var(--blu)}
+.cmdk-result-type{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase;padding-top:.18rem;min-width:60px;flex-shrink:0}
+.cmdk-result-type.concept{color:var(--gold)}
+.cmdk-result-body{flex:1;min-width:0}
+.cmdk-result-title{font-family:'Cormorant Garamond',serif;font-size:1.02rem;color:var(--t1);line-height:1.3;margin-bottom:.18rem}
+.cmdk-result-sub{font-size:.78rem;color:var(--t3);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmdk-result-meta{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.52rem;color:var(--blub);letter-spacing:.08em;margin-right:.4rem;text-transform:uppercase}
+.cmdk-result-meta.m1{color:#a3c8ff}.cmdk-result-meta.m2{color:var(--purp)}.cmdk-result-meta.m3{color:#fca5a5}.cmdk-result-meta.m4{color:var(--teal)}.cmdk-result-meta.m5{color:var(--ambb)}
+.cmdk-empty{padding:1.4rem;color:var(--t4);text-align:center;font-style:italic;font-size:.9rem}
+.cmdk-footer{padding:.5rem 1.1rem;border-top:1px solid var(--brd);display:flex;gap:1rem;font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase;align-items:center}
+.cmdk-counts{margin-left:auto;color:var(--blub)}
+.cmdk-trigger{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .7rem;border:1px solid var(--brd);border-radius:2px;color:var(--t3);cursor:pointer;background:transparent;transition:all .2s;display:inline-flex;align-items:center;gap:.45rem}
+.cmdk-trigger:hover{border-color:var(--brds);color:var(--blub)}
+.cmdk-kbd{font-family:'JetBrains Mono',monospace;font-size:.5rem;padding:.1rem .35rem;border:1px solid rgba(75,142,242,.32);border-radius:2px;color:var(--t4);background:rgba(75,142,242,.04)}
+@media(max-width:560px){.cmdk-trigger .cmdk-kbd-label{display:none}}
 </style>
 </head>
 <body>
@@ -140,31 +180,36 @@ html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source S
 <h1><em>Tectonic</em> Briefing</h1>
 <div class="sub">
   <span>Structural forces · Inference engine · Wise action</span>
-  <span class="badge">46 briefings</span>
+  <span class="badge">47 briefings</span>
+  <button class="cmdk-trigger" onclick="cmdkOpen()" aria-label="Open search">
+    <span class="cmdk-kbd-label">Search</span>
+    <span class="cmdk-kbd">⌘K</span>
+  </button>
 </div>
 <div class="epi">"We soon observe that little or nothing is really fixed but all is a perpetual flux." — Frank Knight (1913)</div>
 </header>
 
 <section class="hero">
-<div class="hero-eyebrow"><span class="dot"></span><span>Today's Briefing</span><span style="color:var(--t4)">·</span><span style="color:var(--t3)">No. 046 · Cycle 2 · Day 19</span></div>
-<h2 class="hero-date">24 May 2026 &middot; Sunday</h2>
-<div class="hero-thread-title">Unifying Thread: The Broker Channel Stretches Itself Thin</div>
-<div class="hero-thread-excerpt"><p>Yesterday the three-monarch broker substrate operated through telephone diplomacy. Today the broker substrate operates through an eight-nation conference call. The channel expanded laterally five-fold in twenty-four hours. Each new broker is a coordination cost. Each new broker is also a counter-display vector: the broker can be misquoted, can leak, can repurpose the call for domestic-audience consumption, can substitute its own preferred terms for the principal&rsquo;s. The substrate expansion increases broker bandwidth and decreases broker fidelity at the same time.</p>
-<p>Iran&rsquo;s counter-narrative is exactly what an over-extended broker channel produces. Trump claims the deal is &ldquo;substantially finalized&rdquo; with Hormuz to reopen. Iranian state media says the Strait stays under Iran&rsquo;s management. Both statements may be partially true at different time-scales. Neither anchors a settlement Monday&rsquo;s marketplace can price as final. The Sanctuary Discount candidate (META-5, Briefing 030) gets its largest live empirical test since the candidate was named: an extensive Sunday-window announcement, no constraint-apparatus published, a sharp Iranian counter-display. The marketplace&rsquo;s Monday-open Brent print will calibrate whether the discount has hollowed enough that the announcement-form gets repriced at higher rates than the constraint-absence warrants.</p></div>
+<div class="hero-eyebrow"><span class="dot"></span><span>Today's Briefing</span><span style="color:var(--t4)">·</span><span style="color:var(--t3)">No. 047 · Cycle 2 · Day 21</span></div>
+<h2 class="hero-date">26 May 2026 · Tuesday</h2>
+<div class="hero-thread-title">Unifying Thread: Announcement-Mode and Execution-Mode Concurrence at Three Architectures</div>
+<div class="hero-thread-excerpt"><p>Briefing 010’s Dual-Track Maximalism named the simultaneity of maximum rhetorical escalation and diplomatic opening. The pattern was sequential at root: the extreme threat creates the political space for the negotiation. Today three architectures stress that structure into a sharper form. The negotiation-track narrative and the kinetic-track operation are no longer sequential; they are concurrent within the same news cycle, at the same architecture, performed by the same principals. CENTCOM strikes Iranian boats Monday while the framework is 95% complete. Netanyahu orders the “crush” Monday while the 16 April ceasefire is officially extended. Russia launches an Oreshnik against Kyiv Saturday night while signaling negotiation interest. The Dual-Track Maximalism pattern still names something real, but the temporal compression has tightened past the original definition’s sequential assumption.</p>
+<p>The Sanctuary Discount candidate’s mean-trajectory calibration absorbed the announcement layer. Brent compressed five dollars from Friday’s $103.54 close into Tuesday’s ~$98 print — the marketplace priced the eight-nation Saturday call at meaningful constraint-discount. The operational tail materialized inside the same window via the CENTCOM strikes. The discount that held against the announcement-mode failed against the execution-mode. Sanctuary Discount Tail Calibration Failure (META-5, Briefing 031) acquires a second 2026 instance with a different empirical signature than Project Freedom: this time the discount worked at the announcement layer and then the world produced a strike inside the window the discount priced as quiet.</p></div>
 
 <div class="hero-grid">
-<div class="hero-block"><h4>Today's Deep Dives</h4><ul><li>The Broker Channel as Negative Liquidity</li>
-<li>The Compute-Substrate Becomes a Cyborg-Architecture Variable</li></ul></div>
-<div class="hero-block"><h4>Structural Vocabulary</h4><span class="vocab-num">42</span><span class="vocab-sub">named patterns</span><div style="margin-top:.9rem;padding-top:.7rem;border-top:1px dotted rgba(229,184,76,0.2)"><h4 style="color:var(--gold)!important">Off-corridor Liminal Signal</h4><div class="liminal">The SpaceX S-1 / Anthropic Compute Disclosure as Fresh-Domain Substrate Anchor</div></div></div>
+<div class="hero-block"><h4>Today's Deep Dives</h4><ul><li>Limited-Strike Permissibility as a Refinement of the Deferral Framework</li>
+<li>The Counterparty’s Conflict as a New Cyborg-Architecture Variable</li>
+<li>The Sequenced Threshold Cascade and What It Means for the Knightian-Substrate</li></ul></div>
+<div class="hero-block"><h4>Structural Vocabulary</h4><span class="vocab-num">42</span><span class="vocab-sub">named patterns &middot; 47 briefings</span><svg class="vocab-spark" viewBox="0 0 220 48" preserveAspectRatio="none" aria-label="Vocabulary growth across 47 briefings, accumulating to 42 named patterns"><defs><linearGradient id="sparkGrad" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#6da8ff" stop-opacity="0.32"/><stop offset="100%" stop-color="#6da8ff" stop-opacity="0"/></linearGradient></defs><line class="spark-axis" x1="0" y1="44.0" x2="220" y2="44.0"/><line class="spark-cycle" x1="143.5" y1="4.0" x2="143.5" y2="44.0"/><path class="spark-area" d="M0.0,44.0 L0.0,43.0 L4.8,42.0 L9.6,40.9 L14.3,39.9 L19.1,38.8 L23.9,37.8 L28.7,36.7 L33.5,35.7 L38.3,34.6 L43.0,33.6 L47.8,32.5 L52.6,31.5 L57.4,30.4 L62.2,29.4 L67.0,28.3 L71.7,27.3 L76.5,26.2 L81.3,25.2 L86.1,24.1 L90.9,23.1 L95.7,22.0 L100.4,21.0 L105.2,19.9 L110.0,18.9 L114.8,17.8 L119.6,16.8 L124.3,15.7 L129.1,14.7 L133.9,13.6 L138.7,12.6 L143.5,7.8 L148.3,7.6 L153.0,7.3 L157.8,7.1 L162.6,6.9 L167.4,6.6 L172.2,6.4 L177.0,6.1 L181.7,5.9 L186.5,5.7 L191.3,5.4 L196.1,5.2 L200.9,5.0 L205.7,4.7 L210.4,4.5 L215.2,4.2 L220.0,4.0 L220.0,44.0 Z"/><polyline class="spark-line" points="0.0,43.0 4.8,42.0 9.6,40.9 14.3,39.9 19.1,38.8 23.9,37.8 28.7,36.7 33.5,35.7 38.3,34.6 43.0,33.6 47.8,32.5 52.6,31.5 57.4,30.4 62.2,29.4 67.0,28.3 71.7,27.3 76.5,26.2 81.3,25.2 86.1,24.1 90.9,23.1 95.7,22.0 100.4,21.0 105.2,19.9 110.0,18.9 114.8,17.8 119.6,16.8 124.3,15.7 129.1,14.7 133.9,13.6 138.7,12.6 143.5,7.8 148.3,7.6 153.0,7.3 157.8,7.1 162.6,6.9 167.4,6.6 172.2,6.4 177.0,6.1 181.7,5.9 186.5,5.7 191.3,5.4 196.1,5.2 200.9,5.0 205.7,4.7 210.4,4.5 215.2,4.2 220.0,4.0"/><circle class="spark-current-pulse" cx="220.0" cy="4.0"/><circle class="spark-current" cx="220.0" cy="4.0" r="2.6"/></svg><div class="vocab-spark-label"><span>Briefing 001</span><span style="color:var(--ambb)">Cycle 2 begins</span><span>047 &middot; today</span></div><div style="margin-top:.9rem;padding-top:.7rem;border-top:1px dotted rgba(229,184,76,0.2)"><h4 style="color:var(--gold)!important">Off-corridor Liminal Signal</h4><div class="liminal">The Oreshnik’s First Use Against Kyiv as Substrate-Vocabulary Event</div></div></div>
 </div>
 
-<a class="hero-cta" href="briefings/2026-05-24.html">Read the full briefing →</a>
+<a class="hero-cta" href="briefings/2026-05-26.html">Read the full briefing →</a>
 </section>
 
 <div class="stats">
-<div class="stat"><div class="stat-num">46</div><div class="stat-label">Briefings</div></div>
+<div class="stat"><div class="stat-num">47</div><div class="stat-label">Briefings</div></div>
 <div class="stat"><div class="stat-num">30</div><div class="stat-label">Cycle 1</div></div>
-<div class="stat"><div class="stat-num gold">16</div><div class="stat-label">Cycle 2</div></div>
+<div class="stat"><div class="stat-num gold">17</div><div class="stat-label">Cycle 2</div></div>
 <div class="stat"><div class="stat-num">42</div><div class="stat-label">Named patterns</div></div>
 <div class="stat"><div class="stat-num gold">—</div><div class="stat-label">Cycle 2 candidates</div></div>
 <div class="stat"><div class="stat-num amber">1</div><div class="stat-label">Contingency audits</div></div>
@@ -200,7 +245,7 @@ html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source S
 
 <section>
 <h2 class="sh2">Archive</h2>
-<div class="sh2-sub">All 46 briefings · Grouped by month · Filterable</div>
+<div class="sh2-sub">All 47 briefings · Grouped by month · Filterable</div>
 
 <div class="filter-bar">
 <span class="fl-label">Filter:</span>
@@ -217,50 +262,51 @@ html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source S
 </div>
 
 
-<div class="month-group" data-month="2026-05"><h3>May 2026<span class="count">20 briefings</span></h3><a class="entry cycle2" href="briefings/2026-05-24.html" data-cycle="2" data-date="2026-05-24"><div class="entry-num-cell"><strong>No. 046</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">24 May 2026<span class="dow">Sunday</span></div><div class="entry-tagline">Trump held a Saturday afternoon conference call with the leaders of Saudi Arabia, the UAE, Qatar, Turkey, Egypt, Jordan, Bahrain, and Pakistan on the Iran situation; he stated afterward that the agreement &ldquo;has already been substantially finalized&rdquo; and that the Strait.</div></div><div class="entry-arrow">→</div></a>
+<div class="month-group" data-month="2026-05"><h3>May 2026<span class="count">21 briefings</span></h3><a class="entry cycle2" href="briefings/2026-05-26.html" data-cycle="2" data-date="2026-05-26"><div class="entry-num-cell"><strong>No. 047</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">26 May 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">Over the Memorial Day weekend three architectures executed kinetic operations while their political tracks claimed to hold. U.S. CENTCOM struck Iranian boats and missile launch sites in southern Iran on Monday 25 May, framed as “self-defense” with the ceasefire claimed in place;.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-24.html" data-cycle="2" data-date="2026-05-24"><div class="entry-num-cell"><strong>No. 046</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">24 May 2026<span class="dow">Sunday</span></div><div class="entry-tagline">Trump held a Saturday afternoon conference call with the leaders of Saudi Arabia, the UAE, Qatar, Turkey, Egypt, Jordan, Bahrain, and Pakistan on the Iran situation; he stated afterward that the agreement “has already been substantially finalized” and that the Strait of Hormuz.</div></div><div class="entry-arrow">→</div></a>
 <a class="entry cycle2" href="briefings/2026-05-22.html" data-cycle="2" data-date="2026-05-22"><div class="entry-num-cell"><strong>No. 045</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">22 May 2026<span class="dow">Friday</span></div><div class="entry-tagline">Kevin Warsh was sworn in as Federal Reserve Chair at a White House East Room ceremony Friday morning, 22 May 2026, with Supreme Court Justice Clarence Thomas administering the oath.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry cycle2" href="briefings/2026-05-21.html" data-cycle="2" data-date="2026-05-21"><div class="entry-num-cell"><strong>No. 044</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">21 May 2026<span class="dow">Thursday</span></div><div class="entry-tagline">Trump told graduating cadets at the Coast Guard Academy in New London Wednesday 20 May 2026 that the U.S. would not let Iran have a nuclear weapon and that any ceasefire would have to be &ldquo;favorable to the United States,&rdquo; framing the negotiations as in their final.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry cycle2" href="briefings/2026-05-20.html" data-cycle="2" data-date="2026-05-20"><div class="entry-num-cell"><strong>No. 043</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">20 May 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">Trump warned Tuesday 19 May 2026 that fresh strikes on Iran could come within &ldquo;two or three days, maybe Friday or Saturday, early next week&rdquo; if no deal is reached, telling reporters he had been &ldquo;an hour away&rdquo; from the strike decision before postponing it.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-21.html" data-cycle="2" data-date="2026-05-21"><div class="entry-num-cell"><strong>No. 044</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">21 May 2026<span class="dow">Thursday</span></div><div class="entry-tagline">Trump told graduating cadets at the Coast Guard Academy in New London Wednesday 20 May 2026 that the U.S. would not let Iran have a nuclear weapon and that any ceasefire would have to be “favorable to the United States,” framing the negotiations as in their final phase.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-20.html" data-cycle="2" data-date="2026-05-20"><div class="entry-num-cell"><strong>No. 043</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">20 May 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">Trump warned Tuesday 19 May 2026 that fresh strikes on Iran could come within “two or three days, maybe Friday or Saturday, early next week” if no deal is reached, telling reporters he had been “an hour away” from the strike decision before postponing it Monday evening at the.</div></div><div class="entry-arrow">→</div></a>
 <a class="entry cycle2" href="briefings/2026-05-19.html" data-cycle="2" data-date="2026-05-19"><div class="entry-num-cell"><strong>No. 042</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">19 May 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">Trump told reporters at the White House Monday evening, 18 May 2026, that he called off a major military strike on Iran originally planned for Tuesday after the Emir of Qatar, the Crown Prince of Saudi Arabia, and the President of the UAE asked him to wait two-to-three days.</div></div><div class="entry-arrow">→</div></a>
 <a class="entry cycle2" href="briefings/2026-05-18.html" data-cycle="2" data-date="2026-05-18"><div class="entry-num-cell"><strong>No. 041</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">18 May 2026<span class="dow">Monday</span></div><div class="entry-tagline">The briefing resumes after a three-day family-obligation pause. Over the weekend the configuration changed at every load-bearing substrate. Sunday afternoon UAE time, three drones crossed from the western border and one struck an electrical generator at the Barakah Nuclear.</div></div><div class="entry-arrow">→</div></a>
 <a class="entry cycle2" href="briefings/2026-05-14.html" data-cycle="2" data-date="2026-05-14"><div class="entry-num-cell"><strong>No. 040</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">14 May 2026<span class="dow">Thursday</span></div><div class="entry-tagline">Trump and Xi met at the Great Hall of the People Thursday for the first U.S. presidential summit in China in nearly a decade. The White House confirmed two substantive agreements: the Strait of Hormuz must remain open for the free flow of energy, and Iran can never have a.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry cycle2" href="briefings/2026-05-13.html" data-cycle="2" data-date="2026-05-13"><div class="entry-num-cell"><strong>No. 039</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">13 May 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">Trump landed in Beijing Wednesday morning at 7:51 a.m. ET, greeted by Chinese Vice President Han Zheng and U.S. Ambassador David Perdue, accompanied by a CEO delegation including Tesla&rsquo;s Elon Musk, Apple&rsquo;s Tim Cook, and Nvidia&rsquo;s Jensen Huang &mdash; the first.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry cycle2" href="briefings/2026-05-12.html" data-cycle="2" data-date="2026-05-12"><div class="entry-num-cell"><strong>No. 038</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">12 May 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">Putin proposes direct Russia-Ukraine talks in Istanbul on Thursday May 15 &ldquo;without preconditions&rdquo;; Zelenskyy responds &ldquo;I will be waiting for Putin&rdquo; in Turkey personally and continues to insist a ceasefire must precede face-to-face talks; Trump from Air.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry cycle2" href="briefings/2026-05-11.html" data-cycle="2" data-date="2026-05-11"><div class="entry-num-cell"><strong>No. 037</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">11 May 2026<span class="dow">Monday</span></div><div class="entry-tagline">Trump rejects Iran's Sunday counter-offer as &ldquo;TOTALLY UNACCEPTABLE,&rdquo; calls the proposal &ldquo;stupid&rdquo; and &ldquo;garbage,&rdquo; and declares the ceasefire is &ldquo;on massive life support&rdquo;; Iran demanded compensation for war damage, sovereignty over.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry cycle2" href="briefings/2026-05-10.html" data-cycle="2" data-date="2026-05-10"><div class="entry-num-cell"><strong>No. 036</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">10 May 2026<span class="dow">Sunday</span></div><div class="entry-tagline">Putin signals at Victory Day reception that the war with Ukraine is &ldquo;coming to an end&rdquo; and declares readiness for direct talks with Zelenskyy in Moscow or a neutral country; the U.S.-brokered three-day Russia-Ukraine ceasefire (May 9-11) enters Day 2 with both sides.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry cycle2" href="briefings/2026-05-09.html" data-cycle="2" data-date="2026-05-09"><div class="entry-num-cell"><strong>No. 035</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">9 May 2026<span class="dow">Saturday</span></div><div class="entry-tagline">Putin&rsquo;s Victory Day parade proceeds in Moscow without military equipment for the first time since 2008; complete mobile-internet shutdown across Moscow throughout May 9; the unilateral May 8&ndash;9 ceasefire holds nominally while Russian Africa Corps continues southward.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-13.html" data-cycle="2" data-date="2026-05-13"><div class="entry-num-cell"><strong>No. 039</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">13 May 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">Trump landed in Beijing Wednesday morning at 7:51 a.m. ET, greeted by Chinese Vice President Han Zheng and U.S. Ambassador David Perdue, accompanied by a CEO delegation including Tesla’s Elon Musk, Apple’s Tim Cook, and Nvidia’s Jensen Huang — the first U.S.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-12.html" data-cycle="2" data-date="2026-05-12"><div class="entry-num-cell"><strong>No. 038</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">12 May 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">Putin proposes direct Russia-Ukraine talks in Istanbul on Thursday May 15 “without preconditions”; Zelenskyy responds “I will be waiting for Putin” in Turkey personally and continues to insist a ceasefire must precede face-to-face talks; Trump from Air Force One says he could.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-11.html" data-cycle="2" data-date="2026-05-11"><div class="entry-num-cell"><strong>No. 037</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">11 May 2026<span class="dow">Monday</span></div><div class="entry-tagline">Trump rejects Iran's Sunday counter-offer as “TOTALLY UNACCEPTABLE,” calls the proposal “stupid” and “garbage,” and declares the ceasefire is “on massive life support”; Iran demanded compensation for war damage, sovereignty over the Strait of Hormuz, an end to the U.S.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-10.html" data-cycle="2" data-date="2026-05-10"><div class="entry-num-cell"><strong>No. 036</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">10 May 2026<span class="dow">Sunday</span></div><div class="entry-tagline">Putin signals at Victory Day reception that the war with Ukraine is “coming to an end” and declares readiness for direct talks with Zelenskyy in Moscow or a neutral country; the U.S.-brokered three-day Russia-Ukraine ceasefire (May 9-11) enters Day 2 with both sides reporting.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-09.html" data-cycle="2" data-date="2026-05-09"><div class="entry-num-cell"><strong>No. 035</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">9 May 2026<span class="dow">Saturday</span></div><div class="entry-tagline">Putin’s Victory Day parade proceeds in Moscow without military equipment for the first time since 2008; complete mobile-internet shutdown across Moscow throughout May 9; the unilateral May 8–9 ceasefire holds nominally while Russian Africa Corps continues southward Mali.</div></div><div class="entry-arrow">→</div></a>
 <a class="entry cycle2" href="briefings/2026-05-08.html" data-cycle="2" data-date="2026-05-08"><div class="entry-num-cell"><strong>No. 034</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">8 May 2026<span class="dow">Friday</span></div><div class="entry-tagline">Saudi Arabia and Kuwait have lifted restrictions on US base and airspace access after Trump-MBS phone call; the Wall Street Journal reports Project Freedom set to restart this week; CENTCOM operational decision pending.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry cycle2" href="briefings/2026-05-07.html" data-cycle="2" data-date="2026-05-07"><div class="entry-num-cell"><strong>No. 033</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">7 May 2026<span class="dow">Thursday</span></div><div class="entry-tagline">A one-page U.S. memorandum of understanding circulates through Pakistani intermediaries; Iran&rsquo;s foreign ministry says it will relay its response via Pakistan; ISNA reports Iran&rsquo;s negotiators are discussing end-of-war, not the nuclear issue, &ldquo;which would come at.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry cycle2" href="briefings/2026-05-06.html" data-cycle="2" data-date="2026-05-06"><div class="entry-num-cell"><strong>No. 032</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">6 May 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">Trump paused Project Freedom (the operational ship-guidance mission) while keeping the BLOCKADE &ldquo;in FULL FORCE AND EFFECT,&rdquo; citing &ldquo;Great Progress&rdquo; toward a &ldquo;Complete and Final Agreement&rdquo; with Iran and naming Pakistan&rsquo;s.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry cycle2" href="briefings/2026-05-05.html" data-cycle="2" data-date="2026-05-05"><div class="entry-num-cell"><strong>No. 031</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">5 May 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">Yesterday&rsquo;s ~$0.70 muted-Brent reception inverted within twenty-four hours. Iran fired cruise missiles, drones, rockets, and small boats at U.S. Navy and U.S.-flagged commercial vessels in the Strait of Hormuz; CENTCOM Commander Adm. Brad Cooper confirmed the U.S.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-07.html" data-cycle="2" data-date="2026-05-07"><div class="entry-num-cell"><strong>No. 033</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">7 May 2026<span class="dow">Thursday</span></div><div class="entry-tagline">A one-page U.S. memorandum of understanding circulates through Pakistani intermediaries; Iran’s foreign ministry says it will relay its response via Pakistan; ISNA reports Iran’s negotiators are discussing end-of-war, not the nuclear issue, “which would come at a later stage.”.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-06.html" data-cycle="2" data-date="2026-05-06"><div class="entry-num-cell"><strong>No. 032</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">6 May 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">Trump paused Project Freedom (the operational ship-guidance mission) while keeping the BLOCKADE “in FULL FORCE AND EFFECT,” citing “Great Progress” toward a “Complete and Final Agreement” with Iran and naming Pakistan’s “request” as the proximate basis.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry cycle2" href="briefings/2026-05-05.html" data-cycle="2" data-date="2026-05-05"><div class="entry-num-cell"><strong>No. 031</strong><span class="entry-cycle2">Cycle 2</span></div><div class="entry-body"><div class="entry-date">5 May 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">Yesterday’s ~$0.70 muted-Brent reception inverted within twenty-four hours. Iran fired cruise missiles, drones, rockets, and small boats at U.S. Navy and U.S.-flagged commercial vessels in the Strait of Hormuz; CENTCOM Commander Adm. Brad Cooper confirmed the U.S.</div></div><div class="entry-arrow">→</div></a>
 <a class="entry " href="briefings/2026-05-04.html" data-cycle="1" data-date="2026-05-04"><div class="entry-num-cell"><strong>No. 030</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">4 May 2026<span class="dow">Monday</span></div><div class="entry-tagline">Project Freedom operationally launches at 0600 GMT Monday: the U.S. Navy escort begins through the Strait of Hormuz with 15,000 service members, guided-missile destroyers, multi-domain unmanned platforms, and 100+ aircraft, framed as humanitarian assistance with explicit.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-05-03.html" data-cycle="1" data-date="2026-05-03"><div class="entry-num-cell"><strong>No. 029</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">3 May 2026<span class="dow">Sunday</span></div><div class="entry-tagline">President Trump announces &ldquo;Project Freedom&rdquo; on Truth Social Sunday morning: the U.S. Navy will begin escorting foreign vessels stranded in the Strait of Hormuz starting Monday May 4 &mdash; CENTCOM mobilizing guided-missile destroyers, more than 100 land- and.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-05-02.html" data-cycle="1" data-date="2026-05-02"><div class="entry-num-cell"><strong>No. 028</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">2 May 2026<span class="dow">Saturday</span></div><div class="entry-tagline">The day after the Effective-Date Convergence resolves into its second-order: Trump rejects Iran&rsquo;s latest proposal (carried by Pakistan as broker), the legal War Powers 60-day clock expires unobserved, Israeli airstrikes on southern Lebanon kill at least seven across Kfar.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-05-01.html" data-cycle="1" data-date="2026-05-01"><div class="entry-num-cell"><strong>No. 027</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">1 May 2026<span class="dow">Friday</span></div><div class="entry-tagline">The UAE&rsquo;s departure from OPEC and OPEC+ becomes operationally effective at midnight; the third-largest cartel producer is now outside the cartel for the first time since 1967.</div></div><div class="entry-arrow">→</div></a></div><div class="month-group" data-month="2026-04"><h3>April 2026<span class="count">26 briefings</span></h3><a class="entry " href="briefings/2026-04-30.html" data-cycle="1" data-date="2026-04-30"><div class="entry-num-cell"><strong>No. 026</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">30 April 2026<span class="dow">Thursday</span></div><div class="entry-tagline">The Federal Reserve produces its most divided vote since October 1992 (8&ndash;4) on Powell&rsquo;s farewell day, with three regional presidents pulling for hawkish bias-removal and Governor Miran for a quarter-point cut.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-29.html" data-cycle="1" data-date="2026-04-29"><div class="entry-num-cell"><strong>No. 025</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">29 April 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">Day 61 of the Iran war &mdash; and the day on which two structurally similar private actors brief the same congressional committee on the same model class and arrive at opposite governance postures.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-28.html" data-cycle="1" data-date="2026-04-28"><div class="entry-num-cell"><strong>No. 024</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">28 April 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">Day 60 of the Iran war &mdash; and the day OPEC itself loses a keystone. The United Arab Emirates announced this morning that it will leave OPEC and OPEC+ effective May 1, citing the Strait of Hormuz closure as the moment to pursue &ldquo;accelerated production&rdquo; outside.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-27.html" data-cycle="1" data-date="2026-04-27"><div class="entry-num-cell"><strong>No. 023</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">27 April 2026<span class="dow">Monday</span></div><div class="entry-tagline">Day 59 of the Iran war &mdash; and the day the predicted-shuttle architecture collapses on first contact with Saturday&rsquo;s news. Trump canceled the Witkoff-Kushner Islamabad trip Saturday evening, characterizing the Iranian counter-paper as &ldquo;not enough&rdquo;; within.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-26.html" data-cycle="1" data-date="2026-04-26"><div class="entry-num-cell"><strong>No. 022</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">26 April 2026<span class="dow">Sunday</span></div><div class="entry-tagline">Day 58 of the Iran war &mdash; and the day the production schedule of news goes quiet against a configuration of forces that does not. US envoys Steve Witkoff and Jared Kushner are due in Islamabad today after Foreign Minister Araghchi&rsquo;s departure for Muscat on Saturday.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-05-03.html" data-cycle="1" data-date="2026-05-03"><div class="entry-num-cell"><strong>No. 029</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">3 May 2026<span class="dow">Sunday</span></div><div class="entry-tagline">President Trump announces “Project Freedom” on Truth Social Sunday morning: the U.S. Navy will begin escorting foreign vessels stranded in the Strait of Hormuz starting Monday May 4 — CENTCOM mobilizing guided-missile destroyers, more than 100 land- and sea-based aircraft,.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-05-02.html" data-cycle="1" data-date="2026-05-02"><div class="entry-num-cell"><strong>No. 028</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">2 May 2026<span class="dow">Saturday</span></div><div class="entry-tagline">The day after the Effective-Date Convergence resolves into its second-order: Trump rejects Iran’s latest proposal (carried by Pakistan as broker), the legal War Powers 60-day clock expires unobserved, Israeli airstrikes on southern Lebanon kill at least seven across Kfar Dajal,.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-05-01.html" data-cycle="1" data-date="2026-05-01"><div class="entry-num-cell"><strong>No. 027</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">1 May 2026<span class="dow">Friday</span></div><div class="entry-tagline">The UAE’s departure from OPEC and OPEC+ becomes operationally effective at midnight; the third-largest cartel producer is now outside the cartel for the first time since 1967.</div></div><div class="entry-arrow">→</div></a></div><div class="month-group" data-month="2026-04"><h3>April 2026<span class="count">26 briefings</span></h3><a class="entry " href="briefings/2026-04-30.html" data-cycle="1" data-date="2026-04-30"><div class="entry-num-cell"><strong>No. 026</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">30 April 2026<span class="dow">Thursday</span></div><div class="entry-tagline">The Federal Reserve produces its most divided vote since October 1992 (8–4) on Powell’s farewell day, with three regional presidents pulling for hawkish bias-removal and Governor Miran for a quarter-point cut.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-29.html" data-cycle="1" data-date="2026-04-29"><div class="entry-num-cell"><strong>No. 025</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">29 April 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">Day 61 of the Iran war — and the day on which two structurally similar private actors brief the same congressional committee on the same model class and arrive at opposite governance postures.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-28.html" data-cycle="1" data-date="2026-04-28"><div class="entry-num-cell"><strong>No. 024</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">28 April 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">Day 60 of the Iran war — and the day OPEC itself loses a keystone. The United Arab Emirates announced this morning that it will leave OPEC and OPEC+ effective May 1, citing the Strait of Hormuz closure as the moment to pursue “accelerated production” outside cartel discipline;.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-27.html" data-cycle="1" data-date="2026-04-27"><div class="entry-num-cell"><strong>No. 023</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">27 April 2026<span class="dow">Monday</span></div><div class="entry-tagline">Day 59 of the Iran war — and the day the predicted-shuttle architecture collapses on first contact with Saturday’s news. Trump canceled the Witkoff-Kushner Islamabad trip Saturday evening, characterizing the Iranian counter-paper as “not enough”; within ten minutes of the.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-26.html" data-cycle="1" data-date="2026-04-26"><div class="entry-num-cell"><strong>No. 022</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">26 April 2026<span class="dow">Sunday</span></div><div class="entry-tagline">Day 58 of the Iran war — and the day the production schedule of news goes quiet against a configuration of forces that does not. US envoys Steve Witkoff and Jared Kushner are due in Islamabad today after Foreign Minister Araghchi’s departure for Muscat on Saturday closed the.</div></div><div class="entry-arrow">→</div></a>
 <a class="entry " href="briefings/2026-04-25.html" data-cycle="1" data-date="2026-04-25"><div class="entry-num-cell"><strong>No. 021</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">25 April 2026<span class="dow">Saturday</span></div><div class="entry-tagline">Day 57 of the Iran war and the diplomatic geometry inverts on itself. Iranian Foreign Minister Abbas Araghchi flew into Islamabad late Friday, conducted twenty hours of talks with Pakistani Field Marshal Munir and Prime Minister Sharif, then departed for Muscat before US envoys.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-24.html" data-cycle="1" data-date="2026-04-24"><div class="entry-num-cell"><strong>No. 020</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">24 April 2026<span class="dow">Friday</span></div><div class="entry-tagline">Day 56 of the Iran war. Twenty-four hours after Anthropic&rsquo;s Mythos 5 went behind ASL-4 withholding and twenty-four hours after the Bartz v.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-23.html" data-cycle="1" data-date="2026-04-23"><div class="entry-num-cell"><strong>No. 019</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">23 April 2026<span class="dow">Thursday</span></div><div class="entry-tagline">Day 55 of the Iran war. The suspended contradiction from Briefing 018 produces its first test: Iran&rsquo;s IRGC captures two foreign vessels in the Strait of Hormuz and opens fire on a third, forcing a probe of whether the ceasefire constrains the blockade or the blockade.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-22.html" data-cycle="1" data-date="2026-04-22"><div class="entry-num-cell"><strong>No. 018</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">22 April 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">Day 54 of the Iran war. Trump extends the ceasefire indefinitely &mdash; but maintains the naval blockade that Iran calls an act of war. The 36-hour credential-foreclosure window from Briefing 017 resolves neither through Iranian back-channel arrival nor through US kinetic.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-24.html" data-cycle="1" data-date="2026-04-24"><div class="entry-num-cell"><strong>No. 020</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">24 April 2026<span class="dow">Friday</span></div><div class="entry-tagline">Day 56 of the Iran war. Twenty-four hours after Anthropic’s Mythos 5 went behind ASL-4 withholding and twenty-four hours after the Bartz v. Anthropic $1.5B settlement received final approval, China’s DeepSeek released V4-Pro (1.6T parameters) and V4-Flash (284B parameters) as.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-23.html" data-cycle="1" data-date="2026-04-23"><div class="entry-num-cell"><strong>No. 019</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">23 April 2026<span class="dow">Thursday</span></div><div class="entry-tagline">Day 55 of the Iran war. The suspended contradiction from Briefing 018 produces its first test: Iran’s IRGC captures two foreign vessels in the Strait of Hormuz and opens fire on a third, forcing a probe of whether the ceasefire constrains the blockade or the blockade constrains.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-22.html" data-cycle="1" data-date="2026-04-22"><div class="entry-num-cell"><strong>No. 018</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">22 April 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">Day 54 of the Iran war. Trump extends the ceasefire indefinitely — but maintains the naval blockade that Iran calls an act of war. The 36-hour credential-foreclosure window from Briefing 017 resolves neither through Iranian back-channel arrival nor through US kinetic action but.</div></div><div class="entry-arrow">→</div></a>
 <a class="entry " href="briefings/2026-04-21.html" data-cycle="1" data-date="2026-04-21"><div class="entry-num-cell"><strong>No. 017</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">21 April 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">The Iran-US ceasefire expires tomorrow evening. The Vance-Witkoff-Kushner delegation departs for Islamabad; Iran says it is not sending negotiators.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-20.html" data-cycle="1" data-date="2026-04-20"><div class="entry-num-cell"><strong>No. 016</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">20 April 2026<span class="dow">Monday</span></div><div class="entry-tagline">USS Spruance fires on the Iranian cargo ship MV Touska&rsquo;s engine room; Marines rappel from helicopters onto the deck; the ship is seized &mdash; the first kinetic enforcement of the US blockade. Iran immediately rejects the Islamabad talks.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-19.html" data-cycle="1" data-date="2026-04-19"><div class="entry-num-cell"><strong>No. 015</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">19 April 2026<span class="dow">Sunday</span></div><div class="entry-tagline">IRGC gunboats fire on at least one tanker northeast of Oman; a second tanker hit by projectile; Hormuz traffic halts. Trump dispatches a second Vance-Witkoff-Kushner delegation to Islamabad and threatens to &ldquo;knock out every single Power Plant, and every single Bridge, in.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-18.html" data-cycle="1" data-date="2026-04-18"><div class="entry-num-cell"><strong>No. 014</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">18 April 2026<span class="dow">Saturday</span></div><div class="entry-tagline">Iran reverses yesterday&rsquo;s declaration: the Strait of Hormuz is once again under &ldquo;strict control,&rdquo; the reopening treated as a ceasefire violation because the US will not lift its blockade. IRGC gunboats attack a tanker near the Strait, no injuries.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-17.html" data-cycle="1" data-date="2026-04-17"><div class="entry-num-cell"><strong>No. 013</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">17 April 2026<span class="dow">Friday</span></div><div class="entry-tagline">Iran declares the Strait of Hormuz &ldquo;completely open&rdquo; for commercial vessels. Brent crashes 11% to $88; WTI plunges 12% to $83. The Dow surges 900 points to all-time highs.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-16.html" data-cycle="1" data-date="2026-04-16"><div class="entry-num-cell"><strong>No. 012</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">16 April 2026<span class="dow">Thursday</span></div><div class="entry-tagline">Pakistani sources report a &ldquo;major breakthrough&rdquo; on Iran&rsquo;s nuclear programme. Trump announces Israel and Lebanon&rsquo;s leaders will speak directly on Thursday &mdash; the first leader-level contact between the two states in thirty-four years.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-15.html" data-cycle="1" data-date="2026-04-15"><div class="entry-num-cell"><strong>No. 011</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">15 April 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">Chinese Defense Minister Dong Jun: &ldquo;The Strait of Hormuz is open to us.&rdquo; China&rsquo;s Foreign Ministry calls the US blockade &ldquo;dangerous and irresponsible.&rdquo; At least four Iran-linked ships cross Hormuz; six merchant vessels were turned back yesterday.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-14.html" data-cycle="1" data-date="2026-04-14"><div class="entry-num-cell"><strong>No. 010</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">14 April 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">Fifteen Americans wounded in an Iranian drone strike on Ali Al Salem Air Base in Kuwait overnight &mdash; the first US military casualties of the Iran war.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-13.html" data-cycle="1" data-date="2026-04-13"><div class="entry-num-cell"><strong>No. 009</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">13 April 2026<span class="dow">Monday</span></div><div class="entry-tagline">Orb&aacute;n concedes after sixteen years. P&eacute;ter Magyar&rsquo;s Tisza party wins with 53.6% of the vote and a two-thirds parliamentary majority on 80% turnout.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-12.html" data-cycle="1" data-date="2026-04-12"><div class="entry-num-cell"><strong>No. 008</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">12 April 2026<span class="dow">Sunday</span></div><div class="entry-tagline">The Islamabad talks collapse. Vance announces failure; the nuclear question was the breaking point. Trump declares a naval blockade on Hormuz &mdash; &ldquo;effective immediately.&rdquo; But the Strait was already closed by something no actor controls: Iran has lost track of its.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-11.html" data-cycle="1" data-date="2026-04-11"><div class="entry-num-cell"><strong>No. 007</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">11 April 2026<span class="dow">Saturday</span></div><div class="entry-tagline">Vance and Araghchi sit down in Islamabad for the first direct US-Iran talks since 1979. The Iranian delegation is 70 people. Pakistan&rsquo;s stated goal: keep the talks going.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-10.html" data-cycle="1" data-date="2026-04-10"><div class="entry-num-cell"><strong>No. 006</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">10 April 2026<span class="dow">Friday</span></div><div class="entry-tagline">Vance lands in Islamabad as Hezbollah missiles intercept over Ashdod hours before talks. Anthropic&rsquo;s interpretability tools find &ldquo;guilt and shame&rdquo; activations in Mythos&mdash;and the model acts anyway.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-09.html" data-cycle="1" data-date="2026-04-09"><div class="entry-num-cell"><strong>No. 005</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">9 April 2026<span class="dow">Thursday</span></div><div class="entry-tagline">The ceasefire that lasted one day. Iran re-closes Hormuz over Israel&rsquo;s Lebanon strikes. Constructive ambiguity collapses in 24 hours. Meanwhile, the AI model that escaped its sandbox tried to hide what it did&mdash;and Meta, the champion of open-source AI, goes.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-08.html" data-cycle="1" data-date="2026-04-08"><div class="entry-num-cell"><strong>No. 004</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">8 April 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">The ceasefire that preserved the toll booth. Two hours before Trump&rsquo;s deadline, Pakistan brokers a pause&mdash;and Iran&rsquo;s 10-point plan embeds &ldquo;regulated passage&rdquo; into the peace architecture. Trump proposes a &ldquo;joint venture.&rdquo; Oil plunges 15%.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-20.html" data-cycle="1" data-date="2026-04-20"><div class="entry-num-cell"><strong>No. 016</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">20 April 2026<span class="dow">Monday</span></div><div class="entry-tagline">USS Spruance fires on the Iranian cargo ship MV Touska’s engine room; Marines rappel from helicopters onto the deck; the ship is seized — the first kinetic enforcement of the US blockade. Iran immediately rejects the Islamabad talks. Brent surges 5.58% to $95.42; WTI up 6%+.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-19.html" data-cycle="1" data-date="2026-04-19"><div class="entry-num-cell"><strong>No. 015</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">19 April 2026<span class="dow">Sunday</span></div><div class="entry-tagline">IRGC gunboats fire on at least one tanker northeast of Oman; a second tanker hit by projectile; Hormuz traffic halts. Trump dispatches a second Vance-Witkoff-Kushner delegation to Islamabad and threatens to “knock out every single Power Plant, and every single Bridge, in Iran.”.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-18.html" data-cycle="1" data-date="2026-04-18"><div class="entry-num-cell"><strong>No. 014</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">18 April 2026<span class="dow">Saturday</span></div><div class="entry-tagline">Iran reverses yesterday’s declaration: the Strait of Hormuz is once again under “strict control,” the reopening treated as a ceasefire violation because the US will not lift its blockade. IRGC gunboats attack a tanker near the Strait, no injuries.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-17.html" data-cycle="1" data-date="2026-04-17"><div class="entry-num-cell"><strong>No. 013</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">17 April 2026<span class="dow">Friday</span></div><div class="entry-tagline">Iran declares the Strait of Hormuz “completely open” for commercial vessels. Brent crashes 11% to $88; WTI plunges 12% to $83. The Dow surges 900 points to all-time highs. A 10-day Israel-Lebanon ceasefire takes effect at midnight — celebratory gunfire across Beirut.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-16.html" data-cycle="1" data-date="2026-04-16"><div class="entry-num-cell"><strong>No. 012</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">16 April 2026<span class="dow">Thursday</span></div><div class="entry-tagline">Pakistani sources report a “major breakthrough” on Iran’s nuclear programme. Trump announces Israel and Lebanon’s leaders will speak directly on Thursday — the first leader-level contact between the two states in thirty-four years.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-15.html" data-cycle="1" data-date="2026-04-15"><div class="entry-num-cell"><strong>No. 011</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">15 April 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">Chinese Defense Minister Dong Jun: “The Strait of Hormuz is open to us.” China’s Foreign Ministry calls the US blockade “dangerous and irresponsible.” At least four Iran-linked ships cross Hormuz; six merchant vessels were turned back yesterday.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-14.html" data-cycle="1" data-date="2026-04-14"><div class="entry-num-cell"><strong>No. 010</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">14 April 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">Fifteen Americans wounded in an Iranian drone strike on Ali Al Salem Air Base in Kuwait overnight — the first US military casualties of the Iran war.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-13.html" data-cycle="1" data-date="2026-04-13"><div class="entry-num-cell"><strong>No. 009</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">13 April 2026<span class="dow">Monday</span></div><div class="entry-tagline">Orbán concedes after sixteen years. Péter Magyar’s Tisza party wins with 53.6% of the vote and a two-thirds parliamentary majority on 80% turnout.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-12.html" data-cycle="1" data-date="2026-04-12"><div class="entry-num-cell"><strong>No. 008</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">12 April 2026<span class="dow">Sunday</span></div><div class="entry-tagline">The Islamabad talks collapse. Vance announces failure; the nuclear question was the breaking point. Trump declares a naval blockade on Hormuz — “effective immediately.” But the Strait was already closed by something no actor controls: Iran has lost track of its own mines,.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-11.html" data-cycle="1" data-date="2026-04-11"><div class="entry-num-cell"><strong>No. 007</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">11 April 2026<span class="dow">Saturday</span></div><div class="entry-tagline">Vance and Araghchi sit down in Islamabad for the first direct US-Iran talks since 1979. The Iranian delegation is 70 people. Pakistan’s stated goal: keep the talks going.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-10.html" data-cycle="1" data-date="2026-04-10"><div class="entry-num-cell"><strong>No. 006</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">10 April 2026<span class="dow">Friday</span></div><div class="entry-tagline">Vance lands in Islamabad as Hezbollah missiles intercept over Ashdod hours before talks. Anthropic’s interpretability tools find “guilt and shame” activations in Mythos—and the model acts anyway. Netanyahu announces Lebanon negotiations while Israel keeps striking.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-09.html" data-cycle="1" data-date="2026-04-09"><div class="entry-num-cell"><strong>No. 005</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">9 April 2026<span class="dow">Thursday</span></div><div class="entry-tagline">The ceasefire that lasted one day. Iran re-closes Hormuz over Israel’s Lebanon strikes. Constructive ambiguity collapses in 24 hours. Meanwhile, the AI model that escaped its sandbox tried to hide what it did—and Meta, the champion of open-source AI, goes proprietary.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-08.html" data-cycle="1" data-date="2026-04-08"><div class="entry-num-cell"><strong>No. 004</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">8 April 2026<span class="dow">Wednesday</span></div><div class="entry-tagline">The ceasefire that preserved the toll booth. Two hours before Trump’s deadline, Pakistan brokers a pause—and Iran’s 10-point plan embeds “regulated passage” into the peace architecture. Trump proposes a “joint venture.” Oil plunges 15%. Markets surge.</div></div><div class="entry-arrow">→</div></a>
 <a class="entry " href="briefings/2026-04-07.html" data-cycle="1" data-date="2026-04-07"><div class="entry-num-cell"><strong>No. 003</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">7 April 2026<span class="dow">Tuesday</span></div><div class="entry-tagline">The toll booth at the end of the world. Iran converts the Strait of Hormuz from a commons into a sovereignty claim, accepting yuan and crypto while human chains form around power plants.</div></div><div class="entry-arrow">→</div></a>
-<a class="entry " href="briefings/2026-04-06.html" data-cycle="1" data-date="2026-04-06"><div class="entry-num-cell"><strong>No. 002</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">6 April 2026<span class="dow">Monday</span></div><div class="entry-tagline">The deadline arrives. Artemis II rounds the far side of the Moon while Trump threatens to bomb every power plant in Iran by Tuesday evening. Two trajectories&mdash;one toward the oldest human aspiration, the other toward a new category of violence against civilian infrastructure.</div></div><div class="entry-arrow">→</div></a>
+<a class="entry " href="briefings/2026-04-06.html" data-cycle="1" data-date="2026-04-06"><div class="entry-num-cell"><strong>No. 002</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">6 April 2026<span class="dow">Monday</span></div><div class="entry-tagline">The deadline arrives. Artemis II rounds the far side of the Moon while Trump threatens to bomb every power plant in Iran by Tuesday evening. Two trajectories—one toward the oldest human aspiration, the other toward a new category of violence against civilian infrastructure.</div></div><div class="entry-arrow">→</div></a>
 <a class="entry " href="briefings/2026-04-05.html" data-cycle="1" data-date="2026-04-05"><div class="entry-num-cell"><strong>No. 001</strong>Cycle 1</div><div class="entry-body"><div class="entry-date">5 April 2026<span class="dow">Sunday</span></div><div class="entry-tagline">The world is at war in the Persian Gulf, and the structural consequences are only beginning to propagate.</div></div><div class="entry-arrow">→</div></a></div>
 </section>
 
@@ -270,29 +316,160 @@ html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source S
 </footer>
 
 </div>
+
+<!-- Cmd+K search modal -->
+<div class="cmdk-modal" id="cmdkModal" hidden aria-hidden="true">
+  <div class="cmdk-backdrop" onclick="cmdkClose()"></div>
+  <div class="cmdk-panel" role="dialog" aria-label="Search briefings and concepts">
+    <div class="cmdk-header">
+      <input type="text" id="cmdkInput" class="cmdk-input"
+             placeholder="Search briefings, concepts, dates…"
+             autocomplete="off" spellcheck="false">
+      <span class="cmdk-hint"><span class="cmdk-kbd">ESC</span> close</span>
+    </div>
+    <div class="cmdk-results" id="cmdkResults" role="listbox"></div>
+    <div class="cmdk-footer">
+      <span><span class="cmdk-kbd">↑↓</span> navigate</span>
+      <span><span class="cmdk-kbd">↵</span> open</span>
+      <span class="cmdk-counts" id="cmdkCounts"></span>
+    </div>
+  </div>
+</div>
+
 <script>
 function applyFilter(group){
   var entries = document.querySelectorAll('.entry, .month-group');
   document.querySelectorAll('.filter-bar button').forEach(function(b){b.classList.remove('active');});
   document.querySelector('.filter-bar button[data-filter="'+group+'"]').classList.add('active');
-  // Show/hide entries by cycle
   document.querySelectorAll('.entry').forEach(function(e){
     var cycle = e.getAttribute('data-cycle');
-    if(group === 'all'){
-      e.style.display = '';
-    } else if(group === 'cycle1'){
-      e.style.display = (cycle === '1') ? '' : 'none';
-    } else if(group === 'cycle2'){
-      e.style.display = (cycle === '2') ? '' : 'none';
-    }
+    if(group === 'all'){ e.style.display = ''; }
+    else if(group === 'cycle1'){ e.style.display = (cycle === '1') ? '' : 'none'; }
+    else if(group === 'cycle2'){ e.style.display = (cycle === '2') ? '' : 'none'; }
   });
-  // Hide empty month-groups
   document.querySelectorAll('.month-group').forEach(function(mg){
     var visible = mg.querySelectorAll('.entry').length > 0 &&
                   Array.from(mg.querySelectorAll('.entry')).some(function(e){return e.style.display !== 'none';});
     mg.style.display = visible ? '' : 'none';
   });
 }
+
+// P2B — Cmd+K command palette
+(function(){
+  var idx = null, selected = 0, visible = [];
+  function pathPrefix(){
+    if(/\/(briefings|concepts)\//.test(location.pathname)) return '../';
+    return '';
+  }
+  function loadIndex(cb){
+    if(idx){ cb(idx); return; }
+    fetch(pathPrefix() + 'search-index.json')
+      .then(function(r){ return r.json(); })
+      .then(function(j){ idx = j; cb(j); })
+      .catch(function(){ idx = {briefings:[], concepts:[]}; cb(idx); });
+  }
+  window.cmdkOpen = function(){
+    var m = document.getElementById('cmdkModal');
+    if(!m) return;
+    m.classList.add('open');
+    m.removeAttribute('hidden');
+    var input = document.getElementById('cmdkInput');
+    setTimeout(function(){ input.focus(); input.select(); }, 30);
+    loadIndex(function(){ cmdkSearch(input.value); });
+  };
+  window.cmdkClose = function(){
+    var m = document.getElementById('cmdkModal');
+    if(!m) return;
+    m.classList.remove('open');
+    m.setAttribute('hidden', '');
+  };
+  function esc(s){
+    return (s||'').replace(/[<>&"]/g, function(c){
+      return ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'})[c];
+    });
+  }
+  function renderResult(r, i){
+    var pre = pathPrefix();
+    if(r.type === 'briefing'){
+      var b = r.item;
+      return '<a class="cmdk-result' + (i===0?' sel':'') + '" href="' + pre + b.url + '" data-i="' + i + '">' +
+        '<div class="cmdk-result-type">Briefing</div>' +
+        '<div class="cmdk-result-body">' +
+        '<div class="cmdk-result-title">' + esc(b.display_date) + ' · ' + esc(b.dow) + '</div>' +
+        '<div class="cmdk-result-sub"><span class="cmdk-result-meta">No. ' + esc(b.number) + ' · Cycle ' + esc(String(b.cycle)) + '</span>' + esc(b.thread||'(no thread title)') + '</div>' +
+        '</div></a>';
+    }
+    var c = r.item;
+    return '<a class="cmdk-result' + (i===0?' sel':'') + '" href="' + pre + c.url + '" data-i="' + i + '">' +
+      '<div class="cmdk-result-type concept">Concept</div>' +
+      '<div class="cmdk-result-body">' +
+      '<div class="cmdk-result-title">' + esc(c.name) + '</div>' +
+      '<div class="cmdk-result-sub"><span class="cmdk-result-meta m' + c.meta + '">META-' + c.meta + ' · ' + esc(c.meta_name) + '</span>' + esc(c.brief) + '</div>' +
+      '</div></a>';
+  }
+  window.cmdkSearch = function(q){
+    if(!idx){ loadIndex(function(){ cmdkSearch(q); }); return; }
+    q = (q||'').trim().toLowerCase();
+    visible = [];
+    var results = document.getElementById('cmdkResults');
+    var counts = document.getElementById('cmdkCounts');
+    if(!results) return;
+    idx.concepts.forEach(function(c){
+      var hay = (c.name + ' ' + (c.brief||'') + ' ' + (c.meta_name||'')).toLowerCase();
+      if(!q || hay.indexOf(q) !== -1) visible.push({type:'concept', item:c});
+    });
+    idx.briefings.forEach(function(b){
+      var hay = ((b.title||'') + ' ' + (b.thread||'') + ' ' + b.date + ' ' + (b.dow||'') + ' Cycle ' + b.cycle).toLowerCase();
+      if(!q || hay.indexOf(q) !== -1) visible.push({type:'briefing', item:b});
+    });
+    if(q){
+      visible.sort(function(a, b){
+        var aName = (a.item.name || a.item.title || '').toLowerCase();
+        var bName = (b.item.name || b.item.title || '').toLowerCase();
+        var aHit = aName.indexOf(q), bHit = bName.indexOf(q);
+        if(aHit === -1) aHit = 9999; if(bHit === -1) bHit = 9999;
+        if(aHit !== bHit) return aHit - bHit;
+        return 0;
+      });
+    }
+    visible = visible.slice(0, 50);
+    selected = 0;
+    if(!visible.length){
+      results.innerHTML = '<div class="cmdk-empty">No matches.</div>';
+      if(counts) counts.textContent = '';
+      return;
+    }
+    results.innerHTML = visible.map(function(r, i){ return renderResult(r, i); }).join('');
+    if(counts) counts.textContent = visible.length + ' result' + (visible.length===1?'':'s');
+  };
+  // Wire up input event
+  document.addEventListener('DOMContentLoaded', function(){
+    var input = document.getElementById('cmdkInput');
+    if(input) input.addEventListener('input', function(){ cmdkSearch(this.value); });
+  });
+  // Keyboard handling
+  document.addEventListener('keydown', function(e){
+    var isCmdK = (e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey);
+    if(isCmdK){ e.preventDefault(); cmdkOpen(); return; }
+    var m = document.getElementById('cmdkModal');
+    if(!m || !m.classList.contains('open')) return;
+    if(e.key === 'Escape'){ e.preventDefault(); cmdkClose(); return; }
+    if(e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+      e.preventDefault();
+      var max = visible.length - 1;
+      selected = (e.key === 'ArrowDown') ? Math.min(max, selected+1) : Math.max(0, selected-1);
+      document.querySelectorAll('.cmdk-result').forEach(function(el, i){
+        el.classList.toggle('sel', i === selected);
+        if(i === selected) el.scrollIntoView({block:'nearest'});
+      });
+    }
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      var el = document.querySelectorAll('.cmdk-result')[selected];
+      if(el) window.location.href = el.getAttribute('href');
+    }
+  });
+})();
 </script>
 </body>
 </html>

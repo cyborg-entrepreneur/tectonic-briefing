@@ -365,6 +365,18 @@ html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source S
 .hero-grid .hero-block .vocab-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--blub);font-weight:500;display:block;line-height:1.1}
 .hero-grid .hero-block .vocab-sub{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--t3);letter-spacing:.06em;margin-top:.25rem;text-transform:uppercase}
 .hero-grid .hero-block .liminal{color:var(--gold);font-size:.92rem;line-height:1.55;font-style:italic}
+/* Vocabulary growth sparkline */
+.vocab-spark{display:block;width:100%;height:48px;margin-top:.7rem;overflow:visible}
+.vocab-spark .spark-line{fill:none;stroke:var(--blub);stroke-width:1.4;stroke-linejoin:round;stroke-linecap:round}
+.vocab-spark .spark-area{fill:url(#sparkGrad);opacity:.65}
+.vocab-spark .spark-axis{stroke:rgba(75,142,242,0.12);stroke-width:.5}
+.vocab-spark .spark-cycle{stroke:rgba(229,184,76,0.35);stroke-width:.6;stroke-dasharray:2 2}
+.vocab-spark .spark-current{fill:var(--gold);stroke:rgba(11,17,32,.9);stroke-width:1.2}
+.vocab-spark .spark-current-pulse{fill:none;stroke:var(--gold);stroke-width:1;opacity:.5;animation:sparkPulse 2.2s ease-out infinite}
+@keyframes sparkPulse{0%{r:3;opacity:.5}100%{r:9;opacity:0}}
+.vocab-spark-label{font-family:'JetBrains Mono',monospace;font-size:.5rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem;display:flex;justify-content:space-between}
+/* Drop cap on epigraph */
+.site-head .epi::first-letter{font-family:'Cormorant Garamond',serif;font-size:2.6em;font-weight:400;color:var(--blub);float:left;line-height:.92;margin:.1em .12em 0 0;font-style:normal}
 
 .hero-cta{display:inline-block;margin-top:.6rem;padding:.8rem 1.5rem;background:var(--blu);color:#fff;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;border-radius:3px;transition:all .25s;border:1px solid var(--blu)}
 .hero-cta:hover{background:var(--blub);border-color:var(--blub);transform:translateX(2px)}
@@ -455,6 +467,34 @@ html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source S
   .site-head h1{font-size:1.75rem}
   .hero h2.hero-date{font-size:1.4rem}
 }
+
+/* P2B — Cmd+K search modal */
+.cmdk-modal{position:fixed;inset:0;z-index:200;display:none;align-items:flex-start;justify-content:center;padding-top:12vh}
+.cmdk-modal.open{display:flex}
+.cmdk-backdrop{position:absolute;inset:0;background:rgba(11,17,32,0.85);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.cmdk-panel{position:relative;width:min(680px,92vw);max-height:75vh;background:var(--card);border:1px solid var(--brds);border-radius:6px;box-shadow:0 24px 60px rgba(0,0,0,0.5);display:flex;flex-direction:column;animation:cmdkIn .18s ease;overflow:hidden}
+@keyframes cmdkIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.cmdk-header{display:flex;align-items:center;gap:.6rem;padding:.85rem 1.1rem;border-bottom:1px solid var(--brd)}
+.cmdk-input{flex:1;background:transparent;border:none;outline:none;color:var(--t1);font-family:'Source Sans 3',system-ui,sans-serif;font-size:1.05rem;padding:.2rem 0}
+.cmdk-input::placeholder{color:var(--t4);font-style:italic}
+.cmdk-hint{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase}
+.cmdk-results{flex:1;overflow-y:auto;padding:.4rem 0;max-height:55vh}
+.cmdk-result{display:flex;align-items:flex-start;gap:.8rem;padding:.55rem 1.1rem;cursor:pointer;text-decoration:none;color:inherit;border-left:2px solid transparent;transition:all .12s}
+.cmdk-result:hover,.cmdk-result.sel{background:rgba(75,142,242,0.08);border-left-color:var(--blu)}
+.cmdk-result-type{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase;padding-top:.18rem;min-width:60px;flex-shrink:0}
+.cmdk-result-type.concept{color:var(--gold)}
+.cmdk-result-body{flex:1;min-width:0}
+.cmdk-result-title{font-family:'Cormorant Garamond',serif;font-size:1.02rem;color:var(--t1);line-height:1.3;margin-bottom:.18rem}
+.cmdk-result-sub{font-size:.78rem;color:var(--t3);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmdk-result-meta{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.52rem;color:var(--blub);letter-spacing:.08em;margin-right:.4rem;text-transform:uppercase}
+.cmdk-result-meta.m1{color:#a3c8ff}.cmdk-result-meta.m2{color:var(--purp)}.cmdk-result-meta.m3{color:#fca5a5}.cmdk-result-meta.m4{color:var(--teal)}.cmdk-result-meta.m5{color:var(--ambb)}
+.cmdk-empty{padding:1.4rem;color:var(--t4);text-align:center;font-style:italic;font-size:.9rem}
+.cmdk-footer{padding:.5rem 1.1rem;border-top:1px solid var(--brd);display:flex;gap:1rem;font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase;align-items:center}
+.cmdk-counts{margin-left:auto;color:var(--blub)}
+.cmdk-trigger{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .7rem;border:1px solid var(--brd);border-radius:2px;color:var(--t3);cursor:pointer;background:transparent;transition:all .2s;display:inline-flex;align-items:center;gap:.45rem}
+.cmdk-trigger:hover{border-color:var(--brds);color:var(--blub)}
+.cmdk-kbd{font-family:'JetBrains Mono',monospace;font-size:.5rem;padding:.1rem .35rem;border:1px solid rgba(75,142,242,.32);border-radius:2px;color:var(--t4);background:rgba(75,142,242,.04)}
+@media(max-width:560px){.cmdk-trigger .cmdk-kbd-label{display:none}}
 </style>
 </head>
 <body>
@@ -465,6 +505,10 @@ html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source S
 <div class="sub">
   <span>Structural forces · Inference engine · Wise action</span>
   <span class="badge">{{ARCHIVE_COUNT}} briefings</span>
+  <button class="cmdk-trigger" onclick="cmdkOpen()" aria-label="Open search">
+    <span class="cmdk-kbd-label">Search</span>
+    <span class="cmdk-kbd">⌘K</span>
+  </button>
 </div>
 <div class="epi">"We soon observe that little or nothing is really fixed but all is a perpetual flux." — Frank Knight (1913)</div>
 </header>
@@ -477,36 +521,237 @@ INDEX_FOOT = """
 </footer>
 
 </div>
+
+<!-- Cmd+K search modal -->
+<div class="cmdk-modal" id="cmdkModal" hidden aria-hidden="true">
+  <div class="cmdk-backdrop" onclick="cmdkClose()"></div>
+  <div class="cmdk-panel" role="dialog" aria-label="Search briefings and concepts">
+    <div class="cmdk-header">
+      <input type="text" id="cmdkInput" class="cmdk-input"
+             placeholder="Search briefings, concepts, dates…"
+             autocomplete="off" spellcheck="false">
+      <span class="cmdk-hint"><span class="cmdk-kbd">ESC</span> close</span>
+    </div>
+    <div class="cmdk-results" id="cmdkResults" role="listbox"></div>
+    <div class="cmdk-footer">
+      <span><span class="cmdk-kbd">↑↓</span> navigate</span>
+      <span><span class="cmdk-kbd">↵</span> open</span>
+      <span class="cmdk-counts" id="cmdkCounts"></span>
+    </div>
+  </div>
+</div>
+
 <script>
 function applyFilter(group){
   var entries = document.querySelectorAll('.entry, .month-group');
   document.querySelectorAll('.filter-bar button').forEach(function(b){b.classList.remove('active');});
   document.querySelector('.filter-bar button[data-filter="'+group+'"]').classList.add('active');
-  // Show/hide entries by cycle
   document.querySelectorAll('.entry').forEach(function(e){
     var cycle = e.getAttribute('data-cycle');
-    if(group === 'all'){
-      e.style.display = '';
-    } else if(group === 'cycle1'){
-      e.style.display = (cycle === '1') ? '' : 'none';
-    } else if(group === 'cycle2'){
-      e.style.display = (cycle === '2') ? '' : 'none';
-    }
+    if(group === 'all'){ e.style.display = ''; }
+    else if(group === 'cycle1'){ e.style.display = (cycle === '1') ? '' : 'none'; }
+    else if(group === 'cycle2'){ e.style.display = (cycle === '2') ? '' : 'none'; }
   });
-  // Hide empty month-groups
   document.querySelectorAll('.month-group').forEach(function(mg){
     var visible = mg.querySelectorAll('.entry').length > 0 &&
                   Array.from(mg.querySelectorAll('.entry')).some(function(e){return e.style.display !== 'none';});
     mg.style.display = visible ? '' : 'none';
   });
 }
+
+// P2B — Cmd+K command palette
+(function(){
+  var idx = null, selected = 0, visible = [];
+  function pathPrefix(){
+    if(/\\/(briefings|concepts)\\//.test(location.pathname)) return '../';
+    return '';
+  }
+  function loadIndex(cb){
+    if(idx){ cb(idx); return; }
+    fetch(pathPrefix() + 'search-index.json')
+      .then(function(r){ return r.json(); })
+      .then(function(j){ idx = j; cb(j); })
+      .catch(function(){ idx = {briefings:[], concepts:[]}; cb(idx); });
+  }
+  window.cmdkOpen = function(){
+    var m = document.getElementById('cmdkModal');
+    if(!m) return;
+    m.classList.add('open');
+    m.removeAttribute('hidden');
+    var input = document.getElementById('cmdkInput');
+    setTimeout(function(){ input.focus(); input.select(); }, 30);
+    loadIndex(function(){ cmdkSearch(input.value); });
+  };
+  window.cmdkClose = function(){
+    var m = document.getElementById('cmdkModal');
+    if(!m) return;
+    m.classList.remove('open');
+    m.setAttribute('hidden', '');
+  };
+  function esc(s){
+    return (s||'').replace(/[<>&\"]/g, function(c){
+      return ({'<':'&lt;','>':'&gt;','&':'&amp;','\"':'&quot;'})[c];
+    });
+  }
+  function renderResult(r, i){
+    var pre = pathPrefix();
+    if(r.type === 'briefing'){
+      var b = r.item;
+      return '<a class=\"cmdk-result' + (i===0?' sel':'') + '\" href=\"' + pre + b.url + '\" data-i=\"' + i + '\">' +
+        '<div class=\"cmdk-result-type\">Briefing</div>' +
+        '<div class=\"cmdk-result-body\">' +
+        '<div class=\"cmdk-result-title\">' + esc(b.display_date) + ' · ' + esc(b.dow) + '</div>' +
+        '<div class=\"cmdk-result-sub\"><span class=\"cmdk-result-meta\">No. ' + esc(b.number) + ' · Cycle ' + esc(String(b.cycle)) + '</span>' + esc(b.thread||'(no thread title)') + '</div>' +
+        '</div></a>';
+    }
+    var c = r.item;
+    return '<a class=\"cmdk-result' + (i===0?' sel':'') + '\" href=\"' + pre + c.url + '\" data-i=\"' + i + '\">' +
+      '<div class=\"cmdk-result-type concept\">Concept</div>' +
+      '<div class=\"cmdk-result-body\">' +
+      '<div class=\"cmdk-result-title\">' + esc(c.name) + '</div>' +
+      '<div class=\"cmdk-result-sub\"><span class=\"cmdk-result-meta m' + c.meta + '\">META-' + c.meta + ' · ' + esc(c.meta_name) + '</span>' + esc(c.brief) + '</div>' +
+      '</div></a>';
+  }
+  window.cmdkSearch = function(q){
+    if(!idx){ loadIndex(function(){ cmdkSearch(q); }); return; }
+    q = (q||'').trim().toLowerCase();
+    visible = [];
+    var results = document.getElementById('cmdkResults');
+    var counts = document.getElementById('cmdkCounts');
+    if(!results) return;
+    idx.concepts.forEach(function(c){
+      var hay = (c.name + ' ' + (c.brief||'') + ' ' + (c.meta_name||'')).toLowerCase();
+      if(!q || hay.indexOf(q) !== -1) visible.push({type:'concept', item:c});
+    });
+    idx.briefings.forEach(function(b){
+      var hay = ((b.title||'') + ' ' + (b.thread||'') + ' ' + b.date + ' ' + (b.dow||'') + ' Cycle ' + b.cycle).toLowerCase();
+      if(!q || hay.indexOf(q) !== -1) visible.push({type:'briefing', item:b});
+    });
+    if(q){
+      visible.sort(function(a, b){
+        var aName = (a.item.name || a.item.title || '').toLowerCase();
+        var bName = (b.item.name || b.item.title || '').toLowerCase();
+        var aHit = aName.indexOf(q), bHit = bName.indexOf(q);
+        if(aHit === -1) aHit = 9999; if(bHit === -1) bHit = 9999;
+        if(aHit !== bHit) return aHit - bHit;
+        return 0;
+      });
+    }
+    visible = visible.slice(0, 50);
+    selected = 0;
+    if(!visible.length){
+      results.innerHTML = '<div class=\"cmdk-empty\">No matches.</div>';
+      if(counts) counts.textContent = '';
+      return;
+    }
+    results.innerHTML = visible.map(function(r, i){ return renderResult(r, i); }).join('');
+    if(counts) counts.textContent = visible.length + ' result' + (visible.length===1?'':'s');
+  };
+  // Wire up input event
+  document.addEventListener('DOMContentLoaded', function(){
+    var input = document.getElementById('cmdkInput');
+    if(input) input.addEventListener('input', function(){ cmdkSearch(this.value); });
+  });
+  // Keyboard handling
+  document.addEventListener('keydown', function(e){
+    var isCmdK = (e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey);
+    if(isCmdK){ e.preventDefault(); cmdkOpen(); return; }
+    var m = document.getElementById('cmdkModal');
+    if(!m || !m.classList.contains('open')) return;
+    if(e.key === 'Escape'){ e.preventDefault(); cmdkClose(); return; }
+    if(e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+      e.preventDefault();
+      var max = visible.length - 1;
+      selected = (e.key === 'ArrowDown') ? Math.min(max, selected+1) : Math.max(0, selected-1);
+      document.querySelectorAll('.cmdk-result').forEach(function(el, i){
+        el.classList.toggle('sel', i === selected);
+        if(i === selected) el.scrollIntoView({block:'nearest'});
+      });
+    }
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      var el = document.querySelectorAll('.cmdk-result')[selected];
+      if(el) window.location.href = el.getAttribute('href');
+    }
+  });
+})();
 </script>
 </body>
 </html>
 """
 
 
-def render_hero(today_meta, archive_url):
+def build_sparkline_svg(total_briefings, vocab_count, cycle2_start=CYCLE2_THRESHOLD):
+    """Build an SVG vocabulary-growth sparkline.
+
+    Coordinates approximate vocabulary growth: ~linear 1→33 across Cycle 1
+    (briefings 1-30), then a step up at the Cycle 1 audit (briefing 31 = 38),
+    then slow accumulation to current count through Cycle 2.
+
+    The sparkline is a visual impression of cadence, not a precise time series.
+    """
+    if total_briefings <= 0:
+        return ''
+    width = 220.0
+    height = 48.0
+    top_pad = 4.0
+    bot_pad = 4.0
+    max_y = height - bot_pad
+    min_y = top_pad
+    # Approximate vocab count per briefing index — gradual then post-audit step
+    def vocab_at(i):
+        if i <= 1:
+            return 1
+        if i <= 30:
+            # Linear 1 → 33 across Cycle 1
+            return 1 + (33 - 1) * (i - 1) / 29
+        if i == cycle2_start:
+            return 38  # post-audit consolidation
+        # Cycle 2: slow accumulation to current vocab_count
+        if total_briefings <= cycle2_start:
+            return 38
+        return 38 + (vocab_count - 38) * (i - cycle2_start) / max(1, total_briefings - cycle2_start)
+    max_v = max(vocab_count, 42)
+    pts = []
+    for i in range(1, total_briefings + 1):
+        x = (i - 1) / max(1, total_briefings - 1) * width
+        v = vocab_at(i)
+        y = max_y - (v / max_v) * (max_y - min_y)
+        pts.append(f'{x:.1f},{y:.1f}')
+    line_pts = ' '.join(pts)
+    # Cycle-2 vertical marker
+    cycle2_x = (cycle2_start - 1) / max(1, total_briefings - 1) * width
+    # Area path (line + bottom corners)
+    first_x = pts[0].split(',')[0]
+    last_x = pts[-1].split(',')[0]
+    area_d = f'M{first_x},{max_y} L' + ' L'.join(pts) + f' L{last_x},{max_y} Z'
+    # Current point
+    last_x_f, last_y_f = pts[-1].split(',')
+    return (
+        f'<svg class="vocab-spark" viewBox="0 0 {width:.0f} {height:.0f}" '
+        f'preserveAspectRatio="none" '
+        f'aria-label="Vocabulary growth across {total_briefings} briefings, '
+        f'accumulating to {vocab_count} named patterns">'
+        f'<defs><linearGradient id="sparkGrad" x1="0" x2="0" y1="0" y2="1">'
+        f'<stop offset="0%" stop-color="#6da8ff" stop-opacity="0.32"/>'
+        f'<stop offset="100%" stop-color="#6da8ff" stop-opacity="0"/>'
+        f'</linearGradient></defs>'
+        f'<line class="spark-axis" x1="0" y1="{max_y:.1f}" x2="{width:.0f}" y2="{max_y:.1f}"/>'
+        f'<line class="spark-cycle" x1="{cycle2_x:.1f}" y1="{min_y:.1f}" x2="{cycle2_x:.1f}" y2="{max_y:.1f}"/>'
+        f'<path class="spark-area" d="{area_d}"/>'
+        f'<polyline class="spark-line" points="{line_pts}"/>'
+        f'<circle class="spark-current-pulse" cx="{last_x_f}" cy="{last_y_f}"/>'
+        f'<circle class="spark-current" cx="{last_x_f}" cy="{last_y_f}" r="2.6"/>'
+        f'</svg>'
+        f'<div class="vocab-spark-label">'
+        f'<span>Briefing 001</span>'
+        f'<span style="color:var(--ambb)">Cycle 2 begins</span>'
+        f'<span>{int(total_briefings):03d} &middot; today</span>'
+        f'</div>'
+    )
+
+
+def render_hero(today_meta, archive_url, total_briefings=0):
     """Render the hero card for today's briefing."""
     if not today_meta:
         return ''
@@ -530,9 +775,13 @@ def render_hero(today_meta, archive_url):
     vocab_text = today_meta['vocab_status'] or 'Vocabulary status pending'
     # Try to split number from descriptor
     vocab_num_match = re.match(r'(\d+)\s+(.*)', vocab_text)
+    sparkline_html = ''
     if vocab_num_match:
+        vocab_count_int = int(vocab_num_match.group(1))
         vocab_html = (f'<span class="vocab-num">{vocab_num_match.group(1)}</span>'
-                      f'<span class="vocab-sub">{vocab_num_match.group(2)}</span>')
+                      f'<span class="vocab-sub">{vocab_num_match.group(2)} '
+                      f'&middot; {total_briefings} briefings</span>')
+        sparkline_html = build_sparkline_svg(total_briefings, vocab_count_int)
     else:
         vocab_html = f'<span class="vocab-sub">{vocab_text}</span>'
 
@@ -547,6 +796,7 @@ def render_hero(today_meta, archive_url):
     vocab_block = (f'<div class="hero-block">'
                    f'<h4>Structural Vocabulary</h4>'
                    f'{vocab_html}'
+                   f'{sparkline_html}'
                    f'{liminal_html}'
                    f'</div>')
 
@@ -826,7 +1076,7 @@ def discover_audits():
 def build_index(metas):
     """Compose the new index.html."""
     today = metas[0] if metas else None
-    hero = render_hero(today, f'briefings/{today["filename"]}' if today else '#')
+    hero = render_hero(today, f'briefings/{today["filename"]}' if today else '#', total_briefings=len(metas))
     cycle2 = render_cycle2_panel(today)
     stats = render_stats(metas)
     audits = discover_audits()

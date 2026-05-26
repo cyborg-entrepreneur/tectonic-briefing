@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept: Tail Calibration Failure — Tectonic Briefing</title>
+<meta name="description" content="Structural concept page for Tail Calibration Failure (META-5 Institutional Hollowing) — Tectonic Briefing.">
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source Sans 3',system-ui,sans-serif;font-size:16px;line-height:1.7;min-height:100vh}
+body{background-image:radial-gradient(rgba(75,142,242,0.045) 1px,transparent 1px);background-size:48px 48px;background-attachment:fixed}
+:root{--bg:#0b1120;--card:#111827;--alt:#141c2e;--str:#162035;--blu:#4b8ef2;--blub:#6da8ff;--blup:#a3c8ff;--teal:#38d9c8;--tealm:#2a9e92;--gold:#e5b84c;--goldm:#c9a03a;--red:#f06050;--purp:#a78bfa;--grn:#4ade80;--amb:#c97a3a;--ambb:#dcb267;--t1:#eaf0f8;--t2:#cdd6e4;--t3:#8e9bb5;--t4:#7a8aa6;--brd:rgba(75,142,242,0.18);--brds:rgba(75,142,242,0.35);--m1:#4b8ef2;--m2:#a78bfa;--m3:#f06050;--m4:#38d9c8;--m5:#c97a3a}
+.w{max-width:980px;margin:0 auto;padding:0 1.8rem}
+.tb-nav-bar{position:sticky;top:0;z-index:80;background:rgba(11,17,32,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid rgba(75,142,242,0.18);padding:.55rem 1.2rem;display:flex;gap:.6rem;align-items:center;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;flex-wrap:wrap}
+.tb-nav-bar .tb-nav-left,.tb-nav-bar .tb-nav-right{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}
+.tb-nav-bar a{color:#8e9bb5;text-decoration:none;border:1px solid rgba(75,142,242,0.18);padding:.32rem .62rem;border-radius:2px;transition:all .2s;white-space:nowrap}
+.tb-nav-bar a:hover{color:#6da8ff;border-color:rgba(75,142,242,0.45)}
+.tb-nav-bar .tb-nav-counter{color:#6da8ff;font-weight:500}
+.tb-nav-bar .tb-nav-archive{color:#cdd6e4;border-color:rgba(75,142,242,0.32)}
+header.concept-head{padding:2.8rem 0 1.4rem;border-bottom:1px solid var(--brd);margin-bottom:2rem}
+.concept-meta{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.7rem;display:flex;align-items:center;gap:.6rem}
+.concept-meta-tag{padding:.18rem .6rem;border-radius:2px;border:1px solid currentColor;font-weight:500}
+.concept-name{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:3rem;color:var(--t1);letter-spacing:.012em;line-height:1.05;margin-bottom:.7rem}
+.concept-stats{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.concept-stats .stat-divider{color:rgba(75,142,242,.3)}
+.concept-stats .stat-current{color:var(--blub);font-weight:500}
+.sh{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--t1);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--brd)}
+section.concept-section{margin-bottom:2.4rem}
+.def-block{background:var(--card);border:1px solid var(--brd);border-left:3px solid var(--meta-c);border-radius:3px;padding:1.6rem 1.8rem;line-height:1.8;color:var(--t2);font-size:1rem}
+.def-block strong{color:var(--t1);font-weight:600}
+.def-block em{font-style:italic;color:var(--t1)}
+.def-source{margin-top:1rem;padding-top:.8rem;border-top:1px dashed rgba(75,142,242,.18);font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t4)}
+.def-source a{color:var(--blub);text-decoration:none;border-bottom:1px solid rgba(109,168,255,.3)}
+.def-source a:hover{border-color:var(--blub)}
+.timeline{display:flex;flex-direction:column;gap:.6rem}
+.tl-entry{background:var(--card);border:1px solid var(--brd);border-left:2px solid var(--meta-c);border-radius:2px;padding:1rem 1.2rem;transition:border-color .2s}
+.tl-entry:hover{border-color:var(--brds);border-left-color:var(--meta-c)}
+.tl-entry.naming{border-left-width:3px;background:linear-gradient(90deg,rgba(229,184,76,.04),transparent 30%)}
+.tl-entry.naming::before{content:'★ NAMED HERE';font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.16em;color:var(--gold);display:block;margin-bottom:.4rem}
+.tl-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:.5rem}
+.tl-date{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--t1)}
+.tl-date .tl-dow{color:var(--t4);font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.06em;margin-left:.4rem;text-transform:uppercase}
+.tl-num{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--blub);letter-spacing:.08em;text-transform:uppercase}
+.tl-thread{font-style:italic;color:var(--t3);font-size:.92rem;margin-bottom:.5rem;line-height:1.5}
+.tl-excerpt{color:var(--t2);font-size:.92rem;line-height:1.7;margin:.4rem 0 .7rem}
+.tl-link{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--blub);border:1px solid var(--brd);padding:.25rem .65rem;border-radius:2px;text-decoration:none;transition:all .2s}
+.tl-link:hover{border-color:var(--blub);background:rgba(75,142,242,.06)}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.6rem}
+.related-link{background:var(--card);border:1px solid var(--brd);border-left:2px solid var(--brd);border-radius:2px;padding:.65rem .9rem;text-decoration:none;color:var(--t2);font-size:.88rem;display:flex;justify-content:space-between;align-items:center;gap:.5rem;transition:all .2s}
+.related-link:hover{border-color:var(--brds)}
+.related-link.m1{border-left-color:var(--m1)}.related-link.m1 strong{color:var(--m1)}
+.related-link.m2{border-left-color:var(--m2)}.related-link.m2 strong{color:var(--m2)}
+.related-link.m3{border-left-color:var(--m3)}.related-link.m3 strong{color:#fca5a5}
+.related-link.m4{border-left-color:var(--m4)}.related-link.m4 strong{color:var(--m4)}
+.related-link.m5{border-left-color:var(--m5)}.related-link.m5 strong{color:var(--ambb)}
+.related-link strong{font-weight:500;font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.02em}
+.related-count{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--t4);letter-spacing:.08em}
+.no-citations{padding:1.2rem 1.4rem;background:rgba(17,24,39,.55);border:1px dashed var(--brd);border-radius:3px;color:var(--t3);font-style:italic;text-align:center}
+.cf-back{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);text-decoration:none;border-bottom:1px solid transparent;transition:all .2s;margin-top:2rem}
+.cf-back:hover{color:var(--blub);border-color:var(--blub)}
+footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--brd);text-align:center}
+footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
+@media(max-width:768px){.w{padding:0 1rem}.concept-name{font-size:2.2rem}.related-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<div class="tb-nav-bar">
+<div class="tb-nav-left">
+<a href="index.html">← All Concepts</a>
+<span class="tb-nav-counter">Tail Calibration Failure</span>
+</div>
+<div class="tb-nav-right">
+<a href="../index.html" class="tb-nav-archive">Briefing Archive</a>
+</div>
+</div>
+
+<div class="w" style="--meta-c:#c97a3a">
+
+<header class="concept-head">
+<div class="concept-meta" style="color:#dcb267">
+<span class="concept-meta-tag">META-5</span>
+<span>Institutional Hollowing</span>
+</div>
+<h1 class="concept-name">Tail Calibration Failure</h1>
+<div class="concept-stats">
+<span>META-5 · Institutional Hollowing</span><span class="stat-divider">·</span><span>Named in Briefing 031</span><span class="stat-divider">·</span><span>5 May 2026</span><span class="stat-divider">·</span><span class="stat-current">14 citations across 47 briefings</span>
+</div>
+</header>
+
+<section class="concept-section">
+<h2 class="sh">Canonical Definition</h2>
+<div class="def-block">
+<p>The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk envelope; the rebound is amplified by the prior under-pricing as every dependency the modal discount entered is repriced simultaneously. The empirical signature is Brent $77.40 (Monday open, 2026-05-04) → $116.55 (Tuesday intraday peak, 2026-05-05) with $107.38 CME settlement after Hegseth's threshold-framing reassurance — a roughly 50% surge within twenty-four hours of the discount's operation. The structural mechanism: the marketplace's calibrated discount is constructed against the modal trajectory of accumulated weekend-window announcements without a separate tail-risk channel, so when the operational tail materializes the discount's prior under-pricing is repriced through every position that had embedded it. <strong>Cross-references META-1 Coupling Failure</strong> (the discount-architecture is decoupled from the tail-risk channel that would have constrained it) <strong>and META-3 Threshold Cascade</strong> (the rebound itself is a cascade through every dependency the prior under-pricing entered). <strong>Recursive structural finding:</strong> the pattern instantiates the Cycle 1 audit's S1 LLM Cognitive Signature (mean-trajectory regression) at marketplace level — a homology, not an identity. The operation by which an LLM averages historical analogues to emit modal completion and the operation by which the marketplace prices the modal trajectory of weekend-window announcements are the same operation at different scales, and they fail in the same way when the world is not modal.</p>
+<div class="def-source">First named in <a href="../briefings/2026-05-05.html">Briefing 031</a></div>
+</div>
+</section>
+
+<section class="concept-section">
+<h2 class="sh">Citation Timeline</h2>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1rem;font-size:.92rem">Every briefing where this pattern is cited in prose. The naming briefing is highlighted.</p>
+<div class="timeline">
+<div class="tl-entry naming">
+<div class="tl-head">
+<div class="tl-date">5 May 2026<span class="tl-dow">Tuesday</span></div>
+<div class="tl-num">Briefing 031 · Cycle 2</div>
+</div>
+<div class="tl-thread">Tail Calibration Failure / Discount Inversion</div>
+<div class="tl-excerpt">…esponse that hollowed (META-5 Institutional Hollowing) is the response whose hollow is now visible. Tail Calibration Failure enters the structural vocabulary as a new instantiation under META-5, with explicit cross-references to META-1 and META-3. It is a refinement, not an addition to the meta-categorical scaffolding.…</div>
+<a class="tl-link" href="../briefings/2026-05-05.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">6 May 2026<span class="tl-dow">Wednesday</span></div>
+<div class="tl-num">Briefing 032 · Cycle 2</div>
+</div>
+<div class="tl-thread">Channel Decomposition / The Institutional Tail-Channel Correction</div>
+<div class="tl-excerpt">Yesterday’s pattern ( Tail Calibration Failure , Briefing 031) named the marketplace-level failure mode of the Sanctuary Discount : the calibrated discount succeeded along the modal axis and lacked a separate tail-channel; the rebound from $7…</div>
+<a class="tl-link" href="../briefings/2026-05-06.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">7 May 2026<span class="tl-dow">Thursday</span></div>
+<div class="tl-num">Briefing 033 · Cycle 2</div>
+</div>
+<div class="tl-thread">Bilateral Channel Decomposition Under Asymmetric Reversibility</div>
+<div class="tl-excerpt">Two days into Cycle 2, the discipline-to-pattern transmission has continued. Briefing 031 named Tail Calibration Failure as the marketplace-level failure mode; Briefing 032 named Channel Decomposition as the institutional corrective architecture; Briefing 033 (today) tracks Channel Decomposition under reversibility…</div>
+<a class="tl-link" href="../briefings/2026-05-07.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">8 May 2026<span class="tl-dow">Friday</span></div>
+<div class="tl-num">Briefing 034 · Cycle 2</div>
+</div>
+<div class="tl-thread">Channel Decomposition under No-Deal-Path Activation</div>
+<div class="tl-excerpt">…historical analogue, warrant coordinated Treasury communication. The silence is the diagnostic. The Tail Calibration Failure operates institutionally at the Treasury communications-architecture level in parallel to the marketplace’s missing tail-channel and the central-bank communications-vacuum operating across the sa…</div>
+<a class="tl-link" href="../briefings/2026-05-08.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">9 May 2026<span class="tl-dow">Saturday</span></div>
+<div class="tl-num">Briefing 035 · Cycle 2</div>
+</div>
+<div class="tl-thread">Weekend Translation of Parallel-Path Persistence</div>
+<div class="tl-excerpt">…(d) operates as forced-decomposition under tail-event metabolization, which is the failure mode the Tail Calibration Failure pattern (Briefing 031) named at the marketplace level applied here at the substrate level. The Saturday cadence reads the absence of any of the four triggers across the 7-day Cycle 2 window as th…</div>
+<a class="tl-link" href="../briefings/2026-05-09.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">10 May 2026<span class="tl-dow">Sunday</span></div>
+<div class="tl-num">Briefing 036 · Cycle 2</div>
+</div>
+<div class="tl-thread">Sabbath Operationalization of the Three-Bilateral Stack</div>
+<div class="tl-excerpt">… the four-channel architecture incrementally as Briefings 030-034 surfaced the Sanctuary Discount , Tail Calibration Failure , Channel Decomposition , and parallel-path persistence patterns; each pattern entered the surface as a structurally-distinct discrimination instrument. The compound-stack&#x27;s partial coupling impl…</div>
+<a class="tl-link" href="../briefings/2026-05-10.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">11 May 2026<span class="tl-dow">Monday</span></div>
+<div class="tl-num">Briefing 037 · Cycle 2</div>
+</div>
+<div class="tl-thread">Mode-Switch Reversal at Monday Open — The Three-Bilateral Stack Resolves Asymmetrically</div>
+<div class="tl-excerpt">…-stock substrates simultaneously, but did NOT price it through a generalized risk-off rotation. The Tail Calibration Failure pattern (Briefing 031) operating at the marketplace level generated the canonical $77.40-to-$116.55 Brent rebound in a single twenty-four-hour window; today&#x27;s compound-stack resolution generated …</div>
+<a class="tl-link" href="../briefings/2026-05-11.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">14 May 2026<span class="tl-dow">Thursday</span></div>
+<div class="tl-num">Briefing 040 · Cycle 2</div>
+</div>
+<div class="tl-thread">The Convergent Counter-Display — Beijing’s Diplomatic Peak Synchronized with Russia’s War Record</div>
+<div class="tl-excerpt">…place pricing the announcement at premium rather than discount. The configuration is structurally a Tail Calibration Failure inverse: where the prior pattern failed catastrophically when operational deployment generated tail events that exceeded the discount, the current configuration risks failing catastrophically if …</div>
+<a class="tl-link" href="../briefings/2026-05-14.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">18 May 2026<span class="tl-dow">Monday</span></div>
+<div class="tl-num">Briefing 041 · Cycle 2</div>
+</div>
+<div class="tl-thread">Symbolic Anchoring Failure — What the Long Weekend Disclosed About the Beijing Substitute</div>
+<div class="tl-excerpt">…the first nuclear-facility attack of the 2026 Iran war and operates as the empirical anchor for the Tail Calibration Failure pattern (Briefing 031) at the nuclear-infrastructure substrate.</div>
+<a class="tl-link" href="../briefings/2026-05-18.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">19 May 2026<span class="tl-dow">Tuesday</span></div>
+<div class="tl-num">Briefing 042 · Cycle 2</div>
+</div>
+<div class="tl-thread">Deferred Strike Credentialing — What the Three-Monarch Intercession Discloses About the Cluster’s New Anchor</div>
+<div class="tl-excerpt">…te of clean democratic alternation. The aggregate signal is that the regional architecture exhibits Tail Calibration Failure at the humanitarian-response substrate: the modal democratic-process function operates (Cabo Verde) while the tail-event response function fails (Mali, Sudan). The IPC update projects two areas i…</div>
+<a class="tl-link" href="../briefings/2026-05-19.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">20 May 2026<span class="tl-dow">Wednesday</span></div>
+<div class="tl-num">Briefing 043 · Cycle 2</div>
+</div>
+<div class="tl-thread">The Warning Clock and What the Cadence-Window Discloses</div>
+<div class="tl-excerpt">…d; the spread tightens because the cadence-window narrows the dispersion of plausible outcomes. The Tail Calibration Failure pattern from Briefing 031 has the inverse signature today: the marketplace is calibrating modal trajectory accurately against a bounded window; the tail risk is contained within the cadence-windo…</div>
+<a class="tl-link" href="../briefings/2026-05-20.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">21 May 2026<span class="tl-dow">Thursday</span></div>
+<div class="tl-num">Briefing 044 · Cycle 2</div>
+</div>
+<div class="tl-thread">The Cadence-Window Decays Into Stage Language</div>
+<div class="tl-excerpt">…al gain — a clock that doesn’t expire produces less near-term tail-risk than a clock that does. The Tail Calibration Failure pattern from Briefing 031 operates today inverted: the marketplace reads the substrate-migration as reducing tail-risk because the stage cannot generate the cliff-event the clock generated.</div>
+<a class="tl-link" href="../briefings/2026-05-21.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">24 May 2026<span class="tl-dow">Sunday</span></div>
+<div class="tl-num">Briefing 046 · Cycle 2</div>
+</div>
+<div class="tl-thread">The Broker Channel Stretches Itself Thin</div>
+<div class="tl-excerpt">…ates at the level of strategic and commercial stock buffers across consumer-economy substrates. The Tail Calibration Failure pattern (META-5, Briefing 031) remains the relevant calibration regime: the disclosure-discount’s mean-trajectory works on announcement-density and fails on operational tail.</div>
+<a class="tl-link" href="../briefings/2026-05-24.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">26 May 2026<span class="tl-dow">Tuesday</span></div>
+<div class="tl-num">Briefing 047 · Cycle 2</div>
+</div>
+<div class="tl-thread">Announcement-Mode and Execution-Mode Concurrence at Three Architectures</div>
+<div class="tl-excerpt">…count that held against the announcement-mode failed against the execution-mode. Sanctuary Discount Tail Calibration Failure (META-5, Briefing 031) acquires a second 2026 instance with a different empirical signature than Project Freedom: this time the discount worked at the announcement layer and then the world produc…</div>
+<a class="tl-link" href="../briefings/2026-05-26.html">Open briefing →</a>
+</div></div>
+</section>
+
+<section class="concept-section"><h2 class="sh">Co-occurring Concepts</h2><div class="related-grid"><a class="related-link m4" href="commons-enclosure.html"><strong>Commons Enclosure</strong><span class="related-count">×14</span></a><a class="related-link m5" href="sanctuary-discount.html"><strong>Sanctuary Discount</strong><span class="related-count">×14</span></a><a class="related-link m5" href="channel-decomposition.html"><strong>Channel Decomposition</strong><span class="related-count">×13</span></a><a class="related-link m1" href="peripheral-assertion.html"><strong>Peripheral Assertion</strong><span class="related-count">×12</span></a><a class="related-link m3" href="keystone-removal.html"><strong>Keystone Removal</strong><span class="related-count">×8</span></a><a class="related-link m4" href="cartel-dissolution.html"><strong>Cartel Dissolution</strong><span class="related-count">×6</span></a><a class="related-link m1" href="sabbath-visibility.html"><strong>Sabbath Visibility</strong><span class="related-count">×5</span></a><a class="related-link m1" href="verification-mode-asymmetry.html"><strong>Verification-Mode Asymmetry</strong><span class="related-count">×5</span></a><a class="related-link m5" href="ceasefire-acceleration.html"><strong>Ceasefire Acceleration</strong><span class="related-count">×4</span></a><a class="related-link m5" href="governance-vacuum.html"><strong>Governance Vacuum</strong><span class="related-count">×4</span></a></div></section>
+
+<a class="cf-back" href="index.html">← Back to all concepts</a>
+
+</div>
+
+<footer>
+<p>Tectonic Briefing · Structural Vocabulary · Tail Calibration Failure (META-5)</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept: Dual-Track Maximalism — Tectonic Briefing</title>
+<meta name="description" content="Structural concept page for Dual-Track Maximalism (META-1 Coupling Failure) — Tectonic Briefing.">
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source Sans 3',system-ui,sans-serif;font-size:16px;line-height:1.7;min-height:100vh}
+body{background-image:radial-gradient(rgba(75,142,242,0.045) 1px,transparent 1px);background-size:48px 48px;background-attachment:fixed}
+:root{--bg:#0b1120;--card:#111827;--alt:#141c2e;--str:#162035;--blu:#4b8ef2;--blub:#6da8ff;--blup:#a3c8ff;--teal:#38d9c8;--tealm:#2a9e92;--gold:#e5b84c;--goldm:#c9a03a;--red:#f06050;--purp:#a78bfa;--grn:#4ade80;--amb:#c97a3a;--ambb:#dcb267;--t1:#eaf0f8;--t2:#cdd6e4;--t3:#8e9bb5;--t4:#7a8aa6;--brd:rgba(75,142,242,0.18);--brds:rgba(75,142,242,0.35);--m1:#4b8ef2;--m2:#a78bfa;--m3:#f06050;--m4:#38d9c8;--m5:#c97a3a}
+.w{max-width:980px;margin:0 auto;padding:0 1.8rem}
+.tb-nav-bar{position:sticky;top:0;z-index:80;background:rgba(11,17,32,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid rgba(75,142,242,0.18);padding:.55rem 1.2rem;display:flex;gap:.6rem;align-items:center;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;flex-wrap:wrap}
+.tb-nav-bar .tb-nav-left,.tb-nav-bar .tb-nav-right{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}
+.tb-nav-bar a{color:#8e9bb5;text-decoration:none;border:1px solid rgba(75,142,242,0.18);padding:.32rem .62rem;border-radius:2px;transition:all .2s;white-space:nowrap}
+.tb-nav-bar a:hover{color:#6da8ff;border-color:rgba(75,142,242,0.45)}
+.tb-nav-bar .tb-nav-counter{color:#6da8ff;font-weight:500}
+.tb-nav-bar .tb-nav-archive{color:#cdd6e4;border-color:rgba(75,142,242,0.32)}
+header.concept-head{padding:2.8rem 0 1.4rem;border-bottom:1px solid var(--brd);margin-bottom:2rem}
+.concept-meta{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.7rem;display:flex;align-items:center;gap:.6rem}
+.concept-meta-tag{padding:.18rem .6rem;border-radius:2px;border:1px solid currentColor;font-weight:500}
+.concept-name{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:3rem;color:var(--t1);letter-spacing:.012em;line-height:1.05;margin-bottom:.7rem}
+.concept-stats{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.concept-stats .stat-divider{color:rgba(75,142,242,.3)}
+.concept-stats .stat-current{color:var(--blub);font-weight:500}
+.sh{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--t1);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--brd)}
+section.concept-section{margin-bottom:2.4rem}
+.def-block{background:var(--card);border:1px solid var(--brd);border-left:3px solid var(--meta-c);border-radius:3px;padding:1.6rem 1.8rem;line-height:1.8;color:var(--t2);font-size:1rem}
+.def-block strong{color:var(--t1);font-weight:600}
+.def-block em{font-style:italic;color:var(--t1)}
+.def-source{margin-top:1rem;padding-top:.8rem;border-top:1px dashed rgba(75,142,242,.18);font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t4)}
+.def-source a{color:var(--blub);text-decoration:none;border-bottom:1px solid rgba(109,168,255,.3)}
+.def-source a:hover{border-color:var(--blub)}
+.timeline{display:flex;flex-direction:column;gap:.6rem}
+.tl-entry{background:var(--card);border:1px solid var(--brd);border-left:2px solid var(--meta-c);border-radius:2px;padding:1rem 1.2rem;transition:border-color .2s}
+.tl-entry:hover{border-color:var(--brds);border-left-color:var(--meta-c)}
+.tl-entry.naming{border-left-width:3px;background:linear-gradient(90deg,rgba(229,184,76,.04),transparent 30%)}
+.tl-entry.naming::before{content:'★ NAMED HERE';font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.16em;color:var(--gold);display:block;margin-bottom:.4rem}
+.tl-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:.5rem}
+.tl-date{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--t1)}
+.tl-date .tl-dow{color:var(--t4);font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.06em;margin-left:.4rem;text-transform:uppercase}
+.tl-num{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--blub);letter-spacing:.08em;text-transform:uppercase}
+.tl-thread{font-style:italic;color:var(--t3);font-size:.92rem;margin-bottom:.5rem;line-height:1.5}
+.tl-excerpt{color:var(--t2);font-size:.92rem;line-height:1.7;margin:.4rem 0 .7rem}
+.tl-link{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--blub);border:1px solid var(--brd);padding:.25rem .65rem;border-radius:2px;text-decoration:none;transition:all .2s}
+.tl-link:hover{border-color:var(--blub);background:rgba(75,142,242,.06)}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.6rem}
+.related-link{background:var(--card);border:1px solid var(--brd);border-left:2px solid var(--brd);border-radius:2px;padding:.65rem .9rem;text-decoration:none;color:var(--t2);font-size:.88rem;display:flex;justify-content:space-between;align-items:center;gap:.5rem;transition:all .2s}
+.related-link:hover{border-color:var(--brds)}
+.related-link.m1{border-left-color:var(--m1)}.related-link.m1 strong{color:var(--m1)}
+.related-link.m2{border-left-color:var(--m2)}.related-link.m2 strong{color:var(--m2)}
+.related-link.m3{border-left-color:var(--m3)}.related-link.m3 strong{color:#fca5a5}
+.related-link.m4{border-left-color:var(--m4)}.related-link.m4 strong{color:var(--m4)}
+.related-link.m5{border-left-color:var(--m5)}.related-link.m5 strong{color:var(--ambb)}
+.related-link strong{font-weight:500;font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.02em}
+.related-count{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--t4);letter-spacing:.08em}
+.no-citations{padding:1.2rem 1.4rem;background:rgba(17,24,39,.55);border:1px dashed var(--brd);border-radius:3px;color:var(--t3);font-style:italic;text-align:center}
+.cf-back{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);text-decoration:none;border-bottom:1px solid transparent;transition:all .2s;margin-top:2rem}
+.cf-back:hover{color:var(--blub);border-color:var(--blub)}
+footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--brd);text-align:center}
+footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
+@media(max-width:768px){.w{padding:0 1rem}.concept-name{font-size:2.2rem}.related-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<div class="tb-nav-bar">
+<div class="tb-nav-left">
+<a href="index.html">← All Concepts</a>
+<span class="tb-nav-counter">Dual-Track Maximalism</span>
+</div>
+<div class="tb-nav-right">
+<a href="../index.html" class="tb-nav-archive">Briefing Archive</a>
+</div>
+</div>
+
+<div class="w" style="--meta-c:#4b8ef2">
+
+<header class="concept-head">
+<div class="concept-meta" style="color:#6da8ff">
+<span class="concept-meta-tag">META-1</span>
+<span>Coupling Failure</span>
+</div>
+<h1 class="concept-name">Dual-Track Maximalism</h1>
+<div class="concept-stats">
+<span>META-1 · Coupling Failure</span><span class="stat-divider">·</span><span>Named in Briefing 010</span><span class="stat-divider">·</span><span>14 April 2026</span><span class="stat-divider">·</span><span class="stat-current">6 citations across 47 briefings</span>
+</div>
+</header>
+
+<section class="concept-section">
+<h2 class="sh">Canonical Definition</h2>
+<div class="def-block">
+<p>Maximum rhetorical escalation and diplomatic opening occur simultaneously, not sequentially. The extreme position is the credential that makes the negotiation politically possible. Trump's "eliminate" + "wants a deal."</p>
+<div class="def-source">First named in <a href="../briefings/2026-04-14.html">Briefing 010</a></div>
+</div>
+</section>
+
+<section class="concept-section">
+<h2 class="sh">Citation Timeline</h2>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1rem;font-size:.92rem">Every briefing where this pattern is cited in prose. The naming briefing is highlighted.</p>
+<div class="timeline">
+<div class="tl-entry naming">
+<div class="tl-head">
+<div class="tl-date">14 April 2026<span class="tl-dow">Tuesday</span></div>
+<div class="tl-num">Briefing 010 · Cycle 1</div>
+</div>
+
+<div class="tl-excerpt"><em>(no inline excerpt extracted)</em></div>
+<a class="tl-link" href="../briefings/2026-04-14.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">20 April 2026<span class="tl-dow">Monday</span></div>
+<div class="tl-num">Briefing 016 · Cycle 1</div>
+</div>
+
+<div class="tl-excerpt">…n merely declared, destroys the diplomatic track it was intended to credential. The failure mode of Dual-Track Maximalism . USS Spruance seizes MV Touska; Iran rejects Islamabad talks. Briefing 016.</div>
+<a class="tl-link" href="../briefings/2026-04-20.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">21 April 2026<span class="tl-dow">Tuesday</span></div>
+<div class="tl-num">Briefing 017 · Cycle 1</div>
+</div>
+<div class="tl-thread">Arrival Velocity</div>
+<div class="tl-excerpt">The corridor briefings have tracked, in sequence, Dual-Track Maximalism (Briefing 010), Enforcement Selectivity (011), Cascade Resolution (012), Settlement Velocity (013), Settlement Reversion (014), Coalition Fragmentation (015), and most recently Credential Foreclosur…</div>
+<a class="tl-link" href="../briefings/2026-04-21.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">3 May 2026<span class="tl-dow">Sunday</span></div>
+<div class="tl-num">Briefing 029 · Cycle 1</div>
+</div>
+
+<div class="tl-excerpt"><em>(no inline excerpt extracted)</em></div>
+<a class="tl-link" href="../briefings/2026-05-03.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">20 May 2026<span class="tl-dow">Wednesday</span></div>
+<div class="tl-num">Briefing 043 · Cycle 2</div>
+</div>
+<div class="tl-thread">The Warning Clock and What the Cadence-Window Discloses</div>
+<div class="tl-excerpt">…pparatus tightens. Deferred Strike Credentialing operates as the operational-substrate companion to Dual-Track Maximalism (Briefing 010). Where Dual-Track Maximalism names the simultaneous escalation-and-opening pattern, Deferred Strike Credentialing names what happens when the escalation channel produces a suspended o…</div>
+<a class="tl-link" href="../briefings/2026-05-20.html">Open briefing →</a>
+</div>
+<div class="tl-entry">
+<div class="tl-head">
+<div class="tl-date">26 May 2026<span class="tl-dow">Tuesday</span></div>
+<div class="tl-num">Briefing 047 · Cycle 2</div>
+</div>
+<div class="tl-thread">Announcement-Mode and Execution-Mode Concurrence at Three Architectures</div>
+<div class="tl-excerpt">Briefing 010’s Dual-Track Maximalism named the simultaneity of maximum rhetorical escalation and diplomatic opening. The pattern was sequential at root: the extreme threat creates the political space for the negotiation. Today three ar…</div>
+<a class="tl-link" href="../briefings/2026-05-26.html">Open briefing →</a>
+</div></div>
+</section>
+
+<section class="concept-section"><h2 class="sh">Co-occurring Concepts</h2><div class="related-grid"><a class="related-link m4" href="commons-enclosure.html"><strong>Commons Enclosure</strong><span class="related-count">×6</span></a><a class="related-link m1" href="sabbath-visibility.html"><strong>Sabbath Visibility</strong><span class="related-count">×2</span></a><a class="related-link m3" href="buffer-collapse.html"><strong>Buffer Collapse</strong><span class="related-count">×2</span></a><a class="related-link m5" href="tail-calibration-failure.html"><strong>Tail Calibration Failure</strong><span class="related-count">×2</span></a><a class="related-link m1" href="weekend-translation.html"><strong>Weekend Translation</strong><span class="related-count">×2</span></a><a class="related-link m1" href="peripheral-assertion.html"><strong>Peripheral Assertion</strong><span class="related-count">×2</span></a><a class="related-link m5" href="sanctuary-discount.html"><strong>Sanctuary Discount</strong><span class="related-count">×2</span></a><a class="related-link m5" href="channel-decomposition.html"><strong>Channel Decomposition</strong><span class="related-count">×2</span></a><a class="related-link m5" href="capacity-hollowing.html"><strong>Capacity Hollowing</strong><span class="related-count">×2</span></a><a class="related-link m5" href="electoral-correction.html"><strong>Electoral Correction</strong><span class="related-count">×2</span></a></div></section>
+
+<a class="cf-back" href="index.html">← Back to all concepts</a>
+
+</div>
+
+<footer>
+<p>Tectonic Briefing · Structural Vocabulary · Dual-Track Maximalism (META-1)</p>
+</footer>
+
+</body>
+</html>
