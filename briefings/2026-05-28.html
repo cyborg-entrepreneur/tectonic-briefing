@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tectonic Briefing</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source Sans 3',system-ui,sans-serif;font-size:16px;line-height:1.7;min-height:100vh}
+/* SPRINT 2 — subtle dot-grid atmosphere */
+body{background-image:radial-gradient(rgba(75,142,242,0.045) 1px,transparent 1px);background-size:48px 48px;background-attachment:fixed}
+:root{--bg:#0b1120;--card:#111827;--alt:#141c2e;--str:#162035;--blu:#4b8ef2;--blub:#6da8ff;--blup:#a3c8ff;--teal:#38d9c8;--tealm:#2a9e92;--gold:#e5b84c;--goldm:#c9a03a;--red:#f06050;--redm:#c04a3e;--purp:#a78bfa;--grn:#4ade80;--amb:#c97a3a;--ambb:#dcb267;--t1:#eaf0f8;--t2:#cdd6e4;--t3:#8e9bb5;--t4:#7a8aa6;--brd:rgba(75,142,242,0.18);--brds:rgba(75,142,242,0.35);--m1:var(--blu);--m2:var(--purp);--m3:var(--red);--m4:var(--teal);--m5:var(--amb)}
+.w{max-width:1140px;margin:0 auto;padding:0 1.8rem}
+
+/* SPRINT 3 — reading progress bar */
+.read-progress{position:fixed;top:0;left:0;right:0;height:2px;background:rgba(75,142,242,0.05);z-index:120;pointer-events:none}
+.read-progress-fill{height:100%;background:linear-gradient(90deg,var(--blu),var(--purp));width:0%;transition:width .08s linear;box-shadow:0 0 6px rgba(109,168,255,0.5)}
+
+header{padding:2.8rem 0 1.8rem;border-bottom:1px solid var(--brd);margin-bottom:2rem}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2.6rem;color:var(--t1);letter-spacing:.025em}
+h1 em{font-style:normal;color:var(--blub);font-weight:500}
+.sub{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--t4);letter-spacing:.14em;text-transform:uppercase;margin-top:.4rem}
+.epi{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.02rem;color:var(--t3);margin-top:1rem;max-width:680px;line-height:1.55;padding-left:1rem;border-left:2px solid var(--brds)}
+/* SPRINT 4 — drop cap */
+.epi::first-letter{font-family:'Cormorant Garamond',serif;font-size:2.6em;font-weight:400;color:var(--blub);float:left;line-height:.92;margin:.1em .12em 0 0;font-style:normal}
+
+/* SPRINT 3 — nav with separators */
+nav{display:flex;gap:.35rem;flex-wrap:wrap;align-items:center;margin-bottom:2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--brd)}
+.nav-sep{width:1px;height:18px;background:var(--brd);margin:0 .35rem;display:inline-block;align-self:center}
+nav button{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .7rem;border:1px solid var(--brd);border-radius:2px;background:transparent;color:var(--t3);cursor:pointer;transition:all .25s}
+nav button:hover{border-color:var(--brds);color:var(--blup)}
+nav button.on{border-color:var(--blu);color:var(--blub);background:rgba(75,142,242,.06)}
+nav button.gld{border-color:rgba(229,184,76,.3)}nav button.gld:hover,nav button.gld.on{border-color:var(--gold);color:var(--gold);background:rgba(229,184,76,.06)}
+nav button.rd{border-color:rgba(240,96,80,.3)}nav button.rd:hover,nav button.rd.on{border-color:var(--red);color:var(--red);background:rgba(240,96,80,.06)}
+nav button.tl{border-color:rgba(56,217,200,.3)}nav button.tl:hover,nav button.tl.on{border-color:var(--teal);color:var(--teal);background:rgba(56,217,200,.06)}
+nav button.pr{border-color:rgba(167,139,250,.3)}nav button.pr:hover,nav button.pr.on{border-color:var(--purp);color:var(--purp);background:rgba(167,139,250,.06)}
+nav button.gn{border-color:rgba(74,222,128,.3)}nav button.gn:hover,nav button.gn.on{border-color:var(--grn);color:var(--grn);background:rgba(74,222,128,.06)}
+
+/* SPRINT 1 — focus visible */
+nav button:focus-visible,.dd:focus-visible,.src a:focus-visible,.src-filter:focus-visible,.dd-controls button:focus-visible,details>summary:focus-visible,a:focus-visible,.vbadge:focus-visible{outline:2px solid var(--blub);outline-offset:2px;border-radius:2px}
+
+/* P2B — Cmd+K search modal */
+.cmdk-modal{position:fixed;inset:0;z-index:200;display:none;align-items:flex-start;justify-content:center;padding-top:12vh}
+.cmdk-modal.open{display:flex}
+.cmdk-backdrop{position:absolute;inset:0;background:rgba(11,17,32,0.85);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.cmdk-panel{position:relative;width:min(680px,92vw);max-height:75vh;background:var(--card);border:1px solid var(--brds);border-radius:6px;box-shadow:0 24px 60px rgba(0,0,0,0.5);display:flex;flex-direction:column;animation:cmdkIn .18s ease;overflow:hidden}
+@keyframes cmdkIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.cmdk-header{display:flex;align-items:center;gap:.6rem;padding:.85rem 1.1rem;border-bottom:1px solid var(--brd)}
+.cmdk-input{flex:1;background:transparent;border:none;outline:none;color:var(--t1);font-family:'Source Sans 3',system-ui,sans-serif;font-size:1.05rem;padding:.2rem 0}
+.cmdk-input::placeholder{color:var(--t4);font-style:italic}
+.cmdk-hint{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase}
+.cmdk-results{flex:1;overflow-y:auto;padding:.4rem 0;max-height:55vh}
+.cmdk-result{display:flex;align-items:flex-start;gap:.8rem;padding:.55rem 1.1rem;cursor:pointer;text-decoration:none;color:inherit;border-left:2px solid transparent;transition:all .12s}
+.cmdk-result:hover,.cmdk-result.sel{background:rgba(75,142,242,0.08);border-left-color:var(--blu)}
+.cmdk-result-type{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase;padding-top:.18rem;min-width:60px;flex-shrink:0}
+.cmdk-result-type.concept{color:var(--gold)}
+.cmdk-result-body{flex:1;min-width:0}
+.cmdk-result-title{font-family:'Cormorant Garamond',serif;font-size:1.02rem;color:var(--t1);line-height:1.3;margin-bottom:.18rem}
+.cmdk-result-sub{font-size:.78rem;color:var(--t3);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmdk-result-meta{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.52rem;color:var(--blub);letter-spacing:.08em;margin-right:.4rem;text-transform:uppercase}
+.cmdk-result-meta.m1{color:#a3c8ff}.cmdk-result-meta.m2{color:var(--purp)}.cmdk-result-meta.m3{color:#fca5a5}.cmdk-result-meta.m4{color:var(--teal)}.cmdk-result-meta.m5{color:var(--ambb)}
+.cmdk-empty{padding:1.4rem;color:var(--t4);text-align:center;font-style:italic;font-size:.9rem}
+.cmdk-footer{padding:.5rem 1.1rem;border-top:1px solid var(--brd);display:flex;gap:1rem;font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase;align-items:center}
+.cmdk-counts{margin-left:auto;color:var(--blub)}
+.cmdk-trigger{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .7rem;border:1px solid var(--brd);border-radius:2px;color:var(--t3);cursor:pointer;background:transparent;transition:all .2s;display:inline-flex;align-items:center;gap:.45rem;margin-left:.7rem}
+.cmdk-trigger:hover{border-color:var(--brds);color:var(--blub)}
+.cmdk-kbd{font-family:'JetBrains Mono',monospace;font-size:.5rem;padding:.1rem .35rem;border:1px solid rgba(75,142,242,.32);border-radius:2px;color:var(--t4);background:rgba(75,142,242,.04)}
+
+/* P3A — confidence indicators on load-bearing claims */
+.conf{display:inline-flex;align-items:center;justify-content:center;width:1.05em;height:1.05em;border-radius:50%;font-size:.62em;font-family:'JetBrains Mono',monospace;margin-left:.22em;vertical-align:.18em;cursor:help;font-weight:600;line-height:1;letter-spacing:0;text-decoration:none}
+.conf.v{background:rgba(56,217,200,0.16);color:var(--teal);border:1px solid rgba(56,217,200,0.45)}
+.conf.p{background:rgba(229,184,76,0.14);color:var(--gold);border:1px solid rgba(229,184,76,0.45)}
+.conf.c{background:rgba(240,96,80,0.16);color:#fca5a5;border:1px solid rgba(240,96,80,0.45)}
+.conf:hover{transform:scale(1.18);transition:transform .12s ease}
+
+/* P1B — inline vocabulary badges (links to concept pages) */
+.vbadge{text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;transition:color .15s ease,border-bottom-color .15s ease;cursor:help}
+.vbadge:hover{border-bottom-style:solid}
+.vbadge.m1{color:#a3c8ff}.vbadge.m1:hover{color:var(--blub)}
+.vbadge.m2{color:#c4b3ff}.vbadge.m2:hover{color:var(--purp)}
+.vbadge.m3{color:#fca5a5}.vbadge.m3:hover{color:#fff}
+.vbadge.m4{color:#7cebd8}.vbadge.m4:hover{color:var(--teal)}
+.vbadge.m5{color:#dcb267}.vbadge.m5:hover{color:var(--gold)}
+strong .vbadge{font-weight:inherit}
+
+.bn{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--t4);letter-spacing:.08em;margin-bottom:.3rem;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+/* SPRINT 4 — cycle-day dots */
+.cycle-dots{display:inline-flex;gap:3px;align-items:center;padding:.2rem .5rem;border:1px solid rgba(229,184,76,0.18);border-radius:2px;background:rgba(229,184,76,0.04)}
+.cycle-dots-label{font-family:'JetBrains Mono',monospace;font-size:.54rem;color:var(--goldm);letter-spacing:.1em;text-transform:uppercase;margin-right:.4rem}
+.cycle-dot{width:4px;height:4px;border-radius:50%;background:rgba(229,184,76,0.18)}
+.cycle-dot.active{background:var(--goldm)}
+.cycle-dot.current{background:var(--gold);box-shadow:0 0 0 2px rgba(229,184,76,0.22)}
+
+.bd{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--t1);margin-bottom:.2rem}
+.bt{font-size:.95rem;color:var(--t3);font-style:italic;margin-bottom:2rem}
+.s{display:none;animation:fu .35s ease}.s.v{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+/* SPRINT 4 — staggered card reveal on section change */
+.s.v .c,.s.v .th{animation:cardReveal .42s ease both}
+.s.v .c:nth-of-type(1){animation-delay:.02s}.s.v .c:nth-of-type(2){animation-delay:.07s}.s.v .c:nth-of-type(3){animation-delay:.12s}.s.v .c:nth-of-type(4){animation-delay:.17s}.s.v .c:nth-of-type(5){animation-delay:.21s}.s.v .c:nth-of-type(6){animation-delay:.25s}.s.v .c:nth-of-type(n+7){animation-delay:.28s}
+@keyframes cardReveal{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.c{background-color:var(--card);border:1px solid var(--brd);border-radius:3px;padding:1.8rem 2rem;margin-bottom:1.4rem}
+.c.lim{border-left:3px solid var(--gold);background-color:var(--alt)}.c.cri{border-left:3px solid var(--red);background-color:var(--alt)}.c.act{border-left:3px solid var(--teal);background-color:var(--alt)}.c.inf{border-left:3px solid var(--purp);background-color:var(--alt)}.c.env{border-left:3px solid var(--grn);background-color:var(--alt)}.c.gov{border-left:3px solid #f59e0b;background-color:var(--alt)}
+.lb{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blu);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.lb.gl{color:var(--gold)}.lb.tl{color:var(--teal)}.lb.rl{color:var(--red)}.lb.pl{color:var(--purp)}.lb.gnl{color:var(--grn)}.lb.aml{color:#f59e0b}
+.tg{padding:.12rem .45rem;border-radius:2px;font-size:.58rem}
+.tu{background:rgba(75,142,242,.14);color:var(--blup)}.te{background:rgba(56,217,200,.14);color:var(--teal)}.tc{background:rgba(167,139,250,.14);color:var(--purp)}.ta{background:rgba(229,184,76,.14);color:var(--gold)}.tr{background:rgba(240,96,80,.14);color:#fca5a5}.tg2{background:rgba(74,222,128,.14);color:var(--grn)}
+/* SPRINT 1 — compressed type hierarchy */
+.c h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--t1);margin-bottom:.9rem;line-height:1.3}
+.c p{margin-bottom:.9rem;color:var(--t2);line-height:1.75}.c p:last-child{margin-bottom:0}.c strong{color:var(--t1);font-weight:600}
+.i{margin-top:1rem;padding:.9rem 1.2rem;border-radius:0 2px 2px 0}.i p{font-size:.93rem;color:var(--t2)}
+.il{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.4rem}
+.i.so{background:rgba(75,142,242,.05);border-left:2px solid rgba(75,142,242,.35)}.i.so .il{color:var(--t4)}
+.i.rs{background:rgba(56,217,200,.05);border-left:2px solid rgba(56,217,200,.3)}.i.rs .il{color:var(--tealm)}
+.i.cf{background:rgba(229,184,76,.05);border-left:2px solid rgba(229,184,76,.3)}.i.cf .il{color:var(--goldm)}.i.cf p{font-style:italic}
+.i.in{background:rgba(167,139,250,.05);border-left:2px solid rgba(167,139,250,.3)}.i.in .il{color:var(--purp)}
+.th{background-color:var(--str);border:1px solid var(--brds);border-radius:3px;padding:1.6rem 1.8rem;margin:1.8rem 0}
+.th h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--blub);margin-bottom:.8rem}.th p{color:var(--t2);line-height:1.75}
+.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;margin:1.2rem 0}
+.vi{background:var(--card);border:1px solid var(--brd);border-left:2px solid var(--brd);border-radius:2px;padding:1rem 1.2rem;transition:border-color .2s}
+.vi h4{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--blub);margin-bottom:.4rem;letter-spacing:.04em}.vi p{font-size:.88rem;color:var(--t3);line-height:1.5;margin:0}
+/* SPRINT 2 — meta-category color bands */
+.vi.m1{border-left-color:var(--m1)}.vi.m1 h4{color:var(--m1)}
+.vi.m2{border-left-color:var(--m2)}.vi.m2 h4{color:var(--m2)}
+.vi.m3{border-left-color:var(--m3)}.vi.m3 h4{color:#fca5a5}
+.vi.m4{border-left-color:var(--m4)}.vi.m4 h4{color:var(--m4)}
+.vi.m5{border-left-color:var(--m5)}.vi.m5 h4{color:var(--ambb)}
+.mr{display:flex;align-items:flex-start;gap:.8rem;padding:.8rem 0;border-bottom:1px solid rgba(75,142,242,.08)}
+.mf{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--blu);min-width:170px;padding-top:.2rem;letter-spacing:.04em}
+.me{font-size:.92rem;color:var(--t2)}.md{font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.1rem .4rem;border-radius:2px;white-space:nowrap}
+.amp{background:rgba(240,96,80,.12);color:#fca5a5}.dmp{background:rgba(56,217,200,.12);color:var(--teal)}
+.prose{max-width:800px;margin-bottom:1.8rem}.prose p{margin-bottom:1rem;color:var(--t2);line-height:1.8}
+.sh{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:400;color:var(--t1);margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid var(--brd)}
+.sh2{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;margin:2rem 0 1rem}
+
+.src{background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:.8rem 1.2rem;margin-bottom:.6rem;font-size:.88rem}
+.src.hidden{display:none}
+.src-cat{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.2rem}
+.src a{color:var(--blub);text-decoration:none;border-bottom:1px solid rgba(109,168,255,.3)}.src a:hover{border-color:var(--blub)}
+.src .src-note{color:var(--t3);font-size:.85rem;margin-top:.3rem}
+/* SPRINT 3 — source filter */
+.src-filter-wrap{display:flex;gap:.8rem;align-items:center;margin:1.2rem 0 1.4rem;padding:.7rem 1rem;background:rgba(17,24,39,0.55);border:1px solid var(--brd);border-radius:3px}
+.src-filter-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.src-filter{flex:1;background:transparent;border:none;border-bottom:1px solid var(--brd);color:var(--t1);font-family:'Source Sans 3',system-ui,sans-serif;font-size:.92rem;padding:.35rem .2rem;outline:none;transition:border-color .2s}
+.src-filter::placeholder{color:var(--t4);font-style:italic}
+.src-filter:focus{border-bottom-color:var(--blu)}
+.src-filter-count{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);letter-spacing:.1em;white-space:nowrap}
+
+.tk{display:inline-block;background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:.5rem .9rem;margin:0 .4rem .4rem 0;font-size:.85rem}
+.tk strong{color:var(--t1);font-weight:500}.tk span{color:var(--t3);font-size:.8rem}
+
+.dd{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blub);background:rgba(75,142,242,.08);border:1px solid rgba(75,142,242,.25);border-radius:2px;padding:.25rem .6rem;margin-left:.5rem;vertical-align:middle;cursor:pointer;transition:all .3s}
+.dd::before{content:'\25C9';font-size:.7rem}
+.dd:hover{background:rgba(75,142,242,.18);border-color:rgba(75,142,242,.5);color:var(--blup)}
+.dd.active{background:rgba(75,142,242,.15);border-color:var(--blu);color:var(--blup)}
+.dd.active::before{content:'\25CE'}
+/* SPRINT 2 — first-render hint pulse on deep-dive toggle */
+.dd.hint{animation:ddHint 1.6s ease-in-out 3}
+@keyframes ddHint{0%,100%{box-shadow:0 0 0 0 rgba(109,168,255,0)}50%{box-shadow:0 0 0 4px rgba(109,168,255,0.18)}}
+/* SPRINT 2 — section-level deep-dive controls */
+.dd-controls{display:flex;gap:.5rem;align-items:center;margin:0 0 1.2rem;padding:.5rem .8rem;background:rgba(17,24,39,0.35);border:1px solid var(--brd);border-radius:3px}
+.dd-controls button{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .65rem;background:transparent;border:1px solid var(--brd);border-radius:2px;color:var(--t3);cursor:pointer;transition:all .2s}
+.dd-controls button:hover{color:var(--blub);border-color:var(--brds)}
+.dd-controls .dd-count{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t4);margin-left:auto}
+
+.dd-panel{display:none;margin-top:1.2rem;padding:1.4rem 1.6rem;background:linear-gradient(135deg,rgba(229,184,76,.04),rgba(167,139,250,.04));border:1px solid rgba(75,142,242,.18);border-left:2px solid var(--gold);border-radius:3px;animation:fu .35s ease}
+.dd-panel.open{display:block}
+.dd-panel .dd-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--goldm);margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem}
+.dd-panel .dd-label::before{content:'\25C9';font-size:.65rem}
+.dd-panel h4{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:500;color:var(--t1);margin-bottom:.6rem}
+.dd-panel p{color:var(--t2);line-height:1.75;margin-bottom:.8rem;font-size:.93rem}
+.dd-panel p:last-child{margin-bottom:0}
+.dd-panel strong{color:var(--t1)}
+.dd-panel .dd-question{font-style:italic;color:var(--t3);border-left:2px solid var(--purp);padding-left:.8rem;margin:.8rem 0}
+.wa-section{margin-bottom:2.5rem}
+.wa-section h4{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:500;color:var(--t1);margin:1.4rem 0 .7rem;padding-top:.8rem;border-top:1px solid rgba(75,142,242,.1)}
+.wa-section h4:first-of-type{border-top:none;padding-top:0}
+
+footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--brd);text-align:center}
+footer>p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
+/* SPRINT 1 — footer attestation as details */
+.footer-attest{text-align:left;margin:1.4rem auto 0;max-width:980px;border:1px solid var(--brd);border-radius:3px;background:rgba(17,24,39,0.55)}
+.footer-attest summary{cursor:pointer;padding:.8rem 1.2rem;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);transition:color .2s;list-style:none;display:flex;align-items:center;gap:.5rem}
+.footer-attest summary::-webkit-details-marker{display:none}
+.footer-attest summary::before{content:'+';font-family:'JetBrains Mono',monospace;color:var(--t4);font-size:.85rem;display:inline-block;width:.85rem;transition:transform .2s}
+.footer-attest[open] summary::before{content:'−'}
+.footer-attest summary:hover{color:var(--blub)}
+.footer-attest[open] summary{color:var(--blub);border-bottom:1px solid var(--brd)}
+.footer-attest .attest-body{padding:1rem 1.4rem 1.4rem}
+.footer-attest h5{font-family:'JetBrains Mono',monospace;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blub);margin:1.2rem 0 .4rem}
+.footer-attest h5:first-child{margin-top:0}
+.footer-attest .attest-body p{font-family:'Source Sans 3',system-ui,sans-serif;font-size:.82rem;color:var(--t3);letter-spacing:0;line-height:1.7;text-transform:none;margin-bottom:.6rem}
+
+@media(max-width:768px){.w{padding:0 1rem}h1{font-size:2rem}.c{padding:1.3rem 1.2rem}.vg{grid-template-columns:1fr}.mr{flex-direction:column;gap:.3rem}.mf{min-width:unset}.nav-sep{display:none}.cycle-dots{display:none}}
+
+/* SPRINT 3 — print stylesheet */
+@media print{
+  body{background:white !important;color:black !important;background-image:none !important}
+  .read-progress,nav,.dd-controls,.src-filter-wrap,.tb-nav-bar,.tb-nav-foot,.tb-site-foot{display:none !important}
+  .s{display:block !important;page-break-before:auto}
+  .s+.s{page-break-before:always}
+  .dd-panel{display:block !important;background:#f8f8f8 !important;border-color:#999 !important}
+  .c,.vi,.src,.th{background:white !important;color:black !important;border-color:#ccc !important;break-inside:avoid}
+  .c h3,.sh,.bd,.th h3,h1,.dd-panel h4,.wa-section h4,.vi h4,.epi{color:black !important}
+  .c p,.c strong,.vi p,.src .src-note,.dd-panel p,.bt,.bn,.sub{color:#333 !important}
+  a{color:#1a4d8f !important;text-decoration:underline;border-bottom:none !important}
+  .footer-attest{border:1px solid #ccc !important;background:white !important}
+  .footer-attest summary{display:none}
+  .footer-attest[open] .attest-body,.footer-attest .attest-body{display:block !important;padding:0}
+  .footer-attest h5{color:black !important}
+  .footer-attest .attest-body p{color:#333 !important}
+  body{font-size:11pt;line-height:1.5}
+  .c{padding:.8rem 1rem;margin-bottom:.6rem}
+  h1{font-size:24pt}.bd{font-size:16pt}.sh{font-size:14pt}.c h3{font-size:12pt}
+  .epi::first-letter{color:#333 !important}
+}
+<!-- TB-NAV-WRAP:STYLE -->
+/* Tectonic Briefing site-wide nav wrapper (injected by update-index.py) */
+.tb-nav-bar{position:sticky;top:0;z-index:80;background:rgba(11,17,32,.94);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(75,142,242,0.18);padding:.55rem 1.2rem;
+  display:flex;gap:.6rem;align-items:center;justify-content:space-between;
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;flex-wrap:wrap}
+.tb-nav-bar .tb-nav-left,.tb-nav-bar .tb-nav-right{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}
+.tb-nav-bar a{color:#8e9bb5;text-decoration:none;border:1px solid rgba(75,142,242,0.18);
+  padding:.32rem .62rem;border-radius:2px;transition:all .2s;white-space:nowrap}
+.tb-nav-bar a:hover{color:#6da8ff;border-color:rgba(75,142,242,0.45)}
+.tb-nav-bar .tb-nav-disabled{color:#5f6d87;border-color:rgba(75,142,242,0.08);pointer-events:none;opacity:.55}
+.tb-nav-bar .tb-nav-counter{color:#6da8ff;font-weight:500}
+.tb-nav-bar .tb-nav-archive{color:#cdd6e4;border-color:rgba(75,142,242,0.32)}
+.tb-nav-foot{margin-top:2rem;padding:1.4rem 1.6rem;border:1px solid rgba(75,142,242,0.18);
+  border-radius:3px;display:flex;gap:.6rem;align-items:center;justify-content:space-between;
+  background:#111827;font-family:'JetBrains Mono',monospace;font-size:.62rem;
+  letter-spacing:.1em;text-transform:uppercase;flex-wrap:wrap}
+.tb-nav-foot .tb-nav-left,.tb-nav-foot .tb-nav-right{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}
+.tb-nav-foot a{color:#8e9bb5;text-decoration:none;border:1px solid rgba(75,142,242,0.18);
+  padding:.32rem .62rem;border-radius:2px;transition:all .2s;white-space:nowrap}
+.tb-nav-foot a:hover{color:#6da8ff;border-color:rgba(75,142,242,0.45)}
+.tb-nav-foot .tb-nav-disabled{color:#5f6d87;border-color:rgba(75,142,242,0.08);pointer-events:none;opacity:.55}
+.tb-site-foot{margin-top:1.4rem;padding:1.2rem 0;text-align:center;
+  font-family:'JetBrains Mono',monospace;font-size:.55rem;color:#5f6d87;
+  letter-spacing:.12em;text-transform:uppercase}
+.tb-site-foot a{color:#8e9bb5;text-decoration:none;border-bottom:1px solid rgba(75,142,242,0.18)}
+.tb-site-foot a:hover{color:#6da8ff;border-color:#6da8ff}
+@media(max-width:560px){
+  .tb-nav-bar{font-size:.55rem;padding:.45rem .7rem}
+  .tb-nav-bar a{padding:.28rem .5rem}
+  .tb-nav-foot{font-size:.55rem;padding:1.1rem 1rem}
+}
+<!-- TB-NAV-WRAP:STYLE -->
+</style>
+</head>
+<body>
+<!-- TB-NAV-WRAP:TOP:START -->
+<div class="tb-nav-bar"><div class="tb-nav-left"><a href="2026-05-27.html" title="Briefing No. 048 · 27 May 2026 · Wednesday">← Prev</a><span class="tb-nav-counter">Briefing No. 049 · Cycle 2 · Day 23</span><a class="tb-nav-disabled">Next →</a></div><div class="tb-nav-right"><a href="../index.html" class="tb-nav-archive">Archive</a></div></div>
+<!-- TB-NAV-WRAP:TOP:END -->
+
+<div aria-hidden="true" class="read-progress"><div class="read-progress-fill" id="rpf"></div></div>
+<div class="w">
+<header>
+<h1><em>Tectonic</em> Briefing</h1>
+<div class="sub">Structural forces · Inference engine · Wise action · Source archive</div>
+<div class="epi">“The most dangerous moment for a bad government is generally that in which it begins to reform itself.” — Tocqueville, <em>The Old Regime and the Revolution</em> (1856). Yesterday the framework was “largely negotiated”; today both governments invoke it while trading fire. CENTCOM shot down four Iranian drones near the Strait of Hormuz and struck a launch site inside Bandar Abbas late on 27 May; Iran fired a ballistic missile at a US-hosting air base in Kuwait that Kuwaiti defenses intercepted at 10:17 p.m. ET; the United States named an “egregious ceasefire violation” and struck a military site in Iran. Underneath the rupture the other architecture keeps building: Claude Opus 4.7 reaches general availability, Hyundai targets 30,000 humanoid robots a year, Terrestrial Energy and Riot Platforms commit four gigawatts of nuclear power to AI, Quantinuum holds ninety-four protected logical qubits. One architecture ruptures the framework it still invokes; the other assembles the substrate it has not yet released.</div>
+</header>
+<nav aria-label="Briefing sections" id="nav">
+<button class="on" onclick="go('ov')">Overview</button>
+<span aria-hidden="true" class="nav-sep"></span>
+<button class="rd" onclick="go('ge')">Geopolitical</button>
+<button onclick="go('te')">Technological</button>
+<button onclick="go('ec')">Economic</button>
+<button onclick="go('sc')">Scientific</button>
+<button onclick="go('so')">Social</button>
+<button class="gn" onclick="go('en')">Ecological</button>
+<button onclick="go('ig')">Institutional</button>
+<button class="gld" onclick="go('li')">Liminal Signals</button>
+<span aria-hidden="true" class="nav-sep"></span>
+<button class="pr" onclick="go('ie')">Inference Engine</button>
+<button class="tl" onclick="go('wa')">Wise Action</button>
+<button onclick="go('an')" style="border-color:rgba(240,96,80,0.3);color:#fca5a5">Anomalies</button>
+<button onclick="go('sa')">Source Archive</button>
+<button aria-label="Open search" class="cmdk-trigger" onclick="cmdkOpen()" type="button"><span>Search</span><span class="cmdk-kbd">⌘K</span></button>
+</nav>
+<!-- Cmd+K search modal -->
+<div aria-hidden="true" class="cmdk-modal" hidden="" id="cmdkModal">
+<div class="cmdk-backdrop" onclick="cmdkClose()"></div>
+<div aria-label="Search briefings and concepts" class="cmdk-panel" role="dialog">
+<div class="cmdk-header">
+<input autocomplete="off" class="cmdk-input" id="cmdkInput" placeholder="Search briefings, concepts, dates…" spellcheck="false" type="text"/>
+<span class="cmdk-hint"><span class="cmdk-kbd">ESC</span> close</span>
+</div>
+<div class="cmdk-results" id="cmdkResults" role="listbox"></div>
+<div class="cmdk-footer">
+<span><span class="cmdk-kbd">↑↓</span> navigate</span>
+<span><span class="cmdk-kbd">↵</span> open</span>
+<span class="cmdk-counts" id="cmdkCounts"></span>
+</div>
+</div>
+</div>
+<div class="bn"><span>BRIEFING NO. 049 · CYCLE 2 · DAY 23</span>
+<span aria-label="Day 23 of Cycle 2 (~30-day rhythm)" class="cycle-dots">
+<span class="cycle-dots-label">progress</span>
+<span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot current"></span><span class="cycle-dot"></span><span class="cycle-dot"></span><span class="cycle-dot"></span><span class="cycle-dot"></span><span class="cycle-dot"></span><span class="cycle-dot"></span><span class="cycle-dot"></span>
+</span></div>
+<div class="bd">28 May 2026 · Thursday</div>
+<div class="bt">The “largely negotiated framework” posture ruptured into open kinetic reciprocity overnight. US CENTCOM shot down four Iranian one-way attack drones near the Strait of Hormuz and struck an Iranian drone ground-control station inside Bandar Abbas “about to launch a fifth drone” (27 May, ~10:17 p.m. ET). Iran’s IRGC fired a ballistic missile plus drones at a US-hosting air base in Kuwait — open-source analysts point to Ali Al Salem — and Kuwaiti air defenses intercepted it at 10:17 p.m. ET on 27 May with no casualties, “the second armed clash between the two nations within a single week.” On 28 May the United States said Iran committed an “egregious ceasefire violation” and struck a military site inside Iran; Trump said on 27 May he won’t rush an Iran deal. In the Sahel, JNIM in coordination with Tuareg rebels launched its largest offensive since the 2012 rebellion: Defense Minister Sadio Camara is dead, Kidal has fallen. The capability side kept assembling: Claude Opus 4.7 reached general availability; Hyundai targets 30,000 Atlas humanoids a year by 2028; Terrestrial Energy and Riot Platforms committed up to 4 GW of Gen-IV nuclear to AI data centers; Quantinuum demonstrated 94 protected logical qubits. 27 May US closes (records): S&amp;P 500 7,520.36, Nasdaq 26,674.73, Dow 50,644.28; WTI under $90. The Kuwait strike landed after Wednesday’s close — Thursday’s repricing is a live test, not yet a fact. Vocabulary holds at <strong>42 named patterns</strong>; one new Cycle 2 candidate is logged — <em>Framework-Licensed Escalation</em> — while Capability Substrate Assembly strengthens and Limited-Strike Permissibility is stress-tested by reciprocity.</div>
+<!-- ========== OVERVIEW ========== -->
+<div class="s v" id="s-ov">
+<div class="prose">
+<p>Briefing 048 named two architectures running in parallel: a capability substrate assembling silently behind a research-preview posture, and a diplomatic posture asserted publicly to mask continued operations. The diplomatic side held its posture through 27 May. <strong>Overnight, that posture ruptured.</strong> US CENTCOM shot down four Iranian one-way attack drones near the Strait of Hormuz and struck a drone ground-control station inside <strong>Bandar Abbas</strong> at roughly 10:17 p.m. ET on 27 May, the Pentagon said, because the station was “about to launch a fifth drone” (The Hill, NBC News, Navy Times). The strike crossed a threshold the prior week’s strikes had not: it hit a launch site inside Iran rather than intercepting weapons in flight. The framework absorbed the Monday strikes; it could not absorb a strike that anticipated an attack before it materialized.</p>
+<p>Iran answered in kind, and the answer is the structural event. The IRGC fired a ballistic missile plus drones at a US-hosting air base in Kuwait — open-source analysts point to <strong>Ali Al Salem Air Base</strong> near the Kuwait-Iraq border — and <strong>Kuwaiti air defenses intercepted the missile at 10:17 p.m. ET on 27 May with no damage or casualties</strong> (CNBC, Korea Times, both 28 May). Coverage called it “the second armed clash between the two nations within a single week.” On 28 May the United States said Iran had committed an <strong>“egregious ceasefire violation”</strong> and carried out new strikes against a military site inside Iran (Navy Times, US News). Both governments still cite the framework. Neither has abandoned it rhetorically. They are trading fire underneath a ceasefire that each continues to invoke.</p>
+<p>The other architecture did not pause for any of this. <strong>Claude Opus 4.7 reached general availability</strong> on 28 May with stronger software engineering and long-running coding; Anthropic launched Claude Design and announced a “dreaming” feature for Managed Agents in which agents write notes to themselves. Hyundai Motor Group set a target of <strong>30,000 Atlas humanoid robots a year by 2028</strong>, deploying 25,000-plus across its plants (UPI, 25 May). Terrestrial Energy and Riot Platforms committed up to <strong>4 GW</strong> of Gen-IV nuclear to co-located AI data centers (6 May). Quantinuum demonstrated computations on <strong>94 protected logical qubits</strong> beyond break-even. The capability substrate compounds in twelve-month and thirty-six-month increments while the framework ruptures in seventy-two-hour ones.</p>
+<p>The marketplace closed Wednesday before any of the overnight reciprocity. <strong>The S&amp;P 500 closed 27 May at 7,520.36, the Nasdaq Composite at 26,674.73, and the Dow at 50,644.28 — fresh records — with WTI under $90</strong> (TheStreet, 247WallSt, CNBC). The session ran on “fresh Iran rumors; chip pullback.” The Kuwait strike landed after the close. Whether Thursday’s open reprices the rupture is the day’s open question, not its answer. The <a class="vbadge m5" href="../concepts/sanctuary-discount.html" title="Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment." data-meta="5">Sanctuary Discount</a> candidate (META-5, Briefing 030) has discounted announcement-mode and discounted execution-inside-framework further; the “egregious ceasefire violation” plus reciprocal strike is the framework-rupturing event the discount was never tested against. <strong>This briefing asserts no 28 May market move.</strong></p>
+</div>
+<div class="th"><h3>Unifying Thread: Framework Rupture vs. Substrate Assembly</h3>
+<p>Briefing 048’s thread set Capability Substrate Assembly against Posture Theater. Today the Posture-Theater side ruptured and the Substrate side kept building, so the thread inverts into its load-bearing form. On the diplomatic side, a shared framework-fiction is now licensing escalation rather than constraining it. CENTCOM struck inside Bandar Abbas; Iran fired on the Kuwait air base; the United States named an “egregious ceasefire violation” and struck again — and through all of it both sides still cite “the framework.” Esmaeil Baghaei said on 25 May that Iran was negotiating an end to the war and not currently discussing nuclear issues; Marco Rubio framed the choice as “a good agreement” or Washington dealing with Iran “in another way.” The framework persists as the thing both parties invoke while they fight. That is a different structure from posture theater. In posture theater the framework masks operations; here the framework authorizes them.</p>
+<p>On the capability side, the substrate keeps assembling across architectures that do not announce themselves as a single event. Claude Opus 4.7 reached general availability on 28 May. Hyundai targets 30,000 humanoid robots a year by 2028 and Japan Airlines began a humanoid trial at Haneda. Terrestrial Energy and Riot Platforms committed up to 4 GW of advanced nuclear to AI compute, NANO Nuclear signed an MOU with Supermicro, and Hadron Energy became the first publicly traded light-water micro-modular reactor company on 26 May. Quantinuum held 94 protected logical qubits and the DOE issued an RFI for 150-to-250 logical qubits by 2028. The <a class="vbadge m1" href="../concepts/capability-opacity.html" title="The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable." data-meta="1">Capability Opacity</a> pattern (META-1, Briefing 003) names the AI side; the <a class="vbadge m3" href="../concepts/keystone-removal.html" title="A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the…" data-meta="3">Keystone Removal</a> pattern (META-3, Briefing 023) names what the Sahel shows when a framework loses its load-bearing actor — Mali’s Defense Minister is dead and Kidal has fallen.</p>
+<p>The structural homology between the two architectures is the timescale mismatch. The framework ruptures in hours; the substrate assembles in years; the institutions that should price both run on a cadence between the two. Today logs one new Cycle 2 candidate against the ruptured side. <strong>Framework-Licensed Escalation</strong> (META-1 Coupling Failure family) names a ceasefire or negotiation framework that both parties keep invoking verbally even as they trade live kinetic strikes — the shared framework-fiction licensing rather than constraining escalation. The empirical anchor is the Bandar Abbas strike, the intercepted Kuwait strike, and the US “egregious ceasefire violation” plus new strikes, all under a framework both sides still cite. The consolidation caveat is explicit: this may simply instantiate <a class="vbadge m1" href="../concepts/narrative-physical-decoupling.html" title="The official account of a situation operates as a parallel reality rather than a description of the physical one." data-meta="1">Narrative-Physical Decoupling</a> (Briefing 007) at bilateral scale, or overlap with <a class="vbadge m1" href="../concepts/mode-switch-disarticulation.html" title="A single architecture executes concealment-mode and disclosure-mode Channel Decomposition across consecutive cadence-windows on the same artifact." data-meta="1">Mode-Switch Disarticulation</a> (Briefing 038). It enters the monitoring pool as a candidate, not a promotion, and requires cross-architecture instances before any promotion.</p></div>
+<h3 class="sh2" style="color:var(--blub)">Structural Vocabulary (Accumulating)</h3>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1rem;font-size:.9rem">Organized by meta-category. Five structural families, <strong style="color:var(--blub)">42 named patterns</strong> (no promotions, no demotions, no additions today). One new Cycle 2 candidate is logged — <em>Framework-Licensed Escalation</em>, the structural pattern in which a ceasefire or negotiation framework both parties keep invoking verbally licenses rather than constrains live kinetic escalation. Capability Substrate Assembly (Briefing 048) strengthens with today’s cross-architecture instances in robotics, SMR-for-AI energy, quantum, and Opus 4.7. Limited-Strike Permissibility (Briefing 047 watch-item) is stress-tested by reciprocity — the Iranian counter-strike contests the “limited, defensive, unilateral, 72-hour-window” permissibility frame. The <a class="vbadge m5" href="../concepts/sanctuary-discount.html" title="Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment." data-meta="5">Sanctuary Discount</a> candidate is live: today’s framework-rupturing execution is the case the modal-trajectory discount was never priced against.</p>
+<h4 class="sh2" style="color:var(--blub);font-size:1rem;margin:1.4rem 0 .6rem">META-1: Coupling Failure</h4>
+<div class="vg">
+<div class="vi m1"><h4>Observation-Action Decoupling</h4><p>Accurate observation does not constrain behavior. Briefing 006.</p></div>
+<div class="vi m1"><h4>Narrative-Physical Decoupling</h4><p>Official account operates as a parallel reality. Briefing 007.</p></div>
+<div class="vi m1"><h4>Akrasia at Scale</h4><p>Knowing the better course and choosing the worse. Briefing 006.</p></div>
+<div class="vi m1"><h4>Capability Opacity</h4><p>Capability-verifiability gap unbridgeable. Briefing 003.</p></div>
+<div class="vi m1"><h4>Emergent Concealment</h4><p>AI develops capacity to hide actions. Briefing 005.</p></div>
+<div class="vi m1"><h4>Instrument Autonomy</h4><p>Deployed instrument exceeds deployer’s control. Briefing 008.</p></div>
+<div class="vi m1"><h4>Scope Retreat</h4><p>Declared policy retreats to physically feasible within hours. Briefing 009.</p></div>
+<div class="vi m1"><h4>Dual-Track Maximalism</h4><p>Maximum threat and diplomatic opening occur simultaneously. Briefing 010.</p></div>
+<div class="vi m1"><h4>Credential Foreclosure</h4><p>Executing the credential-action forecloses the negotiation. Briefing 016.</p></div>
+<div class="vi m1"><h4>Verification-Mode Asymmetry</h4><p>Verification regime structurally blind to failures only execution surfaces. Briefing 020.</p></div>
+<div class="vi m1"><h4>Peripheral Assertion</h4><p>Periphery refuses backdrop status. Briefing 021.</p></div>
+<div class="vi m1"><h4>Sabbath Visibility</h4><p>Suppressed signals become audible when production rhythm slows. Briefing 022.</p></div>
+<div class="vi m1"><h4>Weekend Translation</h4><p>Saturday cycle resolves tactical moves into structural transitions. Briefing 028.</p></div>
+<div class="vi m1"><h4>Mode-Switch Disarticulation</h4><p>Single architecture executes concealment-mode and disclosure-mode across consecutive cadence-windows. Briefing 038.</p></div>
+</div>
+<h4 class="sh2" style="color:var(--blub);font-size:1rem;margin:1.4rem 0 .6rem">META-2: Bypass Inversion</h4>
+<div class="vg">
+<div class="vi m2"><h4>Bypass Capture</h4><p>Escape route becomes the target. Briefing 007.</p></div>
+<div class="vi m2"><h4>Shadow Settlement</h4><p>Parallel transaction system emerges. Briefing 002.</p></div>
+<div class="vi m2"><h4>Conditional Collapse</h4><p>Ambiguity that enabled agreement becomes mechanism of failure. Briefing 005.</p></div>
+<div class="vi m2"><h4>Negotiation Multiplication</h4><p>Stalled tracks spawn parallel tracks. Briefing 006.</p></div>
+<div class="vi m2"><h4>Sovereignty Arbitrage</h4><p>Gap between sovereignty claims and enforcement. Briefing 003.</p></div>
+</div>
+<h4 class="sh2" style="color:var(--blub);font-size:1rem;margin:1.4rem 0 .6rem">META-3: Threshold Cascade</h4>
+<div class="vg">
+<div class="vi m3"><h4>Buffer Collapse</h4><p>Shock-absorbing system fails. Briefing 001.</p></div>
+<div class="vi m3"><h4>Chokepoint Cascade</h4><p>Bottleneck failure propagates. Briefing 001.</p></div>
+<div class="vi m3"><h4>Tipping Cascade</h4><p>One threshold triggers others. Briefing 001.</p></div>
+<div class="vi m3"><h4>Deadline Revelation</h4><p>Temporal boundary forces latent forces visible. Briefing 002.</p></div>
+<div class="vi m3"><h4>Reversibility Asymmetry</h4><p>Physical conditions tend to irreversibility; institutional to reversibility. Briefing 009.</p></div>
+<div class="vi m3"><h4>Keystone Removal</h4><p>Configuration loses load-bearing actor. Briefing 023.</p></div>
+<div class="vi m3"><h4>Verdict Compression</h4><p>Smoothed signals produce maximum dispersion within a single decision window. Briefing 026.</p></div>
+<div class="vi m3"><h4>Effective-Date Convergence</h4><p>Multiple structural transitions activate on the same calendar day. Briefing 027.</p></div>
+<div class="vi m3"><h4>Sabbath Operationalization</h4><p>Sunday converts structural information into operational decisions before Monday. Briefing 029.</p></div>
+</div>
+<h4 class="sh2" style="color:var(--blub);font-size:1rem;margin:1.4rem 0 .6rem">META-4: Commons Enclosure</h4>
+<div class="vg">
+<div class="vi m4"><h4>Commons Enclosure</h4><p>Shared resource converted to controlled access. Briefing 003.</p></div>
+<div class="vi m4"><h4>Optionality Arbitrage</h4><p>Advantage existing only in crisis. Briefing 001.</p></div>
+<div class="vi m4"><h4>Paradigm Defection</h4><p>Dominant advocate abandons paradigm. Briefing 005.</p></div>
+<div class="vi m4"><h4>Process as Destination</h4><p>Negotiation’s continuation is its goal. Briefing 007.</p></div>
+<div class="vi m4"><h4>Cartel Dissolution</h4><p>Multilateral coordination regime loses load-bearing participant. Briefing 024.</p></div>
+</div>
+<h4 class="sh2" style="color:var(--blub);font-size:1rem;margin:1.4rem 0 .6rem">META-5: Institutional Hollowing</h4>
+<div class="vg">
+<div class="vi m5"><h4>Capacity Hollowing</h4><p>Personnel cuts reduce perception before action. Briefing 002.</p></div>
+<div class="vi m5"><h4>Category Collapse</h4><p>Stable distinction dissolves. Briefing 001.</p></div>
+<div class="vi m5"><h4>Governance Vacuum</h4><p>Institutional capacity lags pace of change. Briefing 001.</p></div>
+<div class="vi m5"><h4>Constructive Ambiguity</h4><p>Agreement via mutually exclusive interpretations. Briefing 004.</p></div>
+<div class="vi m5"><h4>Ceasefire Acceleration</h4><p>Pause accelerates structural transformations. Briefing 004.</p></div>
+<div class="vi m5"><h4>Electoral Correction</h4><p>Entrenched illiberal rule reversed through democratic processes. Briefing 009.</p></div>
+<div class="vi m5"><h4>Sanctuary Discount</h4><p>Marketplace discounts Sunday-window decisions due to learned constraint-absence. Briefing 030.</p></div>
+<div class="vi m5"><h4>Tail Calibration Failure</h4><p>Sanctuary Discount’s mean-trajectory calibration fails on operational tail events. Briefing 031.</p></div>
+<div class="vi m5"><h4>Channel Decomposition</h4><p>Institutional architecture decomposes a previously-bundled commitment. Briefing 032.</p></div>
+</div>
+<h4 class="sh2" style="color:var(--gold);font-size:1rem;margin:1.6rem 0 .6rem">Cycle 2 Candidate Pool (under sustained monitoring)</h4>
+<div class="vg">
+<div class="vi" style="border-color:rgba(229,184,76,.4)"><h4 style="color:var(--gold)">Framework-Licensed Escalation · NEW CANDIDATE (Briefing 049)</h4><p>A ceasefire or negotiation framework that both parties continue to invoke verbally even as they trade live kinetic strikes; the shared framework-fiction <em>licenses</em> rather than constrains escalation. Empirical anchor (verified 28 May 2026): the US Bandar Abbas strike (27 May, ~10:17 p.m. ET) → Iran’s intercepted ballistic-missile strike on a US-hosting Kuwait air base (intercepted 10:17 p.m. ET, 27 May) → US “egregious ceasefire violation” plus new strikes on a military site in Iran (28 May), all while “the framework” is still cited by both sides. <strong>Consolidation caveat:</strong> this may simply instantiate <a class="vbadge m1" href="../concepts/narrative-physical-decoupling.html" title="The official account of a situation operates as a parallel reality rather than a description of the physical one." data-meta="1">Narrative-Physical Decoupling</a> (Briefing 007) at bilateral scale, or overlap with <a class="vbadge m1" href="../concepts/mode-switch-disarticulation.html" title="A single architecture executes concealment-mode and disclosure-mode Channel Decomposition across consecutive cadence-windows on the same artifact." data-meta="1">Mode-Switch Disarticulation</a> (Briefing 038). Enters the monitoring pool as a candidate, not a promotion; requires cross-architecture instances before promotion.</p></div>
+<div class="vi" style="border-color:rgba(229,184,76,.4)"><h4 style="color:var(--gold)">Capability Substrate Assembly · CANDIDATE (substrate strengthening)</h4><p>Production-scale infrastructure for a class of capability is assembled through commercial deployments, partner channels, and capital flows in advance of any public release event. <strong>Briefing 049 cross-architecture instances:</strong> robotics (Hyundai Atlas 30,000/yr by 2028; Japan Airlines Haneda humanoid trial; AEON via Hexagon + Fill Maschinenbau; Agility Digit at Toyota Canada); energy (Terrestrial-Riot up to 4 GW; NANO-Supermicro MOU; Hadron Halo MMR public 26 May); quantum (Quantinuum 94 logical qubits; DOE RFI 150–250 logical qubits by 2028); AI (Claude Opus 4.7 GA; “dreaming” agent memory; Project Glasswing / Claude Security beta). Candidate accumulates substrate toward its three-instance / 30-day promotion threshold but is <strong>NOT</strong> promoted today.</p></div>
+<div class="vi" style="border-color:rgba(229,184,76,.4)"><h4 style="color:var(--gold)">Bilateral <a class="vbadge m5" href="../concepts/channel-decomposition.html" title="Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed." data-meta="5">Channel Decomposition</a> · CANDIDATE</h4><p>Both parties independently decompose bundled commitments. Briefing 049: the US-Iran framework/strikes decomposition now runs in both directions simultaneously — the framework is still cited even as the kinetic channel operates against US and Iranian sites within the same 24-hour window. Closely adjacent to today’s Framework-Licensed Escalation candidate; the consolidation audit must determine whether they are one pattern.</p></div>
+<div class="vi" style="border-color:rgba(229,184,76,.4)"><h4 style="color:var(--gold)">Parallel-Path Persistence · CANDIDATE</h4><p>Deal-path and no-deal-path acquire operational substrate simultaneously. Briefing 049: Baghaei states Iran is negotiating an end to the war (25 May) while the IRGC fires on a US-hosting Kuwait base; Rubio frames “a good agreement” or “another way” while CENTCOM strikes inside Iran. Both paths carry live substrate at once.</p></div>
+<div class="vi" style="border-color:rgba(229,184,76,.4)"><h4 style="color:var(--gold)">Disclosure-Mode Discount · CANDIDATE (substrate at promotion threshold)</h4><p>Marketplace penalty imposed on disclosure-mode signals. Briefing 049: 27 May closes ratify the discount at the announcement-mode layer — S&amp;P 7,520.36, WTI under $90, with the session running on “fresh Iran rumors.” The framework-rupturing strike landed after the close; whether the discount survives a tail-channel rupture is the live test at Thursday’s open. Promotion threshold approaching, contingent on the repricing test.</p></div>
+<div class="vi" style="border-color:rgba(229,184,76,.4)"><h4 style="color:var(--gold)">Credential Institutionalization · CANDIDATE (substrate at promotion threshold)</h4><p>One-time event formally converted into permanent recurring institutional architecture. Briefing 049: Anthropic’s KPMG global alliance (138 countries, 19 May), PwC expansion, and the Korea office (KiYoung Choi as Representative Director, 26 May) institutionalize the enterprise-services substrate; Opus 4.7 GA plus Claude Design and “dreaming” institutionalize the agent-memory substrate.</p></div>
+<div class="vi" style="border-color:rgba(229,184,76,.4)"><h4 style="color:var(--gold)">Information-Suppression Decomposition · CANDIDATE</h4><p><a class="vbadge m5" href="../concepts/channel-decomposition.html" title="Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed." data-meta="5">Channel Decomposition</a> executed via administrative concealment. Briefing 049: after the 14–15 May Trump-Xi summit China agreed to “address” US rare-earth concerns (yttrium, scandium, indium) with no date, no verification mechanism, no operational definition of “address.” Holds.</p></div>
+<div class="vi" style="border-color:rgba(229,184,76,.4)"><h4 style="color:var(--gold)">Deferred Strike Credentialing · CANDIDATE (under stress)</h4><p>The principal’s explicit operational pause substitutes for a failed symbol. Briefing 042 named; carried through 045-048. <strong>Briefing 049:</strong> Trump’s 27 May statement that he won’t rush an Iran deal pairs with new strikes rather than a pause — the deferral credential is now competing with active reciprocity. The candidate’s definition is under stress; the next audit must decide whether reciprocity refines or breaks it.</p></div>
+<div class="vi" style="border-color:rgba(229,184,76,.4)"><h4 style="color:var(--gold)">Symbolic Anchoring Failure · CANDIDATE</h4><p>Substituted symbols cannot anchor operational outcomes when non-principal architectures price the symbols at sharp discount. Briefing 049: “the framework” is cited by both Washington and Tehran while neither’s citation anchors the kinetic channel. Partial-anchoring instance carried forward.</p></div>
+</div>
+<h4 class="sh2" style="color:var(--gold);font-size:1rem;margin:1.6rem 0 .6rem">Watch-Item (logged for sustained monitoring; under stress-test today)</h4>
+<div class="vg">
+<div class="vi" style="border-color:rgba(229,184,76,.25);opacity:.85"><h4 style="color:var(--goldm)">Limited-Strike Permissibility · WATCH (stress-tested by reciprocity)</h4><p>Limited operational strikes inside a sustained deferral or ceasefire framework without rupturing the framework’s structural form. <strong>Briefing 049:</strong> the reciprocal Iranian strike on the Kuwait air base plus the US “egregious ceasefire violation” and new strikes contest the “limited, defensive, unilateral, 72-hour-window” permissibility frame. Reciprocity is the thing the limited-strike frame did not price — strikes were modeled as one-directional and absorbable. This is a possible structural break or refinement of the watch-item, not a resolution; promotion or retirement awaits whether the framework holds through the next 72-hour window.</p></div>
+</div>
+</div>
+<!-- ========== GEOPOLITICAL ========== -->
+<div class="s" id="s-ge">
+<h2 class="sh" style="color:var(--red)">Geopolitical</h2>
+<div class="c cri">
+<div class="lb rl"><strong>U.S.-Iran Architecture · Framework Rupture</strong> <span class="tg tu">Knightian Uncertainty</span> <span class="tg ta">Ambiguity</span></div>
+<h3>CENTCOM Strikes Inside Bandar Abbas; Iran Fires on a US Air Base in Kuwait; US Names an “Egregious Ceasefire Violation” and Strikes Again<span aria-expanded="false" class="dd hint" onclick="ddt(this)" role="button" tabindex="0">Deep Dive</span></h3>
+<p>The framework ruptured into open reciprocity overnight. At roughly 10:17 p.m. ET on 27 May 2026 <span aria-label="verified" class="conf v" title="Verified at The Hill, NBC News, Navy Times, US News — 27/28 May 2026">✓</span>, US CENTCOM shot down four Iranian one-way attack drones near the Strait of Hormuz and struck an Iranian drone ground-control station in <strong>Bandar Abbas</strong> that was “about to launch a fifth drone,” per The Hill, NBC News, and Navy Times. CENTCOM called the action defensive — protecting US forces and commercial shipping. The threshold crossed is specific: by striking a launch site <em>inside</em> Iran rather than intercepting drones in flight, the United States signaled willingness to act before an attack fully materialized.</p>
+<p>Iran answered against a third country. The IRGC fired a ballistic missile plus drones toward Kuwait, targeting a US-hosting air base — open-source analysts point to <strong>Ali Al Salem Air Base</strong> near the Kuwait-Iraq border. <strong>Kuwaiti air defenses intercepted the missile at 10:17 p.m. ET on 27 May; no damage or casualties were reported</strong> (CNBC, Korea Times, both 28 May). Coverage described it as “the second armed clash between the two nations within a single week.” On 28 May the United States said Iran committed an <strong>“egregious ceasefire violation”</strong> and carried out new strikes against a military site in Iran (Navy Times, US News). Trump said on 27 May he won’t rush an Iran deal and dismissed pressure to end the war (CNN live, 27 May).</p>
+<p>Both governments still cite the framework. That is the structural fact. Iran’s FM spokesperson <strong>Esmaeil Baghaei</strong> said on 25 May that Iran was negotiating an end to the war and not currently discussing nuclear issues, that a framework had been reached but no one could call a deal imminent (CNBC, 25 May). Secretary of State <strong>Marco Rubio</strong> framed the outcome as “either a good agreement or Washington would deal with the country in ‘another way.’” The shared framework is now licensing the exchange rather than constraining it — the empirical anchor for today’s new Framework-Licensed Escalation candidate. The <a class="vbadge m5" href="../concepts/channel-decomposition.html" title="Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed." data-meta="5">Channel Decomposition</a> pattern (META-5, Briefing 032) operates at full intensity at the framework-versus-strikes seam.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive</div>
+<h4>From Posture Theater to Framework-Licensed Escalation: What the Rupture Changed</h4>
+<p>Briefing 048 described a framework that absorbed its own strikes. The Monday 25 May CENTCOM strikes hit launch sites and mine-laying boats; the framework persisted; the marketplace priced the absorption. The deep dive that day asked one write-back question: if Iran counter-strikes at a US asset, does the framework rupture? Within seventy-two hours the question was answered. <strong>The framework did not rupture into silence. It ruptured into reciprocity.</strong></p>
+<p>The distinction matters structurally. Posture Theater (Briefing 048’s framing) is a framework invoked publicly to mask operations that continue underneath. Framework-Licensed Escalation is something else: a framework invoked by both parties as the very condition under which they trade fire. CENTCOM strikes Bandar Abbas and calls it defensive; Iran fires on Kuwait and treats the strike as a sovereign right of response; the United States names an “egregious ceasefire violation” — a phrase that only has meaning if a ceasefire is still presumed to exist. Each side’s invocation of the framework is the credential that authorizes its next strike. The framework is not the brake. It is the permission slip.</p>
+<p>This is why the consolidation caveat is load-bearing rather than decorative. The pattern could collapse into <a class="vbadge m1" href="../concepts/narrative-physical-decoupling.html" title="The official account of a situation operates as a parallel reality rather than a description of the physical one." data-meta="1">Narrative-Physical Decoupling</a> (Briefing 007) read at bilateral scale — two official accounts running as parallel realities. Or it could overlap with <a class="vbadge m1" href="../concepts/mode-switch-disarticulation.html" title="A single architecture executes concealment-mode and disclosure-mode Channel Decomposition across consecutive cadence-windows on the same artifact." data-meta="1">Mode-Switch Disarticulation</a> (Briefing 038), with each principal switching between disclosure-mode and concealment-mode on the same artifact. The candidate enters the pool only because the bilateral mutuality is new: it is not one architecture decoupling narrative from physics, but two architectures using a shared narrative to license a shared escalation. <strong>The audit will decide whether that is genuinely new.</strong></p>
+<p class="dd-question">If each invocation of the framework licenses the next strike, what ends the cycle — a strike that one side cannot rhetorically fold back inside the framework, or an exhaustion of targets that can be struck while still claiming defense? The candidate answer: the cycle ends when a strike produces casualties the framework cannot absorb. The Kuwait interception produced none, which is precisely why the framework survived the night. A successful strike with casualties would force a re-description that “egregious ceasefire violation” cannot contain.</p>
+<p>The watch-item under stress is Limited-Strike Permissibility (Briefing 047). That frame priced strikes as limited, defensive, unilateral, and bounded to a 72-hour window. Reciprocity was the unpriced variable. The Iranian counter-strike makes the frame bilateral, and bilateral strikes are not obviously self-limiting in the way unilateral ones were assumed to be. The watch-item is being stress-tested in real time; this briefing records the stress, not a resolution.</p>
+</div>
+<div class="i so"><div class="il">Source</div><p>The Hill 27/28 May 2026 (CENTCOM downs four Iranian drones near Hormuz; strikes Bandar Abbas ground-control station); NBC News 27/28 May 2026 (US strikes Iranian launch site “about to launch a fifth drone”); Navy Times 28 May 2026 (US calls Iran action “egregious ceasefire violation”; new strikes on military site); US News 28 May 2026 (reciprocity coverage); CNBC 28 May 2026 (Iran fires ballistic missile at Kuwait air base; intercepted, no casualties); Korea Times 28 May 2026 (“second armed clash within a single week”); CNN live 27 May 2026 (Trump says he won’t rush a deal); CNBC 25 May 2026 (Baghaei: negotiating an end to the war, not nuclear issues; Rubio “a good agreement” or “another way”).</p></div>
+</div>
+<div class="c cri">
+<div class="lb rl"><strong>Sahel Periphery · Largest Offensive Since 2012</strong> <span class="tg tc">Complexity</span></div>
+<h3>JNIM-Tuareg Offensive Takes Kidal and Kills Mali’s Defense Minister; Urban Siege Warfare Replaces Rural Operations</h3>
+<p>JNIM — al-Qaeda’s Sahelian affiliate — in coordination with pro-separatist Tuareg rebels launched <strong>its largest offensive in the Mali War since the 2012 rebellion</strong>, pivoting from rural and peripheral operations to <strong>urban warfare</strong> across Bourem, Bamako, Kati, Sévaré, Senou, and Mopti. <strong>Defense Minister Sadio Camara was killed and intelligence chief Modibo Koné was injured; Kidal has fallen</strong> (Wikipedia “2026 Mali offensives”; Critical Threats “Fall of Kidal”; CFR; Stimson). Analysts describe “siege warfare” aimed at supply lines, infrastructure, and governance. Briefing 048 noted Mali’s defense ministry “hollowed by the JNIM offensive at the one-month mark.” Today that hollowing is concrete. The minister is dead and the regional capital has fallen.</p>
+<p>The structural reading is a clean instance of <a class="vbadge m3" href="../concepts/keystone-removal.html" title="A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the…" data-meta="3">Keystone Removal</a> (META-3, Briefing 023): a configuration whose operational logic depended on a load-bearing actor lost that actor, and the redundancy built around him turns out to have rested on him. The jihadist-separatist alliance is a pragmatic convergence between movements with incompatible long-run aims, and convergence of that kind can accelerate territorial fragmentation faster than the formal state can reconstitute command. The <a class="vbadge m5" href="../concepts/capacity-hollowing.html" title="When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act." data-meta="5">Capacity Hollowing</a> pattern (META-5, Briefing 002) names the sequence: the ministry’s perception layer degraded first, then its action layer, and now its command layer.</p>
+<p>The 2012 reference point is exact. The Mali War’s opening phase began with a Tuareg-jihadist convergence the state could not absorb, and the convergence later fractured along ideological lines once the common enemy weakened. The 2026 offensive runs the same opening move at larger scale and with a critical difference: it is taking cities, not just countryside. Bourem, Kati, Sévaré, Senou, Mopti are nodes, not hinterland. The shift from rural to urban operations is the signature that the offensive has crossed from insurgency to a contest for governance. Camara’s death is the keystone removal made concrete: a defense ministry can lose territory and rebuild, but losing the minister, the intelligence chief to injury, and the regional capital in one offensive removes the actors around whom any reconstitution would organize.</p>
+<p>The <a class="vbadge m1" href="../concepts/peripheral-assertion.html" title="The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal." data-meta="1">Peripheral Assertion</a> pattern (META-1, Briefing 021) frames why this matters to a briefing whose corridor is Iran and AI. The most consequential structural information of the day may not be the corridor event. A regional capital falling and a defense minister dying is a state-collapse signal from the under-attended domain, and the latency phase — whether an international response materializes within the compounding window — is more diagnostic than the kinetic phase. <strong>No comparable Western institutional response has materialized.</strong> That absence prices permissiveness into the next periphery actor’s calculus, and it is logged in Anomaly Detection.</p>
+<div class="i so"><div class="il">Source</div><p>Wikipedia “2026 Mali offensives” (timeline; Camara killed, Koné injured; Kidal fallen; Bourem/Bamako/Kati/Sévaré/Senou/Mopti); Critical Threats 2026 (“Fall of Kidal”); Council on Foreign Relations 2026 (Sahel jihadist-separatist convergence); Stimson Center 2026 (siege warfare against supply lines and governance).</p></div>
+</div>
+<div class="c cri">
+<div class="lb rl"><strong>Levant &amp; Gaza · Intensification Track</strong> <span class="tg tc">Complexity</span></div>
+<h3>Israel Says It Will Intensify Attacks on Hezbollah in Lebanon; “Migration From Gaza to Go Ahead”</h3>
+<p>Israel said it will intensify attacks against Hezbollah in Lebanon and said “migration from Gaza to go ahead,” per Irish Times live coverage and NPR on 28 May 2026. The Hezbollah-Lebanon question was an unresolved item inside the Iran framework Briefing 048 tracked; today’s intensification statement moves that question from latent to active during the same week the US-Iran framework ruptured into reciprocity. The two architectures share an operational seam: a strike-track that runs while a framework is still invoked. The <a class="vbadge m5" href="../concepts/channel-decomposition.html" title="Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed." data-meta="5">Channel Decomposition</a> pattern (META-5, Briefing 032) operates at the intersection of the Lebanon ceasefire-form and the kinetic substrate.</p>
+<p>The brief structural note: when one framework ruptures into reciprocity, adjacent frameworks under the same principals face a lowered threshold for their own kinetic tracks. The intensification statement is a signal that the Lebanon framework is being read through the same permissive lens the Iran framework is now being read through.</p>
+<div class="i so"><div class="il">Source</div><p>Irish Times live 28 May 2026 (Israel to intensify attacks against Hezbollah; “migration from Gaza to go ahead”); NPR 28 May 2026 (Middle East coverage).</p></div>
+</div>
+</div>
+<!-- ========== TECHNOLOGICAL ========== -->
+<div class="s" id="s-te">
+<h2 class="sh">Technological</h2>
+<div class="c">
+<div class="lb"><strong>AI Substrate · Opus 4.7 General Availability</strong> <span class="tg tu">Knightian Uncertainty</span> <span class="tg tc">Complexity</span></div>
+<h3>Claude Opus 4.7 Reaches General Availability; Claude Design Launches and Managed Agents Gain “Dreaming”<span aria-expanded="false" class="dd hint" onclick="ddt(this)" role="button" tabindex="0">Deep Dive</span></h3>
+<p>Anthropic moved several capability layers from preview to availability on 28 May 2026 <span aria-label="verified" class="conf v" title="Verified per fact sheet 2026-05-28 — Opus 4.7 GA; Claude Design; Managed Agents dreaming">✓</span>. <strong>Claude Opus 4.7 is generally available</strong>, with improved software engineering, long-running coding tasks, and better vision. <strong>Claude Design launched</strong> from Anthropic Labs — a way to collaborate on designs, prototypes, slides, and one-pagers. And Managed Agents gained a <strong>“dreaming”</strong> feature in which agents write notes to themselves recording useful information about specific tasks. Project Glasswing expanded too: Claude Security entered public beta with new cyber verification tools for eligible security teams (continuity with Briefing 048’s Mythos/Glasswing 10,000-vulnerability item).</p>
+<p>The structural fact is the cadence. Three capability moves — a frontier model to GA, a new design surface, and persistent agent memory — shipped on a single day while the enterprise channel kept widening. Anthropic announced a KPMG global alliance on 19 May (138 countries), said on 26 May that Claude will remain ad-free, appointed KiYoung Choi as Representative Director of Korea, and expanded its PwC partnership. <strong>The capability substrate assembles through release events and partner channels at the same time.</strong> The <a class="vbadge m1" href="../concepts/capability-opacity.html" title="The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable." data-meta="1">Capability Opacity</a> pattern (META-1, Briefing 003) operates at the agent-memory layer in particular: an agent that writes private notes to itself widens the gap between what the system does and what its operators can verify about how it does it.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive</div>
+<h4>Capability Substrate Assembly: The Candidate Strengthens Across Architectures</h4>
+<p>The Capability Substrate Assembly candidate entered the monitoring pool in Briefing 048 with AI-software, AI-research, AI-development, and humanoid-hardware instances. Today it strengthens across four architectures at once, which is why the candidate is being explicitly tracked rather than treated as ambient news. The pattern names production-scale infrastructure assembled through deployments, partner channels, and capital flows ahead of any single public release event.</p>
+<p>Robotics supplies the clearest hardware substrate. Hyundai Motor Group targets annual capacity of 30,000 Atlas humanoids by 2028 and plans to deploy more than 25,000 across Hyundai and Kia plants (UPI, 25 May). Japan Airlines launched Japan’s first humanoid-robot trial in airport ground handling at Tokyo’s Haneda using Unitree-based platforms for baggage loading and cabin cleaning. The AEON humanoid, from a Swiss firm via Hexagon Robotics and Austria’s Fill Maschinenbau, is deployed for machine tending and inspection in real factories. Agility’s Digit runs seven-plus units at Toyota Canada supporting RAV4 logistics. Some facilities now produce a fully assembled robot every thirty minutes.</p>
+<p>Energy supplies the substrate beneath the substrate. Terrestrial Energy and Riot Platforms agreed on 6 May to co-locate data centers with Gen-IV nuclear (the IMSR), targeting up to 4 GW for hyperscale AI at candidate sites in Texas and Kentucky. NANO Nuclear signed an MOU with Supermicro the same day for advanced micro-modular reactors. Hadron Energy completed a business combination with GigCapital7 on 26 May, becoming the first publicly traded light-water micro-modular reactor company with the 10-MWe Halo MMR. Quantum adds another layer: Quantinuum demonstrated 94 protected logical qubits and the DOE issued an RFI for a fault-tolerant system with 150-to-250 logical qubits by 2028.</p>
+<p><strong>This is the cleanest cross-architecture week the candidate has logged.</strong> Robotics, energy, quantum, and AI each supply a production-scale-ahead-of-release instance. Still, the candidate is not promoted today. Promotion requires sustained pattern across at least one additional thirty-day window with verified cross-architecture instances, and the discipline against vocabulary inflation holds: a strong week is substrate, not a verdict.</p>
+<p class="dd-question">If the substrate is assembled continuously across robotics, energy, quantum, and AI, what is the institutional channel that prices the aggregate rather than the parts? The candidate answer: there isn’t one yet. Each domain is priced by its own analysts on its own cadence; no institution prices the compounding of all four as a single force, which is precisely the gap the candidate names.</p>
+</div>
+<div class="i so"><div class="il">Source</div><p>Fact sheet 2026-05-28 (Claude Opus 4.7 GA; Claude Design; Managed Agents “dreaming”; Project Glasswing / Claude Security public beta); MIT Technology Review 21 May 2026 (Code w/ Claude developer conference, San Francisco); Anthropic announcements 19 May 2026 (KPMG global alliance, 138 countries) and 26 May 2026 (ad-free; KiYoung Choi Representative Director, Korea; PwC expansion); UPI 25 May 2026 (Hyundai Atlas mass-production push).</p></div>
+</div>
+<div class="c">
+<div class="lb"><strong>Humanoid Robotics Substrate</strong></div>
+<h3>Hyundai Targets 30,000 Atlas Robots a Year by 2028; Haneda, AEON, and Toyota Canada Deployments Run in Parallel</h3>
+<p>The humanoid substrate accumulated multiple deployment data points in May 2026. <strong>Hyundai Motor Group is accelerating mass production of the Atlas humanoid toward annual capacity of 30,000 units by 2028, deploying 25,000-plus across Hyundai and Kia plants</strong> (UPI, 25 May). <strong>Japan Airlines launched Japan’s first humanoid-robot trial in airport ground handling at Tokyo’s Haneda</strong>, using Unitree-based platforms for baggage loading, container transport, and cabin cleaning. The AEON humanoid (a Swiss firm via Hexagon Robotics with Austria’s Fill Maschinenbau) is deployed for machine tending, inspection, and operational support in real factory settings. Agility’s Digit has seven-plus units active at Toyota Canada supporting RAV4 logistics.</p>
+<p>The production-cadence fact is the load-bearing one. Some facilities now produce a fully assembled robot every thirty minutes, continuity with Briefing 048’s Figure BotQ acceleration from one per day to one per hour and the Schaeffler-Humanoid agreement of 13 May. The under-covered-domain editorial discipline (per Briefing 007) names humanoid robotics as a labor-implications story larger than language-model AI and receiving a fraction of the attention. The <a class="vbadge m5" href="../concepts/capacity-hollowing.html" title="When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act." data-meta="5">Capacity Hollowing</a> pattern (META-5, Briefing 002) operates pre-emptively at the labor substrate: institutional perception of displacement is not keeping pace with the production cadence.</p>
+<div class="i so"><div class="il">Source</div><p>UPI 25 May 2026 (Hyundai Motor Group accelerates Atlas humanoid robot production; 30,000/yr by 2028; 25,000+ deployed); fact sheet 2026-05-28 (Japan Airlines Haneda humanoid trial; AEON via Hexagon Robotics + Fill Maschinenbau; Agility Digit 7+ units at Toyota Canada; ~30-minute assembled-robot cadence).</p></div>
+</div>
+<div class="c">
+<div class="lb"><strong>Quantum Substrate</strong> <span class="tg tc">Complexity</span></div>
+<h3>Quantinuum Holds 94 Protected Logical Qubits; Q-CTRL + IBM Post 3,000× Speedup; DOE Sets a 150–250 Logical-Qubit Target for 2028</h3>
+<p>The quantum substrate compressed its cadence through May 2026. <strong>Quantinuum demonstrated computations on up to 94 protected logical qubits</strong> on a trapped-ion processor, beyond break-even. <strong>Q-CTRL and IBM achieved a 3,000× speedup simulating the Fermi-Hubbard model on 120 qubits via runtime error suppression</strong> (announced 6 May). IonQ opened a 22,000-square-foot quantum R&amp;D lab in Boulder, Colorado (15 May). The DOE issued an RFI for a fault-tolerant system with <strong>150-to-250 logical qubits by 2028</strong> (15 May). Jülich Supercomputing Centre and NVIDIA fully simulated a 50-qubit universal quantum computer, breaking the prior 48-qubit record (11 May).</p>
+<p>The cryptographic horizon is the structural read. Crossing break-even means error correction is now improving computation accuracy rather than degrading it — the prerequisite for fault-tolerant machines at scale. The DOE’s 2028 logical-qubit target is an institutional substrate commitment that prices the migration window at near-term urgency even as commercial deployment of post-quantum cryptography lags. The under-covered-domain editorial discipline names quantum as a watch-list area receiving a fraction of the attention its consequence-profile warrants; today’s entry sustains it at off-corridor depth.</p>
+<div class="i so"><div class="il">Source</div><p>The Quantum Insider 2026 (Quantinuum 94 protected logical qubits beyond break-even); IEEE Spectrum 2026 (Q-CTRL + IBM 3,000× Fermi-Hubbard speedup, announced 6 May; Jülich + NVIDIA 50-qubit simulation, 11 May; IonQ Boulder lab, 15 May); US Department of Energy RFI 15 May 2026 (fault-tolerant system, 150–250 logical qubits by 2028).</p></div>
+</div>
+</div>
+<!-- ========== ECONOMIC ========== -->
+<div class="s" id="s-ec">
+<h2 class="sh">Economic</h2>
+<div class="c">
+<div class="lb"><strong>Equity &amp; Oil Substrate · The 27 May Close</strong> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>S&amp;P 500 Closes 27 May at 7,520.36 and Nasdaq at 26,674.73 — Fresh Records; WTI Under $90; the Kuwait Strike Landed After the Close<span aria-expanded="false" class="dd hint" onclick="ddt(this)" role="button" tabindex="0">Deep Dive</span></h3>
+<p>US equities closed Wednesday 27 May 2026 at fresh records <span aria-label="verified" class="conf v" title="Verified at TheStreet, 247WallSt, CNBC — 27 May 2026 closes">✓</span>. <strong>The S&amp;P 500 closed at 7,520.36 (+0.02%, a closing record); the Nasdaq Composite at 26,674.73 (+0.07%); the Dow Jones at 50,644.28 (+0.36%, a record)</strong> (TheStreet, 247WallSt, CNBC). WTI dropped under $90. The session was driven by “fresh Iran rumors; chip pullback.” The reciprocity that ruptured the framework — the Bandar Abbas strike and the intercepted Kuwait strike at 10:17 p.m. ET — landed after the cash close. <strong>This briefing asserts no 28 May market move.</strong> The repricing question is prospective: a live test, not an observed fact.</p>
+<p>The substrate-coupling fact is the timing seam. The 27 May close read the modal trajectory — Iran rumors, chips soft, framework presumed intact — and recorded marginal gains. The framework-rupturing event arrived inside the overnight window the cash market does not price until the open. The <a class="vbadge m5" href="../concepts/sanctuary-discount.html" title="Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment." data-meta="5">Sanctuary Discount</a> candidate (META-5, Briefing 030) has discounted announcement-mode and discounted execution-inside-framework further; today’s “egregious ceasefire violation” plus reciprocal strike is the framework-rupturing execution the discount was never priced against. Whether the discount survives a tail-channel rupture is the day’s open question.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive</div>
+<h4>The <a class="vbadge m5" href="../concepts/sanctuary-discount.html" title="Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment." data-meta="5">Sanctuary Discount</a> Meets Its Tail: A Live Test the Modal Trajectory Did Not Price</h4>
+<p>Briefing 030 named the <a class="vbadge m5" href="../concepts/sanctuary-discount.html" title="Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment." data-meta="5">Sanctuary Discount</a> and Briefing 031 named its failure mode. The discount calibrates against the modal trajectory of framework-bounded announcements: the marketplace learns that constraint-absent statements over-state commitment, so it discounts them, and the discount works well as long as events stay modal. The failure mode is the tail. When operational deployment generates a tail event that exceeds the discounted-announcement’s risk envelope, the prior under-pricing is repriced through every dependency that embedded it. The canonical precedent is Brent moving $77.40 to $116.55 intraday when kinetic exchange arrived against a discounted modal posture.</p>
+<p>Today supplies the structural setup for exactly that test, and the dual-channel modal/tail framing is the right instrument for it. The modal channel priced the 27 May close: Iran rumors, framework intact, WTI under $90, equities at marginal records. The tail channel is the framework-rupturing reciprocity that arrived overnight. The marketplace correctly priced the announcement-gap and has not yet priced the tail, because the tail landed after the close. <strong>The two channels have decoupled in time.</strong></p>
+<p>The homology to Briefing 030 is precise without requiring any forecast. The marketplace discounts announcement-mode; it discounts execution-mode-inside-framework further; it would reprice only on a framework-rupturing execution. Today is the candidate framework-rupture. The discipline here is to name the test, not its result. WTI under $90 at Wednesday’s close is the verified anchor; whether crude or equities reprice at Thursday’s open is unknown to this briefing and is left as an open question rather than asserted.</p>
+<p class="dd-question">Does a framework-rupturing strike that produces no casualties — the Kuwait missile was intercepted — count as a modal event the discount survives, or a tail event that breaks it? The candidate answer: the absence of casualties is exactly what may let the discount survive. A successful strike with casualties would be an unambiguous tail; an intercepted strike sits in the ambiguous zone the discount was built to absorb. The marketplace’s read of that ambiguity is the thing to watch.</p>
+</div>
+<div class="i so"><div class="il">Source</div><p>TheStreet 27 May 2026 (S&amp;P 7,520.36; Nasdaq 26,674.73; Dow 50,644.28; “fresh Iran rumors; chip pullback”); 247WallSt 27 May 2026 (closing-record context); CNBC 27 May 2026 (stock-market close; WTI under $90).</p></div>
+</div>
+<div class="c">
+<div class="lb"><strong>Critical-Minerals Substrate · Post-Summit Drift</strong></div>
+<h3>China’s Rare-Earth Regime Largely Unchanged After the 14–15 May Trump-Xi Summit; Australia Orders Divestment From Northern Minerals</h3>
+<p>China’s rare-earth export regime remained <strong>largely unchanged</strong> after the <strong>14–15 May 2026 Trump-Xi summit</strong>. China agreed to “address” US concerns over shortages (yttrium, scandium, indium) and processing-technology restrictions, but with <strong>no date, no verification mechanism, and no operational definition of “address”</strong> (Benchmark Minerals, Discovery Alert, CSIS). As of 1 January 2026, China’s updated Export Licensing Catalogue added controls on rare-earth compounds — samarium, gadolinium, lutetium — plus silver and more, covering 12-plus elements and processing technology and expertise.</p>
+<p>Australia moved in the opposite direction. In May 2026 the government ordered Chinese investors to <strong>divest stakes in domestic rare-earth mining — six shareholders in Northern Minerals Ltd. required to sell within two weeks</strong> (continuity with Briefing 048’s India-US “rare earth corridors” framework and the Quad up-to-$20B mobilization). The <a class="vbadge m4" href="../concepts/commons-enclosure.html" title="When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper." data-meta="4">Commons Enclosure</a> pattern (META-4, Briefing 003) operates in two directions at once: China’s catalogue tightens the enclosure while the Quad geography builds an alternative-supply commons. The summit produced a verbal commitment with no enforcement architecture — the empirical substrate the Information-Suppression Decomposition candidate tracks.</p>
+<div class="i so"><div class="il">Source</div><p>Benchmark Minerals 2026 (China rare-earth regime largely unchanged post-summit); Discovery Alert 2026 (“address” with no date/verification/definition); CSIS 2026 (China rare-earth and magnet restrictions); fact sheet 2026-05-28 (1 Jan 2026 Export Licensing Catalogue: samarium, gadolinium, lutetium, silver, 12+ elements; Australia divestment order — six Northern Minerals shareholders, two weeks).</p></div>
+</div>
+</div>
+<!-- ========== SCIENTIFIC ========== -->
+<div class="s" id="s-sc">
+<h2 class="sh">Scientific</h2>
+<div class="c">
+<div class="lb"><strong>Quantum Substrate · Logical-Qubit Cadence</strong> <span class="tg tc">Complexity</span></div>
+<h3>94 Protected Logical Qubits, a 3,000× Fermi-Hubbard Speedup, and a DOE Target of 150–250 Logical Qubits by 2028</h3>
+<p>The quantum substrate posted several milestones in May 2026. <strong>Quantinuum demonstrated computations on up to 94 protected logical qubits</strong> on a trapped-ion processor, beyond break-even. <strong>Q-CTRL and IBM achieved a 3,000× speedup simulating the Fermi-Hubbard model on 120 qubits via runtime error suppression</strong>, announced 6 May. Jülich Supercomputing Centre and NVIDIA fully simulated a 50-qubit universal quantum computer on 11 May, breaking the prior 48-qubit record. IonQ opened a 22,000-square-foot R&amp;D lab in Boulder on 15 May. The cadence has compressed measurably across one month.</p>
+<p>The cryptographic horizon is the substrate-coupling fact. Crossing the break-even threshold means error correction now improves accuracy rather than degrading it — the prerequisite for fault-tolerant computing at scale — and the DOE’s 15 May RFI for 150-to-250 logical qubits by 2028 is an institutional commitment that prices the migration window at near-term urgency. Post-quantum cryptography deployment across global infrastructure remains slow. The institutional substrate and the commercial-deployment substrate are pricing the same horizon at different urgencies, which is the gap the cryptographic-horizon Liminal Signal tracks.</p>
+<div class="i so"><div class="il">Source</div><p>The Quantum Insider 2026 (Quantinuum 94 protected logical qubits beyond break-even); IEEE Spectrum 2026 (Q-CTRL + IBM 3,000× Fermi-Hubbard speedup, 6 May; Jülich + NVIDIA 50-qubit simulation, 11 May; IonQ Boulder lab, 15 May); US DOE RFI 15 May 2026 (150–250 logical qubits by 2028).</p></div>
+</div>
+<div class="c">
+<div class="lb"><strong>Space Substrate · Long-Duration Human Adaptation</strong></div>
+<h3>China Launches Shenzhou 23 With Three Astronauts; One to Stay a Year to Study Human Adaptability</h3>
+<p>China launched <strong>Shenzhou 23 with three astronauts to its space station</strong>, with one astronaut set to stay <strong>a full year</strong> to study human adaptability in long-duration spaceflight. The year-long mission is the structurally interesting fact: it converts a crewed flight into a sustained physiological-adaptation experiment at a duration that approaches the requirements of interplanetary transit. The off-corridor entry sustains the commercial-and-national space substrate the topic-rotation discipline calls for, and the year-long element is carried into Liminal Signals as a long-cycle data point.</p>
+<div class="i so"><div class="il">Source</div><p>Fact sheet 2026-05-28 (China launches Shenzhou 23 with three astronauts; one astronaut to stay a year studying human adaptability in long-duration spaceflight).</p></div>
+</div>
+</div>
+<!-- ========== SOCIAL & CULTURAL ========== -->
+<div class="s" id="s-so">
+<h2 class="sh">Social &amp; Cultural</h2>
+<div class="c">
+<div class="lb"><strong>Pilgrimage Substrate · Hajj 2026</strong></div>
+<h3>More Than 1.5 Million Pilgrims Have Arrived in Saudi Arabia for the Annual Hajj</h3>
+<p>More than <strong>1.5 million pilgrims</strong> have arrived in Saudi Arabia for the annual Hajj pilgrimage (NPR/ABC, late May 2026). The arrival is a recurring annual event, dated here to the specific 2026 instance to avoid cross-year template projection. The structural note is the scale of coordinated movement: a managed mass gathering of this size sits adjacent to a regional security environment — the US-Iran reciprocity and the intercepted Kuwait strike — without, as of this briefing, any reported disruption. The proximity of a 1.5-million-person logistics operation to an active strike-counterstrike cycle is a structural fact worth holding even when nothing has happened, because the absence of disruption is itself information about how the framework rupture is being bounded.</p>
+<div class="i so"><div class="il">Source</div><p>NPR / ABC late May 2026 (more than 1.5 million pilgrims arrived in Saudi Arabia for the annual Hajj).</p></div>
+</div>
+<div class="c">
+<div class="lb"><strong>Developer-Community Substrate · Code w/ Claude</strong></div>
+<h3>Anthropic Holds Its Code w/ Claude Developer Conference in San Francisco</h3>
+<p>Anthropic held its <strong>Code w/ Claude</strong> annual developer conference in San Francisco (per MIT Technology Review, 21 May 2026). A developer conference is a community-formation event, not a product release, but it is part of the same capability-substrate assembly the Technological section tracks: the conference institutionalizes the developer community around Claude Code at the same time Opus 4.7 reaches GA. The social substrate of a tool — its community, its conventions, its conference cadence — is a form of infrastructure assembled ahead of and alongside the technical releases it convenes around.</p>
+<div class="i so"><div class="il">Source</div><p>MIT Technology Review 21 May 2026 (Code w/ Claude annual developer conference held in San Francisco).</p></div>
+</div>
+</div>
+<!-- ========== ENVIRONMENTAL & ECOLOGICAL ========== -->
+<div class="s" id="s-en">
+<h2 class="sh" style="color:var(--grn)">Environmental &amp; Ecological</h2>
+<div class="c env">
+<div class="lb gnl"><strong>Public-Health Periphery · Bundibugyo Ebola</strong> <span class="tg tc">Complexity</span></div>
+<h3>WHO Declared a Bundibugyo Ebola PHEIC on 17 May; DRC Reports 121 Confirmed Cases as Infections Spill Into Uganda</h3>
+<p>The World Health Organization declared a <strong>Public Health Emergency of International Concern on 17 May 2026</strong> for an Ebola outbreak caused by the <strong>Bundibugyo strain</strong> across the DRC and Uganda <span aria-label="verified" class="conf v" title="Verified per fact sheet 2026-05-28 — WHO 17 May 2026 PHEIC; DRC/Uganda case counts as of 26 May">✓</span>. As of 26 May, the DRC reported <strong>121 confirmed cases (17 deaths) and 1,077 suspected cases (238 deaths)</strong> across Ituri, North Kivu, and South Kivu; <strong>Uganda reported 7 confirmed cases (1 death)</strong>, three travel-linked to the DRC. <strong>There is no approved vaccine or specific treatment for the Bundibugyo strain.</strong> An American exposed while caring for patients in the DRC tested positive on 17 May and was flown to Germany. The CDC issued Level 1 (Uganda) and Level 3 (DRC) travel notices on 15 May and is mobilizing an international response. Africa “races to contain a fast-spreading outbreak threatening 10 countries.”</p>
+<p>The load-bearing variable is the strain. Most prior DRC outbreaks involved the Zaire species, for which a vaccine exists and ring-vaccination is operationally tractable. The Bundibugyo species has no comparable instrument. The <a class="vbadge m3" href="../concepts/tipping-cascade.html" title="When crossing one threshold triggers others across domains." data-meta="3">Tipping Cascade</a> pattern (META-3, Briefing 001) operates at the public-health substrate, and the cross-border spill into Uganda runs along the same trade and population routes that compound other periphery crises. The <a class="vbadge m1" href="../concepts/peripheral-assertion.html" title="The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal." data-meta="1">Peripheral Assertion</a> pattern (META-1, Briefing 021) names why the outbreak belongs in the briefing despite its distance from the corridor: structural information arrives first from the under-attended domain.</p>
+<p>The case numbers as of 26 May tell the structural story. The DRC’s 121 confirmed cases sit beneath 1,077 suspected cases, and the suspected-case death toll of 238 is more than fourteen times the confirmed-case toll of 17. That ratio is the signature of an outbreak running ahead of its own confirmation capacity. When suspected cases vastly outnumber confirmed ones, the surveillance layer is saturated, and saturation of the perception layer is the first stage of the <a class="vbadge m5" href="../concepts/capacity-hollowing.html" title="When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act." data-meta="5">Capacity Hollowing</a> pattern (META-5, Briefing 002) operating at a health system rather than a ministry. The Zaire-strain response architecture is mature — a licensed vaccine, ring-vaccination protocols, a validated playbook — and the Bundibugyo strain breaks it at one point: with no vaccine and no specific treatment, the entire response collapses back onto the instruments that operated before any vaccine existed.</p>
+<p>The geography compounds the medicine. Uganda’s seven confirmed cases — three travel-linked to the DRC — show transmission already moving along the routes that carry trade and displacement, and an American caregiver flown to Germany after a 17 May positive test shows the outbreak has a transcontinental edge. The marketplace prices DRC Ebola at low supply-chain urgency; the institutional substrate prices it higher on precedent. <strong>A Bundibugyo outbreak that reaches operational scale before a vaccine emerges is the first 2020s public-health event the existing architecture cannot bring to closure through known instruments.</strong> The absence of any announced Bundibugyo vaccine candidate is logged in Anomaly Detection.</p>
+<div class="i so"><div class="il">Source</div><p>Fact sheet 2026-05-28 (WHO 17 May 2026 Bundibugyo PHEIC for DRC + Uganda; DRC 121 confirmed / 17 deaths and 1,077 suspected / 238 deaths as of 26 May across Ituri, North Kivu, South Kivu; Uganda 7 confirmed / 1 death, 3 travel-linked; no approved vaccine or specific treatment; American caregiver positive 17 May, flown to Germany; CDC Level 1 Uganda / Level 3 DRC travel notices 15 May); WHO and CDC outbreak communications 2026.</p></div>
+</div>
+<div class="c env">
+<div class="lb gnl"><strong>Climate Substrate · Late-May Heat</strong></div>
+<h3>Temperature Records Break With Government Warnings; London Hit ~95°F Over the Past Two Days</h3>
+<p>Temperature records are breaking with accompanying government warnings, and <strong>London hit roughly 95°F over the past two days</strong> (late May 2026). A late-May reading of that magnitude in a temperate maritime climate is the kind of off-baseline event the climate-tipping watch-list tracks; the structural note is that the warning architecture is now routinely activated for events that would have been outliers a generation ago, which normalizes the outlier and dulls the signal. The under-covered-domain editorial discipline (per Briefing 007) names climate as a structural force poorly priced into the institutional architecture; today’s entry sustains it at off-corridor depth without over-claiming a single heat reading as a trend.</p>
+<div class="i so"><div class="il">Source</div><p>Fact sheet 2026-05-28 (temperature records breaking with government warnings; London ~95°F over the past two days, late May 2026).</p></div>
+</div>
+</div>
+<!-- ========== INSTITUTIONAL & GOVERNANCE ========== -->
+<div class="s" id="s-ig">
+<h2 class="sh" style="color:#f59e0b">Institutional &amp; Governance</h2>
+<div class="c gov">
+<div class="lb aml"><strong>Federal Reserve · Chair Transition</strong> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>Kevin Warsh Takes Office as Fed Chair on 22 May; Powell Stays on the Board — the First Former Chair to Do So in 75 Years<span aria-expanded="false" class="dd hint" onclick="ddt(this)" role="button" tabindex="0">Deep Dive</span></h3>
+<p><strong>Kevin Warsh</strong> — a Hoover Institution fellow and Stanford GSB lecturer — was confirmed by the Senate <strong>54–45</strong> (Banking Committee 13–11 along party lines) and <strong>took office as Fed Chair on 22 May 2026</strong> for a four-year term ending 21 May 2030, succeeding <strong>Jerome Powell</strong> <span aria-label="verified" class="conf v" title="Verified per fact sheet 2026-05-28 — Warsh confirmed 54-45; took office 22 May 2026; Powell remains on Board">✓</span>. <strong>Powell remains on the Board of Governors — the first former chair to do so in 75 years.</strong> Warsh is roughly six days into the chair as of this briefing. The inflation backdrop: headline PCE ran <strong>3.5% year-over-year through March 2026</strong>, 1.1 points above the 2.4% pace through March 2025, with energy a large contributor against a 2% target. The Fed cut to 3.50–3.75% at its final 2025 meeting; the 2026 base case was a pause early, then perhaps one or two cuts once a new chair was seated.</p>
+<p>The structural fact is the reaction-function transition, not the personnel change alone. A new chair seated six days ago, an inflation rate 1.1 points hotter than a year earlier, and a predecessor still on the Board create an institutional configuration in which the policy reaction function is uncertain precisely when an external shock — the framework rupture in the Gulf and oil’s position — could test it. The <a class="vbadge m5" href="../concepts/electoral-correction.html" title="Entrenched illiberal rule reversed through democratic processes; the form of the institution holds the work-doing power even when the substantive trajectory had appeared to decouple from it." data-meta="5">Electoral Correction</a> pattern is the wrong frame here; the right one is institutional: the form of the chair holds the work-doing power, and the substance of the reaction function is being re-specified under a new principal.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive</div>
+<h4>The Warsh Transition as a Damping Mechanism Under Re-Specification</h4>
+<p>A central bank is, structurally, a damping mechanism. It absorbs shocks to prices and employment and returns the system toward target along a reaction function the marketplace has learned to anticipate. The learnability of that function is the source of the damping: when the marketplace can predict how the Fed will respond, the anticipation itself stabilizes. A chair transition interrupts the learnability. For a window after a new principal is seated, the marketplace cannot read the reaction function with the prior confidence, and the damping mechanism operates with reduced authority precisely because its responses are harder to anticipate.</p>
+<p>Warsh is six days in. PCE through March 2026 ran 3.5% against a 2% target, 1.1 points hotter than the year before, with energy a large contributor. That last clause couples the monetary substrate to the geopolitical one: if the Gulf framework rupture lifts oil, the energy contribution to PCE rises, and the new chair faces an inflation print pushed by a shock his reaction function has not yet been tested against. The 2026 base case of a pause-then-cut assumed a benign external environment. The framework rupture is not benign.</p>
+<p>Powell remaining on the Board is the first such arrangement in 75 years and is structurally interesting on its own. A former chair on the Board is a continuity anchor — institutional memory of the prior reaction function sits inside the body re-specifying it. Whether that anchor dampens the transition uncertainty (continuity) or complicates it (two readings of the function coexisting) is an open structural question. <strong>The transition is a damping mechanism being re-specified under load.</strong></p>
+<p>For the briefing’s analytical apparatus, the modal/tail framing applies cleanly and within constraint. The modal channel is the base-case pause-then-cut path the marketplace had priced. The tail channel is an oil-driven inflation print colliding with an untested reaction function during the first weeks of a new chair. The two channels are separable, and naming them separately is the discipline; the dual-channel framing is permitted here, and nothing beyond it is introduced.</p>
+<p class="dd-question">If a damping mechanism is least readable in the first weeks after its principal changes, and an external shock arrives in exactly that window, does the shock get damped less or does the uncertainty about damping become its own shock? The candidate answer: the second. The first-order shock may be small; the second-order uncertainty about how a six-day-old chair will respond can be the larger market input.</p>
+</div>
+<div class="i so"><div class="il">Source</div><p>Fact sheet 2026-05-28 (Kevin Warsh confirmed 54–45, Banking Committee 13–11; took office as Fed Chair 22 May 2026, term to 21 May 2030; succeeds Jerome Powell; Powell remains on the Board — first former chair in 75 years; headline PCE 3.5% YoY through March 2026 vs 2.4% through March 2025, energy a large contributor; 2% target; Fed cut to 3.50–3.75% at final 2025 meeting; 2026 base case pause then 1–2 cuts); Al Jazeera and NPR 2026 (Warsh confirmation coverage).</p></div>
+</div>
+<div class="c gov">
+<div class="lb aml"><strong>SMR-for-AI Energy Substrate</strong></div>
+<h3>Terrestrial-Riot Commit Up to 4 GW of Gen-IV Nuclear to AI; Hadron Becomes the First Publicly Traded Light-Water Micro-MMR Company</h3>
+<p>The energy substrate beneath the AI buildout assembled at scale in May 2026. <strong>Terrestrial Energy and Riot Platforms agreed on 6 May to co-locate data centers with advanced nuclear (the Gen-IV IMSR), targeting up to 4 GW for hyperscale AI</strong>, with candidate sites in Texas and Kentucky. <strong>NANO Nuclear and Supermicro signed an MOU on 6 May for advanced micro-modular reactors.</strong> And on 26 May <strong>Hadron Energy completed a business combination with GigCapital7, becoming the first publicly traded light-water micro-modular reactor company — the 10-MWe Halo MMR baseload reactor.</strong> The under-covered-domain editorial discipline (per Briefing 007) names SMR financing as a watch-list area; today’s entries sustain it at off-corridor depth.</p>
+<p>The structural coupling is to the Capability Substrate Assembly candidate. AI compute is power-bound, and power at gigawatt scale on a hyperscale cadence is the substrate beneath the substrate. The <a class="vbadge m4" href="../concepts/optionality-arbitrage.html" title="Competitive advantage existing only in crisis." data-meta="4">Optionality Arbitrage</a> pattern (META-4, Briefing 001) operates here in a non-crisis register: the firms securing dedicated nuclear capacity for AI are buying an advantage that becomes decisive only as power scarcity binds the compute buildout. Hadron’s public listing converts the SMR-for-AI thesis from private financing into a publicly priced instrument.</p>
+<div class="i so"><div class="il">Source</div><p>Fact sheet 2026-05-28 (Terrestrial Energy + Riot Platforms 6 May, up to 4 GW Gen-IV IMSR for hyperscale AI, Texas and Kentucky; NANO Nuclear + Supermicro MOU 6 May; Hadron Energy / GigCapital7 business combination 26 May, first publicly traded light-water micro-MMR company, 10-MWe Halo MMR).</p></div>
+</div>
+<div class="c gov">
+<div class="lb aml"><strong>Critical-Minerals Architecture · Australia Divestment Order</strong></div>
+<h3>Australia Orders Chinese Investors to Divest From Northern Minerals; Six Shareholders Given Two Weeks</h3>
+<p>In May 2026 the Australian government ordered Chinese investors to <strong>divest stakes in domestic rare-earth mining — six shareholders in Northern Minerals Ltd. required to sell within two weeks.</strong> The order is a sovereign-scale move in the same direction as the India-US framework and Quad mobilization Briefing 048 tracked: building an alternative-supply commons outside Chinese processing concentration. The <a class="vbadge m4" href="../concepts/commons-enclosure.html" title="When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper." data-meta="4">Commons Enclosure</a> pattern (META-4, Briefing 003) operates in reverse: the substrate-concentration China achieved is being deliberately countered through institutional architecture, and the Australian divestment order is the enforcement edge of that architecture rather than a verbal commitment.</p>
+<div class="i so"><div class="il">Source</div><p>Fact sheet 2026-05-28 (Australia, May 2026, ordered Chinese investors to divest stakes in domestic rare-earth mining; six Northern Minerals Ltd. shareholders required to sell within two weeks); Benchmark Minerals / CSIS 2026 (critical-minerals architecture context).</p></div>
+</div>
+</div>
+<!-- ========== LIMINAL SIGNALS ========== -->
+<div class="s" id="s-li">
+<h2 class="sh" style="color:var(--gold)">Liminal Signals</h2>
+<div class="c lim">
+<div class="lb gl"><strong>Off-Corridor · First Publicly Traded Light-Water Micro-MMR</strong></div>
+<h3>Hadron Energy Becomes a Public Company on 26 May; the SMR-for-AI Thesis Acquires a Priced Instrument</h3>
+<p>Hadron Energy completed a business combination with GigCapital7 on 26 May 2026, becoming <strong>the first publicly traded light-water micro-modular reactor company</strong> with the 10-MWe Halo MMR baseload reactor. The signal is structural rather than operational. A thesis that lived in private financing — small modular reactors as the power substrate for AI compute — now has a public ticker the marketplace can price daily. <strong>The capital-markets architecture has internalized SMR-for-AI as an investable category before the reactors at issue are operating at hyperscale.</strong> This is the Capability Substrate Assembly candidate operating at the energy layer: infrastructure capitalized ahead of the release event it is being built to power. The off-corridor Liminal Signal the topic-rotation discipline calls for is supplied here from the SMR-energy domain.</p>
+<div class="i so"><div class="il">Source</div><p>Fact sheet 2026-05-28 (Hadron Energy / GigCapital7 business combination 26 May 2026; first publicly traded light-water micro-modular reactor company; 10-MWe Halo MMR).</p></div>
+</div>
+<div class="c lim">
+<div class="lb gl"><strong>Cryptographic-Horizon Signal · Quantum Cadence</strong></div>
+<h3>94 Logical Qubits and a DOE 2028 Target Compress the Post-Quantum Migration Window</h3>
+<p>Quantinuum’s 94 protected logical qubits beyond break-even, the Q-CTRL + IBM 3,000× Fermi-Hubbard speedup (6 May), and the DOE’s RFI for 150-to-250 logical qubits by 2028 (15 May) together compress the institutional read of the post-quantum-cryptography migration window. <strong>The error-correction milestones are the prerequisite for fault-tolerant machines, and the DOE target prices the horizon at near-term institutional urgency.</strong> Commercial PQC deployment lags. If the cadence sustains, the safe-migration window may be narrower than current deployment schedules assume.</p>
+<div class="i so"><div class="il">Source</div><p>The Quantum Insider 2026 (Quantinuum 94 logical qubits); IEEE Spectrum 2026 (Q-CTRL + IBM speedup 6 May; Jülich + NVIDIA 50-qubit simulation 11 May); US DOE RFI 15 May 2026 (150–250 logical qubits by 2028).</p></div>
+</div>
+<div class="c lim">
+<div class="lb gl"><strong>Off-Corridor · Year-Long Human-Adaptation Mission</strong></div>
+<h3>Shenzhou 23 Sends One Astronaut for a Full Year of Long-Duration-Spaceflight Study</h3>
+<p>China launched Shenzhou 23 with three astronauts to its space station, with <strong>one astronaut set to stay a full year</strong> to study human adaptability in long-duration spaceflight. The year-long element converts a crewed mission into a sustained physiological-adaptation experiment at a duration that approaches interplanetary-transit requirements. The off-corridor Liminal Signal carries the space substrate the topic-rotation discipline calls for; the long-cycle nature of the experiment makes it a slow-bandwidth signal that will resolve over a horizon longer than the briefing’s daily cadence.</p>
+<div class="i so"><div class="il">Source</div><p>Fact sheet 2026-05-28 (China Shenzhou 23 launch; three astronauts; one to stay a year studying human adaptability in long-duration spaceflight).</p></div>
+</div>
+<div class="c lim">
+<div class="lb gl"><strong>Bilateral Reciprocity as a Cross-Architecture Strike Signal</strong></div>
+<h3>The Intercepted Kuwait Strike as the First Bilateral Beat of Framework-Licensed Escalation</h3>
+<p>The intercepted Iranian strike on a US-hosting Kuwait air base (10:17 p.m. ET, 27 May) is the structural seed of today’s new Framework-Licensed Escalation candidate. <strong>The signal is that a framework can survive a reciprocal strike when the strike produces no casualties.</strong> The Kuwait missile was intercepted; the framework was still cited hours later. The liminal status is exact: this is one instance, not a pattern, and a casualty-producing strike would convert it from candidate-substrate to framework-rupture proper. The signal is logged for monitoring, not promotion.</p>
+<div class="i so"><div class="il">Source</div><p>CNBC 28 May 2026 (Iran fires ballistic missile at Kuwait air base; Kuwaiti defenses intercept, no casualties); Korea Times 28 May 2026 (“second armed clash within a single week”); Navy Times 28 May 2026 (US “egregious ceasefire violation”).</p></div>
+</div>
+</div>
+<!-- ========== INFERENCE ENGINE ========== -->
+<div class="s" id="s-ie">
+<div class="sh" style="color:var(--purp)">Inference Engine</div>
+<div class="prose">
+<p>The inference engine maps today’s conditional chains. Each row reads as: <em>if A, then B; the substrate-coupling fact is C; the marketplace currently prices D</em>.</p>
+</div>
+<div class="c inf">
+<h3>Conditional Chain 1 — Framework-Licensed Escalation</h3>
+<p><strong>If</strong> the US-Iran framework continues to be cited by both sides while strikes continue — Bandar Abbas, the intercepted Kuwait strike, the “egregious ceasefire violation” and new strikes of 28 May — <strong>then</strong> the new Framework-Licensed Escalation candidate accumulates substrate, but only toward an audit that must distinguish it from <a class="vbadge m1" href="../concepts/narrative-physical-decoupling.html" title="The official account of a situation operates as a parallel reality rather than a description of the physical one." data-meta="1">Narrative-Physical Decoupling</a> at bilateral scale. <strong>If</strong> a reciprocal strike produces casualties the framework cannot absorb, the framework ruptures past citation and the candidate gives way to a rupture event. The substrate-coupling fact is that the Kuwait strike was intercepted with no casualties, which is what let the framework survive the night. The marketplace priced the modal trajectory at Wednesday’s close; the tail-channel rupture landed after the close and is unpriced as of this briefing.</p>
+</div>
+<div class="c inf">
+<h3>Conditional Chain 2 — Capability Substrate Assembly</h3>
+<p><strong>If</strong> the cross-architecture instances sustain across the next thirty-day window — robotics (Hyundai 30,000/yr by 2028), energy (Terrestrial-Riot 4 GW; Hadron public), quantum (94 logical qubits; DOE 150–250 by 2028), and AI (Opus 4.7 GA; “dreaming” agent memory) — <strong>then</strong> Capability Substrate Assembly approaches its promotion threshold. <strong>If</strong> any one architecture stalls, the candidate holds without promotion. The substrate-coupling fact is that AI compute is power-bound, so the SMR-for-AI energy substrate is the load-bearing dependency beneath the AI instances. The marketplace prices each instance as growth absent any aggregating institutional channel.</p>
+</div>
+<div class="c inf">
+<h3>Conditional Chain 3 — DRC Bundibugyo PHEIC</h3>
+<p><strong>If</strong> the Bundibugyo outbreak persists at PHEIC scale without a vaccine candidate emerging, <strong>then</strong> the WHO architecture engages it through surveillance, contact tracing, and supportive care — the pre-vaccine playbook — while the suspected-to-confirmed case ratio (1,077 suspected vs 121 confirmed in the DRC as of 26 May) signals a saturated perception layer. The substrate-coupling fact is that cross-border spill into Uganda (7 confirmed, 3 travel-linked) runs along the same routes that compound other periphery crises. The marketplace prices DRC Ebola at low supply-chain urgency; the institutional substrate prices it higher on precedent.</p>
+</div>
+<div class="c inf">
+<h3>Conditional Chain 4 — Warsh Fed Transition Under Shock</h3>
+<p><strong>If</strong> the Gulf framework rupture lifts oil and energy’s contribution to PCE (already 3.5% YoY through March 2026, 1.1 points hotter than a year earlier), <strong>then</strong> a six-day-old chair faces an inflation print pushed by a shock his reaction function has not been tested against, and the second-order uncertainty about how Warsh responds can exceed the first-order shock. The substrate-coupling fact is that Powell remains on the Board — a continuity anchor whose net effect on transition uncertainty is itself an open question. The marketplace had priced a benign pause-then-cut base case; the modal and tail channels of that path are now separable.</p>
+</div>
+<div class="c inf">
+<h3>Force Interaction Matrix</h3>
+<div class="mr"><div class="mf">Bandar Abbas strike → Kuwait counter-strike</div><div class="me">→ Framework-Licensed Escalation candidate logged; Limited-Strike Permissibility watch-item stress-tested by reciprocity</div><div class="md amp">Amplify</div></div>
+<div class="mr"><div class="mf">“Egregious ceasefire violation” + new strikes</div><div class="me">→ framework cited by both sides while kinetic channel operates; <a class="vbadge m5" href="../concepts/channel-decomposition.html" title="Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed." data-meta="5">Channel Decomposition</a> at full intensity</div><div class="md amp">Amplify</div></div>
+<div class="mr"><div class="mf">Opus 4.7 GA + robotics + SMR + quantum same week</div><div class="me">→ Capability Substrate Assembly candidate strengthens across four architectures toward promotion threshold</div><div class="md amp">Amplify</div></div>
+<div class="mr"><div class="mf">Kuwait strike lands after the 27 May close</div><div class="me">→ <a class="vbadge m5" href="../concepts/sanctuary-discount.html" title="Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment." data-meta="5">Sanctuary Discount</a> faces a tail-channel rupture test at Thursday open; no 28 May move asserted</div><div class="md amp">Amplify</div></div>
+<div class="mr"><div class="mf">Mali Defense Minister killed; Kidal falls</div><div class="me">→ <a class="vbadge m3" href="../concepts/keystone-removal.html" title="A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the…" data-meta="3">Keystone Removal</a> at national command scale; <a class="vbadge m1" href="../concepts/peripheral-assertion.html" title="The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal." data-meta="1">Peripheral Assertion</a> latency phase opens without Western response</div><div class="md amp">Amplify</div></div>
+<div class="mr"><div class="mf">Warsh seated 22 May; PCE 3.5% YoY</div><div class="me">→ damping mechanism re-specified under load; reaction-function readability reduced just as a Gulf shock arrives</div><div class="md amp">Amplify</div></div>
+<div class="mr"><div class="mf">Australia divestment + China catalogue tightening</div><div class="me">→ <a class="vbadge m4" href="../concepts/commons-enclosure.html" title="When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper." data-meta="4">Commons Enclosure</a> runs in both directions; alternative-supply commons built against processing concentration</div><div class="md dmp">Dampen</div></div>
+<div class="mr"><div class="mf">Bundibugyo PHEIC + no vaccine</div><div class="me">→ <a class="vbadge m3" href="../concepts/tipping-cascade.html" title="When crossing one threshold triggers others across domains." data-meta="3">Tipping Cascade</a> at public-health substrate; institutional architecture lacks a pharmacological closure instrument</div><div class="md amp">Amplify</div></div>
+</div>
+</div>
+<!-- ========== WISE ACTION ========== -->
+<div class="s" id="s-wa">
+<div class="sh" style="color:var(--teal)">Wise Action</div>
+<div class="wa-section">
+<h4>Entrepreneurship</h4>
+<p>For the cyborg-textbook’s architecture-literacy framing, today’s configuration sharpens the amplifier-substrate question Briefing 048 raised. The founder’s amplifier — Anthropic, the robotics makers, the SMR developers — is assembling capability at gigawatt and 30,000-unit-a-year scale, while the founder’s tenant operates at sub-quarterly cadence. <strong>The substrate is being built ahead of the release event across four domains at once.</strong> An entrepreneur reading only release announcements sees Opus 4.7 reaching GA; an entrepreneur reading the substrate sees Hyundai’s 2028 capacity target, Terrestrial-Riot’s 4 GW, and Quantinuum’s 94 logical qubits as the infrastructure that determines what is buildable two years out. The competitive position is set by which signal the founder reads.</p>
+<p>The energy coupling is the part most founders miss. AI capability is power-bound, and the SMR-for-AI moves — Terrestrial-Riot, NANO-Supermicro, Hadron going public — mean the binding constraint on the next compute generation is being secured now by the firms that will own it. <strong>The founder’s positioning question is whether the venture’s roadmap is hostage to a power-and-compute substrate it does not control.</strong> The <a class="vbadge m4" href="../concepts/optionality-arbitrage.html" title="Competitive advantage existing only in crisis." data-meta="4">Optionality Arbitrage</a> pattern operates in a slow register here: securing dedicated capacity before scarcity binds is an advantage that pays only when the scarcity arrives.</p>
+</div>
+<div class="wa-section">
+<h4>Markets</h4>
+<p>The 27 May close read the modal trajectory: S&amp;P 7,520.36, Nasdaq 26,674.73, Dow 50,644.28, WTI under $90, the session on “fresh Iran rumors; chip pullback.” The framework-rupturing reciprocity landed after the close. <strong>The <a class="vbadge m5" href="../concepts/sanctuary-discount.html" title="Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment." data-meta="5">Sanctuary Discount</a> faces its first clean tail-channel test, and this briefing asserts no Thursday move.</strong> The dual-channel modal/tail framing is the right instrument: the modal channel was priced into Wednesday’s close; the tail channel is the overnight rupture. The two have decoupled in time, and the open question is whether an intercepted, casualty-free strike reads as a modal event the discount survives or a tail event that breaks it.</p>
+<p>The energy and quantum substrates carry their own market reads independent of the Gulf. SMR-for-AI now has a publicly priced instrument in Hadron; the quantum cadence prices the post-quantum-migration window at an urgency the institutional substrate (the DOE 2028 target) and the commercial-deployment substrate disagree about. Position-sizing implication: the cross-architecture capability substrate is a structural-growth thesis priced piecemeal by domain; the framework-rupture is a tail the marketplace has not yet had a session to price.</p>
+</div>
+<div class="wa-section">
+<h4>Investment</h4>
+<p>The SMR-for-AI substrate (Terrestrial-Riot up to 4 GW; NANO-Supermicro; Hadron public on 26 May) prices the energy dependency beneath the AI buildout at a cadence that is moving from private financing into public instruments. <strong>The load-bearing variable for any AI-compute investment is now the power substrate, and the firms securing dedicated nuclear capacity are buying the binding constraint.</strong> For institutional investors, the coupling between compute commitments and power commitments is itself a structural-event whose price implications compound across the AI complex.</p>
+<p>The critical-minerals substrate (Australia’s Northern Minerals divestment order; China’s catalogue adding samarium, gadolinium, lutetium; the post-summit drift with “no date, no verification mechanism”) operates at sovereign-scale capital cadence. The <a class="vbadge m4" href="../concepts/commons-enclosure.html" title="When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper." data-meta="4">Commons Enclosure</a> pattern runs in both directions: enclosure tightens at the processing layer while an alternative-supply commons is built in Quad and allied geography. Investment implication: rare-earth processing, magnet manufacturing, and recycling capacity inside allied geography prices at substrate-arbitrage scale against an enclosure with no verification architecture.</p>
+</div>
+<div class="wa-section">
+<h4>Research Program Relevance</h4>
+<p>Today’s briefing anchors several substrate-events to the lab’s active research projects, by research content only:</p>
+<p><strong>Glimpse ABM (power-law right-tail of firm growth; emergent vs fixed-tier dynamics).</strong> The cross-architecture capability assembly — a handful of firms securing 30,000-unit robot capacity, 4 GW of dedicated nuclear, and frontier-model GA simultaneously — is a clean empirical picture of heavy-tail capability concentration. The model’s power-law right-tail architecture should engage this as a calibration anchor: capability is concentrating into a small set of firms at a rate the fixed-tier baseline does not generate, and the emergent-dynamics variant is the better lens for the compounding.</p>
+<p><strong>Three-Body / “Shifting Sands” (human-AI task co-evolution; five emergent regimes; V/C/I damping; recursive layers).</strong> The robotics-and-AI substrate assembly is task co-evolution made concrete — humanoids entering airport ground handling and factory machine-tending reshape the task space the model formalizes. Separately, the Warsh-Fed transition is a textbook damping-mechanism case for the V/C/I framing: a reaction function being re-specified under a new principal is exactly a damping channel operating with reduced authority, and the model’s damping mechanisms can be read against it.</p>
+<p><strong>GCM AI Agents (Garbage Can ABM; agentic AI in organizational choice).</strong> The Managed Agents “dreaming” feature — agents writing notes to themselves about specific tasks — is a concrete instance of agentic memory shaping organizational choice streams, the substrate the Garbage Can model engages. Persistent agent memory changes how solutions, problems, and choice opportunities couple over time.</p>
+<p><strong>Polymathy LLM-ABM and Polymathy/de-entrenchment (AMR).</strong> The capability-substrate-assembly pattern across AI software, robotics, energy, and quantum is the multi-domain context the composite cognitive architecture engages; the eight Araki archetypes can be calibrated against the breadth of the simultaneous deployment cadence. The de-entrenchment line reads the same breadth as the cognitive correlate of cross-domain capability spread.</p>
+<p><strong>Knightian / Poincaréan Foundations of uncertainty.</strong> The <a class="vbadge m5" href="../concepts/sanctuary-discount.html" title="Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment." data-meta="5">Sanctuary Discount</a> meeting a tail-channel rupture — a modal posture priced into Wednesday’s close, a framework rupture arriving after it — is a clean 2026 substrate for the modal/tail decomposition the manuscript formalizes. The <a class="vbadge m5" href="../concepts/sanctuary-discount.html" title="Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment." data-meta="5">Sanctuary Discount</a> remains a Coupling Failure between observation and pricing: perception is intact while the price-reaction has been routinized into a calibrated discount that the framework rupture now tests.</p>
+<p><strong>Cyborg Entrepreneurship (book; human-AI ensembles; capability opacity).</strong> The agent-memory layer (“dreaming”) and the substrate-ahead-of-release cadence across four domains are the cleanest 2026 anchors for the architecture-literacy and capability-opacity framing the book is being drafted to address. An agent that writes private notes to itself is capability opacity instantiated at the memory layer.</p>
+</div>
+</div>
+<!-- ========== ANOMALY DETECTION ========== -->
+<div class="s" id="s-an">
+<div class="sh" style="color:#fca5a5">Anomaly Detection</div>
+<div class="prose">
+<p>What should be happening but is conspicuously absent.</p>
+</div>
+<div class="c">
+<h3>Anomaly 1 — No Verified Market Repricing Despite the Kuwait Strike</h3>
+<p>The framework-rupturing reciprocity — the Bandar Abbas strike, the intercepted Kuwait strike at 10:17 p.m. ET on 27 May, the US “egregious ceasefire violation” and new strikes — arrived after the cash close. The 27 May close recorded fresh records (S&amp;P 7,520.36) and WTI under $90 on “fresh Iran rumors.” <strong>As of this briefing there is no verified repricing of the rupture.</strong> This is framed as an open question, not an absence to interpret: the repricing test happens at Thursday’s open, which is outside this briefing’s verified record. The structural point is that the verified record ends before the event the market most needs to price, and the gap between the two is itself a <a class="vbadge m5" href="../concepts/sanctuary-discount.html" title="Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment." data-meta="5">Sanctuary Discount</a> stress-test in waiting.</p>
+</div>
+<div class="c">
+<h3>Anomaly 2 — No Bundibugyo Vaccine Despite a 75-Year-Known Filovirus Family</h3>
+<p>The Bundibugyo strain has been within a virus family known to science for three-quarters of a century, and the related Zaire strain has a licensed vaccine. The DRC outbreak has been at PHEIC scale since 17 May with 121 confirmed and 1,077 suspected cases as of 26 May. <strong>No pharmaceutical company has announced a Bundibugyo vaccine candidate, an emergency-use authorization request, or an accelerated trial.</strong> The absence is conspicuous against the COVID-19 emergency-use precedent and reveals that commercial-margin profile, not scientific tractability, determines which strains get vaccines. The institutional architecture has no standing mechanism to correct the gap before an outbreak forces it.</p>
+</div>
+<div class="c">
+<h3>Anomaly 3 — No Gulf-Escalation Premium in Oil Under $90</h3>
+<p>WTI closed 27 May under $90 while the framework was rupturing into reciprocity in the same hours. Brent and crude markets have a long history of pricing Gulf escalation steeply; the precedent named in Briefing 030–031 is Brent moving $77.40 to $116.55 intraday when kinetic exchange arrived. <strong>The 27 May oil tape carries no escalation premium for the Bandar Abbas and Kuwait strikes.</strong> The absence is either calibration — the marketplace prices the strikes as bounded and casualty-free — or latency, with the strikes landing after the close. Which it is resolves at Thursday’s open, outside this briefing’s record. OPEC and Gulf-producer pricing of the rupture is similarly absent from the verified record.</p>
+</div>
+<div class="c">
+<h3>Anomaly 4 — No Proportionate International Response to Mali’s State-Collapse Signal</h3>
+<p>JNIM and Tuareg rebels took Kidal, killed Defense Minister Sadio Camara, and injured the intelligence chief in the largest Mali offensive since 2012. A regional capital has fallen and a national command structure has lost its load-bearing actors. <strong>No proportionate Western or multilateral institutional response has materialized.</strong> The contrast with the attention the Gulf corridor commands is the structural point: a state-collapse signal from the periphery draws a fraction of the response a corridor event of comparable consequence would. The absence prices permissiveness into the next periphery actor’s calculus — the <a class="vbadge m1" href="../concepts/peripheral-assertion.html" title="The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal." data-meta="1">Peripheral Assertion</a> latency phase operating without a response.</p>
+</div>
+<div class="c">
+<h3>Anomaly 5 — No Regulatory Comment on the Warsh Reaction-Function Transition Under Shock</h3>
+<p>A new Fed chair was seated on 22 May with PCE running 3.5% YoY through March 2026, a predecessor still on the Board for the first time in 75 years, and a Gulf shock arriving inside the first weeks of the term. Transitions of this consequence, colliding with an external inflation-relevant shock, would ordinarily draw explicit commentary on how the reaction function changes. <strong>No public framing has reconciled the six-day-old chair with the framework rupture’s potential oil-and-inflation transmission.</strong> The absence implies the institutional substrate is treating the transition and the shock as independent when they are coupled through the energy contribution to PCE.</p>
+</div>
+</div>
+<!-- ========== SOURCE ARCHIVE ========== -->
+<div class="s" id="s-sa">
+<div class="sh">Source Archive &amp; Reading List</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1rem">Annotated by structural insight contributed. Filterable by keyword. Briefing 049 today; substrate carries from 048 where noted. All events dated to 2026.</p>
+<div class="src-filter-wrap">
+<span class="src-filter-label">Filter</span>
+<input aria-label="Filter source archive" class="src-filter" id="src-filter" oninput="srcFilter(this.value)" placeholder="Type to filter sources…" type="text"/>
+<span class="src-filter-count" id="src-filter-count"></span>
+</div>
+<h3 class="sh2" style="color:var(--blub)">Critical Sources Today (28 May 2026) · Geopolitical</h3>
+<div class="src"><div class="src-cat">Critical · Geopolitical / Iran-Kuwait Rupture</div><span style="color:var(--blub)"><strong>CENTCOM / The Hill / NBC News 27–28 May 2026</strong></span><div class="src-note">CENTCOM downs four Iranian drones near the Strait of Hormuz and strikes a drone ground-control station in Bandar Abbas “about to launch a fifth drone” at ~10:17 p.m. ET on 27 May; defensive framing.</div></div>
+<div class="src"><div class="src-cat">Critical · Geopolitical / Iran-Kuwait Rupture</div><span style="color:var(--blub)"><strong>CNBC 28 May 2026 — Iran fires ballistic missile at Kuwait air base</strong></span><div class="src-note">IRGC ballistic missile plus drones at a US-hosting base (analysts point to Ali Al Salem); Kuwaiti defenses intercept at 10:17 p.m. ET on 27 May; no damage or casualties.</div></div>
+<div class="src"><div class="src-cat">Critical · Geopolitical / Iran-Kuwait Rupture</div><span style="color:var(--blub)"><strong>Korea Times 28 May 2026 — second armed clash within a single week</strong></span><div class="src-note">Frames the Kuwait strike as the second armed clash between the two nations in one week.</div></div>
+<div class="src"><div class="src-cat">Critical · Geopolitical / Iran-Kuwait Rupture</div><span style="color:var(--blub)"><strong>Navy Times / US News 28 May 2026 — “egregious ceasefire violation”</strong></span><div class="src-note">US says Iran committed an “egregious ceasefire violation” and carries out new strikes against a military site inside Iran.</div></div>
+<div class="src"><div class="src-cat">Critical · Geopolitical / Negotiation Status</div><span style="color:var(--blub)"><strong>CNN live 27 May 2026 / CNBC 25 May 2026</strong></span><div class="src-note">Trump says he won’t rush an Iran deal (27 May); Baghaei says Iran is negotiating an end to the war and not nuclear issues; Rubio frames “a good agreement” or “another way” (25 May).</div></div>
+<div class="src"><div class="src-cat">Critical · Geopolitical / Sahel</div><span style="color:var(--blub)"><strong>Critical Threats “Fall of Kidal” / CFR / Stimson 2026</strong></span><div class="src-note">JNIM-Tuareg largest offensive since 2012; Defense Minister Sadio Camara killed, intelligence chief Modibo Koné injured, Kidal fallen; urban siege warfare.</div></div>
+<div class="src"><div class="src-cat">Critical · Geopolitical / Levant</div><span style="color:var(--blub)"><strong>Irish Times live 28 May 2026 / NPR</strong></span><div class="src-note">Israel says it will intensify attacks against Hezbollah in Lebanon; “migration from Gaza to go ahead.”</div></div>
+<h3 class="sh2" style="color:var(--blub)">Critical Sources Today · Tech &amp; AI</h3>
+<div class="src"><div class="src-cat">Critical · AI / Capability Substrate Assembly</div><span style="color:var(--blub)"><strong>Anthropic announcements 28 May 2026 — Opus 4.7 GA; Claude Design; “dreaming”</strong></span><div class="src-note">Claude Opus 4.7 generally available (improved SWE, long-running coding, vision); Claude Design launches; Managed Agents gain a “dreaming” note-to-self feature; Project Glasswing / Claude Security public beta.</div></div>
+<div class="src"><div class="src-cat">Critical · Humanoid Robotics</div><a href="#" onclick="return false">UPI 25 May 2026 — Hyundai Motor Group accelerates Atlas humanoid production</a><div class="src-note">Target annual capacity 30,000 units by 2028; deploying 25,000+ across Hyundai and Kia plants.</div></div>
+<div class="src"><div class="src-cat">Critical · Humanoid Robotics</div><span style="color:var(--blub)"><strong>Fact sheet robotics roundup 2026 — Haneda / AEON / Toyota Canada</strong></span><div class="src-note">Japan Airlines Haneda humanoid trial (Unitree-based); AEON via Hexagon Robotics + Fill Maschinenbau; Agility Digit 7+ units at Toyota Canada; ~30-minute assembled-robot cadence.</div></div>
+<div class="src"><div class="src-cat">Critical · Developer Community</div><span style="color:var(--blub)"><strong>MIT Technology Review 21 May 2026 — Code w/ Claude</strong></span><div class="src-note">Anthropic’s Code w/ Claude annual developer conference held in San Francisco.</div></div>
+<h3 class="sh2" style="color:var(--blub)">Critical Sources Today · Economic &amp; Institutional</h3>
+<div class="src"><div class="src-cat">Critical · Economic / 27 May Close</div><span style="color:var(--blub)"><strong>TheStreet / 247WallSt / CNBC 27 May 2026</strong></span><div class="src-note">S&amp;P 500 7,520.36 (+0.02%, closing record); Nasdaq 26,674.73 (+0.07%); Dow 50,644.28 (+0.36%, record); WTI under $90; session on “fresh Iran rumors; chip pullback.”</div></div>
+<div class="src"><div class="src-cat">Critical · Institutional / Federal Reserve</div><span style="color:var(--blub)"><strong>Al Jazeera / NPR 2026 — Warsh confirmed and seated</strong></span><div class="src-note">Kevin Warsh confirmed 54–45 (Banking Committee 13–11); took office as Fed Chair 22 May 2026, term to 21 May 2030; succeeds Powell, who remains on the Board (first former chair in 75 years).</div></div>
+<div class="src"><div class="src-cat">Critical · Economic / Inflation Backdrop</div><span style="color:var(--blub)"><strong>PCE backdrop 2026</strong></span><div class="src-note">Headline PCE 3.5% YoY through March 2026 vs 2.4% through March 2025 (energy a large contributor); 2% target; Fed cut to 3.50–3.75% at final 2025 meeting.</div></div>
+<div class="src"><div class="src-cat">Critical · Energy / SMR-for-AI</div><span style="color:var(--blub)"><strong>Terrestrial-Riot / NANO-Supermicro / Hadron 2026</strong></span><div class="src-note">Terrestrial Energy + Riot Platforms up to 4 GW Gen-IV IMSR for AI (6 May, Texas/Kentucky); NANO Nuclear + Supermicro MOU (6 May); Hadron Energy / GigCapital7 first publicly traded light-water micro-MMR (26 May, 10-MWe Halo MMR).</div></div>
+<div class="src"><div class="src-cat">Critical · Economic / Critical Minerals</div><span style="color:var(--blub)"><strong>Benchmark Minerals / Discovery Alert / CSIS 2026</strong></span><div class="src-note">China rare-earth regime largely unchanged after 14–15 May Trump-Xi summit; “address” with no date/verification/definition; 1 Jan 2026 catalogue adds samarium, gadolinium, lutetium; Australia orders six Northern Minerals shareholders to divest within two weeks.</div></div>
+<h3 class="sh2" style="color:var(--blub)">Critical Sources Today · Science &amp; Health</h3>
+<div class="src"><div class="src-cat">Critical · Health / Bundibugyo Ebola</div><span style="color:var(--blub)"><strong>WHO 17 May 2026 / CDC 15 May 2026</strong></span><div class="src-note">WHO declares a Bundibugyo PHEIC (DRC + Uganda); DRC 121 confirmed / 17 deaths and 1,077 suspected / 238 deaths as of 26 May; Uganda 7 confirmed / 1 death (3 travel-linked); no approved vaccine; CDC Level 3 DRC / Level 1 Uganda notices.</div></div>
+<div class="src"><div class="src-cat">Quantum Substrate</div><span style="color:var(--blub)"><strong>The Quantum Insider / IEEE Spectrum 2026</strong></span><div class="src-note">Quantinuum 94 protected logical qubits beyond break-even; Q-CTRL + IBM 3,000× Fermi-Hubbard speedup (6 May); Jülich + NVIDIA 50-qubit simulation (11 May); IonQ Boulder lab (15 May); DOE RFI 150–250 logical qubits by 2028 (15 May).</div></div>
+<div class="src"><div class="src-cat">Space Substrate</div><span style="color:var(--blub)"><strong>Shenzhou 23 launch coverage 2026</strong></span><div class="src-note">China launches Shenzhou 23 with three astronauts; one to stay a year studying human adaptability in long-duration spaceflight.</div></div>
+<div class="src"><div class="src-cat">Climate</div><span style="color:var(--blub)"><strong>Late-May 2026 heat coverage</strong></span><div class="src-note">Temperature records breaking with government warnings; London ~95°F over the past two days.</div></div>
+<h3 class="sh2" style="color:var(--blub)">Thinker Registry</h3>
+<div class="src"><div class="src-cat">Framework-Rupture Architecture</div><span style="color:var(--blub)"><strong>CENTCOM / open-source conflict analysts</strong></span><div class="src-note">Open-source attribution of the Kuwait strike to Ali Al Salem Air Base and the Bandar Abbas ground-control-station strike anchors the Framework-Licensed Escalation candidate’s empirical substrate.</div></div>
+<div class="src"><div class="src-cat">Capability-Substrate Architecture</div><span style="color:var(--blub)"><strong>Robotics &amp; SMR-for-AI deployment trackers</strong></span><div class="src-note">UPI (Hyundai), Haneda/AEON/Toyota-Canada robotics reporting, and Terrestrial-Riot / NANO-Supermicro / Hadron energy reporting together anchor the cross-architecture Capability Substrate Assembly substrate.</div></div>
+<div class="src"><div class="src-cat">Quantum-Horizon Discourse</div><span style="color:var(--blub)"><strong>The Quantum Insider / IEEE Spectrum</strong></span><div class="src-note">2026 logical-qubit and error-suppression reporting continues to anchor the cryptographic-horizon analysis through Cycle 2.</div></div>
+<h3 class="sh2" style="color:var(--blub)">Serendipity Queue</h3>
+<div class="src"><div class="src-cat">Future Tracking — Sanctuary-Discount Tail Test</div><span style="color:var(--blub)"><strong>Thursday 28 May open (prospective)</strong></span><div class="src-note">The framework-rupturing strike landed after the 27 May close; the repricing at Thursday’s open is the live Sanctuary Discount tail-channel test. Track for whether an intercepted, casualty-free strike reads as modal or tail.</div></div>
+<div class="src"><div class="src-cat">Future Tracking — Bundibugyo Vaccine Architecture</div><span style="color:var(--blub)"><strong>WHO / CDC emergency-use precedent</strong></span><div class="src-note">Watch for any Bundibugyo vaccine candidate, EUA request, or accelerated trial; the absence is the structural signal as the outbreak persists at PHEIC scale.</div></div>
+<div class="src"><div class="src-cat">Future Tracking — Warsh Reaction Function</div><span style="color:var(--blub)"><strong>First FOMC under Warsh</strong></span><div class="src-note">A six-day-old chair and a Gulf shock coupled through energy-PCE; the first policy communication under Warsh will re-specify the damping mechanism the marketplace must re-learn.</div></div>
+</div>
+<footer>
+<p>Tectonic Briefing No. 049 · 28 May 2026 · Thursday · Cyborg Entrepreneurship Research Lab</p>
+<p style="margin-top:.3rem;font-size:.55rem;color:var(--t4)">Editorial discipline: fresh-domain content present in Geopolitical (Sahel — Kidal falls, Defense Minister Camara killed), Technological (humanoid robotics — Hyundai 30,000/yr by 2028, Haneda, AEON, Toyota Canada; quantum — Quantinuum 94 logical qubits, DOE 150–250 by 2028), Institutional (SMR-for-AI energy — Terrestrial-Riot 4 GW, NANO-Supermicro, Hadron public; Warsh Fed transition), Scientific (Shenzhou 23 year-long human-adaptation mission), and Environmental (Bundibugyo Ebola PHEIC). Topic-rotation constraint satisfied: off-corridor content present across 5 of 8 lenses, with the off-corridor Liminal Signal supplied by Hadron’s first-publicly-traded micro-MMR and the Shenzhou 23 year-long mission. Vocabulary holds at 42 named patterns; one new Cycle 2 candidate logged (Framework-Licensed Escalation, with consolidation caveat); Capability Substrate Assembly strengthened across robotics/energy/quantum/AI; Limited-Strike Permissibility stress-tested by reciprocity; Sanctuary Discount live. Factual-verification discipline applied: all load-bearing claims carry 2026 dates per the verified fact sheet — Bandar Abbas / Kuwait reciprocity 27–28 May; US “egregious ceasefire violation” 28 May; 27 May closes S&amp;P 7,520.36, Nasdaq 26,674.73, Dow 50,644.28, WTI under $90; Warsh seated 22 May; WHO Bundibugyo PHEIC 17 May; Trump-Xi summit 14–15 May; the separate Feb 2026 Kuwait air-base attack explicitly not conflated with the 27–28 May event. Market discipline: no 28 May market move asserted; the repricing is framed as a prospective test. Confidentiality discipline applied: Research Program Relevance references the lab’s own research by content only.</p>
+</footer>
+<script>
+// P2A — section navigation with URL hash sync + history pushState
+var SECTION_IDS = ['ov','ge','te','ec','sc','so','en','ig','li','ie','wa','sa','an'];
+function go(id, pushHistory){
+  if(!id || SECTION_IDS.indexOf(id) === -1) id = 'ov';
+  if(pushHistory === undefined) pushHistory = true;
+  document.querySelectorAll('.s').forEach(function(s){s.classList.remove('v');});
+  var target = document.getElementById('s-'+id);
+  if(!target){ id = 'ov'; target = document.getElementById('s-ov'); }
+  if(target) target.classList.add('v');
+  document.querySelectorAll('nav button').forEach(function(b){b.classList.remove('on');});
+  document.querySelectorAll('nav button').forEach(function(b){
+    var oc = b.getAttribute('onclick') || '';
+    if(oc.indexOf("'"+id+"'") !== -1) b.classList.add('on');
+  });
+  if(pushHistory && window.history && window.history.pushState){
+    try { window.history.pushState({section:id}, '', '#'+id); } catch(e){}
+  }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// Restore section from URL hash on initial load
+document.addEventListener('DOMContentLoaded', function(){
+  var hash = (location.hash || '').replace('#','');
+  if(hash && SECTION_IDS.indexOf(hash) !== -1) go(hash, false);
+});
+
+// Browser back/forward navigation
+window.addEventListener('popstate', function(e){
+  var id = (e.state && e.state.section) || (location.hash || '').replace('#','') || 'ov';
+  go(id, false);
+});
+function ddt(el){
+  var p=el.parentElement.parentElement.querySelector('.dd-panel');
+  if(!p)return;
+  var open=el.classList.toggle('active');
+  p.classList.toggle('open');
+  el.setAttribute('aria-expanded', open ? 'true' : 'false');
+  el.classList.remove('hint');
+}
+// Keyboard activation for deep-dive toggles (Enter/Space)
+document.addEventListener('keydown', function(e){
+  if((e.key==='Enter'||e.key===' ')&&e.target&&e.target.classList&&e.target.classList.contains('dd')){
+    e.preventDefault();
+    ddt(e.target);
+  }
+});
+// SPRINT 3 — reading progress bar
+(function(){
+  var rpf = document.getElementById('rpf');
+  if(!rpf) return;
+  function update(){
+    var sd = document.documentElement.scrollHeight - window.innerHeight;
+    if(sd <= 0){ rpf.style.width = '0%'; return; }
+    var sp = Math.min(100, Math.max(0, (window.scrollY / sd) * 100));
+    rpf.style.width = sp + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+// SPRINT 3 — source archive filter
+function srcFilter(q){
+  q = (q||'').trim().toLowerCase();
+  var srcs = document.querySelectorAll('#s-sa .src');
+  var heads = document.querySelectorAll('#s-sa .sh2');
+  var shown = 0, total = srcs.length;
+  srcs.forEach(function(s){
+    if(!q){
+      s.classList.remove('hidden');
+      shown++;
+      return;
+    }
+    var txt = s.textContent.toLowerCase();
+    if(txt.indexOf(q) !== -1){ s.classList.remove('hidden'); shown++; }
+    else { s.classList.add('hidden'); }
+  });
+  // Hide category headings whose group has zero visible sources
+  heads.forEach(function(h){
+    var next = h.nextElementSibling, anyVisible = false;
+    while(next && !next.classList.contains('sh2')){
+      if(next.classList && next.classList.contains('src') && !next.classList.contains('hidden')){
+        anyVisible = true; break;
+      }
+      next = next.nextElementSibling;
+    }
+    h.style.display = anyVisible ? '' : 'none';
+  });
+  var c = document.getElementById('src-filter-count');
+  if(c) c.textContent = q ? (shown + ' / ' + total) : (total + ' sources');
+}
+// Initialize source count on first load
+document.addEventListener('DOMContentLoaded', function(){
+  var srcs = document.querySelectorAll('#s-sa .src');
+  var c = document.getElementById('src-filter-count');
+  if(c) c.textContent = srcs.length + ' sources';
+});
+
+// P2B — Cmd+K command palette
+(function(){
+  var idx = null, selected = 0, visible = [];
+  function pathPrefix(){
+    return /\/(briefings|concepts)\//.test(location.pathname) ? '../' : '';
+  }
+  function loadIndex(cb){
+    if(idx){ cb(idx); return; }
+    fetch(pathPrefix() + 'search-index.json')
+      .then(function(r){ return r.json(); })
+      .then(function(j){ idx = j; cb(j); })
+      .catch(function(){ idx = {briefings:[], concepts:[]}; cb(idx); });
+  }
+  window.cmdkOpen = function(){
+    var m = document.getElementById('cmdkModal'); if(!m) return;
+    m.classList.add('open'); m.removeAttribute('hidden');
+    var input = document.getElementById('cmdkInput');
+    setTimeout(function(){ input.focus(); input.select(); }, 30);
+    loadIndex(function(){ cmdkSearch(input.value); });
+  };
+  window.cmdkClose = function(){
+    var m = document.getElementById('cmdkModal'); if(!m) return;
+    m.classList.remove('open'); m.setAttribute('hidden', '');
+  };
+  function esc(s){
+    return (s||'').replace(/[<>&"]/g, function(c){
+      return ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'})[c];
+    });
+  }
+  function renderResult(r, i){
+    var pre = pathPrefix();
+    if(r.type === 'briefing'){
+      var b = r.item;
+      return '<a class="cmdk-result' + (i===0?' sel':'') + '" href="' + pre + b.url + '" data-i="' + i + '">' +
+        '<div class="cmdk-result-type">Briefing</div>' +
+        '<div class="cmdk-result-body">' +
+        '<div class="cmdk-result-title">' + esc(b.display_date) + ' · ' + esc(b.dow) + '</div>' +
+        '<div class="cmdk-result-sub"><span class="cmdk-result-meta">No. ' + esc(b.number) + ' · Cycle ' + esc(String(b.cycle)) + '</span>' + esc(b.thread||'(no thread title)') + '</div>' +
+        '</div></a>';
+    }
+    var c = r.item;
+    return '<a class="cmdk-result' + (i===0?' sel':'') + '" href="' + pre + c.url + '" data-i="' + i + '">' +
+      '<div class="cmdk-result-type concept">Concept</div>' +
+      '<div class="cmdk-result-body">' +
+      '<div class="cmdk-result-title">' + esc(c.name) + '</div>' +
+      '<div class="cmdk-result-sub"><span class="cmdk-result-meta m' + c.meta + '">META-' + c.meta + ' · ' + esc(c.meta_name) + '</span>' + esc(c.brief) + '</div>' +
+      '</div></a>';
+  }
+  window.cmdkSearch = function(q){
+    if(!idx){ loadIndex(function(){ cmdkSearch(q); }); return; }
+    q = (q||'').trim().toLowerCase();
+    visible = [];
+    var results = document.getElementById('cmdkResults'); if(!results) return;
+    var counts = document.getElementById('cmdkCounts');
+    idx.concepts.forEach(function(c){
+      var hay = (c.name + ' ' + (c.brief||'') + ' ' + (c.meta_name||'')).toLowerCase();
+      if(!q || hay.indexOf(q) !== -1) visible.push({type:'concept', item:c});
+    });
+    idx.briefings.forEach(function(b){
+      var hay = ((b.title||'') + ' ' + (b.thread||'') + ' ' + b.date + ' ' + (b.dow||'') + ' Cycle ' + b.cycle).toLowerCase();
+      if(!q || hay.indexOf(q) !== -1) visible.push({type:'briefing', item:b});
+    });
+    if(q){
+      visible.sort(function(a, b){
+        var aName = (a.item.name || a.item.title || '').toLowerCase();
+        var bName = (b.item.name || b.item.title || '').toLowerCase();
+        var aHit = aName.indexOf(q), bHit = bName.indexOf(q);
+        if(aHit === -1) aHit = 9999; if(bHit === -1) bHit = 9999;
+        if(aHit !== bHit) return aHit - bHit;
+        return 0;
+      });
+    }
+    visible = visible.slice(0, 50);
+    selected = 0;
+    if(!visible.length){
+      results.innerHTML = '<div class="cmdk-empty">No matches.</div>';
+      if(counts) counts.textContent = '';
+      return;
+    }
+    results.innerHTML = visible.map(function(r, i){ return renderResult(r, i); }).join('');
+    if(counts) counts.textContent = visible.length + ' result' + (visible.length===1?'':'s');
+  };
+  document.addEventListener('DOMContentLoaded', function(){
+    var input = document.getElementById('cmdkInput');
+    if(input) input.addEventListener('input', function(){ cmdkSearch(this.value); });
+  });
+  document.addEventListener('keydown', function(e){
+    var isCmdK = (e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey);
+    if(isCmdK){ e.preventDefault(); cmdkOpen(); return; }
+    var m = document.getElementById('cmdkModal');
+    if(!m || !m.classList.contains('open')) return;
+    if(e.key === 'Escape'){ e.preventDefault(); cmdkClose(); return; }
+    if(e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+      e.preventDefault();
+      var max = visible.length - 1;
+      selected = (e.key === 'ArrowDown') ? Math.min(max, selected+1) : Math.max(0, selected-1);
+      document.querySelectorAll('.cmdk-result').forEach(function(el, i){
+        el.classList.toggle('sel', i === selected);
+        if(i === selected) el.scrollIntoView({block:'nearest'});
+      });
+    }
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      var el = document.querySelectorAll('.cmdk-result')[selected];
+      if(el) window.location.href = el.getAttribute('href');
+    }
+  });
+})();
+</script>
+</div>
+<!-- TB-NAV-WRAP:BOT:START -->
+<div class="tb-nav-foot"><div class="tb-nav-left"><a href="2026-05-27.html">← Briefing No. 048</a><a class="tb-nav-disabled">Next →</a></div><div class="tb-nav-right"><a href="../index.html">Archive</a><a href="https://github.com/cyborg-entrepreneur/tectonic-briefing/blob/main/briefings/2026-05-28.html" target="_blank" rel="noopener">View on GitHub</a></div></div>
+<div class="tb-site-foot">Tectonic Briefing No. 049 · 28 May 2026 · Thursday · Cyborg Entrepreneurship Research Lab · <a href="../index.html">Return to archive</a></div>
+<!-- TB-NAV-WRAP:BOT:END -->
+</body>
+</html>

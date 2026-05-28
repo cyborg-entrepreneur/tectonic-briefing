@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-05-27T13:17:40.203363",
+  "generated_at": "2026-05-28T09:39:08.428066",
   "briefings": [
+    {
+      "number": "049",
+      "date": "2026-05-28",
+      "display_date": "28 May 2026",
+      "dow": "Thursday",
+      "title": "Briefing 049 \u00b7 28 May 2026",
+      "thread": "Framework Rupture vs. Substrate Assembly",
+      "cycle": 2,
+      "url": "briefings/2026-05-28.html"
+    },
     {
       "number": "048",
       "date": "2026-05-27",
@@ -500,7 +510,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The official account of a situation operates as a parallel reality rather than a description of the physical one.",
       "source_briefing": 7,
-      "citation_count": 1,
+      "citation_count": 2,
       "url": "concepts/narrative-physical-decoupling.html"
     },
     {
@@ -520,7 +530,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
       "source_briefing": 3,
-      "citation_count": 11,
+      "citation_count": 12,
       "url": "concepts/capability-opacity.html"
     },
     {
@@ -590,7 +600,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal.",
       "source_briefing": 21,
-      "citation_count": 20,
+      "citation_count": 21,
       "url": "concepts/peripheral-assertion.html"
     },
     {
@@ -620,7 +630,7 @@
       "meta_name": "Coupling Failure",
       "brief": "A single architecture executes concealment-mode and disclosure-mode Channel Decomposition across consecutive cadence-windows on the same artifact.",
       "source_briefing": 38,
-      "citation_count": 6,
+      "citation_count": 7,
       "url": "concepts/mode-switch-disarticulation.html"
     },
     {
@@ -700,7 +710,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When crossing one threshold triggers others across domains.",
       "source_briefing": 1,
-      "citation_count": 12,
+      "citation_count": 13,
       "url": "concepts/tipping-cascade.html"
     },
     {
@@ -720,7 +730,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the\u2026",
       "source_briefing": 23,
-      "citation_count": 16,
+      "citation_count": 17,
       "url": "concepts/keystone-removal.html"
     },
     {
@@ -770,7 +780,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 43,
+      "citation_count": 44,
       "url": "concepts/commons-enclosure.html"
     },
     {
@@ -780,7 +790,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "Competitive advantage existing only in crisis.",
       "source_briefing": 1,
-      "citation_count": 5,
+      "citation_count": 6,
       "url": "concepts/optionality-arbitrage.html"
     },
     {
@@ -820,7 +830,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act.",
       "source_briefing": 2,
-      "citation_count": 11,
+      "citation_count": 12,
       "url": "concepts/capacity-hollowing.html"
     },
     {
@@ -870,7 +880,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Entrenched illiberal rule reversed through democratic processes; the form of the institution holds the work-doing power even when the substantive trajectory had appeared to decouple from it.",
       "source_briefing": 9,
-      "citation_count": 8,
+      "citation_count": 9,
       "url": "concepts/electoral-correction.html"
     },
     {
@@ -880,7 +890,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment.",
       "source_briefing": 30,
-      "citation_count": 17,
+      "citation_count": 18,
       "url": "concepts/sanctuary-discount.html"
     },
     {
@@ -890,7 +900,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
       "source_briefing": 32,
-      "citation_count": 17,
+      "citation_count": 18,
       "url": "concepts/channel-decomposition.html"
     },
     {
