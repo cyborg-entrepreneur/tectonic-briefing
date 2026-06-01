@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tectonic Briefing</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source Sans 3',system-ui,sans-serif;font-size:16px;line-height:1.7;min-height:100vh}
+/* SPRINT 2 — subtle dot-grid atmosphere */
+body{background-image:radial-gradient(rgba(75,142,242,0.045) 1px,transparent 1px);background-size:48px 48px;background-attachment:fixed}
+:root{--bg:#0b1120;--card:#111827;--alt:#141c2e;--str:#162035;--blu:#4b8ef2;--blub:#6da8ff;--blup:#a3c8ff;--teal:#38d9c8;--tealm:#2a9e92;--gold:#e5b84c;--goldm:#c9a03a;--red:#f06050;--redm:#c04a3e;--purp:#a78bfa;--grn:#4ade80;--amb:#c97a3a;--ambb:#dcb267;--t1:#eaf0f8;--t2:#cdd6e4;--t3:#8e9bb5;--t4:#7a8aa6;--brd:rgba(75,142,242,0.18);--brds:rgba(75,142,242,0.35);--m1:var(--blu);--m2:var(--purp);--m3:var(--red);--m4:var(--teal);--m5:var(--amb)}
+.w{max-width:1140px;margin:0 auto;padding:0 1.8rem}
+
+/* SPRINT 3 — reading progress bar */
+.read-progress{position:fixed;top:0;left:0;right:0;height:2px;background:rgba(75,142,242,0.05);z-index:120;pointer-events:none}
+.read-progress-fill{height:100%;background:linear-gradient(90deg,var(--blu),var(--purp));width:0%;transition:width .08s linear;box-shadow:0 0 6px rgba(109,168,255,0.5)}
+
+header{padding:2.8rem 0 1.8rem;border-bottom:1px solid var(--brd);margin-bottom:2rem}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2.6rem;color:var(--t1);letter-spacing:.025em}
+h1 em{font-style:normal;color:var(--blub);font-weight:500}
+.sub{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--t4);letter-spacing:.14em;text-transform:uppercase;margin-top:.4rem}
+.epi{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.02rem;color:var(--t3);margin-top:1rem;max-width:680px;line-height:1.55;padding-left:1rem;border-left:2px solid var(--brds)}
+/* SPRINT 4 — drop cap */
+.epi::first-letter{font-family:'Cormorant Garamond',serif;font-size:2.6em;font-weight:400;color:var(--blub);float:left;line-height:.92;margin:.1em .12em 0 0;font-style:normal}
+
+/* SPRINT 3 — nav with separators */
+nav{display:flex;gap:.35rem;flex-wrap:wrap;align-items:center;margin-bottom:2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--brd)}
+.nav-sep{width:1px;height:18px;background:var(--brd);margin:0 .35rem;display:inline-block;align-self:center}
+nav button{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .7rem;border:1px solid var(--brd);border-radius:2px;background:transparent;color:var(--t3);cursor:pointer;transition:all .25s}
+nav button:hover{border-color:var(--brds);color:var(--blup)}
+nav button.on{border-color:var(--blu);color:var(--blub);background:rgba(75,142,242,.06)}
+nav button.gld{border-color:rgba(229,184,76,.3)}nav button.gld:hover,nav button.gld.on{border-color:var(--gold);color:var(--gold);background:rgba(229,184,76,.06)}
+nav button.rd{border-color:rgba(240,96,80,.3)}nav button.rd:hover,nav button.rd.on{border-color:var(--red);color:var(--red);background:rgba(240,96,80,.06)}
+nav button.tl{border-color:rgba(56,217,200,.3)}nav button.tl:hover,nav button.tl.on{border-color:var(--teal);color:var(--teal);background:rgba(56,217,200,.06)}
+nav button.pr{border-color:rgba(167,139,250,.3)}nav button.pr:hover,nav button.pr.on{border-color:var(--purp);color:var(--purp);background:rgba(167,139,250,.06)}
+nav button.gn{border-color:rgba(74,222,128,.3)}nav button.gn:hover,nav button.gn.on{border-color:var(--grn);color:var(--grn);background:rgba(74,222,128,.06)}
+
+/* SPRINT 1 — focus visible */
+nav button:focus-visible,.dd:focus-visible,.src a:focus-visible,.src-filter:focus-visible,.dd-controls button:focus-visible,details>summary:focus-visible,a:focus-visible,.vbadge:focus-visible{outline:2px solid var(--blub);outline-offset:2px;border-radius:2px}
+
+/* P2B — Cmd+K search modal */
+.cmdk-modal{position:fixed;inset:0;z-index:200;display:none;align-items:flex-start;justify-content:center;padding-top:12vh}
+.cmdk-modal.open{display:flex}
+.cmdk-backdrop{position:absolute;inset:0;background:rgba(11,17,32,0.85);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.cmdk-panel{position:relative;width:min(680px,92vw);max-height:75vh;background:var(--card);border:1px solid var(--brds);border-radius:6px;box-shadow:0 24px 60px rgba(0,0,0,0.5);display:flex;flex-direction:column;animation:cmdkIn .18s ease;overflow:hidden}
+@keyframes cmdkIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.cmdk-header{display:flex;align-items:center;gap:.6rem;padding:.85rem 1.1rem;border-bottom:1px solid var(--brd)}
+.cmdk-input{flex:1;background:transparent;border:none;outline:none;color:var(--t1);font-family:'Source Sans 3',system-ui,sans-serif;font-size:1.05rem;padding:.2rem 0}
+.cmdk-input::placeholder{color:var(--t4);font-style:italic}
+.cmdk-hint{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase}
+.cmdk-results{flex:1;overflow-y:auto;padding:.4rem 0;max-height:55vh}
+.cmdk-result{display:flex;align-items:flex-start;gap:.8rem;padding:.55rem 1.1rem;cursor:pointer;text-decoration:none;color:inherit;border-left:2px solid transparent;transition:all .12s}
+.cmdk-result:hover,.cmdk-result.sel{background:rgba(75,142,242,0.08);border-left-color:var(--blu)}
+.cmdk-result-type{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase;padding-top:.18rem;min-width:60px;flex-shrink:0}
+.cmdk-result-type.concept{color:var(--gold)}
+.cmdk-result-body{flex:1;min-width:0}
+.cmdk-result-title{font-family:'Cormorant Garamond',serif;font-size:1.02rem;color:var(--t1);line-height:1.3;margin-bottom:.18rem}
+.cmdk-result-sub{font-size:.78rem;color:var(--t3);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmdk-result-meta{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.52rem;color:var(--blub);letter-spacing:.08em;margin-right:.4rem;text-transform:uppercase}
+.cmdk-result-meta.m1{color:#a3c8ff}.cmdk-result-meta.m2{color:var(--purp)}.cmdk-result-meta.m3{color:#fca5a5}.cmdk-result-meta.m4{color:var(--teal)}.cmdk-result-meta.m5{color:var(--ambb)}
+.cmdk-empty{padding:1.4rem;color:var(--t4);text-align:center;font-style:italic;font-size:.9rem}
+.cmdk-footer{padding:.5rem 1.1rem;border-top:1px solid var(--brd);display:flex;gap:1rem;font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase;align-items:center}
+.cmdk-counts{margin-left:auto;color:var(--blub)}
+.cmdk-trigger{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .7rem;border:1px solid var(--brd);border-radius:2px;color:var(--t3);cursor:pointer;background:transparent;transition:all .2s;display:inline-flex;align-items:center;gap:.45rem;margin-left:.7rem}
+.cmdk-trigger:hover{border-color:var(--brds);color:var(--blub)}
+.cmdk-kbd{font-family:'JetBrains Mono',monospace;font-size:.5rem;padding:.1rem .35rem;border:1px solid rgba(75,142,242,.32);border-radius:2px;color:var(--t4);background:rgba(75,142,242,.04)}
+
+/* P3A — confidence indicators on load-bearing claims */
+.conf{display:inline-flex;align-items:center;justify-content:center;width:1.05em;height:1.05em;border-radius:50%;font-size:.62em;font-family:'JetBrains Mono',monospace;margin-left:.22em;vertical-align:.18em;cursor:help;font-weight:600;line-height:1;letter-spacing:0;text-decoration:none}
+.conf.v{background:rgba(56,217,200,0.16);color:var(--teal);border:1px solid rgba(56,217,200,0.45)}
+.conf.p{background:rgba(229,184,76,0.14);color:var(--gold);border:1px solid rgba(229,184,76,0.45)}
+.conf.c{background:rgba(240,96,80,0.16);color:#fca5a5;border:1px solid rgba(240,96,80,0.45)}
+.conf:hover{transform:scale(1.18);transition:transform .12s ease}
+
+/* P1B — inline vocabulary badges (links to concept pages) */
+.vbadge{text-decoration:none;color:inherit;border-bottom:1px dotted currentColor;transition:color .15s ease,border-bottom-color .15s ease;cursor:help}
+.vbadge:hover{border-bottom-style:solid}
+.vbadge.m1{color:#a3c8ff}.vbadge.m1:hover{color:var(--blub)}
+.vbadge.m2{color:#c4b3ff}.vbadge.m2:hover{color:var(--purp)}
+.vbadge.m3{color:#fca5a5}.vbadge.m3:hover{color:#fff}
+.vbadge.m4{color:#7cebd8}.vbadge.m4:hover{color:var(--teal)}
+.vbadge.m5{color:#dcb267}.vbadge.m5:hover{color:var(--gold)}
+strong .vbadge{font-weight:inherit}
+
+.bn{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--t4);letter-spacing:.08em;margin-bottom:.3rem;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+/* SPRINT 4 — cycle-day dots */
+.cycle-dots{display:inline-flex;gap:3px;align-items:center;padding:.2rem .5rem;border:1px solid rgba(229,184,76,0.18);border-radius:2px;background:rgba(229,184,76,0.04)}
+.cycle-dots-label{font-family:'JetBrains Mono',monospace;font-size:.54rem;color:var(--goldm);letter-spacing:.1em;text-transform:uppercase;margin-right:.4rem}
+.cycle-dot{width:4px;height:4px;border-radius:50%;background:rgba(229,184,76,0.18)}
+.cycle-dot.active{background:var(--goldm)}
+.cycle-dot.current{background:var(--gold);box-shadow:0 0 0 2px rgba(229,184,76,0.22)}
+
+.bd{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--t1);margin-bottom:.2rem}
+.bt{font-size:.95rem;color:var(--t3);font-style:italic;margin-bottom:2rem}
+.s{display:none;animation:fu .35s ease}.s.v{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+/* SPRINT 4 — staggered card reveal on section change */
+.s.v .c,.s.v .th{animation:cardReveal .42s ease both}
+.s.v .c:nth-of-type(1){animation-delay:.02s}.s.v .c:nth-of-type(2){animation-delay:.07s}.s.v .c:nth-of-type(3){animation-delay:.12s}.s.v .c:nth-of-type(4){animation-delay:.17s}.s.v .c:nth-of-type(5){animation-delay:.21s}.s.v .c:nth-of-type(6){animation-delay:.25s}.s.v .c:nth-of-type(n+7){animation-delay:.28s}
+@keyframes cardReveal{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.c{background-color:var(--card);border:1px solid var(--brd);border-radius:3px;padding:1.8rem 2rem;margin-bottom:1.4rem}
+.c.lim{border-left:3px solid var(--gold);background-color:var(--alt)}.c.cri{border-left:3px solid var(--red);background-color:var(--alt)}.c.act{border-left:3px solid var(--teal);background-color:var(--alt)}.c.inf{border-left:3px solid var(--purp);background-color:var(--alt)}.c.env{border-left:3px solid var(--grn);background-color:var(--alt)}.c.gov{border-left:3px solid #f59e0b;background-color:var(--alt)}
+.lb{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blu);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.lb.gl{color:var(--gold)}.lb.tl{color:var(--teal)}.lb.rl{color:var(--red)}.lb.pl{color:var(--purp)}.lb.gnl{color:var(--grn)}.lb.aml{color:#f59e0b}
+.tg{padding:.12rem .45rem;border-radius:2px;font-size:.58rem}
+.tu{background:rgba(75,142,242,.14);color:var(--blup)}.te{background:rgba(56,217,200,.14);color:var(--teal)}.tc{background:rgba(167,139,250,.14);color:var(--purp)}.ta{background:rgba(229,184,76,.14);color:var(--gold)}.tr{background:rgba(240,96,80,.14);color:#fca5a5}.tg2{background:rgba(74,222,128,.14);color:var(--grn)}
+/* SPRINT 1 — compressed type hierarchy */
+.c h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--t1);margin-bottom:.9rem;line-height:1.3}
+.c p{margin-bottom:.9rem;color:var(--t2);line-height:1.75}.c p:last-child{margin-bottom:0}.c strong{color:var(--t1);font-weight:600}
+.i{margin-top:1rem;padding:.9rem 1.2rem;border-radius:0 2px 2px 0}.i p{font-size:.93rem;color:var(--t2)}
+.il{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.4rem}
+.i.so{background:rgba(75,142,242,.05);border-left:2px solid rgba(75,142,242,.35)}.i.so .il{color:var(--t4)}
+.i.rs{background:rgba(56,217,200,.05);border-left:2px solid rgba(56,217,200,.3)}.i.rs .il{color:var(--tealm)}
+.i.cf{background:rgba(229,184,76,.05);border-left:2px solid rgba(229,184,76,.3)}.i.cf .il{color:var(--goldm)}.i.cf p{font-style:italic}
+.i.in{background:rgba(167,139,250,.05);border-left:2px solid rgba(167,139,250,.3)}.i.in .il{color:var(--purp)}
+.th{background-color:var(--str);border:1px solid var(--brds);border-radius:3px;padding:1.6rem 1.8rem;margin:1.8rem 0}
+.th h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--blub);margin-bottom:.8rem}.th p{color:var(--t2);line-height:1.75}
+.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;margin:1.2rem 0}
+.vi{background:var(--card);border:1px solid var(--brd);border-left:2px solid var(--brd);border-radius:2px;padding:1rem 1.2rem;transition:border-color .2s}
+.vi h4{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--blub);margin-bottom:.4rem;letter-spacing:.04em}.vi p{font-size:.88rem;color:var(--t3);line-height:1.5;margin:0}
+/* SPRINT 2 — meta-category color bands */
+.vi.m1{border-left-color:var(--m1)}.vi.m1 h4{color:var(--m1)}
+.vi.m2{border-left-color:var(--m2)}.vi.m2 h4{color:var(--m2)}
+.vi.m3{border-left-color:var(--m3)}.vi.m3 h4{color:#fca5a5}
+.vi.m4{border-left-color:var(--m4)}.vi.m4 h4{color:var(--m4)}
+.vi.m5{border-left-color:var(--m5)}.vi.m5 h4{color:var(--ambb)}
+.mr{display:flex;align-items:flex-start;gap:.8rem;padding:.8rem 0;border-bottom:1px solid rgba(75,142,242,.08)}
+.mf{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--blu);min-width:170px;padding-top:.2rem;letter-spacing:.04em}
+.me{font-size:.92rem;color:var(--t2)}.md{font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.1rem .4rem;border-radius:2px;white-space:nowrap}
+.amp{background:rgba(240,96,80,.12);color:#fca5a5}.dmp{background:rgba(56,217,200,.12);color:var(--teal)}
+.prose{max-width:800px;margin-bottom:1.8rem}.prose p{margin-bottom:1rem;color:var(--t2);line-height:1.8}
+.sh{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:400;color:var(--t1);margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid var(--brd)}
+.sh2{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;margin:2rem 0 1rem}
+
+.src{background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:.8rem 1.2rem;margin-bottom:.6rem;font-size:.88rem}
+.src.hidden{display:none}
+.src-cat{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.2rem}
+.src a{color:var(--blub);text-decoration:none;border-bottom:1px solid rgba(109,168,255,.3)}.src a:hover{border-color:var(--blub)}
+.src .src-note{color:var(--t3);font-size:.85rem;margin-top:.3rem}
+/* SPRINT 3 — source filter */
+.src-filter-wrap{display:flex;gap:.8rem;align-items:center;margin:1.2rem 0 1.4rem;padding:.7rem 1rem;background:rgba(17,24,39,0.55);border:1px solid var(--brd);border-radius:3px}
+.src-filter-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.src-filter{flex:1;background:transparent;border:none;border-bottom:1px solid var(--brd);color:var(--t1);font-family:'Source Sans 3',system-ui,sans-serif;font-size:.92rem;padding:.35rem .2rem;outline:none;transition:border-color .2s}
+.src-filter::placeholder{color:var(--t4);font-style:italic}
+.src-filter:focus{border-bottom-color:var(--blu)}
+.src-filter-count{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);letter-spacing:.1em;white-space:nowrap}
+
+.tk{display:inline-block;background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:.5rem .9rem;margin:0 .4rem .4rem 0;font-size:.85rem}
+.tk strong{color:var(--t1);font-weight:500}.tk span{color:var(--t3);font-size:.8rem}
+
+.dd{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blub);background:rgba(75,142,242,.08);border:1px solid rgba(75,142,242,.25);border-radius:2px;padding:.25rem .6rem;margin-left:.5rem;vertical-align:middle;cursor:pointer;transition:all .3s}
+.dd::before{content:'\25C9';font-size:.7rem}
+.dd:hover{background:rgba(75,142,242,.18);border-color:rgba(75,142,242,.5);color:var(--blup)}
+.dd.active{background:rgba(75,142,242,.15);border-color:var(--blu);color:var(--blup)}
+.dd.active::before{content:'\25CE'}
+/* SPRINT 2 — first-render hint pulse on deep-dive toggle */
+.dd.hint{animation:ddHint 1.6s ease-in-out 3}
+@keyframes ddHint{0%,100%{box-shadow:0 0 0 0 rgba(109,168,255,0)}50%{box-shadow:0 0 0 4px rgba(109,168,255,0.18)}}
+/* SPRINT 2 — section-level deep-dive controls */
+.dd-controls{display:flex;gap:.5rem;align-items:center;margin:0 0 1.2rem;padding:.5rem .8rem;background:rgba(17,24,39,0.35);border:1px solid var(--brd);border-radius:3px}
+.dd-controls button{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .65rem;background:transparent;border:1px solid var(--brd);border-radius:2px;color:var(--t3);cursor:pointer;transition:all .2s}
+.dd-controls button:hover{color:var(--blub);border-color:var(--brds)}
+.dd-controls .dd-count{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t4);margin-left:auto}
+
+.dd-panel{display:none;margin-top:1.2rem;padding:1.4rem 1.6rem;background:linear-gradient(135deg,rgba(229,184,76,.04),rgba(167,139,250,.04));border:1px solid rgba(75,142,242,.18);border-left:2px solid var(--gold);border-radius:3px;animation:fu .35s ease}
+.dd-panel.open{display:block}
+.dd-panel .dd-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--goldm);margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem}
+.dd-panel .dd-label::before{content:'\25C9';font-size:.65rem}
+.dd-panel h4{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:500;color:var(--t1);margin-bottom:.6rem}
+.dd-panel p{color:var(--t2);line-height:1.75;margin-bottom:.8rem;font-size:.93rem}
+.dd-panel p:last-child{margin-bottom:0}
+.dd-panel strong{color:var(--t1)}
+.dd-panel .dd-question{font-style:italic;color:var(--t3);border-left:2px solid var(--purp);padding-left:.8rem;margin:.8rem 0}
+.wa-section{margin-bottom:2.5rem}
+.wa-section h4{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:500;color:var(--t1);margin:1.4rem 0 .7rem;padding-top:.8rem;border-top:1px solid rgba(75,142,242,.1)}
+.wa-section h4:first-of-type{border-top:none;padding-top:0}
+
+footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--brd);text-align:center}
+footer>p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
+/* SPRINT 1 — footer attestation as details */
+.footer-attest{text-align:left;margin:1.4rem auto 0;max-width:980px;border:1px solid var(--brd);border-radius:3px;background:rgba(17,24,39,0.55)}
+.footer-attest summary{cursor:pointer;padding:.8rem 1.2rem;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);transition:color .2s;list-style:none;display:flex;align-items:center;gap:.5rem}
+.footer-attest summary::-webkit-details-marker{display:none}
+.footer-attest summary::before{content:'+';font-family:'JetBrains Mono',monospace;color:var(--t4);font-size:.85rem;display:inline-block;width:.85rem;transition:transform .2s}
+.footer-attest[open] summary::before{content:'−'}
+.footer-attest summary:hover{color:var(--blub)}
+.footer-attest[open] summary{color:var(--blub);border-bottom:1px solid var(--brd)}
+.footer-attest .attest-body{padding:1rem 1.4rem 1.4rem}
+.footer-attest h5{font-family:'JetBrains Mono',monospace;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blub);margin:1.2rem 0 .4rem}
+.footer-attest h5:first-child{margin-top:0}
+.footer-attest .attest-body p{font-family:'Source Sans 3',system-ui,sans-serif;font-size:.82rem;color:var(--t3);letter-spacing:0;line-height:1.7;text-transform:none;margin-bottom:.6rem}
+
+@media(max-width:768px){.w{padding:0 1rem}h1{font-size:2rem}.c{padding:1.3rem 1.2rem}.vg{grid-template-columns:1fr}.mr{flex-direction:column;gap:.3rem}.mf{min-width:unset}.nav-sep{display:none}.cycle-dots{display:none}}
+
+/* SPRINT 3 — print stylesheet */
+@media print{
+  body{background:white !important;color:black !important;background-image:none !important}
+  .read-progress,nav,.dd-controls,.src-filter-wrap,.tb-nav-bar,.tb-nav-foot,.tb-site-foot{display:none !important}
+  .s{display:block !important;page-break-before:auto}
+  .s+.s{page-break-before:always}
+  .dd-panel{display:block !important;background:#f8f8f8 !important;border-color:#999 !important}
+  .c,.vi,.src,.th{background:white !important;color:black !important;border-color:#ccc !important;break-inside:avoid}
+  .c h3,.sh,.bd,.th h3,h1,.dd-panel h4,.wa-section h4,.vi h4,.epi{color:black !important}
+  .c p,.c strong,.vi p,.src .src-note,.dd-panel p,.bt,.bn,.sub{color:#333 !important}
+  a{color:#1a4d8f !important;text-decoration:underline;border-bottom:none !important}
+  .footer-attest{border:1px solid #ccc !important;background:white !important}
+  .footer-attest summary{display:none}
+  .footer-attest[open] .attest-body,.footer-attest .attest-body{display:block !important;padding:0}
+  .footer-attest h5{color:black !important}
+  .footer-attest .attest-body p{color:#333 !important}
+  body{font-size:11pt;line-height:1.5}
+  .c{padding:.8rem 1rem;margin-bottom:.6rem}
+  h1{font-size:24pt}.bd{font-size:16pt}.sh{font-size:14pt}.c h3{font-size:12pt}
+  .epi::first-letter{color:#333 !important}
+}
+<!-- TB-NAV-WRAP:STYLE -->
+/* Tectonic Briefing site-wide nav wrapper (injected by update-index.py) */
+.tb-nav-bar{position:sticky;top:0;z-index:80;background:rgba(11,17,32,.94);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(75,142,242,0.18);padding:.55rem 1.2rem;
+  display:flex;gap:.6rem;align-items:center;justify-content:space-between;
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;flex-wrap:wrap}
+.tb-nav-bar .tb-nav-left,.tb-nav-bar .tb-nav-right{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}
+.tb-nav-bar a{color:#8e9bb5;text-decoration:none;border:1px solid rgba(75,142,242,0.18);
+  padding:.32rem .62rem;border-radius:2px;transition:all .2s;white-space:nowrap}
+.tb-nav-bar a:hover{color:#6da8ff;border-color:rgba(75,142,242,0.45)}
+.tb-nav-bar .tb-nav-disabled{color:#5f6d87;border-color:rgba(75,142,242,0.08);pointer-events:none;opacity:.55}
+.tb-nav-bar .tb-nav-counter{color:#6da8ff;font-weight:500}
+.tb-nav-bar .tb-nav-archive{color:#cdd6e4;border-color:rgba(75,142,242,0.32)}
+.tb-nav-foot{margin-top:2rem;padding:1.4rem 1.6rem;border:1px solid rgba(75,142,242,0.18);
+  border-radius:3px;display:flex;gap:.6rem;align-items:center;justify-content:space-between;
+  background:#111827;font-family:'JetBrains Mono',monospace;font-size:.62rem;
+  letter-spacing:.1em;text-transform:uppercase;flex-wrap:wrap}
+.tb-nav-foot .tb-nav-left,.tb-nav-foot .tb-nav-right{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}
+.tb-nav-foot a{color:#8e9bb5;text-decoration:none;border:1px solid rgba(75,142,242,0.18);
+  padding:.32rem .62rem;border-radius:2px;transition:all .2s;white-space:nowrap}
+.tb-nav-foot a:hover{color:#6da8ff;border-color:rgba(75,142,242,0.45)}
+.tb-nav-foot .tb-nav-disabled{color:#5f6d87;border-color:rgba(75,142,242,0.08);pointer-events:none;opacity:.55}
+.tb-site-foot{margin-top:1.4rem;padding:1.2rem 0;text-align:center;
+  font-family:'JetBrains Mono',monospace;font-size:.55rem;color:#5f6d87;
+  letter-spacing:.12em;text-transform:uppercase}
+.tb-site-foot a{color:#8e9bb5;text-decoration:none;border-bottom:1px solid rgba(75,142,242,0.18)}
+.tb-site-foot a:hover{color:#6da8ff;border-color:#6da8ff}
+@media(max-width:560px){
+  .tb-nav-bar{font-size:.55rem;padding:.45rem .7rem}
+  .tb-nav-bar a{padding:.28rem .5rem}
+  .tb-nav-foot{font-size:.55rem;padding:1.1rem 1rem}
+}
+<!-- TB-NAV-WRAP:STYLE -->
+</style>
+</head>
+<body>
+<!-- TB-NAV-WRAP:TOP:START -->
+<div class="tb-nav-bar"><div class="tb-nav-left"><a href="2026-05-28.html" title="Briefing No. 049 · 28 May 2026 · Thursday">← Prev</a><span class="tb-nav-counter">Briefing No. 050 · Cycle 2 · Day 27</span><a class="tb-nav-disabled">Next →</a></div><div class="tb-nav-right"><a href="../index.html" class="tb-nav-archive">Archive</a></div></div>
+<!-- TB-NAV-WRAP:TOP:END -->
+
+<div aria-hidden="true" class="read-progress"><div class="read-progress-fill" id="rpf"></div></div>
+<div class="w">
+<header>
+<h1><em>Tectonic</em> Briefing</h1>
+<div class="sub">Structural forces · Inference engine · Wise action · Source archive</div>
+<div class="epi">“A house divided against itself cannot stand.” — Lincoln (1858). The regional war has stopped behaving as one war. Four days after Briefing 049's kinetic rupture, the Iran front swung back toward de-escalation — Pakistan-mediated, with Iran reviewing a US proposal to end the war — while the Lebanon front escalated to its deepest Israeli incursion in twenty-six years. On 31 May 2026 Israel captured Beaufort Castle and crossed the Litani River; on 1 June Netanyahu ordered the manoeuvre expanded. Brent fell to $91.20 and is on track for a roughly 17% monthly drop — its worst since 2020 — pricing only the Iran de-escalation, not the Lebanon escalation. One war, two fronts, two opposite directions, and a marketplace reading only one of them.</div>
+</header>
+<nav aria-label="Briefing sections" id="nav">
+<button class="on" onclick="go('ov')">Overview</button>
+<span aria-hidden="true" class="nav-sep"></span>
+<button class="rd" onclick="go('ge')">Geopolitical</button>
+<button onclick="go('te')">Technological</button>
+<button onclick="go('ec')">Economic</button>
+<button onclick="go('sc')">Scientific</button>
+<button onclick="go('so')">Social</button>
+<button class="gn" onclick="go('en')">Ecological</button>
+<button onclick="go('ig')">Institutional</button>
+<button class="gld" onclick="go('li')">Liminal Signals</button>
+<span aria-hidden="true" class="nav-sep"></span>
+<button class="pr" onclick="go('ie')">Inference Engine</button>
+<button class="tl" onclick="go('wa')">Wise Action</button>
+<button onclick="go('an')" style="border-color:rgba(240,96,80,0.3);color:#fca5a5">Anomalies</button>
+<button onclick="go('sa')">Source Archive</button>
+<button aria-label="Open search" class="cmdk-trigger" onclick="cmdkOpen()" type="button"><span>Search</span><span class="cmdk-kbd">⌘K</span></button>
+</nav>
+<!-- Cmd+K search modal -->
+<div aria-hidden="true" class="cmdk-modal" hidden="" id="cmdkModal">
+<div class="cmdk-backdrop" onclick="cmdkClose()"></div>
+<div aria-label="Search briefings and concepts" class="cmdk-panel" role="dialog">
+<div class="cmdk-header">
+<input autocomplete="off" class="cmdk-input" id="cmdkInput" placeholder="Search briefings, concepts, dates…" spellcheck="false" type="text"/>
+<span class="cmdk-hint"><span class="cmdk-kbd">ESC</span> close</span>
+</div>
+<div class="cmdk-results" id="cmdkResults" role="listbox"></div>
+<div class="cmdk-footer">
+<span><span class="cmdk-kbd">↑↓</span> navigate</span>
+<span><span class="cmdk-kbd">↵</span> open</span>
+<span class="cmdk-counts" id="cmdkCounts"></span>
+</div>
+</div>
+</div>
+<div class="bn"><span>BRIEFING NO. 050 · CYCLE 2 · DAY 27</span>
+<span aria-label="Day 27 of Cycle 2 (~30-day rhythm)" class="cycle-dots">
+<span class="cycle-dots-label">progress</span>
+<span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot active"></span><span class="cycle-dot current"></span><span class="cycle-dot"></span><span class="cycle-dot"></span><span class="cycle-dot"></span>
+</span></div>
+<div class="bd">1 June 2026 · Monday</div>
+<div class="bt">In the four days since Briefing 049's kinetic rupture, the regional war fragmented into fronts moving in opposite directions. On the Iran front, the exchange cooled: Iran is reviewing a US peace proposal to formally end the war, with talks mediated by Pakistan, and Trump called off a planned Tuesday attack on Iran (~18 May 2026). On the Lebanon front, it sharpened: on 31 May 2026 Israel captured Beaufort Castle near Nabatiyeh and crossed the Litani River — its deepest incursion into Lebanon in 26 years — and on 1 June Netanyahu said he "instructed the Israeli military to expand the manoeuvre in Lebanon," calling it "a dramatic change." Lebanon's Health Ministry reports 3,300+ killed and 1.2 million+ displaced. The oil tape priced the de-escalation only: Brent fell ~2% to $91.20 on Friday, the lowest in ~6 weeks, on track for a ~17% May decline — the biggest monthly drop since 2020. Off-corridor today: Hyundai-scale humanoid deployment runs in parallel (Japan Airlines at Haneda; Agility Digit at Toyota Canada); China's rare-earth regime stayed largely unchanged after the 14–15 May Trump-Xi summit; Ethiopia and Guinea hold elections on 1 June; and a meteor exploded off the Massachusetts coast at 2:11 p.m. Vocabulary holds at <strong>42 named patterns</strong>; one new Cycle 2 candidate is logged — <em>Front Divergence</em> — while Framework-Licensed Escalation is re-read against the cooling Iran front.</div>
+<!-- ========== OVERVIEW ========== -->
+<div class="s v" id="s-ov">
+<div class="prose">
+<p>Briefing 049 reported the Iran framework rupturing into open kinetic reciprocity: CENTCOM struck Bandar Abbas, Iran fired on a US-hosting base in Kuwait, and the United States named an "egregious ceasefire violation" and struck again. The structural question that briefing left open was whether the framework ruptures past citation or holds. Four days later the answer is neither, and the reason is that the war stopped being one war. <strong>The Iran front cooled while the Lebanon front escalated.</strong> The two fronts are now moving in opposite directions under the same set of principals, and that divergence is today's load-bearing structure.</p>
+<p>On the Iran front, de-escalation. Iran is reviewing a US peace proposal that would formally end the war, leaving unresolved the US demands that Iran suspend its nuclear programme and reopen the Strait of Hormuz; the talks are <strong>mediated by Pakistan</strong>. Iran's position is that at this stage it is negotiating only the end of the war on all fronts, not its nuclear programme. Netanyahu's position is that the war is not over until Iran's enriched-uranium stockpile is removed and its nuclear facilities are dismantled. <strong>Trump called off a planned Tuesday attack on Iran</strong> around 18 May 2026. The hot war that began with US and Israeli airstrikes on <strong>28 February 2026</strong> — strikes that killed Iranian officials including Supreme Leader Ali Khamenei — and that reached a conditional ceasefire on <strong>8 April 2026</strong>, is back in a deadlock where the kinetic exchange has paused and the negotiation is live.</p>
+<p>On the Lebanon front, the opposite. On <strong>31 May 2026</strong> Israel captured <strong>Beaufort Castle</strong>, the Crusader-era fortress near Nabatiyeh roughly 14.5 km inside Lebanon, and crossed the <strong>Litani River</strong> — the de-facto boundary under the April ceasefire — in its deepest incursion into Lebanon in twenty-six years. On <strong>1 June 2026</strong> Netanyahu said he "instructed the Israeli military to expand the manoeuvre in Lebanon" after taking Beaufort, calling it "a dramatic change." Lebanon's Ministry of Public Health reports more than <strong>3,300 killed</strong> (about 20% women, children, and first responders) and more than <strong>1.2 million displaced</strong>. Lebanese Prime Minister <strong>Nawaf Salam</strong> accused Israel of a "scorched-earth policy." One principal — Netanyahu — is de-escalating one front while escalating the other, in the same week.</p>
+<p>The marketplace priced one front and not the other. <strong>Brent fell about 2% to $91.20 a barrel on Friday</strong>, the lowest in roughly six weeks, on track for a roughly 17% decline in May — the biggest monthly drop since 2020 — driven by reports of a US–Iran preliminary agreement to extend the ceasefire and ease Strait of Hormuz shipping restrictions. Trump had not yet approved the agreement, and Iranian state media said it was not finalized. The oil tape read the Iran de-escalation as the structural fact and the Lebanon escalation as noise. That selective pricing is the day's anomaly: the same regional war is sending crude down 17% on one front while the other front takes a Crusader fortress and crosses a river. Earlier 2026 volatility frames the move — spot Brent hit $124.68 in early April; by late May it sits at $91.20.</p>
+</div>
+<div class="th"><h3>Unifying Thread: Front Divergence — One War, Two Directions</h3>
+<p>Briefing 049's thread set framework rupture against substrate assembly. Today the rupture thread resolves into something more specific. The Iran-Israel war has stopped behaving as a single conflict with a single trajectory and has fragmented into fronts that are moving in opposite directions at once. The Iran front is cooling toward a Pakistan-mediated peace proposal; the Lebanon front is escalating to its deepest incursion in twenty-six years. These are not sequential phases of one trajectory. They are simultaneous, and they share principals — Netanyahu instructs the military to expand the Lebanon manoeuvre on 1 June while Iran reviews a proposal to end the war on all fronts. The war's structure is now divergent rather than unitary.</p>
+<p>The divergence has a pricing signature, and that signature is the thread's empirical anchor. Brent at $91.20, down roughly 17% on the month, reads the Iran de-escalation and the prospect of an eased Hormuz as the whole story. The Lebanon escalation — Beaufort taken, the Litani crossed, 3,300-plus dead, 1.2 million displaced — does not move crude, because Lebanon is not a chokepoint for oil the way Hormuz is. The marketplace prices the front that touches the commodity it trades and ignores the front that does not. The <a class="vbadge m5" href="../concepts/channel-decomposition.html" title="Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed." data-meta="5">Channel Decomposition</a> pattern (META-5, Briefing 032) operates at the war's own structure: the bundled "regional war" has decomposed into independently-moving fronts, and the institutions that price it have decomposed their attention the same way.</p>
+<p>Today logs one new Cycle 2 candidate against the divergent side. <strong>Front Divergence</strong> (META-3 Threshold Cascade family, with cross-reference to META-5) names a single conflict under shared principals fragmenting into fronts that move in opposite directions simultaneously, such that the pricing architecture tracks only the front coupled to the commodity it trades. The empirical anchor is the cooling Iran front (Pakistan-mediated peace proposal; Trump's called-off Tuesday strike) set against the escalating Lebanon front (Beaufort captured 31 May; Litani crossed; manoeuvre expanded 1 June) — with Brent down 17% reading only the former. <strong>The consolidation caveat is explicit.</strong> This may simply instantiate <a class="vbadge m5" href="../concepts/channel-decomposition.html" title="Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed." data-meta="5">Channel Decomposition</a> applied to a conflict rather than a commitment, or it may overlap with <a class="vbadge m1" href="../concepts/peripheral-assertion.html" title="The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal." data-meta="1">Peripheral Assertion</a> (Briefing 021), with Lebanon as the under-priced front. It enters the monitoring pool as a candidate, not a promotion.</p>
+<p>On the capability side, the substrate keeps assembling off-corridor and at a different cadence. Japan Airlines deployed Unitree-based humanoid robots at Tokyo's Haneda Airport on a three-year operational commitment; Agility Robotics' Digit runs seven-plus commercial units at Toyota Motor Manufacturing Canada on RAV4 logistics; Unitree shipped 5,500-plus units in 2025 and targets 10,000–20,000 in 2026. Google's Gemma 4 family released on 4 May 2026, open-weight and tuned for reasoning and agentic workflows. The <a class="vbadge m1" href="../concepts/capability-opacity.html" title="The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable." data-meta="1">Capability Opacity</a> pattern (META-1, Briefing 003) names the AI side; the robotics deployments name a labor substrate assembling at a cadence the institutions tracking it do not price as a single force.</p>
+</div>
+<h3 class="sh2" style="color:var(--blub)">Structural Vocabulary (Accumulating)</h3>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1rem;font-size:.9rem">Organized by meta-category. Five structural families, <strong style="color:var(--blub)">42 named patterns</strong> (no promotions, no demotions, no additions today). One new Cycle 2 candidate is logged — <em>Front Divergence</em>, the structural pattern in which a single conflict under shared principals fragments into fronts that move in opposite directions at once, with the pricing architecture tracking only the front coupled to the commodity it trades. Framework-Licensed Escalation (Briefing 049 candidate) is re-read against the cooling Iran front: the framework that licensed reciprocity four days ago now hosts a Pakistan-mediated peace proposal. Capability Substrate Assembly (Briefing 048) holds with today's robotics-deployment instances at Haneda and Toyota Canada. The <a class="vbadge m4" href="../concepts/commons-enclosure.html" title="When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper." data-meta="4">Commons Enclosure</a> candidate carries forward with the critical-minerals post-summit drift.</p>
+<h4 class="sh2" style="color:var(--blub);font-size:1rem;margin:1.4rem 0 .6rem">META-1: Coupling Failure</h4>
+<div class="vg">
+<div class="vi m1"><h4>Observation-Action Decoupling</h4><p>Accurate observation does not constrain behavior. Briefing 006.</p></div>
+<div class="vi m1"><h4>Narrative-Physical Decoupling</h4><p>Official account operates as a parallel reality. Briefing 007.</p></div>
+<div class="vi m1"><h4>Akrasia at Scale</h4><p>Knowing the better course and choosing the worse. Briefing 006.</p></div>
+<div class="vi m1"><h4>Capability Opacity</h4><p>Capability-verifiability gap unbridgeable. Briefing 003.</p></div>
+<div class="vi m1"><h4>Emergent Concealment</h4><p>AI develops capacity to hide actions. Briefing 005.</p></div>
+<div class="vi m1"><h4>Instrument Autonomy</h4><p>Deployed instrument exceeds deployer's control. Briefing 008.</p></div>
+<div class="vi m1"><h4>Scope Retreat</h4><p>Declared policy retreats to physically feasible within hours. Briefing 009.</p></div>
+<div class="vi m1"><h4>Dual-Track Maximalism</h4><p>Maximum threat and diplomatic opening occur simultaneously. Briefing 010.</p></div>
+<div class="vi m1"><h4>Credential Foreclosure</h4><p>Executing the credential-action forecloses the negotiation. Briefing 016.</p></div>
+<div class="vi m1"><h4>Verification-Mode Asymmetry</h4><p>Verification regime structurally blind to failures only execution surfaces. Briefing 020.</p></div>
+<div class="vi m1"><h4>Peripheral Assertion</h4><p>Periphery refuses backdrop status. Briefing 021.</p></div>
+<div class="vi m1"><h4>Sabbath Visibility</h4><p>Suppressed signals become audible when production rhythm slows. Briefing 022.</p></div>
+<div class="vi m1"><h4>Weekend Translation</h4><p>Saturday cycle resolves tactical moves into structural transitions. Briefing 028.</p></div>
+<div class="vi m1"><h4>Mode-Switch Disarticulation</h4><p>Single architecture executes concealment-mode and disclosure-mode across consecutive cadence-windows. Briefing 038.</p></div>
+</div>
+<h4 class="sh2" style="color:var(--blub);font-size:1rem;margin:1.4rem 0 .6rem">META-2: Bypass Inversion</h4>
+<div class="vg">
+<div class="vi m2"><h4>Bypass Capture</h4><p>Escape route becomes the target. Briefing 007.</p></div>
+<div class="vi m2"><h4>Shadow Settlement</h4><p>Parallel transaction system emerges. Briefing 002.</p></div>
+<div class="vi m2"><h4>Conditional Collapse</h4><p>Ambiguity that enabled agreement becomes mechanism of failure. Briefing 005.</p></div>
+<div class="vi m2"><h4>Negotiation Multiplication</h4><p>Stalled tracks spawn parallel tracks. Briefing 006.</p></div>
+<div class="vi m2"><h4>Sovereignty Arbitrage</h4><p>Gap between sovereignty claims and enforcement. Briefing 003.</p></div>
+</div>
+<h4 class="sh2" style="color:var(--blub);font-size:1rem;margin:1.4rem 0 .6rem">META-3: Threshold Cascade</h4>
+<div class="vg">
+<div class="vi m3"><h4>Buffer Collapse</h4><p>Shock-absorbing system fails. Briefing 001.</p></div>
+<div class="vi m3"><h4>Chokepoint Cascade</h4><p>Bottleneck failure propagates. Briefing 001.</p></div>
+<div class="vi m3"><h4>Tipping Cascade</h4><p>One threshold triggers others. Briefing 001.</p></div>
+<div class="vi m3"><h4>Deadline Revelation</h4><p>Temporal boundary forces latent forces visible. Briefing 002.</p></div>
+<div class="vi m3"><h4>Reversibility Asymmetry</h4><p>Physical conditions tend to irreversibility; institutional to reversibility. Briefing 009.</p></div>
+<div class="vi m3"><h4>Keystone Removal</h4><p>Configuration loses load-bearing actor. Briefing 023.</p></div>
+<div class="vi m3"><h4>Verdict Compression</h4><p>Smoothed signals produce maximum dispersion within a single decision window. Briefing 026.</p></div>
+<div class="vi m3"><h4>Effective-Date Convergence</h4><p>Multiple structural transitions activate on the same calendar day. Briefing 027.</p></div>
+<div class="vi m3"><h4>Sabbath Operationalization</h4><p>Sunday converts structural information into operational decisions before Monday. Briefing 029.</p></div>
+</div>
+<h4 class="sh2" style="color:var(--blub);font-size:1rem;margin:1.4rem 0 .6rem">META-4: Commons Enclosure</h4>
+<div class="vg">
+<div class="vi m4"><h4>Commons Enclosure</h4><p>Shared resource converted to controlled access. Briefing 003.</p></div>
+<div class="vi m4"><h4>Optionality Arbitrage</h4><p>Advantage existing only in crisis. Briefing 001.</p></div>
+<div class="vi m4"><h4>Paradigm Defection</h4><p>Dominant advocate abandons paradigm. Briefing 005.</p></div>
+<div class="vi m4"><h4>Process as Destination</h4><p>Negotiation's continuation is its goal. Briefing 007.</p></div>
+<div class="vi m4"><h4>Cartel Dissolution</h4><p>Multilateral coordination regime loses load-bearing participant. Briefing 024.</p></div>
+</div>
+<h4 class="sh2" style="color:var(--blub);font-size:1rem;margin:1.4rem 0 .6rem">META-5: Institutional Hollowing</h4>
+<div class="vg">
+<div class="vi m5"><h4>Capacity Hollowing</h4><p>Personnel cuts reduce perception before action. Briefing 002.</p></div>
+<div class="vi m5"><h4>Category Collapse</h4><p>Stable distinction dissolves. Briefing 001.</p></div>
+<div class="vi m5"><h4>Governance Vacuum</h4><p>Institutional capacity lags pace of change. Briefing 001.</p></div>
+<div class="vi m5"><h4>Constructive Ambiguity</h4><p>Agreement via mutually exclusive interpretations. Briefing 004.</p></div>
+<div class="vi m5"><h4>Ceasefire Acceleration</h4><p>Pause accelerates structural transformations. Briefing 004.</p></div>
+<div class="vi m5"><h4>Electoral Correction</h4><p>Entrenched illiberal rule reversed through democratic processes. Briefing 009.</p></div>
+<div class="vi m5"><h4>Sanctuary Discount</h4><p>Marketplace discounts Sunday-window decisions due to learned constraint-absence. Briefing 030.</p></div>
+<div class="vi m5"><h4>Tail Calibration Failure</h4><p>Sanctuary Discount's mean-trajectory calibration fails on operational tail events. Briefing 031.</p></div>
+<div class="vi m5"><h4>Channel Decomposition</h4><p>Institutional architecture decomposes a previously-bundled commitment. Briefing 032.</p></div>
+</div>
+<h4 class="sh2" style="color:var(--gold);font-size:1rem;margin:1.6rem 0 .6rem">Cycle 2 Candidate Pool (under sustained monitoring)</h4>
+<div class="vg">
+<div class="vi" style="border-color:rgba(229,184,76,.4)"><h4 style="color:var(--gold)">Front Divergence · NEW CANDIDATE (Briefing 050)</h4><p>A single conflict under shared principals fragments into fronts that move in opposite directions at once, such that the pricing architecture tracks only the front coupled to the commodity it trades. Empirical anchor (verified 1 June 2026): the cooling Iran front (Iran reviewing a Pakistan-mediated US peace proposal; Trump's called-off Tuesday strike, ~18 May) set against the escalating Lebanon front (Beaufort Castle captured 31 May; Litani River crossed; Netanyahu orders the manoeuvre expanded 1 June) — with Brent down ~17% on the month reading only the former. <strong>Consolidation caveat:</strong> may simply instantiate <a class="vbadge m5" href="../concepts/channel-decomposition.html" title="Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed." data-meta="5">Channel Decomposition</a> (Briefing 032) applied to a conflict, or overlap with <a class="vbadge m1" href="../concepts/peripheral-assertion.html" title="The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal." data-meta="1">Peripheral Assertion</a> (Briefing 021). Enters the monitoring pool as a candidate, not a promotion; requires cross-architecture instances before promotion.</p></div>
+<div class="vi" style="border-color:rgba(229,184,76,.4)"><h4 style="color:var(--gold)">Framework-Licensed Escalation · CANDIDATE (re-read against cooling)</h4><p>A ceasefire or negotiation framework both parties keep invoking verbally even as they trade live kinetic strikes; the shared framework-fiction licenses rather than constrains escalation. Briefing 050: the framework that licensed reciprocity on 27–28 May now hosts a Pakistan-mediated peace proposal Iran is reviewing — the same framework, swung from licensing escalation to hosting de-escalation. The candidate's definition is refined, not broken: a framework that can license either direction is the load-bearing observation. Carries forward with the consolidation caveat against <a class="vbadge m1" href="../concepts/narrative-physical-decoupling.html" title="The official account of a situation operates as a parallel reality rather than a description of the physical one." data-meta="1">Narrative-Physical Decoupling</a>.</p></div>
+<div class="vi" style="border-color:rgba(229,184,76,.4)"><h4 style="color:var(--gold)">Capability Substrate Assembly · CANDIDATE (holds)</h4><p>Production-scale infrastructure for a class of capability assembled through commercial deployments, partner channels, and capital flows ahead of any public release event. <strong>Briefing 050 instances:</strong> robotics (Japan Airlines Unitree humanoids at Haneda on a three-year commitment, ~US$15,400/unit; Agility Digit 7+ units at Toyota Canada; Unitree 5,500+ units shipped 2025, targeting 10,000–20,000 in 2026; AEON via Hexagon + Fill Maschinenbau in Austria); AI (Google Gemma 4 open-weight family, 4 May; Penn light-matter particle for lower-energy compute, 18 May). Candidate holds toward its promotion threshold; <strong>NOT</strong> promoted today.</p></div>
+<div class="vi" style="border-color:rgba(229,184,76,.4)"><h4 style="color:var(--gold)">Mediator Fragility · NEW CANDIDATE (Briefing 050)</h4><p>The actor brokering a peace framework is itself destabilized while the framework depends on its stability. Briefing 050: Pakistan mediates the Iran-US peace talks while a suicide bombing on a shuttle train in Quetta, Balochistan kills 47-plus on 1 June. The mediator's internal security degrades inside the window its mediation must hold. Adjacent to <a class="vbadge m3" href="../concepts/keystone-removal.html" title="A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the…" data-meta="3">Keystone Removal</a> (Briefing 023): if the mediator is the keystone of the framework, instability in the mediator is load-bearing on the framework. Enters monitoring; one instance, not a pattern.</p></div>
+<div class="vi" style="border-color:rgba(229,184,76,.4)"><h4 style="color:var(--gold)">Information-Suppression Decomposition · CANDIDATE</h4><p><a class="vbadge m5" href="../concepts/channel-decomposition.html" title="Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed." data-meta="5">Channel Decomposition</a> executed via administrative concealment. Briefing 050: after the 14–15 May Trump-Xi Beijing summit, China agreed to "address" US concerns about shortages of yttrium, scandium, and indium — a step down from October 2025's pledge to "effectively eliminate" controls — with no date and no verification mechanism. The April 2025 licensing regime was never suspended; the truce on October 2025 restrictions expires November 2026. Holds.</p></div>
+<div class="vi" style="border-color:rgba(229,184,76,.4)"><h4 style="color:var(--gold)">Disclosure-Mode Discount · CANDIDATE (re-read)</h4><p>Marketplace penalty imposed on disclosure-mode signals. Briefing 050: Brent at $91.20 (Friday close, down ~2%, lowest in ~6 weeks) priced the US–Iran preliminary-agreement reports even though Trump had not approved and Iranian state media said it was not finalized — the discount applied in reverse, crediting an unconfirmed de-escalation report while discounting the still-live Lebanon escalation. The asymmetry is the live observation; promotion awaits whether the unapproved agreement holds.</p></div>
+<div class="vi" style="border-color:rgba(229,184,76,.4)"><h4 style="color:var(--gold)">Bilateral <a class="vbadge m5" href="../concepts/channel-decomposition.html" title="Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed." data-meta="5">Channel Decomposition</a> · CANDIDATE</h4><p>Both parties independently decompose bundled commitments. Briefing 050: the Iran framework's nuclear channel and end-of-war channel are now explicitly separated — Iran negotiates only the end of the war on all fronts, while Netanyahu insists the war continues until the enriched-uranium stockpile is removed. The bundle (war + nuclear) is decomposed by each side on its own terms. Closely adjacent to today's Front Divergence candidate; the consolidation audit must determine whether they are one pattern.</p></div>
+<div class="vi" style="border-color:rgba(229,184,76,.4)"><h4 style="color:var(--gold)">Symbolic Anchoring Failure · CANDIDATE</h4><p>Substituted symbols cannot anchor operational outcomes when non-principal architectures price the symbols at sharp discount. Briefing 050: an unapproved, unfinalized US–Iran agreement moved Brent down ~17% on the month while the symbol itself ("preliminary agreement") carried no binding force from either principal. The pricing anchored to a symbol neither party had ratified. Partial-anchoring instance carried forward.</p></div>
+</div>
+<h4 class="sh2" style="color:var(--gold);font-size:1rem;margin:1.6rem 0 .6rem">Watch-Item (logged for sustained monitoring)</h4>
+<div class="vg">
+<div class="vi" style="border-color:rgba(229,184,76,.25);opacity:.85"><h4 style="color:var(--goldm)">Limited-Strike Permissibility · WATCH (front-specific)</h4><p>Limited operational strikes inside a sustained deferral or ceasefire framework without rupturing the framework's structural form. <strong>Briefing 050:</strong> the watch-item now reads differently on each front. On the Iran front, strikes paused and the framework hosts a peace proposal — permissibility receded. On the Lebanon front, the manoeuvre crossed the Litani and took Beaufort despite the April ceasefire — permissibility expanded to ground incursion, not just air strikes. The front-specific split is itself the empirical content of today's Front Divergence candidate; the watch-item is carried, not resolved.</p></div>
+</div>
+</div>
+<!-- ========== GEOPOLITICAL ========== -->
+<div class="s" id="s-ge">
+<h2 class="sh" style="color:var(--red)">Geopolitical</h2>
+<div class="c cri">
+<div class="lb rl"><strong>Israel-Lebanon · Deepest Incursion in 26 Years</strong> <span class="tg tu">Knightian Uncertainty</span> <span class="tg tc">Complexity</span></div>
+<h3>Israel Captures Beaufort Castle and Crosses the Litani River; Netanyahu Orders the Manoeuvre Expanded<span aria-expanded="false" class="dd hint" onclick="ddt(this)" role="button" tabindex="0">Deep Dive</span></h3>
+<p>The Lebanon front escalated sharply over the weekend. On <strong>31 May 2026</strong> <span aria-label="verified" class="conf v" title="Verified per research brief — Beaufort captured 31 May 2026; Litani crossed; deepest incursion in 26 years">✓</span> Israel captured <strong>Beaufort Castle</strong>, the Crusader-era fortress near Nabatiyeh roughly 14.5 km inside the Lebanese border, and Israeli troops <strong>crossed the Litani River</strong> — the de-facto boundary under the April 2026 ceasefire — in Israel's deepest incursion into Lebanon in <strong>26 years</strong>. On <strong>1 June 2026</strong> Netanyahu said he "instructed the Israeli military to expand the manoeuvre in Lebanon" after taking Beaufort, calling it "a dramatic change." The Hezbollah-Israel escalation is referred to as the 2026 Lebanon war.</p>
+<p>The human toll is the load-bearing figure. Lebanon's Ministry of Public Health reports more than <strong>3,300 killed</strong> — about 20% of them women, children, and first responders — and more than <strong>1.2 million displaced</strong>. Lebanese Prime Minister <strong>Nawaf Salam</strong> accused Israel of a "scorched-earth policy." The crossing of the Litani is the structural fact: the river was the prior boundary, and crossing it converts an air-strike campaign into a ground manoeuvre that holds territory. Beaufort is a fortress, not a target — taking it is an occupation move, not a strike.</p>
+<p>The structural reading is <a class="vbadge m5" href="../concepts/ceasefire-acceleration.html" title="When a pause in kinetic conflict accelerates the structural, institutional, and economic transformations the conflict initiated." data-meta="5">Ceasefire Acceleration</a> (META-5, Briefing 004): the April ceasefire's nominal function was a pause, and under stress the pause inverted into an acceleration that crossed the river the ceasefire was meant to hold. The <a class="vbadge m5" href="../concepts/constructive-ambiguity.html" title="When a diplomatic agreement succeeds precisely because its terms support mutually exclusive interpretations." data-meta="5">Constructive Ambiguity</a> pattern (META-5, Briefing 004) names the mechanism: the April ceasefire's terms on the Litani line supported two readings, and Beaufort tests which reading binds. The expansion order of 1 June is the answer — the ambiguity resolved in favor of the manoeuvre, not the boundary.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive</div>
+<h4>One Principal, Two Fronts: Why Netanyahu De-escalates Iran and Escalates Lebanon in the Same Week</h4>
+<p>The structurally interesting fact is not that the Lebanon front escalated. It is that it escalated while the Iran front cooled, under the same principal, in the same week. Netanyahu's position on Iran is that the war is not over until the enriched-uranium stockpile is removed and the nuclear facilities are dismantled — a maximalist condition held against a live Pakistan-mediated peace proposal. His position on Lebanon is operational: take Beaufort, cross the Litani, expand the manoeuvre. <strong>The two fronts are running opposite playbooks at once.</strong></p>
+<p>This is what today's Front Divergence candidate names. A single conflict, framed for months as one regional war, has decomposed into fronts whose trajectories no longer co-move. The Iran front is governed by negotiation; the Lebanon front by manoeuvre. The principals are shared but the logic is split, and the split is not a transition from one phase to another — it is a simultaneous divergence. A war that diverges this way is harder to read than a war that escalates or de-escalates as a whole, because no single trajectory describes it.</p>
+<p>The divergence has a pricing tell, and the tell is the candidate's empirical anchor. Brent fell to $91.20 and is on track for a roughly 17% May decline reading the Iran front's de-escalation and the prospect of an eased Strait of Hormuz. The Lebanon front — 3,300 dead, 1.2 million displaced, a Crusader fortress taken — does not move crude, because Lebanon is not a chokepoint for oil. The marketplace prices the front that touches Hormuz and ignores the front that does not. The decomposition of the war into fronts is mirrored by a decomposition of the pricing architecture's attention, and the two decompositions reinforce each other.</p>
+<p>The consolidation discipline applies. Front Divergence could collapse into <a class="vbadge m5" href="../concepts/channel-decomposition.html" title="Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed." data-meta="5">Channel Decomposition</a> read at the scale of a conflict rather than a commitment — the "regional war" as a bundle decomposing into independently-graspable fronts. Or it could overlap with <a class="vbadge m1" href="../concepts/peripheral-assertion.html" title="The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal." data-meta="1">Peripheral Assertion</a>, with Lebanon as the under-priced front asserting structural significance the corridor's Hormuz-attention misses. The candidate enters the pool because the simultaneity under shared principals is new: not one front going quiet while another speaks, but one actor running de-escalation and escalation in parallel. <strong>The audit will decide whether that is genuinely new.</strong></p>
+<p class="dd-question">If the same principal can de-escalate one front while escalating another, what couples the two — and when does the Lebanon manoeuvre's momentum force a re-coupling that the Iran negotiation cannot survive? The candidate answer: the coupling runs through Netanyahu's nuclear condition. The Iran negotiation is bounded by a maximalist demand that the Lebanon manoeuvre's success may harden rather than soften. A front that diverges can re-converge, and the re-convergence is the risk the oil tape is not pricing.</p>
+</div>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (Israel captures Beaufort Castle near Nabatiyeh, ~14.5 km inside Lebanon, 31 May; crosses the Litani River; deepest incursion in 26 years; Netanyahu "instructed the Israeli military to expand the manoeuvre in Lebanon," "a dramatic change," 1 June; Lebanese Ministry of Public Health 3,300+ killed, ~20% women/children/first responders, 1.2 million+ displaced; PM Nawaf Salam "scorched-earth policy"; 2026 Lebanon war).</p></div>
+</div>
+<div class="c cri">
+<div class="lb rl"><strong>US-Iran Architecture · Front Cooling</strong> <span class="tg ta">Ambiguity</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>Iran Reviews a Pakistan-Mediated US Peace Proposal; Trump Called Off a Planned Tuesday Strike<span aria-expanded="false" class="dd hint" onclick="ddt(this)" role="button" tabindex="0">Deep Dive</span></h3>
+<p>Four days after the kinetic rupture Briefing 049 reported, the Iran front swung back toward de-escalation. In late May 2026 <span aria-label="verified" class="conf v" title="Verified per research brief — Iran reviewing US peace proposal; Pakistan-mediated; Trump called off Tuesday strike ~18 May">✓</span> Iran is <strong>reviewing a US peace proposal that would formally end the war</strong>, leaving unresolved the US demands that Iran suspend its nuclear programme and reopen the Strait of Hormuz. The talks are <strong>mediated by Pakistan</strong>. <strong>Trump called off a planned Tuesday attack on Iran</strong> around 18 May 2026. The hot war that began with US and Israeli airstrikes on <strong>28 February 2026</strong> reached a conditional ceasefire on <strong>8 April 2026</strong>; the current state is a deadlock in which the kinetic exchange has paused and the negotiation is live.</p>
+<p>The negotiating positions are decomposed and incompatible. Iran's position: at this stage it is negotiating only the end of the war on all fronts, not its nuclear programme. Netanyahu's position: the war is not over until Iran's enriched-uranium stockpile is removed and its nuclear facilities are dismantled. <strong>Iran is negotiating the war; Israel is negotiating the nuclear programme.</strong> The two sides are not negotiating the same object. The <a class="vbadge m5" href="../concepts/channel-decomposition.html" title="Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed." data-meta="5">Channel Decomposition</a> pattern (META-5, Briefing 032) operates at the negotiation's core: the war channel and the nuclear channel have been separated, and each principal grasps a different one.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive</div>
+<h4>Framework-Licensed Escalation, Re-Read: A Framework That Can Swing Either Direction</h4>
+<p>Briefing 049 named Framework-Licensed Escalation as a candidate: a framework both parties keep invoking while they trade fire, the framework-fiction licensing escalation rather than constraining it. The deep dive that day asked what ends the cycle. Four days later the framework did not rupture and did not constrain — it swung. The same framework that hosted the Bandar Abbas strike and the intercepted Kuwait missile now hosts a Pakistan-mediated peace proposal. <strong>The framework is direction-agnostic.</strong></p>
+<p>That is a refinement of the candidate, not a break. The original observation was that a shared framework-fiction can license escalation. The refinement is that the same fiction can license de-escalation just as readily, because its work-doing power was never about direction — it was about providing a verbal container both sides could keep citing regardless of what they did inside it. The framework absorbed strikes in late May and absorbs a peace proposal in early June without changing its form. This is the <a class="vbadge m5" href="../concepts/constructive-ambiguity.html" title="When a diplomatic agreement succeeds precisely because its terms support mutually exclusive interpretations." data-meta="5">Constructive Ambiguity</a> pattern (META-5, Briefing 004) operating at maximum range: an agreement whose terms support mutually exclusive readings can host mutually exclusive actions.</p>
+<p>The mediator is the new structural variable. Pakistan brokers the talks, and on 1 June a suicide bombing on a shuttle train in Quetta, Balochistan killed 47-plus. The mediator's internal security is degrading inside the window its mediation must hold. This is the empirical seed of today's Mediator Fragility candidate, and it is adjacent to <a class="vbadge m3" href="../concepts/keystone-removal.html" title="A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the…" data-meta="3">Keystone Removal</a> (META-3, Briefing 023): if Pakistan is the keystone of the framework's de-escalation path, instability in Pakistan is load-bearing on the path. The Quetta bombing is one instance, not a pattern, and the candidate is logged for monitoring.</p>
+<p class="dd-question">If a framework can license escalation one week and de-escalation the next without changing form, is it a constraint at all, or merely a shared vocabulary that lets each side claim continuity while reversing course? The candidate answer: it is a vocabulary, and the vocabulary's value is precisely that it survives reversals. The framework's persistence across the reversal is the thing to watch, because a vocabulary that survives both directions is harder to break than one that constrains a single direction.</p>
+</div>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (US-Israel war on Iran ongoing since 28 Feb 2026; early strikes killed Iranian officials including Supreme Leader Ali Khamenei; conditional ceasefire 8 April 2026; late May — Iran reviewing a US peace proposal to end the war, US demands Iran suspend nuclear programme and reopen Strait of Hormuz, talks mediated by Pakistan; Netanyahu — war not over until enriched-uranium stockpile removed and facilities dismantled; Iran — negotiating only end of the war on all fronts, not nuclear; Trump called off planned Tuesday attack ~18 May).</p></div>
+</div>
+<div class="c cri">
+<div class="lb rl"><strong>Africa · 1 June Elections</strong> <span class="tg tc">Complexity</span></div>
+<h3>Ethiopia Holds Its 2026 General Election; Guinea Votes for a 147-Seat National Assembly</h3>
+<p>Two African elections fall on the briefing's own date. On <strong>1 June 2026</strong> the <strong>2026 Ethiopian general election</strong> is held, and <strong>Guinea votes to elect 147 members of its National Assembly</strong>. The entry is supplied off-corridor, in keeping with the topic-rotation discipline (per Briefing 007) that names Africa as a structurally under-covered domain. The structural note is the contrast in scale of attention: two national electoral events in a region of roughly 130 million (Ethiopia) and a post-transition legislative vote in Guinea draw a fraction of the corridor's bandwidth, even as their outcomes reshape the governance map of the Horn and West Africa.</p>
+<p>The <a class="vbadge m5" href="../concepts/electoral-correction.html" title="Entrenched illiberal rule reversed through democratic processes; the form of the institution holds the work-doing power even when the substantive trajectory had appeared to decouple from it." data-meta="5">Electoral Correction</a> pattern (META-5, Briefing 009) is the lens to hold lightly here: an election is the institutional form through which a trajectory can be corrected or ratified, and the work-doing power of the vote depends on whether the form is honored. This briefing records the elections as a dated event and does not project an outcome — the result is outside the verified record, and the structural significance is in the holding of the votes, not in a result this briefing cannot yet know.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (2026 Ethiopian general election held 1 June; Guinea votes to elect 147 members of its National Assembly, 1 June).</p></div>
+</div>
+</div>
+<!-- ========== TECHNOLOGICAL ========== -->
+<div class="s" id="s-te">
+<h2 class="sh">Technological</h2>
+<div class="c">
+<div class="lb"><strong>Humanoid Robotics Deployment · Operational Commitments</strong> <span class="tg tc">Complexity</span></div>
+<h3>Japan Airlines Deploys Humanoid Robots at Haneda on a Three-Year Commitment; Agility's Digit Runs at Toyota Canada<span aria-expanded="false" class="dd hint" onclick="ddt(this)" role="button" tabindex="0">Deep Dive</span></h3>
+<p>The humanoid substrate moved from demonstration to operational commitment in May 2026 <span aria-label="verified" class="conf v" title="Verified per research brief — JAL Haneda 3-year commitment; Agility Digit at Toyota Canada; Unitree shipment figures">✓</span>. <strong>Japan Airlines deployed humanoid robots at Tokyo's Haneda Airport on a three-year operational commitment</strong>, partnering with GMO AI &amp; Robotics on two <strong>Unitree</strong>-based platforms at roughly <strong>US$15,400 per unit</strong>. <strong>Agility Robotics' Digit runs seven-plus commercial units at Toyota Motor Manufacturing Canada</strong> on RAV4 logistics. <strong>Unitree shipped more than 5,500 units in 2025 and is targeting 10,000–20,000 in 2026.</strong> Hexagon Robotics and Austria's Fill Maschinenbau are deploying the <strong>AEON</strong> humanoid in Austrian production. These are deployments with contracts and unit prices, not stage demos.</p>
+<p>The structural fact is the price point and the commitment length. A Unitree-based platform at roughly US$15,400 a unit is within the capital reach of a logistics operator, and a three-year operational commitment converts a trial into infrastructure. The under-covered-domain editorial discipline (per Briefing 007) names humanoid robotics as a labor-implications story larger than language-model AI and receiving a fraction of the attention. The <a class="vbadge m5" href="../concepts/capacity-hollowing.html" title="When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act." data-meta="5">Capacity Hollowing</a> pattern (META-5, Briefing 002) operates pre-emptively at the labor substrate: institutional perception of displacement lags the deployment cadence.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive</div>
+<h4>From Demonstration to Deployment: The Humanoid Substrate Crosses a Commitment Threshold</h4>
+<p>The humanoid robotics story has spent two years in the demonstration register — capability showcases, factory pilots, production-cadence milestones. May 2026 moves it into the commitment register, and the distinction is structural. A demonstration is reversible; an operational commitment is not, or not cheaply. Japan Airlines committing to a three-year deployment at Haneda, an airport with a fixed labor model and a fixed operational tempo, is a different kind of fact from a robot loading a bag on a stage. <strong>The commitment is the threshold.</strong></p>
+<p>The economics are the load-bearing variable. A Unitree-based platform at roughly US$15,400 per unit sits below the annual loaded cost of a single full-time logistics worker in a high-wage market, and Unitree shipping 5,500-plus units in 2025 with a 10,000–20,000 target for 2026 is a unit-volume curve that drives the price down further. When the per-unit cost crosses below the labor cost it substitutes for, the deployment decision stops being a technology choice and becomes a cost choice. Haneda and Toyota Canada are early instances of that crossing.</p>
+<p>This is the Capability Substrate Assembly candidate operating at the hardware-and-labor layer. The pattern names production-scale infrastructure assembled through deployments and capital flows ahead of any single release event. Humanoid robotics has no GA moment the way a frontier model does; instead it has a deployment curve, and the curve is the substrate. Agility's Digit at Toyota Canada, JAL's Unitree platforms at Haneda, and AEON in Austrian production are not a product launch — they are the substrate accumulating one contract at a time, below the threshold of a single visible event.</p>
+<p>The institutional gap is the same one Briefing 049 named for the cross-architecture substrate. No institution prices the aggregate labor displacement of a deployment curve that runs across airports, auto plants, and machine shops simultaneously. Each deployment is priced by its own operator's cost model; the compounding is priced by no one. The <a class="vbadge m1" href="../concepts/capability-opacity.html" title="The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable." data-meta="1">Capability Opacity</a> pattern (META-1, Briefing 003) has a hardware analog here: the gap between what the deployed fleet can do and what the institutions tracking labor markets can verify about its trajectory is widening with the shipment curve.</p>
+<p class="dd-question">If the per-unit cost of a deployable humanoid has already crossed below the labor cost it substitutes for in high-wage logistics, what is the institutional channel that prices the displacement before it arrives — and is its absence the same <a class="vbadge m5" href="../concepts/capacity-hollowing.html" title="When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act." data-meta="5">Capacity Hollowing</a> the briefing tracks in ministries? The candidate answer: there is no such channel, and the absence is structurally identical. The perception layer for labor displacement is hollowing ahead of the action layer, exactly as it does for a ministry losing its ability to see before it loses its ability to act.</p>
+</div>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (Japan Airlines deployed humanoid robots at Haneda on a three-year operational commitment; partnered with GMO AI &amp; Robotics on two Unitree-based platforms at ~US$15,400/unit; Agility Robotics' Digit 7+ commercial units at Toyota Motor Manufacturing Canada on RAV4 logistics; Unitree shipped 5,500+ units in 2025, targeting 10,000–20,000 in 2026; Hexagon Robotics + Fill Maschinenbau deploying AEON in Austrian production).</p></div>
+</div>
+<div class="c">
+<div class="lb"><strong>AI Capability · Open-Weight Models</strong> <span class="tg tc">Complexity</span></div>
+<h3>Google's Gemma 4 Releases Open-Weight, Tuned for Reasoning and Agentic Workflows; Penn Demonstrates a Lower-Energy Compute Particle</h3>
+<p>The AI capability layer added two off-corridor entries in May 2026. <strong>Google's Gemma 4 family released on 4 May 2026</strong> — open-weight, tuned for reasoning and agentic workflows, with high intelligence-per-parameter. <strong>The University of Pennsylvania demonstrated a hybrid light-matter particle for lower-energy AI compute on 18 May 2026.</strong> A quantum-inspired algorithm simulated quasicrystals beyond conventional supercomputers, and NASA is testing a radiation-hardened deep-space AI chip. The entries sit off the language-model corridor by design: open-weight release, photonic compute, and space-hardened inference each name a distinct substrate.</p>
+<p>The structural note is the intelligence-per-parameter framing. A high-capability open-weight model lowers the floor for agentic deployment outside the frontier labs, and the Penn light-matter result attacks the energy cost that binds the compute substrate Briefing 049 tracked through the SMR-for-AI moves. The <a class="vbadge m4" href="../concepts/paradigm-defection.html" title="When the most prominent advocate for a strategic paradigm abandons it under competitive pressure, redefining the competitive landscape for all remaining participants." data-meta="4">Paradigm Defection</a> pattern (META-4, Briefing 005) is the lens to hold lightly: open-weight releases keep the distributed-paradigm option alive against the proprietary pull, and Gemma 4's intelligence-per-parameter is a contribution to the distributed side of that contest.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (Google Gemma 4 family released 4 May 2026, open-weight, tuned for reasoning + agentic workflows, high intelligence-per-parameter; Penn hybrid light-matter particle for lower-energy AI compute, 18 May 2026; quantum-inspired algorithm simulated quasicrystals beyond conventional supercomputers; NASA testing a radiation-hardened deep-space AI chip).</p></div>
+</div>
+</div>
+<!-- ========== ECONOMIC ========== -->
+<div class="s" id="s-ec">
+<h2 class="sh">Economic</h2>
+<div class="c">
+<div class="lb"><strong>Oil · Monthly Reversal</strong> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>Brent Falls to $91.20 — Lowest in ~6 Weeks; On Track for a ~17% May Drop, the Biggest Since 2020<span aria-expanded="false" class="dd hint" onclick="ddt(this)" role="button" tabindex="0">Deep Dive</span></h3>
+<p>Oil reversed sharply. <strong>Brent fell about 2% to $91.20 a barrel on Friday</strong> (late May 2026) <span aria-label="verified" class="conf v" title="Verified per research brief — Brent $91.20 Friday, ~6-week low, ~17% May drop">✓</span>, the lowest in roughly six weeks, on track for a roughly <strong>17% decline in May — the biggest monthly drop since 2020</strong>. The driver was reports of a <strong>US–Iran preliminary agreement to extend the ceasefire and ease Strait of Hormuz shipping restrictions</strong>. Trump had not yet approved the agreement, and Iranian state media said it was not finalized. The 2026 path frames the move: spot Brent hit <strong>$124.68 in early April</strong>, June-delivery futures $108.23 in April, the July contract $107.77 in mid-May, and now $91.20. BloombergNEF's view is that oil could hit $91 in late 2026 on Iran disruption — a level reached early, on de-escalation rather than disruption.</p>
+<p>The structural fact is what the price ignored. Brent priced the Iran front's de-escalation and the prospect of an eased Hormuz, and it priced an agreement neither principal had ratified. It did not price the Lebanon front's escalation — Beaufort taken, the Litani crossed, the manoeuvre expanded — because Lebanon is not an oil chokepoint. The <a class="vbadge m5" href="../concepts/sanctuary-discount.html" title="Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment." data-meta="5">Sanctuary Discount</a> pattern (META-5, Briefing 030) operates in an unusual register: rather than discounting an announcement, the tape credited an unconfirmed de-escalation report at full value while discounting the still-live Lebanon escalation to zero.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive</div>
+<h4>The 17% Drop as the Pricing Signature of Front Divergence</h4>
+<p>A 17% monthly fall in Brent is the largest since 2020, and its proximate cause is a report of a preliminary US–Iran agreement that Trump had not approved and that Iranian state media called unfinalized. The marketplace moved a global commodity by its biggest monthly margin in five-plus years on the strength of an unratified report. That is the Symbolic Anchoring Failure candidate in action: the price anchored to a symbol — "preliminary agreement" — that carried no binding force from either principal.</p>
+<p>But the deeper structure is Front Divergence. The oil tape did not merely overweight an unconfirmed report; it selectively priced one front of a two-front war. Hormuz is the oil chokepoint, so the Iran front's de-escalation is the front crude trades. Lebanon is not a chokepoint, so the Lebanon front's escalation — a Crusader fortress captured, a river crossed, 3,300 dead, 1.2 million displaced — is invisible to the price. <strong>The marketplace prices the front coupled to its commodity and ignores the front that is not.</strong></p>
+<p>This is why the divergence is dangerous to read from the price alone. An observer watching only Brent sees a regional war de-escalating and crude returning toward its pre-war range. An observer watching the fronts sees one front cooling and another taking territory. The two pictures cannot both be the whole story, and the gap between them is the structural risk: if the Lebanon manoeuvre's momentum re-couples to the Iran negotiation — through Netanyahu's nuclear condition, which the Lebanon success may harden — the front the price ignored becomes the front that breaks the front the price trusted.</p>
+<p>The dual-channel modal/tail framing is the right instrument and applies within constraint. The modal channel is the Iran de-escalation the price has fully absorbed. The tail channel is the Lebanon escalation the price has not touched, plus the possibility that the unratified agreement does not hold. The two channels have decoupled across fronts rather than across time. Naming them separately is the discipline; this briefing asserts no forecast for either, only that the price has priced the modal front and left the tail front unpriced.</p>
+<p class="dd-question">Does a 17% drop driven by an unratified report price the Iran de-escalation correctly, or does it price an agreement that may not survive Trump's approval and Netanyahu's nuclear condition? The candidate answer: it prices a hope, not a fact. The discipline is to hold the $91.20 as the verified anchor and treat the agreement's durability and the Lebanon re-coupling as open questions the price has chosen not to weight.</p>
+</div>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (Brent fell ~2% to $91.20/bbl Friday, lowest in ~6 weeks, on track for ~17% May decline — biggest monthly drop since 2020; driver: reports of US–Iran preliminary agreement to extend ceasefire and ease Strait of Hormuz shipping restrictions, Trump not yet approved, Iranian state media said not finalized; 2026 context: spot Brent $124.68 early April, futures $108.23 April June-delivery, $107.77 mid-May July contract; BloombergNEF: oil could hit $91 late 2026 on Iran disruption).</p></div>
+</div>
+<div class="c">
+<div class="lb"><strong>Critical Minerals · Post-Summit Drift</strong></div>
+<h3>China's Rare-Earth Regime Largely Unchanged After the 14–15 May Trump-Xi Summit; US Yttrium Imports Fell from 333 to 17 Metric Tons</h3>
+<p>China's rare-earth export regime stayed <strong>largely unchanged</strong> after the <strong>14–15 May 2026 Trump-Xi Beijing summit</strong>. China agreed to "address US concerns about shortages of critical minerals and rare earths including yttrium, scandium and indium" — a step <strong>down</strong> from October 2025, when Washington said China had committed to "effectively eliminate" controls. The shift from "eliminate" to "address" is the structural fact: the commitment weakened across the summit rather than firming.</p>
+<p>The supply numbers are the load-bearing figures. CSIS reported in May 2026 that US <strong>yttrium</strong> imports from China fell from <strong>333-plus metric tons</strong> (eight months before the April restrictions) to <strong>17 metric tons</strong> (eight months after), with aerospace manufacturers reporting shortages. In May 2026 <strong>Australia ordered Chinese investors to divest from domestic rare-earth operations — six shareholders in Northern Minerals Ltd. required to sell within two weeks.</strong> The April 2025 licensing regime was never suspended, and the truce covering October 2025 restrictions expires <strong>November 2026</strong>. The <a class="vbadge m4" href="../concepts/commons-enclosure.html" title="When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper." data-meta="4">Commons Enclosure</a> pattern (META-4, Briefing 003) operates in two directions: China's regime tightens the enclosure while Australia's divestment order builds an alternative-supply commons outside Chinese processing concentration.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (China rare-earth export regime largely unchanged after 14–15 May Trump-Xi Beijing summit; China agreed to "address" concerns about yttrium, scandium, indium — a step down from October 2025's "effectively eliminate"; CSIS May 2026: US yttrium imports from China fell from 333+ metric tons eight months before April restrictions to 17 metric tons eight months after, aerospace shortages; Australia May 2026 ordered six Northern Minerals Ltd. shareholders to divest within two weeks; April 2025 licensing regime never suspended; October 2025 truce expires November 2026).</p></div>
+</div>
+</div>
+<!-- ========== SCIENTIFIC ========== -->
+<div class="s" id="s-sc">
+<h2 class="sh">Scientific</h2>
+<div class="c">
+<div class="lb"><strong>Compute Substrate · Lower-Energy AI</strong> <span class="tg tc">Complexity</span></div>
+<h3>Penn Demonstrates a Hybrid Light-Matter Particle for Lower-Energy Compute; a Quantum-Inspired Algorithm Simulates Quasicrystals Beyond Supercomputers</h3>
+<p>The compute-substrate science compressed its cadence through May 2026. The University of Pennsylvania demonstrated a <strong>hybrid light-matter particle for lower-energy AI compute on 18 May 2026</strong>, attacking the energy cost that binds inference at scale. Separately, a <strong>quantum-inspired algorithm simulated quasicrystals beyond what conventional supercomputers can reach</strong>, and <strong>NASA is testing a radiation-hardened AI chip for inference in deep space.</strong> Each result names a distinct substrate: photonic compute, classical-algorithm gains from quantum methods, and inference hardened for environments the data-center model cannot serve.</p>
+<p>The structural read is the energy coupling. Briefing 049 tracked the SMR-for-AI moves as the power substrate beneath the compute buildout; the Penn result attacks the same constraint from the demand side, lowering energy per computation rather than adding generation. If photonic approaches scale, they relax the power constraint that makes dedicated nuclear capacity decisive. More generation and less consumption price the same binding constraint from opposite ends.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (Penn hybrid light-matter particle for lower-energy AI compute, 18 May 2026; quantum-inspired algorithm simulated quasicrystals beyond conventional supercomputers; NASA testing a radiation-hardened deep-space AI chip).</p></div>
+</div>
+<div class="c">
+<div class="lb"><strong>Biological Substrate · Programmable Editing</strong> <span class="tg ta">Ambiguity</span></div>
+<h3>A Hong Kong Team Inverts the CRISPR Paradigm With DNA-Guided RNA Targeting; an NIH-Funded Compact Editor Reaches 80–90% In-Body Efficiency</h3>
+<p>A team led by Prof. Hsing I-Ming at the Hong Kong University of Science and Technology built the first <strong>DNA-guided CRISPR-Cas system that targets and cleaves RNA</strong>, published in <em>Nature Biotechnology</em> in May 2026. The conventional design uses RNA to guide a cut to DNA; this one inverts it, opening RNA-targeted antivirals and faster infectious-disease diagnostics. Separately, an NIH-funded compact editor named Al3Cas12f RKK reached <strong>more than 80% efficiency across targets and 90% in one commonly edited region</strong> — small enough to ride an adeno-associated virus into the body.</p>
+<p>The structural read is that the control substrate moves inward. Where photonic compute lowers the energy of inference, programmable editing lowers the delivery barrier into living tissue. The edit now fits inside a virus. The same year is shrinking and reprogramming two substrates at once, silicon and cell, and each step removes a physical constraint that previously bounded what the technology could touch.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (HKUST, Prof. Hsing I-Ming — first DNA-guided CRISPR-Cas for programmable RNA targeting/cleavage, <em>Nature Biotechnology</em>, May 2026; NIH-funded Al3Cas12f RKK compact editor, 80%+ across targets, 90% in a common region, AAV-deliverable).</p></div>
+</div>
+<div class="c">
+<div class="lb"><strong>Observational Substrate · Cosmology</strong> <span class="tg ta">Ambiguity</span></div>
+<h3>Webb Resolves Saturn’s Spin Mystery and Finds a Non-Rotating Early Galaxy; Roman Targets a September 2026 Launch</h3>
+<p>On 29 May 2026 scientists reported that Saturn’s apparent change in rotation was never the planet speeding up: high-altitude winds, powered by a self-sustaining auroral cycle, produced the signal. Webb also found a massive galaxy that formed less than two billion years after the Big Bang with no rotation at all (reported 6 May 2026), and a Saturn-size planet 330 light-years away whose temperatures resemble Earth’s, wrapped in a methane atmosphere (21 May 2026). NASA’s Nancy Grace Roman Space Telescope now targets a September 2026 launch.</p>
+<p>The structural read is that instruments resolve one anomaly while manufacturing the next. The Saturn result closes a decades-old puzzle; the non-rotating galaxy opens one, since rotation is supposed to mark a galaxy’s youth. Resolution and anomaly arrive together. The observation substrate is widening faster than theory closes, which is the same Ambiguity signature the briefing tracks in its terrestrial lenses.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (JWST: Saturn spin mystery resolved via auroral-driven winds, 29 May 2026; non-rotating early galaxy, 6 May 2026; Saturn-size Earth-temperature methane planet at 330 ly, 21 May 2026; Roman Space Telescope targeting September 2026 launch).</p></div>
+</div>
+</div>
+<!-- ========== SOCIAL & CULTURAL ========== -->
+<div class="s" id="s-so">
+<h2 class="sh">Social &amp; Cultural</h2>
+<div class="c">
+<div class="lb"><strong>Displacement Substrate · Lebanon</strong> <span class="tg tc">Complexity</span></div>
+<h3>More Than 1.2 Million Displaced in Lebanon as the Manoeuvre Expands</h3>
+<p>The Lebanon escalation carries a social fact larger than its military one. Lebanon’s Ministry of Public Health reports more than <strong>1.2 million displaced</strong> alongside more than 3,300 killed (about 20% women, children, and first responders). A displacement of this scale, in a country of roughly six million, is a structural transformation of the population’s settlement geography, not an incident of the conflict. Prime Minister Nawaf Salam’s “scorched-earth policy” framing names the displacement as the intended effect rather than a byproduct.</p>
+<p>The structural note is the asymmetry between the displacement’s scale and its pricing. The oil tape moved 17% on the Iran front and registered nothing for a 1.2-million-person displacement on the Lebanon front, because displacement does not touch a traded chokepoint. <a class="vbadge m1" href="../concepts/peripheral-assertion.html" title="The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal." data-meta="1">Peripheral Assertion</a> frames why it belongs here: a mass-displacement signal of this magnitude is structural information the corridor’s Hormuz-attention does not process, and its absence from the price is itself a fact about what the pricing architecture can see.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (Lebanese Ministry of Public Health: 3,300+ killed, ~20% women/children/first responders, 1.2 million+ displaced; PM Nawaf Salam “scorched-earth policy”).</p></div>
+</div>
+<div class="c">
+<div class="lb"><strong>Enforcement Substrate · United States</strong> <span class="tg tc">Complexity</span></div>
+<h3>ICE Agents Use Chemical Irritants on Protesters at Newark’s Delaney Hall as the Domestic Enforcement Campaign Intensifies</h3>
+<p>On <strong>28 May 2026, ICE agents used chemical irritants on protesters</strong> outside the federal immigration center at Delaney Hall in Newark, New Jersey, after days of clashes. Earlier, on 2 May 2026, masked ICE agents arrested an undocumented man in Bushwick, Brooklyn, in a case that put the NYPD’s sanctuary obligations in question. Arrests at pre-scheduled immigration hearings have since moved into federal-building hallways.</p>
+<p>The structural read is that domestic enforcement has acquired its own escalation cadence and its own standing front. Lebanon displaces people outward by force; the United States is concentrating the forced-movement question at home, around detention sites that now draw sustained protest. The two are the same substrate seen from opposite ends — the control of where people are allowed to be.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (Delaney Hall, Newark NJ — ICE chemical irritants on protesters, 28 May 2026; Bushwick, Brooklyn arrest, 2 May 2026; arrests at pre-scheduled immigration hearings).</p></div>
+</div>
+<div class="c">
+<div class="lb"><strong>Spectacle-Enforcement Collision · World Cup</strong> <span class="tg ta">Ambiguity</span></div>
+<h3>The World Cup Opens 11 June Across Sixteen Cities Into an Active Enforcement Campaign; the Final Sits Ten Miles From Delaney Hall</h3>
+<p>The 2026 World Cup runs <strong>11 June–19 July across sixteen host cities</strong> in the United States, Mexico, and Canada; the final is 19 July at MetLife Stadium in East Rutherford, New Jersey — roughly ten miles from Delaney Hall. Acting ICE Director Todd Lyons said the agency will be a “key part” of match security; DHS officials say agents may be present but will not check spectators’ status. Human Rights Watch is urging an enforcement “truce,” and host cities have warned Congress over security.</p>
+<p>The structural read is a scheduling collision. A global spectacle is being layered onto an active domestic enforcement campaign, in overlapping New Jersey geography. The same state is both host and enforcer. That role ambiguity — security provider versus enforcement agency, in the same uniform at the same venue — is the structural fact, and it resolves only when one role is made to yield to the other.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (2026 World Cup, 11 June–19 July, 16 host cities US/Mexico/Canada, final 19 July MetLife Stadium, East Rutherford NJ; Acting ICE Director Todd Lyons — ICE a “key part” of security; DHS: agents may be present, will not check status; HRW urging an enforcement “truce”; host cities warned Congress).</p></div>
+</div>
+</div>
+<!-- ========== ENVIRONMENTAL & ECOLOGICAL ========== -->
+<div class="s" id="s-en">
+<h2 class="sh" style="color:var(--grn)">Environmental &amp; Ecological</h2>
+<div class="c env">
+<div class="lb gnl"><strong>Climate Driver · El Niño Divergence</strong> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>NOAA Forecasts a Below-Normal Atlantic Hurricane Season as the Season Opens 1 June — Because the Same El Niño Drives Record Heat Elsewhere</h3>
+<p>NOAA’s outlook, announced 20 May 2026, gives the 2026 Atlantic hurricane season a <strong>55% chance of below-normal activity</strong> — eight to fourteen named storms, three to six hurricanes, one to three major. The season opened 1 June. The suppressant is a developing El Niño, even as Atlantic waters run slightly warm and trade winds weaken.</p>
+<p>The structural read is one driver, opposite signs. The El Niño that damps Atlantic hurricanes is the same forcing that amplifies heat and drought across other basins. This is Front Divergence in the climate register: a single cause producing divergent, oppositely-signed hazards across channels — the same structure the Iran-and-Lebanon split shows in the geopolitical register, and the structure the oil tape showed when it priced one front and ignored the other.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (NOAA 2026 Atlantic hurricane outlook, announced 20 May 2026 — 55% below-normal / 35% near / 10% above; 8–14 named storms, 3–6 hurricanes, 1–3 major; developing El Niño, warmer Atlantic, weaker trades; season opens 1 June).</p></div>
+</div>
+<div class="c env">
+<div class="lb gnl"><strong>Heat &amp; Fire Substrate · WMO</strong> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>The WMO Warns the Planet Is “More Out of Balance Than at Any Time in Observed History”; 150 Million Hectares Have Burned Since January</h3>
+<p>On 28 May 2026 the WMO said there is a <strong>75% chance the 2026–2030 average exceeds 1.5°C</strong> above pre-industrial levels, and that 2027 will likely break the 2024 heat record. More than 150 million hectares have burned globally since January 2026, and the WMO forecasts a dangerous Amazon drought with wildfire risk. Europe ran hot early: a severe heat wave hit Paris on 26 May 2026 and Barcelona on 27 May.</p>
+<p>The structural read is that the threshold is being crossed as a running average, not a single anomalous year. The Amazon matters most here. The basin is a carbon sink, so drought there flips a damper into an amplifier — a <a class="vbadge m3" href="../concepts/tipping-cascade.html" title="When crossing one threshold triggers others across domains." data-meta="3">Tipping Cascade</a> in which crossing one threshold loads the next. One season’s quiet hurricane forecast does not contradict this; both are outputs of the same El Niño forcing.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (WMO, 28 May 2026 — 75% chance 2026–2030 average exceeds 1.5°C, 2027 likely to break the 2024 record, planet “more out of balance than at any time in observed history”; 150M+ hectares burned globally since January 2026; forecast Amazon drought + wildfire; Paris heat wave 26 May, Barcelona 27 May).</p></div>
+</div>
+<div class="c env">
+<div class="lb gnl"><strong>Industrial-Disaster Periphery</strong> <span class="tg tc">Complexity</span></div>
+<h3>Mining-Explosives Blast in Myanmar Kills 55+; a Paper-Mill Chemical Explosion in Washington State Kills One With Nine Missing</h3>
+<p>Two industrial disasters fall on or near the briefing’s date. In Myanmar, an explosion at a building storing mining explosives in <strong>Namhkam Township, Shan State, killed 55-plus (including six children) and injured 74-plus</strong> <span aria-label="verified" class="conf v" title="Verified per research brief">✓</span>. In the United States, a <strong>chemical explosion at a paper mill in Longview, Washington killed one, injured ten, and left nine missing.</strong> Each is a <a class="vbadge m3" href="../concepts/tipping-cascade.html" title="When crossing one threshold triggers others across domains." data-meta="3">Tipping Cascade</a> in the small: a stored-energy concentration crossing a failure threshold and propagating through the people and structures next to it.</p>
+<p>The structural note is the resource adjacency. The Myanmar blast involved mining explosives in Shan State, a region whose mining economy feeds the same critical-minerals chains the Economic section tracks. The cumulative frequency of such failures across an under-regulated extraction economy is a slow signal about the safety substrate beneath the supply the corridor prices only at the export end.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (Myanmar: explosion at a building storing mining explosives in Namhkam Township, Shan State — 55+ killed including six children, 74+ injured; US: chemical explosion at a paper mill in Longview, Washington — one killed, ten injured, nine missing).</p></div>
+</div>
+</div>
+<!-- ========== INSTITUTIONAL & GOVERNANCE ========== -->
+<div class="s" id="s-ig">
+<h2 class="sh" style="color:#f59e0b">Institutional &amp; Governance</h2>
+<div class="c gov">
+<div class="lb aml"><strong>Federal Reserve · Energy-Inflation Coupling</strong> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>The May Oil Collapse Could Re-Loosen the Inflation Uncertainty That Held the Fed; Framed as Conditional, Not Confirmed</h3>
+<p>The institutional read couples the oil reversal to monetary policy. As of <strong>30 April 2026</strong> the <strong>S&amp;P 500 was at 7,209</strong> (a new all-time high), the <strong>10-year Treasury yield 4.40%</strong>, and the <strong>fed funds target 3.50–3.75%</strong> <span aria-label="verified" class="conf v" title="Verified per research brief — S&amp;P 500 7,209 and yields/rates as of 30 April 2026">✓</span>. The Fed held rates at its first three 2026 meetings. Market expectations had shifted from one-to-two cuts to a steadier path because energy-supply uncertainty complicated the inflation outlook. 2026 sector leadership has been energy, industrials, materials, and utilities — the pricing-power and energy-exposure names.</p>
+<p>The conditional coupling is the structural note, and it is framed as conditional. <strong>The May oil collapse — Brent down ~17%, the biggest monthly drop since 2020 — could re-loosen the inflation uncertainty that had frozen the Fed.</strong> A central bank that held rates at three consecutive meetings because energy-supply uncertainty complicated the inflation outlook is, structurally, a damping mechanism frozen by a single variable. The freeze is not a judgment that inflation is high; it is a judgment that the inflation path is unreadable while the energy input is volatile. When the volatile input resolves in one direction, the freeze's rationale weakens. If energy-supply uncertainty was the variable, then a sharp fall in crude removes part of it, which could reopen the path to cuts the Fed had set aside. This briefing frames the coupling as a possibility worth flagging, not a confirmed Fed move. No rate decision is asserted.</p>
+<p>The discipline here is to hold the conditionality, because the same Front Divergence that drove the oil move makes its durability uncertain. The 17% drop priced the Iran de-escalation and an unratified agreement. If the Lebanon escalation re-couples to the Iran front — through Netanyahu's nuclear condition, which the Beaufort success may harden — crude could reverse, and the inflation-uncertainty variable the Fed was frozen by would reassert itself. The oil reversal is a conditional release of the freeze, conditional on a de-escalation the price has trusted and the fronts have not yet confirmed. The dual-channel modal/tail framing applies within constraint: the modal channel is the inflation-uncertainty release the oil drop implies; the tail channel is the Lebanon re-coupling that would reverse the move and re-freeze the variable. The two channels are separable, and naming them separately is the discipline.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (as of 30 April 2026: S&amp;P 500 at 7,209 — new all-time high; 10-year Treasury yield 4.40%; fed funds target 3.50–3.75%; Fed held rates at its first three 2026 meetings; market expectations shifted from one-to-two cuts to a steadier path as energy-supply uncertainty complicated the inflation outlook; 2026 sector leadership: energy, industrials, materials, utilities; structural note that the May oil collapse could re-loosen the inflation uncertainty — framed as conditional, not a confirmed Fed move).</p></div>
+</div>
+<div class="c gov">
+<div class="lb aml"><strong>Great-Power Diplomacy · Back-to-Back Beijing Visits</strong></div>
+<h3>Trump-Xi Summit Produced No Breakthroughs on 14–15 May; Putin Then Arrived in Beijing as a Diplomatic Flex for China</h3>
+<p>The great-power diplomacy ran through Beijing in mid-May 2026. The <strong>Trump-Xi two-day summit on 14–15 May 2026</strong> produced no major breakthroughs, with Xi cast as a leader "at the height of his power seeking global stability." <strong>Putin then arrived in Beijing for talks with Xi</strong> — back-to-back visits that read as a diplomatic flex for China. <strong>Xi may visit North Korea in late May or early June 2026</strong> (Chinese protocol staff reportedly in Pyongyang), though it is not yet confirmed. Separately, China's Defense Minister <strong>Dong Jun</strong> "suddenly disappeared" in May 2026, with speculation he is under investigation — a recurring PLA elite-turnover pattern.</p>
+<p>The structural note is the sequencing. Hosting the US president and the Russian president back-to-back positions Beijing as the fixed point both rivals travel to, which is a structural claim about centrality independent of any summit outcome. The <a class="vbadge m1" href="../concepts/scope-retreat.html" title="Declared policy retreats to physically feasible scope within hours of issuance, leaving the original declaration as the rhetorical credential while the operational substance has been silently narrowed." data-meta="1">Scope Retreat</a> pattern is the wrong frame here; the right lens is the no-breakthrough summit producing a positioning gain rather than an agreement. The Dong Jun disappearance is logged as a recurring elite-turnover signal and carried for monitoring; this briefing does not over-claim an investigation that is speculation, not confirmation.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (Trump-Xi two-day Beijing summit 14–15 May 2026, no major breakthroughs, Xi cast as a leader "at the height of his power seeking global stability"; Putin arrived in Beijing for talks with Xi, back-to-back visits a diplomatic flex; Xi may visit North Korea late May/early June 2026, Chinese protocol staff reportedly in Pyongyang, not confirmed; China Defense Minister Dong Jun "sudden disappearance" May 2026, speculation under investigation).</p></div>
+</div>
+<div class="c gov">
+<div class="lb aml"><strong>Russia-Ukraine · Donetsk Sticking Point</strong> <span class="tg ta">Ambiguity</span></div>
+<h3>A Three-Day Ceasefire and a 1,000-for-1,000 Prisoner Exchange; Donetsk Remains the Block</h3>
+<p>The Russia-Ukraine track moved incrementally in early-to-mid May 2026. A <strong>three-day ceasefire</strong> plus a <strong>1,000-for-1,000 prisoner exchange</strong> held, and Putin suggested on <strong>10 May 2026</strong> that the war is "coming to an end," with Trump saying talks are "getting closer and closer every day." The sticking point is <strong>Donetsk</strong>: Russia controls roughly three-quarters and demands Kyiv withdraw from parts Russian forces have not captured, which Ukraine refuses.</p>
+<p>The structural note is the channel separation. Formal Russia-Ukraine talks had not resumed since the US-Israel operations against Iran began in late February 2026; earlier trilateral talks were held in Abu Dhabi in January 2026 and in Abu Dhabi and Geneva in February 2026. The <a class="vbadge m2" href="../concepts/negotiation-multiplication.html" title="When stalled diplomatic tracks spawn parallel tracks that justify their own continuation through each other's existence." data-meta="2">Negotiation Multiplication</a> pattern (META-2, Briefing 006) is the lens: the Donetsk block persists while confidence-building exchanges (the prisoner swap, the three-day pause) accumulate around it, justifying the track's continuation without resolving its central dispute. The Donetsk demand — withdrawal from territory not captured — is the constructive-ambiguity hinge the whole track turns on.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (three-day ceasefire plus 1,000-for-1,000 prisoner exchange, early–mid May 2026; Putin 10 May 2026 suggested the war is "coming to an end"; Trump says talks "getting closer and closer every day"; sticking point Donetsk — Russia controls ~three-quarters and demands Kyiv withdraw from parts not captured, Ukraine refuses; formal talks not resumed since US-Israel Iran operations began late Feb 2026; earlier trilateral talks Abu Dhabi Jan 2026, Abu Dhabi/Geneva Feb 2026).</p></div>
+</div>
+</div>
+<!-- ========== LIMINAL SIGNALS ========== -->
+<div class="s" id="s-li">
+<h2 class="sh" style="color:var(--gold)">Liminal Signals</h2>
+<div class="c lim">
+<div class="lb gl"><strong>Off-Corridor · Literal Tectonic Signal From the Sky</strong></div>
+<h3>A Meteor Explodes Off the Massachusetts Coast at 2:11 p.m. With a Loud Sonic Boom</h3>
+<p>A <strong>meteor off the coast of Massachusetts</strong> produced an explosion and a loud sonic boom at <strong>2:11 p.m. local time on 1 June 2026</strong>, causing major disruption. The signal is the briefing's literal wildcard — a tectonic event from the sky rather than the ground, arriving with no warning into a region with no preparation for it. It is the cleanest black-swan-watch instance the day offers: high-consequence, low-probability, and unanticipated by any of the architectures the briefing tracks. <strong>The structural value is that it happened at all.</strong> A briefing built to read structural forces is reminded by a meteor that the most consequential events can arrive from outside every model's field of view, and the off-corridor Liminal Signal the topic-rotation discipline calls for is supplied here by an event no corridor contains.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (meteor off the coast of Massachusetts; explosion and loud sonic boom at 2:11 p.m. local time; major disruption).</p></div>
+</div>
+<div class="c lim">
+<div class="lb gl"><strong>Mediator-Instability Signal · Quetta Bombing</strong></div>
+<h3>A Suicide Bombing on a Quetta Shuttle Train Kills 47+ While Pakistan Mediates the Iran Talks</h3>
+<p>A <strong>suicide bombing on a shuttle train in Quetta, Balochistan killed 47-plus on 1 June 2026.</strong> The structural significance is the mediator coupling: Pakistan is the broker of the Iran-US peace talks, and instability in the mediator is a signal about the framework the mediation must hold. This is the empirical seed of today's Mediator Fragility candidate. <strong>The mediator's internal security is degrading inside the window its mediation must hold.</strong> The signal is logged as one instance, not a pattern, and it is adjacent to <a class="vbadge m3" href="../concepts/keystone-removal.html" title="A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the…" data-meta="3">Keystone Removal</a> (Briefing 023): if the mediator is the framework's keystone, instability in the mediator is load-bearing on the framework's de-escalation path.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (suicide bombing on a shuttle train in Quetta, Balochistan — 47+ killed; Pakistan is the mediator of the Iran peace talks).</p></div>
+</div>
+<div class="c lim">
+<div class="lb gl"><strong>Off-Corridor · Humanoid Cost Crossing</strong></div>
+<h3>A US$15,400 Unit Price Puts a Deployable Humanoid Below a High-Wage Logistics Worker's Annual Cost</h3>
+<p>Japan Airlines' Unitree-based humanoid platforms at Haneda are priced at roughly <strong>US$15,400 per unit</strong>, and Unitree's shipment curve — 5,500-plus in 2025, 10,000–20,000 targeted for 2026 — drives the price down further. The liminal signal is the cost crossing: when a deployable humanoid's per-unit cost falls below the annual loaded cost of the labor it substitutes for in a high-wage logistics market, the deployment decision becomes a cost decision rather than a technology bet. <strong>The crossing is the structural threshold, and it has been quietly passed.</strong> The off-corridor Liminal Signal is supplied here from the robotics-deployment domain, carrying the labor-substrate question the topic-rotation discipline calls for.</p>
+<div class="i so"><div class="il">Source</div><p>Research brief 1 June 2026 (JAL Haneda Unitree-based humanoid platforms ~US$15,400/unit; Unitree shipped 5,500+ in 2025, targeting 10,000–20,000 in 2026; Agility Digit 7+ units at Toyota Canada).</p></div>
+</div>
+</div>
+<!-- ========== INFERENCE ENGINE ========== -->
+<div class="s" id="s-ie">
+<div class="sh" style="color:var(--purp)">Inference Engine</div>
+<div class="prose">
+<p>The inference engine maps today's conditional chains. Each row reads as: <em>if A, then B; the substrate-coupling fact is C; the marketplace currently prices D</em>.</p>
+</div>
+<div class="c inf">
+<h3>Conditional Chain 1 — Front Divergence</h3>
+<p><strong>If</strong> the Iran front continues to cool (Pakistan-mediated peace proposal; Trump's called-off Tuesday strike) while the Lebanon front continues to escalate (Beaufort taken 31 May; Litani crossed; manoeuvre expanded 1 June), <strong>then</strong> the new Front Divergence candidate accumulates substrate toward an audit that must distinguish it from <a class="vbadge m5" href="../concepts/channel-decomposition.html" title="Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed." data-meta="5">Channel Decomposition</a> applied to a conflict. <strong>If</strong> the Lebanon manoeuvre re-couples to the Iran negotiation through Netanyahu's nuclear condition, the divergence collapses and the front the price ignored breaks the front the price trusted. The substrate-coupling fact is that Lebanon is not an oil chokepoint, which is why crude prices only the Iran front. The marketplace prices the Iran de-escalation (Brent $91.20, down ~17%) and leaves the Lebanon escalation unpriced.</p>
+</div>
+<div class="c inf">
+<h3>Conditional Chain 2 — The Unratified Agreement</h3>
+<p><strong>If</strong> the reported US–Iran preliminary agreement to extend the ceasefire and ease Hormuz holds, <strong>then</strong> the 17% Brent drop is validated and the Iran front's de-escalation is the durable read. <strong>If</strong> Trump does not approve it (he had not as of the report) or Iran does not finalize it (Iranian state media said it was not), the price has anchored a 17% move to a symbol neither principal ratified — the Symbolic Anchoring Failure candidate in action. The substrate-coupling fact is that the agreement's binding force is absent from both principals. The marketplace prices the report at full value despite its unratified status.</p>
+</div>
+<div class="c inf">
+<h3>Conditional Chain 3 — Oil-Inflation Release of the Fed Freeze</h3>
+<p><strong>If</strong> the May oil collapse (Brent down ~17%, biggest since 2020) durably lowers the energy-supply uncertainty that complicated the inflation outlook, <strong>then</strong> the path the Fed set aside — one-to-two cuts against a 3.50–3.75% target and a 4.40% 10-year as of 30 April — could reopen, framed as conditional and not a confirmed move. <strong>If</strong> the Lebanon front re-couples and reverses crude, the inflation-uncertainty variable reasserts and the freeze re-forms. The substrate-coupling fact is that the freeze's rationale was energy volatility, so the oil move is a conditional release of it. The marketplace had priced a steadier path; the oil drop reopens the modal channel without confirming a decision.</p>
+</div>
+<div class="c inf">
+<h3>Conditional Chain 4 — Mediator Fragility</h3>
+<p><strong>If</strong> Pakistan continues to mediate the Iran-US framework while its internal security degrades (the 1 June Quetta bombing, 47-plus killed), <strong>then</strong> the new Mediator Fragility candidate accumulates substrate, adjacent to <a class="vbadge m3" href="../concepts/keystone-removal.html" title="A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the…" data-meta="3">Keystone Removal</a>. <strong>If</strong> the mediator's instability forces it to step back, the framework loses its broker inside the window the de-escalation must hold. The substrate-coupling fact is that the framework's de-escalation path runs through Pakistan. The marketplace prices the Iran de-escalation without pricing the mediator's stability as a load-bearing dependency.</p>
+</div>
+<div class="c inf">
+<h3>Force Interaction Matrix</h3>
+<div class="mr"><div class="mf">Iran front cools + Lebanon front escalates</div><div class="me">→ Front Divergence candidate logged; one war runs two directions under shared principals; <a class="vbadge m5" href="../concepts/channel-decomposition.html" title="Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed." data-meta="5">Channel Decomposition</a> at conflict scale</div><div class="md amp">Amplify</div></div>
+<div class="mr"><div class="mf">Beaufort captured + Litani crossed (31 May)</div><div class="me">→ <a class="vbadge m5" href="../concepts/ceasefire-acceleration.html" title="When a pause in kinetic conflict accelerates the structural, institutional, and economic transformations the conflict initiated." data-meta="5">Ceasefire Acceleration</a>: the April ceasefire's pause inverts into a territory-holding manoeuvre</div><div class="md amp">Amplify</div></div>
+<div class="mr"><div class="mf">Brent $91.20, down ~17% on unratified report</div><div class="me">→ Symbolic Anchoring Failure: a 17% move anchored to an agreement neither principal ratified; <a class="vbadge m5" href="../concepts/sanctuary-discount.html" title="Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment." data-meta="5">Sanctuary Discount</a> in reverse</div><div class="md dmp">Dampen</div></div>
+<div class="mr"><div class="mf">Oil collapse + frozen Fed (3.50–3.75%)</div><div class="me">→ conditional release of the inflation-uncertainty freeze; modal channel reopens, no decision asserted</div><div class="md dmp">Dampen</div></div>
+<div class="mr"><div class="mf">Pakistan mediates + Quetta bombing (1 June)</div><div class="me">→ Mediator Fragility candidate; <a class="vbadge m3" href="../concepts/keystone-removal.html" title="A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the…" data-meta="3">Keystone Removal</a> adjacency if the mediator is the framework's keystone</div><div class="md amp">Amplify</div></div>
+<div class="mr"><div class="mf">Humanoid deployments at Haneda + Toyota Canada</div><div class="me">→ Capability Substrate Assembly holds at the labor layer; <a class="vbadge m5" href="../concepts/capacity-hollowing.html" title="When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act." data-meta="5">Capacity Hollowing</a> at the displacement-perception layer</div><div class="md amp">Amplify</div></div>
+<div class="mr"><div class="mf">"Address" vs "eliminate" on rare earths post-summit</div><div class="me">→ <a class="vbadge m4" href="../concepts/commons-enclosure.html" title="When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper." data-meta="4">Commons Enclosure</a> tightens; Australia divestment builds an alternative-supply commons</div><div class="md dmp">Dampen</div></div>
+<div class="mr"><div class="mf">Meteor off Massachusetts (2:11 p.m., 1 June)</div><div class="me">→ black-swan reminder that consequential events arrive from outside every model's field of view</div><div class="md amp">Amplify</div></div>
+</div>
+</div>
+<!-- ========== WISE ACTION ========== -->
+<div class="s" id="s-wa">
+<div class="sh" style="color:var(--teal)">Wise Action</div>
+<div class="wa-section">
+<h4>Entrepreneurship</h4>
+<p>For the cyborg-textbook's architecture-literacy framing, today's configuration sharpens the humanoid-cost-crossing question. The founder's amplifier now includes a deployable humanoid at roughly US$15,400 a unit — below the annual loaded cost of the high-wage logistics worker it substitutes for. <strong>The deployment decision has become a cost decision rather than a technology bet.</strong> An entrepreneur reading only the capability headlines sees a robot loading bags at Haneda; an entrepreneur reading the substrate sees Unitree's shipment curve (5,500-plus in 2025, 10,000–20,000 in 2026) driving the unit price below the labor line. The venture's positioning is set by whether the founder reads the deployment curve or the demo.</p>
+<p>The front-divergence lesson generalizes to the founder's read of any two-front situation. The oil tape priced one front of the Iran-Lebanon war and ignored the other, because only one front touched the commodity it trades. A founder reading a market through a single coupled variable — the price, the headline metric, the corridor signal — will price the front coupled to that variable and miss the front that is not. The <a class="vbadge m1" href="../concepts/peripheral-assertion.html" title="The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal." data-meta="1">Peripheral Assertion</a> pattern is the founder's discipline: the structural information that breaks the trusted front arrives first from the under-attended one.</p>
+</div>
+<div class="wa-section">
+<h4>Markets</h4>
+<p>Brent at $91.20, down roughly 17% on the month, is the verified anchor, and the structural read is that the price has priced one front of a diverging war. <strong>The 17% drop reads the Iran de-escalation and an unratified agreement; it leaves the Lebanon escalation unpriced.</strong> The dual-channel modal/tail framing is the right instrument: the modal channel is the Iran de-escalation the price has absorbed; the tail channel is the Lebanon re-coupling and the agreement's possible non-ratification, neither of which the price has touched. Position-sizing implication: a move this large built on an unratified report carries a re-coupling tail the price has chosen not to weight.</p>
+<p>The Fed coupling is conditional and worth holding as conditional. The oil collapse could re-loosen the energy-supply uncertainty that held the Fed at 3.50–3.75% across three meetings, reopening a path to cuts — but only if the de-escalation that drove the oil move is durable, which the front divergence makes uncertain. The investment read is not "the Fed cuts"; it is "the variable that froze the Fed is conditionally released, conditional on a de-escalation the fronts have not confirmed." Sector leadership in energy, industrials, materials, and utilities reflects the energy-exposure thesis that the oil reversal now tests.</p>
+</div>
+<div class="wa-section">
+<h4>Investment</h4>
+<p>The critical-minerals substrate operates at sovereign-scale capital cadence and in two directions at once. China's rare-earth regime stayed largely unchanged after the 14–15 May summit, with the commitment weakening from "eliminate" (October 2025) to "address" (May 2026), and the supply data is concrete: US yttrium imports from China fell from 333-plus to 17 metric tons across the April-restriction window, with aerospace shortages. <strong>The truce on October 2025 restrictions expires November 2026, which prices a known cliff into the second half of the year.</strong> The <a class="vbadge m4" href="../concepts/commons-enclosure.html" title="When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper." data-meta="4">Commons Enclosure</a> pattern runs both ways: enclosure tightens at the processing layer while Australia's Northern Minerals divestment order builds an alternative-supply commons in allied geography.</p>
+<p>The humanoid-deployment substrate prices a labor-displacement thesis at a cadence no single institution aggregates. JAL at Haneda, Agility at Toyota Canada, and AEON in Austrian production are deployments with contracts and unit prices, and Unitree's shipment curve is the volume signal. The investment read is that the labor-substitution thesis has crossed from demonstration into operational commitment, and the per-unit economics (~US$15,400) are the load-bearing variable. The displacement is being priced by each operator's cost model and by no institution that prices the aggregate.</p>
+</div>
+<div class="wa-section">
+<h4>Research Program Relevance</h4>
+<p>Today's briefing anchors several substrate-events to the lab's active research projects, by research content only:</p>
+<p><strong>Glimpse ABM (power-law right-tail of firm growth; emergent vs fixed-tier dynamics).</strong> The humanoid-deployment curve — a small set of firms (Unitree, Agility, AEON's makers) supplying the platforms that a widening set of operators deploys — is a clean empirical picture of capability concentrating at the supplier layer while diffusing at the deployment layer. The model's power-law right-tail architecture should engage the supplier-concentration side as a calibration anchor, and the emergent-dynamics variant is the better lens for the diffusion cadence the fixed-tier baseline does not generate.</p>
+<p><strong>Three-Body / "Shifting Sands" (human-AI task co-evolution; five emergent regimes; V/C/I damping; recursive layers).</strong> The Front Divergence structure is a task-environment case for the model's damping framing: a single conflict whose fronts diverge under shared principals is a system whose damping channels operate at different rates on different fronts. The oil-inflation-Fed coupling is a textbook damping case — an external shock (the oil collapse) conditionally releasing a frozen damping mechanism (the Fed) — and the model's V/C/I damping mechanisms can be read against the conditional release.</p>
+<p><strong>GCM AI Agents (Garbage Can ABM; agentic AI in organizational choice).</strong> The humanoid deployments at Haneda and Toyota Canada are agentic systems entering organizational choice streams at the operational layer — robots that load bags and move logistics reshape how tasks, solutions, and choice opportunities couple in a real operation. Gemma 4's open-weight agentic tuning lowers the floor for embedding such agents in organizational processes, the substrate the Garbage Can model engages.</p>
+<p><strong>Polymathy LLM-ABM and Polymathy/de-entrenchment (AMR).</strong> The cross-substrate breadth of today's capability layer — open-weight reasoning models, photonic compute, humanoid deployment, space-hardened inference — is the multi-domain context the composite cognitive architecture engages. The eight Araki archetypes can be calibrated against the breadth of simultaneous off-corridor capability movement, and the de-entrenchment line reads the same breadth as the cognitive correlate of cross-domain spread.</p>
+<p><strong>Knightian / Poincaréan Foundations of uncertainty.</strong> Front Divergence is a clean 2026 substrate for the modal/tail decomposition the manuscript formalizes: the oil price absorbed the modal front (Iran de-escalation) and left the tail front (Lebanon re-coupling) unpriced, and the two channels decoupled across fronts rather than across time. The conditional release of the Fed freeze is a second instance: a modal channel (inflation-uncertainty release) and a tail channel (re-coupling reversal) that are separable and must be named separately.</p>
+<p><strong>Cyborg Entrepreneurship (book; human-AI ensembles; capability opacity).</strong> The humanoid cost crossing and the deployment-curve substrate are the cleanest 2026 anchors for the architecture-literacy framing the book is being drafted to address. A deployed fleet whose aggregate labor trajectory no institution prices is <a class="vbadge m1" href="../concepts/capability-opacity.html" title="The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable." data-meta="1">Capability Opacity</a> instantiated at the labor-market layer: the gap between what the fleet can do and what the institutions tracking labor can verify about its trajectory is widening with the shipment curve.</p>
+</div>
+</div>
+<!-- ========== ANOMALY DETECTION ========== -->
+<div class="s" id="s-an">
+<div class="sh" style="color:#fca5a5">Anomaly Detection</div>
+<div class="prose">
+<p>What should be happening but is conspicuously absent.</p>
+</div>
+<div class="c">
+<h3>Anomaly 1 — No Oil Premium for the Lebanon Escalation</h3>
+<p>Brent fell roughly 17% on the month while Israel captured a Crusader fortress, crossed the Litani River, displaced 1.2 million people, and expanded its Lebanon manoeuvre. <strong>The oil tape carries no premium for any of it.</strong> The absence is structural rather than surprising: Lebanon is not an oil chokepoint, so the front does not touch the commodity. But the magnitude of the divergence — a 17% drop on one front while the other takes territory — is the anomaly. A regional war is sending crude to its biggest monthly fall since 2020 on one front while the other front escalates to its deepest incursion in 26 years, and the price treats only the first as real. The gap between the two fronts is the structural risk the price has chosen not to weight.</p>
+</div>
+<div class="c">
+<h3>Anomaly 2 — A 17% Move on an Agreement Neither Principal Ratified</h3>
+<p>The Brent collapse was driven by reports of a US–Iran preliminary agreement, yet Trump had not approved it and Iranian state media said it was not finalized. <strong>No principal has ratified the agreement the price moved 17% on.</strong> Markets ordinarily discount unconfirmed diplomatic reports; here the discount ran in reverse, crediting an unratified report at full value. The absence of ratification against the size of the move is the anomaly — the Symbolic Anchoring Failure candidate made concrete. The pricing architecture anchored a global commodity's biggest monthly move in five-plus years to a symbol that carried no binding force from either side.</p>
+</div>
+<div class="c">
+<h3>Anomaly 3 — No Institutional Pricing of the Humanoid Cost Crossing</h3>
+<p>A deployable humanoid at roughly US$15,400 a unit has crossed below the annual loaded cost of the high-wage logistics labor it substitutes for, and Unitree's shipment curve drives the price down further. JAL committed to a three-year deployment at Haneda; Agility's Digit runs at Toyota Canada. <strong>No institution prices the aggregate labor displacement of the deployment curve running across airports, auto plants, and machine shops at once.</strong> Each deployment is priced by its operator's cost model; the compounding is priced by no one. The absence is the same <a class="vbadge m5" href="../concepts/capacity-hollowing.html" title="When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act." data-meta="5">Capacity Hollowing</a> the briefing tracks in ministries — the perception layer for labor displacement hollowing ahead of the action layer.</p>
+</div>
+<div class="c">
+<h3>Anomaly 4 — No Pricing of the Mediator's Instability as a Framework Dependency</h3>
+<p>Pakistan mediates the Iran-US peace talks, and on 1 June a suicide bombing on a Quetta shuttle train killed 47-plus. <strong>The framework's de-escalation path runs through a mediator whose internal security is degrading, and nothing prices the mediator's stability as a load-bearing dependency of the framework.</strong> The Iran de-escalation is priced into crude; the broker delivering that de-escalation is not priced at all. The absence implies the pricing architecture treats the framework's outcome and the mediator's stability as independent when they are coupled — the Mediator Fragility candidate's structural content.</p>
+</div>
+<div class="c">
+<h3>Anomaly 5 — No Proportionate Attention to Two African National Elections on the Day</h3>
+<p>Ethiopia held its 2026 general election and Guinea voted for a 147-seat National Assembly, both on 1 June. <strong>Two national electoral events that reshape the governance map of the Horn and West Africa draw a fraction of the corridor's bandwidth.</strong> The contrast with the attention the Iran-Lebanon corridor commands is the structural point: governance-defining votes in a region of well over a hundred million people register as a footnote while a 17% oil move on one front of a Middle East war leads. The <a class="vbadge m1" href="../concepts/peripheral-assertion.html" title="The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal." data-meta="1">Peripheral Assertion</a> latency phase operates here as an attention deficit rather than a kinetic one.</p>
+</div>
+</div>
+<!-- ========== SOURCE ARCHIVE ========== -->
+<div class="s" id="s-sa">
+<div class="sh">Source Archive &amp; Reading List</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1rem">Annotated by structural insight contributed. Filterable by keyword. Briefing 050 today; thread carries from 049 where noted. All events dated to 2026.</p>
+<div class="src-filter-wrap">
+<span class="src-filter-label">Filter</span>
+<input aria-label="Filter source archive" class="src-filter" id="src-filter" oninput="srcFilter(this.value)" placeholder="Type to filter sources…" type="text"/>
+<span class="src-filter-count" id="src-filter-count"></span>
+</div>
+<h3 class="sh2" style="color:var(--blub)">Critical Sources Today (1 June 2026) · Geopolitical</h3>
+<div class="src"><div class="src-cat">Critical · Geopolitical / Lebanon Escalation</div><span style="color:var(--blub)"><strong>Beaufort / Litani coverage 31 May – 1 June 2026</strong></span><div class="src-note">Israel captures Beaufort Castle near Nabatiyeh (~14.5 km inside Lebanon) and crosses the Litani River, 31 May — deepest incursion in 26 years; Netanyahu orders the manoeuvre expanded, "a dramatic change," 1 June; Lebanese Health Ministry 3,300+ killed, 1.2 million+ displaced; PM Nawaf Salam "scorched-earth policy."</div></div>
+<div class="src"><div class="src-cat">Critical · Geopolitical / Iran Front</div><span style="color:var(--blub)"><strong>Iran peace-proposal coverage, late May 2026</strong></span><div class="src-note">Iran reviewing a US peace proposal to formally end the war; US demands Iran suspend its nuclear programme and reopen the Strait of Hormuz; talks mediated by Pakistan; Iran negotiating only the end of the war, not nuclear; Trump called off a planned Tuesday strike ~18 May.</div></div>
+<div class="src"><div class="src-cat">Critical · Geopolitical / War Origin</div><span style="color:var(--blub)"><strong>US-Israel war on Iran timeline 2026</strong></span><div class="src-note">War ongoing since 28 Feb 2026 (US+Israel airstrikes; early strikes killed Iranian officials including Supreme Leader Ali Khamenei); conditional ceasefire 8 April 2026; current state a deadlock.</div></div>
+<div class="src"><div class="src-cat">Critical · Geopolitical / Africa Elections</div><span style="color:var(--blub)"><strong>Ethiopia &amp; Guinea election coverage 1 June 2026</strong></span><div class="src-note">2026 Ethiopian general election held 1 June; Guinea votes to elect 147 members of its National Assembly.</div></div>
+<div class="src"><div class="src-cat">Critical · Geopolitical / Great-Power Diplomacy</div><span style="color:var(--blub)"><strong>Trump-Xi / Putin Beijing coverage 14–15 May 2026</strong></span><div class="src-note">Trump-Xi two-day summit, no major breakthroughs; Putin arrives in Beijing for back-to-back talks with Xi; Xi may visit North Korea late May/early June (unconfirmed); Defense Minister Dong Jun's "sudden disappearance."</div></div>
+<div class="src"><div class="src-cat">Critical · Geopolitical / Russia-Ukraine</div><span style="color:var(--blub)"><strong>Russia-Ukraine ceasefire coverage, early–mid May 2026</strong></span><div class="src-note">Three-day ceasefire plus 1,000-for-1,000 prisoner exchange; Putin (10 May) suggests the war is "coming to an end"; Donetsk sticking point — Russia controls ~three-quarters and demands withdrawal from uncaptured parts.</div></div>
+<h3 class="sh2" style="color:var(--blub)">Critical Sources Today · Tech &amp; AI</h3>
+<div class="src"><div class="src-cat">Critical · Humanoid Robotics</div><span style="color:var(--blub)"><strong>JAL Haneda / Agility / Unitree deployment coverage May 2026</strong></span><div class="src-note">Japan Airlines deploys Unitree-based humanoids at Haneda on a three-year commitment (~US$15,400/unit, with GMO AI &amp; Robotics); Agility Digit 7+ units at Toyota Motor Manufacturing Canada; Unitree 5,500+ shipped 2025, 10,000–20,000 targeted 2026; AEON via Hexagon Robotics + Fill Maschinenbau in Austria.</div></div>
+<div class="src"><div class="src-cat">Critical · AI / Open-Weight Models</div><span style="color:var(--blub)"><strong>Google Gemma 4 release 4 May 2026</strong></span><div class="src-note">Open-weight family tuned for reasoning and agentic workflows, high intelligence-per-parameter.</div></div>
+<div class="src"><div class="src-cat">Compute Substrate</div><span style="color:var(--blub)"><strong>Penn light-matter / NASA chip coverage May 2026</strong></span><div class="src-note">Penn hybrid light-matter particle for lower-energy AI compute (18 May); quantum-inspired algorithm simulates quasicrystals beyond supercomputers; NASA testing a radiation-hardened deep-space AI chip.</div></div>
+<h3 class="sh2" style="color:var(--blub)">Critical Sources Today · Economic &amp; Institutional</h3>
+<div class="src"><div class="src-cat">Critical · Economic / Oil Reversal</div><span style="color:var(--blub)"><strong>Brent coverage, late May 2026</strong></span><div class="src-note">Brent fell ~2% to $91.20/bbl Friday — lowest in ~6 weeks, on track for ~17% May drop (biggest since 2020); driver: reports of US–Iran preliminary agreement to extend the ceasefire and ease Hormuz, Trump not yet approved, Iranian state media not finalized; spot Brent $124.68 early April; BloombergNEF view: oil could hit $91 late 2026.</div></div>
+<div class="src"><div class="src-cat">Critical · Economic / Critical Minerals</div><span style="color:var(--blub)"><strong>CSIS / Benchmark Minerals critical-minerals coverage May 2026</strong></span><div class="src-note">China rare-earth regime largely unchanged after 14–15 May summit; "address" (down from October 2025's "eliminate"); CSIS — US yttrium imports from China fell from 333+ to 17 metric tons across the April-restriction window; Australia ordered six Northern Minerals shareholders to divest within two weeks; October 2025 truce expires November 2026.</div></div>
+<div class="src"><div class="src-cat">Critical · Institutional / Federal Reserve</div><span style="color:var(--blub)"><strong>Equities, rates, and Fed backdrop, 30 April 2026</strong></span><div class="src-note">S&amp;P 500 at 7,209 (new all-time high); 10-year Treasury yield 4.40%; fed funds target 3.50–3.75%; Fed held rates at its first three 2026 meetings; expectations shifted to a steadier path as energy-supply uncertainty complicated the inflation outlook; sector leadership energy/industrials/materials/utilities.</div></div>
+<h3 class="sh2" style="color:var(--blub)">Critical Sources Today · Liminal &amp; Disasters</h3>
+<div class="src"><div class="src-cat">Liminal · Black-Swan</div><span style="color:var(--blub)"><strong>Massachusetts meteor coverage 1 June 2026</strong></span><div class="src-note">Meteor off the Massachusetts coast; explosion and loud sonic boom at 2:11 p.m. local time; major disruption.</div></div>
+<div class="src"><div class="src-cat">Liminal · Mediator Instability</div><span style="color:var(--blub)"><strong>Quetta bombing coverage 1 June 2026</strong></span><div class="src-note">Suicide bombing on a shuttle train in Quetta, Balochistan — 47+ killed; Pakistan is the mediator of the Iran peace talks.</div></div>
+<div class="src"><div class="src-cat">Industrial Disaster</div><span style="color:var(--blub)"><strong>Myanmar / Longview coverage 1 June 2026</strong></span><div class="src-note">Myanmar — explosion at a building storing mining explosives in Namhkam Township, Shan State, 55+ killed (incl. six children), 74+ injured; US — chemical explosion at a paper mill in Longview, Washington, one killed, ten injured, nine missing.</div></div>
+<h3 class="sh2" style="color:var(--blub)">Thinker Registry</h3>
+<div class="src"><div class="src-cat">Front-Divergence Architecture</div><span style="color:var(--blub)"><strong>Conflict-tracking and oil-market analysts</strong></span><div class="src-note">The juxtaposition of the cooling Iran front (Pakistan-mediated peace proposal) against the escalating Lebanon front (Beaufort, the Litani) and the selective oil pricing anchors the Front Divergence candidate's empirical substrate.</div></div>
+<div class="src"><div class="src-cat">Critical-Minerals Discourse</div><span style="color:var(--blub)"><strong>CSIS / Benchmark Minerals</strong></span><div class="src-note">2026 yttrium-import and rare-earth-regime reporting continues to anchor the Commons-Enclosure analysis through Cycle 2.</div></div>
+<div class="src"><div class="src-cat">Humanoid-Deployment Discourse</div><span style="color:var(--blub)"><strong>Robotics-deployment trackers (JAL/Haneda, Agility, Unitree)</strong></span><div class="src-note">May 2026 deployment-and-shipment reporting anchors the Capability Substrate Assembly candidate at the labor-substrate layer and the humanoid cost-crossing Liminal Signal.</div></div>
+<h3 class="sh2" style="color:var(--blub)">Serendipity Queue</h3>
+<div class="src"><div class="src-cat">Future Tracking — Agreement Ratification</div><span style="color:var(--blub)"><strong>US–Iran preliminary agreement (prospective)</strong></span><div class="src-note">The 17% Brent drop priced an unratified report; track whether Trump approves and Iran finalizes. Non-ratification converts the move into a Symbolic Anchoring Failure instance.</div></div>
+<div class="src"><div class="src-cat">Future Tracking — Front Re-Coupling</div><span style="color:var(--blub)"><strong>Lebanon manoeuvre vs Iran negotiation</strong></span><div class="src-note">Watch whether the Lebanon manoeuvre's momentum re-couples to the Iran negotiation through Netanyahu's nuclear condition; re-coupling collapses the Front Divergence and reverses the oil read.</div></div>
+<div class="src"><div class="src-cat">Future Tracking — Mediator Stability</div><span style="color:var(--blub)"><strong>Pakistan as Iran-talks broker</strong></span><div class="src-note">The 1 June Quetta bombing seeds the Mediator Fragility candidate; track whether Pakistan's internal security degrades enough to force it back from the broker role inside the de-escalation window.</div></div>
+<div class="src"><div class="src-cat">Future Tracking — Rare-Earth Truce Cliff</div><span style="color:var(--blub)"><strong>October 2025 restrictions truce</strong></span><div class="src-note">The truce covering October 2025 restrictions expires November 2026 — a known second-half cliff to track against the post-summit "address"-not-"eliminate" drift.</div></div>
+</div>
+<footer>
+<p>Tectonic Briefing No. 050 · 1 June 2026 · Monday · Cyborg Entrepreneurship Research Lab</p>
+<p style="margin-top:.3rem;font-size:.55rem;color:var(--t4)">Editorial discipline: fresh-domain content present in Technological (humanoid robotics deployment — Japan Airlines at Haneda on a three-year commitment, Agility Digit at Toyota Canada, Unitree shipment curve; open-weight AI — Gemma 4), Economic (critical minerals — yttrium imports 333→17 metric tons, Australia's Northern Minerals divestment order, the "address"-not-"eliminate" post-summit drift), Geopolitical (Africa — Ethiopia and Guinea elections, 1 June), Scientific (lower-energy photonic compute), and Liminal (the Massachusetts meteor as a black-swan wildcard; the humanoid cost crossing). Topic-rotation constraint satisfied: off-corridor content present across 5 of 8 lenses, with the off-corridor Liminal Signal supplied by the Massachusetts meteor and the humanoid cost crossing. Vocabulary holds at 42 named patterns; two new Cycle 2 candidates logged (Front Divergence, with consolidation caveat against Channel Decomposition / Peripheral Assertion; Mediator Fragility, adjacent to Keystone Removal); Framework-Licensed Escalation re-read against the cooling Iran front; Capability Substrate Assembly holds at the labor layer. Factual-verification discipline applied: all load-bearing claims carry 2026 dates per the verified research brief — Beaufort captured / Litani crossed 31 May; manoeuvre expanded 1 June; Iran reviewing a Pakistan-mediated US peace proposal, late May; war ongoing since 28 Feb 2026, ceasefire 8 April; Brent $91.20 Friday on track for ~17% May drop; Trump-Xi summit 14–15 May; equities/rates as of 30 April 2026; Ethiopia/Guinea elections 1 June; meteor 2:11 p.m. 1 June; Quetta bombing 1 June. Omitted for lack of verification: any 1 June oil close (the verified figure is the Friday $91.20); any election outcome (results outside the verified record); any confirmation of the Xi–North Korea visit (reported, not confirmed) or the Dong Jun investigation (speculation, not confirmation). Market discipline: the oil move is dated to Friday; no 1 June close asserted; the US–Iran agreement is flagged as unratified. Confidentiality discipline applied: Research Program Relevance references the lab's own research by content only.</p>
+</footer>
+<script>
+// P2A — section navigation with URL hash sync + history pushState
+var SECTION_IDS = ['ov','ge','te','ec','sc','so','en','ig','li','ie','wa','sa','an'];
+function go(id, pushHistory){
+  if(!id || SECTION_IDS.indexOf(id) === -1) id = 'ov';
+  if(pushHistory === undefined) pushHistory = true;
+  document.querySelectorAll('.s').forEach(function(s){s.classList.remove('v');});
+  var target = document.getElementById('s-'+id);
+  if(!target){ id = 'ov'; target = document.getElementById('s-ov'); }
+  if(target) target.classList.add('v');
+  document.querySelectorAll('nav button').forEach(function(b){b.classList.remove('on');});
+  document.querySelectorAll('nav button').forEach(function(b){
+    var oc = b.getAttribute('onclick') || '';
+    if(oc.indexOf("'"+id+"'") !== -1) b.classList.add('on');
+  });
+  if(pushHistory && window.history && window.history.pushState){
+    try { window.history.pushState({section:id}, '', '#'+id); } catch(e){}
+  }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// Restore section from URL hash on initial load
+document.addEventListener('DOMContentLoaded', function(){
+  var hash = (location.hash || '').replace('#','');
+  if(hash && SECTION_IDS.indexOf(hash) !== -1) go(hash, false);
+});
+
+// Browser back/forward navigation
+window.addEventListener('popstate', function(e){
+  var id = (e.state && e.state.section) || (location.hash || '').replace('#','') || 'ov';
+  go(id, false);
+});
+function ddt(el){
+  var p=el.parentElement.parentElement.querySelector('.dd-panel');
+  if(!p)return;
+  var open=el.classList.toggle('active');
+  p.classList.toggle('open');
+  el.setAttribute('aria-expanded', open ? 'true' : 'false');
+  el.classList.remove('hint');
+}
+// Keyboard activation for deep-dive toggles (Enter/Space)
+document.addEventListener('keydown', function(e){
+  if((e.key==='Enter'||e.key===' ')&&e.target&&e.target.classList&&e.target.classList.contains('dd')){
+    e.preventDefault();
+    ddt(e.target);
+  }
+});
+// SPRINT 3 — reading progress bar
+(function(){
+  var rpf = document.getElementById('rpf');
+  if(!rpf) return;
+  function update(){
+    var sd = document.documentElement.scrollHeight - window.innerHeight;
+    if(sd <= 0){ rpf.style.width = '0%'; return; }
+    var sp = Math.min(100, Math.max(0, (window.scrollY / sd) * 100));
+    rpf.style.width = sp + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+// SPRINT 3 — source archive filter
+function srcFilter(q){
+  q = (q||'').trim().toLowerCase();
+  var srcs = document.querySelectorAll('#s-sa .src');
+  var heads = document.querySelectorAll('#s-sa .sh2');
+  var shown = 0, total = srcs.length;
+  srcs.forEach(function(s){
+    if(!q){
+      s.classList.remove('hidden');
+      shown++;
+      return;
+    }
+    var txt = s.textContent.toLowerCase();
+    if(txt.indexOf(q) !== -1){ s.classList.remove('hidden'); shown++; }
+    else { s.classList.add('hidden'); }
+  });
+  // Hide category headings whose group has zero visible sources
+  heads.forEach(function(h){
+    var next = h.nextElementSibling, anyVisible = false;
+    while(next && !next.classList.contains('sh2')){
+      if(next.classList && next.classList.contains('src') && !next.classList.contains('hidden')){
+        anyVisible = true; break;
+      }
+      next = next.nextElementSibling;
+    }
+    h.style.display = anyVisible ? '' : 'none';
+  });
+  var c = document.getElementById('src-filter-count');
+  if(c) c.textContent = q ? (shown + ' / ' + total) : (total + ' sources');
+}
+// Initialize source count on first load
+document.addEventListener('DOMContentLoaded', function(){
+  var srcs = document.querySelectorAll('#s-sa .src');
+  var c = document.getElementById('src-filter-count');
+  if(c) c.textContent = srcs.length + ' sources';
+});
+
+// P2B — Cmd+K command palette
+(function(){
+  var idx = null, selected = 0, visible = [];
+  function pathPrefix(){
+    return /\/(briefings|concepts)\//.test(location.pathname) ? '../' : '';
+  }
+  function loadIndex(cb){
+    if(idx){ cb(idx); return; }
+    fetch(pathPrefix() + 'search-index.json')
+      .then(function(r){ return r.json(); })
+      .then(function(j){ idx = j; cb(j); })
+      .catch(function(){ idx = {briefings:[], concepts:[]}; cb(idx); });
+  }
+  window.cmdkOpen = function(){
+    var m = document.getElementById('cmdkModal'); if(!m) return;
+    m.classList.add('open'); m.removeAttribute('hidden');
+    var input = document.getElementById('cmdkInput');
+    setTimeout(function(){ input.focus(); input.select(); }, 30);
+    loadIndex(function(){ cmdkSearch(input.value); });
+  };
+  window.cmdkClose = function(){
+    var m = document.getElementById('cmdkModal'); if(!m) return;
+    m.classList.remove('open'); m.setAttribute('hidden', '');
+  };
+  function esc(s){
+    return (s||'').replace(/[<>&"]/g, function(c){
+      return ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'})[c];
+    });
+  }
+  function renderResult(r, i){
+    var pre = pathPrefix();
+    if(r.type === 'briefing'){
+      var b = r.item;
+      return '<a class="cmdk-result' + (i===0?' sel':'') + '" href="' + pre + b.url + '" data-i="' + i + '">' +
+        '<div class="cmdk-result-type">Briefing</div>' +
+        '<div class="cmdk-result-body">' +
+        '<div class="cmdk-result-title">' + esc(b.display_date) + ' · ' + esc(b.dow) + '</div>' +
+        '<div class="cmdk-result-sub"><span class="cmdk-result-meta">No. ' + esc(b.number) + ' · Cycle ' + esc(String(b.cycle)) + '</span>' + esc(b.thread||'(no thread title)') + '</div>' +
+        '</div></a>';
+    }
+    var c = r.item;
+    return '<a class="cmdk-result' + (i===0?' sel':'') + '" href="' + pre + c.url + '" data-i="' + i + '">' +
+      '<div class="cmdk-result-type concept">Concept</div>' +
+      '<div class="cmdk-result-body">' +
+      '<div class="cmdk-result-title">' + esc(c.name) + '</div>' +
+      '<div class="cmdk-result-sub"><span class="cmdk-result-meta m' + c.meta + '">META-' + c.meta + ' · ' + esc(c.meta_name) + '</span>' + esc(c.brief) + '</div>' +
+      '</div></a>';
+  }
+  window.cmdkSearch = function(q){
+    if(!idx){ loadIndex(function(){ cmdkSearch(q); }); return; }
+    q = (q||'').trim().toLowerCase();
+    visible = [];
+    var results = document.getElementById('cmdkResults'); if(!results) return;
+    var counts = document.getElementById('cmdkCounts');
+    idx.concepts.forEach(function(c){
+      var hay = (c.name + ' ' + (c.brief||'') + ' ' + (c.meta_name||'')).toLowerCase();
+      if(!q || hay.indexOf(q) !== -1) visible.push({type:'concept', item:c});
+    });
+    idx.briefings.forEach(function(b){
+      var hay = ((b.title||'') + ' ' + (b.thread||'') + ' ' + b.date + ' ' + (b.dow||'') + ' Cycle ' + b.cycle).toLowerCase();
+      if(!q || hay.indexOf(q) !== -1) visible.push({type:'briefing', item:b});
+    });
+    if(q){
+      visible.sort(function(a, b){
+        var aName = (a.item.name || a.item.title || '').toLowerCase();
+        var bName = (b.item.name || b.item.title || '').toLowerCase();
+        var aHit = aName.indexOf(q), bHit = bName.indexOf(q);
+        if(aHit === -1) aHit = 9999; if(bHit === -1) bHit = 9999;
+        if(aHit !== bHit) return aHit - bHit;
+        return 0;
+      });
+    }
+    visible = visible.slice(0, 50);
+    selected = 0;
+    if(!visible.length){
+      results.innerHTML = '<div class="cmdk-empty">No matches.</div>';
+      if(counts) counts.textContent = '';
+      return;
+    }
+    results.innerHTML = visible.map(function(r, i){ return renderResult(r, i); }).join('');
+    if(counts) counts.textContent = visible.length + ' result' + (visible.length===1?'':'s');
+  };
+  document.addEventListener('DOMContentLoaded', function(){
+    var input = document.getElementById('cmdkInput');
+    if(input) input.addEventListener('input', function(){ cmdkSearch(this.value); });
+  });
+  document.addEventListener('keydown', function(e){
+    var isCmdK = (e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey);
+    if(isCmdK){ e.preventDefault(); cmdkOpen(); return; }
+    var m = document.getElementById('cmdkModal');
+    if(!m || !m.classList.contains('open')) return;
+    if(e.key === 'Escape'){ e.preventDefault(); cmdkClose(); return; }
+    if(e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+      e.preventDefault();
+      var max = visible.length - 1;
+      selected = (e.key === 'ArrowDown') ? Math.min(max, selected+1) : Math.max(0, selected-1);
+      document.querySelectorAll('.cmdk-result').forEach(function(el, i){
+        el.classList.toggle('sel', i === selected);
+        if(i === selected) el.scrollIntoView({block:'nearest'});
+      });
+    }
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      var el = document.querySelectorAll('.cmdk-result')[selected];
+      if(el) window.location.href = el.getAttribute('href');
+    }
+  });
+})();
+</script>
+</div>
+<!-- TB-NAV-WRAP:BOT:START -->
+<div class="tb-nav-foot"><div class="tb-nav-left"><a href="2026-05-28.html">← Briefing No. 049</a><a class="tb-nav-disabled">Next →</a></div><div class="tb-nav-right"><a href="../index.html">Archive</a><a href="https://github.com/cyborg-entrepreneur/tectonic-briefing/blob/main/briefings/2026-06-01.html" target="_blank" rel="noopener">View on GitHub</a></div></div>
+<div class="tb-site-foot">Tectonic Briefing No. 050 · 1 June 2026 · Monday · Cyborg Entrepreneurship Research Lab · <a href="../index.html">Return to archive</a></div>
+<!-- TB-NAV-WRAP:BOT:END -->
+</body>
+</html>
