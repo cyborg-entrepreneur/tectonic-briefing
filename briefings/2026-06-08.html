@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tectonic Briefing</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source Sans 3',system-ui,sans-serif;font-size:16px;line-height:1.7;min-height:100vh}
+:root{--bg:#0b1120;--card:#111827;--alt:#141c2e;--str:#162035;--blu:#4b8ef2;--blub:#6da8ff;--blup:#a3c8ff;--teal:#38d9c8;--tealm:#2a9e92;--gold:#e5b84c;--goldm:#c9a03a;--red:#f06050;--redm:#c04a3e;--purp:#a78bfa;--grn:#4ade80;--t1:#eaf0f8;--t2:#cdd6e4;--t3:#8e9bb5;--t4:#5f6d87;--brd:rgba(75,142,242,0.18);--brds:rgba(75,142,242,0.35)}
+.w{max-width:1140px;margin:0 auto;padding:0 1.8rem}
+header{padding:2.8rem 0 1.8rem;border-bottom:1px solid var(--brd);margin-bottom:2rem}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2.6rem;color:var(--t1);letter-spacing:.025em}
+h1 em{font-style:normal;color:var(--blub);font-weight:500}
+.sub{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--t4);letter-spacing:.14em;text-transform:uppercase;margin-top:.4rem}
+.epi{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.02rem;color:var(--t3);margin-top:1rem;max-width:680px;line-height:1.55;padding-left:1rem;border-left:2px solid var(--brds)}
+nav{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--brd)}
+nav button{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .7rem;border:1px solid var(--brd);border-radius:2px;background:transparent;color:var(--t3);cursor:pointer;transition:all .25s}
+nav button:hover{border-color:var(--brds);color:var(--blup)}
+nav button.on{border-color:var(--blu);color:var(--blub);background:rgba(75,142,242,.06)}
+nav button.gld{border-color:rgba(229,184,76,.3)}nav button.gld:hover,nav button.gld.on{border-color:var(--gold);color:var(--gold);background:rgba(229,184,76,.06)}
+nav button.rd{border-color:rgba(240,96,80,.3)}nav button.rd:hover,nav button.rd.on{border-color:var(--red);color:var(--red);background:rgba(240,96,80,.06)}
+nav button.tl{border-color:rgba(56,217,200,.3)}nav button.tl:hover,nav button.tl.on{border-color:var(--teal);color:var(--teal);background:rgba(56,217,200,.06)}
+nav button.pr{border-color:rgba(167,139,250,.3)}nav button.pr:hover,nav button.pr.on{border-color:var(--purp);color:var(--purp);background:rgba(167,139,250,.06)}
+nav button.gn{border-color:rgba(74,222,128,.3)}nav button.gn:hover,nav button.gn.on{border-color:var(--grn);color:var(--grn);background:rgba(74,222,128,.06)}
+.bn{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--t4);letter-spacing:.08em;margin-bottom:.3rem}
+.bd{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--t1);margin-bottom:.2rem}
+.bt{font-size:.95rem;color:var(--t3);font-style:italic;margin-bottom:2rem}
+.s{display:none;animation:fu .35s ease}.s.v{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.c{background-color:var(--card);border:1px solid var(--brd);border-radius:3px;padding:1.8rem 2rem;margin-bottom:1.4rem}
+.c.lim{border-left:3px solid var(--gold);background-color:var(--alt)}.c.cri{border-left:3px solid var(--red);background-color:var(--alt)}.c.act{border-left:3px solid var(--teal);background-color:var(--alt)}.c.inf{border-left:3px solid var(--purp);background-color:var(--alt)}.c.env{border-left:3px solid var(--grn);background-color:var(--alt)}.c.gov{border-left:3px solid #f59e0b;background-color:var(--alt)}
+.lb{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blu);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.lb.gl{color:var(--gold)}.lb.tl{color:var(--teal)}.lb.rl{color:var(--red)}.lb.pl{color:var(--purp)}.lb.gnl{color:var(--grn)}.lb.aml{color:#f59e0b}
+.tg{padding:.12rem .45rem;border-radius:2px;font-size:.58rem}
+.tu{background:rgba(75,142,242,.14);color:var(--blup)}.te{background:rgba(56,217,200,.14);color:var(--teal)}.tc{background:rgba(167,139,250,.14);color:var(--purp)}.ta{background:rgba(229,184,76,.14);color:var(--gold)}.tr{background:rgba(240,96,80,.14);color:#fca5a5}.tg2{background:rgba(74,222,128,.14);color:var(--grn)}
+.c h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:var(--t1);margin-bottom:.9rem;line-height:1.3}
+.c p{margin-bottom:.9rem;color:var(--t2);line-height:1.75}.c p:last-child{margin-bottom:0}.c strong{color:var(--t1);font-weight:600}
+.i{margin-top:1rem;padding:.9rem 1.2rem;border-radius:0 2px 2px 0}.i p{font-size:.93rem;color:var(--t2)}
+.il{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.4rem}
+.i.so{background:rgba(75,142,242,.05);border-left:2px solid rgba(75,142,242,.35)}.i.so .il{color:var(--t4)}
+.i.rs{background:rgba(56,217,200,.05);border-left:2px solid rgba(56,217,200,.3)}.i.rs .il{color:var(--tealm)}
+.i.cf{background:rgba(229,184,76,.05);border-left:2px solid rgba(229,184,76,.3)}.i.cf .il{color:var(--goldm)}.i.cf p{font-style:italic}
+.i.in{background:rgba(167,139,250,.05);border-left:2px solid rgba(167,139,250,.3)}.i.in .il{color:var(--purp)}
+.th{background-color:var(--str);border:1px solid var(--brds);border-radius:3px;padding:1.6rem 1.8rem;margin:1.8rem 0}
+.th h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:500;color:var(--blub);margin-bottom:.8rem}.th p{color:var(--t2);line-height:1.75}
+.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;margin:1.2rem 0}
+.vi{background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:1rem 1.2rem}
+.vi h4{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--blub);margin-bottom:.4rem;letter-spacing:.04em}.vi p{font-size:.88rem;color:var(--t3);line-height:1.5;margin:0}
+.mr{display:flex;align-items:flex-start;gap:.8rem;padding:.8rem 0;border-bottom:1px solid rgba(75,142,242,.08)}
+.mf{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--blu);min-width:170px;padding-top:.2rem;letter-spacing:.04em}
+.me{font-size:.92rem;color:var(--t2)}.md{font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.1rem .4rem;border-radius:2px;white-space:nowrap}
+.amp{background:rgba(240,96,80,.12);color:#fca5a5}.dmp{background:rgba(56,217,200,.12);color:var(--teal)}
+.prose{max-width:800px;margin-bottom:1.8rem}.prose p{margin-bottom:1rem;color:var(--t2);line-height:1.8}
+.sh{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--t1);margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid var(--brd)}
+.sh2{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;margin:2rem 0 1rem}
+.src{background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:.8rem 1.2rem;margin-bottom:.6rem;font-size:.88rem}
+.src-cat{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.2rem}
+.src a{color:var(--blub);text-decoration:none;border-bottom:1px solid rgba(109,168,255,.3)}.src a:hover{border-color:var(--blub)}
+.src .src-note{color:var(--t3);font-size:.85rem;margin-top:.3rem}
+.tk{display:inline-block;background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:.5rem .9rem;margin:0 .4rem .4rem 0;font-size:.85rem}
+.tk strong{color:var(--t1);font-weight:500}.tk span{color:var(--t3);font-size:.8rem}
+.dd{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blub);background:rgba(75,142,242,.08);border:1px solid rgba(75,142,242,.25);border-radius:2px;padding:.25rem .6rem;margin-left:.5rem;vertical-align:middle;cursor:pointer;transition:all .3s}
+.dd::before{content:'\25C9';font-size:.7rem}
+.dd:hover{background:rgba(75,142,242,.18);border-color:rgba(75,142,242,.5);color:var(--blup)}
+.dd.active{background:rgba(75,142,242,.15);border-color:var(--blu);color:var(--blup)}
+.dd.active::before{content:'\25CE'}
+.dd-panel{display:none;margin-top:1.2rem;padding:1.4rem 1.6rem;background:linear-gradient(135deg,rgba(75,142,242,.04),rgba(167,139,250,.04));border:1px solid rgba(75,142,242,.2);border-radius:3px;animation:fu .35s ease}
+.dd-panel.open{display:block}
+.dd-panel .dd-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--purp);margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem}
+.dd-panel .dd-label::before{content:'\25C9';font-size:.65rem}
+.dd-panel h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:500;color:var(--t1);margin-bottom:.6rem}
+.dd-panel p{color:var(--t2);line-height:1.75;margin-bottom:.8rem;font-size:.93rem}
+.dd-panel p:last-child{margin-bottom:0}
+.dd-panel strong{color:var(--t1)}
+.dd-panel .dd-question{font-style:italic;color:var(--t3);border-left:2px solid var(--purp);padding-left:.8rem;margin:.8rem 0}
+.wa-section{margin-bottom:2.5rem}
+.wa-section h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:500;color:var(--t1);margin:1.4rem 0 .7rem;padding-top:.8rem;border-top:1px solid rgba(75,142,242,.1)}
+.wa-section h4:first-of-type{border-top:none;padding-top:0}
+footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--brd);text-align:center}
+footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
+@media(max-width:768px){.w{padding:0 1rem}h1{font-size:2rem}.c{padding:1.3rem 1.2rem}.vg{grid-template-columns:1fr}.mr{flex-direction:column;gap:.3rem}.mf{min-width:unset}}
+<!-- TB-NAV-WRAP:STYLE -->
+/* Tectonic Briefing site-wide nav wrapper (injected by update-index.py) */
+.tb-nav-bar{position:sticky;top:0;z-index:80;background:rgba(11,17,32,.94);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(75,142,242,0.18);padding:.55rem 1.2rem;
+  display:flex;gap:.6rem;align-items:center;justify-content:space-between;
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;flex-wrap:wrap}
+.tb-nav-bar .tb-nav-left,.tb-nav-bar .tb-nav-right{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}
+.tb-nav-bar a{color:#8e9bb5;text-decoration:none;border:1px solid rgba(75,142,242,0.18);
+  padding:.32rem .62rem;border-radius:2px;transition:all .2s;white-space:nowrap}
+.tb-nav-bar a:hover{color:#6da8ff;border-color:rgba(75,142,242,0.45)}
+.tb-nav-bar .tb-nav-disabled{color:#5f6d87;border-color:rgba(75,142,242,0.08);pointer-events:none;opacity:.55}
+.tb-nav-bar .tb-nav-counter{color:#6da8ff;font-weight:500}
+.tb-nav-bar .tb-nav-archive{color:#cdd6e4;border-color:rgba(75,142,242,0.32)}
+.tb-nav-foot{margin-top:2rem;padding:1.4rem 1.6rem;border:1px solid rgba(75,142,242,0.18);
+  border-radius:3px;display:flex;gap:.6rem;align-items:center;justify-content:space-between;
+  background:#111827;font-family:'JetBrains Mono',monospace;font-size:.62rem;
+  letter-spacing:.1em;text-transform:uppercase;flex-wrap:wrap}
+.tb-nav-foot .tb-nav-left,.tb-nav-foot .tb-nav-right{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}
+.tb-nav-foot a{color:#8e9bb5;text-decoration:none;border:1px solid rgba(75,142,242,0.18);
+  padding:.32rem .62rem;border-radius:2px;transition:all .2s;white-space:nowrap}
+.tb-nav-foot a:hover{color:#6da8ff;border-color:rgba(75,142,242,0.45)}
+.tb-nav-foot .tb-nav-disabled{color:#5f6d87;border-color:rgba(75,142,242,0.08);pointer-events:none;opacity:.55}
+.tb-site-foot{margin-top:1.4rem;padding:1.2rem 0;text-align:center;
+  font-family:'JetBrains Mono',monospace;font-size:.55rem;color:#5f6d87;
+  letter-spacing:.12em;text-transform:uppercase}
+.tb-site-foot a{color:#8e9bb5;text-decoration:none;border-bottom:1px solid rgba(75,142,242,0.18)}
+.tb-site-foot a:hover{color:#6da8ff;border-color:#6da8ff}
+@media(max-width:560px){
+  .tb-nav-bar{font-size:.55rem;padding:.45rem .7rem}
+  .tb-nav-bar a{padding:.28rem .5rem}
+  .tb-nav-foot{font-size:.55rem;padding:1.1rem 1rem}
+}
+<!-- TB-NAV-WRAP:STYLE -->
+</style>
+</head>
+<body>
+<!-- TB-NAV-WRAP:TOP:START -->
+<div class="tb-nav-bar"><div class="tb-nav-left"><a href="2026-06-01.html" title="Briefing No. 050 · 1 June 2026 · Monday">← Prev</a><span class="tb-nav-counter">Briefing No. 050</span><a class="tb-nav-disabled">Next →</a></div><div class="tb-nav-right"><a href="../index.html" class="tb-nav-archive">Archive</a></div></div>
+<!-- TB-NAV-WRAP:TOP:END -->
+
+<div class="w">
+<header>
+<h1><em>Tectonic</em> Briefing</h1>
+<div class="sub">Structural forces · Inference engine · Wise action · Source archive</div>
+<div class="epi">“The fault, dear Brutus, is not in our stars, but in ourselves.” — Cassius, in Shakespeare’s <em>Julius Caesar</em> (1599). Today the inversion: the fault this week was in the calibration. Systems that had learned to discount a recurring signal as noise watched the signal arrive in earnest.</div>
+</header>
+<nav id="nav">
+<button class="on" onclick="go('ov')">Overview</button>
+<button class="rd" onclick="go('ge')">Geopolitical</button>
+<button onclick="go('te')">Technological</button>
+<button onclick="go('ec')">Economic</button>
+<button onclick="go('sc')">Scientific</button>
+<button onclick="go('so')">Social</button>
+<button class="gn" onclick="go('en')">Ecological</button>
+<button onclick="go('ig')">Institutional</button>
+<button class="gld" onclick="go('li')">Liminal Signals</button>
+<button class="pr" onclick="go('ie')">Inference Engine</button>
+<button class="tl" onclick="go('wa')">Wise Action</button>
+<button onclick="go('an')">Anomaly</button>
+<button onclick="go('sa')">Source Archive</button>
+</nav>
+<div class="bn">BRIEFING NO. 050 · CYCLE 2</div>
+<div class="bd">Monday, 8 June 2026</div>
+<div class="bt">On 3 June 2026 the US House passed a War Powers resolution directing Trump to end the Iran war, 215–208 — the first time the chamber has formally invoked the Resolution against this war. Briefing 010 called that same Resolution “silently retired”; six weeks later the form reactivated, and the vote is mostly symbolic because Trump will veto. The same week, three other calibrated discounts broke: Atom Computing demonstrated sustained neutral-atom error correction with a toric code (3 June), moving quantum from “deferred threat” to engineering reality; Boston Dynamics began shipping electric Atlas units and Figure’s factory hit one robot per hour, moving humanoids from pilot to production; and May payrolls printed +172,000 against an ~85,000 consensus (5 June) while the April CPI ran 3.8% — the Fed held at 3.50–3.75% on an 8–4 vote, its widest dissent since 1992. Off-corridor: Peru’s runoff is a sub-1% dead heat (7 June); Pashinyan declared a “historic victory” in Armenia (7–8 June). Today’s pattern: <strong>calibration inversion</strong> — the discount that became load-bearing, until the signal arrived in a form the discount could not absorb. Vocabulary holds at <strong>42 named patterns</strong>; one Cycle 2 candidate is logged.</div>
+<!-- ========== OVERVIEW ========== -->
+<div class="s v" id="s-ov">
+<div class="prose">
+<p>The recurring failure of late-modern systems is not that they fail to perceive a signal. It is that they learn to discount the signal so reliably that the discount itself becomes a structure other things lean on. Briefing 031 named the market version of this — <strong><a class="vbadge m5" href="../concepts/tail-calibration-failure.html" title="The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk…" data-meta="5">Tail Calibration Failure</a></strong>: the discount works for the modal case and breaks catastrophically when the world stops being modal. This week the same shape appeared in four domains that do not usually move together, and the connective tissue is a single mechanism. A class of signal that institutions had routinized into background noise arrived in a form the routine could not absorb, and the repricing had to happen all at once.</p>
+<p>Start with the cleanest instance. The War Powers Resolution of 1973 was the subject of Briefing 010’s sharpest claim: after fifteen Americans were wounded at Ali Al Salem in April and Congress did nothing, the briefing wrote that the Resolution had been “silently retired” — the form intact, the work-doing power gone. <strong>On 3 June 2026 the House passed a War Powers resolution, 215–208, directing the President to end hostilities with Iran.</strong> Four Republicans — Massie, Barrett, Davidson, Fitzpatrick — crossed over. This is the first formal invocation of the mechanism against this war. The form reactivated. And yet the act is mostly symbolic: the Senate is unlikely to follow, and Trump has signaled a veto, dismissing it as “a meaningless vote.” The Resolution is neither retired nor operative. It is in a third state the prior framing did not anticipate.</p>
+<p>The other three instances are off the geopolitical corridor by design. On <strong>3 June 2026 Atom Computing demonstrated sustained quantum error correction on a neutral-atom system using a toric code</strong>, showing error rates that fall as qubit counts rise — the property fault-tolerance requires. The cryptographic deadline that post-quantum planners have discounted as years away moved a notch toward the present. The same days, humanoid robotics crossed from pilot to production: Boston Dynamics began shipping electric Atlas units to Hyundai, and Figure’s BotQ line reached roughly one robot per hour. And on <strong>5 June 2026 the May employment report printed +172,000 jobs against an ~85,000 consensus</strong>, with prior months revised up 93,000 — while April CPI ran 3.8% year-over-year. The Fed, which markets had discounted toward a cut, held at 3.50–3.75% on an 8–4 vote. Each system had priced a quiet continuation. Each got a discontinuity instead.</p>
+</div>
+<div class="th"><h3>Unifying Thread: Calibration Inversion</h3>
+<p>The thread this week is not a new force. It is the recognition that a structural pattern the briefing first named at the level of oil markets operates at the level of constitutions, cryptographic timelines, labor substrates, and central-bank reaction functions. A system observes a recurring signal — presidential war-making, the slow march of qubit counts, the quarterly drift of payrolls, the steady promise of humanoid robots — and it builds a discount: a learned expectation that the signal will not, this time, change anything. The discount is rational on the modal path. It is also load-bearing. Other decisions get made on top of it. Then the signal arrives in a form the discount cannot contain, and everything stacked on the discount reprices at once.</p>
+<p>What makes June 1–8 a single structure rather than four coincidences is that the discounts broke in the same direction. The House invoked a Resolution it had treated as defunct. Atom Computing made real an error-correction regime that planners had filed under “later.” Payrolls beat by roughly double the consensus and the Fed declined the cut the curve had embedded. Boston Dynamics shipped a robot that the labor-market models still treat as a demo. In each case the discount had been the safe assumption, and in each case the safe assumption was the thing that failed. <strong>The discount that becomes load-bearing is the one that breaks loudest.</strong> This is the homology Briefing 031 reached toward: the operation by which a system averages its way to a calm forecast and the operation by which it under-prices the tail are the same operation, and they fail together.</p>
+<p>Today logs one Cycle 2 candidate against this thread. <strong>Discount Reactivation</strong> (META-5 Institutional Hollowing family, cross-referencing META-3 Threshold Cascade) names the case where a form that had been treated as hollow — its work-doing power presumed gone — abruptly produces an action without recovering its enforcement power, so the action sits in a third state between retired and operative. The empirical anchor is the 3 June House War Powers vote: the Resolution acted for the first time against this war, yet the act is non-binding under a promised veto. <strong>The consolidation caveat is explicit.</strong> This may simply instantiate Institutional Hollowing observed across a longer arc, or it may overlap with <a class="vbadge m5" href="../concepts/tail-calibration-failure.html" title="The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk…" data-meta="5">Tail Calibration Failure</a> read at the constitutional level. It enters the monitoring pool as a candidate, not a promotion.</p></div>
+<h3 class="sh2" style="color:var(--blub)">Structural Vocabulary (Accumulating)</h3>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1rem;font-size:.9rem">Organized by meta-category. Five structural families, 42 named patterns (no additions today). One Cycle 2 candidate logged — <em>Discount Reactivation</em>.</p>
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-1: Coupling Failure</h3>
+<div class="vg">
+<div class="vi"><h4>Observation-Action Decoupling</h4><p>Accurate observation does not constrain behavior. Briefing 006.</p></div>
+<div class="vi"><h4>Narrative-Physical Decoupling</h4><p>Official account operates as a parallel reality. Briefing 007.</p></div>
+<div class="vi"><h4>Akrasia at Scale</h4><p>Knowing the better course and choosing the worse. Briefing 006.</p></div>
+<div class="vi"><h4>Capability Opacity</h4><p>Capability-verifiability gap unbridgeable. Briefing 003.</p></div>
+<div class="vi"><h4>Emergent Concealment</h4><p>AI develops capacity to hide actions. Briefing 005.</p></div>
+<div class="vi"><h4>Instrument Autonomy</h4><p>Deployed instrument exceeds deployer’s control. Briefing 008.</p></div>
+<div class="vi"><h4>Scope Retreat</h4><p>Declared policy retreats to physically feasible within hours. Briefing 009.</p></div>
+<div class="vi"><h4>Dual-Track Maximalism</h4><p>Maximum threat and diplomatic opening occur simultaneously. Briefing 010.</p></div>
+<div class="vi"><h4>Credential Foreclosure</h4><p>Executing the credential-action forecloses the negotiation. Briefing 016.</p></div>
+<div class="vi"><h4>Verification-Mode Asymmetry</h4><p>Verification regime blind to failures only execution surfaces. Briefing 020.</p></div>
+<div class="vi"><h4>Peripheral Assertion</h4><p>Periphery refuses backdrop status. Briefing 021.</p></div>
+<div class="vi"><h4>Sabbath Visibility</h4><p>Suppressed signals become audible when production rhythm slows. Briefing 022.</p></div>
+<div class="vi"><h4>Weekend Translation</h4><p>Saturday cycle resolves tactical moves into structural transitions. Briefing 028.</p></div>
+<div class="vi"><h4>Mode-Switch Disarticulation</h4><p>Single architecture executes concealment- and disclosure-mode across windows. Briefing 038.</p></div>
+</div>
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-2: Bypass Inversion</h3>
+<div class="vg">
+<div class="vi"><h4>Bypass Capture</h4><p>Escape route becomes the target. Briefing 007.</p></div>
+<div class="vi"><h4>Shadow Settlement</h4><p>Parallel transaction system emerges. Briefing 002.</p></div>
+<div class="vi"><h4>Conditional Collapse</h4><p>Ambiguity that enabled agreement becomes mechanism of failure. Briefing 005.</p></div>
+<div class="vi"><h4>Negotiation Multiplication</h4><p>Stalled tracks spawn parallel tracks. Briefing 006.</p></div>
+<div class="vi"><h4>Sovereignty Arbitrage</h4><p>Gap between sovereignty claims and enforcement. Briefing 003.</p></div>
+</div>
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-3: Threshold Cascade</h3>
+<div class="vg">
+<div class="vi"><h4>Buffer Collapse</h4><p>Shock-absorbing system fails. Briefing 001.</p></div>
+<div class="vi"><h4>Chokepoint Cascade</h4><p>Bottleneck failure propagates. Briefing 001.</p></div>
+<div class="vi"><h4>Tipping Cascade</h4><p>One threshold triggers others. Briefing 001.</p></div>
+<div class="vi"><h4>Deadline Revelation</h4><p>Temporal boundary forces latent forces visible. Briefing 002.</p></div>
+<div class="vi"><h4>Reversibility Asymmetry</h4><p>Physical irreversibility outpaces institutional reversibility. Briefing 009.</p></div>
+<div class="vi"><h4>Keystone Removal</h4><p>Configuration loses load-bearing actor. Briefing 023.</p></div>
+<div class="vi"><h4>Verdict Compression</h4><p>Smoothed signals produce maximum dispersion in one decision window. Briefing 026.</p></div>
+<div class="vi"><h4>Effective-Date Convergence</h4><p>Multiple transitions activate on the same calendar day. Briefing 027.</p></div>
+<div class="vi"><h4>Sabbath Operationalization</h4><p>Sunday converts information into decisions before Monday. Briefing 029.</p></div>
+</div>
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-4: <a class="vbadge m4" href="../concepts/commons-enclosure.html" title="When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper." data-meta="4">Commons Enclosure</a></h3>
+<div class="vg">
+<div class="vi"><h4>Commons Enclosure</h4><p>Shared resource converted to controlled access. Briefing 003.</p></div>
+<div class="vi"><h4>Optionality Arbitrage</h4><p>Advantage existing only in crisis. Briefing 001.</p></div>
+<div class="vi"><h4>Paradigm Defection</h4><p>Dominant advocate abandons paradigm. Briefing 005.</p></div>
+<div class="vi"><h4>Process as Destination</h4><p>Negotiation’s continuation is its goal. Briefing 007.</p></div>
+<div class="vi"><h4>Cartel Dissolution</h4><p>Multilateral regime loses load-bearing participant. Briefing 024.</p></div>
+</div>
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-5: Institutional Hollowing</h3>
+<div class="vg">
+<div class="vi"><h4>Capacity Hollowing</h4><p>Personnel cuts reduce perception before action. Briefing 002.</p></div>
+<div class="vi"><h4>Category Collapse</h4><p>Stable distinction dissolves. Briefing 001.</p></div>
+<div class="vi"><h4>Governance Vacuum</h4><p>Institutional capacity lags pace of change. Briefing 001.</p></div>
+<div class="vi"><h4>Constructive Ambiguity</h4><p>Agreement via mutually exclusive interpretations. Briefing 004.</p></div>
+<div class="vi"><h4>Ceasefire Acceleration</h4><p>Pause accelerates structural transformations. Briefing 004.</p></div>
+<div class="vi"><h4>Electoral Correction</h4><p>Entrenched illiberal rule reversed democratically. Briefing 009.</p></div>
+<div class="vi"><h4>Sanctuary Discount</h4><p>Marketplace discounts weekend-window decisions. Briefing 030.</p></div>
+<div class="vi"><h4>Tail Calibration Failure</h4><p>Mean-trajectory discount fails on operational tail events. Briefing 031.</p></div>
+<div class="vi"><h4>Channel Decomposition</h4><p>Bundled commitment decomposes into independent channels. Briefing 032.</p></div>
+<div class="vi" style="border-color:var(--goldm)"><h4 style="color:var(--gold)">Discount Reactivation ● CANDIDATE</h4><p>A form treated as hollow abruptly acts without recovering its enforcement power, sitting between retired and operative. House War Powers vote 3 June. Briefing 050 (Cycle 2 candidate).</p></div>
+</div>
+</div>
+<!-- ========== GEOPOLITICAL ========== -->
+<div class="s" id="s-ge">
+<div class="sh">Geopolitical Forces</div>
+<div class="c cri">
+<div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span> <span class="tg tr">Contested Runoff</span></div>
+<h3>Peru’s Runoff Splits the Country Down the Middle <span class="dd">Deep Dive Available</span></h3>
+<p>Peru held its presidential runoff on <strong>7 June 2026</strong> between conservative Keiko Fujimori (Fuerza Popular) and leftist Roberto Sánchez. By Monday morning, with more than 92% of the vote counted, the electoral authority ONPE showed <strong>Fujimori at 50.1% (about 8.731 million votes) and Sánchez at 49.8% (about 8.674 million)</strong> — a margin under one percentage point. The pollster Ipsos, whose preliminary tallies have called every runoff winner since 2001, reported a statistical tie on Sunday night with Sánchez very slightly ahead, and its director cautioned that a full count would be required. This is Fujimori’s fourth presidential bid; she lost the 2011, 2016, and 2021 runoffs, the last by roughly 44,000 votes.</p>
+<p>The structural feature is the persistence of the split, not its direction. <strong>Peru has now produced a sub-one-percent runoff three of the last four cycles</strong>, which is no longer noise around a median voter but a standing feature of the electorate’s structure. A country cleaved this finely cannot govern from the center because there is no center to govern from; whichever candidate certifies will hold the presidency with the other half of the country having voted against them by a margin smaller than the count’s own error bars. The <a class="vbadge m5" href="../concepts/category-collapse.html" title="When a distinction assumed stable dissolves." data-meta="5">Category Collapse</a> pattern (META-5, Briefing 001) applies to the loser/winner distinction itself: when the margin is inside the uncertainty of the tally, the categorical force of “the winner” weakens before any institution can restore it.</p>
+<div class="i so"><div class="il">Second-Order</div><p>Latin America has been almost absent from this briefing series, and the Peru result is exactly the kind of off-corridor signal the rotation discipline exists to surface. A Fujimori presidency certified on a contested half-point would arrive with a legislature it does not control and a street that does not accept it; a Sánchez reversal on the final tally sheets would arrive with the same liability mirrored. Either outcome imports governance fragility into a major copper producer at the moment critical-mineral supply is itself the week’s economic story. <strong>The commodity exposure and the political fragility are now coupled.</strong></p></div>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive Analysis</div>
+<h4>The Permanent Knife-Edge: When the Margin Falls Inside the Error Bars</h4>
+<p>Democratic legitimacy rests on a quiet assumption: that the count resolves the contest. A 55–45 result settles who governs because the margin exceeds any plausible dispute about the tally. Peru in 2026 is testing what happens when the margin falls below that threshold structurally, not occasionally. A 50.1–49.8 split with the count still running means the declared result and the disputed result are separated by less than the count’s own measurement uncertainty. The institution that is supposed to convert votes into a mandate cannot do so cleanly, because the input does not contain enough separation to produce a clean output.</p>
+<p>This is not a Peru problem in origin; it is a Peru problem in concentration. The same fine-margin structure has appeared across the democratic world — narrow US presidential pivots, knife-edge European coalitions, the Armenia and Ethiopia contests this same week. What Peru concentrates is the failure mode: an electorate split so evenly, so durably, that the act of counting cannot manufacture consent. <strong>The vote happens; the legitimacy does not arrive.</strong> Each cycle, the losing half grows more convinced the system was rigged against a margin that, by construction, could have gone either way. The mechanism that should dissipate that conviction — a decisive count — is precisely the mechanism that fails.</p>
+<p>For the structural vocabulary this sits at the intersection of <a class="vbadge m5" href="../concepts/category-collapse.html" title="When a distinction assumed stable dissolves." data-meta="5">Category Collapse</a> and Institutional Hollowing. The electoral institution retains its full form: ballots, observers, ONPE, Ipsos quick-counts with a perfect track record. What it has lost is the capacity to produce the one output it exists to produce, a settled winner, because the electorate no longer supplies the separation the output requires. The form runs flawlessly and yields a result nobody can treat as settled. The hollowing is not in the institution’s procedure but in the relationship between the procedure and the population it processes.</p>
+<p class="dd-question">If a class of major democracies has entered a regime where presidential margins fall durably inside the count’s own error bars — making decisive resolution structurally unavailable — does the legitimacy crisis migrate from “contested elections” to “uncontestable-yet-unsettled elections,” and what governance architecture, if any, can function when half the electorate has voted against the executive by a margin smaller than the recount threshold?</p>
+</div>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>Armenia: Pashinyan’s “Historic Victory” and the Pivot Away From Moscow</h3>
+<p>Armenia held parliamentary elections on <strong>7 June 2026</strong>, its first since the 2023 military defeat by Azerbaijan that cost it Nagorno-Karabakh. Prime Minister Nikol Pashinyan’s Civil Contract party took <strong>49.8% with all stations counted</strong>, enough for a parliamentary majority; the pro-Russian Strong Armenia bloc of Samvel Karapetyan trailed near 17.5%, former president Kocharyan’s alliance around 9%, on a 58.97% turnout. Pashinyan declared a “historic victory” in the early hours of <strong>8 June</strong>. The result clears his runway to keep diversifying Armenia’s alliances away from Russia and toward the West and to press the peace process with Azerbaijan.</p>
+<p>This is the inverse of Peru’s knife-edge. Where Peru’s electorate could not supply separation, Armenia’s delivered a decisive verdict on a single question: whether to continue the post-2023 reorientation away from Moscow. A pro-Russian opposition that polled strongly still lost by more than thirty points to the party that lost Karabakh — voters chose the direction over the defeat. <strong>The structural reading: a security guarantor that fails to guarantee loses its domestic constituency faster than the analysis assumes.</strong> Russia’s leverage in the South Caucasus did not erode through a Western campaign; it eroded because the guarantee stopped working and the electorate priced the failure directly.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>Manila and Hanoi Couple Up: Two China-Claimants Build a Hedge</h3>
+<p>Vietnamese President Tô Lâm arrived in Manila on <strong>1 June 2026</strong> and, with President Marcos, raised the Philippines–Vietnam relationship to an “enhanced strategic partnership,” marking fifty years of diplomatic ties and renewing a defense-cooperation agreement. The joint statement called peace and freedom of navigation in the South China Sea “non-negotiable” and grounded both claims in the 1982 UNCLOS and the 2016 arbitral award. The two countries signed accords on defense, technology, tourism, and food security.</p>
+<p>The structural move is two rival claimants in the same disputed sea choosing to pool their positions rather than be played against each other. For a decade Beijing has managed the South China Sea bilaterally, negotiating with each smaller claimant alone, where its size always dominates. <strong>Manila and Hanoi just converted two bilateral asymmetries into one coordinated front.</strong> This is the off-corridor instance of the week’s coupling theme: a hedge assembled in Southeast Asia, away from the Middle East war that monopolizes the geopolitical attention budget. The arbitral award the two cited had been treated by the corridor as a discounted legal artifact; here it reactivates as the shared reference point for a defense alignment.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>France Boards a Shadow-Fleet Tanker; the Sanctions Regime Goes Kinetic</h3>
+<p>On <strong>1 June 2026 the French navy seized the tanker <em>Tagor</em></strong>, a sanctioned Russia-linked vessel claiming a Benin flag, roughly 400 nautical miles west of Brittany after its captain refused to comply. The operation, announced by President Macron on 2 June and supported by the United Kingdom, was the fourth French boarding of a suspected shadow-fleet ship since September 2025. The Kremlin called it “piracy.”</p>
+<p>The structural reading is enforcement migrating from paper to deck. Western sanctions on Russian oil have run for years as a documentary regime — price caps, flag registries, insurance attestations — that the shadow fleet routed around through false flags and obscured ownership. <strong>Boarding a ship on the high seas is sanctions enforcement becoming a physical act.</strong> The discount the shadow fleet relied on was that the paper regime would never become a kinetic one; the fourth seizure since late 2025 retires that assumption. The cost is escalation risk: a maritime-interdiction campaign against a nuclear power’s oil exports has a tail the documentary regime did not.</p>
+</div>
+</div>
+<!-- ========== TECHNOLOGICAL ========== -->
+<div class="s" id="s-te">
+<div class="sh">Technological Forces</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>Atom Computing’s Toric Code: Quantum Crosses From Threat to Engineering <span class="dd">Deep Dive Available</span></h3>
+<p>On <strong>3 June 2026 Atom Computing announced the first full demonstration of quantum error correction on a neutral-atom system using a toric code.</strong> The result that matters is the slope: error rates fall as more physical qubits are folded into the computation, the behavior fault-tolerance requires and the absence of which has kept quantum computing in the “interesting demo” category. The company is now one of only two to demonstrate many sustained rounds of error correction, and the first to do it with neutral atoms. Across the field, multiple vendors reported logical-qubit counts in the 90–100 range and decoder latencies dropping below a microsecond.</p>
+<p>The structural significance is a discount reset. Post-quantum cryptography migration has proceeded on the comfortable assumption that cryptographically relevant quantum computers remain years out — an assumption that lets organizations defer the expensive work of replacing deployed encryption. <strong>Sustained error correction is the milestone that converts “years out” from a fixed horizon into a moving one.</strong> Nothing broke a cipher on 3 June. What changed is that the timeline planners had filed under “later” acquired empirical momentum, and the cost of the discount — encrypted data harvested now for decryption later — began to accrue against a date that just moved closer.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive Analysis</div>
+<h4>The Slope, Not the Number: Why Sustained Error Correction Is the Inflection</h4>
+<p>For two decades, quantum computing has been measured by qubit count, and qubit count is the wrong number. A machine with a thousand noisy qubits computes nothing useful, because the noise compounds faster than the computation progresses. The number that matters is whether adding qubits makes the logical error rate go down rather than up. Below the fault-tolerance threshold, more qubits means more error; above it, more qubits means less error, and the machine becomes scalable in principle. Atom Computing’s toric-code result is a claim about which side of that threshold its system sits on. The slope went the right way.</p>
+<p>This reframes the cryptographic deadline as a calibration problem rather than a forecasting one. The security community has discounted the quantum threat the way the oil market discounted weekend announcements in Briefing 030 — a learned expectation that the alarming claim will not, this cycle, change the operational picture. The discount was reasonable while qubit counts climbed without the error slope inverting. <strong>Sustained error correction is the event the discount was not built to absorb.</strong> The harvest-now-decrypt-later adversary does not need a cryptographically relevant machine today; it needs confidence that one is coming before the harvested data loses value, and the slope inverting supplies exactly that confidence.</p>
+<p>The deeper structural point is who carries the un-discounted cost. The organizations that deferred post-quantum migration did so rationally on the modal path, and the deferral is invisible until it is catastrophic — the signature of <a class="vbadge m5" href="../concepts/tail-calibration-failure.html" title="The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk…" data-meta="5">Tail Calibration Failure</a>. The data exfiltrated and stored over the past several years was implicitly priced against a quantum timeline that has now moved. <strong>The repricing, when it comes, will be retroactive.</strong> It will apply to decisions already made, on a discount that already broke, in a domain where the loss surfaces only when the cipher finally falls.</p>
+<p class="dd-question">If sustained error correction has converted the cryptographic deadline from a fixed horizon into a moving one, and if the harvest-now-decrypt-later cost has been accruing invisibly against the deferred-migration discount, does the post-quantum transition shift from a long-dated infrastructure project to an urgent liability-management problem — and which institutions discover, too late, that the data they failed to protect was the load-bearing asset?</p>
+</div>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>Humanoids Cross From Pilot to Production</h3>
+<p>The week marked an inflection in embodied AI that the labor-market discussion has been discounting. <strong>Boston Dynamics began shipping its electric Atlas, with first 2026 units going to Hyundai and Google DeepMind</strong>, and <strong>Figure’s BotQ factory reached roughly one robot per hour.</strong> Agility Robotics now runs seven-plus Digit units on RAV4 logistics at Toyota’s Canada plant; Unitree shipped more than 5,500 humanoids in 2025 and targets 10,000–20,000 in 2026; NVIDIA released an open Isaac GR00T humanoid reference design. The framing across the industry coverage was uniform: humanoid robotics moved “from pilot to platform.”</p>
+<p>The structural reading connects to the AI-Survival thread without collapsing into it. Language-model capability has been the corridor topic for two years; the labor implications of embodied AI are larger and receive a fraction of the attention. <strong>The discount here is the assumption that the demo never becomes the deployment.</strong> A robot at a trade show is a curiosity; a robot at one-per-hour production with a logistics contract is a substitution event. The <a class="vbadge m1" href="../concepts/capability-opacity.html" title="The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable." data-meta="1">Capability Opacity</a> pattern (META-1, Briefing 003) names the software side — operators cannot fully verify what the system can do. The hardware side adds a physical substrate assembling at a cadence the institutions that model employment do not yet price as a single force.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>The Integrators Turn on Their Suppliers: Microsoft and Google Enter Coding Models</h3>
+<p>On <strong>1–2 June 2026 Microsoft and Google moved into the AI-coding-model layer that Anthropic and OpenAI have dominated.</strong> Microsoft unveiled MAI-Code-1-Flash, its first model that turns written descriptions into application source code, and framed the broader push as reducing reliance on OpenAI and lowering developer costs. The Microsoft Foundry catalog now lists more than 11,000 models, mixing in-house releases with frontier closed-weight systems from OpenAI, Anthropic, and others. On 8 June Apple’s iOS 27 beta added a multi-AI extensions system that makes Claude a first-time Siri option alongside a Gemini-powered assistant.</p>
+<p>The structural pattern is vertical integration aimed backward at the supplier. Microsoft and Google have been the largest distribution channels for the frontier labs’ models; building competing models is the distributor deciding to manufacture the good it has been reselling. <strong>The platform owner is the most dangerous competitor a supplier can have, because it controls the shelf.</strong> Apple’s move points the other way — a platform refusing to pick one supplier, making the assistant a switchable slot — which commoditizes the model and keeps the platform as the scarce layer. Both moves relocate scarcity away from the model itself and toward the distribution surface, the structural inversion that follows whenever a capability becomes abundant.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>Anthropic Files Confidentially for an IPO at a $965 Billion Valuation</h3>
+<p>On <strong>1 June 2026 Anthropic confidentially filed an S-1 with the SEC</strong>, after a $65 billion round that lifted its valuation to roughly $965 billion — the first time it has topped OpenAI, valued near $852 billion in late March 2026. The company reported a revenue run-rate near $47 billion, up from about $10 billion a year earlier, and guided to a first profitable quarter. A public AI lab at this scale is a new object for the markets to price.</p>
+<p>The structural interest is a private capability moving toward public-market discipline before the capability itself is settled. An IPO converts a closed research lab into a quarterly-reporting entity whose disclosures, risk factors, and burn become legible to anyone. <strong>The filing is confidential now precisely so the disclosures can be negotiated before they bind.</strong> This is the same third-state seam the week keeps surfacing: the company has acted toward going public without yet being public, and the valuation prices a frontier whose load-bearing assumptions — durable margins, regulatory stability, model moats — are exactly the discounts most exposed to a calibration break.</p>
+</div>
+</div>
+<!-- ========== ECONOMIC ========== -->
+<div class="s" id="s-ec">
+<div class="sh">Economic Forces</div>
+<div class="c cri">
+<div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>May Payrolls Beat by Double; the Fed Declines the Cut <span class="dd">Deep Dive Available</span></h3>
+<p>The May employment report, released <strong>5 June 2026, showed +172,000 nonfarm jobs against an ~85,000 consensus</strong>, with unemployment unchanged at 4.3% and the prior two months revised up a combined 93,000 — the strongest three-month advance in over two years. Gains concentrated in leisure and hospitality (+70K), local government (+55K), and health care (+35K). Average hourly earnings rose 0.3% on the month, 3.4% on the year. Against this, <strong>April CPI ran 3.8% year-over-year — the hottest since 2023 — driven by a 17.9% surge in energy costs</strong> tied to the Hormuz disruption. The Fed had held the target range at 3.50–3.75% at its 29 April meeting on an <strong>8–4 vote, the widest FOMC dissent since October 1992</strong>; futures now price over 95% odds of another hold at the 16–17 June meeting.</p>
+<p>This is the labor-market version of calibration inversion. The rate curve had embedded a cut, pricing a quiet deceleration that would license easing. A print at roughly double the consensus, with upward revisions, removes the deceleration story and leaves the Fed boxed: inflation at 3.8% argues against cutting, but a labor market this firm removes the urgency to cut in the first place. <strong>The 8–4 split is the institutional signature of a discount breaking inside the committee itself.</strong> Four dissents is not a calibration around a consensus; it is the absence of one.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive Analysis</div>
+<h4>Four Dissents: When the Reaction Function Loses Its Consensus</h4>
+<p>A central bank works because the market can model its reaction function. Given inflation X and unemployment Y, the bank does Z, and everyone prices Z in advance. The function’s value is its predictability; a Fed nobody can model is a Fed that injects volatility rather than absorbing it. An 8–4 vote — the widest dissent since 1992 — is a public admission that the committee itself can no longer agree on the function. Four members looked at the same 3.8% CPI and the same 4.3% unemployment and reached a materially different conclusion than the majority.</p>
+<p>The dissent is structural, not personal, because the inputs genuinely point in opposite directions. Energy-driven inflation at 3.8% says hold or hike; it is the kind of supply-shock inflation that monetary policy cannot fix and arguably should look through. A labor market printing +172,000 with upward revisions says there is no recession to pre-empt, so why cut. The two readings are both correct, and they imply opposite actions. <strong>The reaction function has no defined value at this point in the input space.</strong> The committee is not miscalibrated; it is operating in a region where calibration is undefined.</p>
+<p>This is <a class="vbadge m3" href="../concepts/verdict-compression.html" title="Smoothed signals produce maximum dispersion within a single decision window." data-meta="3">Verdict Compression</a> (META-3, Briefing 026) seen from inside the decision window. The market smooths information across days; the FOMC concentrates its verdict into a single meeting. When the smoothed inputs point in incompatible directions, the concentrated verdict cannot resolve them — it can only record the disagreement as a vote split. The 8–4 is the dispersion the prior smoothing distributed, now compressed into a roll call. <strong>The wider the dissent, the less informative the decision.</strong> A unanimous hold tells the market the function is stable; a 8–4 hold tells it the function is contested, which is a different and harder thing to price.</p>
+<p class="dd-question">If energy-shock inflation and a firm labor market push the policy rule in opposite directions, leaving the Fed’s reaction function undefined at the current input, does the central bank’s volatility-absorbing role invert into a volatility-generating one — and what does the market do when the institution it relies on to anchor expectations can no longer anchor its own committee?</p>
+</div>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>Critical Minerals: China’s Pause, Australia’s Divestment Order</h3>
+<p>The critical-minerals regime moved on two fronts this period. China — which controls roughly 90% of rare-earth processing, 80% of tungsten, and 60% of antimony — continued to operate its 2026 export-licensing architecture, with European firms reporting approval rates below 25% and prices up to six times those inside China; extraterritorial enforcement remains suspended until November 2026. Against this, <strong>Australia in May 2026 ordered Chinese investors to divest stakes in domestic rare-earth operations</strong>, requiring six shareholders in Northern Minerals to sell within two weeks, and new non-China magnet capacity is slated to come online in summer 2026.</p>
+<p>The structure here is the bypass being built faster than usual and still not fast enough. <a class="vbadge m4" href="../concepts/commons-enclosure.html" title="When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper." data-meta="4">Commons Enclosure</a> (META-4, Briefing 003) named the toll-booth logic: a distributed resource regime converted into a controlled access point. Rare earths are the cleaner instance than oil, because the concentration is in processing rather than deposits, and processing capacity takes years to replicate. <strong>The divestment order and the new magnet plants are the West constructing an escape route from the chokepoint.</strong> But the escape route comes online in single-digit percentages against a 90% incumbent, which is the same gap between construction velocity and chokepoint velocity that Bypass Inversion (META-2) keeps surfacing.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>The Bond Market Breaks Its Range: Yields Reprice From Cut to Hike</h3>
+<p>The hot May payrolls report reset the Treasury curve. <strong>The 10-year note finished 5 June 2026 near 4.55%, up about six basis points on the day, and the 2-year ended around 4.17%, its highest since February 2025.</strong> The CME FedWatch tool showed the odds of a rate hike by year-end rising to roughly 70%, a near-complete reversal of the easing the curve had embedded. Yields broke out of the range that had held through the spring; equities took a risk-off turn as traders sold technology names and rotated toward consumer staples.</p>
+<p>This is calibration inversion read on the price tape. For months the long end had carried a quiet bid built on the premise that the next Fed move was a cut. A single labor print did not just lower the odds of a cut — it flipped the modal expectation toward a hike, and the repricing happened in one session. <strong>The yield breakout is the discount unwinding all at once.</strong> Duration positioned for easing was the crowded trade, and the energy-driven 3.8% CPI gives the hawks a live argument the curve cannot dismiss. The structural feature is the speed: the input the bond market assumed was decelerating reversed, and the market had no intermediate state priced between cut and hike.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>The AI Capital-Expenditure Engine Meets a Rising Discount Rate</h3>
+<p>Anthropic’s $965 billion valuation and confidential SEC filing on 1 June 2026 sit against a Treasury curve that just repriced toward a hike. The AI build-out — frontier-lab funding rounds, hyperscaler data-center commitments, the SMR-by-PPA financing covered in Liminal Signals below — has been underwritten on the assumption of a falling or stable cost of capital. The bond breakout of 5 June puts that assumption under pressure.</p>
+<p>The structural reading is two discounts colliding. The AI capital cycle prices long-dated cash flows; a higher discount rate compresses exactly the far-out earnings that justify trillion-dollar valuations. <strong>The same payroll print that broke the rate-cut trade also raised the hurdle rate for the most duration-heavy assets in the market.</strong> The data-center and frontier-lab capex was modeled against the easing the curve has now priced out, which couples the AI investment thesis to the Fed’s contested reaction function. If the hike odds hold, the cheapest input to the AI build-out — patient capital — becomes the one that reprices first.</p>
+</div>
+</div>
+<!-- ========== SCIENTIFIC ========== -->
+<div class="s" id="s-sc">
+<div class="sh">Scientific &amp; Paradigmatic Forces</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span></div>
+<h3>A Mechanism for Closing the Critical Period in the Developing Brain</h3>
+<p>On <strong>3 June 2026 researchers at Harvard Medical School reported a newly identified mechanism controlling brain plasticity in early life</strong>, offering insight into critical-period closure — the poorly understood process by which the developing brain’s windows of heightened learning shut. The same week brought two adjacent clinical advances: a Mount Sinai manufacturing platform for targeted gut-bacteria mixtures against recurrent C. difficile (Nature Medicine, 2 June), and a Mayo Clinic blood test for germ-cell testicular tumors not caught by standard assays (Nature Communications).</p>
+<p>The structural interest is the critical-period finding, not as neuroscience but as a model of the briefing’s own thread. A critical period is a window during which a system is plastic, after which it calibrates and locks. <strong>Closure is adaptive — it converts learning into stable capacity — and it is also the source of later rigidity.</strong> The brain’s discount on new input after the window closes is exactly the institutional discount this briefing tracks: efficient on the modal path, load-bearing, and brittle when the environment shifts after the lock. That a closure mechanism may be identifiable, and in principle reopenable, is a biological echo of the week’s political question — whether a calibrated-shut system can be made plastic again.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>Starship V3’s Second Flight; Lunar Propellant-Transfer Tests Loom</h3>
+<p>SpaceX scheduled <strong>Starship Flight 13 — the second flight of the V3 vehicle — for June 2026</strong>, a suborbital test from Starbase using upgraded Raptor engines and a new launch pad. The architecturally consequential milestones remain ahead: a long-duration orbital flight and the first ship-to-ship propellant transfer in Earth orbit, both targeted for 2026 and both prerequisites for the Lunar Starship lander. Orbital propellant transfer is the unproven capability the entire Artemis lunar-return architecture is staked on.</p>
+<p>The structural reading is a deferred dependency. The lunar program has discounted propellant transfer as a solved-in-principle engineering problem to be demonstrated later — the same later-filing the cryptographic and labor discounts share. <strong>Cryogenic propellant transfer at scale has never been done, and the lander cannot reach the Moon without it.</strong> Each Starship flight that does not yet attempt it lets the discount persist; the flight that attempts it converts the deferred assumption into a tested one, in whichever direction the test runs. The asymmetric-civilization thread from Briefing 010 holds: the engineering substrate keeps advancing on a cadence insulated from the institutional substrate around it.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>CRISPR Flips Its Own Paradigm — and Gets Small Enough to Deliver</h3>
+<p>Two gene-editing results this period revise assumptions the field had treated as fixed. A University of Florida team reported (late May 2026) the first CRISPR system guided by DNA rather than RNA, overturning the long-standing assumption that an RNA guide is intrinsic to how the enzyme finds its target and opening a path toward RNA-targeted diagnostics and antivirals. Separately, an NIH-funded group identified a naturally occurring enzyme, Al3Cas12f, compact enough to fit inside adeno-associated virus vectors — addressing the delivery bottleneck that has kept many edits confined to cells editable outside the body.</p>
+<p>The structural reading is paradigm defection inside an active research program. The RNA-guide assumption was load-bearing for a decade of tool design; a working DNA-guided system shows the constraint was a habit, not a law. <strong>The delivery result matters more for deployment than for theory.</strong> Casgevy, approved across the US, EU, UK, and several Gulf states as of spring 2026, still requires extracting and re-infusing a patient’s cells; an editor small enough to ship inside a standard viral vector is what turns gene editing from a hospital procedure into an injectable. Each result quietly retires a discount the field had been planning around.</p>
+</div>
+</div>
+<!-- ========== SOCIAL ========== -->
+<div class="s" id="s-so">
+<div class="sh">Social &amp; Cultural Forces</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>South Korea’s Birth Rate Rises Again — Against the Demographic Script</h3>
+<p>South Korea, holder of the world’s lowest fertility rate, recorded a second consecutive annual increase: <strong>5.0 births per 1,000 in 2025, up from 4.7 in 2024</strong>, with the total fertility rate rebounding faster than the government’s optimistic projection (0.75 for 2025, 0.80 for 2026). Marriages — a leading indicator with a one-to-two-year lag — rose 8.1% in 2025 after a record 14.8% jump in 2024. The structural context remains grim: Korea crossed into “super-aged” status (20% over 65) in 2025, a transition that took 25 years against France’s 154, and the National Pension Service — the world’s third-largest fund at roughly $1 trillion — still projects depletion around 2055 under current 9% contribution rates.</p>
+<p>This is a discount inverting in the hopeful direction, which is the rarer and more instructive case. Demographic models had calibrated Korea’s decline as monotonic; the consensus treated each year’s low as the new floor. <strong>Two years of rising births is not yet a reversal, but it is a violation of the script the projections were built on.</strong> The structural lesson is symmetric with the week’s others: a system that discounts a signal as one-directional is unprepared for the signal to turn, whether the turn is a hot payroll print or a marriage uptick. The pension math does not soften — depletion is a slow Threshold Cascade (META-3) running underneath — but the input the math assumed has started to move.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>Albania’s Coast Erupts: A Protected Delta, a Kushner Resort, and Three Nights of Protest</h3>
+<p>Thousands marched in Tirana for three consecutive evenings in early June 2026 against a roughly four-billion-euro luxury development in the protected Vjosa-Narta delta, linked to Jared Kushner’s Affinity Partners and granted “strategic investor” status by Prime Minister Edi Rama’s government. Demonstrators clashed with private security after developers strung barbed wire across beach access; CNN, Al Jazeera, and CBS all reported the standoff between <strong>4 and 7 June 2026.</strong> Rama defended the project as one Albania “should not fear.”</p>
+<p>The structural feature is a commons being enclosed in plain sight, and a public refusing to treat the enclosure as settled. A protected wildlife reserve and a public beach are textbook common resources; “strategic investor” status converts them into a gated development with a foreign gatekeeper. <strong>The barbed wire is <a class="vbadge m4" href="../concepts/commons-enclosure.html" title="When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper." data-meta="4">Commons Enclosure</a> (META-4) made literally physical.</strong> The week’s broader pattern shows here too: the government discounted public objection as background noise it could manage, and the third consecutive night of crowds is the discount breaking. The cultural signal is a small electorate pricing elite-tourism capture directly, the way Armenia’s voters priced a failed guarantor.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span></div>
+<h3>Your Phone Asks Which Mind to Use: The Assistant Becomes a Switchable Slot</h3>
+<p>Apple’s iOS 27 beta, released <strong>8 June 2026</strong>, introduced a multi-AI extensions system that lets users route Siri to a Gemini-powered assistant or, for the first time, to Claude. The everyday consumer relationship with AI shifts from a single bundled voice to a chooser. This lands the same week Microsoft and Google pushed their own coding models, signaling that no one supplier owns the assistant the user talks to.</p>
+<p>The structural reading is cultural, not technical. For a decade the phone’s assistant was a fixed personality — one company’s voice, tone, and refusal style baked into the device. <strong>Making the mind switchable changes what users expect from a machine they speak to daily.</strong> A populace that can swap the intelligence behind the same prompt learns to treat “the assistant” as a commodity and the choice itself as the meaningful act. The equivocality is genuine: it is no longer obvious which entity answered, or whose values shaped the answer, which is a new ambiguity to live inside at the scale of an entire installed base.</p>
+</div>
+</div>
+<!-- ========== ECOLOGICAL ========== -->
+<div class="s" id="s-en">
+<div class="sh">Environmental &amp; Ecological Forces</div>
+<div class="c env">
+<div class="lb gnl"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>Arctic Fire, AMOC Watch, and the Dismantled Instrument</h3>
+<p>The week’s ecological signal is a calibration failure of a literal kind. <strong>A June heatwave drove wildfires through more than 1.5 million hectares of Yakutia’s taiga</strong> with over a month left in Siberia’s fire season, while Arctic Alaska fire activity sits at its highest in roughly 3,000 years. The WMO warned that a warming-ocean pattern associated with erratic global weather could arrive as early as this month. Against this, the structural item: <strong>the dismantlement of the Ocean Observatories Initiative — some 900 deep-sea instruments that since 2016 have monitored currents including the AMOC.</strong></p>
+<p>This is <a class="vbadge m5" href="../concepts/capacity-hollowing.html" title="When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act." data-meta="5">Capacity Hollowing</a> (META-5, Briefing 002) applied to the planet’s perception layer. The pattern names personnel and instrument cuts that reduce an organization’s ability to perceive reality before they reduce its ability to act. <strong>Removing the AMOC-monitoring array does not stop the AMOC from weakening; it stops anyone from seeing it weaken in time to respond.</strong> Iceland has formally classed AMOC collapse as a national-security risk. The structural cruelty is the sequencing: the instrument is dismantled at the moment the tipping-point question is live, so the discount on climate risk is reinforced not by evidence that the risk is low but by the deliberate removal of the evidence that would price it.</p>
+</div>
+<div class="c env">
+<div class="lb gnl"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>A 7.8 Off Mindanao: The Buffer That Worked, the One That Didn’t</h3>
+<p>An offshore magnitude-7.8 earthquake struck the southern Philippines on <strong>7 June 2026</strong>, killing at least 32 (later counts ran higher), injuring more than 200, and sending a roughly three-foot tsunami onto nearby coasts; aftershocks reached 6.5. A landslide in Sarangani province killed at least thirteen. Small waves registered in Indonesia, Palau, and southern Japan, where Okinawa evacuated more than 82,000 people. The Pacific Tsunami Warning Center stood down the threat about five hours later, and President Marcos cancelled classes and ordered disaster agencies into the affected provinces.</p>
+<p>The structural contrast is between two buffers under the same shock. The tsunami-warning system performed: detection, regional alerts, and the Okinawa evacuation ran as designed, and the wave proved modest. <strong>The seismic shock had a working perception layer; the AMOC story above does not.</strong> The earthquake is the acute hazard a mature warning system can absorb, and the ocean-current monitoring is the chronic hazard whose instrument is being dismantled exactly as its threshold approaches. The week thus juxtaposes a buffer that held against a fast event with a buffer being removed ahead of a slow one — the difference between a hazard the institutions have learned to price and one they are choosing to stop measuring.</p>
+</div>
+<div class="c env">
+<div class="lb gnl"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>Antarctic Sea Ice: The Heat That Was Hiding Below Breaks Through</h3>
+<p>Recent research summarized in May–June 2026 documents a regime change in the Southern Ocean: heat long trapped in deep layers is now rising toward the surface, where it melts sea ice. Antarctic winter ice extent fell to record lows in 2023 — far enough below the long-run average that scientists put the chance of it happening by chance near one in 3.5 million — and the decline since 2015 has been sharp. The mechanism is not a forecast; it is a measured shift in where the ocean’s stored heat sits.</p>
+<p>The structural reading is a calibrated discount inverting in the climate system itself. For decades Antarctic sea ice resisted the warming trend, and models treated its stability as a quasi-permanent feature — the discount that the south pole would lag. <strong>A one-in-3.5-million low is not noise around a stable mean; it is the mean relocating.</strong> The deep-ocean heat reservoir was the buffer; once it begins venting upward, the protection it provided becomes the agent of loss, the same inversion in which the load-bearing assumption turns into the failure mode. This is the slow tipping signal the dismantled monitoring array would otherwise be the instrument for catching.</p>
+</div>
+</div>
+<!-- ========== INSTITUTIONAL ========== -->
+<div class="s" id="s-ig">
+<div class="sh">Institutional &amp; Governance Forces</div>
+<div class="c gov">
+<div class="lb aml"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span> <span class="tg tr">Constitutional Reactivation</span></div>
+<h3>The War Powers Resolution Reactivates — As a Veto Bait <span class="dd">Deep Dive Available</span></h3>
+<p>On <strong>3 June 2026 the House passed a War Powers resolution, 215–208, directing the President to end hostilities with Iran</strong> — the conflict that began with US and Israeli strikes on 28 February 2026. Four Republicans (Massie, Barrett, Davidson, Fitzpatrick) joined Democrats. Trump called it “a meaningless vote” and is expected to veto if it survives the Senate, which is unlikely to take it up. Briefing 010, on 14 April 2026, had written that this very Resolution was “silently retired” — the form intact, the work-doing power gone — after Congress failed to respond to the first US casualties at Ali Al Salem.</p>
+<p>The structural payoff is that both the April reading and the June event are correct, and their coexistence names a third state. <strong>The Resolution acted; the Resolution remains non-binding.</strong> The form reactivated without recovering its enforcement power. This is not the Institutional Hollowing of Briefing 010 (form persists, substance gone) and not a restoration (substance returns); it is a form that produces an action which cannot bind, a symbolic invocation of a mechanism designed to compel. The candidate pattern logged today, Discount Reactivation, names exactly this seam: the hollow form that abruptly acts and still cannot enforce.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive Analysis</div>
+<h4>The Third State: Between Retired and Operative</h4>
+<p>Briefing 010 made a strong claim and the claim was right at the time: in April, fifteen US casualties produced no congressional response, and a mechanism that produces no response when its triggering condition is met is, functionally, retired. The form was a museum piece. Six weeks later the museum piece moved. The House invoked it, by a bipartisan margin, against a sitting president of the majority’s own party. A retired institution does not do that. So either the April reading was wrong or something has changed — and the resolution is that neither is quite true.</p>
+<p>What changed is not the Resolution’s power; it is the politics of invoking it. The War Powers Resolution has always been constitutionally contested and practically toothless — presidents of both parties have ignored it for fifty years, and this one will veto it. The 3 June vote does not compel Trump to do anything. <strong>It is a costly signal dressed as a binding instrument.</strong> The four Republican crossovers spent political capital to register a position they know will not become law. The action is real; the enforcement is absent. The form is being used for what it can still do — create a record, force a vote, split a caucus — not for what it was built to do, which was to bind.</p>
+<p>This is why the third state matters for the vocabulary. Institutional Hollowing (META-5) describes a form whose substance has departed; the standard prediction is that such a form is invoked decoratively or not at all. Discount Reactivation describes the case the standard prediction misses: the hollow form is invoked operationally — someone actually pulls the lever — and the lever still does nothing, because the hollowing was in the enforcement, not in the procedure. <strong>The lever works. The thing it was connected to is gone.</strong> The danger is that observers read the reactivation as restoration and update toward the institution working again, when what they are watching is the institution being used as a signaling device precisely because it cannot enforce.</p>
+<p class="dd-question">If a hollowed institution can be invoked operationally while remaining unable to enforce — producing a real action with no binding effect — does the analyst’s standard binary (institution works / institution is hollow) miss the politically consequential middle case, and how should one price a constitutional mechanism that has become a high-fidelity signaling device whose signal everyone knows will be vetoed?</p>
+</div>
+</div>
+<div class="c gov">
+<div class="lb aml"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span></div>
+<h3>The EU AI Act: Simplified, Delayed, Re-Centralized</h3>
+<p>The European institutions moved to rework the AI Act this period. A <strong>May 2026 political agreement proposes to delay high-risk-system rules by up to 16 months</strong>, extend exemptions to small mid-caps, and reinforce the AI Office’s powers; the deadline for national regulatory sandboxes slips to 2 August 2027. The final Code of Practice on labeling AI-generated content is due in June 2026, and the Commission opened a consultation (2–26 June) on AI in healthcare. The framing is “simplify and streamline.”</p>
+<p>The structural reading is <a class="vbadge m5" href="../concepts/governance-vacuum.html" title="When institutional capacity lags behind the pace of change." data-meta="5">Governance Vacuum</a> (META-5, Briefing 001) negotiating with itself in real time. The Act was Europe’s attempt to close the gap between AI capability and institutional capacity; the simplification package is a retreat to a feasible scope — the <a class="vbadge m1" href="../concepts/scope-retreat.html" title="Declared policy retreats to physically feasible scope within hours of issuance, leaving the original declaration as the rhetorical credential while the operational substance has been silently narrowed." data-meta="1">Scope Retreat</a> pattern (META-1, Briefing 009) operating on a regulatory timeline rather than a military one. <strong>Brussels is extending the runway on the binding rules while centralizing the office that will eventually enforce them.</strong> Whether that is pragmatic sequencing or a discount on AI risk dressed as administrative tidying is the open question; the 16-month delay lands the high-risk rules well after the capability curve the deep dives above have been tracking.</p>
+</div>
+<div class="c gov">
+<div class="lb aml"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span></div>
+<h3>A Ceasefire the Guarantor Announces and a Party Rejects</h3>
+<p>On <strong>3 June 2026 the United States announced an Israel–Lebanon ceasefire</strong>, mediated by Washington and built around “pilot zones” in southern Lebanon where the Lebanese Armed Forces would take exclusive control and exclude Hezbollah. The next day, <strong>4 June, Hezbollah’s Naim Qassem rejected it</strong>, demanding full Israeli withdrawal and calling the plan “a roadmap to annihilate part of the Lebanese people.” President Trump nonetheless insisted progress was being made and that “Hezbollah called us.” President Aoun called the round a “last opportunity.”</p>
+<p>The structural feature is an agreement whose announcer and whose binding party are different entities. A ceasefire works when the actors who must stop fighting are the actors who agree to stop; here the state of Lebanon and the mediator signed, while the armed party that does the fighting refused. <strong>The announcement created a fact the fighting party never accepted.</strong> This is the inverse of the War Powers third state: there a hollow form acted without binding power, while here a binding-sounding form was proclaimed over a party that withholds consent. Both produce a gap between the declared status and the operative one, and both punish observers who read the proclamation as the reality.</p>
+</div>
+<div class="c gov">
+<div class="lb aml"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>Ethiopia Votes, and the Institution Disappears From View</h3>
+<p>Ethiopia — Africa’s second-most-populous country — held a general election on <strong>1 June 2026</strong>, its first national contest since 2021, when conflict and insecurity had left large areas unable to vote. The vote drew minimal sustained international coverage, even as Peru’s and Armenia’s smaller-population contests the same week received steady attention.</p>
+<p>The structural reading is an electoral institution operating below the attention threshold that legitimacy partly depends on. An election produces a mandate not only by counting votes but by being witnessed; an unwatched vote in a recovering conflict state runs the count without the external verification layer that helps make a result stick. <strong>The largest-population contest of the week got the least scrutiny.</strong> This is the recurring corridor asymmetry the briefing keeps logging — a major African event under-weighted because it touches no corridor commodity and no great-power principal — applied here to the governance lens, where the missing observation is itself a structural condition of how the result will or will not be accepted.</p>
+</div>
+</div>
+<!-- ========== LIMINAL SIGNALS ========== -->
+<div class="s" id="s-li">
+<div class="sh">Liminal Signals</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1.5rem">Signals that resist clean categorization. The forces that matter most are often the ones that don’t fit.</p>
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg tu">Off-Corridor · Interstellar</span></div>
+<h3>3I/ATLAS: SETI Listens for Seven Hours and Hears Nothing</h3>
+<p>The third confirmed interstellar object, 3I/ATLAS, drew a formal technosignature search this period. <strong>The SETI Institute scanned it across a wide radio band for roughly seven hours using the Allen Telescope Array and found no artificial signals</strong> (reported early June 2026). The object remains scientifically anomalous: reports describe non-gravitational acceleration with high albedo and little detectable outgassing, the combination that has driven a fringe-but-published hypothesis that it is an artificial probe rather than a comet. Earlier 2026 work flagged unusual water chemistry unlike anything in our solar system.</p>
+<p>The structural value is the clean null against a live hypothesis. A seven-hour silence does not refute the probe conjecture; it constrains it, and it does so in the most disciplined way available — listen, record nothing, report the nothing. <strong>This is the inverse of the week’s political discounts.</strong> Where institutions discounted signals they should have weighted, the astronomers weighted a signal class (artificial radio emission) hard enough to spend the array’s time on it, and honestly reported its absence. The anomalous dynamics stay unexplained, which is the correct state to leave them in. A genuine off-corridor wildcard: nothing about it touches the geopolitical thread, and that is the point.</p></div>
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg tg2">Off-Corridor · Energy &amp; Grid</span></div>
+<h3>The Annuity That Builds Reactors: SMRs Financed by Data-Center PPAs</h3>
+<p>A quiet financing shift is reshaping nuclear power. AI data centers now draw on the order of 80 MW each, more than double a standard facility, and grid-interconnection queues stretch up to a decade. In response, long-term power-purchase agreements from hyperscalers are functioning “almost like an annuity,” letting small-modular-reactor developers raise bank debt against contracted demand. AWS is investing $20 billion in Pennsylvania exploring SMRs at Talen’s nuclear site (targeted operational spring 2026); ENTRA1 and TVA agreed to up to 6 GW via NuScale modules; Terrestrial Energy and Riot are pairing a data center with co-located nuclear for up to 4 GW.</p>
+<p>The structural reading is a substitution in who underwrites infrastructure. For decades, nuclear plants were financed by utilities against regulated rate bases and public guarantees. <strong>The creditworthy counterparty is now a private hyperscaler buying power for compute.</strong> The PPA replaces the rate base; the AI build-out replaces the public-utility model as the engine of new firm generation. This is a <a class="vbadge m4" href="../concepts/commons-enclosure.html" title="When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper." data-meta="4">Commons Enclosure</a> adjacent move — the grid’s shared planning logic giving way to private, contracted, behind-the-meter capacity — and it is assembling at a cadence the energy regulators model as utility growth, not as a parallel privately-financed buildout.</p></div>
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg tr">Off-Corridor · Hidden Dependency</span></div>
+<h3>The Strait’s Long Shadow: Fertilizer, Not Just Fuel</h3>
+<p>The World Food Programme warned this week that the near-standstill in Strait of Hormuz traffic is pushing additional populations into acute food insecurity — on the order of <strong>2.5 million in Somalia, 2.3 million in Afghanistan, and 1.3 million in Sri Lanka</strong> — through fuel and, critically, fertilizer shortages, not direct conflict. The Gulf is a fertilizer chokepoint as much as an oil one, and the second-order propagation runs through next season’s harvest in countries that never appear in the war coverage.</p>
+<p>The structural point is the hidden dependency surfacing on a lag. The oil market priced Hormuz within hours; the food system prices it across a growing season, which means the most consequential effect of the chokepoint is arriving now, off-screen, in three countries with no leverage over the principals. This is <a class="vbadge m1" href="../concepts/peripheral-assertion.html" title="The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal." data-meta="1">Peripheral Assertion</a> (META-1, Briefing 021) on its slow channel: structural information arriving from the under-attended domain because the corridor stopped processing the periphery’s signal. <strong>The fertilizer shock is the part of the Hormuz story the price tape cannot see.</strong></p></div>
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg tc">Off-Corridor · Biosecurity</span></div>
+<h3>The Dual-Use Edge of an Injectable Gene Editor</h3>
+<p>The same gene-editing advances the Scientific lens reads as therapy carry a quieter watch-list dimension. The University of Florida’s DNA-guided CRISPR (late May 2026) and the NIH-funded compact Al3Cas12f enzyme that fits inside a standard viral vector are, between them, a more programmable editor and a smaller delivery package. Both were reported as medical progress. Both also lower the barrier to editing living systems outside a specialized lab.</p>
+<p>The structural value is naming the discount before it breaks. Biosecurity governance has largely priced advanced gene editing as confined to well-resourced, observable institutions — the same later-filing the cryptographic and lunar-propellant discounts share. <strong>Smaller, more deliverable tools erode the assumption that capability stays where the oversight is.</strong> Nothing happened on the misuse side this week; that is exactly why it belongs in Liminal Signals rather than a headline lens. The point is to weight the dual-use channel deliberately now, the way the SETI astronomers weighted a hypothesis and recorded a null, rather than discover it has been discounted only after the signal arrives in earnest.</p></div>
+</div>
+<!-- ========== INFERENCE ENGINE ========== -->
+<div class="s" id="s-ie">
+<div class="sh">Inference Engine</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1.5rem">Conditional mappings of possibility space. Not predictions but structured explorations of how forces interact.</p>
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg tc">Complexity</span></div>
+<h3>If the Quantum Error-Correction Slope Holds Across Vendors…</h3>
+<p>Atom Computing’s toric-code result is reproduced and extended by a second and third group within two quarters → logical-qubit counts cross from the 90–100 range into the few-hundred range with stable error suppression → the credible cryptographically-relevant-machine horizon compresses from “later” toward a datable year → harvest-now-decrypt-later adversaries accelerate collection against the shortened window → <strong>post-quantum migration shifts from a deferred infrastructure project to an urgent liability problem</strong> → organizations that discounted the threat discover the cost was accruing retroactively against data already exfiltrated → the institutions least able to re-encrypt legacy stores (governments, hospitals, legacy financial systems) become the concentrated tail of the calibration failure.</p></div>
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>If May Payroll Strength Persists Into June and July…</h3>
+<p>The +172,000 print and the upward revisions are confirmed by a strong June report → the Fed holds again on 16–17 June with another fractured vote → the rate-cut the curve embedded is priced out across the second half of 2026 → duration sells off as the “easing soon” discount unwinds → energy-shock inflation at 3.8% keeps the dissent live, so the committee cannot signal a clear path → <strong>the market loses its ability to model the reaction function and prices a Fed that generates rather than absorbs volatility</strong> → risk premia widen across rate-sensitive assets even as growth data stays firm, the signature of a policy regime with no defined value at the current input.</p></div>
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg ta">Ambiguity</span></div>
+<h3>If the Peru Count Certifies Inside the Error Bars…</h3>
+<p>The final tally sheets confirm a sub-one-percent margin → the losing half rejects the result as manufactured within the count’s uncertainty → certification proceeds without conferring legitimacy → the new president governs with a hostile legislature and a mobilized street → <strong>governance fragility imports into a major copper producer at peak critical-mineral tension</strong> → mining-policy continuity becomes hostage to the legitimacy fight → the commodity-exposure and political-fragility channels that were independent become coupled → the global copper supply picture acquires a Peru-specific risk premium it did not carry a month ago.</p></div>
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg tr">Constitutional</span></div>
+<h3>If the War Powers Reactivation Is Read as Restoration…</h3>
+<p>The 3 June House vote is interpreted by observers as Congress “reasserting” war powers → the Senate declines to take it up and Trump vetoes any version that reaches him → the gap between the symbolic reactivation and the absent enforcement becomes visible → <strong>the third state (acted-but-non-binding) is mistaken first for restoration, then for theater, and the analytically correct middle reading is lost</strong> → the next genuine constitutional trigger is misjudged because the prior signal was miscategorized → Discount Reactivation, if it recurs in a second domain, earns promotion from candidate to named pattern by the three-instance rule.</p></div>
+<h3 class="sh2" style="color:var(--purp)">Force Interaction Matrix</h3>
+<div class="c">
+<div class="mr"><div class="mf">Hot Payrolls × Fed Hold</div><span class="md amp">AMPLIFY (cut priced out)</span><div class="me">A +172K print against ~85K consensus removes the deceleration story the rate curve embedded. The 8–4 dissent records a reaction function with no defined value at 3.8% CPI and 4.3% unemployment.</div></div>
+<div class="mr"><div class="mf">QEC Slope × PQC Migration Discount</div><span class="md amp">AMPLIFY (deadline compresses)</span><div class="me">Sustained neutral-atom error correction converts the cryptographic horizon from fixed to moving. The harvest-now-decrypt-later cost begins accruing retroactively against deferred migration.</div></div>
+<div class="mr"><div class="mf">War Powers Vote × Promised Veto</div><span class="md dmp">DAMPEN (reactivation without enforcement)</span><div class="me">The form acted for the first time against this war and still cannot bind. The third state between retired and operative; reading it as restoration is the error to avoid.</div></div>
+<div class="mr"><div class="mf">Peru Sub-1% Margin × Copper Exposure</div><span class="md amp">AMPLIFY (fragility meets commodity)</span><div class="me">A contested half-point certification imports governance fragility into a major copper producer at peak critical-mineral tension. The political and commodity channels couple.</div></div>
+<div class="mr"><div class="mf">Humanoid Production Ramp × Labor Models</div><span class="md amp">AMPLIFY (demo becomes deployment)</span><div class="me">Atlas shipping and Figure at one-per-hour move embodied AI past the discount that the demo never deploys. The substitution event the employment models do not yet price.</div></div>
+<div class="mr"><div class="mf">AMOC Array Dismantled × Tipping-Point Question</div><span class="md amp">AMPLIFY (perception layer cut)</span><div class="me">Removing 900 monitoring instruments does not slow the AMOC; it removes the evidence that would price the risk. <a class="vbadge m5" href="../concepts/capacity-hollowing.html" title="When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act." data-meta="5">Capacity Hollowing</a> applied to the planet’s perception layer.</div></div>
+<div class="mr"><div class="mf">China Rare-Earth Grip × Australia Divestment</div><span class="md dmp">DAMPEN (bypass under construction)</span><div class="me">New non-China magnet capacity and the Northern Minerals divestment order build an escape route, but in single digits against a 90% processing incumbent. Construction velocity trails chokepoint velocity.</div></div>
+<div class="mr"><div class="mf">Korea Birth-Rate Uptick × Pension Math</div><span class="md dmp">DAMPEN (script violated, slowly)</span><div class="me">Two years of rising births violate the monotonic-decline projection, but depletion around 2055 remains a slow Threshold Cascade. The input moved; the math has not yet.</div></div>
+</div>
+</div>
+<!-- ========== WISE ACTION ========== -->
+<div class="s" id="s-wa">
+<div class="sh">Wise Action</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1.5rem">知行合一 — Knowing and acting are one.</p>
+<div class="c act wa-section"><div class="lb tl"><span>WHAT IS CHANGING ENTREPRENEURSHIP</span></div>
+<h3>Building Against the Discount That Becomes Load-Bearing</h3>
+<h4>1. Audit Where Your Plan Leans on a Calibrated Discount</h4>
+<p>Every venture runs on a set of discounts — assumptions that a recurring risk will not, this time, change the picture. The cryptographic deadline is far off; the incumbent’s chokepoint is permanent; the regulator will keep extending the runway; the demo will stay a demo. <strong>The structural lesson of this week is that the discount you rely on most quietly is the one most likely to be load-bearing when it breaks.</strong> The actionable move is to enumerate the discounts your model depends on and ask which one, if it inverted, would force you to reprice everything at once. That is your tail, and it is invisible precisely because it has been reliable.</p>
+<h4>2. The Pilot-to-Production Threshold Is the Real Event</h4>
+<p>Boston Dynamics shipping Atlas and Figure hitting one robot per hour are not capability announcements; they are deployment announcements, and the difference is the whole story. For founders in embodied AI, logistics, or any labor-substitution market, the competitive clock starts at production cadence, not at demo quality. <strong>A rival at one-per-hour with a signed logistics contract is a different threat than a rival with a better video.</strong> Position on the assumption that the pilot-to-production crossing happens faster than the market consensus, because this week it did.</p>
+<h4>3. Underwriting Migrates to the Demand-Side Counterparty</h4>
+<p>The SMR-by-PPA financing structure is a template, not a one-off. When demand is contracted and creditworthy, the demand-side buyer can underwrite supply-side infrastructure that public or utility financing would have built slowly or not at all. <strong>Entrepreneurs in capital-intensive supply markets should look for the hyperscaler-analog in their sector</strong> — the large, contractable buyer whose offtake agreement functions like an annuity and unlocks debt against demand rather than against a balance sheet. The financing innovation is often more decisive than the technical one.</p>
+</div>
+<div class="c act wa-section"><div class="lb tl"><span>WHAT IS CHANGING GLOBAL MARKETS</span></div>
+<h3>Trading an Undefined Reaction Function</h3>
+<h4>The Volatility-of-Policy Trade</h4>
+<p>An 8–4 FOMC dissent against a backdrop of 3.8% energy-driven inflation and a hot labor market means the Fed’s reaction function is contested, not just hawkish or dovish. <strong>The position is long rate-volatility through the 16–17 June meeting</strong> — not a directional bet on cuts or holds, but exposure to the committee’s inability to signal a clear path. When the policy rule has no defined value at the current input, dispersion rather than direction is the tradable structure.</p>
+<h4>The Post-Quantum Liability Trade</h4>
+<p>The quantum error-correction slope is a slow-fuse repricing. The trade is not in quantum-hardware names, which are already crowded and speculative; it is in the migration layer. <strong>Exposure to post-quantum cryptography providers, hardware-security-module vendors, and the security-integration firms that will execute mandatory migration captures the liability as it converts from deferred to urgent.</strong> The catalyst is not a broken cipher; it is the moment the harvest-now-decrypt-later cost gets recognized on balance sheets.</p>
+<h4>The Critical-Minerals Bypass Trade</h4>
+<p>With China’s processing grip near 90% and Western capacity coming online in single digits, the asymmetric position is in the non-China processing and magnet build-out rather than in the miners. <strong>The Australia divestment order and summer-2026 magnet capacity mark the bypass under construction; the value accrues to the processing bottleneck, not the deposits.</strong> The risk is that the bypass is slower than the political timeline that motivated it, which keeps the incumbent’s pricing power intact longer than the policy headlines imply.</p>
+</div>
+<div class="c act wa-section"><div class="lb tl"><span>INVESTMENT LANDSCAPE</span></div>
+<h3>Positioning Through the Calibration Inversion</h3>
+<h4>Structural Positions That Strengthened This Week</h4>
+<p><strong>Long rate-volatility into the June FOMC.</strong> The contested reaction function makes dispersion the structural trade, not direction.</p>
+<p><strong>Long the post-quantum migration layer; cautious on quantum-hardware speculation.</strong> The error-correction slope compresses the deadline; the liability sits in migration, not in the qubits.</p>
+<p><strong>Long non-China rare-earth processing and magnet capacity.</strong> The bypass is being built; value accrues to the processing bottleneck.</p>
+<p><strong>Long embodied-AI deployment, not demos.</strong> The pilot-to-production crossing is the event; one-per-hour with a contract is the threshold.</p>
+<p><strong>Long demand-side-financed infrastructure (SMR-by-PPA analogs).</strong> The hyperscaler offtake is the new underwriting engine for firm generation.</p>
+<h4>Caution Zones</h4>
+<p><strong>Duration positioned for a near-term cut.</strong> The hot payroll print and the fractured Fed have priced the cut out of the front of the curve; the easing discount is the one that broke this week.</p>
+<p><strong>Peru-exposed copper and mining assets.</strong> A sub-one-percent certification couples political fragility to commodity supply; the risk premium is rising and under-priced.</p>
+<p><strong>Anything that assumes the EU AI Act binds on the original timeline.</strong> The 16-month high-risk delay moves the binding rules well after the capability curve.</p>
+<p><strong>Climate-risk models leaning on continuous ocean monitoring.</strong> Dismantling the AMOC array removes the evidence layer; tail risk persists while its observability falls.</p>
+</div>
+<div class="c wa-section"><div class="lb"><span>RESEARCH PROGRAM RELEVANCE</span></div>
+<h3>What Today’s Landscape Means for the Work</h3>
+<p><strong>For the Knightian / Poincaréan foundations:</strong> Calibration inversion is the structural mechanism the modal/tail dual-channel framing was built to handle. A system that averages its way to a calm forecast and a system that under-prices the tail are running the same operation, and this week showed it failing simultaneously in a constitution (War Powers), a cryptographic timeline (toric code), and a central bank (8–4 dissent). The Fed’s undefined reaction function — opposite-pointing inputs leaving the policy rule with no value at the current state — is a clean empirical case of Knightian uncertainty as a property of the decision environment, not merely of the decision-maker.</p>
+<p><strong>For the Glimpse ABM and the AI-Survival Paradox:</strong> The humanoid pilot-to-production crossing extends the survival-paradox logic from software AI to embodied AI. Universal availability of a capability does not produce universal gains; the deployment cadence concentrates advantage among the actors who cross the production threshold first. The Atlas/Figure/Agility deployments are the embodied-substrate analog of the firm-level concentration the model predicts, and worth citing as the labor-side instance when the revision cycle reaches the displacement mechanism.</p>
+<p><strong>For the Three-Body Agentic ABM:</strong> The undefined-reaction-function result is a direct analog of endogenous Knightian uncertainty as action regenerating its own uncertainty. The FOMC’s 8–4 split is uncertainty produced by the institution’s own attempt to act under opposite-pointing inputs — the decision environment generating the equivocality rather than inheriting it. This is the dynamic-uncertainty engine the spine describes, observed in a real institution rather than a simulated one.</p>
+<p><strong>For the strategic-ambiguity-hype study:</strong> The EU AI Act simplification package and the War Powers reactivation are both instances of institutions managing equivocality strategically — extending runways and invoking hollow forms as costly signals. The “acted-but-non-binding” third state is a real-world instance of strategic ambiguity rewarded: the form retains signaling value precisely because its enforcement is absent, which maps to the convex-reward curvature the BCERC analysis found for ambiguity against the concave penalty for hype.</p>
+</div>
+</div>
+<!-- ========== ANOMALY DETECTION ========== -->
+<div class="s" id="s-an">
+<div class="sh">Anomaly Detection</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1.5rem">What should be happening but isn’t. The conspicuous absences that structure the field as much as the events.</p>
+<div class="c cri">
+<p><strong>No market repricing of the post-quantum timeline after the toric-code result.</strong> Atom Computing demonstrated sustained neutral-atom error correction on 3 June 2026 — the qualitative milestone fault-tolerance requires — and the move was covered as a science story, not a security one. Under any forward-looking treatment of the harvest-now-decrypt-later threat, a credible compression of the cryptographic horizon should produce a visible bid for migration services and a discount on long-dated encrypted-data confidentiality. <strong>Neither is occurring.</strong> The deferred-migration discount is intact the day after the event most likely to break it, which is the calibration inversion not yet recognized.</p>
+<p><strong>No congressional follow-through architecture behind the War Powers vote.</strong> The House passed the resolution 215–208 on 3 June, yet there is no visible Senate companion timeline, no veto-override coalition being assembled, no procedural sequel. Historically, a chamber that invokes a constitutional war-powers mechanism builds a follow-on structure to make it bind. <strong>The vote stands alone.</strong> The absence of the follow-through architecture is the empirical confirmation that the reactivation is a signal, not a campaign — the third state, named in the deep dive, made visible by what is missing around it.</p>
+<p><strong>No insurance-market response to the AMOC monitoring dismantlement.</strong> The Ocean Observatories Initiative’s ~900 deep-sea instruments are being removed at the moment Iceland classes AMOC collapse as a national-security risk. Reinsurers price climate tail risk off observational data; removing the observation should, if the risk were being priced rationally, raise the uncertainty premium on climate-exposed exposures. <strong>No such repricing is visible.</strong> The perception-layer cut is being absorbed as a budget item rather than as a rise in unmeasurable tail risk.</p>
+<p><strong>No discount on the Hormuz fertilizer channel in food-security funding.</strong> The WFP named millions pushed into acute insecurity in Somalia, Afghanistan, and Sri Lanka through fertilizer and fuel shortages, not direct conflict — a second-order Hormuz effect arriving on a growing-season lag. The oil market priced the Strait in hours; the humanitarian funding response to the fertilizer propagation is not visible at anything like the scale of the named caseload. <strong>The slow channel of the chokepoint has no pricing mechanism watching it.</strong></p>
+<p><strong>Ethiopia’s 1 June election has vanished from the coverage.</strong> Ethiopia — Africa’s second-most-populous country — held a contest flagged for early June, and it is essentially absent from the structural-attention budget while Peru and Armenia (smaller by population) receive coverage. The asymmetry is the recurring Sudan-style absence: the largest-population event gets the least visibility because it does not touch a corridor commodity or a great-power principal.</p>
+</div>
+</div>
+<!-- ========== SOURCE ARCHIVE ========== -->
+<div class="s" id="s-sa">
+<div class="sh">Source Archive &amp; Reading List</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1rem">Annotated by structural insight contributed. Accumulates across briefings.</p>
+<h3 class="sh2" style="color:var(--blub)">Thinker Registry</h3>
+<p style="color:var(--t3);margin-bottom:1rem;font-size:.9rem">Voices whose frameworks proved most useful in this briefing.</p>
+<div style="margin-bottom:1.5rem">
+<span class="tk"><strong>Frank Knight</strong> <span>· Knightian uncertainty; the Fed’s undefined reaction function is a direct instantiation. Persistent.</span></span>
+<span class="tk"><strong>Henri Poincaré</strong> <span>· Sensitive dependence; calibration that is exact on the modal path and divergent at the tail. Persistent.</span></span>
+<span class="tk"><strong>Nassim Taleb</strong> <span>· The discount that is load-bearing until it breaks; harvest-now-decrypt-later as a hidden tail. Newly foregrounded Briefing 050.</span></span>
+<span class="tk"><strong>Mary Douglas</strong> <span>· Institutional thought under non-stationarity; the third state of a hollow form. Persists.</span></span>
+<span class="tk"><strong>Elinor Ostrom</strong> <span>· Commons governance; rare-earth enclosure and the grid’s private buildout. Persists.</span></span>
+<span class="tk"><strong>Donella Meadows</strong> <span>· System leverage points; the perception layer (AMOC array) as the highest-leverage cut. Newly added Briefing 050.</span></span>
+<span class="tk"><strong>Shakespeare / Cassius</strong> <span>· “Not in our stars… but in ourselves.” Read as calibration rather than fate. Newly added Briefing 050.</span></span>
+</div>
+<h3 class="sh2" style="color:var(--gold)">Serendipity Queue</h3>
+<p style="color:var(--t3);margin-bottom:1rem;font-size:.9rem">Sources encountered that don’t fit today’s briefing but contain signals worth returning to.</p>
+<div class="src"><div class="src-cat">Held for future briefing</div>
+<a href="https://phys.org/news/2026-06-interstellar-3iatlas-reveals-technosignatures-hour.html">Phys.org: 3I/ATLAS Reveals No Technosignatures in Seven-Hour Radio Scan</a>
+<div class="src-note">The disciplined null against a live hypothesis. Return when the object’s anomalous non-gravitational dynamics receive a non-artificial explanation — or don’t.</div></div>
+<div class="src"><div class="src-cat">Held for future briefing</div>
+<a href="https://www.datacenterdynamics.com/en/analysis/atoms-for-data-small-nuclear-reactors-smr/">DCD: Atoms for Data — The Small Nuclear Revolution Coming to a Data Center</a>
+<div class="src-note">The PPA-as-annuity financing model for SMRs. Return when the first hyperscaler-financed reactor reaches operation and the underwriting template is tested.</div></div>
+<h3 class="sh2" style="color:var(--blub)">Technology &amp; Science Sources</h3>
+<div class="src"><div class="src-cat">Critical</div><a href="https://thequantuminsider.com/2026/06/03/atom-computing-reveals-quantum-error-correction-with-toric-code/">The Quantum Insider: Atom Computing Reveals Quantum Error Correction With Toric Code</a><div class="src-note">3 June 2026. Sustained neutral-atom error correction; error rate falls as qubit count rises. The cryptographic-deadline discount reset.</div></div>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.automate.org/robotics/industry-insights/boston-dynamics-to-begin-production-on-redesigned-atlas-humanoid-in-2026">Automate.org: Boston Dynamics to Ship First Atlas Humanoids in 2026</a><div class="src-note">Electric Atlas first units to Hyundai and DeepMind; Figure at ~1 robot/hour. Pilot-to-production crossing in embodied AI.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://kraneshares.com/humanoid-robotics-in-2026-the-race-from-pilot-to-platform/">KraneShares: Humanoid Robotics in 2026 — The Race From Pilot to Platform</a><div class="src-note">The deployment-cadence framing. Unitree 5,500+ shipped in 2025; Agility Digit at Toyota Canada.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.sciencedaily.com/">Harvard Medical School: Mechanism Controlling Early-Life Brain Plasticity</a><div class="src-note">3 June 2026. Critical-period closure as a model of calibrate-and-lock; biological echo of the institutional discount.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://spacenews.com/spacex-sets-date-for-first-starship-version-3-launch/">SpaceNews: SpaceX Sets Date for Starship V3</a><div class="src-note">Flight 13, second V3 flight, June 2026. Orbital propellant transfer remains the deferred load-bearing dependency for Artemis.</div></div>
+<h3 class="sh2" style="color:var(--blub)">Economic &amp; Resource Sources</h3>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.bls.gov/news.release/empsit.nr0.htm">BLS: The Employment Situation — May 2026</a><div class="src-note">5 June 2026. +172,000 jobs vs ~85,000 consensus; unemployment 4.3%; +93,000 in prior-month revisions.</div></div>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20260429a.htm">Federal Reserve: FOMC Statement, 28–29 April 2026</a><div class="src-note">Target range held at 3.50–3.75%; 8–4 vote, widest dissent since October 1992. Reaction function undefined at current input.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.csis.org/analysis/chinas-new-rare-earth-and-magnet-restrictions-threaten-us-defense-supply-chains">CSIS: China’s Rare-Earth and Magnet Restrictions</a><div class="src-note">~90% processing, 80% tungsten, 60% antimony; European approval rates below 25%. Commons Enclosure at the processing bottleneck.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://rareearthexchanges.com/news/chinas-2026-export-controls-redraw-the-global-supply-chain-map/">Rare Earth Exchanges: China’s 2026 Export Controls Redraw the Supply Map</a><div class="src-note">Australia’s May 2026 Northern Minerals divestment order; summer-2026 non-China magnet capacity. The bypass under construction.</div></div>
+<h3 class="sh2" style="color:var(--blub)">Geopolitical &amp; Governance Sources</h3>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.npr.org/2026/06/03/nx-s1-5845102/house-iran-war-powers-vote">NPR: House Passes War Powers Resolution Directing Trump to End Iran Hostilities</a><div class="src-note">3 June 2026, 215–208; four Republicans cross over. Mostly symbolic under a promised veto. The Resolution’s reactivation.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://colombiaone.com/2026/06/07/peru-keiko-fujimori-holds-the-lead-presidential-election-count/">Colombia One: Fujimori Leads Tight Peru Runoff Count</a><div class="src-note">7 June 2026. 50.1% to 49.8% with 92%+ counted; Ipsos quick-count a statistical tie. Margin inside the error bars.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.cbc.ca/news/world/armenia-election-nikol-pashinyan-9.7226866">CBC: Armenia PM Declares ‘Historic Victory’ in Parliamentary Vote</a><div class="src-note">7–8 June 2026. Civil Contract 49.8%; pro-Russian bloc ~17.5%. The failed guarantor losing its domestic constituency.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://www.consilium.europa.eu/en/press/press-releases/2026/05/07/artificial-intelligence-council-and-parliament-agree-to-simplify-and-streamline-rules/">Council of the EU: AI Act Simplification Agreement</a><div class="src-note">May 2026. Up to 16-month delay on high-risk rules; AI Office powers reinforced; sandbox deadline slips to August 2027.</div></div>
+<h3 class="sh2" style="color:var(--blub)">Ecological &amp; Demographic Sources</h3>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://earth.org/this-week-in-climate-news-june-2026-week-1/">Earth.Org: This Week in Climate News, June 2026 Week 1</a><div class="src-note">Yakutia taiga fires (1.5M+ ha); WMO warm-ocean-pattern warning; Ocean Observatories Initiative dismantlement including AMOC instruments.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://ddnews.gov.in/en/south-koreas-birthrate-the-worlds-lowest-rises-again-amid-signs-of-easing-demographic-crisis/">DD News: South Korea’s Birthrate Rises Again</a><div class="src-note">5.0 births/1,000 in 2025 (from 4.7); marriages +8.1%. Monotonic-decline projection violated; pension depletion ~2055 unchanged.</div></div>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.npr.org/2026/06/05/nx-s1-5848057/the-news-roundup-for-june-5-2026">NPR: News Roundup for June 5, 2026 (WFP Hormuz Food-Security Warning)</a><div class="src-note">Fertilizer/fuel shortages from the Strait push ~2.5M in Somalia, ~2.3M in Afghanistan, ~1.3M in Sri Lanka into acute insecurity.</div></div>
+<div class="src"><div class="src-cat">Liminal</div><a href="https://www.iea.org/commentaries/with-new-export-controls-on-critical-minerals-supply-concentration-risks-become-reality">DCD / TradingKey: AI Data-Center Power Demand and the SMR Boom</a><div class="src-note">PPA-as-annuity financing; AWS $20B Pennsylvania SMR exploration; ENTRA1/TVA up to 6 GW via NuScale. Demand-side underwriting of firm generation.</div></div>
+</div>
+<footer>
+<p>Tectonic Briefing · No. 050 · 8 June 2026</p>
+<p style="margin-top:.3rem">Eight analytical lenses · Inference engine · Wise action · Anomaly detection · Source archive · Thread tracking active</p>
+<p style="margin-top:.3rem;font-size:.55rem;color:var(--t4)">Editorial discipline: fresh-domain rotation applied across more than two lenses — Technological (quantum error correction, humanoid pilot-to-production), Economic (critical-minerals processing concentration), Social (Korea demographic reversal), Ecological (Arctic fire + AMOC array dismantlement), and Liminal (3I/ATLAS technosignature null, SMR-by-PPA financing). Geopolitical led off-corridor with Peru and Armenia rather than the Middle East. Topic-rotation constraints satisfied; recursive-narrowing counter-weight applied against the Iran/Lebanon corridor inherited from Briefing 049. Vocabulary held at 42 named patterns; one Cycle 2 candidate (Discount Reactivation) logged, not promoted. Three QC disciplines — prose coherence, factual verification (every load-bearing claim date-stamped, 2025/2026 disambiguated), confidentiality (Stage 1c) — applied pre-publish.</p>
+</footer>
+</div>
+<script>
+function go(id){document.querySelectorAll('.s').forEach(s=>s.classList.remove('v'));document.getElementById('s-'+id).classList.add('v');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('on'));event.target.classList.add('on');window.scrollTo({top:document.querySelector('.bn').offsetTop-16,behavior:'smooth'})}
+
+// Deep Dive toggle
+document.addEventListener('DOMContentLoaded',function(){
+document.querySelectorAll('.dd').forEach(function(dd,idx){
+dd.setAttribute('data-dd-id','dd-'+idx);
+dd.setAttribute('title','Click to expand deep dive analysis');
+dd.addEventListener('click',function(e){
+e.stopPropagation();
+var panel=this.closest('.c').querySelector('.dd-panel');
+if(!panel){
+return;
+}
+panel.classList.toggle('open');
+this.classList.toggle('active');
+if(this.classList.contains('active')){
+this.innerHTML='Deep Dive Open';
+}else{
+this.innerHTML='Deep Dive Available';
+}
+});
+});
+});
+</script>
+<!-- TB-NAV-WRAP:BOT:START -->
+<div class="tb-nav-foot"><div class="tb-nav-left"><a href="2026-06-01.html">← Briefing No. 050</a><a class="tb-nav-disabled">Next →</a></div><div class="tb-nav-right"><a href="../index.html">Archive</a><a href="https://github.com/cyborg-entrepreneur/tectonic-briefing/blob/main/briefings/2026-06-08.html" target="_blank" rel="noopener">View on GitHub</a></div></div>
+<div class="tb-site-foot">Tectonic Briefing No. 050 · Monday, 8 June 2026 · Cyborg Entrepreneurship Research Lab · <a href="../index.html">Return to archive</a></div>
+<!-- TB-NAV-WRAP:BOT:END -->
+</body>
+</html>

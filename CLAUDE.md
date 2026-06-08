@@ -98,8 +98,11 @@ spawn a fresh sub-agent. The agent prompt MUST include:
 5. The current vocabulary count and list (read from
    `concepts/registry.json` for canonical state)
 6. Explicit instruction to include 2-4 deep dive panels, full five-
-   meta-category vocabulary display, and all 13 section IDs (ov, ge,
-   te, ec, sc, so, en, ig, li, ie, wa, an, sa)
+   meta-category vocabulary display, all 13 section IDs (ov, ge,
+   te, ec, sc, so, en, ig, li, ie, wa, an, sa), and **≥3 date-stamped
+   topics per lens** (Geopolitical/Liminal target 4) — research enough
+   events to fill each lens on the first pass; sparse one-item lenses
+   are the recurring failure mode Dave has flagged
 
 After the agent writes the HTML, run `./scripts/publish.sh` from main
 context — the pipeline takes over from there.
@@ -110,6 +113,7 @@ The build pipeline does NOT enforce content quality — only structural
 integrity. Verify by hand or via the disciplines below before publish:
 
 - [ ] Count `dd-panel` elements → target 2-4 deep dives
+- [ ] **Per-lens topic density** → each of the 8 lenses (ge, te, ec, sc, so, en, ig, li) carries **≥3 substantive, date-stamped `<h3>` topics** (Geopolitical and Liminal target 4). Benchmark 010 is the density reference. Dave has flagged sparse lenses twice (one lead-item per lens is the recurring failure mode) — do NOT ship a briefing where any lens runs 1-2 topics. This is a generation requirement, not just a QC catch: instruct the generation agent to research enough events to fill each lens to 3-4 topics on the first pass.
 - [ ] Count `.vi` vocabulary entries displayed → target all current (42 today)
 - [ ] All 13 section IDs present: ov, ge, te, ec, sc, so, en, ig, li, ie, wa, **an**, sa
 - [ ] Anomaly Detection section (s-an) has 4+ specific anomalies
