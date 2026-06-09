@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-08T12:56:40.012667",
-  "total_briefings": 51,
+  "generated_at": "2026-06-09T19:42:08.894495",
+  "total_briefings": 52,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -9,7 +9,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 6,
       "brief": "Accurate observation of an actor's internal state, intent, or capability does not constrain the actor's behavior.",
-      "citation_count": 1
+      "citation_count": 2
     },
     {
       "name": "Narrative-Physical Decoupling",
@@ -18,7 +18,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 7,
       "brief": "The official account of a situation operates as a parallel reality rather than a description of the physical one.",
-      "citation_count": 3
+      "citation_count": 4
     },
     {
       "name": "Akrasia at Scale",
@@ -54,7 +54,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 8,
       "brief": "A deployed instrument exceeds its deployer's control such that its persistence is decoupled from the political-or-diplomatic agreement that authorized it.",
-      "citation_count": 5
+      "citation_count": 6
     },
     {
       "name": "Scope Retreat",
@@ -99,7 +99,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 21,
       "brief": "The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal.",
-      "citation_count": 23
+      "citation_count": 24
     },
     {
       "name": "Sabbath Visibility",
@@ -261,7 +261,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
-      "citation_count": 46
+      "citation_count": 47
     },
     {
       "name": "Optionality Arbitrage",
@@ -306,7 +306,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 2,
       "brief": "When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act.",
-      "citation_count": 14
+      "citation_count": 15
     },
     {
       "name": "Category Collapse",
@@ -315,7 +315,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When a distinction assumed stable dissolves.",
-      "citation_count": 9
+      "citation_count": 10
     },
     {
       "name": "Governance Vacuum",
@@ -369,7 +369,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 32,
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
-      "citation_count": 19
+      "citation_count": 20
     },
     {
       "name": "Tail Calibration Failure",
