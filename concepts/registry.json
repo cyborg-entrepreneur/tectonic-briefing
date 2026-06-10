@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-09T19:42:08.894495",
-  "total_briefings": 52,
+  "generated_at": "2026-06-10T19:00:11.072756",
+  "total_briefings": 53,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -180,7 +180,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 1,
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
-      "citation_count": 3
+      "citation_count": 4
     },
     {
       "name": "Chokepoint Cascade",
@@ -261,7 +261,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
-      "citation_count": 47
+      "citation_count": 48
     },
     {
       "name": "Optionality Arbitrage",
@@ -369,7 +369,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 32,
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
-      "citation_count": 20
+      "citation_count": 21
     },
     {
       "name": "Tail Calibration Failure",
@@ -378,7 +378,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 31,
       "brief": "The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk\u2026",
-      "citation_count": 16
+      "citation_count": 17
     }
   ]
 }

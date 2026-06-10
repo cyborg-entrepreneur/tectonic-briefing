@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tectonic Briefing</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source Sans 3',system-ui,sans-serif;font-size:16px;line-height:1.7;min-height:100vh}
+:root{--bg:#0b1120;--card:#111827;--alt:#141c2e;--str:#162035;--blu:#4b8ef2;--blub:#6da8ff;--blup:#a3c8ff;--teal:#38d9c8;--tealm:#2a9e92;--gold:#e5b84c;--goldm:#c9a03a;--red:#f06050;--redm:#c04a3e;--purp:#a78bfa;--grn:#4ade80;--t1:#eaf0f8;--t2:#cdd6e4;--t3:#8e9bb5;--t4:#5f6d87;--brd:rgba(75,142,242,0.18);--brds:rgba(75,142,242,0.35)}
+.w{max-width:1140px;margin:0 auto;padding:0 1.8rem}
+header{padding:2.8rem 0 1.8rem;border-bottom:1px solid var(--brd);margin-bottom:2rem}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2.6rem;color:var(--t1);letter-spacing:.025em}
+h1 em{font-style:normal;color:var(--blub);font-weight:500}
+.sub{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--t4);letter-spacing:.14em;text-transform:uppercase;margin-top:.4rem}
+.epi{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.02rem;color:var(--t3);margin-top:1rem;max-width:680px;line-height:1.55;padding-left:1rem;border-left:2px solid var(--brds)}
+nav{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--brd)}
+nav button{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .7rem;border:1px solid var(--brd);border-radius:2px;background:transparent;color:var(--t3);cursor:pointer;transition:all .25s}
+nav button:hover{border-color:var(--brds);color:var(--blup)}
+nav button.on{border-color:var(--blu);color:var(--blub);background:rgba(75,142,242,.06)}
+nav button.gld{border-color:rgba(229,184,76,.3)}nav button.gld:hover,nav button.gld.on{border-color:var(--gold);color:var(--gold);background:rgba(229,184,76,.06)}
+nav button.rd{border-color:rgba(240,96,80,.3)}nav button.rd:hover,nav button.rd.on{border-color:var(--red);color:var(--red);background:rgba(240,96,80,.06)}
+nav button.tl{border-color:rgba(56,217,200,.3)}nav button.tl:hover,nav button.tl.on{border-color:var(--teal);color:var(--teal);background:rgba(56,217,200,.06)}
+nav button.pr{border-color:rgba(167,139,250,.3)}nav button.pr:hover,nav button.pr.on{border-color:var(--purp);color:var(--purp);background:rgba(167,139,250,.06)}
+nav button.gn{border-color:rgba(74,222,128,.3)}nav button.gn:hover,nav button.gn.on{border-color:var(--grn);color:var(--grn);background:rgba(74,222,128,.06)}
+.bn{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--t4);letter-spacing:.08em;margin-bottom:.3rem}
+.bd{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--t1);margin-bottom:.2rem}
+.bt{font-size:.95rem;color:var(--t3);font-style:italic;margin-bottom:2rem}
+.s{display:none;animation:fu .35s ease}.s.v{display:block}
+@keyframes fu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.c{background-color:var(--card);border:1px solid var(--brd);border-radius:3px;padding:1.8rem 2rem;margin-bottom:1.4rem}
+.c.lim{border-left:3px solid var(--gold);background-color:var(--alt)}.c.cri{border-left:3px solid var(--red);background-color:var(--alt)}.c.act{border-left:3px solid var(--teal);background-color:var(--alt)}.c.inf{border-left:3px solid var(--purp);background-color:var(--alt)}.c.env{border-left:3px solid var(--grn);background-color:var(--alt)}.c.gov{border-left:3px solid #f59e0b;background-color:var(--alt)}
+.lb{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blu);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.lb.gl{color:var(--gold)}.lb.tl{color:var(--teal)}.lb.rl{color:var(--red)}.lb.pl{color:var(--purp)}.lb.gnl{color:var(--grn)}.lb.aml{color:#f59e0b}
+.tg{padding:.12rem .45rem;border-radius:2px;font-size:.58rem}
+.tu{background:rgba(75,142,242,.14);color:var(--blup)}.te{background:rgba(56,217,200,.14);color:var(--teal)}.tc{background:rgba(167,139,250,.14);color:var(--purp)}.ta{background:rgba(229,184,76,.14);color:var(--gold)}.tr{background:rgba(240,96,80,.14);color:#fca5a5}.tg2{background:rgba(74,222,128,.14);color:var(--grn)}
+.c h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:var(--t1);margin-bottom:.9rem;line-height:1.3}
+.c p{margin-bottom:.9rem;color:var(--t2);line-height:1.75}.c p:last-child{margin-bottom:0}.c strong{color:var(--t1);font-weight:600}
+.i{margin-top:1rem;padding:.9rem 1.2rem;border-radius:0 2px 2px 0}.i p{font-size:.93rem;color:var(--t2)}
+.il{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.4rem}
+.i.so{background:rgba(75,142,242,.05);border-left:2px solid rgba(75,142,242,.35)}.i.so .il{color:var(--t4)}
+.i.rs{background:rgba(56,217,200,.05);border-left:2px solid rgba(56,217,200,.3)}.i.rs .il{color:var(--tealm)}
+.i.cf{background:rgba(229,184,76,.05);border-left:2px solid rgba(229,184,76,.3)}.i.cf .il{color:var(--goldm)}.i.cf p{font-style:italic}
+.i.in{background:rgba(167,139,250,.05);border-left:2px solid rgba(167,139,250,.3)}.i.in .il{color:var(--purp)}
+.th{background-color:var(--str);border:1px solid var(--brds);border-radius:3px;padding:1.6rem 1.8rem;margin:1.8rem 0}
+.th h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:500;color:var(--blub);margin-bottom:.8rem}.th p{color:var(--t2);line-height:1.75}
+.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem;margin:1.2rem 0}
+.vi{background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:1rem 1.2rem}
+.vi h4{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--blub);margin-bottom:.4rem;letter-spacing:.04em}.vi p{font-size:.88rem;color:var(--t3);line-height:1.5;margin:0}
+.mr{display:flex;align-items:flex-start;gap:.8rem;padding:.8rem 0;border-bottom:1px solid rgba(75,142,242,.08)}
+.mf{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--blu);min-width:170px;padding-top:.2rem;letter-spacing:.04em}
+.me{font-size:.92rem;color:var(--t2)}.md{font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:.1rem .4rem;border-radius:2px;white-space:nowrap}
+.amp{background:rgba(240,96,80,.12);color:#fca5a5}.dmp{background:rgba(56,217,200,.12);color:var(--teal)}
+.prose{max-width:800px;margin-bottom:1.8rem}.prose p{margin-bottom:1rem;color:var(--t2);line-height:1.8}
+.sh{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--t1);margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid var(--brd)}
+.sh2{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;margin:2rem 0 1rem}
+.src{background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:.8rem 1.2rem;margin-bottom:.6rem;font-size:.88rem}
+.src-cat{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.2rem}
+.src a{color:var(--blub);text-decoration:none;border-bottom:1px solid rgba(109,168,255,.3)}.src a:hover{border-color:var(--blub)}
+.src .src-note{color:var(--t3);font-size:.85rem;margin-top:.3rem}
+.tk{display:inline-block;background:var(--card);border:1px solid var(--brd);border-radius:2px;padding:.5rem .9rem;margin:0 .4rem .4rem 0;font-size:.85rem}
+.tk strong{color:var(--t1);font-weight:500}.tk span{color:var(--t3);font-size:.8rem}
+.dd{display:inline-flex;align-items:center;gap:.4rem;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blub);background:rgba(75,142,242,.08);border:1px solid rgba(75,142,242,.25);border-radius:2px;padding:.25rem .6rem;margin-left:.5rem;vertical-align:middle;cursor:pointer;transition:all .3s}
+.dd::before{content:'\25C9';font-size:.7rem}
+.dd:hover{background:rgba(75,142,242,.18);border-color:rgba(75,142,242,.5);color:var(--blup)}
+.dd.active{background:rgba(75,142,242,.15);border-color:var(--blu);color:var(--blup)}
+.dd.active::before{content:'\25CE'}
+.dd-panel{display:none;margin-top:1.2rem;padding:1.4rem 1.6rem;background:linear-gradient(135deg,rgba(75,142,242,.04),rgba(167,139,250,.04));border:1px solid rgba(75,142,242,.2);border-radius:3px;animation:fu .35s ease}
+.dd-panel.open{display:block}
+.dd-panel .dd-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--purp);margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem}
+.dd-panel .dd-label::before{content:'\25C9';font-size:.65rem}
+.dd-panel h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:500;color:var(--t1);margin-bottom:.6rem}
+.dd-panel p{color:var(--t2);line-height:1.75;margin-bottom:.8rem;font-size:.93rem}
+.dd-panel p:last-child{margin-bottom:0}
+.dd-panel strong{color:var(--t1)}
+.dd-panel .dd-question{font-style:italic;color:var(--t3);border-left:2px solid var(--purp);padding-left:.8rem;margin:.8rem 0}
+.wa-section{margin-bottom:2.5rem}
+.wa-section h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:500;color:var(--t1);margin:1.4rem 0 .7rem;padding-top:.8rem;border-top:1px solid rgba(75,142,242,.1)}
+.wa-section h4:first-of-type{border-top:none;padding-top:0}
+footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--brd);text-align:center}
+footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
+@media(max-width:768px){.w{padding:0 1rem}h1{font-size:2rem}.c{padding:1.3rem 1.2rem}.vg{grid-template-columns:1fr}.mr{flex-direction:column;gap:.3rem}.mf{min-width:unset}}
+<!-- TB-NAV-WRAP:STYLE -->
+/* Tectonic Briefing site-wide nav wrapper (injected by update-index.py) */
+.tb-nav-bar{position:sticky;top:0;z-index:80;background:rgba(11,17,32,.94);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(75,142,242,0.18);padding:.55rem 1.2rem;
+  display:flex;gap:.6rem;align-items:center;justify-content:space-between;
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;flex-wrap:wrap}
+.tb-nav-bar .tb-nav-left,.tb-nav-bar .tb-nav-right{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}
+.tb-nav-bar a{color:#8e9bb5;text-decoration:none;border:1px solid rgba(75,142,242,0.18);
+  padding:.32rem .62rem;border-radius:2px;transition:all .2s;white-space:nowrap}
+.tb-nav-bar a:hover{color:#6da8ff;border-color:rgba(75,142,242,0.45)}
+.tb-nav-bar .tb-nav-disabled{color:#5f6d87;border-color:rgba(75,142,242,0.08);pointer-events:none;opacity:.55}
+.tb-nav-bar .tb-nav-counter{color:#6da8ff;font-weight:500}
+.tb-nav-bar .tb-nav-archive{color:#cdd6e4;border-color:rgba(75,142,242,0.32)}
+.tb-nav-foot{margin-top:2rem;padding:1.4rem 1.6rem;border:1px solid rgba(75,142,242,0.18);
+  border-radius:3px;display:flex;gap:.6rem;align-items:center;justify-content:space-between;
+  background:#111827;font-family:'JetBrains Mono',monospace;font-size:.62rem;
+  letter-spacing:.1em;text-transform:uppercase;flex-wrap:wrap}
+.tb-nav-foot .tb-nav-left,.tb-nav-foot .tb-nav-right{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}
+.tb-nav-foot a{color:#8e9bb5;text-decoration:none;border:1px solid rgba(75,142,242,0.18);
+  padding:.32rem .62rem;border-radius:2px;transition:all .2s;white-space:nowrap}
+.tb-nav-foot a:hover{color:#6da8ff;border-color:rgba(75,142,242,0.45)}
+.tb-nav-foot .tb-nav-disabled{color:#5f6d87;border-color:rgba(75,142,242,0.08);pointer-events:none;opacity:.55}
+.tb-site-foot{margin-top:1.4rem;padding:1.2rem 0;text-align:center;
+  font-family:'JetBrains Mono',monospace;font-size:.55rem;color:#5f6d87;
+  letter-spacing:.12em;text-transform:uppercase}
+.tb-site-foot a{color:#8e9bb5;text-decoration:none;border-bottom:1px solid rgba(75,142,242,0.18)}
+.tb-site-foot a:hover{color:#6da8ff;border-color:#6da8ff}
+@media(max-width:560px){
+  .tb-nav-bar{font-size:.55rem;padding:.45rem .7rem}
+  .tb-nav-bar a{padding:.28rem .5rem}
+  .tb-nav-foot{font-size:.55rem;padding:1.1rem 1rem}
+}
+<!-- TB-NAV-WRAP:STYLE -->
+</style>
+</head>
+<body>
+<!-- TB-NAV-WRAP:TOP:START -->
+<div class="tb-nav-bar"><div class="tb-nav-left"><a href="2026-06-09.html" title="Briefing No. 051 · Tuesday, 9 June 2026">← Prev</a><span class="tb-nav-counter">Briefing No. 052</span><a class="tb-nav-disabled">Next →</a></div><div class="tb-nav-right"><a href="../index.html" class="tb-nav-archive">Archive</a></div></div>
+<!-- TB-NAV-WRAP:TOP:END -->
+
+<div class="w">
+<header>
+<h1><em>Tectonic</em> Briefing</h1>
+<div class="sub">Structural forces · Inference engine · Wise action · Source archive</div>
+<div class="epi">One shock, many gauges, and no two readings alike. Today a single supply squeeze reaches a hot-headline, cooling-core inflation print, a central bank boxed into paralysis, and an oil market that falls because the price has destroyed the demand it was meant to ration. The instruments still work — they were simply built for a calm that has left.</div>
+</header>
+<nav id="nav">
+<button class="on" onclick="go('ov')">Overview</button>
+<button class="rd" onclick="go('ge')">Geopolitical</button>
+<button onclick="go('te')">Technological</button>
+<button onclick="go('ec')">Economic</button>
+<button onclick="go('sc')">Scientific</button>
+<button onclick="go('so')">Social</button>
+<button class="gn" onclick="go('en')">Ecological</button>
+<button onclick="go('ig')">Institutional</button>
+<button class="gld" onclick="go('li')">Liminal Signals</button>
+<button class="pr" onclick="go('ie')">Inference Engine</button>
+<button class="tl" onclick="go('wa')">Wise Action</button>
+<button onclick="go('an')">Anomaly</button>
+<button onclick="go('sa')">Source Archive</button>
+</nav>
+<div class="bn">BRIEFING NO. 052 · CYCLE 2</div>
+<div class="bd">Wednesday, 10 June 2026</div>
+<div class="bt">On <strong>10 June 2026</strong> the BLS released May CPI: headline inflation came in <strong>hot at roughly 4.2% year over year — the highest since April 2023 — while core eased toward 2.9%</strong>, so the same report read as both an acceleration and a deceleration depending on which line you trusted. The print opened a <strong>central-bank super-week</strong> in which the ECB is set to hike on <strong>11 June</strong>, the Fed under Chair <strong>Kevin Warsh</strong> sits boxed at <strong>3.50%–3.75%</strong> on <strong>17 June</strong>, and the Bank of Japan defends the yen on <strong>18 June</strong> — three institutions reading one global supply shock through instruments calibrated to three departed regimes. The EIA's June outlook put Brent near <strong>$105</strong> on the Hormuz disruption while projecting <strong>2026 oil demand to fall about 1.1 million barrels a day</strong> — a price high enough to destroy the demand it was meant to ration. Off-corridor: <strong>Myanmar's Kachin heavy-rare-earth feedstock</strong> (≈70% of China's heavy-RE supply) drew India's entry as terbium prices ran up; the <strong>Fifth US National Climate Assessment</strong> published 9 June; and <strong>Amazon's mobile-robot fleet crossed one million units.</strong> Today's pattern: <strong>calibration divergence</strong> — one shock, read as many conflicting signals by instruments built for a regime that has left. Vocabulary holds at <strong>42 named patterns</strong>; three Cycle 2 candidates are tracked (Discount Reactivation and Observability Severance carried, Calibration Divergence newly logged).</div>
+<!-- ========== OVERVIEW ========== -->
+<div class="s v" id="s-ov">
+<div class="prose">
+<p>Yesterday's briefing named <strong>observability collapse</strong>: the instrument removed at the moment the system most needs watching. Today the lens turns again. The instruments are still in place and still working — but they no longer agree, because each was calibrated to a regime that has departed. A single exogenous shock arrives, and the gauges built to read it translate it into divergent, conflicting signals. The week prior was about systems that lost the ability to see. This week is about systems that can see, but see different things, because the calibration baked into each instrument no longer matches the world it is measuring.</p>
+<p>Start with the cleanest instance. On <strong>10 June 2026</strong> the BLS released May CPI, and the same report split in two. The headline ran hot — about 4.2% year over year, the highest since April 2023 — driven by the energy pass-through of the Hormuz disruption. Core eased toward 2.9%. <strong>One release, two stories: an inflation that is accelerating and an inflation that is cooling.</strong> Which one is "the" reading depends entirely on whether the gauge you trust was calibrated to a demand-driven inflation or a supply-driven one. The headline instrument and the core instrument were built for the same regime, and that regime has split underneath them.</p>
+<p>The divergence then propagates outward, by design rather than coincidence. The same supply shock reaches three central banks in the same week, and each reads it differently: the ECB hikes on <strong>11 June</strong>, the Fed holds boxed on <strong>17 June</strong>, the Bank of Japan defends the yen on <strong>18 June</strong>. It reaches the oil market, where the EIA projects Brent near $105 even as 2026 demand falls by more than a million barrels a day — a price so high it is destroying the demand it was supposed to ration. Each instrument is functioning correctly. The readings diverge because the world the calibration assumed is gone.</p>
+</div>
+<div class="th"><h3>Unifying Thread: Calibration Divergence</h3>
+<p>The thread is the companion to yesterday's, one turn further on. Observability collapse is what happens when the instrument is removed. Calibration divergence is what happens when the instruments remain — accurate, funded, fully operational — but were tuned to a regime that has left, so a single shock produces as many readings as there are gauges. The May CPI splits into a hot headline and a cooling core. The central banks split into a hiker, a holder, and a defender. The oil curve splits into a high price and a falling demand. None of these instruments is broken. Each is reading the same shock through a calibration that no longer fits.</p>
+<p>What binds 9–10 June into one structure rather than three coincidences is the source. A single supply-side shock — the Hormuz disruption working through energy prices — hits every gauge at once, and the gauges disagree not about the facts but about what the facts mean. <strong>The headline and core CPI lines do not contradict each other; they answer different questions the same number was never built to separate.</strong> The ECB, the Fed, and the BoJ are not misreading the shock; they are each correctly reading it against a different mandate calibrated to a different vanished equilibrium. This is <a class="vbadge m5" href="../concepts/tail-calibration-failure.html" title="The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk…" data-meta="5">Tail Calibration Failure</a> (META-5, Briefing 031) generalized from one mis-tuned discount to a whole instrument panel: every gauge fails in the same way at once, because every gauge was tuned to the same departed calm.</p>
+<p>Today logs one Cycle 2 candidate against this thread. <strong>Calibration Divergence</strong> (META-5 Institutional Hollowing family, cross-referencing META-1 Coupling Failure) names the case where a single exogenous shock reaches multiple still-functioning instruments calibrated to a prior regime, and they return divergent, mutually inconsistent readings — so coordinated systems fracture not because the instruments fail but because each translates one shock into a different signal. The empirical anchors are the May CPI headline-core split (10 June), the ECB-hike / Fed-hold / BoJ-defend super-week divergence (11–18 June), and the EIA's high-Brent-with-falling-demand outlook (10 June). <strong>The consolidation caveat is explicit.</strong> This may simply instantiate <a class="vbadge m5" href="../concepts/tail-calibration-failure.html" title="The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk…" data-meta="5">Tail Calibration Failure</a> read across an instrument panel rather than a single discount, or it may overlap with <a class="vbadge m5" href="../concepts/channel-decomposition.html" title="Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed." data-meta="5">Channel Decomposition</a> — one bundled signal decomposing into channels that no longer move together. It enters the monitoring pool as a candidate, not a promotion.</p></div>
+<h3 class="sh2" style="color:var(--blub)">Structural Vocabulary (Accumulating)</h3>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1rem;font-size:.9rem">Organized by meta-category. Five structural families, 42 named patterns (no additions today). Three Cycle 2 candidates now in the monitoring pool — <em>Discount Reactivation</em> (Briefing 050), <em>Observability Severance</em> (Briefing 051), and <em>Calibration Divergence</em> (today).</p>
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-1: Coupling Failure</h3>
+<div class="vg">
+<div class="vi"><h4>Observation-Action Decoupling</h4><p>Accurate observation does not constrain behavior. Briefing 006.</p></div>
+<div class="vi"><h4>Narrative-Physical Decoupling</h4><p>Official account operates as a parallel reality. Briefing 007.</p></div>
+<div class="vi"><h4>Akrasia at Scale</h4><p>Knowing the better course and choosing the worse. Briefing 006.</p></div>
+<div class="vi"><h4>Capability Opacity</h4><p>Capability-verifiability gap unbridgeable. Briefing 003.</p></div>
+<div class="vi"><h4>Emergent Concealment</h4><p>AI develops capacity to hide actions. Briefing 005.</p></div>
+<div class="vi"><h4>Instrument Autonomy</h4><p>Deployed instrument exceeds deployer's control. Briefing 008.</p></div>
+<div class="vi"><h4>Scope Retreat</h4><p>Declared policy retreats to physically feasible within hours. Briefing 009.</p></div>
+<div class="vi"><h4>Dual-Track Maximalism</h4><p>Maximum threat and diplomatic opening occur simultaneously. Briefing 010.</p></div>
+<div class="vi"><h4>Credential Foreclosure</h4><p>Executing the credential-action forecloses the negotiation. Briefing 016.</p></div>
+<div class="vi"><h4>Verification-Mode Asymmetry</h4><p>Verification regime blind to failures only execution surfaces. Briefing 020.</p></div>
+<div class="vi"><h4>Peripheral Assertion</h4><p>Periphery refuses backdrop status. Briefing 021.</p></div>
+<div class="vi"><h4>Sabbath Visibility</h4><p>Suppressed signals become audible when production rhythm slows. Briefing 022.</p></div>
+<div class="vi"><h4>Weekend Translation</h4><p>Saturday cycle resolves tactical moves into structural transitions. Briefing 028.</p></div>
+<div class="vi"><h4>Mode-Switch Disarticulation</h4><p>Single architecture executes concealment- and disclosure-mode across windows. Briefing 038.</p></div>
+<div class="vi" style="border-color:var(--goldm)"><h4 style="color:var(--gold)">Observability Severance ● CANDIDATE</h4><p>Measurement or deliberation layer deliberately removed, routed around, or out-paced as the monitored system enters its most consequential regime. AMOC moorings + sea-drone rescue loop, 8–9 June. Briefing 051 (Cycle 2 candidate).</p></div>
+</div>
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-2: Bypass Inversion</h3>
+<div class="vg">
+<div class="vi"><h4>Bypass Capture</h4><p>Escape route becomes the target. Briefing 007.</p></div>
+<div class="vi"><h4>Shadow Settlement</h4><p>Parallel transaction system emerges. Briefing 002.</p></div>
+<div class="vi"><h4>Conditional Collapse</h4><p>Ambiguity that enabled agreement becomes mechanism of failure. Briefing 005.</p></div>
+<div class="vi"><h4>Negotiation Multiplication</h4><p>Stalled tracks spawn parallel tracks. Briefing 006.</p></div>
+<div class="vi"><h4>Sovereignty Arbitrage</h4><p>Gap between sovereignty claims and enforcement. Briefing 003.</p></div>
+</div>
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-3: Threshold Cascade</h3>
+<div class="vg">
+<div class="vi"><h4>Buffer Collapse</h4><p>Shock-absorbing system fails. Briefing 001.</p></div>
+<div class="vi"><h4>Chokepoint Cascade</h4><p>Bottleneck failure propagates. Briefing 001.</p></div>
+<div class="vi"><h4>Tipping Cascade</h4><p>One threshold triggers others. Briefing 001.</p></div>
+<div class="vi"><h4>Deadline Revelation</h4><p>Temporal boundary forces latent forces visible. Briefing 002.</p></div>
+<div class="vi"><h4>Reversibility Asymmetry</h4><p>Physical irreversibility outpaces institutional reversibility. Briefing 009.</p></div>
+<div class="vi"><h4>Keystone Removal</h4><p>Configuration loses load-bearing actor. Briefing 023.</p></div>
+<div class="vi"><h4>Verdict Compression</h4><p>Smoothed signals produce maximum dispersion in one decision window. Briefing 026.</p></div>
+<div class="vi"><h4>Effective-Date Convergence</h4><p>Multiple transitions activate on the same calendar day. Briefing 027.</p></div>
+<div class="vi"><h4>Sabbath Operationalization</h4><p>Sunday converts information into decisions before Monday. Briefing 029.</p></div>
+</div>
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-4: <a class="vbadge m4" href="../concepts/commons-enclosure.html" title="When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper." data-meta="4">Commons Enclosure</a></h3>
+<div class="vg">
+<div class="vi"><h4>Commons Enclosure</h4><p>Shared resource converted to controlled access. Briefing 003.</p></div>
+<div class="vi"><h4>Optionality Arbitrage</h4><p>Advantage existing only in crisis. Briefing 001.</p></div>
+<div class="vi"><h4>Paradigm Defection</h4><p>Dominant advocate abandons paradigm. Briefing 005.</p></div>
+<div class="vi"><h4>Process as Destination</h4><p>Negotiation's continuation is its goal. Briefing 007.</p></div>
+<div class="vi"><h4>Cartel Dissolution</h4><p>Multilateral regime loses load-bearing participant. Briefing 024.</p></div>
+</div>
+<h3 class="sh2" style="color:var(--t3);font-size:1.1rem">META-5: Institutional Hollowing</h3>
+<div class="vg">
+<div class="vi"><h4>Capacity Hollowing</h4><p>Personnel cuts reduce perception before action. Briefing 002.</p></div>
+<div class="vi"><h4>Category Collapse</h4><p>Stable distinction dissolves. Briefing 001.</p></div>
+<div class="vi"><h4>Governance Vacuum</h4><p>Institutional capacity lags pace of change. Briefing 001.</p></div>
+<div class="vi"><h4>Constructive Ambiguity</h4><p>Agreement via mutually exclusive interpretations. Briefing 004.</p></div>
+<div class="vi"><h4>Ceasefire Acceleration</h4><p>Pause accelerates structural transformations. Briefing 004.</p></div>
+<div class="vi"><h4>Electoral Correction</h4><p>Entrenched illiberal rule reversed democratically. Briefing 009.</p></div>
+<div class="vi"><h4>Sanctuary Discount</h4><p>Marketplace discounts weekend-window decisions. Briefing 030.</p></div>
+<div class="vi"><h4>Tail Calibration Failure</h4><p>Mean-trajectory discount fails on operational tail events. Briefing 031.</p></div>
+<div class="vi"><h4>Channel Decomposition</h4><p>Bundled commitment decomposes into independent channels. Briefing 032.</p></div>
+<div class="vi" style="border-color:var(--goldm)"><h4 style="color:var(--gold)">Discount Reactivation ● CANDIDATE</h4><p>A form treated as hollow abruptly acts without recovering its enforcement power, sitting between retired and operative. House War Powers vote 3 June. Briefing 050 (Cycle 2 candidate).</p></div>
+<div class="vi" style="border-color:var(--goldm)"><h4 style="color:var(--gold)">Calibration Divergence ● CANDIDATE</h4><p>One exogenous shock reaches multiple still-functioning instruments calibrated to a departed regime; they return divergent, mutually inconsistent readings, so coordinated systems fracture without any instrument failing. May CPI headline-core split + central-bank super-week + EIA high-price/falling-demand, 10 June. Briefing 052 (Cycle 2 candidate).</p></div>
+</div>
+</div>
+<!-- ========== GEOPOLITICAL ========== -->
+<div class="s" id="s-ge">
+<div class="sh">Geopolitical Forces</div>
+<div class="c cri">
+<div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span> <span class="tg ta"><a class="vbadge m4" href="../concepts/commons-enclosure.html" title="When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper." data-meta="4">Commons Enclosure</a></span></div>
+<h3>Hormuz Toward a Managed Toll: Closing a Strait by Fee Rather Than Force <span class="dd">Deep Dive Available</span></h3>
+<p>As of <strong>10 June 2026</strong>, the Strait of Hormuz disruption that followed the early-June Iran escalation has moved toward a managed reopening on Iranian terms rather than an outright closure. Tehran has signaled it will allow transit under conditions — inspection regimes, transit arrangements, and de facto fees — rather than seal the waterway entirely. The EIA's June outlook prices Brent near <strong>$105</strong> on the disruption even as Gulf producers' earlier output cuts work through the balance. Roughly a fifth of seaborne crude moves through the strait, and the shift from blockade to conditional passage changes the structure of the leverage.</p>
+<p>The structural move is enclosure substituting for closure. A full blockade is an act of war that invites a kinetic response; a conditional, fee-bearing passage converts the same chokepoint into a toll booth that extracts rent without crossing the threshold that triggers retaliation. This is <a class="vbadge m4" href="../concepts/commons-enclosure.html" title="When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper." data-meta="4">Commons Enclosure</a> (META-4, Briefing 003) applied to a strait: a shared waterway governed by the norm of free passage is reframed as a controlled access point with a gatekeeper and an implicit fee. <strong>Iran does not need to close Hormuz to profit from controlling it.</strong> The deep dive takes up what it means when the most contested chokepoint in the global energy system is governed by a toll rather than a gun.</p>
+<div class="i so"><div class="il">Second-Order</div><p>A managed toll is harder to deter than a blockade because it never crosses the line that would justify a response. A closed strait is a casus belli; a strait that charges for passage is a negotiation. <strong>The party that can credibly meter access captures a rent the party that can only close it cannot.</strong> This is the economic companion to the Economic lens's energy story: the price stays high not despite the partial reopening but because the reopening is metered.</p></div>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive Analysis</div>
+<h4>The Toll Booth on the Strait: Enclosure Without a Blockade</h4>
+<p>For decades the threat over Hormuz has been binary: open or closed. A closure was the doomsday option — the move that would spike oil to triple digits, draw in the US Fifth Fleet, and convert a regional conflict into a global one. Precisely because it was so consequential, it was rarely credible; the cost to Iran of closing the strait through which its own exports must pass was nearly as high as the cost to everyone else. The binary framing made the threat largely self-deterring. The June 2026 shift breaks the binary. Iran is moving toward a metered reopening — passage allowed, but on conditions Tehran sets — and the metered version is the more durable form of leverage.</p>
+<p>Consider what the toll does that the blockade cannot. A blockade removes the barrels and invites the carrier strike; the leverage is real but unsustainable, because it cannot survive the response it provokes. A toll leaves the barrels flowing, keeps the price elevated through the friction it imposes, and never presents a target a navy can clear. <strong>The strait stays open and the rent gets collected.</strong> The EIA's near-$105 Brent reflects exactly this: a price held up not by absent supply but by metered supply, the friction of conditional passage priced into every cargo.</p>
+<p>This is the cleanest instance of <a class="vbadge m4" href="../concepts/commons-enclosure.html" title="When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper." data-meta="4">Commons Enclosure</a> the briefing has logged since the pattern was named. A global commons — the freedom of navigation through an international strait — is converted into a controlled gate with a gatekeeper who sets the terms. The norm of free passage is not abolished by decree; it is hollowed by a fee that makes passage conditional. And because the enclosure is metered rather than absolute, the international system has no clean response: there is no blockade to break, only a toll to pay or contest, cargo by cargo.</p>
+<p>The structural risk is that the toll becomes the template. If Iran demonstrates that a chokepoint can be monetized without being closed, the lesson generalizes to every actor sitting on a strait, a canal, or a cable landing. <strong>The blockade is a one-time weapon; the toll is an annuity.</strong> The Hormuz move is worth watching not for whether the strait closes — it likely will not — but for whether conditional, fee-bearing passage becomes the new normal at the world's contested chokepoints, with the rent collected continuously and the casus belli never quite reached.</p>
+<p class="dd-question">If a contested chokepoint can be enclosed by a metered toll rather than a blockade — extracting rent continuously while never crossing the threshold that would justify a military response — does the freedom-of-navigation regime that has governed international straits since the mid-twentieth century have any instrument calibrated to deter an enclosure that never actually closes the gate?</p>
+</div>
+</div>
+<div class="c cri">
+<div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span></div>
+<h3>Armenia Votes: Pashinyan Wins But Falls Short of the Peace Supermajority</h3>
+<p>In Armenia's parliamentary election on <strong>7 June 2026</strong>, Prime Minister Nikol Pashinyan's Civil Contract party took roughly <strong>49.81% of the vote</strong>, translating to about <strong>64 of 105 seats</strong> — a governing majority, but short of the two-thirds (70 seats) needed to pass the constitutional referendum the Azerbaijan peace settlement requires. The vote was the first national test of Pashinyan's normalization track since the loss of Nagorno-Karabakh.</p>
+<p>The structural feature is a mandate that governs but cannot finalize. Pashinyan won the right to keep governing and lost the supermajority that would let him constitutionally seal peace with Azerbaijan. <strong>A 64-seat majority runs the country; a 70-seat majority would have ended the war.</strong> The gap of six seats is where the peace process now lives — durable enough to continue, too thin to conclude. This is the electoral instance of the week's divergence theme arriving in the South Caucasus: the same vote reads as a win and a constraint, depending on whether the measure is governance or settlement.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>Mali Sentences a French Embassy Official: The Sahel Decoupling Hardens</h3>
+<p>On <strong>5 June 2026</strong> a Malian court sentenced a French embassy official to <strong>20 years</strong> on charges of undermining state security — a charge France rejects as fabricated. The sentence is the sharpest escalation yet in the rupture between Bamako and Paris, and it lands as Mali deepens ties with Russia's Africa Corps and the Alliance of Sahel States consolidates.</p>
+<p>The structural reading is a former-colonial relationship being severed through the judicial channel. A 20-year sentence on a serving diplomat is not a routine expulsion; it converts a diplomatic dispute into a criminal one, which is far harder to reverse. <strong>Bamako is using its own courts to make the break with Paris legally concrete.</strong> The Sahel realignment — Mali, Niger, Burkina Faso pivoting from France toward Russia — has run for two years through troop withdrawals and treaty exits; the embassy conviction is the same decoupling executed through a verdict, an instrument the diplomatic system has no easy answer for. This is the fresh-domain entry the rotation discipline targets, off the Middle East corridor entirely.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>Colombia Heads to a Runoff: A Right-Populist Edges a Leftist in the First Round</h3>
+<p>Colombia's first-round presidential certification on <strong>4 June 2026</strong> put right-populist <strong>Abelardo de la Espriella at roughly 44%</strong> against leftist <strong>Iván Cepeda at around 41%</strong>, sending the two to a <strong>21 June runoff</strong>. The result follows the Petro presidency and frames the runoff as a referendum on whether Colombia continues its leftward turn or reverses it.</p>
+<p>The structural feature is a polarized electorate split almost evenly between opposed projects. A three-point first-round margin between a right-populist and a leftist is not a mandate for either; it is a country divided down the middle, with the runoff forced to manufacture a majority that the first round denied. <strong>Forty-four to forty-one is a nation that cannot agree on its own direction.</strong> The Colombian vote is the Latin American instance of the same divergence the briefing reads globally this week: one electorate, two incompatible readings of where the country should go, with a 21 June decision window that will resolve the split without dissolving it.</p>
+</div>
+</div>
+<!-- ========== TECHNOLOGICAL ========== -->
+<div class="s" id="s-te">
+<div class="sh">Technological Forces</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>IBM Commits $10B to Quantum, Targets Fault Tolerance by 2029</h3>
+<p>On <strong>2 June 2026</strong> IBM detailed a quantum commitment exceeding <strong>$10 billion</strong> and reaffirmed its roadmap to <strong>Starling</strong>, a large-scale fault-tolerant quantum computer it targets for <strong>2029</strong>, built on error-corrected logical qubits rather than raw physical ones. The announcement reframes quantum from a research program into a capital project with a date attached.</p>
+<p>The structural reading is a cryptographic deadline being pulled forward by a financing commitment. For years the quantum threat to encryption sat behind a vague "someday"; a $10 billion commitment with a 2029 fault-tolerance target converts the someday into a budgeted horizon. <strong>A funded roadmap to logical qubits is a clock the security world has to start reading.</strong> Post-quantum migration is already underway invisibly across banks and governments; IBM's commitment is the kind of dated, financed milestone that turns an abstract risk into a calendar. This is the off-corridor technology entry the rotation discipline targets — not another language model, but the substrate that will eventually reprice the cryptographic foundation of the digital economy.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>NVIDIA and TSMC Put AI Inside the Fab: Compute That Makes Compute <span class="dd">Deep Dive Available</span></h3>
+<p>On <strong>1 June 2026</strong> NVIDIA and TSMC detailed deeper integration of AI into semiconductor manufacturing itself — <strong>cuLitho</strong> computational-lithography acceleration reported at <strong>20–50% gains</strong>, and <strong>FabTwin</strong> digital-twin simulation of fabrication lines. The chips that run the AI are now being designed and manufactured with the help of the AI they will run.</p>
+<p>The structural feature is a reflexive loop closing inside the supply chain. AI compute has been the output of the semiconductor industry; now it is becoming an input to it, accelerating the lithography and process design that produce the next generation of chips. <strong>Compute is starting to make compute.</strong> A 20–50% acceleration in computational lithography is not a marginal efficiency; it compounds, because each faster generation of chips makes the AI that designs the following generation faster still. This is the embodied-substrate instance the briefing tracks beneath the model releases — the manufacturing layer, not the application layer, where the reflexive dynamic that governs the whole buildout actually lives. The deep dive takes up what a self-accelerating compute supply chain means for the pace assumptions everyone downstream is using.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive Analysis</div>
+<h4>The Reflexive Fab: When the Output Becomes the Input</h4>
+<p>The semiconductor industry has always improved itself, but the improvement ran through human engineers using conventional tools. The June 2026 NVIDIA–TSMC integration changes the character of the loop. AI is now accelerating the two hardest steps in chip production — computational lithography, where cuLitho is reported to cut the compute time for mask synthesis by 20–50%, and process simulation, where FabTwin models a fabrication line before it is built. The chips that train the AI are now being made with the AI's help. The loop that used to run through people now runs partly through silicon.</p>
+<p>This is the structural feature that the model-release headlines miss. The public AI story is about what the models can do; the load-bearing story is about how fast the substrate beneath them can reproduce itself. <strong>A faster fab makes faster chips, and faster chips make a faster fab.</strong> When that loop tightens, the doubling time of frontier compute stops being set by human design cycles and starts being set by the compounding of the loop itself. The pace assumption baked into every downstream forecast — that compute improves on a roughly predictable cadence — is calibrated to the old loop, the one that ran through engineers.</p>
+<p>For the briefing's recurring concern with reflexive systems, the reflexive fab is the cleanest hardware instance yet. It connects directly to the week's calibration-divergence thread: the instruments that forecast compute cost, chip supply, and the timing of capability milestones were all tuned to a regime in which the fab improved at a human pace. If the loop closes, those instruments diverge from reality the same way the headline and core CPI lines diverge — each still reading something true, none reading the regime that has actually arrived. <strong>The forecast and the fab are now calibrated to different decades.</strong></p>
+<p class="dd-question">If AI begins to materially accelerate the manufacturing of the chips that run AI — closing a reflexive loop inside the semiconductor supply chain — do the pace assumptions in every downstream capability forecast become calibrated to a doubling time that no longer holds, and how would anyone outside the two firms in the loop know how fast the loop is actually turning?</p>
+</div>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>Microsoft Ships Seven In-House Models, Including Its First Coding Model</h3>
+<p>On <strong>2 June 2026</strong> Microsoft released <strong>seven of its own MAI models</strong>, including <strong>MAI-Code-1-Flash</strong>, its first in-house coding model — a move that lessens its dependence on partner labs for core capability. The release positions Microsoft as a producer of frontier models rather than solely a distributor of others'.</p>
+<p>The structural reading is a buyer becoming a producer. Microsoft built its AI position largely on a partnership for frontier models; shipping seven of its own — and a coding model specifically, the segment where dependence was sharpest — is vertical integration into the capability it had been renting. <strong>The largest distributor of someone else's models just became a maker of its own.</strong> A first in-house coding model is the tell: coding is where the partner relationship was most load-bearing, so building there first is the clearest signal of intent to decouple. This is the supply-chain instance of the week's broader pattern — capability migrating from a rented external source into an owned internal one, the way the fab integration brings chip design in-house and the Hormuz toll brings passage under control.</p>
+</div>
+</div>
+<!-- ========== ECONOMIC ========== -->
+<div class="s" id="s-ec">
+<div class="sh">Economic Forces</div>
+<div class="c cri">
+<div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>One Report, Two Inflations: The CPI That Reads Hot and Cool at Once <span class="dd">Deep Dive Available</span></h3>
+<p>On <strong>10 June 2026</strong> the BLS released May CPI. Headline inflation ran <strong>hot at roughly 4.2% year over year — the highest since April 2023</strong> — driven by the energy pass-through of the Hormuz disruption, while <strong>core eased toward 2.9%</strong>. The same report is simultaneously evidence that inflation is accelerating and evidence that it is cooling. The Fed's target range stands at <strong>3.50%–3.75%</strong> under Chair <strong>Kevin Warsh</strong>, with the FOMC decision due <strong>17 June</strong>.</p>
+<p>This is <a class="vbadge m5" href="../concepts/tail-calibration-failure.html" title="The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk…" data-meta="5">Tail Calibration Failure</a> (META-5, Briefing 031) read across a single instrument. The headline gauge and the core gauge were built to measure the same thing — the underlying trend of prices — in a regime where energy and the rest of the basket moved together. A supply shock has split them apart. <strong>The headline is reading the shock; the core is reading its absence.</strong> Neither is wrong, and that is the problem: a central bank calibrated to treat the two as one signal now faces a report where the two halves point in opposite directions. The deep dive takes up what it means to set policy when the instrument returns two readings and the regime that reconciled them has left.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive Analysis</div>
+<h4>The Gauge That Splits: Setting Policy When the Number Reads Two Ways</h4>
+<p>Central banking rests on a measurement: a price index that summarizes whether inflation is rising or falling. The art of the last forty years was learning to read that index well — to separate noise from signal, energy spikes from underlying trend, the transitory from the persistent. The headline-and-core distinction was the workhorse of that art: headline for what households feel, core for what policy should chase. The two were never identical, but in a demand-driven world they converged, and the convergence was what made the gauge trustworthy. On 10 June 2026, they diverged hard. Headline at 4.2%, the highest since April 2023; core easing toward 2.9%. One report, two regimes.</p>
+<p>The divergence is not a measurement error. It is the signature of a supply-driven inflation hitting a gauge built for a demand-driven one. <strong>Energy from the Hormuz disruption is pushing the headline up while the demand-sensitive core keeps cooling.</strong> A demand inflation lifts both lines together; a supply inflation lifts the headline and can even press the core down, as the same energy cost that raises prices also drains the spending power that would bid up everything else. The gauge was calibrated for the first case. It is now measuring the second, and it returns two numbers because the regime that fused them is gone.</p>
+<p>This boxes the Fed in a way no single reading would. A hawk points to the 4.2% headline and demands a hike to defend the anchor. A dove points to the 2.9% core and warns that tightening into a supply shock would crush demand that is already softening. <strong>Both are reading the same report correctly.</strong> Kevin Warsh inherits a reaction function with no clean input: the instrument that is supposed to tell him what to do is telling him two contradictory things, and the framework for choosing between them assumes a world where they agree. The 17 June decision is not a close call between known options; it is a choice about which half of a split gauge to believe.</p>
+<p>For the week's thread, the CPI is the anchor case. Calibration divergence is not the instrument breaking — the BLS measured the prices accurately — it is the instrument returning readings the policy framework can no longer reconcile, because the framework and the instrument were both tuned to a regime that has departed. The same structure will repeat at the ECB, the Fed, and the BoJ over the following week, each reading one global shock through a mandate calibrated to a different vanished equilibrium. <strong>The gauge still works. The world it was built to measure does not.</strong></p>
+<p class="dd-question">If a supply-driven shock splits the headline and core inflation gauges into contradictory readings — one demanding tightening, the other warning against it — and the policy framework that mediates them was calibrated to a regime where they agreed, on what basis does a central bank choose, and does the choice become a bet on which regime has actually arrived rather than a reading of the data?</p>
+</div>
+</div>
+<div class="c cri">
+<div class="lb rl"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>Central-Bank Super Week: A Hiker, a Holder, and a Defender Read One Shock</h3>
+<p>The week of <strong>10–18 June 2026</strong> stacks three major central-bank decisions against the same global supply shock. The <strong>ECB is positioned to hike on 11 June</strong> as energy-driven inflation runs through the euro area; the <strong>Fed under Kevin Warsh is boxed at 3.50%–3.75% on 17 June</strong>, caught between a hot headline and a cooling core; the <strong>Bank of Japan defends the yen on 18 June</strong> as the rate gap pressures the currency. Three institutions, one shock, three opposite moves.</p>
+<p>The structural feature is divergence produced by mandate, not by disagreement about facts. The ECB, the Fed, and the BoJ are not reading different data; they are reading the same Hormuz-driven energy shock through reaction functions calibrated to three different histories — the ECB's inflation-fighting priors, the Fed's dual mandate, the BoJ's decades of deflation defense. <strong>The same barrel of oil tells one bank to hike, one to hold, and one to defend its currency.</strong> This is the macro-policy face of calibration divergence: coordinated systems that fracture not because the instruments fail but because each was tuned to a regime that has left, so one input yields three incompatible outputs. The currency and bond markets that price all three at once are the place the divergence becomes tradable.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span></div>
+<h3>Markets Caught Between the Hike Tape and the Growth Scare</h3>
+<p>Global equity and rate markets enter the super-week pulled in two directions: energy-driven inflation prints argue for higher policy rates, while the demand destruction in the same energy complex argues that growth is about to slow. Rate-hike odds rose on the hot headline even as the EIA flagged falling 2026 oil demand — a combination that historically signals stagflationary risk rather than clean overheating.</p>
+<p>The structural reading is a market trying to price two incompatible macro stories at once. An overheating economy and a demand slowdown call for opposite trades, and the June data give ammunition to both. <strong>Higher rates for the inflation, lower growth for the demand — the curve cannot express both without inverting the message.</strong> This is the asset-price instance of the week's divergence: the instruments that price risk are calibrated to regimes — clean reflation, clean recession — that the supply-shock-plus-demand-destruction combination does not fit. The dispersion this produces is itself the structure, and the Wise Action lens reads it as a volatility position rather than a directional one.</p>
+</div>
+</div>
+<!-- ========== SCIENTIFIC ========== -->
+<div class="s" id="s-sc">
+<div class="sh">Scientific &amp; Paradigmatic Forces</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>The Fifth National Climate Assessment Lands as an Official Baseline</h3>
+<p>On <strong>9 June 2026</strong> the <strong>Fifth US National Climate Assessment</strong> was published — the legally mandated, peer-reviewed synthesis of climate impacts across US regions and sectors. The assessment sets the official baseline against which federal agencies, insurers, and infrastructure planners calibrate climate risk, regardless of the political reception it receives.</p>
+<p>The structural reading is a forcing function arriving as a document. The NCA is not a new finding so much as a new official anchor — once published, it becomes the reference every downstream actor must either use or explicitly reject. <strong>An official baseline is a fact that institutions have to act against, not merely read.</strong> Its significance this week is its juxtaposition with the AMOC mooring dismantlement the briefing tracked on 9 June: the assessment establishes a baseline at the same moment the observational network that would update it is being thinned. The measured-and-documented sits on the same page as the soon-to-be-unmeasured, and the gap between them is the structure to watch.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>NASA's X-59 Flies Supersonic: A Quiet Boom Aimed at a Regulatory Ban</h3>
+<p>On <strong>5 June 2026</strong> NASA's <strong>X-59 QueSST</strong> made its first supersonic flight, reaching roughly <strong>Mach 1.1 at about 43,400 feet</strong>. The aircraft is engineered to replace the sonic boom with a quieter "thump," and the flight is the data-gathering step toward asking regulators to lift the decades-old ban on overland supersonic flight.</p>
+<p>The structural feature is a technology built to dislodge a regulation. The overland supersonic ban has stood since 1973 because the boom was unacceptable; the X-59 attacks the premise of the rule rather than seeking an exception to it. <strong>The aircraft is designed to make the reason for the ban obsolete.</strong> This is a coupling between engineering and rulemaking that runs in the rarer direction — not a rule constraining a technology, but a technology engineered to retire a rule. The late-2027 horizon for the regulatory case makes the flight a commitment device: the demonstration converts an abstract petition into a measured "thump" the FAA has to evaluate on its own terms. Fresh-domain by design, off every corridor the briefing tracks.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>CRISPR Moves In Vivo: Editing the Heart's Risk Factors in One Course</h3>
+<p>The 2026 clinical cycle brought in-vivo gene editing into cardiovascular medicine. <strong>CTX320</strong>, targeting lipoprotein(a), reported reductions of <strong>up to 73%</strong>, and a separate <strong>PCSK9</strong> editing program reported about <strong>59% LDL reduction from a single intravenous course</strong> — edits delivered into the body rather than to cells removed and returned. The targets are the genetic drivers of cardiovascular risk that diet and statins only partially address.</p>
+<p>The structural reading is a chronic-disease model shifting from management to one-time edit. Cardiovascular risk has been managed with lifelong daily medication; an in-vivo edit that durably lowers Lp(a) or LDL from a single course reframes the condition from something controlled to something corrected. <strong>A 73% reduction from one infusion is a different category of intervention than a pill taken every day for life.</strong> The equivocality is in the long tail — durability, off-target effects, and access all remain open — but the structural signal is clear: the editing platform has crossed from rare-disease ex-vivo therapy into the common, chronic, in-body targets that define population-scale health. This is the bioscience entry the rotation discipline targets, compounding quietly beneath the AI headlines.</p>
+</div>
+</div>
+<!-- ========== SOCIAL ========== -->
+<div class="s" id="s-so">
+<div class="sh">Social &amp; Cultural Forces</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span></div>
+<h3>The World Cup Opens Into a Labor Revolt</h3>
+<p>As the <strong>FIFA World Cup 2026</strong> opens on <strong>11 June</strong> across the US, Mexico, and Canada, hospitality workers moved against the event. On <strong>5 June 2026</strong>, <strong>UNITE HERE Local 11</strong> members near SoFi Stadium authorized a strike by <strong>96%</strong>, and Seattle-area workers by <strong>94%</strong>, with a core demand that <strong>ICE not operate at tournament venues.</strong> The tournament's celebration of open borders meets a workforce demanding protection from border enforcement at the venues themselves.</p>
+<p>The structural feature is a global ritual of mobility staged on a workforce afraid to be deported from it. The World Cup sells free movement — fans, players, capital crossing borders — while the workers who staff it organize against immigration enforcement at the gates. <strong>The same event that welcomes the world is one its own workers fear to enter.</strong> A 96% strike authorization with an anti-ICE core demand is the social-lens instance of the week's divergence: one event read as openness from the stands and as exposure from the service corridor. The tournament's premise and the lived reality of its labor force point in opposite directions, and the strike vote is where the gap becomes operational.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span></div>
+<h3>US Measles Crosses 2,030 Cases as Outbreaks Cluster</h3>
+<p>As of <strong>4 June 2026</strong>, the US had recorded more than <strong>2,030 confirmed measles cases</strong> year to date, with <strong>93% outbreak-associated</strong> — the highest national count since the disease was declared eliminated in 2000. The clustering indicates transmission concentrated in under-vaccinated communities rather than diffuse spread.</p>
+<p>The structural reading is the erosion of an achieved threshold. Measles elimination was a public-health equilibrium held by herd immunity; a 2,030-case year with 93% outbreak clustering is that equilibrium failing locally where vaccination coverage has dropped. <strong>The disease did not change; the immunity floor beneath it did.</strong> This is a <a class="vbadge m3" href="../concepts/buffer-collapse.html" title="When a shock-absorbing system fails, exposing the structural problem it masked." data-meta="3">Buffer Collapse</a> (META-3, Briefing 001) read on the epidemiological layer: the buffer of population immunity that absorbed imported cases for two decades is thinning, and the count is the readout. The clustering matters as much as the number — it shows the failure is concentrated, a set of local collapses rather than a national one, which is exactly how an eliminated disease returns.</p>
+</div>
+<div class="c">
+<div class="lb"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>Morocco's Protests Extract a Concession: "Stadiums, But Where Are the Hospitals?"</h3>
+<p>In Morocco, sustained youth-led protests over public services extracted a government commitment of roughly <strong>$13 million toward health and education</strong>, crystallized by the slogan <strong>"Stadiums are here, but where are the hospitals?"</strong> — a direct contrast between World Cup infrastructure spending and underfunded public services as the country prepares to co-host the 2030 tournament.</p>
+<p>The structural feature is a mega-event budget becoming the lever for a service demand. The protesters did not oppose the stadiums; they used the visible spending on them as the measure of what the state could afford for hospitals. <strong>The stadium is the receipt that proves the money exists.</strong> A $13 million concession is modest, but the mechanism is the signal: a global sporting event's infrastructure becomes the public's yardstick for state priorities, and the contrast is sharp enough to move a budget. This is the Global South instance of the week's pattern — one set of state spending read as prestige from above and as misallocation from below — and a fresh-domain entry off every corridor the briefing tracks.</p>
+</div>
+</div>
+<!-- ========== ECOLOGICAL ========== -->
+<div class="s" id="s-en">
+<div class="sh">Environmental &amp; Ecological Forces</div>
+<div class="c env">
+<div class="lb gnl"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>The Price That Destroys Its Own Demand: EIA's High-Brent, Falling-Barrel Outlook <span class="dd">Deep Dive Available</span></h3>
+<p>The EIA's June 2026 outlook, released <strong>10 June</strong>, prices <strong>Brent near $105</strong> on the Hormuz disruption while simultaneously projecting <strong>2026 global oil demand to fall by about 1.1 million barrels a day.</strong> A high price and a shrinking market sit in the same forecast: the price is high enough to destroy the demand it was meant to ration.</p>
+<p>The structural reading is a feedback the price gauge was not built to show. A market price is supposed to clear supply and demand; here the price has risen so far that it is suppressing the demand, which should in turn pull the price back down — except the supply constraint holds the price up while the demand it kills keeps falling. <strong>The barrel is too expensive to burn, so fewer get burned, and the price stays high anyway.</strong> This is the energy face of calibration divergence: the price signal reads "scarcity, buy" while the demand signal reads "destruction, sell," and they point in opposite directions because the supply shock has decoupled them. The deep dive takes up what it means when a price is high precisely because it is destroying the market beneath it.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive Analysis</div>
+<h4>Demand Destruction in Plain Sight: When the Price Is Killing the Market</h4>
+<p>An oil price is supposed to be a thermostat. When it rises, it signals scarcity, draws out supply, and tempers demand until the two rebalance. The EIA's June 2026 outlook breaks the thermostat's logic. Brent near $105, held up by the Hormuz disruption, sits in the same forecast as a projected 1.1-million-barrel-a-day fall in 2026 demand. The price is not rationing demand toward a new equilibrium; it is destroying demand outright, and the destruction does not bring the price down because the supply constraint, not the demand, is setting the level.</p>
+<p>This is the difference between a demand-pull price and a supply-shock price, and it is the same split that divides the CPI headline from the core. A demand-driven price rise reflects a market that wants more; a supply-driven one reflects a market that can get less, and it suppresses consumption as a side effect rather than as a clearing mechanism. <strong>The high price is a symptom of the choke, not a signal of the want.</strong> Read through a gauge calibrated to demand-pull markets, $105 Brent says "strong economy, buy energy." Read correctly, it says "supply choke is destroying a million barrels of daily demand." Same number, opposite meaning.</p>
+<p>The structural consequence is that high prices, in this regime, accelerate the very transition they appear to reward. When the price is high because the barrel is scarce and expensive rather than because the economy is hot, every month at that level pushes buyers toward substitutes — efficiency, electrification, demand they simply forgo. <strong>A supply-shock price funds its own replacement.</strong> The demand destroyed at $105 does not all come back when the strait reopens; some of it has migrated permanently. The EIA's falling-demand line is the early reading of that migration, visible in the same document that prices the scarcity.</p>
+<p>For the briefing's structural concerns, this is the ecological-economic seam where the week's divergence has its sharpest physical consequence. The instruments that price energy — futures curves, inflation pass-throughs, central-bank reaction functions — were calibrated to a world where price and demand moved together. The Hormuz shock has split them, and each instrument now reads one half of a divided signal. <strong>The thermostat says hot; the room is emptying.</strong></p>
+<p class="dd-question">If a supply-shock energy price is high precisely because it is destroying the demand beneath it — funding its own replacement as buyers permanently migrate to substitutes — how much of the demand destroyed at $105 Brent ever returns when the strait reopens, and which forecasting instruments are even built to tell a permanent migration from a temporary one?</p>
+</div>
+</div>
+<div class="c env">
+<div class="lb gnl"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>Copernicus: May 2026 Was the Second-Warmest May, El Niño Odds Rising</h3>
+<p>The Copernicus Climate Change Service reported on <strong>10 June 2026</strong> that May 2026 was the <strong>second-warmest May on record at about 1.42°C above the pre-industrial baseline</strong>, with roughly an <strong>80% chance of El Niño conditions for June–August.</strong> The reading continues a run of near-record monthly anomalies and signals a likely shift toward the warm phase of the Pacific oscillation.</p>
+<p>The structural reading is a baseline that keeps resetting upward. A second-warmest May at 1.42°C is not an outlier spike but a continuation; the rising El Niño odds suggest the next several months will press the anomaly higher still. <strong>The record is no longer the exception; it is the running condition.</strong> The significance this week is the pairing with the AMOC mooring dismantlement and the NCA baseline: the warming is being measured precisely as the ocean-circulation network that would contextualize it is thinned. The Copernicus reading is the surface-temperature gauge still reporting clearly, even as the deeper-circulation gauge goes dark.</p>
+</div>
+<div class="c env">
+<div class="lb gnl"><span>STRUCTURAL FORCE</span> <span class="tg te">Equivocality</span></div>
+<h3>CSU Cuts the Hurricane Forecast, But the Loss Tail Does Not Follow</h3>
+<p>On <strong>10 June 2026</strong> Colorado State University trimmed its 2026 Atlantic hurricane outlook to roughly <strong>11 named storms, 5 hurricanes, and 2 major hurricanes</strong>, citing the wind shear an emerging El Niño is expected to bring. A lower storm count, however, does not translate cleanly into lower insured-loss risk, which is driven by where the storms that do form make landfall, not by how many form.</p>
+<p>The structural feature is a count gauge and a loss gauge that have come apart. The seasonal forecast reads "fewer storms, lower risk"; the loss distribution reads "landfall and exposure unchanged, tail intact." <strong>One major hurricane into a populated coast costs more than ten that stay at sea.</strong> This is calibration divergence in the catastrophe-risk domain: the storm-count instrument and the insured-loss instrument were calibrated to move together, and a low-count, high-shear season decouples them. A reinsurer that prices off the count will misread a season whose tail risk sits in the landfall geography the count cannot see. The two gauges disagree, and the disagreement is the structure.</p>
+</div>
+</div>
+<!-- ========== INSTITUTIONAL ========== -->
+<div class="s" id="s-ig">
+<div class="sh">Institutional &amp; Governance Forces</div>
+<div class="c gov">
+<div class="lb aml"><span>STRUCTURAL FORCE</span> <span class="tg tc">Complexity</span> <span class="tg tg2">Fresh Domain</span></div>
+<h3>EU and South Korea Sign a Digital Trade Agreement</h3>
+<p>On <strong>10 June 2026</strong>, at their <strong>11th bilateral summit — their first in three years</strong> — the EU and South Korea signed a <strong>Digital Trade Agreement</strong>, setting common rules on data flows, digital infrastructure, and online commerce between two advanced technology economies. The agreement is among the first dedicated digital-trade frameworks between major economies outside a broader trade pact.</p>
+<p>The structural reading is rule-making migrating to the digital layer as a standalone domain. Trade governance historically bundled digital provisions inside goods-and-services agreements; a dedicated digital-trade pact treats data flows and digital infrastructure as a field worth governing on its own terms. <strong>The EU and Seoul are writing the rules for the layer where the next economy actually runs.</strong> Coming after a three-year summit gap, the agreement also signals a deliberate consolidation between two technology blocs hedging against both US and Chinese digital regimes. This is the institutional instance of capability and governance concentrating into defined, controllable frameworks — a digital commons being given an explicit rulebook by two of its largest participants.</p>
+</div>
+<div class="c gov">
+<div class="lb aml"><span>STRUCTURAL FORCE</span> <span class="tg ta">Ambiguity</span></div>
+<h3>The Supreme Court's Decision Day Trims Agency Power</h3>
+<p>On <strong>4 June 2026</strong> the US Supreme Court issued a cluster of agency-power rulings. In <strong>FCC v. AT&amp;T</strong>, the Court addressed the imposition of forfeiture penalties without a jury trial; in <strong>Sripetch v. SEC</strong>, it took up disgorgement ordered without a showing of pecuniary loss. Both cases narrow the latitude regulators have to impose penalties through internal administrative process rather than the courts.</p>
+<p>The structural feature is the binding power of regulators being routed back toward the judiciary. For decades agencies imposed forfeitures and disgorgement through their own administrative machinery; these rulings push that power toward jury trials and judicial findings. <strong>The penalty that an agency could once impose by order now increasingly requires a court.</strong> This is the institutional counter-current to the week's broader migration of binding power into private, controllable artifacts — here the binding power is being pulled out of an opaque administrative channel and back into a public, contestable one. Whether that strengthens accountability or simply hollows enforcement capacity is the ambiguity; either way, the locus of the binding decision is moving.</p>
+</div>
+<div class="c gov">
+<div class="lb aml"><span>STRUCTURAL FORCE</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>The Super-Week as an Institutional Stress Test of Policy Coordination</h3>
+<p>The stacking of the ECB, Fed, and BoJ decisions into <strong>11–18 June 2026</strong> is itself an institutional event, not only an economic one. Three of the world's anchor monetary institutions will make divergent moves against a shared shock inside a single week, with no coordinating mechanism among them beyond markets and back-channel communication.</p>
+<p>The structural reading is the absence of a coordination layer made visible by the divergence. In past shared shocks — 2008, 2020 — the major central banks moved in rough concert, sometimes through explicit coordination. This week they move apart, each to its own mandate, and there is no institution standing above them to reconcile a hike, a hold, and a currency defense into a coherent global stance. <strong>The shock is global; the responses are national, and nothing sits between them.</strong> This is the governance-lens face of calibration divergence: the instruments are the central banks themselves, each reading one shock through a different mandate, and the institutional gap is the missing layer that would have made them agree. The currency and bond markets absorb the incoherence the institutions cannot resolve.</p>
+</div>
+</div>
+<!-- ========== LIMINAL SIGNALS ========== -->
+<div class="s" id="s-li">
+<div class="sh">Liminal Signals</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1.5rem">Signals that resist clean categorization. The forces that matter most are often the ones that don't fit.</p>
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg tg2">Off-Corridor · Critical Minerals</span></div>
+<h3>Physical Access Over Price: Kachin's Heavy Rare Earths Draw India In <span class="dd">Deep Dive Available</span></h3>
+<p>Between <strong>1 and 5 June 2026</strong>, the heavy-rare-earth feedstock from Myanmar's <strong>Kachin State</strong> — roughly <strong>70% of China's heavy-rare-earth raw supply</strong> — became a contested asset as conflict disrupted flows and prices ran up, with <strong>terbium reportedly up 20.7%.</strong> India entered the picture through talks between Modi and Myanmar's Min Aung Hlaing, seeking access to the deposits rather than merely buying the refined output. The move is about securing the physical source, not the market price.</p>
+<p>The structural value is a contest decided by physical access rather than market clearing. Rare earths are usually discussed as a pricing-and-processing story; the Kachin scramble is a reminder that beneath the refining chokepoint sits a raw-feedstock chokepoint, and the actor who controls the ground controls the flow. <strong>India is not trying to outbid China for terbium; it is trying to reach the rock.</strong> This is the off-corridor critical-mineral entry the rotation discipline targets, and it carries the week's divergence in a different key: a price gauge that reads "terbium up 20.7%" misses the real contest, which is physical and territorial, not monetary. The deep dive takes up what it means when access, not price, is the binding constraint.</p>
+<div class="dd-panel">
+<div class="dd-label">Deep Dive Analysis</div>
+<h4>The Rock, Not the Price: When Access Is the Binding Constraint</h4>
+<p>Markets are built on the premise that price clears scarcity — that a high enough bid will always summon supply. Heavy rare earths from Kachin State break the premise. Roughly 70% of China's heavy-rare-earth raw feedstock comes from a conflict zone in northern Myanmar, and when fighting disrupted the flow in early June 2026, terbium ran up more than 20%. But the price spike is the surface. The real event is India's move — through Modi's talks with Min Aung Hlaing — to secure access to the deposits themselves. India is not bidding for barrels of oxide on a market; it is trying to reach the source, because the binding constraint is physical control of the ground, not the clearing price.</p>
+<p>This is a different structure from the rare-earth processing chokepoint the briefing has tracked. Processing concentration is an industrial fact — China refines ~90% of the world's rare earths — and it can, in principle, be bypassed by building refineries elsewhere over years. Feedstock concentration in a conflict zone is a territorial fact, and it cannot be bypassed by capital alone; it requires reaching, holding, and moving rock out of a war. <strong>You can finance a refinery; you cannot finance your way to a deposit someone else physically controls.</strong> The Kachin contest is leverage that lives in geography, not in a balance sheet.</p>
+<p>The connection to the week's thread is the gauge mismatch. A price signal reads the Kachin disruption as "terbium +20.7%, a market event" — a number a trader can hedge. The actual event is a scramble for physical access among China, Myanmar's factions, and now India, which no price gauge captures, because the contest is not being settled by price. <strong>The instrument calibrated to read markets is reading the wrong variable.</strong> This is calibration divergence in the critical-mineral domain: the monetary gauge and the territorial reality have come apart, and the actor who watches only the price will be blindsided by a flow that stops for reasons no market priced.</p>
+<p>The broader signal is that for the minerals that matter most to the energy and defense transitions, the world may be re-entering an era where access trumps price. Heavy rare earths, cobalt, and the conflict-zone feedstocks behind them are increasingly governed by who holds the ground. <strong>The map is becoming the market.</strong> India's entry into Kachin is an early instance of a great power treating mineral access as a territorial-diplomatic problem rather than a procurement one — and the briefing logs it in Liminal because the shift it signals is structural, off every corridor, and priced by no instrument yet watching.</p>
+<p class="dd-question">If the binding constraint on the heavy rare earths behind the energy and defense transitions is physical access to conflict-zone deposits rather than market price, does mineral security migrate from a procurement problem to a territorial-diplomatic one — and what does it mean that the price gauges everyone watches are calibrated to read a variable that is no longer the one that binds?</p>
+</div></div>
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg tg2">Off-Corridor · Quantum</span></div>
+<h3>Atom Computing Runs Continuous Multi-Round Error Correction on Neutral Atoms</h3>
+<p>On <strong>3 June 2026</strong> Atom Computing reported <strong>continuous, multi-round quantum error correction on a neutral-atom platform</strong> — sustaining the correction cycle across repeated rounds rather than demonstrating it once. Continuous multi-round QEC is the operational prerequisite for fault-tolerant computation, the step between a corrected qubit and a corrected computation.</p>
+<p>The structural value is a fault-tolerance milestone arriving below the headline threshold. The public quantum story is logical-qubit counts; the load-bearing progress is whether error correction can be sustained round after round, which is what makes a long computation possible at all. <strong>Correcting an error once is a demo; correcting it continuously is a computer.</strong> Paired with IBM's $10 billion commitment in the Technological lens, the Atom Computing result is the same signal from a different architecture: the fault-tolerance timeline is compressing across multiple platforms at once, which is exactly the condition that pulls the cryptographic deadline forward. Held in Liminal because nothing "happened" in the headline sense, while the quiet plumbing of fault tolerance advanced on two fronts in one week.</p></div>
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg tr">Black-Swan Watch · Public Health</span></div>
+<h3>A Bundibugyo Ebola PHEIC Runs Largely Unwatched</h3>
+<p>The WHO declared a <strong>Public Health Emergency of International Concern for a Bundibugyo ebolavirus outbreak on 16 May 2026</strong>; as of <strong>8 June 2026</strong> the Democratic Republic of the Congo reported about <strong>598 cases and 115 deaths.</strong> Bundibugyo is a rarer Ebola species, and a declared PHEIC with a roughly 19% case-fatality readout is a high-consequence event drawing little corridor attention.</p>
+<p>The structural value is a black-swan-class signal running beneath the attention budget. A declared PHEIC is the WHO's highest alarm; nearly 600 cases and 115 deaths is an active, fast-moving outbreak. <strong>The world's top public-health alarm is ringing, and the corridor is looking elsewhere.</strong> This is the public-health entry on the briefing's black-swan watch list — the kind of event that, if it crossed a transmission threshold, would force structural revision of every other thread on the board, yet currently receives a fraction of the attention given to the World Cup or the super-week. The Liminal placement is deliberate: the signal's significance is in its tail, not its current corridor weight, and the under-attention is itself the anomaly the lens exists to flag.</p></div>
+<div class="c lim"><div class="lb gl"><span>LIMINAL SIGNAL</span> <span class="tg tg2">Off-Corridor · Robotics</span></div>
+<h3>Amazon's Robot Fleet Crosses One Million as Its Workers Strike</h3>
+<p>In June 2026 Amazon's mobile-robot fleet <strong>crossed one million units</strong>, with its <strong>DeepFleet</strong> coordination AI reported to improve fleet travel efficiency by roughly <strong>10%.</strong> The milestone lands in the same week that hospitality and stadium workers authorized World Cup strikes — a managed robot population crossing a million just as the human labor force organizes.</p>
+<p>The structural value is a robot population reaching demographic scale exactly as human labor asserts itself. A million coordinated mobile robots is no longer an automation pilot; it is a managed population the size of a large city's workforce, optimized by an AI that schedules its movement. <strong>The fleet crosses a million in the same week 96% of a union local votes to strike.</strong> The juxtaposition is the signal: the embodied-automation substrate is scaling toward labor-replacement magnitude while the human labor it shadows is mobilizing, and the two trends are reported in the same news cycle without being priced as one force. This cross-links directly to the World Cup labor revolt in the Social lens — robots-as-managed-population on one side, workers-as-organizing-population on the other, the same structural question read from opposite ends. Held in Liminal as the off-corridor robotics entry the rotation discipline targets.</p></div>
+</div>
+<!-- ========== INFERENCE ENGINE ========== -->
+<div class="s" id="s-ie">
+<div class="sh">Inference Engine</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1.5rem">Conditional chains across lenses. If the observed condition holds, the structural consequence follows — stated as a falsifiable bet, not a forecast.</p>
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>If the CPI Gauge Splits and the Fed Must Pick a Half…</h3>
+<p>May CPI prints a hot 4.2% headline against a cooling 2.9% core (10 June) → the Fed's reaction function receives two contradictory inputs from one report → the 17 June decision becomes a choice about which inflation regime has arrived, not a reading of the data → whichever half the Fed believes, the other half's constituency reads the decision as an error → <strong>policy credibility erodes not because the Fed is wrong but because the gauge no longer returns one answer</strong> → expect forward guidance to hedge across both regimes, which markets will read as indecision and price as wider rate dispersion into the back half of 2026.</p></div>
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg tc">Complexity</span></div>
+<h3>If Three Central Banks Read One Shock Three Ways…</h3>
+<p>The ECB hikes (11 June), the Fed holds (17 June), and the BoJ defends the yen (18 June) against the same Hormuz energy shock → the divergence reveals there is no institution sitting above them to coordinate a global response → currency and bond markets become the only layer reconciling the incoherence → <strong>FX volatility absorbs the policy divergence the institutions cannot resolve among themselves</strong> → the yen and euro crosses move more on the relative-mandate gap than on any single bank's decision → the next coordinated-shock event finds the major central banks further apart than at any point since 2008, with no coordination mechanism rebuilt in the interim.</p></div>
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg tu">Knightian Uncertainty</span></div>
+<h3>If a High Price Is Destroying the Demand It Rations…</h3>
+<p>The EIA prices Brent near $105 while projecting 2026 demand to fall ~1.1 mb/d (10 June) → the price is high because supply is choked, not because demand is strong → every month at that level pushes buyers toward efficiency, electrification, and forgone consumption → <strong>a supply-shock price funds its own replacement as some destroyed demand migrates permanently</strong> → when Hormuz reopens, demand returns incompletely, and the gap between pre-shock and post-shock consumption is the measure of permanent substitution → forecasters reading the reopening as a clean demand snap-back misprice the share that has already left.</p></div>
+<div class="c inf"><div class="lb pl"><span>CONDITIONAL CHAIN</span> <span class="tg ta">Ambiguity</span></div>
+<h3>If Mineral Access Beats Mineral Price…</h3>
+<p>Kachin's heavy-rare-earth feedstock (~70% of China's heavy-RE supply) becomes contested and India seeks the deposits rather than the refined output (1–5 June) → the binding constraint reveals itself as physical control of conflict-zone ground, not market price → terbium's 20.7% spike is read by traders as a hedgeable market event and by states as a territorial one → <strong>mineral security migrates from a procurement problem to a diplomatic-territorial one no price gauge captures</strong> → expect more great-power moves toward securing physical access to conflict-zone feedstocks, with the flows that stop doing so for reasons no futures curve priced.</p></div>
+<h3 class="sh2" style="color:var(--purp)">Force Interaction Matrix</h3>
+<div class="c">
+<div class="mr"><div class="mf">CPI Headline 4.2% × Core 2.9%</div><span class="md amp">AMPLIFY (gauge splits)</span><div class="me">A supply shock pulls the headline and core inflation lines apart, so one report reads as both acceleration and cooling. The instrument returns two answers the policy framework cannot reconcile.</div></div>
+<div class="mr"><div class="mf">ECB Hike × Fed Hold × BoJ Defend</div><span class="md amp">AMPLIFY (policy divergence)</span><div class="me">Three anchor central banks read one shock through three mandates and move three ways in one week. The divergence is produced by calibration, not by disagreement about the facts.</div></div>
+<div class="mr"><div class="mf">Brent $105 × EIA −1.1 mb/day Demand</div><span class="md dmp">DAMPEN then AMPLIFY (price destroys demand)</span><div class="me">A supply-shock price suppresses the demand it was meant to ration, and the suppression does not lower the price because supply, not demand, sets the level. The high price funds its own replacement.</div></div>
+<div class="mr"><div class="mf">Hormuz Toll × Freedom of Navigation</div><span class="md amp">AMPLIFY (enclosure without blockade)</span><div class="me">A metered, fee-bearing reopening extracts rent without crossing the casus belli a closure would. The freedom-of-navigation regime has no instrument calibrated to deter an enclosure that never closes the gate.</div></div>
+<div class="mr"><div class="mf">AI-in-Fab × Compute Doubling Time</div><span class="md amp">AMPLIFY (reflexive loop)</span><div class="me">cuLitho and FabTwin let AI accelerate the chips that run AI, closing a reflexive loop inside the supply chain. The pace assumptions downstream were calibrated to a fab that improved at a human cadence.</div></div>
+<div class="mr"><div class="mf">Kachin Feedstock × India Entry</div><span class="md amp">AMPLIFY (access over price)</span><div class="me">India seeks the deposits, not the refined output, revealing physical access as the binding constraint. The price gauge reads terbium +20.7% while the real contest is territorial.</div></div>
+<div class="mr"><div class="mf">Amazon 1M Robots × World Cup Strikes</div><span class="md amp">AMPLIFY (two populations)</span><div class="me">A managed robot fleet crosses a million in the same week 96% of a union local votes to strike. The embodied substrate scales toward labor-replacement magnitude as the human labor it shadows mobilizes.</div></div>
+<div class="mr"><div class="mf">CSU Storm Count × Insured-Loss Tail</div><span class="md dmp">DAMPEN (count) / AMPLIFY (tail)</span><div class="me">A lower named-storm forecast eases the count gauge while the loss tail, driven by landfall geography, stays intact. One major hurricane into a coast outweighs ten that stay at sea.</div></div>
+<div class="mr"><div class="mf">NCA Baseline × AMOC Array Thinning</div><span class="md amp">AMPLIFY (baseline set as sensor dims)</span><div class="me">The Fifth National Climate Assessment establishes an official baseline the same week the ocean-circulation network that would update it is dismantled. The documented and the soon-to-be-unmeasured share a page.</div></div>
+</div>
+</div>
+<!-- ========== WISE ACTION ========== -->
+<div class="s" id="s-wa">
+<div class="sh">Wise Action</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1.5rem">知行合一 — Knowing and acting are one.</p>
+<div class="c act wa-section"><div class="lb tl"><span>WHAT IS CHANGING ENTREPRENEURSHIP</span></div>
+<h3>Building When Your Instruments Were Calibrated to a Regime That Left</h3>
+<h4>1. Audit Which of Your Metrics Were Tuned to the Old World</h4>
+<p>Every venture runs on dashboards calibrated to a baseline — a conversion rate, a CAC, a churn curve that "normal" was defined against. This week's lesson is that a single regime shift can split a trusted gauge into two contradictory readings, the way May CPI read hot and cool at once. <strong>The metric does not break; it quietly starts answering a different question than the one you are asking it.</strong> The move is to identify which of your core numbers assume a stable environment, and to ask what each would read if the underlying regime — your channel economics, your input costs, your demand base — had shifted beneath it without telling you. The gauge you trust most is the one most worth re-checking.</p>
+<h4>2. When Inputs Diverge, Pick the Regime, Not the Number</h4>
+<p>The Fed faces a CPI that says both "tighten" and "ease," and no amount of staring at the data resolves it — the choice is about which regime has arrived. Founders hit the same wall when their leading and lagging indicators disagree. <strong>The resolution is not more data; it is a judgment about which world you are now in.</strong> Name the regime explicitly — are we in a growth market or a consolidating one, a cheap-capital era or an expensive one — and let that judgment arbitrate between the divergent signals, because the signals themselves will not.</p>
+<h4>3. Watch Access, Not Just Price, for Your Critical Inputs</h4>
+<p>India is reaching for the Kachin deposits rather than bidding for the refined terbium, because the binding constraint is physical access, not market price. For any venture with a critical input — compute, a key supplier, a scarce skill, a dependency on one platform — the same lesson holds. <strong>The price you pay is the visible variable; whether you can get it at all is the one that ends you.</strong> Map your access chokepoints, not just your cost lines, and secure the ones whose failure would stop you regardless of what you would pay.</p>
+</div>
+<div class="c act wa-section"><div class="lb tl"><span>WHAT IS CHANGING GLOBAL MARKETS</span></div>
+<h3>Trading One Shock Read Many Ways</h3>
+<h4>The Headline-Core Divergence Trade</h4>
+<p>May CPI split into a 4.2% headline and a 2.9% core, and the Fed's 17 June decision hinges on which half it believes. <strong>The position is long rate-volatility through the decision, not a directional bet on the level.</strong> When the policy input is genuinely two-sided, the tradable structure is the dispersion the choice will unleash, not a guess about which way the Fed leans into a gauge that points both ways.</p>
+<h4>The Central-Bank-Divergence FX Trade</h4>
+<p>An ECB hike, a Fed hold, and a BoJ yen defense in one week push the major crosses on the relative-mandate gap rather than on any single decision. <strong>The position reads the divergence in reaction functions, expressed in the euro and yen crosses, not the absolute rate path of any one bank.</strong> With no institution coordinating the three, FX is the layer that absorbs the policy incoherence, and the spread between mandates is where the move concentrates.</p>
+<h4>The Demand-Destruction-Over-Price Energy Trade</h4>
+<p>Brent near $105 against an EIA-projected 1.1 mb/d demand fall is a price held up by a supply choke that is destroying its own market. <strong>The asymmetric position reads the permanent share of the destroyed demand, not the spot level.</strong> The risk in a naive long-energy trade is that the high price is funding substitution that does not reverse when the strait reopens; position on how much demand migrates for good, which the reopening will reveal and the spot price currently hides.</p>
+</div>
+<div class="c act wa-section"><div class="lb tl"><span>INVESTMENT LANDSCAPE</span></div>
+<h3>Positioning Through the Calibration Divergence</h3>
+<h4>Structural Positions That Strengthened This Period</h4>
+<p><strong>Long rate-volatility into the 17 June FOMC.</strong> A split CPI and a boxed Fed make dispersion the structural trade, not direction.</p>
+<p><strong>Long the relative-mandate FX spread across the super-week.</strong> Three banks reading one shock three ways concentrates the move in the crosses, not the levels.</p>
+<p><strong>Long physical-access security in critical minerals.</strong> The Kachin contest shows the binding constraint migrating from price to territorial control of feedstock.</p>
+<p><strong>Long the reflexive-fab compute thesis.</strong> AI accelerating chip manufacture compresses the doubling time the downstream forecasts still price at the old cadence.</p>
+<h4>Caution Zones</h4>
+<p><strong>Energy positions reading $105 Brent as demand strength.</strong> The price is a supply-choke symptom destroying demand, not a sign of a hot market; the reopening reveals the permanent loss.</p>
+<p><strong>Catastrophe-risk models pricing off the storm count.</strong> CSU's lower named-storm forecast does not lower the insured-loss tail, which lives in landfall geography the count cannot see.</p>
+<p><strong>Any read of the central-bank divergence as transient noise.</strong> The absence of a coordination layer is structural; the FX volatility it produces is not a glitch to fade.</p>
+<p><strong>Climate-risk models leaning on continuous ocean monitoring.</strong> The NCA sets a baseline as the AMOC array that would update it is thinned; the tail persists while its observability falls.</p>
+</div>
+<div class="c wa-section"><div class="lb"><span>RESEARCH PROGRAM RELEVANCE</span></div>
+<h3>What This Period's Landscape Means for the Work</h3>
+<p><strong>For the AGI/ASI-impacts program and "model the complement":</strong> The Hormuz managed-toll and the Kachin access contest are two faces of the same constraint-migration case. The binding constraint on a scarce resource does not vanish under pressure; it migrates — from a market price into a metered access fee at the strait, and from a price into physical territorial control at the deposit. This is the constraint-migration mechanism the program's first study maps, observed in the resource domain: the constraint relocates rather than dissolving, and the relocation changes who holds it and what instrument can read it. The "model the complement" reframe is exactly this — map the residual the shock does not abolish, here the access leverage that price abstracts away.</p>
+<p><strong>For the Glimpse / "Into the Flux" ABM:</strong> Calibration divergence is the macro instance of the calibration problem the ABM's revision cycle is wrestling with directly. The week's lesson — that an instrument tuned to a departed regime returns readings the framework can no longer reconcile — is the same discipline the model's recalibration to BLS rates and the σ pin enforces against tuning parameters to a qualitative tier pattern. The CPI headline-core split is a clean external illustration of why a gauge must be re-anchored to observable benchmarks when the regime shifts, and the demand-destruction-over-price dynamic is a candidate stressor for the involution mechanism the model tracks: convergence that degrades outcomes precisely when the signal everyone reads says "advantage."</p>
+<p><strong>For the Knightian / Poincaréan foundations:</strong> The CSU storm-count-versus-loss-tail decoupling is a textbook modal/tail divergence — the count gauge reads the modal forecast while the loss gauge reads the tail, and a low-count high-shear season pulls them apart. This is the dual-channel structure the modal/tail framing was built to handle: the same season is "calmer" on the count and "unchanged" on the tail, because the two channels answer different questions. Paired with the demand-destruction case, the week supplies two clean instances of uncertainty as a property of the observed environment splitting a single instrument into divergent channels — the foundational object the framework formalizes.</p>
+<p><strong>For the cyborg-ensemble coupling work:</strong> Amazon's million-robot fleet crossing a threshold in the same week its human workforce organizes is the period's sharpest ensemble instance. The managed robot population and the organizing human population are not two separate stories; they are the two halves of one labor system, coupled and increasingly substitutable, with the human-in-the-loop question — where judgment and accountability sit — unresolved at exactly the scale where it begins to bind. This belongs in the cyborg argument as the case where the ensemble's two substrates reach comparable scale and the coupling has to be designed deliberately, because the market is now pricing both populations as one force whether or not the design exists.</p>
+</div>
+</div>
+<!-- ========== ANOMALY DETECTION ========== -->
+<div class="s" id="s-an">
+<div class="sh">Anomaly Detection</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1.5rem">What should be happening but isn't. The conspicuous absences that structure the field as much as the events.</p>
+<div class="c cri">
+<p><strong>No coordination mechanism forming among the divergent central banks.</strong> The ECB, Fed, and BoJ will move three ways against one shock in a single week (11–18 June). In past shared shocks the major central banks coordinated, sometimes explicitly. This week they move apart with no institution standing between them. <strong>No coordinating layer is forming or being called for.</strong> The divergence is being absorbed as normal rather than flagged as the structural gap it is — one global shock, three national responses, and nothing in between to make them cohere.</p>
+<p><strong>No insured-loss repricing following the CSU forecast cut.</strong> Colorado State trimmed its 2026 Atlantic outlook to 11/5/2 storms (10 June), and the count is being read as lower risk. But insured loss is driven by landfall geography, not storm count, and a low-count high-shear season does not lower the tail. <strong>The loss tail is not being repriced upward to reflect the decoupling.</strong> The count gauge is being trusted as a loss gauge, which is exactly the calibration error the week's thread names — a lower number read as a lower risk when the two have come apart.</p>
+<p><strong>No market or policy response to mineral access becoming territorial.</strong> India's move on Kachin's heavy-rare-earth deposits (1–5 June) reframes mineral security as physical access rather than price, yet markets priced only the terbium spike. <strong>The territorial nature of the contest drew no pricing or policy response commensurate with the dependency.</strong> A 70%-of-supply feedstock concentrated in a conflict zone is a strategic exposure, and it is being read through a price gauge that cannot see the variable — access — that actually binds.</p>
+<p><strong>No insurance or capital-market repricing on the NCA's official baseline.</strong> The Fifth National Climate Assessment published 9 June as the legally mandated US climate-risk reference, the same week the AMOC observational array is being thinned. An official baseline should anchor downstream risk pricing; its arrival alongside a dimming sensor network should raise the uncertainty premium. <strong>No such repricing is visible.</strong> The baseline is being received as a political document rather than the forcing function it institutionally is.</p>
+<p><strong>The Bundibugyo Ebola PHEIC has vanished from the structural-attention budget.</strong> The WHO declared its highest alarm on 16 May, and the DRC reports ~598 cases and 115 deaths as of 8 June. A declared PHEIC with a ~19% case-fatality readout is a high-consequence event. <strong>It receives a fraction of the attention given to the World Cup opening or the central-bank super-week.</strong> The black-swan-class signal gets the least visibility precisely because it touches no corridor commodity and no great-power principal — the recurring asymmetry the anomaly lens exists to flag.</p>
+</div>
+</div>
+<!-- ========== SOURCE ARCHIVE ========== -->
+<div class="s" id="s-sa">
+<div class="sh">Source Archive &amp; Reading List</div>
+<p style="color:var(--t3);font-style:italic;margin-bottom:1rem">Annotated by structural insight contributed. Accumulates across briefings.</p>
+<h3 class="sh2" style="color:var(--blub)">Thinker Registry</h3>
+<p style="color:var(--t3);margin-bottom:1rem;font-size:.9rem">Voices whose frameworks proved most useful in this briefing.</p>
+<div style="margin-bottom:1.5rem">
+<span class="tk"><strong>Frank Knight</strong> <span>· Knightian uncertainty; the split CPI gauge and the demand-destroying price as environment-side uncertainty. Persistent.</span></span>
+<span class="tk"><strong>Henri Poincaré</strong> <span>· Sensitive dependence and the modal/tail split; the storm-count-versus-loss-tail decoupling. Persistent.</span></span>
+<span class="tk"><strong>Friedrich Hayek</strong> <span>· The price system as a knowledge instrument; the Kachin contest where access, not price, carries the information. Newly foregrounded Briefing 052.</span></span>
+<span class="tk"><strong>Elinor Ostrom</strong> <span>· Commons governance; the Hormuz managed toll as enclosure-by-fee on an international strait. Persists.</span></span>
+<span class="tk"><strong>Robert Triffin</strong> <span>· The coordination gap among monetary anchors; three central banks, one shock, no layer between them. Newly foregrounded Briefing 052.</span></span>
+<span class="tk"><strong>Donella Meadows</strong> <span>· System leverage points; the official baseline set as the sensor network that updates it is thinned. Persists.</span></span>
+<span class="tk"><strong>Nassim Taleb</strong> <span>· Tail risk versus central tendency; the loss tail that does not follow the storm count down. Persists.</span></span>
+</div>
+<h3 class="sh2" style="color:var(--gold)">Serendipity Queue</h3>
+<p style="color:var(--t3);margin-bottom:1rem;font-size:.9rem">Sources encountered that don't fit today's briefing but contain signals worth returning to.</p>
+<div class="src"><div class="src-cat">Held for future briefing</div>
+<a href="https://www.nasa.gov/aeronautics/">NASA X-59 QueSST: First Supersonic Flight at Mach 1.1</a>
+<div class="src-note">Quiet-boom demonstrator flown 5 June 2026. Return when the acoustic data feed the FAA case to lift the overland supersonic ban toward the late-2027 horizon.</div></div>
+<div class="src"><div class="src-cat">Held for future briefing</div>
+<a href="https://atom-computing.com/">Atom Computing: Continuous Multi-Round QEC on Neutral Atoms</a>
+<div class="src-note">3 June 2026. Return when sustained error correction converts into a logical-qubit fault-tolerance milestone with a datable cryptographic horizon, alongside IBM's Starling 2029 target.</div></div>
+<h3 class="sh2" style="color:var(--blub)">Economic &amp; Monetary Sources</h3>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.bls.gov/cpi/">BLS: May CPI Release, 10 June 2026</a><div class="src-note">Headline ~4.2% YoY (highest since April 2023) against core ~2.9%. The split gauge anchoring the calibration-divergence thread.</div></div>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.ecb.europa.eu/">ECB / Fed / BoJ: Central-Bank Super Week, 11–18 June 2026</a><div class="src-note">ECB positioned to hike 11 June; Fed boxed at 3.50%–3.75% on 17 June under Warsh; BoJ defends the yen 18 June. One shock, three mandates, three moves.</div></div>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.eia.gov/outlooks/steo/">EIA: June Short-Term Energy Outlook</a><div class="src-note">Brent ~$105 on the Hormuz disruption with 2026 demand projected to fall ~1.1 mb/d. The price destroying the demand it rations.</div></div>
+<h3 class="sh2" style="color:var(--blub)">Geopolitical &amp; Security Sources</h3>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.reuters.com/markets/commodities/">Reuters: Strait of Hormuz Moves Toward Conditional Reopening</a><div class="src-note">As of 10 June 2026. Iran signals metered passage under transit conditions rather than full closure. Enclosure by toll on a contested strait.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.rferl.org/">RFE/RL: Armenia Parliamentary Election, 7 June 2026</a><div class="src-note">Civil Contract ~49.81%, ~64/105 seats — short of the two-thirds for the Azerbaijan-peace referendum. A mandate that governs but cannot finalize.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.aljazeera.com/africa/">Al Jazeera: Mali Sentences French Embassy Official to 20 Years</a><div class="src-note">5 June 2026. Judicial-channel decoupling between Bamako and Paris; the Sahel realignment executed through a verdict.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.reuters.com/world/americas/">Reuters: Colombia First-Round Result, Runoff Set for 21 June</a><div class="src-note">De la Espriella ~44% vs Cepeda ~41% (certified 4 June). A nation split down the middle heading to a runoff.</div></div>
+<h3 class="sh2" style="color:var(--blub)">Technology, AI &amp; Industrial Sources</h3>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.ibm.com/quantum">IBM: $10B+ Quantum Commitment, Starling Fault-Tolerance Target 2029</a><div class="src-note">2 June 2026. A funded roadmap to logical qubits that turns the cryptographic horizon into a budgeted date.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://blogs.nvidia.com/">NVIDIA &amp; TSMC: AI Into the Fab — cuLitho and FabTwin</a><div class="src-note">1 June 2026. cuLitho computational-lithography gains of 20–50% and FabTwin digital twins. Compute beginning to make compute.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://news.microsoft.com/">Microsoft: Seven In-House MAI Models, Including MAI-Code-1-Flash</a><div class="src-note">2 June 2026. A buyer of frontier models becoming a producer, with a first in-house coding model.</div></div>
+<h3 class="sh2" style="color:var(--blub)">Scientific, Ecological &amp; Health Sources</h3>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.globalchange.gov/">USGCRP: Fifth National Climate Assessment Published</a><div class="src-note">9 June 2026. The legally mandated US climate-risk baseline, arriving as the AMOC observational array is thinned.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://climate.copernicus.eu/">Copernicus: May 2026 Second-Warmest May, ~1.42°C Above Pre-Industrial</a><div class="src-note">10 June 2026. ~80% El Niño odds for Jun–Aug. The surface gauge still reporting clearly as the circulation gauge dims.</div></div>
+<div class="src"><div class="src-cat">Analysis</div><a href="https://tropical.colostate.edu/">CSU: 2026 Atlantic Hurricane Forecast Trimmed to 11/5/2</a><div class="src-note">10 June 2026. Lower count on El Niño shear, but the insured-loss tail decoupled from the storm count.</div></div>
+<div class="src"><div class="src-cat">Critical</div><a href="https://www.who.int/emergencies/">WHO: Bundibugyo Ebola PHEIC; DRC ~598 Cases, 115 Deaths</a><div class="src-note">PHEIC declared 16 May 2026; toll as of 8 June. A black-swan-class public-health signal running largely unwatched.</div></div>
+<div class="src"><div class="src-cat">Primary</div><a href="https://www.aboutamazon.com/">Amazon: Mobile-Robot Fleet Crosses One Million Units</a><div class="src-note">June 2026. DeepFleet coordination AI ~10% efficiency gain. A managed robot population at city scale as human labor organizes.</div></div>
+</div>
+<footer>
+<p>Tectonic Briefing · No. 052 · 10 June 2026</p>
+<p style="margin-top:.3rem">Eight analytical lenses · Inference engine · Wise action · Anomaly detection · Source archive · Thread tracking active</p>
+<p style="margin-top:.3rem;font-size:.55rem;color:var(--t4)">Editorial discipline: fresh-domain rotation applied across more than two lenses — Geopolitical (Sahel judicial decoupling, Colombia runoff), Technological (quantum financing, reflexive fab, in-house models), Scientific (X-59 supersonic, in-vivo CRISPR), Social (Global South service protest), and Liminal (Kachin critical minerals, neutral-atom quantum, Ebola PHEIC, robot-fleet scale). Geopolitical led off-corridor with Armenia, Mali, and Colombia alongside the Hormuz corridor; Liminal carried critical minerals, quantum, public health, and robotics. Topic-rotation constraints satisfied; recursive-narrowing counter-weight applied against the corridor inherited from Briefing 051. Vocabulary held at 42 named patterns; three Cycle 2 candidates (Discount Reactivation and Observability Severance carried; Calibration Divergence newly logged) tracked, not promoted. Three QC disciplines — prose coherence, factual verification (every load-bearing claim date-stamped, 2025/2026 disambiguated), confidentiality (Stage 1c, Research Program Relevance limited to Dave's own public projects) — applied pre-publish.</p>
+</footer>
+</div>
+<script>
+function go(id){document.querySelectorAll('.s').forEach(s=>s.classList.remove('v'));document.getElementById('s-'+id).classList.add('v');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('on'));event.target.classList.add('on');window.scrollTo({top:document.querySelector('.bn').offsetTop-16,behavior:'smooth'})}
+
+// Deep Dive toggle
+document.addEventListener('DOMContentLoaded',function(){
+document.querySelectorAll('.dd').forEach(function(dd,idx){
+dd.setAttribute('data-dd-id','dd-'+idx);
+dd.setAttribute('title','Click to expand deep dive analysis');
+dd.addEventListener('click',function(e){
+e.stopPropagation();
+var panel=this.closest('.c').querySelector('.dd-panel');
+if(!panel){
+return;
+}
+panel.classList.toggle('open');
+this.classList.toggle('active');
+if(this.classList.contains('active')){
+this.innerHTML='Deep Dive Open';
+}else{
+this.innerHTML='Deep Dive Available';
+}
+});
+});
+});
+</script>
+<!-- TB-NAV-WRAP:BOT:START -->
+<div class="tb-nav-foot"><div class="tb-nav-left"><a href="2026-06-09.html">← Briefing No. 051</a><a class="tb-nav-disabled">Next →</a></div><div class="tb-nav-right"><a href="../index.html">Archive</a><a href="https://github.com/cyborg-entrepreneur/tectonic-briefing/blob/main/briefings/2026-06-10.html" target="_blank" rel="noopener">View on GitHub</a></div></div>
+<div class="tb-site-foot">Tectonic Briefing No. 052 · Wednesday, 10 June 2026 · Cyborg Entrepreneurship Research Lab · <a href="../index.html">Return to archive</a></div>
+<!-- TB-NAV-WRAP:BOT:END -->
+</body>
+</html>

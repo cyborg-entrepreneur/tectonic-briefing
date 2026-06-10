@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-06-09T19:42:08.894740",
+  "generated_at": "2026-06-10T19:00:11.072966",
   "briefings": [
+    {
+      "number": "052",
+      "date": "2026-06-10",
+      "display_date": "10 June 2026",
+      "dow": "Wednesday",
+      "title": "Briefing 052 \u00b7 10 June 2026",
+      "thread": "Calibration Divergence",
+      "cycle": 2,
+      "url": "briefings/2026-06-10.html"
+    },
     {
       "number": "051",
       "date": "2026-06-09",
@@ -720,7 +730,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
       "source_briefing": 1,
-      "citation_count": 3,
+      "citation_count": 4,
       "url": "concepts/buffer-collapse.html"
     },
     {
@@ -810,7 +820,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 47,
+      "citation_count": 48,
       "url": "concepts/commons-enclosure.html"
     },
     {
@@ -930,7 +940,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
       "source_briefing": 32,
-      "citation_count": 20,
+      "citation_count": 21,
       "url": "concepts/channel-decomposition.html"
     },
     {
@@ -940,7 +950,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk\u2026",
       "source_briefing": 31,
-      "citation_count": 16,
+      "citation_count": 17,
       "url": "concepts/tail-calibration-failure.html"
     }
   ]
