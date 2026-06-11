@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-10T19:00:11.072756",
-  "total_briefings": 53,
+  "generated_at": "2026-06-11T09:04:53.184703",
+  "total_briefings": 54,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -261,7 +261,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
-      "citation_count": 48
+      "citation_count": 49
     },
     {
       "name": "Optionality Arbitrage",
@@ -360,7 +360,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 30,
       "brief": "Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment.",
-      "citation_count": 20
+      "citation_count": 22
     },
     {
       "name": "Channel Decomposition",
@@ -378,7 +378,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 31,
       "brief": "The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk\u2026",
-      "citation_count": 17
+      "citation_count": 18
     }
   ]
 }
