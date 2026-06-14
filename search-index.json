@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-06-11T09:04:53.184974",
+  "generated_at": "2026-06-14T15:22:52.225178",
   "briefings": [
+    {
+      "number": "054",
+      "date": "2026-06-14",
+      "display_date": "14 June 2026",
+      "dow": "Sunday",
+      "title": "Briefing 054 \u00b7 14 June 2026",
+      "thread": "The Anchor Is the Announcement",
+      "cycle": 2,
+      "url": "briefings/2026-06-14.html"
+    },
     {
       "number": "053",
       "date": "2026-06-11",
@@ -560,7 +570,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The official account of a situation operates as a parallel reality rather than a description of the physical one.",
       "source_briefing": 7,
-      "citation_count": 4,
+      "citation_count": 5,
       "url": "concepts/narrative-physical-decoupling.html"
     },
     {
@@ -830,7 +840,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 49,
+      "citation_count": 50,
       "url": "concepts/commons-enclosure.html"
     },
     {
@@ -940,7 +950,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment.",
       "source_briefing": 30,
-      "citation_count": 22,
+      "citation_count": 23,
       "url": "concepts/sanctuary-discount.html"
     },
     {
@@ -960,7 +970,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk\u2026",
       "source_briefing": 31,
-      "citation_count": 18,
+      "citation_count": 19,
       "url": "concepts/tail-calibration-failure.html"
     }
   ]
