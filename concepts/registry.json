@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-14T15:22:52.224955",
-  "total_briefings": 55,
+  "generated_at": "2026-06-15T11:42:01.378675",
+  "total_briefings": 56,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -18,7 +18,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 7,
       "brief": "The official account of a situation operates as a parallel reality rather than a description of the physical one.",
-      "citation_count": 5
+      "citation_count": 6
     },
     {
       "name": "Akrasia at Scale",
@@ -36,7 +36,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 3,
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
-      "citation_count": 14
+      "citation_count": 15
     },
     {
       "name": "Emergent Concealment",
@@ -225,7 +225,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 9,
       "brief": "Physical conditions tend to irreversibility while institutional conditions tend to reversibility, so the rate at which a kinetic substrate progresses is structurally faster than the rate at which the institutional\u2026",
-      "citation_count": 6
+      "citation_count": 7
     },
     {
       "name": "Verdict Compression",
@@ -261,7 +261,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
-      "citation_count": 50
+      "citation_count": 51
     },
     {
       "name": "Optionality Arbitrage",
@@ -324,7 +324,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When institutional capacity lags behind the pace of change.",
-      "citation_count": 9
+      "citation_count": 10
     },
     {
       "name": "Constructive Ambiguity",

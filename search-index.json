@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-06-14T15:22:52.225178",
+  "generated_at": "2026-06-15T11:42:01.378898",
   "briefings": [
+    {
+      "number": "055",
+      "date": "2026-06-15",
+      "display_date": "15 June 2026",
+      "dow": "Monday",
+      "title": "Briefing 055 \u00b7 15 June 2026",
+      "thread": "The Instrument Arrives",
+      "cycle": 2,
+      "url": "briefings/2026-06-15.html"
+    },
     {
       "number": "054",
       "date": "2026-06-14",
@@ -570,7 +580,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The official account of a situation operates as a parallel reality rather than a description of the physical one.",
       "source_briefing": 7,
-      "citation_count": 5,
+      "citation_count": 6,
       "url": "concepts/narrative-physical-decoupling.html"
     },
     {
@@ -590,7 +600,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
       "source_briefing": 3,
-      "citation_count": 14,
+      "citation_count": 15,
       "url": "concepts/capability-opacity.html"
     },
     {
@@ -800,7 +810,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Physical conditions tend to irreversibility while institutional conditions tend to reversibility, so the rate at which a kinetic substrate progresses is structurally faster than the rate at which the institutional\u2026",
       "source_briefing": 9,
-      "citation_count": 6,
+      "citation_count": 7,
       "url": "concepts/reversibility-asymmetry.html"
     },
     {
@@ -840,7 +850,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 50,
+      "citation_count": 51,
       "url": "concepts/commons-enclosure.html"
     },
     {
@@ -910,7 +920,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional capacity lags behind the pace of change.",
       "source_briefing": 1,
-      "citation_count": 9,
+      "citation_count": 10,
       "url": "concepts/governance-vacuum.html"
     },
     {
