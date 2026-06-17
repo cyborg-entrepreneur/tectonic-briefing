@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-16T10:32:57.625645",
-  "total_briefings": 57,
+  "generated_at": "2026-06-17T12:39:29.262249",
+  "total_briefings": 58,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -36,7 +36,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 3,
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
-      "citation_count": 16
+      "citation_count": 17
     },
     {
       "name": "Emergent Concealment",
@@ -261,7 +261,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
-      "citation_count": 52
+      "citation_count": 53
     },
     {
       "name": "Optionality Arbitrage",
@@ -288,7 +288,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 7,
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
-      "citation_count": 3
+      "citation_count": 4
     },
     {
       "name": "Cartel Dissolution",
@@ -324,7 +324,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When institutional capacity lags behind the pace of change.",
-      "citation_count": 11
+      "citation_count": 12
     },
     {
       "name": "Constructive Ambiguity",
@@ -333,7 +333,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 4,
       "brief": "When a diplomatic agreement succeeds precisely because its terms support mutually exclusive interpretations.",
-      "citation_count": 10
+      "citation_count": 11
     },
     {
       "name": "Ceasefire Acceleration",

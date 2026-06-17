@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-06-16T10:32:57.625934",
+  "generated_at": "2026-06-17T12:39:29.262739",
   "briefings": [
+    {
+      "number": "058",
+      "date": "2026-06-17",
+      "display_date": "17 June 2026",
+      "dow": "Wednesday",
+      "title": "Briefing 058 \u00b7 17 June 2026",
+      "thread": "The Credibility of the Untested Instrument",
+      "cycle": 2,
+      "url": "briefings/2026-06-17.html"
+    },
     {
       "number": "055",
       "date": "2026-06-16",
@@ -610,7 +620,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
       "source_briefing": 3,
-      "citation_count": 16,
+      "citation_count": 17,
       "url": "concepts/capability-opacity.html"
     },
     {
@@ -860,7 +870,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 52,
+      "citation_count": 53,
       "url": "concepts/commons-enclosure.html"
     },
     {
@@ -890,7 +900,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
       "source_briefing": 7,
-      "citation_count": 3,
+      "citation_count": 4,
       "url": "concepts/process-as-destination.html"
     },
     {
@@ -930,7 +940,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional capacity lags behind the pace of change.",
       "source_briefing": 1,
-      "citation_count": 11,
+      "citation_count": 12,
       "url": "concepts/governance-vacuum.html"
     },
     {
@@ -940,7 +950,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When a diplomatic agreement succeeds precisely because its terms support mutually exclusive interpretations.",
       "source_briefing": 4,
-      "citation_count": 10,
+      "citation_count": 11,
       "url": "concepts/constructive-ambiguity.html"
     },
     {
