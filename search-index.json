@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-06-17T12:39:29.262739",
+  "generated_at": "2026-06-18T13:25:23.496066",
   "briefings": [
+    {
+      "number": "059",
+      "date": "2026-06-18",
+      "display_date": "18 June 2026",
+      "dow": "Thursday",
+      "title": "Briefing 059 \u00b7 18 June 2026",
+      "thread": "The Verdict of the First Test",
+      "cycle": 2,
+      "url": "briefings/2026-06-18.html"
+    },
     {
       "number": "058",
       "date": "2026-06-17",
@@ -620,7 +630,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
       "source_briefing": 3,
-      "citation_count": 17,
+      "citation_count": 18,
       "url": "concepts/capability-opacity.html"
     },
     {
@@ -750,7 +760,7 @@
       "meta_name": "Bypass Inversion",
       "brief": "When the deliberate ambiguity that enabled an agreement becomes the mechanism of its failure.",
       "source_briefing": 5,
-      "citation_count": 3,
+      "citation_count": 4,
       "url": "concepts/conditional-collapse.html"
     },
     {
@@ -830,7 +840,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Physical conditions tend to irreversibility while institutional conditions tend to reversibility, so the rate at which a kinetic substrate progresses is structurally faster than the rate at which the institutional\u2026",
       "source_briefing": 9,
-      "citation_count": 8,
+      "citation_count": 9,
       "url": "concepts/reversibility-asymmetry.html"
     },
     {
@@ -840,7 +850,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Smoothed signals produce maximum dispersion within a single decision window.",
       "source_briefing": 26,
-      "citation_count": 2,
+      "citation_count": 3,
       "url": "concepts/verdict-compression.html"
     },
     {
@@ -870,7 +880,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 53,
+      "citation_count": 54,
       "url": "concepts/commons-enclosure.html"
     },
     {
@@ -940,7 +950,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional capacity lags behind the pace of change.",
       "source_briefing": 1,
-      "citation_count": 12,
+      "citation_count": 13,
       "url": "concepts/governance-vacuum.html"
     },
     {
@@ -950,7 +960,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When a diplomatic agreement succeeds precisely because its terms support mutually exclusive interpretations.",
       "source_briefing": 4,
-      "citation_count": 11,
+      "citation_count": 12,
       "url": "concepts/constructive-ambiguity.html"
     },
     {
