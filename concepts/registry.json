@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-18T13:25:23.495845",
-  "total_briefings": 59,
+  "generated_at": "2026-06-19T13:32:49.265925",
+  "total_briefings": 60,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -153,7 +153,7 @@
       "meta_name": "Bypass Inversion",
       "source_briefing": 5,
       "brief": "When the deliberate ambiguity that enabled an agreement becomes the mechanism of its failure.",
-      "citation_count": 4
+      "citation_count": 5
     },
     {
       "name": "Negotiation Multiplication",
@@ -180,7 +180,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 1,
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
-      "citation_count": 4
+      "citation_count": 5
     },
     {
       "name": "Chokepoint Cascade",
@@ -216,7 +216,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 23,
       "brief": "A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the\u2026",
-      "citation_count": 18
+      "citation_count": 19
     },
     {
       "name": "Reversibility Asymmetry",
@@ -261,7 +261,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
-      "citation_count": 54
+      "citation_count": 55
     },
     {
       "name": "Optionality Arbitrage",
@@ -324,7 +324,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When institutional capacity lags behind the pace of change.",
-      "citation_count": 13
+      "citation_count": 14
     },
     {
       "name": "Constructive Ambiguity",
@@ -369,7 +369,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 32,
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
-      "citation_count": 22
+      "citation_count": 23
     },
     {
       "name": "Tail Calibration Failure",

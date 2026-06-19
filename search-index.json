@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-06-18T13:25:23.496066",
+  "generated_at": "2026-06-19T13:32:49.266185",
   "briefings": [
+    {
+      "number": "060",
+      "date": "2026-06-19",
+      "display_date": "19 June 2026",
+      "dow": "Friday",
+      "title": "Briefing 060 \u00b7 19 June 2026",
+      "thread": "The Clause That Executes and the Clause That Stalls",
+      "cycle": 2,
+      "url": "briefings/2026-06-19.html"
+    },
     {
       "number": "059",
       "date": "2026-06-18",
@@ -760,7 +770,7 @@
       "meta_name": "Bypass Inversion",
       "brief": "When the deliberate ambiguity that enabled an agreement becomes the mechanism of its failure.",
       "source_briefing": 5,
-      "citation_count": 4,
+      "citation_count": 5,
       "url": "concepts/conditional-collapse.html"
     },
     {
@@ -790,7 +800,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
       "source_briefing": 1,
-      "citation_count": 4,
+      "citation_count": 5,
       "url": "concepts/buffer-collapse.html"
     },
     {
@@ -830,7 +840,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the\u2026",
       "source_briefing": 23,
-      "citation_count": 18,
+      "citation_count": 19,
       "url": "concepts/keystone-removal.html"
     },
     {
@@ -880,7 +890,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 54,
+      "citation_count": 55,
       "url": "concepts/commons-enclosure.html"
     },
     {
@@ -950,7 +960,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional capacity lags behind the pace of change.",
       "source_briefing": 1,
-      "citation_count": 13,
+      "citation_count": 14,
       "url": "concepts/governance-vacuum.html"
     },
     {
@@ -1000,7 +1010,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
       "source_briefing": 32,
-      "citation_count": 22,
+      "citation_count": 23,
       "url": "concepts/channel-decomposition.html"
     },
     {
