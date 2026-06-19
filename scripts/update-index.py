@@ -1025,7 +1025,7 @@ def render_entry(m):
             f'</a>')
 
 
-def render_stats(metas):
+def render_stats(metas, audit_n=1):
     n_total = len(metas)
     n_cycle1 = sum(1 for m in metas if m['cycle'] == 1)
     n_cycle2 = sum(1 for m in metas if m['cycle'] == 2)
@@ -1040,7 +1040,7 @@ def render_stats(metas):
         cn = re.search(r'(\d+)\s+Cycle 2', v)
         if cn:
             cand_n = cn.group(1)
-    audit_n = 1  # cycle-001.html exists per repo state
+    # audit_n is passed in from discover_audits() — do not hard-code (CLAUDE.md)
     return f"""
 <div class="stats">
 <div class="stat"><div class="stat-num">{n_total}</div><div class="stat-label">Briefings</div></div>
@@ -1078,8 +1078,8 @@ def build_index(metas):
     today = metas[0] if metas else None
     hero = render_hero(today, f'briefings/{today["filename"]}' if today else '#', total_briefings=len(metas))
     cycle2 = render_cycle2_panel(today)
-    stats = render_stats(metas)
     audits = discover_audits()
+    stats = render_stats(metas, len(audits))
     archive = render_archive(metas, audits)
 
     head = INDEX_HEAD.replace('{{ARCHIVE_COUNT}}', str(len(metas)))
