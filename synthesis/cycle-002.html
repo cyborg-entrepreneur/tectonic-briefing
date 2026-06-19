@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contingency Audit — Cycle 002</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source Sans 3',system-ui,sans-serif;font-size:16px;line-height:1.7;min-height:100vh}
+:root{--bg:#0b1120;--card:#111827;--alt:#141c2e;--str:#1a1710;--amb:#c89545;--ambb:#dcb267;--ambp:#ecca8e;--ambm:#a87e36;--blu:#4b8ef2;--blub:#6da8ff;--teal:#38d9c8;--red:#f06050;--purp:#a78bfa;--grn:#4ade80;--t1:#eaf0f8;--t2:#cdd6e4;--t3:#8e9bb5;--t4:#7e8b9c;--brd:rgba(200,149,69,0.20);--brds:rgba(200,149,69,0.40)}
+.w{max-width:1040px;margin:0 auto;padding:0 1.8rem}
+header{padding:2.8rem 0 1.6rem;border-bottom:1px solid var(--brd);margin-bottom:2rem}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ambm);margin-bottom:.5rem}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2.5rem;color:var(--t1);letter-spacing:.02em}
+h1 em{font-style:normal;color:var(--ambb);font-weight:500}
+.sub{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--t4);letter-spacing:.12em;text-transform:uppercase;margin-top:.5rem}
+.meta-line{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ambm);letter-spacing:.08em;margin-top:.6rem}
+.epi{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--t3);margin-top:1.1rem;max-width:720px;line-height:1.55;padding-left:1rem;border-left:2px solid var(--brds)}
+h2.sh{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:400;color:var(--ambb);margin:2.6rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid var(--brd)}
+h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--t1);margin:1.6rem 0 .7rem}
+p{margin-bottom:.95rem;color:var(--t2);line-height:1.78}
+strong{color:var(--t1);font-weight:600}
+.lead{font-size:1.04rem;color:var(--t2)}
+.card{background:var(--card);border:1px solid var(--brd);border-radius:3px;padding:1.5rem 1.8rem;margin-bottom:1.3rem}
+.card.amberlead{border-left:3px solid var(--amb);background:var(--str)}
+.tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .5rem;border-radius:2px;background:rgba(200,149,69,.12);color:var(--ambb);margin-right:.4rem}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.9rem}
+th,td{text-align:left;padding:.55rem .7rem;border-bottom:1px solid rgba(200,149,69,.14)}
+th{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ambm)}
+td{color:var(--t2)}
+td.z{color:var(--grn);font-weight:600}td.bad{color:#fca5a5;font-weight:600}
+.bars{margin:1rem 0}
+.bar-row{display:flex;align-items:center;gap:.8rem;margin-bottom:.45rem}
+.bar-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--t3);min-width:210px;text-align:right}
+.bar-track{flex:1;background:rgba(200,149,69,.06);border-radius:2px;height:18px;position:relative}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--ambm),var(--ambb));border-radius:2px}
+.bar-fill.v{background:linear-gradient(90deg,#b9452f,#f06050)}
+.bar-val{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ambb);min-width:32px}
+ul{margin:.4rem 0 1rem 1.2rem}li{color:var(--t2);margin-bottom:.45rem;line-height:1.65}
+.mp{background:var(--card);border:1px solid var(--brd);border-left:3px solid var(--amb);border-radius:2px;padding:.9rem 1.2rem;margin-bottom:.7rem}
+.mp .id{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--ambb);letter-spacing:.06em}
+.mp .st{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;padding:.1rem .4rem;border-radius:2px;margin-left:.5rem}
+.st.promote{background:rgba(74,222,128,.14);color:var(--grn)}.st.new{background:rgba(167,139,250,.14);color:var(--purp)}.st.reinf{background:rgba(109,168,255,.14);color:var(--blub)}
+.mono{font-family:'JetBrains Mono',monospace;font-size:.85rem}
+footer{margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--brd);text-align:center}
+footer p{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t4);letter-spacing:.1em;text-transform:uppercase}
+a{color:var(--ambb);text-decoration:none;border-bottom:1px solid rgba(200,149,69,.3)}
+a:focus-visible{outline:2px solid var(--ambb);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:760px){.w{padding:0 1rem}h1{font-size:1.9rem}.bar-label{min-width:130px}}
+</style>
+</head>
+<body>
+<div class="w">
+<header>
+<div class="kicker">Tectonic Briefing · Meta-analysis</div>
+<h1><em>Contingency</em> Audit — Cycle 002</h1>
+<div class="sub">Read-mode, configurational reads, and the limits of contingent forecasting under Knightian uncertainty</div>
+<div class="meta-line">Briefings 031–060 · 5 May – 19 June 2026 · 129 conditional chains · generated 2026-06-19</div>
+<div class="epi">Cycle 2 adds the positive discipline the protocol only ever stated negatively. The break-point taxonomy says what failed; the read-mode lens says which stance failed — and the answer is unambiguous: representation broke, orientation held.</div>
+</header>
+
+<h2 class="sh">Headline</h2>
+<div class="card amberlead">
+<p class="lead"><strong>Read-mode predicts break severity.</strong> Across 129 conditional chains, every <strong>Inverted</strong> (7) and every <strong>Held-Spurious</strong> (9) outcome was a <strong>Representation-</strong> or <strong>Hybrid-read</strong>; <strong>not one Orienting-read inverted or failed at Z</strong> in the entire cycle. The model's failure is not in reading the configuration — orienting and hybrid reads share that competence — but in what it does at the terminal step: the <strong>Hybrid</strong> read collapses a live disposition into a single vector (the dominant failure: Type-V velocity × S2 narrative-over-physical), and the <strong>Representation</strong> read projects a represented template as present fact (the catastrophic failure: Type-VI × S5). The paradigm representation failure — the 037–039 cross-year template projection — is confined to one signature (S5) appearing in <strong>12 chains, all before Briefing 040 and zero after</strong>: the 13 May factual-verification discipline eliminated it mid-cycle, proving a representation failure is correctable by explicit discipline. Velocity miscalibration is again the dominant break, as in Cycle 1, and now localizes to the hybrid read's single-vector collapse — a <strong>structural</strong> fix (name ≥2 release paths), not a calibrational one.</p>
+</div>
+
+<h2 class="sh">The Read-Mode Finding</h2>
+<p>The read-mode lens (Orienting / Representation / Hybrid) is independent of the existing Break-Type and Signature taxonomies. It classifies the <em>reading stance</em>, not whether the chain held. The cross-tabulation against outcome is the cycle's central product.</p>
+
+<div class="card">
+<h3 style="margin-top:0">Worst-outcome chains by read-mode</h3>
+<table>
+<tr><th>Outcome</th><th>Orienting (O)</th><th>Hybrid (H)</th><th>Representation (R)</th></tr>
+<tr><td><strong>Inverted</strong> (7)</td><td class="z">0</td><td class="bad">5</td><td class="bad">2</td></tr>
+<tr><td><strong>Held-Spurious</strong> (9)</td><td class="z">0</td><td class="bad">9</td><td class="z">0</td></tr>
+<tr><td><strong>Failed-Z</strong> (3)</td><td class="z">0</td><td class="bad">2</td><td class="bad">1</td></tr>
+</table>
+<p style="margin-bottom:0;font-size:.92rem;color:var(--t3)"><strong>Zero</strong> Orienting-reads in any catastrophic cell. <strong>Zero</strong> of 13 Representation-reads held cleanly. The configuration read is shared by O and H alike; the divergence is entirely at the Z-step — where H commits to one path of a disposition that is a <em>field</em> of paths, and R asserts a fixed template as fact.</p>
+</div>
+
+<div class="card">
+<h3 style="margin-top:0">Read-mode distribution (n≈122 classified)</h3>
+<div class="bars">
+<div class="bar-row"><span class="bar-label">Orienting (O) — held / graceful</span><span class="bar-track"><span class="bar-fill" style="width:58%"></span></span><span class="bar-val">71</span></div>
+<div class="bar-row"><span class="bar-label">Hybrid (H) — sound config, single vector</span><span class="bar-track"><span class="bar-fill v" style="width:31%"></span></span><span class="bar-val">38</span></div>
+<div class="bar-row"><span class="bar-label">Representation (R) — template-as-fact</span><span class="bar-track"><span class="bar-fill v" style="width:11%"></span></span><span class="bar-val">13</span></div>
+</div>
+<p style="margin-bottom:0;font-size:.92rem;color:var(--t3)">The Fed reads <span class="mono">045-ie-3</span> and <span class="mono">055-ie-2</span> are the paradigm Hybrid failure: correct regime-change configuration, single benign/dovish Z vector, inverted by the 17 June hawkish hold. The cross-year projections <span class="mono">037-th / 038-ie-C</span> are the paradigm Representation failure: a May-2025 template asserted as a May-2026 fact.</p>
+</div>
+
+<h2 class="sh">Break-Point Distribution</h2>
+<p>Type-V (velocity miscalibration) is again dominant, as in Cycle 1 and as the protocol predicts — direction right, timing or path wrong. Cycle 2 localizes its model-endogenous component to the hybrid single-vector collapse.</p>
+<div class="card">
+<div class="bars">
+<div class="bar-row"><span class="bar-label">Type-V Velocity</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span class="bar-val">34</span></div>
+<div class="bar-row"><span class="bar-label">Type-I Agentic Novelty</span><span class="bar-track"><span class="bar-fill" style="width:24%"></span></span><span class="bar-val">8</span></div>
+<div class="bar-row"><span class="bar-label">Type-VII Spurious Hit</span><span class="bar-track"><span class="bar-fill" style="width:24%"></span></span><span class="bar-val">8</span></div>
+<div class="bar-row"><span class="bar-label">Type-III Coupling Failure</span><span class="bar-track"><span class="bar-fill" style="width:18%"></span></span><span class="bar-val">6</span></div>
+<div class="bar-row"><span class="bar-label">Type-VI Categorical Drift</span><span class="bar-track"><span class="bar-fill" style="width:15%"></span></span><span class="bar-val">5</span></div>
+<div class="bar-row"><span class="bar-label">Type-IV Buffer Revelation</span><span class="bar-track"><span class="bar-fill" style="width:9%"></span></span><span class="bar-val">3</span></div>
+<div class="bar-row"><span class="bar-label">Type-II Competitive Recursion</span><span class="bar-track"><span class="bar-fill" style="width:3%"></span></span><span class="bar-val">1</span></div>
+</div>
+<p style="margin-bottom:0;font-size:.92rem;color:var(--t3)">All five <strong>Type-VI categorical-drift</strong> cases fall in Briefings 031–039 (the cross-year cluster). The signature picture is the tell: <strong>S2 narrative-over-physical</strong> dominates (33), then S3 plausibility-mass (15), then <strong>S5 categorical-stickiness (12) — every one before Briefing 040, none after.</strong></p>
+</div>
+
+<h2 class="sh">Meta-Principles</h2>
+<p>Three Cycle-1 principles recurred strongly enough to promote toward canonical; mp-010 is reinforced and refined; three new principles enter provisionally.</p>
+
+<div class="mp"><span class="id">mp-001</span><span class="st promote">promote</span><p style="margin:.4rem 0 0">State actors with optionality hold a third option outside a chain's binary action-set; chains break at Y. <span style="color:var(--t3)">Recurred: the US–Iran deal arrived via a path outside every conditioned action-set.</span></p></div>
+<div class="mp"><span class="id">mp-003</span><span class="st promote">promote</span><p style="margin:.4rem 0 0">Specified-mechanism chains produce Type-VII Spurious Hits when the real mechanism is novel architectural composition; narrative validation masks wrong structure. <span style="color:var(--t3)">8 Type-VII cases; the Iran endpoint repeatedly arrived via a different mechanism.</span></p></div>
+<div class="mp"><span class="id">mp-005</span><span class="st promote">promote</span><p style="margin:.4rem 0 0">Coordination apparatuses produce dispersion, not coherence, under stress; chains break at Z. <span style="color:var(--t3)">G7/Fed chains held precisely because they predicted hollowing; the FOMC delivered a hawkish dispersion.</span></p></div>
+<div class="mp"><span class="id">mp-010</span><span class="st reinf">reinforced</span><p style="margin:.4rem 0 0">Velocity miscalibration is partly intrinsic (Knightian timing) and partly model-endogenous. <span style="color:var(--t3)">Type-V dominant again; Cycle 2 refines this via mp-012.</span></p></div>
+<div class="mp" style="border-left-color:var(--purp)"><span class="id">mp-011</span><span class="st new">new · strong</span><p style="margin:.4rem 0 0"><strong>Read-mode predicts break severity.</strong> Every Inverted and Held-Spurious outcome is an R- or H-read; orienting reads do not invert or fail-Z. The error is terminal-step commitment to a single vector (H) or a represented template (R), not configuration recognition (shared by O and H).</p></div>
+<div class="mp" style="border-left-color:var(--purp)"><span class="id">mp-012</span><span class="st new">new</span><p style="margin:.4rem 0 0"><strong>The model-endogenous component of velocity miscalibration IS the single-vector collapse.</strong> Type-V concentrates in hybrid reads; the fix is structural (name ≥2 release paths), not calibrational. Refines mp-010.</p></div>
+<div class="mp" style="border-left-color:var(--purp)"><span class="id">mp-013</span><span class="st new">new</span><p style="margin:.4rem 0 0"><strong>The cross-year template projection is a pure representation failure — and disciplinable.</strong> S5 appears in 12 chains, all pre-040, zero after; the 13 May factual-verification discipline eliminated it. Representation-mode and vocabulary inflation co-occur (the candidate graveyard clusters in the same R-read episode). Orienting is a trainable stance, not a temperament.</p></div>
+
+<h2 class="sh">Did Cycle 1's Recalibrations Take Hold?</h2>
+<div class="card">
+<table>
+<tr><th>Recalibration</th><th>Took hold</th><th>Evidence</th></tr>
+<tr><td>Cross-year factual verification</td><td class="z">complete</td><td>S5 / R-read template projection: 12 instances pre-040, <strong>zero after</strong>. The cleanest in the corpus.</td></tr>
+<tr><td>Non-corridor chain ≥1 / briefing</td><td class="z">good</td><td>Sahel, Korea, AMOC, quantum, robotics chains throughout.</td></tr>
+<tr><td>Third-option / suspended-contradiction term</td><td style="color:var(--ambb)">partial</td><td>High O-read share, but Type-I novelty (8) still surprised state-actor chains.</td></tr>
+<tr><td>Spurious-Hit Test on Z-from-Y chains</td><td class="bad">weak</td><td>8 Type-VII persisted; the test was not visibly embedded in construction.</td></tr>
+<tr><td>Half-life / interval, not point estimate</td><td class="bad">weak</td><td>Type-V still dominant — mp-012 shows why: the error is single-vector collapse, not point-vs-interval timing.</td></tr>
+</table>
+</div>
+
+<h2 class="sh">Vocabulary Curation</h2>
+<p>The citation power-law is the empirical record of which patterns are real shi-types — configurations whose propensity recurs across domains. <strong>Channel Decomposition</strong> (23 citations; the Briefing 060 anchor) is the Cycle-2 signature pattern, alongside Commons Enclosure (55), Peripheral Assertion (24), Sanctuary Discount (23), Keystone Removal (19), Tail Calibration Failure (19).</p>
+<ul>
+<li><strong>Retirement-watch:</strong> <em>Akrasia at Scale</em> and <em>Emergent Concealment</em> (1 total citation each; zero Cycle-2 re-citation). 30-day sunset → watch, not retire — pending Dave's call.</li>
+<li><strong>Candidate graveyard:</strong> Recursive/Surrogate Re-Disclosure, Venue Substitution, Symbolic Anchoring Failure — none promoted; all floated in Briefings 037–040, concentrated in the cross-year (R-read) episode. <strong>Over-naming co-occurs with representation-mode</strong> (mp-013).</li>
+<li><strong>META-6 (Verification Asymmetry):</strong> stays tabled, leaning retire — no qualifying non-Coupling-Failure instantiation appeared in Cycle 2.</li>
+<li><strong>Open Cycle-2 candidates:</strong> <em>Continuity Mispricing</em> (059, 1 anchor) and <em>Pre-Release Access Regime</em> (058, now 3 anchors — strengthening) remain in monitoring.</li>
+</ul>
+
+<h2 class="sh">Recalibrations for Briefings 061–090</h2>
+<ol style="margin-left:1.2rem">
+<li style="margin-bottom:.6rem"><strong>Tag every chain O/R/H at creation; rewrite R-reads (and the R-tail of H-reads) as O</strong> — or justify. <span style="color:var(--t3)">Verify: ≥85% O across 061–090.</span></li>
+<li style="margin-bottom:.6rem"><strong>Name ≥2 release paths at every Z-step</strong> (field-not-vector). <span style="color:var(--t3)">Directly targets the dominant H-read velocity failure; verify the Inverted rate among resolved chains falls.</span></li>
+<li style="margin-bottom:.6rem"><strong>State ripeness/timing for every "untested-instrument" read</strong> — near or far release, as a bounded interval. <span style="color:var(--t3)">Targets velocity, the dominant break in both cycles.</span></li>
+<li style="margin-bottom:.6rem"><strong>Reframe the cross-year check as a read-mode catch (Rule B)</strong>: any prior-period analogue carried as present fact is an R-read and is rewritten. <span style="color:var(--t3)">Locks in the S5 elimination.</span></li>
+<li><strong>Fold the Read-Mode lens into the daily QC and CONTINGENCY_AUDIT.md §5.11</strong>; tag prospectively. <span style="color:var(--t3)">The lens is validated 3/3 slices — a standing instrument now.</span></li>
+</ol>
+
+<h2 class="sh">Theoretical Implication — Orienting vs. Knowledge Representation</h2>
+<p>The cycle is a clean empirical result for the orienting-vs-knowledge-representation theory. Under genuine flux, representation reads and the representation-tail of hybrid reads carry <strong>all</strong> the catastrophic failures, while orienting reads degrade gracefully or hold. This is the bandwidth-rotation thesis confirmed on analytical reading: a single-vector map is the trap; orienting to the disposition as a field is robust. Because the configuration read is shared across modes, the payoff is not "read better structures" but "<strong>stop converting a good configurational read into a single-vector prediction at the terminal step.</strong>"</p>
+<p>It also localizes where the LLM plausibility engine fails under Knightian uncertainty: not in configuration recognition (strong) but in resisting the pull to a single most-probable completion at the Z-step (S2 dominant at 33; S3 at 15). The S5 elimination — a named cognitive failure mode disciplined out within a cycle — is a positive control and the falsifiable claim cross-architecture testing should now probe. And the lens itself is an instance of the periodic-re-framing that keeps an analytical ensemble from recursive narrowing: a human-supplied configurational frame gave the audit its positive discipline; the machine-generated inventory validated the frame against 129 resolved instances. Neither partner produces the result alone.</p>
+
+<footer>
+<p>Contingency Audit · Cycle 002 · Tectonic Briefing · Cyborg Entrepreneurship Research Lab</p>
+<p style="margin-top:.3rem">Full inventory: synthesis/_raw/slice{A,B,C}.md · Structured artifact: synthesis/cycle-002.yaml · Discipline: synthesis/cycle-002-shi-discipline.md</p>
+</footer>
+</div>
+</body>
+</html>

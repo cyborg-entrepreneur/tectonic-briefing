@@ -2,7 +2,7 @@
 
 **Purpose:** A meta-analysis of the Tectonic Briefing's Inference Engine, run every 30 daily briefings. The Contingency Audit traces the contingent possibilities posited by daily conditional chains, characterizes the structural mechanisms by which those chains break, and surfaces meta-principles about the limits of contingent forecasting under Knightian uncertainty.
 
-**Last updated:** 2026-05-04 (Cycle 1 complete; LLM Cognitive Signature layer added — break-point findings reframed as empirical signatures of LLM cognition under Knightian uncertainty)
+**Last updated:** 2026-06-19 (Cycle 2 complete; **Read-Mode lens added** — Orienting/Representation/Hybrid, the positive configurational-reading discipline grounded in the orienting-vs-knowledge-representation theory and the shi/bandwidth-rotation framework. Validated 3/3 slices in Cycle 2: read-mode predicts break severity. See `synthesis/cycle-002-shi-discipline.md` and `synthesis/cycle-002.yaml`.) · 2026-05-04 (Cycle 1 complete; LLM Cognitive Signature layer added)
 **Cadence:** Every 30 daily briefings (~monthly)
 **Output location:** `tectonic-briefing/synthesis/cycle-NNN.html` and `tectonic-briefing/synthesis/cycle-NNN.yaml`
 
@@ -150,6 +150,22 @@ Required components:
 
 The dual-taxonomy design produces a within-architecture baseline that becomes the natural comparison point for cross-architecture experiments running the same Inference Engine prompt against different LLM backbones. Whether S1/S2 dominance is general to LLM plausibility engines under Knightian uncertainty, or architecture-specific, is the falsifiable question the design was built to enable.
 
+### 5.11 Read-Mode Classification (added Cycle 2)
+
+A **third independent lens**, parallel to Break-Type (what failed in the world) and LLM Signature (what failed in the model). Read-Mode classifies *the reading stance the chain took*, independent of whether it held. Every chain is tagged **O / R / H** (definitions in §6.6).
+
+- **O — Orienting:** names a configuration and its *disposition*; conditional; propensity-framed; names ≥2 release paths.
+- **R — Representation:** asserts a fixed structure/outcome as fact, or projects a prior-period template forward as present fact.
+- **H — Hybrid:** sound configuration read that **collapses to a single vector at the Z-step**.
+
+Required components:
+- **Read-mode distribution** (O/R/H counts and percentages) for the cycle.
+- **Read-Mode × Outcome cross-tabulation** — the load-bearing table. Report the worst-outcome cells (Inverted, Held-Spurious, Failed-Z) by read-mode.
+- **Read-Mode × Break-Type and × Signature** cross-tabs for the dominant cells.
+- **Per-mode discussion** citing chain_ids.
+
+**Cycle 2 finding (the lens's validating result):** read-mode predicts break severity — every Inverted and Held-Spurious outcome was an R- or H-read; no O-read inverted or failed-Z across 129 chains. The error is terminal-step single-vector collapse (H) or template-as-fact (R), not configuration recognition (shared by O and H). **Cross-cycle watch:** guard against the lens becoming a mono-explanation (§10.6) — the read-mode tag must be evidenced by the chain's terminal step, not assumed from its outcome.
+
 ## 6. Break Point Taxonomy — Full Definitions
 
 **Type-I — Agentic Novelty Break.** A new agent or unprecedented action shifts the outcome space. The chain assumed an action set; the actual action lay outside it. *Example pattern:* a chain conditioning on "regulators will act" when a novel coalition (industry self-regulation, foreign sovereign, court system) acts first and forecloses the predicted causal path. Type-I is the **Knightian** failure mode in its purest form: the world surprised us, and no probability could have been assigned to the surprise because the relevant action was not in the conceived space.
@@ -186,6 +202,23 @@ S1–S7 classify *what failed in the model that generated the chain*, distinct f
 
 **Important:** S1–S7 are *parallel to* but *not identical to* Type I–VII. The same chain can be (Type-V × S1) or (Type-V × S2) — these are different LLM failures producing the same structural break. The cross-tabulation is the analytical product. Signature classification must be done with the chain's text in view, anchored in the chain's specific language; assigning a signature purely from the Type tag is the failure mode to avoid.
 
+## 6.6 Read-Mode Taxonomy — Full Definitions (added Cycle 2)
+
+Read-Mode (O/R/H) classifies the reading stance, grounded in the **orienting-vs-knowledge-representation** theory: under genuine flux, *orienting* (reading a configuration's disposition as a field of tendency) is robust, while *representation* (projecting a single-vector map or a trained-in template as fact) is the trap — the analytical face of the bandwidth-rotation result (representation-within-bandwidth = KR; rotation = orienting).
+
+- **O — Orienting read.** Names a configuration and its disposition; conditional; propensity-framed; ideally names ≥2 release paths. *Text signature:* "the field leans / is set to break toward…". When O-reads break, they break gently (Type-V; direction intact).
+- **R — Representation read.** Asserts a fixed structure or single outcome as fact, or projects a prior-period analogue as present fact. *Text signature:* "X will…", a single Z with no alternative, or a trained-in template carried forward. Maps most strongly to Type-VI × S5 and the catastrophic outcome classes.
+- **H — Hybrid read.** Names the configuration well (orienting) but **collapses to a single vector at the Z-step** (representation). The most common diagnostic class; maps most strongly to Type-V × S2.
+
+**The Shi-Read protocol** (the positive discipline; full version in `synthesis/cycle-002-shi-discipline.md`) — five configurational moves and two rules the read must answer in plain language:
+1. **形 Configuration** — name the arrangement, not the outcome (the structural vocabulary).
+2. **勢 Disposition** — which way is it set to break? State as propensity, not forecast.
+3. **節 Ripeness/timing** — how loaded is the propensity; near or far release? (The move most often skipped; source of most Type-V breaks.)
+4. **變 Transformation** — what does this configuration become next? Read the transition.
+5. **蓄勢 Positional leverage** — where does the configuration confer leverage, and to whom?
+- **Rule A — Field, not vector:** name ≥2 release paths (fixes the H-read).
+- **Rule B — Rely on propensity, not representation:** never carry a prior-period template as present fact (fixes the R-read; the structural cure for cross-year projection).
+
 ## 7. YAML Artifact Schema
 
 The audit produces a structured YAML at `tectonic-briefing/synthesis/cycle-NNN.yaml`. This is the load-bearing accumulating artifact. Its schema (abbreviated):
@@ -219,6 +252,9 @@ break_points:
       primary: s1_mean_trajectory_regression   # one of s1-s7
       secondary: s2_narrative_over_physical    # or null
       note: "1-sentence justification grounded in the chain's text, not just the Type tag"
+    read_mode:                                 # added Cycle 2 — O / R / H (§6.6)
+      mode: H                                  # one of O (orienting), R (representation), H (hybrid)
+      note: "1-sentence justification grounded in the chain's terminal step, not its outcome"
 
 llm_cognitive_signatures:
   taxonomy:

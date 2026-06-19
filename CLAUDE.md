@@ -123,6 +123,7 @@ integrity. Verify by hand or via the disciplines below before publish:
 - [ ] Prose Coherence Discipline (Stage 1) applied — see below
 - [ ] Factual Verification Discipline (Stage 1b) applied — see below
 - [ ] Confidentiality Discipline (Stage 1c) applied — see below
+- [ ] Read-Mode / Orienting Discipline (Stage 1d) applied — see below
 
 If any check fails, fix the missing/failing sections, then run
 `./scripts/publish.sh` to rebuild + republish.
@@ -467,4 +468,43 @@ Inserted between Stage 1 (prose coherence) and Stage 2 (pre-publish review). App
 
 ## Retroactive Scope Check
 
-After this calibration date, any briefing that surfaces a sub-agent's structural-pattern claim with a 2025 historical analog should be retroactively checked for cross-year projection. **Briefings 037, 038, 039 examined and remediated 2026-05-13** (038 received an erratum note; 039 received a surgical rewrite). **Earlier briefings have not yet been audited.** The Day-60 Cycle 2 audit should include a retroactive cross-year-projection check across Briefings 031-039 to verify no other instances of the failure mode are propagating downstream citations.
+After this calibration date, any briefing that surfaces a sub-agent's structural-pattern claim with a 2025 historical analog should be retroactively checked for cross-year projection. **Briefings 037, 038, 039 examined and remediated 2026-05-13** (038 received an erratum note; 039 received a surgical rewrite). **Earlier briefings have not yet been audited.** The Day-60 Cycle 2 audit should include a retroactive cross-year-projection check across Briefings 031-039 to verify no other instances of the failure mode are propagating downstream citations. **Done 2026-06-19 (Cycle 2 audit):** the cross-year projection is confined to Briefings 037–039 (signature S5, 12 chains, zero after Briefing 040) — the 2026-05-13 factual-verification discipline eliminated it. The deeper cure is now the Read-Mode Discipline below (Rule B), which reframes the cross-year catch from a factual symptom to a representation-mode failure.
+
+# ══════════════════════════════════════════════════════════════════
+# READ-MODE / ORIENTING DISCIPLINE — Calibrated 2026-06-19 (Cycle 2 audit)
+# ══════════════════════════════════════════════════════════════════
+
+## The empirical basis
+
+The Cycle 2 Contingency Audit classified all 129 conditional chains in Briefings 031–060 by **read-mode** — the reading stance each took — alongside the existing break-type and LLM-signature lenses. The finding was unambiguous and held 3/3 slices with no exceptions: **read-mode predicts break severity.** Every *Inverted* and every *Held-Spurious* outcome was a Representation- or Hybrid-read; **not one Orienting-read inverted or failed at Z** across the cycle. The configuration read is shared by Orienting and Hybrid reads alike; the failure is at the terminal step — the Hybrid read collapses a live disposition into a single vector, the Representation read projects a fixed template as present fact. Full result: `synthesis/cycle-002.yaml`; discipline + pilot: `synthesis/cycle-002-shi-discipline.md`; lens definitions: `CONTINGENCY_AUDIT.md` §6.6.
+
+This is the positive counterpart to the briefing's negative disciplines. It operationalizes the **orienting-vs-knowledge-representation** theory of strategic decision-making (representation-within-bandwidth = the trap; orienting to the disposition as a field = robust under flux). The briefing's apparatus is already a propensity-type library (the structural vocabulary); this discipline keeps the *reads around it* from collapsing into single-vector predictions.
+
+## The three read-modes (tag every Inference Engine chain at creation)
+
+- **O — Orienting:** names a configuration and its *disposition*; conditional; names ≥2 release paths. The target mode.
+- **R — Representation:** asserts a fixed outcome as fact, or projects a prior-period analogue/template forward as present fact. **Rewrite as O.**
+- **H — Hybrid:** sound configuration read that collapses to a single vector at the Z-step. **Rewrite the Z-step to a field.**
+
+## Five operational rules
+
+1. **Tag O/R/H at creation.** Every Inference Engine chain (and every load-bearing forward propensity claim in a deep-dive question or the unifying thread) carries a read-mode. Any R-read, and the representation-tail of any H-read, is rewritten as O or carries an explicit justification.
+2. **Field, not vector (Rule A).** Name **≥2 genuine release paths** at every chain's Z-step. A disposition is a field of tendency, not a single outcome. This directly targets the dominant Hybrid/velocity failure (the Fed-reprices-*down* miss that inverted on the rebound).
+3. **State ripeness/timing (節, the drawn crossbow).** For every "untested-instrument"-style read, state whether the propensity's release is **near or far**, as a bounded interval — never a point date. Velocity miscalibration is the dominant break in both cycles; ripeness is the targeted fix.
+4. **Rely on propensity, not representation (Rule B).** Never carry a prior-period analogue, a trained-in template, or a modal completion as a present fact. Read *this* configuration's lean. This supersedes the cross-year factual catch at the structural level (it is *why* the 037–039 failure happened).
+5. **Run the shi-read moves** where a read is load-bearing: 形 configuration → 勢 disposition → 節 ripeness → 變 transformation → 蓄勢 positional leverage. Pragmatic, not philosophical: each is a plain-language question the read must answer.
+
+## QC Checklist — Stage 1d (Read-Mode Pass)
+
+Inserted after Stage 1c (confidentiality), before Stage 2 (pre-publish):
+
+- [ ] **Read-mode tag:** every Inference Engine chain carries O/R/H; target ≥85% O. Any R-read carries a justification or is rewritten.
+- [ ] **Field-not-vector:** every chain names ≥2 release paths at Z. No single-vector terminal steps.
+- [ ] **Ripeness:** every untested-instrument read carries a near/far ripeness clause (bounded interval, not a date).
+- [ ] **Rule B:** no read carries a prior-period analogue as present fact (the read-mode form of the cross-year check).
+
+## What This Discipline Does NOT Do
+
+- **Does NOT forbid representation.** Where the world is genuinely settled and fast-settling — a strait either opens or it does not — a representation read is correct and efficient. The discipline targets *flux*: contested, slow-settling clauses where orienting dominates. (Briefing 060's "clause that executes vs. clause that stalls" is exactly this boundary.)
+- **Does NOT reduce analytical depth or replace the other disciplines.** It is additive: a fourth stage in the two-pass discipline (1 → 1b → 1c → 1d → 2).
+- **Watch for mono-explanation.** Do not absorb every weak read into "it was an H-read." The tag must be evidenced by the chain's terminal step, not assumed from its outcome (the audit's own §10.6 failure mode applied to this lens).
