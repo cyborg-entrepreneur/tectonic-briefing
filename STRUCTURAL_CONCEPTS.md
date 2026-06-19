@@ -1,6 +1,6 @@
 # Structural Concepts Taxonomy
 
-**Last updated:** 2026-05-26 (after Briefing 047)
+**Last updated:** 2026-06-19 (Cycle 2 audit — Read-Mode/Orienting Discipline added; 42 patterns hold)
 **Concepts tracked:** 42
 **Meta-categories:** 5
 
@@ -186,3 +186,9 @@ The taxonomy is a working tool, not a settled framework.
 ## Cycle 1 Audit Attestation
 
 **Cycle 1 (Briefings 001–030) verified, 2026-05-04.** All 39 concepts substantively re-cited within the cycle window. **Zero retirements.** No reactivations (Cycle 1 has no prior retirement list to draw from). META-6 candidate "Verification Asymmetry" formally **tabled** per Cycle 1 audit; reopen condition: Cycle 2 produces ≥3 instantiations that do not cleanly map to META-1 Coupling Failure structure. Full reasoning, the 136-chain inference inventory, and the Type-I–VII break-point distribution recorded in `synthesis/cycle-001.yaml`. Cycle 2 substantive-reuse monitoring list: `weekend-translation`, `sanctuary-discount`, `optionality-arbitrage`.
+
+## Cycle 2 Audit Attestation
+
+**Cycle 2 (Briefings 031–060) verified, 2026-06-19.** 129-chain inference inventory classified across the cycle window. **Zero retirements** — the 42 hold. `akrasia-at-scale` and `emergent-concealment` flagged **retirement-watch** (zero substantive Cycle-2 re-citation) pending the next cycle. **META-6 "Verification Asymmetry" stays tabled** — Cycle 2 produced no qualifying instantiation that fails to map to META-1 Coupling Failure, so the Cycle-1 reopen condition was not met. `channel-decomposition` is the Cycle-2 signature pattern (23 citations). The candidate graveyard (Recursive/Surrogate Re-Disclosure, Venue Substitution, Symbolic Anchoring Failure) was evaluated and **not promoted** — over-naming clustered in the 037–039 representation-mode episode.
+
+**New this cycle — the Read-Mode / Orienting Discipline (O/R/H).** Structural reads are now classified by reading stance (Orienting / Representation / Hybrid), grounded in the orienting-vs-knowledge-representation theory. The Cycle-2 finding — read-mode predicts break severity (every Inverted/Held-Spurious outcome was R or H; zero O-reads inverted, across 129 chains) — is now a standing discipline: see `CONTINGENCY_AUDIT.md` §5.11/§6.6 and the daily `CLAUDE.md` Stage 1d. Full reasoning, the read-mode cross-tab, and meta-principle promotions (mp-001/003/005 toward canonical; mp-011/012/013 new) are recorded in `synthesis/cycle-002.yaml`.
