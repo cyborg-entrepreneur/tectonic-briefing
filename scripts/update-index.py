@@ -88,7 +88,9 @@ def extract_metadata(filepath):
     if num_match:
         meta['number'] = num_match.group(1).zfill(3)
         meta['number_int'] = int(num_match.group(1))
-        meta['cycle'] = 2 if meta['number_int'] >= CYCLE2_THRESHOLD else 1
+        # Cycles roll over every 30 briefings: 001-030 = C1, 031-060 = C2,
+        # 061-090 = C3, … (generalized 2026-06-20 when Cycle 3 opened at 061).
+        meta['cycle'] = (meta['number_int'] - 1) // 30 + 1
 
     # Cycle / Day marker (e.g., "CYCLE 2 · DAY 9")
     cycle_day = re.search(r'CYCLE\s*(\d+)\s*(?:&middot;|·)\s*DAY\s*(\d+)',
@@ -551,6 +553,7 @@ function applyFilter(group){
     if(group === 'all'){ e.style.display = ''; }
     else if(group === 'cycle1'){ e.style.display = (cycle === '1') ? '' : 'none'; }
     else if(group === 'cycle2'){ e.style.display = (cycle === '2') ? '' : 'none'; }
+    else if(group === 'cycle3'){ e.style.display = (cycle === '3') ? '' : 'none'; }
   });
   document.querySelectorAll('.month-group').forEach(function(mg){
     var visible = mg.querySelectorAll('.entry').length > 0 &&
@@ -839,39 +842,42 @@ META_CATEGORIES = [
 
 
 def render_cycle2_panel(today_meta):
-    """Render the Cycle 2 status panel."""
+    """Render the current-cycle structural-vocabulary status panel."""
+    cyc = today_meta['cycle'] if today_meta else 2
+
     meta_tiles = '\n'.join(
         f'<div class="meta-tile"><div class="mt-tag">{tag}</div><div class="mt-name">{name}</div></div>'
         for tag, name in META_CATEGORIES)
 
-    # If we have today's metadata and it lists candidates, render them.
-    # We do a best-effort extraction from today's HTML below; for now use
-    # the canonical list (snapshot from Briefing 039, 13 May 2026).
+    # Best-effort extraction of today's candidate list from the briefing HTML;
+    # fall back to the current monitoring pool (refreshed 2026-06-20 as Cycle 3
+    # opened at Briefing 061). Update this list when the candidate pool changes.
     candidates = extract_cycle2_candidates(today_meta) if today_meta else []
     if not candidates:
-        # Fallback to a documented placeholder if extraction fails.
         candidates = [
-            ('Bilateral Channel Decomposition', 'CANDIDATE',
-             'Both parties decompose bundled commitments. Briefing 033+.'),
-            ('Asymmetric Reversibility', 'CANDIDATE',
-             'Decomposition reversibility paths are structurally asymmetric.'),
-            ('Parallel-Path Persistence', 'CANDIDATE',
-             'Deal-path and no-deal-path acquire substrate simultaneously.'),
-            ('Information-Suppression Decomposition', 'CANDIDATE',
-             'Decomposition via administrative concealment.'),
-            ('Three-Bilateral Stack', 'CANDIDATE',
-             'Three+ bilateral architectures occupy parallel persistence.'),
-            ('Disclosure-Mode Discount', 'CANDIDATE',
-             'Marketplace penalty proportional to reversal probability.'),
-            ('Credential Institutionalization', 'CANDIDATE',
-             'Commemorative event converted into recurring architecture.'),
-            ('Surrogate Re-Disclosure', 'REFINED',
-             'Delegation-level mode re-occupation preserves principal optionality.'),
+            ('Declarative Reversal', 'CANDIDATE',
+             'An already-executed clause re-contested by announcement, not by physical reversal. New Briefing 061.'),
+            ('Continuity Mispricing', 'CANDIDATE',
+             'A transition priced as continuity binds, on first exercise, as a departure. Carried from Briefing 059.'),
+            ('Pre-Release Access Regime', 'CANDIDATE',
+             'The state inserts a recall or inspection chokepoint into the frontier-model pipeline. Carried from Briefing 058.'),
         ]
 
     candidate_html = '\n'.join(
         f'<div class="candidate"><strong>{name} · {status}</strong>{blurb}</div>'
         for name, status, blurb in candidates)
+
+    if cyc >= 3:
+        intro = (f'<p>Cycle {cyc} begins at <strong>Briefing 061</strong> (20 June 2026). '
+                 'Cycle 1 (Briefings 001–030) established the core <em>five-meta-category</em> '
+                 'taxonomy of the structural vocabulary; Cycle 2 (Briefings 031–060) applied a '
+                 'stricter <em>candidate-and-refinement</em> discipline and closed with a full '
+                 'Contingency Audit — zero retirements, the 42 patterns holding. '
+                 f'Cycle {cyc} continues the discipline: provisional patterns enter monitoring, '
+                 'get tested by the next empirical event, and either advance toward vocabulary '
+                 'status, get refined, or get refuted.</p>')
+    else:
+        intro = CYCLE2_INTRO
 
     most_recent_vocab = (
         'Most recent vocabulary promotion: '
@@ -882,15 +888,15 @@ def render_cycle2_panel(today_meta):
 
     return f"""
 <section class="cycle-panel">
-<h2>Cycle 2 Status</h2>
+<h2>Cycle {cyc} Status</h2>
 <div class="cycle-sub">Candidate-and-refinement discipline · 5 meta-categories · Monitoring threshold</div>
-{CYCLE2_INTRO}
+{intro}
 
 <div class="meta-grid">
 {meta_tiles}
 </div>
 
-<p style="font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ambb);margin-top:1.2rem;margin-bottom:.6rem">Cycle 2 Monitoring Candidates</p>
+<p style="font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ambb);margin-top:1.2rem;margin-bottom:.6rem">Cycle {cyc} Monitoring Candidates</p>
 <div class="candidate-list">
 {candidate_html}
 </div>
@@ -984,7 +990,8 @@ def render_archive(metas, audit_links):
 <span class="fl-label">Filter:</span>
 <button class="active" data-filter="all" onclick="applyFilter('all')">All</button>
 <button data-filter="cycle1" class="amb" onclick="applyFilter('cycle1')">Cycle 1 (001–030)</button>
-<button data-filter="cycle2" class="gold" onclick="applyFilter('cycle2')">Cycle 2 (031–)</button>
+<button data-filter="cycle2" class="gold" onclick="applyFilter('cycle2')">Cycle 2 (031–060)</button>
+<button data-filter="cycle3" class="gold" onclick="applyFilter('cycle3')">Cycle 3 (061–)</button>
 </div>
 
 {audits_html}
@@ -995,9 +1002,9 @@ def render_archive(metas, audit_links):
 
 
 def render_entry(m):
-    cycle_class = 'cycle2' if m['cycle'] == 2 else ''
-    cycle_marker = (f'<span class="entry-cycle2">Cycle 2</span>'
-                    if m['cycle'] == 2 else 'Cycle 1')
+    cycle_class = 'cycle2' if m['cycle'] >= 2 else ''
+    cycle_marker = (f'<span class="entry-cycle2">Cycle {m["cycle"]}</span>'
+                    if m['cycle'] >= 2 else 'Cycle 1')
     # Strip the trailing day-of-week from display_date if present (already in dow column)
     date_clean = re.sub(r'\s*(?:&middot;|·)\s*(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s*$',
                         '', m['display_date'])
