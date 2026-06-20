@@ -4,6 +4,10 @@
 *~
 .env
 
+# Python build artifacts
+__pycache__/
+*.pyc
+
 # Internal fact-verification scratch files — must never be published.
 .verified-facts-*.md
 
