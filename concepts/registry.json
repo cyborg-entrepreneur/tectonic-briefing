@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-20T19:02:30.258667",
-  "total_briefings": 61,
+  "generated_at": "2026-06-22T10:42:01.785963",
+  "total_briefings": 62,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -18,7 +18,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 7,
       "brief": "The official account of a situation operates as a parallel reality rather than a description of the physical one.",
-      "citation_count": 8
+      "citation_count": 9
     },
     {
       "name": "Akrasia at Scale",
@@ -72,7 +72,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 10,
       "brief": "Maximum rhetorical escalation and diplomatic opening occur simultaneously, not sequentially.",
-      "citation_count": 6
+      "citation_count": 7
     },
     {
       "name": "Credential Foreclosure",
@@ -162,7 +162,7 @@
       "meta_name": "Bypass Inversion",
       "source_briefing": 6,
       "brief": "When stalled diplomatic tracks spawn parallel tracks that justify their own continuation through each other's existence.",
-      "citation_count": 5
+      "citation_count": 6
     },
     {
       "name": "Sovereignty Arbitrage",
@@ -189,7 +189,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 1,
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
-      "citation_count": 4
+      "citation_count": 5
     },
     {
       "name": "Tipping Cascade",
@@ -216,7 +216,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 23,
       "brief": "A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the\u2026",
-      "citation_count": 20
+      "citation_count": 21
     },
     {
       "name": "Reversibility Asymmetry",
@@ -261,7 +261,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
-      "citation_count": 56
+      "citation_count": 57
     },
     {
       "name": "Optionality Arbitrage",
@@ -315,7 +315,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When a distinction assumed stable dissolves.",
-      "citation_count": 10
+      "citation_count": 11
     },
     {
       "name": "Governance Vacuum",
@@ -324,7 +324,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When institutional capacity lags behind the pace of change.",
-      "citation_count": 15
+      "citation_count": 16
     },
     {
       "name": "Constructive Ambiguity",
