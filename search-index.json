@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-06-22T10:42:01.786286",
+  "generated_at": "2026-06-23T16:28:19.738647",
   "briefings": [
+    {
+      "number": "062",
+      "date": "2026-06-23",
+      "display_date": "23 June 2026",
+      "dow": "Tuesday",
+      "title": "Briefing 062 \u00b7 23 June 2026",
+      "thread": "De-Escalation by Instrument-Sheathing",
+      "cycle": 3,
+      "url": "briefings/2026-06-23.html"
+    },
     {
       "number": "062",
       "date": "2026-06-22",
@@ -660,7 +670,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
       "source_briefing": 3,
-      "citation_count": 18,
+      "citation_count": 19,
       "url": "concepts/capability-opacity.html"
     },
     {
@@ -730,7 +740,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal.",
       "source_briefing": 21,
-      "citation_count": 24,
+      "citation_count": 25,
       "url": "concepts/peripheral-assertion.html"
     },
     {
@@ -830,7 +840,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "source_briefing": 1,
-      "citation_count": 5,
+      "citation_count": 6,
       "url": "concepts/chokepoint-cascade.html"
     },
     {
@@ -860,7 +870,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the\u2026",
       "source_briefing": 23,
-      "citation_count": 21,
+      "citation_count": 22,
       "url": "concepts/keystone-removal.html"
     },
     {
@@ -880,7 +890,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Smoothed signals produce maximum dispersion within a single decision window.",
       "source_briefing": 26,
-      "citation_count": 3,
+      "citation_count": 4,
       "url": "concepts/verdict-compression.html"
     },
     {
@@ -910,7 +920,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 57,
+      "citation_count": 58,
       "url": "concepts/commons-enclosure.html"
     },
     {
@@ -980,7 +990,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional capacity lags behind the pace of change.",
       "source_briefing": 1,
-      "citation_count": 16,
+      "citation_count": 17,
       "url": "concepts/governance-vacuum.html"
     },
     {
@@ -990,7 +1000,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When a diplomatic agreement succeeds precisely because its terms support mutually exclusive interpretations.",
       "source_briefing": 4,
-      "citation_count": 12,
+      "citation_count": 13,
       "url": "concepts/constructive-ambiguity.html"
     },
     {
@@ -1020,7 +1030,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment.",
       "source_briefing": 30,
-      "citation_count": 23,
+      "citation_count": 24,
       "url": "concepts/sanctuary-discount.html"
     },
     {

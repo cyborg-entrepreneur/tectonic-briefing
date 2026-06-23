@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-22T10:42:01.785963",
-  "total_briefings": 62,
+  "generated_at": "2026-06-23T16:28:19.738414",
+  "total_briefings": 63,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -36,7 +36,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 3,
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
-      "citation_count": 18
+      "citation_count": 19
     },
     {
       "name": "Emergent Concealment",
@@ -99,7 +99,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 21,
       "brief": "The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal.",
-      "citation_count": 24
+      "citation_count": 25
     },
     {
       "name": "Sabbath Visibility",
@@ -189,7 +189,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 1,
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
-      "citation_count": 5
+      "citation_count": 6
     },
     {
       "name": "Tipping Cascade",
@@ -216,7 +216,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 23,
       "brief": "A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the\u2026",
-      "citation_count": 21
+      "citation_count": 22
     },
     {
       "name": "Reversibility Asymmetry",
@@ -234,7 +234,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 26,
       "brief": "Smoothed signals produce maximum dispersion within a single decision window.",
-      "citation_count": 3
+      "citation_count": 4
     },
     {
       "name": "Effective-Date Convergence",
@@ -261,7 +261,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
-      "citation_count": 57
+      "citation_count": 58
     },
     {
       "name": "Optionality Arbitrage",
@@ -324,7 +324,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When institutional capacity lags behind the pace of change.",
-      "citation_count": 16
+      "citation_count": 17
     },
     {
       "name": "Constructive Ambiguity",
@@ -333,7 +333,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 4,
       "brief": "When a diplomatic agreement succeeds precisely because its terms support mutually exclusive interpretations.",
-      "citation_count": 12
+      "citation_count": 13
     },
     {
       "name": "Ceasefire Acceleration",
@@ -360,7 +360,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 30,
       "brief": "Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment.",
-      "citation_count": 23
+      "citation_count": 24
     },
     {
       "name": "Channel Decomposition",
