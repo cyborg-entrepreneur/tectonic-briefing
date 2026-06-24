@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-06-23T16:28:19.738647",
+  "generated_at": "2026-06-24T12:20:18.599876",
   "briefings": [
+    {
+      "number": "063",
+      "date": "2026-06-24",
+      "display_date": "24 June 2026",
+      "dow": "Wednesday",
+      "title": "Briefing 063 \u00b7 24 June 2026",
+      "thread": "Declarations Outrunning Their Substance",
+      "cycle": 3,
+      "url": "briefings/2026-06-24.html"
+    },
     {
       "number": "062",
       "date": "2026-06-23",
@@ -670,7 +680,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
       "source_briefing": 3,
-      "citation_count": 19,
+      "citation_count": 20,
       "url": "concepts/capability-opacity.html"
     },
     {
@@ -830,7 +840,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
       "source_briefing": 1,
-      "citation_count": 6,
+      "citation_count": 7,
       "url": "concepts/buffer-collapse.html"
     },
     {
@@ -840,7 +850,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "source_briefing": 1,
-      "citation_count": 6,
+      "citation_count": 7,
       "url": "concepts/chokepoint-cascade.html"
     },
     {
@@ -860,7 +870,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When an imposed temporal boundary forces latent structural forces into visibility.",
       "source_briefing": 2,
-      "citation_count": 2,
+      "citation_count": 3,
       "url": "concepts/deadline-revelation.html"
     },
     {
@@ -870,7 +880,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the\u2026",
       "source_briefing": 23,
-      "citation_count": 22,
+      "citation_count": 23,
       "url": "concepts/keystone-removal.html"
     },
     {
@@ -880,7 +890,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Physical conditions tend to irreversibility while institutional conditions tend to reversibility, so the rate at which a kinetic substrate progresses is structurally faster than the rate at which the institutional\u2026",
       "source_briefing": 9,
-      "citation_count": 9,
+      "citation_count": 10,
       "url": "concepts/reversibility-asymmetry.html"
     },
     {
@@ -890,7 +900,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Smoothed signals produce maximum dispersion within a single decision window.",
       "source_briefing": 26,
-      "citation_count": 4,
+      "citation_count": 5,
       "url": "concepts/verdict-compression.html"
     },
     {
@@ -920,7 +930,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 58,
+      "citation_count": 59,
       "url": "concepts/commons-enclosure.html"
     },
     {
@@ -970,7 +980,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act.",
       "source_briefing": 2,
-      "citation_count": 15,
+      "citation_count": 16,
       "url": "concepts/capacity-hollowing.html"
     },
     {
@@ -990,7 +1000,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional capacity lags behind the pace of change.",
       "source_briefing": 1,
-      "citation_count": 17,
+      "citation_count": 18,
       "url": "concepts/governance-vacuum.html"
     },
     {
@@ -1000,7 +1010,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When a diplomatic agreement succeeds precisely because its terms support mutually exclusive interpretations.",
       "source_briefing": 4,
-      "citation_count": 13,
+      "citation_count": 14,
       "url": "concepts/constructive-ambiguity.html"
     },
     {
@@ -1020,7 +1030,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Entrenched illiberal rule reversed through democratic processes; the form of the institution holds the work-doing power even when the substantive trajectory had appeared to decouple from it.",
       "source_briefing": 9,
-      "citation_count": 10,
+      "citation_count": 11,
       "url": "concepts/electoral-correction.html"
     },
     {
@@ -1040,7 +1050,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
       "source_briefing": 32,
-      "citation_count": 23,
+      "citation_count": 24,
       "url": "concepts/channel-decomposition.html"
     },
     {
@@ -1050,7 +1060,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk\u2026",
       "source_briefing": 31,
-      "citation_count": 19,
+      "citation_count": 20,
       "url": "concepts/tail-calibration-failure.html"
     }
   ]
