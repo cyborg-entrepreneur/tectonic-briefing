@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-06-27T14:45:35.359733",
+  "generated_at": "2026-06-29T14:31:19.367504",
   "briefings": [
+    {
+      "number": "067",
+      "date": "2026-06-29",
+      "display_date": "29 June 2026",
+      "dow": "Monday",
+      "title": "Briefing 067 \u00b7 29 June 2026",
+      "thread": "Declared Settled, Still Contested \u2014 The Day Traded Announcements as Facts",
+      "cycle": 3,
+      "url": "briefings/2026-06-29.html"
+    },
     {
       "number": "066",
       "date": "2026-06-27",
@@ -740,7 +750,7 @@
       "meta_name": "Coupling Failure",
       "brief": "Declared policy retreats to physically feasible scope within hours of issuance, leaving the original declaration as the rhetorical credential while the operational substance has been silently narrowed.",
       "source_briefing": 9,
-      "citation_count": 6,
+      "citation_count": 7,
       "url": "concepts/scope-retreat.html"
     },
     {
@@ -770,7 +780,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
       "source_briefing": 20,
-      "citation_count": 10,
+      "citation_count": 11,
       "url": "concepts/verification-mode-asymmetry.html"
     },
     {
@@ -820,7 +830,7 @@
       "meta_name": "Bypass Inversion",
       "brief": "When an escape route from a structural problem becomes itself the locus of the structural problem \u2014 because the route was constructed precisely to evade what is now targeting it.",
       "source_briefing": 7,
-      "citation_count": 3,
+      "citation_count": 4,
       "url": "concepts/bypass-capture.html"
     },
     {
@@ -840,7 +850,7 @@
       "meta_name": "Bypass Inversion",
       "brief": "When the deliberate ambiguity that enabled an agreement becomes the mechanism of its failure.",
       "source_briefing": 5,
-      "citation_count": 7,
+      "citation_count": 8,
       "url": "concepts/conditional-collapse.html"
     },
     {
@@ -870,7 +880,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
       "source_briefing": 1,
-      "citation_count": 10,
+      "citation_count": 11,
       "url": "concepts/buffer-collapse.html"
     },
     {
@@ -890,7 +900,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When crossing one threshold triggers others across domains.",
       "source_briefing": 1,
-      "citation_count": 18,
+      "citation_count": 19,
       "url": "concepts/tipping-cascade.html"
     },
     {
@@ -920,7 +930,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Physical conditions tend to irreversibility while institutional conditions tend to reversibility, so the rate at which a kinetic substrate progresses is structurally faster than the rate at which the institutional\u2026",
       "source_briefing": 9,
-      "citation_count": 13,
+      "citation_count": 14,
       "url": "concepts/reversibility-asymmetry.html"
     },
     {
@@ -930,7 +940,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Smoothed signals produce maximum dispersion within a single decision window.",
       "source_briefing": 26,
-      "citation_count": 8,
+      "citation_count": 9,
       "url": "concepts/verdict-compression.html"
     },
     {
@@ -960,7 +970,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 62,
+      "citation_count": 63,
       "url": "concepts/commons-enclosure.html"
     },
     {
@@ -980,7 +990,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When the most prominent advocate for a strategic paradigm abandons it under competitive pressure, redefining the competitive landscape for all remaining participants.",
       "source_briefing": 5,
-      "citation_count": 8,
+      "citation_count": 9,
       "url": "concepts/paradigm-defection.html"
     },
     {
@@ -1000,7 +1010,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "A multilateral coordination regime loses one of its load-bearing participants under conditions in which an external shock has suppressed the cost of defection and a parallel bilateral arrangement has substituted for the\u2026",
       "source_briefing": 24,
-      "citation_count": 14,
+      "citation_count": 15,
       "url": "concepts/cartel-dissolution.html"
     },
     {
@@ -1020,7 +1030,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When a distinction assumed stable dissolves.",
       "source_briefing": 1,
-      "citation_count": 14,
+      "citation_count": 15,
       "url": "concepts/category-collapse.html"
     },
     {
@@ -1030,7 +1040,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional capacity lags behind the pace of change.",
       "source_briefing": 1,
-      "citation_count": 21,
+      "citation_count": 22,
       "url": "concepts/governance-vacuum.html"
     },
     {
@@ -1040,7 +1050,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When a diplomatic agreement succeeds precisely because its terms support mutually exclusive interpretations.",
       "source_briefing": 4,
-      "citation_count": 14,
+      "citation_count": 15,
       "url": "concepts/constructive-ambiguity.html"
     },
     {
@@ -1060,7 +1070,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Entrenched illiberal rule reversed through democratic processes; the form of the institution holds the work-doing power even when the substantive trajectory had appeared to decouple from it.",
       "source_briefing": 9,
-      "citation_count": 13,
+      "citation_count": 14,
       "url": "concepts/electoral-correction.html"
     },
     {
@@ -1070,7 +1080,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment.",
       "source_briefing": 30,
-      "citation_count": 28,
+      "citation_count": 29,
       "url": "concepts/sanctuary-discount.html"
     },
     {
@@ -1080,7 +1090,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
       "source_briefing": 32,
-      "citation_count": 26,
+      "citation_count": 27,
       "url": "concepts/channel-decomposition.html"
     },
     {
@@ -1090,7 +1100,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk\u2026",
       "source_briefing": 31,
-      "citation_count": 23,
+      "citation_count": 24,
       "url": "concepts/tail-calibration-failure.html"
     }
   ]
