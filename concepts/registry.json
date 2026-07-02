@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-01T12:42:42.017492",
-  "total_briefings": 69,
+  "generated_at": "2026-07-02T13:15:54.498833",
+  "total_briefings": 70,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -9,7 +9,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 6,
       "brief": "Accurate observation of an actor's internal state, intent, or capability does not constrain the actor's behavior.",
-      "citation_count": 4
+      "citation_count": 5
     },
     {
       "name": "Narrative-Physical Decoupling",
@@ -54,7 +54,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 8,
       "brief": "A deployed instrument exceeds its deployer's control such that its persistence is decoupled from the political-or-diplomatic agreement that authorized it.",
-      "citation_count": 8
+      "citation_count": 9
     },
     {
       "name": "Scope Retreat",
@@ -90,7 +90,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 20,
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
-      "citation_count": 12
+      "citation_count": 13
     },
     {
       "name": "Peripheral Assertion",
@@ -99,7 +99,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 21,
       "brief": "The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal.",
-      "citation_count": 27
+      "citation_count": 28
     },
     {
       "name": "Sabbath Visibility",
@@ -144,7 +144,7 @@
       "meta_name": "Bypass Inversion",
       "source_briefing": 2,
       "brief": "When a parallel transaction system emerges alongside the dominant one, initially invisible, then suddenly structural.",
-      "citation_count": 5
+      "citation_count": 6
     },
     {
       "name": "Conditional Collapse",
@@ -180,7 +180,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 1,
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
-      "citation_count": 11
+      "citation_count": 12
     },
     {
       "name": "Chokepoint Cascade",
@@ -189,7 +189,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 1,
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
-      "citation_count": 10
+      "citation_count": 11
     },
     {
       "name": "Tipping Cascade",
@@ -198,7 +198,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 1,
       "brief": "When crossing one threshold triggers others across domains.",
-      "citation_count": 20
+      "citation_count": 21
     },
     {
       "name": "Deadline Revelation",
@@ -225,7 +225,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 9,
       "brief": "Physical conditions tend to irreversibility while institutional conditions tend to reversibility, so the rate at which a kinetic substrate progresses is structurally faster than the rate at which the institutional\u2026",
-      "citation_count": 14
+      "citation_count": 15
     },
     {
       "name": "Verdict Compression",
@@ -261,7 +261,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
-      "citation_count": 64
+      "citation_count": 65
     },
     {
       "name": "Optionality Arbitrage",
@@ -279,7 +279,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 5,
       "brief": "When the most prominent advocate for a strategic paradigm abandons it under competitive pressure, redefining the competitive landscape for all remaining participants.",
-      "citation_count": 10
+      "citation_count": 11
     },
     {
       "name": "Process as Destination",
@@ -315,7 +315,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When a distinction assumed stable dissolves.",
-      "citation_count": 16
+      "citation_count": 17
     },
     {
       "name": "Governance Vacuum",
@@ -324,7 +324,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When institutional capacity lags behind the pace of change.",
-      "citation_count": 23
+      "citation_count": 24
     },
     {
       "name": "Constructive Ambiguity",
@@ -351,7 +351,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 9,
       "brief": "Entrenched illiberal rule reversed through democratic processes; the form of the institution holds the work-doing power even when the substantive trajectory had appeared to decouple from it.",
-      "citation_count": 14
+      "citation_count": 15
     },
     {
       "name": "Sanctuary Discount",
@@ -360,7 +360,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 30,
       "brief": "Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment.",
-      "citation_count": 30
+      "citation_count": 31
     },
     {
       "name": "Channel Decomposition",
