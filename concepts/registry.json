@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-09T13:30:44.134009",
-  "total_briefings": 74,
+  "generated_at": "2026-07-13T10:32:14.892586",
+  "total_briefings": 75,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -18,7 +18,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 7,
       "brief": "The official account of a situation operates as a parallel reality rather than a description of the physical one.",
-      "citation_count": 14
+      "citation_count": 15
     },
     {
       "name": "Akrasia at Scale",
@@ -36,7 +36,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 3,
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
-      "citation_count": 25
+      "citation_count": 26
     },
     {
       "name": "Emergent Concealment",
@@ -54,7 +54,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 8,
       "brief": "A deployed instrument exceeds its deployer's control such that its persistence is decoupled from the political-or-diplomatic agreement that authorized it.",
-      "citation_count": 10
+      "citation_count": 11
     },
     {
       "name": "Scope Retreat",
@@ -90,7 +90,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 20,
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
-      "citation_count": 17
+      "citation_count": 18
     },
     {
       "name": "Peripheral Assertion",
@@ -99,7 +99,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 21,
       "brief": "The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal.",
-      "citation_count": 32
+      "citation_count": 33
     },
     {
       "name": "Sabbath Visibility",
@@ -144,7 +144,7 @@
       "meta_name": "Bypass Inversion",
       "source_briefing": 2,
       "brief": "When a parallel transaction system emerges alongside the dominant one, initially invisible, then suddenly structural.",
-      "citation_count": 7
+      "citation_count": 8
     },
     {
       "name": "Conditional Collapse",
@@ -153,7 +153,7 @@
       "meta_name": "Bypass Inversion",
       "source_briefing": 5,
       "brief": "When the deliberate ambiguity that enabled an agreement becomes the mechanism of its failure.",
-      "citation_count": 10
+      "citation_count": 11
     },
     {
       "name": "Negotiation Multiplication",
@@ -171,7 +171,7 @@
       "meta_name": "Bypass Inversion",
       "source_briefing": 3,
       "brief": "When a state exploits the gap between its legal sovereignty claims and the international community's capacity to enforce alternative norms.",
-      "citation_count": 6
+      "citation_count": 7
     },
     {
       "name": "Buffer Collapse",
@@ -180,7 +180,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 1,
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
-      "citation_count": 15
+      "citation_count": 16
     },
     {
       "name": "Chokepoint Cascade",
@@ -189,7 +189,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 1,
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
-      "citation_count": 15
+      "citation_count": 16
     },
     {
       "name": "Tipping Cascade",
@@ -198,7 +198,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 1,
       "brief": "When crossing one threshold triggers others across domains.",
-      "citation_count": 25
+      "citation_count": 26
     },
     {
       "name": "Deadline Revelation",
@@ -216,7 +216,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 23,
       "brief": "A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the\u2026",
-      "citation_count": 26
+      "citation_count": 27
     },
     {
       "name": "Reversibility Asymmetry",
@@ -225,7 +225,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 9,
       "brief": "Physical conditions tend to irreversibility while institutional conditions tend to reversibility, so the rate at which a kinetic substrate progresses is structurally faster than the rate at which the institutional\u2026",
-      "citation_count": 17
+      "citation_count": 18
     },
     {
       "name": "Verdict Compression",
@@ -234,7 +234,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 26,
       "brief": "Smoothed signals produce maximum dispersion within a single decision window.",
-      "citation_count": 11
+      "citation_count": 12
     },
     {
       "name": "Effective-Date Convergence",
@@ -261,7 +261,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
-      "citation_count": 69
+      "citation_count": 70
     },
     {
       "name": "Optionality Arbitrage",
@@ -297,7 +297,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 24,
       "brief": "A multilateral coordination regime loses one of its load-bearing participants under conditions in which an external shock has suppressed the cost of defection and a parallel bilateral arrangement has substituted for the\u2026",
-      "citation_count": 17
+      "citation_count": 18
     },
     {
       "name": "Capacity Hollowing",
@@ -306,7 +306,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 2,
       "brief": "When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act.",
-      "citation_count": 19
+      "citation_count": 20
     },
     {
       "name": "Category Collapse",
@@ -315,7 +315,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When a distinction assumed stable dissolves.",
-      "citation_count": 21
+      "citation_count": 22
     },
     {
       "name": "Governance Vacuum",
@@ -324,7 +324,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When institutional capacity lags behind the pace of change.",
-      "citation_count": 28
+      "citation_count": 29
     },
     {
       "name": "Constructive Ambiguity",
@@ -333,7 +333,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 4,
       "brief": "When a diplomatic agreement succeeds precisely because its terms support mutually exclusive interpretations.",
-      "citation_count": 19
+      "citation_count": 20
     },
     {
       "name": "Ceasefire Acceleration",
@@ -351,7 +351,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 9,
       "brief": "Entrenched illiberal rule reversed through democratic processes; the form of the institution holds the work-doing power even when the substantive trajectory had appeared to decouple from it.",
-      "citation_count": 15
+      "citation_count": 16
     },
     {
       "name": "Sanctuary Discount",
@@ -360,7 +360,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 30,
       "brief": "Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment.",
-      "citation_count": 35
+      "citation_count": 36
     },
     {
       "name": "Channel Decomposition",
@@ -378,7 +378,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 31,
       "brief": "The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk\u2026",
-      "citation_count": 27
+      "citation_count": 28
     }
   ]
 }
