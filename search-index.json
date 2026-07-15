@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-07-14T13:12:04.704985",
+  "generated_at": "2026-07-15T10:20:27.302622",
   "briefings": [
+    {
+      "number": "076",
+      "date": "2026-07-15",
+      "display_date": "15 July 2026",
+      "dow": "Wednesday",
+      "title": "Briefing 076 \u00b7 15 July 2026",
+      "thread": "The Blockade Answers the Toll \u2014 When the Remedy for an Enclosure Is Another Enclosure, and the Contest Migrates Instead of Resolving",
+      "cycle": 3,
+      "url": "briefings/2026-07-15.html"
+    },
     {
       "number": "075",
       "date": "2026-07-14",
@@ -770,7 +780,7 @@
       "meta_name": "Coupling Failure",
       "brief": "Accurate observation of an actor's internal state, intent, or capability does not constrain the actor's behavior.",
       "source_briefing": 6,
-      "citation_count": 10,
+      "citation_count": 11,
       "url": "concepts/observation-action-decoupling.html"
     },
     {
@@ -780,7 +790,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The official account of a situation operates as a parallel reality rather than a description of the physical one.",
       "source_briefing": 7,
-      "citation_count": 16,
+      "citation_count": 17,
       "url": "concepts/narrative-physical-decoupling.html"
     },
     {
@@ -790,7 +800,7 @@
       "meta_name": "Coupling Failure",
       "brief": "Institutional and computational versions of weakness of will: the actor knows the better course (externally verified by interpretability tools or public observation) and chooses the worse.",
       "source_briefing": 6,
-      "citation_count": 2,
+      "citation_count": 3,
       "url": "concepts/akrasia-at-scale.html"
     },
     {
@@ -800,7 +810,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
       "source_briefing": 3,
-      "citation_count": 27,
+      "citation_count": 28,
       "url": "concepts/capability-opacity.html"
     },
     {
@@ -870,7 +880,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal.",
       "source_briefing": 21,
-      "citation_count": 34,
+      "citation_count": 35,
       "url": "concepts/peripheral-assertion.html"
     },
     {
@@ -910,7 +920,7 @@
       "meta_name": "Bypass Inversion",
       "brief": "When an escape route from a structural problem becomes itself the locus of the structural problem \u2014 because the route was constructed precisely to evade what is now targeting it.",
       "source_briefing": 7,
-      "citation_count": 8,
+      "citation_count": 9,
       "url": "concepts/bypass-capture.html"
     },
     {
@@ -920,7 +930,7 @@
       "meta_name": "Bypass Inversion",
       "brief": "When a parallel transaction system emerges alongside the dominant one, initially invisible, then suddenly structural.",
       "source_briefing": 2,
-      "citation_count": 9,
+      "citation_count": 10,
       "url": "concepts/shadow-settlement.html"
     },
     {
@@ -950,7 +960,7 @@
       "meta_name": "Bypass Inversion",
       "brief": "When a state exploits the gap between its legal sovereignty claims and the international community's capacity to enforce alternative norms.",
       "source_briefing": 3,
-      "citation_count": 7,
+      "citation_count": 8,
       "url": "concepts/sovereignty-arbitrage.html"
     },
     {
@@ -960,7 +970,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
       "source_briefing": 1,
-      "citation_count": 17,
+      "citation_count": 18,
       "url": "concepts/buffer-collapse.html"
     },
     {
@@ -970,7 +980,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "source_briefing": 1,
-      "citation_count": 17,
+      "citation_count": 18,
       "url": "concepts/chokepoint-cascade.html"
     },
     {
@@ -980,7 +990,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When crossing one threshold triggers others across domains.",
       "source_briefing": 1,
-      "citation_count": 27,
+      "citation_count": 28,
       "url": "concepts/tipping-cascade.html"
     },
     {
@@ -990,7 +1000,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When an imposed temporal boundary forces latent structural forces into visibility.",
       "source_briefing": 2,
-      "citation_count": 11,
+      "citation_count": 12,
       "url": "concepts/deadline-revelation.html"
     },
     {
@@ -1000,7 +1010,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the\u2026",
       "source_briefing": 23,
-      "citation_count": 28,
+      "citation_count": 29,
       "url": "concepts/keystone-removal.html"
     },
     {
@@ -1010,7 +1020,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Physical conditions tend to irreversibility while institutional conditions tend to reversibility, so the rate at which a kinetic substrate progresses is structurally faster than the rate at which the institutional\u2026",
       "source_briefing": 9,
-      "citation_count": 19,
+      "citation_count": 20,
       "url": "concepts/reversibility-asymmetry.html"
     },
     {
@@ -1020,7 +1030,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Smoothed signals produce maximum dispersion within a single decision window.",
       "source_briefing": 26,
-      "citation_count": 13,
+      "citation_count": 14,
       "url": "concepts/verdict-compression.html"
     },
     {
@@ -1050,7 +1060,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 71,
+      "citation_count": 72,
       "url": "concepts/commons-enclosure.html"
     },
     {
@@ -1060,7 +1070,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "Competitive advantage existing only in crisis.",
       "source_briefing": 1,
-      "citation_count": 8,
+      "citation_count": 9,
       "url": "concepts/optionality-arbitrage.html"
     },
     {
@@ -1070,7 +1080,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When the most prominent advocate for a strategic paradigm abandons it under competitive pressure, redefining the competitive landscape for all remaining participants.",
       "source_briefing": 5,
-      "citation_count": 12,
+      "citation_count": 13,
       "url": "concepts/paradigm-defection.html"
     },
     {
@@ -1080,7 +1090,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
       "source_briefing": 7,
-      "citation_count": 6,
+      "citation_count": 7,
       "url": "concepts/process-as-destination.html"
     },
     {
@@ -1120,7 +1130,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional capacity lags behind the pace of change.",
       "source_briefing": 1,
-      "citation_count": 30,
+      "citation_count": 31,
       "url": "concepts/governance-vacuum.html"
     },
     {
@@ -1140,7 +1150,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When a pause in kinetic conflict accelerates the structural, institutional, and economic transformations the conflict initiated.",
       "source_briefing": 4,
-      "citation_count": 11,
+      "citation_count": 12,
       "url": "concepts/ceasefire-acceleration.html"
     },
     {
@@ -1160,7 +1170,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment.",
       "source_briefing": 30,
-      "citation_count": 37,
+      "citation_count": 38,
       "url": "concepts/sanctuary-discount.html"
     },
     {
