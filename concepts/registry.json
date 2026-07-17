@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-16T14:09:59.706290",
-  "total_briefings": 78,
+  "generated_at": "2026-07-17T14:25:27.427478",
+  "total_briefings": 79,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -9,7 +9,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 6,
       "brief": "Accurate observation of an actor's internal state, intent, or capability does not constrain the actor's behavior.",
-      "citation_count": 12
+      "citation_count": 13
     },
     {
       "name": "Narrative-Physical Decoupling",
@@ -27,7 +27,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 6,
       "brief": "Institutional and computational versions of weakness of will: the actor knows the better course (externally verified by interpretability tools or public observation) and chooses the worse.",
-      "citation_count": 4
+      "citation_count": 5
     },
     {
       "name": "Capability Opacity",
@@ -36,7 +36,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 3,
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
-      "citation_count": 29
+      "citation_count": 30
     },
     {
       "name": "Emergent Concealment",
@@ -54,7 +54,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 8,
       "brief": "A deployed instrument exceeds its deployer's control such that its persistence is decoupled from the political-or-diplomatic agreement that authorized it.",
-      "citation_count": 11
+      "citation_count": 12
     },
     {
       "name": "Scope Retreat",
@@ -72,7 +72,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 10,
       "brief": "Maximum rhetorical escalation and diplomatic opening occur simultaneously, not sequentially.",
-      "citation_count": 8
+      "citation_count": 9
     },
     {
       "name": "Credential Foreclosure",
@@ -99,7 +99,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 21,
       "brief": "The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal.",
-      "citation_count": 36
+      "citation_count": 37
     },
     {
       "name": "Sabbath Visibility",
@@ -171,7 +171,7 @@
       "meta_name": "Bypass Inversion",
       "source_briefing": 3,
       "brief": "When a state exploits the gap between its legal sovereignty claims and the international community's capacity to enforce alternative norms.",
-      "citation_count": 9
+      "citation_count": 10
     },
     {
       "name": "Buffer Collapse",
@@ -180,7 +180,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 1,
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
-      "citation_count": 19
+      "citation_count": 20
     },
     {
       "name": "Chokepoint Cascade",
@@ -189,7 +189,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 1,
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
-      "citation_count": 18
+      "citation_count": 19
     },
     {
       "name": "Tipping Cascade",
@@ -198,7 +198,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 1,
       "brief": "When crossing one threshold triggers others across domains.",
-      "citation_count": 29
+      "citation_count": 30
     },
     {
       "name": "Deadline Revelation",
@@ -207,7 +207,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 2,
       "brief": "When an imposed temporal boundary forces latent structural forces into visibility.",
-      "citation_count": 13
+      "citation_count": 14
     },
     {
       "name": "Keystone Removal",
@@ -216,7 +216,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 23,
       "brief": "A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the\u2026",
-      "citation_count": 30
+      "citation_count": 31
     },
     {
       "name": "Reversibility Asymmetry",
@@ -225,7 +225,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 9,
       "brief": "Physical conditions tend to irreversibility while institutional conditions tend to reversibility, so the rate at which a kinetic substrate progresses is structurally faster than the rate at which the institutional\u2026",
-      "citation_count": 21
+      "citation_count": 22
     },
     {
       "name": "Verdict Compression",
@@ -243,7 +243,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 27,
       "brief": "Multiple structural transitions activate on the same calendar day, producing selective-absorption pressure on the institutional architectures forced to process them simultaneously.",
-      "citation_count": 5
+      "citation_count": 6
     },
     {
       "name": "Sabbath Operationalization",
@@ -261,7 +261,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
-      "citation_count": 73
+      "citation_count": 74
     },
     {
       "name": "Optionality Arbitrage",
@@ -324,7 +324,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When institutional capacity lags behind the pace of change.",
-      "citation_count": 32
+      "citation_count": 33
     },
     {
       "name": "Constructive Ambiguity",
@@ -342,7 +342,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 4,
       "brief": "When a pause in kinetic conflict accelerates the structural, institutional, and economic transformations the conflict initiated.",
-      "citation_count": 13
+      "citation_count": 14
     },
     {
       "name": "Electoral Correction",
@@ -351,7 +351,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 9,
       "brief": "Entrenched illiberal rule reversed through democratic processes; the form of the institution holds the work-doing power even when the substantive trajectory had appeared to decouple from it.",
-      "citation_count": 17
+      "citation_count": 18
     },
     {
       "name": "Sanctuary Discount",
@@ -360,7 +360,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 30,
       "brief": "Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment.",
-      "citation_count": 39
+      "citation_count": 40
     },
     {
       "name": "Channel Decomposition",
