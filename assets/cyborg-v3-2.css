@@ -51,7 +51,8 @@ p,.c p,.prose p,.hero-thread-excerpt,.entry-tagline,.cidx-brief,.src-note{
 .tb-skip:focus{transform:translateY(0)}
 .tb-nav-bar{background:rgba(10,15,26,.96)!important;border-color:var(--brds)!important;
   min-height:50px;padding:.55rem clamp(.75rem,2vw,1.25rem)!important;
-  letter-spacing:.06em!important;font-size:.66rem!important;flex-wrap:nowrap!important}
+  letter-spacing:.06em!important;font-size:.66rem!important;display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto;align-items:center;flex-wrap:nowrap!important}
 .tb-nav-bar .tb-nav-left{min-width:0;overflow-x:auto;flex-wrap:nowrap!important}
 .tb-nav-bar .tb-nav-right{flex:none;flex-wrap:nowrap!important}
 .tb-nav-bar a,.tb-nav-foot a{color:var(--t3)!important;border-color:var(--brd)!important;
