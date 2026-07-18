@@ -29,12 +29,28 @@ Run after every briefing-creation step:
 
 import re
 import json
+import os
+import tempfile
 from pathlib import Path
 from bs4 import BeautifulSoup
 
 REPO_DIR = Path(__file__).resolve().parent.parent
 BRIEFINGS_DIR = REPO_DIR / "briefings"
 REGISTRY = REPO_DIR / "concepts" / "registry.json"
+
+
+def atomic_write_text(path, content):
+    fd, name = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=path.parent)
+    temporary = Path(name)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
 
 EXCLUDED_PATTERNS = [
     re.compile(r'<style>.*?</style>', re.DOTALL),
@@ -163,7 +179,7 @@ def main():
         original = bf.read_text()
         updated, n = inject_badges(original, patterns)
         if updated != original:
-            bf.write_text(updated)
+            atomic_write_text(bf, updated)
             files_changed += 1
             total_replacements += n
             print(f"  ✓ {bf.name}: {n} badge(s) injected")

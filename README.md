@@ -45,15 +45,35 @@ Briefings are generated through conversation with Claude, then published:
 
 ```bash
 # From the repo root:
+./scripts/build.sh --check   # read-only reproducibility + structural check
 ./scripts/publish.sh
 ```
 
-### Manual publish
+The build is deterministic and runs `scripts/validate.py` before publish. New
+briefing numbers are allocated from the highest canonical issue number, not the
+number of files in the archive. Historical duplicate/gap warnings are retained
+for visibility and do not silently renumber already-published issues.
+
+`publish.sh` stages an explicit public-site allowlist; it refuses unrelated
+tracked or untracked files rather than sweeping them into a public commit.
+
+### Automated morning candidate
+
+The parent workflow control plane can generate a private candidate each morning:
+
 ```bash
-git add .
-git commit -m "Briefing No. NNN — DD Mon YYYY"
-git push
+workflowctl run tectonic.morning --dry-run  # capability check only
+workflowctl status tectonic.morning
 ```
+
+The scheduled job runs in a disposable repository copy, researches and writes
+there through the locally authenticated Claude Code subscription (never a
+separate Anthropic API-key call), and requires both the build and structural
+validator to pass. It aborts
+if briefing inputs changed during generation. Only the validated daily HTML may
+cross into this repository; all other provider edits are discarded. The job
+stops at `awaiting_review` and never commits, pushes, or publishes. A human must
+inspect the candidate and then invoke the normal `publish.sh` workflow.
 
 ## Deployment
 

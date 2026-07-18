@@ -19,6 +19,7 @@ Usage: python3 scripts/update-index.py
 import os
 import re
 import sys
+import tempfile
 from datetime import datetime
 from pathlib import Path
 
@@ -27,6 +28,20 @@ BRIEFINGS_DIR = REPO_DIR / "briefings"
 INDEX_FILE = REPO_DIR / "index.html"
 
 GITHUB_BASE = "https://github.com/cyborg-entrepreneur/tectonic-briefing/blob/main/briefings"
+
+
+def atomic_write_text(path, content):
+    fd, name = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=path.parent)
+    temporary = Path(name)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
 
 # ──────────────────────────────────────────────────────────────────────
 # Cycle boundary: briefings 001-030 are Cycle 1, 031+ are Cycle 2.
@@ -198,6 +213,7 @@ NAV_TOP_MARK_END = "<!-- TB-NAV-WRAP:TOP:END -->"
 NAV_BOT_MARK_START = "<!-- TB-NAV-WRAP:BOT:START -->"
 NAV_BOT_MARK_END = "<!-- TB-NAV-WRAP:BOT:END -->"
 NAV_STYLE_MARK = "<!-- TB-NAV-WRAP:STYLE -->"
+DESIGN_LINK_MARK = "<!-- TB-CYBORG-V3-2 -->"
 
 NAV_CSS = """
 /* Tectonic Briefing site-wide nav wrapper (injected by update-index.py) */
@@ -251,6 +267,7 @@ def build_top_nav(meta, prev_meta, next_meta):
                + '</span>')
     archive = '<a href="../index.html" class="tb-nav-archive">Archive</a>'
     return (f'{NAV_TOP_MARK_START}\n'
+            f'<a class="tb-skip" href="#s-ov">Skip to briefing</a>'
             f'<div class="tb-nav-bar">'
             f'<div class="tb-nav-left">{prev_href}{counter}{next_href}</div>'
             f'<div class="tb-nav-right">{archive}</div>'
@@ -298,11 +315,20 @@ def inject_per_day_nav(filepath, meta, prev_meta, next_meta):
     content = re.sub(
         rf'{re.escape(NAV_STYLE_MARK)}.*?{re.escape(NAV_STYLE_MARK)}\s*',
         '', content, flags=re.DOTALL)
+    content = re.sub(
+        rf'{re.escape(DESIGN_LINK_MARK)}.*?{re.escape(DESIGN_LINK_MARK)}\s*',
+        '', content, flags=re.DOTALL)
 
     # Inject CSS just before </style>. If no style block, skip silently.
     style_block = f'{NAV_STYLE_MARK}{NAV_CSS}{NAV_STYLE_MARK}\n'
     if '</style>' in content:
         content = content.replace('</style>', style_block + '</style>', 1)
+
+    design_link = (f'{DESIGN_LINK_MARK}\n'
+                   '<link rel="stylesheet" href="../assets/cyborg-v3-2.css">\n'
+                   f'{DESIGN_LINK_MARK}\n')
+    if '</head>' in content:
+        content = content.replace('</head>', design_link + '</head>', 1)
 
     # Inject top nav directly after <body ...>
     top_nav_html = build_top_nav(meta, prev_meta, next_meta)
@@ -317,7 +343,7 @@ def inject_per_day_nav(filepath, meta, prev_meta, next_meta):
     if '</body>' in content:
         content = content.replace('</body>', bot_nav_html + '\n</body>', 1)
 
-    filepath.write_text(content, encoding='utf-8')
+    atomic_write_text(filepath, content)
     return len(content) - original_len
 
 
@@ -498,6 +524,7 @@ html,body{background-color:#0b1120!important;color:#d4dce8;font-family:'Source S
 .cmdk-kbd{font-family:'JetBrains Mono',monospace;font-size:.5rem;padding:.1rem .35rem;border:1px solid rgba(75,142,242,.32);border-radius:2px;color:var(--t4);background:rgba(75,142,242,.04)}
 @media(max-width:560px){.cmdk-trigger .cmdk-kbd-label{display:none}}
 </style>
+<link rel="stylesheet" href="assets/cyborg-v3-2.css">
 </head>
 <body>
 <div class="w">
@@ -1129,7 +1156,7 @@ def update_index():
 
     # ── Rebuild index.html ──
     new_index = build_index(metas)
-    INDEX_FILE.write_text(new_index, encoding='utf-8')
+    atomic_write_text(INDEX_FILE, new_index)
     print(f"\n✓ index.html regenerated ({len(new_index):,} bytes; "
           f"{len(metas)} entries).")
 

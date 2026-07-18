@@ -25,13 +25,17 @@
 #        — idempotently injects per-day prev/next nav wrappers
 #          into every briefing file
 #
+#   4. validate.py
+#        — enforces structural integrity on the latest briefing
+#        — audits generated indexes, links, numbering, and privacy markers
+#
 # Usage:
 #   ./scripts/build.sh              # full build
 #   ./scripts/build.sh --quiet      # suppress per-step output
-#   ./scripts/build.sh --check      # build + report diff status only
+#   ./scripts/build.sh --check      # non-mutating reproducibility check
 # ============================================================
 
-set -e
+set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO_DIR"
@@ -58,12 +62,32 @@ if ! command -v python3 >/dev/null 2>&1; then
 fi
 
 # Pre-flight: ensure required scripts exist
-for script in build-concept-pages.py inject-vocab-badges.py update-index.py; do
+for script in build-concept-pages.py inject-vocab-badges.py update-index.py validate.py; do
     if [[ ! -f "scripts/$script" ]]; then
         echo "✗ Required script missing: scripts/$script" >&2
         exit 1
     fi
 done
+
+# Check mode builds an exact source copy and compares it with the caller's
+# tree. It never rewrites the working copy merely to discover drift.
+if [[ $CHECK_ONLY -eq 1 ]]; then
+    CHECK_ROOT=$(mktemp -d "${TMPDIR:-/tmp}/tectonic-check.XXXXXX")
+    CHECK_REPO="$CHECK_ROOT/repo"
+    mkdir -p "$CHECK_REPO"
+    trap 'rm -rf "$CHECK_ROOT"' EXIT
+    (cd "$REPO_DIR" && tar --exclude='./.git' --exclude='__pycache__' -cf - .) \
+        | (cd "$CHECK_REPO" && tar -xf -)
+    PYTHONDONTWRITEBYTECODE=1 "$CHECK_REPO/scripts/build.sh" --quiet
+    DIFF_OUTPUT=$(diff -qr -x .git -x __pycache__ "$REPO_DIR" "$CHECK_REPO" || true)
+    if [[ -n "$DIFF_OUTPUT" ]]; then
+        echo "✗ Generated artifacts are out of date or the build is nondeterministic."
+        echo "$DIFF_OUTPUT" | sed 's/^/    /'
+        exit 1
+    fi
+    echo "✓ Reproducibility check passed without modifying the working tree."
+    exit 0
+fi
 
 log "═══════════════════════════════════════════"
 log "  Tectonic Briefing — Build Pipeline"
@@ -73,7 +97,7 @@ log ""
 # ────────────────────────────────────────────────────────────
 # Step 1 — Concept pages + registry + search index
 # ────────────────────────────────────────────────────────────
-log "[1/3] Generating concept pages + registry + search index…"
+log "[1/4] Generating concept pages + registry + search index…"
 if [[ $QUIET -eq 1 ]]; then
     python3 scripts/build-concept-pages.py >/dev/null
 else
@@ -84,7 +108,7 @@ log ""
 # ────────────────────────────────────────────────────────────
 # Step 2 — Inline vocabulary badges
 # ────────────────────────────────────────────────────────────
-log "[2/3] Injecting inline vocabulary badges into briefing prose…"
+log "[2/4] Injecting inline vocabulary badges into briefing prose…"
 if [[ $QUIET -eq 1 ]]; then
     python3 scripts/inject-vocab-badges.py >/dev/null
 else
@@ -95,7 +119,7 @@ log ""
 # ────────────────────────────────────────────────────────────
 # Step 3 — Index regen + per-day nav wrappers
 # ────────────────────────────────────────────────────────────
-log "[3/3] Regenerating index + per-day nav wrappers…"
+log "[3/4] Regenerating index + per-day nav wrappers…"
 if [[ $QUIET -eq 1 ]]; then
     python3 scripts/update-index.py >/dev/null
 else
@@ -103,19 +127,15 @@ else
 fi
 log ""
 
-log "✓ Build complete"
-
 # ────────────────────────────────────────────────────────────
-# Optional: report diff status
+# Step 4 — Read-only structural validation
 # ────────────────────────────────────────────────────────────
-if [[ $CHECK_ONLY -eq 1 ]]; then
-    log ""
-    log "─── Diff status ───"
-    if [[ -n $(git status --porcelain 2>/dev/null) ]]; then
-        log "  ⚠ Working tree has changes after build."
-        git status --short | sed 's/^/      /'
-        exit 1
-    else
-        log "  ✓ Working tree clean. No changes from build."
-    fi
+log "[4/4] Validating briefing and generated-site structure…"
+if [[ $QUIET -eq 1 ]]; then
+    python3 scripts/validate.py >/dev/null
+else
+    python3 scripts/validate.py | sed 's/^/      /'
 fi
+log ""
+
+log "✓ Build complete"

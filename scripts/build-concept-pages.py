@@ -19,6 +19,8 @@ Usage: python3 scripts/build-concept-pages.py
 
 import re
 import json
+import os
+import tempfile
 from pathlib import Path
 from collections import defaultdict, Counter
 from datetime import datetime
@@ -58,6 +60,30 @@ META_HEADING_COLORS = {
 def slugify(s):
     s = re.sub(r"[^\w\s-]", "", s.lower())
     return re.sub(r"[\s_-]+", "-", s).strip("-")
+
+
+def atomic_write_text(path, content):
+    """Replace a generated artifact atomically."""
+    path = Path(path)
+    fd, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", suffix=".tmp", dir=str(path.parent)
+    )
+    temporary = Path(temporary_name)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
+
+
+def source_timestamp(briefings):
+    """Stable build timestamp derived from the newest source briefing."""
+    latest = max((meta["date"] for _, _, meta in briefings), default="1970-01-01")
+    return f"{latest}T00:00:00"
 
 
 # ──────────────────────────────────────────────────────────────────────
@@ -248,9 +274,6 @@ def find_citations(patterns, briefings):
     by briefing date."""
     citations = defaultdict(list)
 
-    # Pre-build pattern-name regex for efficiency
-    pattern_lookup = {p['name']: p for p in patterns}
-
     for bf, html, meta in briefings:
         clean = strip_excluded_zones(html)
         for p in patterns:
@@ -282,8 +305,8 @@ def build_cross_references(citations):
         for c in cite_list:
             briefing_patterns[c['number']].add(name)
 
-    for briefing_num, names in briefing_patterns.items():
-        names_list = list(names)
+    for briefing_num in sorted(briefing_patterns, key=lambda value: int(value)):
+        names_list = sorted(briefing_patterns[briefing_num], key=str.casefold)
         for n in names_list:
             for other in names_list:
                 if other != n:
@@ -417,7 +440,9 @@ def render_concept_page(pattern, citations_for_pattern, cross_refs,
 
     # Related
     related_html = ''
-    top_related = cross_refs[name].most_common(10)
+    top_related = sorted(
+        cross_refs[name].items(), key=lambda item: (-item[1], item[0].casefold())
+    )[:10]
     if top_related:
         items = []
         for rel_name, count in top_related:
@@ -468,6 +493,7 @@ def render_concept_page(pattern, citations_for_pattern, cross_refs,
 <style>
 {CONCEPT_CSS}
 </style>
+<link rel="stylesheet" href="../assets/cyborg-v3-2.css">
 </head>
 <body>
 <div class="tb-nav-bar">
@@ -577,6 +603,7 @@ def render_concepts_index(patterns, citations, total_briefings):
 .epi::first-letter{{font-family:'Cormorant Garamond',serif;font-size:2.6em;font-weight:400;color:var(--blub);float:left;line-height:.92;margin:.1em .12em 0 0;font-style:normal}}
 .concept-name{{font-size:2.3rem;letter-spacing:.018em}}
 </style>
+<link rel="stylesheet" href="../assets/cyborg-v3-2.css">
 </head>
 <body>
 <div class="tb-nav-bar">
@@ -641,15 +668,17 @@ def main():
             pattern_by_name, len(briefings)
         )
         out = CONCEPTS_DIR / f"{p['slug']}.html"
-        out.write_text(page_html)
+        atomic_write_text(out, page_html)
 
     # Index
     idx_html = render_concepts_index(patterns, citations, len(briefings))
-    (CONCEPTS_DIR / 'index.html').write_text(idx_html)
+    atomic_write_text(CONCEPTS_DIR / 'index.html', idx_html)
+
+    generated_at = source_timestamp(briefings)
 
     # Registry JSON (for badge injector + search)
     registry = {
-        'generated_at': datetime.now().isoformat(),
+        'generated_at': generated_at,
         'total_briefings': len(briefings),
         'patterns': [
             {
@@ -664,11 +693,11 @@ def main():
             for p in patterns
         ],
     }
-    CONCEPT_REGISTRY_JSON.write_text(json.dumps(registry, indent=2))
+    atomic_write_text(CONCEPT_REGISTRY_JSON, json.dumps(registry, indent=2) + '\n')
 
     # Cross-briefing search index (P2B)
     search_index = {
-        'generated_at': datetime.now().isoformat(),
+        'generated_at': generated_at,
         'briefings': [
             {
                 'number': m['number'],
@@ -698,8 +727,8 @@ def main():
             for p in patterns
         ],
     }
-    (REPO_DIR / 'search-index.json').write_text(
-        json.dumps(search_index, indent=2)
+    atomic_write_text(
+        REPO_DIR / 'search-index.json', json.dumps(search_index, indent=2) + '\n'
     )
 
     print(f"\n✓ {len(patterns)} concept pages + index.html generated in {CONCEPTS_DIR}")

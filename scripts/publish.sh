@@ -8,7 +8,7 @@
 #   1. Runs the build pipeline (build.sh) which regenerates
 #      concept pages, injects vocabulary badges, refreshes
 #      the index, and updates per-day nav wrappers.
-#   2. Stages all changes.
+#   2. Stages only the explicit public-site allowlist.
 #   3. Commits with a passed-in message OR an auto-generated
 #      "Briefing update — YYYY-MM-DD (N total)" message.
 #   4. Pushes to origin.
@@ -58,7 +58,8 @@ fi
 
 # Count briefings + identify latest for the commit message
 BRIEFING_COUNT=$(ls -1 briefings/*.html 2>/dev/null | wc -l | tr -d ' ')
-LATEST=$(ls -1 briefings/*.html 2>/dev/null | sort -r | head -1 | xargs basename .html 2>/dev/null)
+LATEST_PATH=$(ls -1 briefings/*.html 2>/dev/null | sort -r | sed -n '1p')
+LATEST=$(basename "$LATEST_PATH" .html)
 
 echo "═══════════════════════════════════════════"
 echo "  Tectonic Briefing — Publishing"
@@ -96,7 +97,33 @@ if [[ $DRY_RUN -eq 1 ]]; then
     exit 0
 fi
 
-git add -A
+STAGE_PATHS=(
+    briefings concepts scripts index.html search-index.json
+    STRUCTURAL_CONCEPTS.md README.md CLAUDE.md CONTINGENCY_AUDIT.md .gitignore
+)
+for optional_path in articles synthesis assets threads; do
+    if [[ -e "$optional_path" ]]; then
+        STAGE_PATHS+=("$optional_path")
+    fi
+done
+git add -- "${STAGE_PATHS[@]}"
+
+# Do not silently sweep unrelated local work into a public-site commit.
+if ! git diff --quiet; then
+    echo "✗ Unstaged tracked changes remain outside the publish allowlist:" >&2
+    git diff --name-only | sed 's/^/    /' >&2
+    exit 1
+fi
+UNTRACKED=$(git ls-files --others --exclude-standard)
+if [[ -n "$UNTRACKED" ]]; then
+    echo "✗ Untracked files remain outside the publish allowlist:" >&2
+    echo "$UNTRACKED" | sed 's/^/    /' >&2
+    exit 1
+fi
+if git diff --cached --quiet; then
+    echo "✓ No allowlisted changes to publish."
+    exit 0
+fi
 git commit -m "$COMMIT_MSG"
 
 # ────────────────────────────────────────────────────────────

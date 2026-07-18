@@ -7,7 +7,7 @@
 
 set -e
 
-REPO_DIR="$HOME/workflow/tectonic-briefing"
+REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO_DIR"
 
 # Date defaults to today
@@ -20,9 +20,10 @@ if [[ -f "$FILENAME" ]]; then
     exit 1
 fi
 
-# Count existing briefings for numbering
-BRIEFING_COUNT=$(ls -1 briefings/*.html 2>/dev/null | wc -l | tr -d ' ')
-NEXT_NUM=$(printf "%03d" $((BRIEFING_COUNT + 1)))
+# Continue from the highest canonical header number. File count is not an
+# identity source: the historical archive contains skipped dates and duplicate
+# issue numbers. The validator owns the canonical header parser.
+NEXT_NUM=$(python3 scripts/validate.py --next-number)
 
 # Format display date
 DISPLAY_DATE=$(date -j -f "%Y-%m-%d" "$DATE" "+%e %B %Y" 2>/dev/null || date -d "$DATE" "+%e %B %Y" 2>/dev/null || echo "$DATE")
@@ -40,6 +41,7 @@ cat > "$FILENAME" << TEMPLATE
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tectonic Briefing — ${DISPLAY_DATE}</title>
+<link rel="stylesheet" href="../assets/cyborg-v3-2.css">
 <!-- PASTE FULL BRIEFING HTML FROM CLAUDE CONVERSATION HERE -->
 <!-- Replace this entire file content with the generated briefing -->
 </head>

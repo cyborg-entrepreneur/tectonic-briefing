@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,SOFT,wght@9..144,0..100,500&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Public+Sans:wght@500;600;700&display=swap');
+
+/*
+ * Tectonic Briefing frontend migration — Cyborg Aesthetic v3.2.
+ *
+ * This stylesheet is deliberately loaded after each artifact's historical
+ * embedded CSS. It updates the shared reading and interaction layer without
+ * rewriting the archived editorial source of any briefing.
+ */
+:root{
+  --void:#030712;--bg:#0A0F1A;--card:#111d35;--alt:#182744;--str:#0B1C36;
+  --accent:#C9882E;--accent-bright:#E29A3C;--accent-dim:#8A6A2E;
+  --ornament:#B8924A;--forge:#D26320;--ember:#C45824;
+  --t1:#e2e8f0;--t2:#b6c0ce;--t3:#94a3b8;--t4:#7E8B9C;
+  --brd:rgba(226,232,240,.08);--brds:rgba(184,146,74,.28);
+  --brdg:rgba(184,146,74,.28);
+
+  /* Existing semantic aliases become restrained evidence/taxonomy colors. */
+  --blu:#6B8AAD;--blub:#9CB3CC;--blup:#BBCBDD;
+  --teal:#C9882E;--tealm:#A07D3A;--gold:#C9882E;--goldm:#A07D3A;
+  --red:#C07068;--redm:#9B5C55;--purp:#A07D3A;--grn:#8FA67E;
+  --amb:#C9882E;--ambb:#E29A3C;--ambp:#E6BE80;
+  --m1:#9CB3CC;--m2:#B8924A;--m3:#C07068;--m4:#C9882E;--m5:#A98D5C;
+}
+
+html,body{background-color:var(--bg)!important;color:var(--t1)!important;
+  font-family:'Newsreader',Georgia,serif!important;font-size:18px!important;
+  line-height:1.65!important;-webkit-font-smoothing:antialiased}
+body{overflow-x:hidden}
+.w{max-width:1080px!important;padding-inline:clamp(1rem,3vw,2rem)!important}
+
+h1,h2,h3,h4,.bd,.sh,.sh2,.concept-name,.entry-date,.audit-title,
+.hero-date,.hero-thread-title,.cycle-panel h2{
+  font-family:'Fraunces','Newsreader',Georgia,serif!important;font-weight:500!important}
+h1{font-variation-settings:'opsz' 110,'SOFT' 45!important;letter-spacing:-.015em!important}
+h2{font-variation-settings:'opsz' 48,'SOFT' 25!important}
+h3,h4{font-variation-settings:'opsz' 24,'SOFT' 12!important}
+nav,button,.sub,.bn,.lb,.tg,.il,.mf,.md,.concept-meta,.concept-stats,
+.stat-label,.entry-num-cell,.cidx-meta-tag,.cidx-name,.cidx-stats,.src-cat,
+.tb-nav-bar,.tb-nav-foot,.tb-site-foot,.cmdk-trigger,.cmdk-result-type,
+.cmdk-result-meta,.cmdk-footer,.cmdk-hint,.cmdk-kbd{
+  font-family:'Public Sans',system-ui,sans-serif!important}
+code,pre,.vocab-spark-label{font-family:'IBM Plex Mono',monospace!important}
+p,.c p,.prose p,.hero-thread-excerpt,.entry-tagline,.cidx-brief,.src-note{
+  color:var(--t2)!important}
+
+.tb-skip{position:fixed;z-index:300;left:12px;top:8px;transform:translateY(-160%);
+  background:var(--accent-bright);color:var(--void)!important;padding:.45rem .7rem;
+  border-radius:4px;font:700 .78rem/1.2 'Public Sans',system-ui,sans-serif;
+  text-decoration:none;transition:transform .15s}
+.tb-skip:focus{transform:translateY(0)}
+.tb-nav-bar{background:rgba(10,15,26,.96)!important;border-color:var(--brds)!important;
+  min-height:50px;padding:.55rem clamp(.75rem,2vw,1.25rem)!important;
+  letter-spacing:.06em!important;font-size:.66rem!important}
+.tb-nav-bar a,.tb-nav-foot a{color:var(--t3)!important;border-color:var(--brd)!important;
+  min-height:34px;display:inline-flex;align-items:center;padding:.35rem .62rem!important}
+.tb-nav-bar a:hover,.tb-nav-foot a:hover{color:var(--accent-bright)!important;
+  border-color:var(--brds)!important}
+.tb-nav-counter{color:var(--accent-bright)!important}
+.tb-nav-archive{color:var(--t1)!important;border-color:var(--brds)!important}
+.tb-nav-disabled{color:var(--t4)!important}
+.tb-nav-foot{background:var(--card)!important;border-color:var(--brd)!important}
+.tb-site-foot,.tb-site-foot a{color:var(--t4)!important}
+
+header,.site-head,.concept-head{border-color:var(--brd)!important}
+header h1 em,.site-head h1 em{color:var(--accent)!important}
+.epi{border-left-color:var(--ornament)!important;color:var(--t3)!important}
+.site-head .sub .badge,.concept-meta-tag{border-color:var(--brds)!important;
+  color:var(--accent-bright)!important}
+
+/* Per-issue section chooser becomes a resilient horizontal instrument. */
+#nav{display:flex!important;flex-wrap:nowrap!important;gap:.4rem!important;
+  overflow-x:auto!important;overscroll-behavior-inline:contain;scrollbar-width:thin;
+  padding:.15rem 0 .9rem!important;margin-bottom:1.8rem!important;
+  border-bottom-color:var(--brd)!important}
+#nav button{flex:0 0 auto;min-height:38px;padding:.46rem .72rem!important;
+  border-color:var(--brd)!important;color:var(--t3)!important;background:transparent!important;
+  font-size:.65rem!important;transition:border-color .15s,color .15s,background .15s!important}
+#nav button:hover{color:var(--t1)!important;border-color:var(--brds)!important}
+#nav button.on{color:var(--accent-bright)!important;border-color:var(--accent)!important;
+  background:rgba(201,136,46,.07)!important}
+
+.c,.src,.vi,.related-link,.timeline-item,.cidx-item,.hero-block,.meta-tile,
+.candidate,.filter-bar,.entry{background:var(--card)!important;border-color:var(--brd)!important;
+  border-radius:4px!important}
+.c{padding:clamp(1.25rem,2.5vw,1.75rem)!important}
+.c.lim,.c.cri,.c.act,.c.inf,.c.env,.c.gov{background:var(--alt)!important}
+.c.lim{border-left-color:var(--accent)!important}.c.cri{border-left-color:var(--red)!important}
+.c.act{border-left-color:var(--accent)!important}.c.inf{border-left-color:var(--ornament)!important}
+.c.env{border-left-color:var(--grn)!important}.c.gov{border-left-color:var(--accent-dim)!important}
+.lb{letter-spacing:.12em!important;color:var(--blub)!important}
+.tg{border:1px solid var(--brd);background:transparent!important}
+.i,.th,.def-block{background:rgba(24,39,68,.58)!important;border-color:var(--brd)!important}
+.dd{color:var(--accent-bright)!important;border-color:var(--brds)!important;
+  background:rgba(201,136,46,.06)!important;min-height:32px}
+.dd-panel{background:var(--card)!important;border-color:var(--brd)!important}
+
+/* Archive and concepts: one tended threshold, no sourceless glow. */
+.hero{background:var(--card)!important;border-color:var(--brds)!important;
+  border-radius:4px!important;box-shadow:none!important}
+.hero::before{display:none!important}.hero-eyebrow,.hero-thread-title,.stat-num,
+.vocab-num,.month-group h3,.entry-num-cell strong,.cidx-cites{color:var(--blub)!important}
+.hero-eyebrow .dot{background:var(--accent)!important}
+.hero-cta{background:var(--accent)!important;border-color:var(--accent)!important;
+  color:var(--void)!important;border-radius:4px!important;min-height:44px;display:inline-flex!important;
+  align-items:center}.hero-cta:hover{background:var(--accent-bright)!important;
+  border-color:var(--accent-bright)!important;transform:none!important}
+.cycle-panel{background:var(--card)!important;border-color:var(--brds)!important}
+.entry,.audit-card,.cidx-item{transition:border-color .15s,background .15s!important}
+.entry:hover,.audit-card:hover,.cidx-item:hover{transform:none!important;
+  border-color:var(--brds)!important;background:var(--alt)!important}
+.filter-bar button,.cmdk-trigger{min-height:36px;border-color:var(--brd)!important}
+.filter-bar button.active{color:var(--accent-bright)!important;border-color:var(--accent)!important;
+  background:rgba(201,136,46,.06)!important}
+.cmdk-panel{background:var(--card)!important;border-color:var(--brds)!important;
+  border-radius:4px!important}.cmdk-backdrop{background:rgba(3,7,18,.9)!important}
+.cmdk-result:hover,.cmdk-result.sel{background:var(--alt)!important;
+  border-left-color:var(--accent)!important}.cmdk-input{font-family:'Public Sans',system-ui!important}
+
+a{color:var(--accent-bright)}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent-bright)!important;
+  outline-offset:3px!important}
+
+@media(max-width:768px){
+  html,body{font-size:17px!important}.w{padding-inline:1rem!important}
+  .tb-nav-bar{flex-wrap:nowrap!important}.tb-nav-left{min-width:0;overflow-x:auto;flex-wrap:nowrap!important}
+  .tb-nav-right{flex:none!important}#nav button{min-height:44px}
+  .c{padding:1.15rem!important}.bt{font-size:.96rem!important;line-height:1.62!important}
+  .entry{grid-template-columns:68px 1fr!important}
+}
+@media(max-width:430px){
+  .tb-nav-counter{max-width:145px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .tb-nav-bar a{min-height:40px}.hero{padding:1.2rem 1.05rem!important}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;
+    animation-iteration-count:1!important;transition-duration:.01ms!important}
+}

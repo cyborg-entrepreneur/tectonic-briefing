@@ -38,6 +38,18 @@ Every change to the repo (new briefing, edited briefing, vocabulary update,
 new pattern, design change) must pass through the build pipeline before
 publishing. The pipeline is idempotent and safe to re-run.
 
+### Morning control-plane mode
+
+`~/workflow/workflowctl` may create the day's briefing as an automated private
+candidate. That job runs the full research/generation protocol in a disposable
+copy through a first-party Claude Code subscription login. It must refuse
+`ANTHROPIC_API_KEY`, Console, Bedrock, Vertex, and Foundry authentication. It
+transfers only a validator-passing briefing into this repository, runs
+the real build, and records `awaiting_review`. It is not a publishing path.
+Never commit, push, or invoke `publish.sh` from the automated job. Human review
+remains required because structural validation cannot adjudicate the final
+editorial, factual, confidentiality, and wise-action judgments.
+
 ```bash
 ./scripts/build.sh        # Just build (no git)
 ./scripts/publish.sh      # Build + commit + push (default)
@@ -64,6 +76,16 @@ publishing. The pipeline is idempotent and safe to re-run.
      briefing, vocabulary sparkline, archive grouped by month
    - Idempotently injects per-day prev/next nav wrappers into every
      briefing inside `<!-- TB-NAV-WRAP -->` markers
+
+4. **`validate.py`**
+   - Enforces the latest issue's 13 sections, lens density, deep dives,
+     vocabulary coverage, anomalies, source archive, navigation, links, and
+     public-artifact privacy markers
+   - Verifies generated registry/search-index coherence and reports historical
+     number gaps/duplicates as explicit warnings
+
+`./scripts/build.sh --check` performs the full build in a temporary copy and
+compares outputs; it does not mutate the working tree.
 
 ### Usage modes
 
@@ -172,15 +194,29 @@ materialize from a single edit to `STRUCTURAL_CONCEPTS.md`.
 - Ambiguity (gold)
 
 ### Design Specs
-- Background: #0b1120 (hardcoded, not CSS variable)
-- Cards: #111827
-- Text: #d4dce8 body, #eaf0f8 headings
-- Blue accent: #4b8ef2 / #6da8ff
-- Typography: Cormorant Garamond (headings), Source Sans 3 (body), JetBrains Mono (labels)
-- Responsive: works on desktop, tablet, phone
+- Governing system: Cyborg Aesthetic v3.2, using the shared
+  `assets/cyborg-v3-2.css` migration layer after the issue's embedded CSS.
+- Deep structure: tended radiance. The current interpretive or wise-action
+  threshold may carry bounded Lantern Amber inside Night Indigo; color cannot
+  substitute for the issue's structural relation.
+- Background: Night Indigo / Ink Black (`#0B1C36` / `#0A0F1A`).
+- Cards: `#111d35`; elevated evidence: `#182744`; four-pixel corners.
+- Text: `#e2e8f0` primary, `#94a3b8` secondary, `#7E8B9C` faint.
+- Identity/action accent: Lantern Amber `#C9882E`; Harbor Gold `#E29A3C`.
+- Taxonomy uses restrained Stone Blue, rose, ochre, and ecological evidence
+  colors with redundant labels. Electric cyan, purple/magenta cyberpunk, and
+  saturated blue are prohibited as identity.
+- Typography: Fraunces headings, Newsreader long-form text, Public Sans UI,
+  IBM Plex Mono code; use the fallbacks declared in the shared stylesheet.
+- Every generated briefing must include
+  `<link rel="stylesheet" href="../assets/cyborg-v3-2.css">` after its embedded
+  styles. The build pipeline also injects it idempotently.
+- Responsive contract: horizontal-scroll section chooser, 44px mobile targets,
+  visible focus, 200% reflow, non-color state labels, and full reduced-motion
+  equivalence across desktop, tablet, and phone.
 
 ## Accumulating Elements (Track Across Briefings)
-- **Structural Vocabulary**: Add new named patterns to both the briefing and index.html. See `STRUCTURAL_CONCEPTS.md` for the meta-category taxonomy (5 categories, currently 23 instantiations).
+- **Structural Vocabulary**: Add new named patterns to both the briefing and `STRUCTURAL_CONCEPTS.md`. See the meta-category taxonomy (5 categories, currently 42 instantiations; use the registry for the live count).
 - **Thinker Registry**: Track which analysts/scholars prove useful
 - **Serendipity Queue**: Sources that don't fit today but warrant future attention
 - **Thread Tracking**: Forces that persist across briefings (future feature)
@@ -378,7 +414,7 @@ Passing: same deep dive with at least one *"This is the third instance."* or *"T
 
 ## QC Checklist — New Items (post-generation, pre-publish)
 
-In addition to the existing structural checks (12 section IDs, 2-4 deep dives, full vocabulary display, anomaly count, etc.), every generated briefing must clear these prose-coherence checks before publish:
+In addition to the existing structural checks (13 section IDs, 2-4 deep dives, full vocabulary display, anomaly count, etc.), every generated briefing must clear these prose-coherence checks before publish:
 
 - [ ] **Compound-noun density**: scan every sentence in the Overview, Unifying Thread, and Deep-Dive panels. Any sentence with 3+ multi-hyphen compounds? Restructure.
 - [ ] **Concrete-anchoring frequency**: examine each 3-paragraph stretch of conceptual prose. Does at least one paragraph include a concrete-named-entity sentence? If not, insert one or restructure.
