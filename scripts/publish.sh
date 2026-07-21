@@ -102,7 +102,10 @@ STAGE_PATHS=(
     STRUCTURAL_CONCEPTS.md README.md CLAUDE.md CONTINGENCY_AUDIT.md .gitignore
 )
 for optional_path in articles synthesis assets threads; do
-    if [[ -e "$optional_path" ]]; then
+    # Skip if missing, or if gitignored (git add would exit 1 under set -e
+    # and silently abort the script mid-run). articles/ is deliberately
+    # gitignored — its content ships via the cyborg-entrepreneurship site.
+    if [[ -e "$optional_path" ]] && ! git check-ignore -q "$optional_path"; then
         STAGE_PATHS+=("$optional_path")
     fi
 done
