@@ -1,5 +1,11 @@
 # Tectonic Briefing — Claude Code Integration
 
+> **Skill routing (added 2026-07-24).** Producing and QC-ing a briefing is the
+> `tectonic-briefing-production` skill, which carries the generation density
+> requirements and sequences the four QC stages below. Invoke the skill; this
+> file remains the canonical protocol it reads. Deciding whether a briefing item
+> deserves a standalone article stays `tectonic-article-eval`.
+
 ## Overview
 The Tectonic Briefing is a daily structural analysis platform deployed via GitHub Pages.
 Repository location: `~/workflow/tectonic-briefing/`
