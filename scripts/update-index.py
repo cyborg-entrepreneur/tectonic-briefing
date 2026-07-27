@@ -318,6 +318,15 @@ def inject_per_day_nav(filepath, meta, prev_meta, next_meta):
     content = re.sub(
         rf'{re.escape(DESIGN_LINK_MARK)}.*?{re.escape(DESIGN_LINK_MARK)}\s*',
         '', content, flags=re.DOTALL)
+    # The strip above pairs marker-to-marker, so it only removes links that sit
+    # INSIDE a well-formed pair. A bare link outside any pair — or one stranded
+    # when an odd marker count made the pairing slip — survives every run and is
+    # then joined by a freshly injected one, so the file gains a duplicate per
+    # build. Briefings 079-082 accumulated exactly that. Sweep any surviving
+    # design link before re-injecting so this stays idempotent from any prior state.
+    content = re.sub(
+        r'[ \t]*<link[^>]+href="\.\./assets/cyborg-v3-2\.css"[^>]*>\s*',
+        '', content)
 
     # Inject CSS just before </style>. If no style block, skip silently.
     style_block = f'{NAV_STYLE_MARK}{NAV_CSS}{NAV_STYLE_MARK}\n'
