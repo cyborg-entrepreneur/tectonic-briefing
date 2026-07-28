@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-07-27T00:00:00",
+  "generated_at": "2026-07-28T00:00:00",
   "briefings": [
+    {
+      "number": "084",
+      "date": "2026-07-28",
+      "display_date": "28 July 2026",
+      "dow": "Tuesday",
+      "title": "Briefing 084 \u00b7 28 July 2026",
+      "thread": "Governance Vacuum and Category Collapse \u2014 Two Ways a Structure Stops Describing the World",
+      "cycle": 3,
+      "url": "briefings/2026-07-28.html"
+    },
     {
       "number": "083",
       "date": "2026-07-27",
@@ -1030,7 +1040,7 @@
       "meta_name": "Bypass Inversion",
       "brief": "When a state exploits the gap between its legal sovereignty claims and the international community's capacity to enforce alternative norms.",
       "source_briefing": 3,
-      "citation_count": 10,
+      "citation_count": 11,
       "url": "concepts/sovereignty-arbitrage.html"
     },
     {
@@ -1050,7 +1060,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "source_briefing": 1,
-      "citation_count": 22,
+      "citation_count": 23,
       "url": "concepts/chokepoint-cascade.html"
     },
     {
@@ -1130,7 +1140,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 79,
+      "citation_count": 80,
       "url": "concepts/commons-enclosure.html"
     },
     {
@@ -1190,7 +1200,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When a distinction assumed stable dissolves.",
       "source_briefing": 1,
-      "citation_count": 24,
+      "citation_count": 25,
       "url": "concepts/category-collapse.html"
     },
     {
@@ -1200,7 +1210,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional capacity lags behind the pace of change.",
       "source_briefing": 1,
-      "citation_count": 38,
+      "citation_count": 39,
       "url": "concepts/governance-vacuum.html"
     },
     {

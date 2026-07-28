@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-27T00:00:00",
-  "total_briefings": 84,
+  "generated_at": "2026-07-28T00:00:00",
+  "total_briefings": 85,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -171,7 +171,7 @@
       "meta_name": "Bypass Inversion",
       "source_briefing": 3,
       "brief": "When a state exploits the gap between its legal sovereignty claims and the international community's capacity to enforce alternative norms.",
-      "citation_count": 10
+      "citation_count": 11
     },
     {
       "name": "Buffer Collapse",
@@ -189,7 +189,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 1,
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
-      "citation_count": 22
+      "citation_count": 23
     },
     {
       "name": "Tipping Cascade",
@@ -261,7 +261,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
-      "citation_count": 79
+      "citation_count": 80
     },
     {
       "name": "Optionality Arbitrage",
@@ -315,7 +315,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When a distinction assumed stable dissolves.",
-      "citation_count": 24
+      "citation_count": 25
     },
     {
       "name": "Governance Vacuum",
@@ -324,7 +324,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When institutional capacity lags behind the pace of change.",
-      "citation_count": 38
+      "citation_count": 39
     },
     {
       "name": "Constructive Ambiguity",
