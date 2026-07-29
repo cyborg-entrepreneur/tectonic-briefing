@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-28T00:00:00",
-  "total_briefings": 85,
+  "generated_at": "2026-07-29T00:00:00",
+  "total_briefings": 86,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -81,7 +81,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 16,
       "brief": "Executing the credential-action forecloses the negotiation it was intended to enable.",
-      "citation_count": 8
+      "citation_count": 9
     },
     {
       "name": "Verification-Mode Asymmetry",
@@ -153,7 +153,7 @@
       "meta_name": "Bypass Inversion",
       "source_briefing": 5,
       "brief": "When the deliberate ambiguity that enabled an agreement becomes the mechanism of its failure.",
-      "citation_count": 11
+      "citation_count": 12
     },
     {
       "name": "Negotiation Multiplication",
@@ -261,7 +261,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
-      "citation_count": 80
+      "citation_count": 81
     },
     {
       "name": "Optionality Arbitrage",
@@ -369,7 +369,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 32,
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
-      "citation_count": 33
+      "citation_count": 34
     },
     {
       "name": "Tail Calibration Failure",

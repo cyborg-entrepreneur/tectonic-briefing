@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-07-28T00:00:00",
+  "generated_at": "2026-07-29T00:00:00",
   "briefings": [
+    {
+      "number": "085",
+      "date": "2026-07-29",
+      "display_date": "29 July 2026",
+      "dow": "Wednesday",
+      "title": "Briefing 085 \u00b7 29 July 2026",
+      "thread": "Conditional Collapse \u2014 When the Condition Was the Only Thing Holding",
+      "cycle": 3,
+      "url": "briefings/2026-07-29.html"
+    },
     {
       "number": "084",
       "date": "2026-07-28",
@@ -940,7 +950,7 @@
       "meta_name": "Coupling Failure",
       "brief": "Executing the credential-action forecloses the negotiation it was intended to enable.",
       "source_briefing": 16,
-      "citation_count": 8,
+      "citation_count": 9,
       "url": "concepts/credential-foreclosure.html"
     },
     {
@@ -1020,7 +1030,7 @@
       "meta_name": "Bypass Inversion",
       "brief": "When the deliberate ambiguity that enabled an agreement becomes the mechanism of its failure.",
       "source_briefing": 5,
-      "citation_count": 11,
+      "citation_count": 12,
       "url": "concepts/conditional-collapse.html"
     },
     {
@@ -1140,7 +1150,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 80,
+      "citation_count": 81,
       "url": "concepts/commons-enclosure.html"
     },
     {
@@ -1260,7 +1270,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
       "source_briefing": 32,
-      "citation_count": 33,
+      "citation_count": 34,
       "url": "concepts/channel-decomposition.html"
     },
     {
