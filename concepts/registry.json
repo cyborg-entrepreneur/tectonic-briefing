@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-29T00:00:00",
-  "total_briefings": 86,
+  "generated_at": "2026-08-07T00:00:00",
+  "total_briefings": 88,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -18,7 +18,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 7,
       "brief": "The official account of a situation operates as a parallel reality rather than a description of the physical one.",
-      "citation_count": 19
+      "citation_count": 20
     },
     {
       "name": "Akrasia at Scale",
@@ -36,7 +36,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 3,
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
-      "citation_count": 34
+      "citation_count": 35
     },
     {
       "name": "Emergent Concealment",
@@ -54,7 +54,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 8,
       "brief": "A deployed instrument exceeds its deployer's control such that its persistence is decoupled from the political-or-diplomatic agreement that authorized it.",
-      "citation_count": 16
+      "citation_count": 18
     },
     {
       "name": "Scope Retreat",
@@ -63,7 +63,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 9,
       "brief": "Declared policy retreats to physically feasible scope within hours of issuance, leaving the original declaration as the rhetorical credential while the operational substance has been silently narrowed.",
-      "citation_count": 10
+      "citation_count": 11
     },
     {
       "name": "Dual-Track Maximalism",
@@ -81,7 +81,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 16,
       "brief": "Executing the credential-action forecloses the negotiation it was intended to enable.",
-      "citation_count": 9
+      "citation_count": 10
     },
     {
       "name": "Verification-Mode Asymmetry",
@@ -90,7 +90,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 20,
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
-      "citation_count": 19
+      "citation_count": 21
     },
     {
       "name": "Peripheral Assertion",
@@ -108,7 +108,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 22,
       "brief": "Structural information suppressed by the weekday production schedule of news becomes audible when the production rhythm slows.",
-      "citation_count": 9
+      "citation_count": 10
     },
     {
       "name": "Weekend Translation",
@@ -117,7 +117,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 28,
       "brief": "The Saturday cycle has the analytical room to translate Friday's tactical events into the structural transitions they actually are.",
-      "citation_count": 8
+      "citation_count": 9
     },
     {
       "name": "Mode-Switch Disarticulation",
@@ -126,7 +126,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 38,
       "brief": "A single architecture executes concealment-mode and disclosure-mode Channel Decomposition across consecutive cadence-windows on the same artifact.",
-      "citation_count": 7
+      "citation_count": 8
     },
     {
       "name": "Bypass Capture",
@@ -261,7 +261,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
-      "citation_count": 81
+      "citation_count": 83
     },
     {
       "name": "Optionality Arbitrage",
@@ -324,7 +324,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When institutional capacity lags behind the pace of change.",
-      "citation_count": 39
+      "citation_count": 41
     },
     {
       "name": "Constructive Ambiguity",
@@ -369,7 +369,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 32,
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
-      "citation_count": 34
+      "citation_count": 35
     },
     {
       "name": "Tail Calibration Failure",

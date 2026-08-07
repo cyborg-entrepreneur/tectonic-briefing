@@ -1,6 +1,26 @@
 {
-  "generated_at": "2026-07-29T00:00:00",
+  "generated_at": "2026-08-07T00:00:00",
   "briefings": [
+    {
+      "number": "087",
+      "date": "2026-08-07",
+      "display_date": "7 August 2026",
+      "dow": "Friday",
+      "title": "Briefing 087 \u00b7 7 August 2026",
+      "thread": "Narrative-Physical Decoupling \u2014 The Day the Dials Ran Backward",
+      "cycle": 3,
+      "url": "briefings/2026-08-07.html"
+    },
+    {
+      "number": "086",
+      "date": "2026-08-06",
+      "display_date": "6 August 2026",
+      "dow": "Thursday",
+      "title": "Briefing 086 \u00b7 6 August 2026",
+      "thread": "Commons Enclosure \u2014 The Toll Booth Gets an Address",
+      "cycle": 3,
+      "url": "briefings/2026-08-06.html"
+    },
     {
       "number": "085",
       "date": "2026-07-29",
@@ -880,7 +900,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The official account of a situation operates as a parallel reality rather than a description of the physical one.",
       "source_briefing": 7,
-      "citation_count": 19,
+      "citation_count": 20,
       "url": "concepts/narrative-physical-decoupling.html"
     },
     {
@@ -900,7 +920,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
       "source_briefing": 3,
-      "citation_count": 34,
+      "citation_count": 35,
       "url": "concepts/capability-opacity.html"
     },
     {
@@ -920,7 +940,7 @@
       "meta_name": "Coupling Failure",
       "brief": "A deployed instrument exceeds its deployer's control such that its persistence is decoupled from the political-or-diplomatic agreement that authorized it.",
       "source_briefing": 8,
-      "citation_count": 16,
+      "citation_count": 18,
       "url": "concepts/instrument-autonomy.html"
     },
     {
@@ -930,7 +950,7 @@
       "meta_name": "Coupling Failure",
       "brief": "Declared policy retreats to physically feasible scope within hours of issuance, leaving the original declaration as the rhetorical credential while the operational substance has been silently narrowed.",
       "source_briefing": 9,
-      "citation_count": 10,
+      "citation_count": 11,
       "url": "concepts/scope-retreat.html"
     },
     {
@@ -950,7 +970,7 @@
       "meta_name": "Coupling Failure",
       "brief": "Executing the credential-action forecloses the negotiation it was intended to enable.",
       "source_briefing": 16,
-      "citation_count": 9,
+      "citation_count": 10,
       "url": "concepts/credential-foreclosure.html"
     },
     {
@@ -960,7 +980,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
       "source_briefing": 20,
-      "citation_count": 19,
+      "citation_count": 21,
       "url": "concepts/verification-mode-asymmetry.html"
     },
     {
@@ -980,7 +1000,7 @@
       "meta_name": "Coupling Failure",
       "brief": "Structural information suppressed by the weekday production schedule of news becomes audible when the production rhythm slows.",
       "source_briefing": 22,
-      "citation_count": 9,
+      "citation_count": 10,
       "url": "concepts/sabbath-visibility.html"
     },
     {
@@ -990,7 +1010,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The Saturday cycle has the analytical room to translate Friday's tactical events into the structural transitions they actually are.",
       "source_briefing": 28,
-      "citation_count": 8,
+      "citation_count": 9,
       "url": "concepts/weekend-translation.html"
     },
     {
@@ -1000,7 +1020,7 @@
       "meta_name": "Coupling Failure",
       "brief": "A single architecture executes concealment-mode and disclosure-mode Channel Decomposition across consecutive cadence-windows on the same artifact.",
       "source_briefing": 38,
-      "citation_count": 7,
+      "citation_count": 8,
       "url": "concepts/mode-switch-disarticulation.html"
     },
     {
@@ -1150,7 +1170,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 81,
+      "citation_count": 83,
       "url": "concepts/commons-enclosure.html"
     },
     {
@@ -1220,7 +1240,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional capacity lags behind the pace of change.",
       "source_briefing": 1,
-      "citation_count": 39,
+      "citation_count": 41,
       "url": "concepts/governance-vacuum.html"
     },
     {
@@ -1270,7 +1290,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
       "source_briefing": 32,
-      "citation_count": 34,
+      "citation_count": 35,
       "url": "concepts/channel-decomposition.html"
     },
     {
