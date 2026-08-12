@@ -2,7 +2,7 @@
 
 **Purpose:** A meta-analysis of the Tectonic Briefing's Inference Engine, run every 30 daily briefings. The Contingency Audit traces the contingent possibilities posited by daily conditional chains, characterizes the structural mechanisms by which those chains break, and surfaces meta-principles about the limits of contingent forecasting under Knightian uncertainty.
 
-**Last updated:** 2026-06-19 (Cycle 2 complete; **Read-Mode lens added** — Orienting/Representation/Hybrid, the positive configurational-reading discipline grounded in the orienting-vs-knowledge-representation theory and the shi/bandwidth-rotation framework. Validated 3/3 slices in Cycle 2: read-mode predicts break severity. See `synthesis/cycle-002-shi-discipline.md` and `synthesis/cycle-002.yaml`.) · 2026-05-04 (Cycle 1 complete; LLM Cognitive Signature layer added)
+**Last updated:** 2026-08-12 (Cycle 3 dated-file scope, tag-namespace, and anomaly-accounting repairs; corpus-level analysis split into `QUARTERLY_PORTFOLIO_REVIEW.md`) · 2026-06-19 (Cycle 2 complete; **Read-Mode lens added** — Orienting/Representation/Hybrid, the positive configurational-reading discipline grounded in the orienting-vs-knowledge-representation theory and the shi/bandwidth-rotation framework. Validated 3/3 slices in Cycle 2: read-mode predicts break severity. See `synthesis/cycle-002-shi-discipline.md` and `synthesis/cycle-002.yaml`.) · 2026-05-04 (Cycle 1 complete; LLM Cognitive Signature layer added)
 **Cadence:** Every 30 daily briefings (~monthly)
 **Output location:** `tectonic-briefing/synthesis/cycle-NNN.html` and `tectonic-briefing/synthesis/cycle-NNN.yaml`
 
@@ -28,6 +28,18 @@ Cycle 1 fires after Briefing 030 (covering Briefings 001-030). Subsequent cycles
 
 The audit does not replace a daily briefing. It is an additional artifact.
 
+### 2.1 Dated-file scope controls the corpus
+
+Canonical briefing numbers define the nominal cycle window, but dated HTML
+files are the units of analysis. If a number is duplicated, every dated artifact
+in the window remains in scope and receives a date-qualified identifier. Cycle 3
+therefore covers **31 dated artifacts** because Briefing 062 exists on both
+2026-06-22 and 2026-06-23. Never silently drop one file to force a 30-row count.
+
+Use `NNN-YYYYMMDD-ie-K` for inference-chain IDs when the archive contains a
+duplicate number. Counts must report both nominal briefing numbers and dated
+artifact totals.
+
 ## 3. Required Reading (for the agent generating the audit)
 
 Generate the Contingency Audit in **fresh context** via the Agent tool. The same depth-preservation logic that applies to daily briefings applies here, with greater force: the audit is reading 30 prior documents and synthesizing across them.
@@ -36,9 +48,12 @@ The agent must read in full:
 1. This document (`CONTINGENCY_AUDIT.md`)
 2. `CLAUDE.md` — the daily briefing's editorial protocol
 3. `STRUCTURAL_CONCEPTS.md` — the 5 meta-categories and current vocabulary
-4. All 30 briefings in the cycle window
+4. Every dated briefing artifact in the cycle's 30-number window
 5. The previous cycle's YAML artifact (Cycle 2+) — to enable cross-cycle promotion of meta-principles
 6. `~/workflow/auto-memory/MEMORY.md` and selected project memories — to preserve research-program connection
+
+For a cycle with duplicate canonical numbers, every dated artifact whose
+canonical number falls inside the window is required reading.
 
 ## 4. What This Is NOT
 
@@ -62,7 +77,7 @@ A tight standalone summary readable independent of the rest. Names: the dominant
 
 A structured table of every conditional chain extracted from the cycle's 30 briefings. Roughly ~150 entries. Each entry tagged with:
 
-- `chain_id` (briefing-number + index)
+- `chain_id` (briefing-number + index; add the artifact date when a number is duplicated)
 - Originating briefing and lens
 - The chain's text (X → Y → Z)
 - Structural patterns invoked
@@ -114,8 +129,15 @@ For every anomaly named across the cycle's daily briefings:
 - **Resolved** — the absence has been filled; characterize how
 - **Silently died** — the absence stopped being tracked without resolution
 - **Persistently absent** — the anomaly continues to hold; assess whether the persistence is itself diagnostic
+- **Open / not yet due** — the anomaly is too recent or its stated observation
+  window has not closed; name the next observable and earliest fair review date
 
 This section is the briefing's epistemic honesty mechanism. Anomalies that silently die without acknowledgment are evidence of attention drift.
+
+The sweep must include every anomaly in every dated artifact in the cycle.
+Sampling is not acceptable. Preserve a machine-readable ledger in the Cycle
+YAML with source date, title, disposition, evidence, and any later briefing that
+resolved or repeated it.
 
 ### 5.8 Theoretical Implications
 
@@ -149,6 +171,19 @@ Required components:
 **Cycle 2+ rule:** Signatures are tagged **prospectively at chain creation**, not retrospectively. The retrospective Cycle 1 pass established the taxonomy; subsequent cycles operate the cleaner data discipline. Cycle N+1 should compare its prospective distribution against Cycle N's prospective distribution; cells aligning within ±20% across cycles is the cross-cycle promotion signal for any signature-derived meta-principle (e.g. mp-010).
 
 The dual-taxonomy design produces a within-architecture baseline that becomes the natural comparison point for cross-architecture experiments running the same Inference Engine prompt against different LLM backbones. Whether S1/S2 dominance is general to LLM plausibility engines under Knightian uncertainty, or architecture-specific, is the falsifiable question the design was built to enable.
+
+### 5.10.1 Tag namespaces are independent
+
+Read-mode uses **O/R/H only**: O = Orienting, R = Representation, and
+H = Hybrid. Epistemic status uses **OBS/INF/HYP only**: observed in a dated
+source, inference from stated evidence, and hypothetical release path.
+
+Briefings 084–089 contain a legacy collision in which bracketed
+`[O]/[R]/[H]` means observed/reasoned/hypothetical. Those bracketed step tags
+are not read-mode evidence. Where an explicit `READ: O/R/H` label exists, use
+that label and independently audit whether the prose earns it. Where no explicit
+read-mode label exists, especially Briefings 084–085, classify read mode from
+the terminal step. Future briefings must never reuse O/R/H for epistemic status.
 
 ### 5.11 Read-Mode Classification (added Cycle 2)
 
@@ -295,6 +330,7 @@ anomaly_accounting:
   resolved: [...]
   silently_died: [...]
   persistently_absent: [...]
+  open_not_yet_due: [...]
 
 theoretical_implications:
   forecasting_under_knightian_uncertainty: "Citation-ready paragraph..."
@@ -363,6 +399,13 @@ After generation, verify:
 - [ ] §5.10 LLM Cognitive Signature distribution reported across all 7 signatures (S1–S7) with primary counts and percentages
 - [ ] Cross-tabulation Type × Signature reported for at least the dominant cells (≥2 chains per cell), with chain_ids listed
 - [ ] Signature classification done prospectively (Cycle 2+) or noted as retrospective (Cycle 1 only); each signature assignment carries a one-sentence justification grounded in the chain's text
+- [ ] Every dated artifact in the nominal number window is included; duplicate
+      numbers have date-qualified chain IDs
+- [ ] O/R/H is used only for Orienting/Representation/Hybrid; legacy
+      observed/reasoned/hypothetical tags are normalized to OBS/INF/HYP and
+      excluded from read-mode counts
+- [ ] §5.7 carries a complete per-anomaly ledger; recent items may be
+      Open / not yet due
 
 ## 12. First Cycle Note
 

@@ -125,8 +125,8 @@ spawn a fresh sub-agent. The agent prompt MUST include:
 3. The designated quality-benchmark briefing (currently Briefing 010,
    2026-04-14.html) as a format template
 4. Today's research results and events summary
-5. The current vocabulary count and list (read from
-   `concepts/registry.json` for canonical state)
+5. The current **active** vocabulary count and list (read from
+   `concepts/registry.json`; omit entries whose `status` is `retired`)
 6. Explicit instruction to include 2-4 deep dive panels, full five-
    meta-category vocabulary display, all 13 section IDs (ov, ge,
    te, ec, sc, so, en, ig, li, ie, wa, an, sa), and **≥3 date-stamped
@@ -143,12 +143,24 @@ The build pipeline does NOT enforce content quality — only structural
 integrity. Verify by hand or via the disciplines below before publish:
 
 - [ ] Count `dd-panel` elements → target 2-4 deep dives
+- [ ] **Public reading budget** → target 6,000–9,000 analytic words and
+  24–28 lens items. Briefing 090 is the compact benchmark (6,245 analytic
+  words, 26 lens items, 31 external links, 3 deep dives). Length outside the
+  range needs an explicit editorial reason; depth is not measured by length.
 - [ ] **Per-lens topic density** → each of the 8 lenses (ge, te, ec, sc, so, en, ig, li) carries **≥3 substantive, date-stamped `<h3>` topics** (Geopolitical and Liminal target 4). Benchmark 010 is the density reference. Dave has flagged sparse lenses twice (one lead-item per lens is the recurring failure mode) — do NOT ship a briefing where any lens runs 1-2 topics. This is a generation requirement, not just a QC catch: instruct the generation agent to research enough events to fill each lens to 3-4 topics on the first pass.
-- [ ] Count `.vi` vocabulary entries displayed → target all current (42 today)
+- [ ] Count `.vi` vocabulary entries displayed → target all **active**
+  patterns; retired patterns remain in the historical concept archive but do
+  not appear in the daily display or new prose
 - [ ] All 13 section IDs present: ov, ge, te, ec, sc, so, en, ig, li, ie, wa, **an**, sa
 - [ ] Anomaly Detection section (s-an) has 4+ specific anomalies
-- [ ] Research Program Relevance section has per-project connections
+- [ ] Research Program Relevance includes only **Direct** connections: the
+  item changes a construct, mechanism, boundary condition, empirical design,
+  or observable. Adjacent bridges go to the private TMS ledger; speculative
+  mappings and operational/editorial work are omitted.
 - [ ] Source Archive has categorized entries across 3+ subsections
+- [ ] **Source support density** → at least one unique external supporting link
+  per lens item. Load-bearing scientific, regulatory, and macro claims use an
+  official-primary or scholarly source when available.
 - [ ] Editorial discipline note in footer confirms fresh-domain rotation
 - [ ] Prose Coherence Discipline (Stage 1) applied — see below
 - [ ] Factual Verification Discipline (Stage 1b) applied — see below
@@ -195,6 +207,18 @@ materialize from a single edit to `STRUCTURAL_CONCEPTS.md`.
 - Deep Dive Markers — ◉ signals for conversation topics
 - Research Program Relevance — Knowledge problems, cyborg, Glimpse, papers
 
+### Prospective schema contract (Briefing 091 onward)
+
+- ISO date is the archive's primary key; the displayed issue number is unique,
+  monotonic, and may not reuse or skip a post-quarter number.
+- All 13 required sections use semantic `<section class="s" id="s-…">`
+  wrappers.
+- Inference cards use `<article class="c chain">`; anomaly cards use
+  `<article class="c anomaly" data-anomaly-id="…">`.
+- Historical wrappers (`.chain-block`, `.inf`, nested vocabulary inside
+  `#s-an`) remain supported only by audit compatibility parsers and must not be
+  copied into new issues.
+
 ### Knowledge Problem Tags
 - Knightian Uncertainty (blue)
 - Equivocality (teal)
@@ -224,11 +248,16 @@ materialize from a single edit to `STRUCTURAL_CONCEPTS.md`.
   equivalence across desktop, tablet, and phone.
 
 ## Accumulating Elements (Track Across Briefings)
-- **Structural Vocabulary**: Add new named patterns to both the briefing and `STRUCTURAL_CONCEPTS.md`. See the meta-category taxonomy (5 categories, currently 42 instantiations; use the registry for the live count).
+- **Structural Vocabulary**: Add new named patterns to both the briefing and
+  `STRUCTURAL_CONCEPTS.md`. See the meta-category taxonomy (5 categories; use
+  the registry's non-retired entries for the live active count).
 - **Thinker Registry**: Track which analysts/scholars prove useful
 - **Serendipity Queue**: Sources that don't fit today but warrant future attention
 - **Thread Tracking**: Forces that persist across briefings (future feature)
-- **Anomaly Detection**: What should be happening but isn't
+- **Anomaly Detection**: What should be happening but isn't. From Briefing 091,
+  every anomaly card carries a stable `data-anomaly-id`, the next observable,
+  and an earliest fair review date. Later issues either carry that ID forward
+  or close it explicitly; unacknowledged disappearance is a QC failure.
 
 # ══════════════════════════════════════════════════════════════════
 # EDITORIAL DISCIPLINE — Calibrated 2026-04-11 (after Briefing 007)
@@ -247,6 +276,12 @@ Starting with Briefing 008, every briefing must satisfy two constraints:
 **Constraint 1 — Fresh-domain content in at least 2 of 8 lenses.** For each briefing, at least two of the eight analytical lenses must include substantive content drawn from a domain that has not appeared in the previous three briefings. The Geopolitical lens should occasionally lead with Africa, Latin America, or Southeast Asia rather than the Middle East. The Technological lens should occasionally lead with robotics, quantum, or bioscience rather than language-model AI. The Economic lens should occasionally lead with critical minerals, insurance market stress, or commodity convergence rather than oil. The discipline is not to *avoid* the corridor topics — they remain important — but to ensure that **at least 25% of each briefing's substantive content comes from outside the recent thread structure.**
 
 **Constraint 2 — Liminal Signals as the wildcard channel.** The Liminal Signals section is the natural home for black swans, unique structural events, and signals that resist clean categorization. Going forward, **at least one Liminal Signals entry per briefing must come from outside the corridor** — a robotics deployment, a critical mineral movement, a quantum milestone, a demographic data point, an alternative energy breakthrough, a synthetic biology event, or a black swan watch-list update. The Liminal Signals section becomes the structural diversification channel by design.
+
+**Constraint 3 — Rolling geographic coverage debt.** Do not force a token item
+into every issue. Across each rolling seven-issue window, however, South and
+Southeast Asia and Sub-Saharan Africa must each appear substantively in at
+least five issues. Preserve an explicit Unknown category in quarterly metrics;
+do not silently assign a global or multi-region item to the corridor.
 
 ## Domains That Have Been Under-Covered (Active Watch List)
 
@@ -520,32 +555,64 @@ After this calibration date, any briefing that surfaces a sub-agent's structural
 
 ## The empirical basis
 
-The Cycle 2 Contingency Audit classified all 129 conditional chains in Briefings 031–060 by **read-mode** — the reading stance each took — alongside the existing break-type and LLM-signature lenses. The finding was unambiguous and held 3/3 slices with no exceptions: **read-mode predicts break severity.** Every *Inverted* and every *Held-Spurious* outcome was a Representation- or Hybrid-read; **not one Orienting-read inverted or failed at Z** across the cycle. The configuration read is shared by Orienting and Hybrid reads alike; the failure is at the terminal step — the Hybrid read collapses a live disposition into a single vector, the Representation read projects a fixed template as present fact. Full result: `synthesis/cycle-002.yaml`; discipline + pilot: `synthesis/cycle-002-shi-discipline.md`; lens definitions: `CONTINGENCY_AUDIT.md` §6.6.
+The Cycle 2 Contingency Audit classified all 129 conditional chains in Briefings 031–060 by **read-mode** — the reading stance each took — alongside the existing break-type and LLM-signature lenses. Every *Inverted* and every *Held-Spurious* outcome was a Representation- or Hybrid-read; **not one Orienting-read inverted or failed at Z** across that cycle. The configuration read is shared by Orienting and Hybrid reads alike; the failure is at the terminal step — the Hybrid read collapses a live disposition into a single vector, the Representation read projects a fixed template as present fact. Full result: `synthesis/cycle-002.yaml`; discipline + pilot: `synthesis/cycle-002-shi-discipline.md`; lens definitions: `CONTINGENCY_AUDIT.md` §6.6.
+
+**Cycle 3 qualification (2026-08-12):** the result is not yet a promoted
+cross-cycle law. In Briefings 061–090, all 146 prospectively labeled chains
+were tagged O; independent review yielded O=147, H=8, R=0 across 155 chains.
+The intervention improved practice but erased the comparison group. Moreover,
+zero chains stated explicit confirmation and refutation criteria, so broad
+release fields could absorb most proximate outcomes. The Cycle 3 audit names
+the two risks **discipline-induced separation failure** (mp-014) and
+**release-field saturation** (mp-015). Orientation remains the production
+discipline; it must now be made discriminating and falsifiable.
 
 This is the positive counterpart to the briefing's negative disciplines. It operationalizes the **orienting-vs-knowledge-representation** theory of strategic decision-making (representation-within-bandwidth = the trap; orienting to the disposition as a field = robust under flux). The briefing's apparatus is already a propensity-type library (the structural vocabulary); this discipline keeps the *reads around it* from collapsing into single-vector predictions.
 
 ## The three read-modes (tag every Inference Engine chain at creation)
 
-- **O — Orienting:** names a configuration and its *disposition*; conditional; names ≥2 release paths. The target mode.
+- **O — Orienting:** names a configuration and its *disposition*; conditional;
+  names 2–3 discriminating release paths. It is not a quota target.
 - **R — Representation:** asserts a fixed outcome as fact, or projects a prior-period analogue/template forward as present fact. **Rewrite as O.**
 - **H — Hybrid:** sound configuration read that collapses to a single vector at the Z-step. **Rewrite the Z-step to a field.**
 
 ## Five operational rules
 
-1. **Tag O/R/H at creation.** Every Inference Engine chain (and every load-bearing forward propensity claim in a deep-dive question or the unifying thread) carries a read-mode. Any R-read, and the representation-tail of any H-read, is rewritten as O or carries an explicit justification.
-2. **Field, not vector (Rule A).** Name **≥2 genuine release paths** at every chain's Z-step. A disposition is a field of tendency, not a single outcome. This directly targets the dominant Hybrid/velocity failure (the Fed-reprices-*down* miss that inverted on the rebound).
+1. **Tag O/R/H at creation without a quota.** Every Inference Engine chain
+   (and every load-bearing forward propensity claim in a deep-dive question or
+   the unifying thread) carries the mode the prose actually earns. Any R-read,
+   and the representation-tail of any H-read, is rewritten as O or carries an
+   explicit justification. A mixed distribution is legitimate evidence; never
+   relabel to hit an O target.
+2. **Field, not vector (Rule A).** Name **2–3 genuine, discriminating release
+   paths** at every chain's Z-step. For each path, name a positive tell and an
+   exclusion tell. A list that spans every plausible outcome is not an
+   orienting field; it is a non-falsifiable catch-all.
 3. **State ripeness/timing (節, the drawn crossbow).** For every "untested-instrument"-style read, state whether the propensity's release is **near or far**, as a bounded interval — never a point date. Velocity miscalibration is the dominant break in both cycles; ripeness is the targeted fix.
 4. **Rely on propensity, not representation (Rule B).** Never carry a prior-period analogue, a trained-in template, or a modal completion as a present fact. Read *this* configuration's lean. This supersedes the cross-year factual catch at the structural level (it is *why* the 037–039 failure happened).
 5. **Run the shi-read moves** where a read is load-bearing: 形 configuration → 勢 disposition → 節 ripeness → 變 transformation → 蓄勢 positional leverage. Pragmatic, not philosophical: each is a plain-language question the read must answer.
+6. **State `CONFIRMS:` and `REFUTES:` explicitly.** Every chain names the
+   observation that would support its disposition and the observation that
+   would eliminate or materially revise it. These fields are required from
+   Briefing 091 onward.
+7. **Keep tag namespaces disjoint.** `READ: O/R/H` means
+   Orienting/Representation/Hybrid only. Epistemic steps use
+   `OBS/INF/HYP` (observed/inferred/hypothetical). Never use bracketed O/R/H
+   for epistemic status.
 
 ## QC Checklist — Stage 1d (Read-Mode Pass)
 
 Inserted after Stage 1c (confidentiality), before Stage 2 (pre-publish):
 
-- [ ] **Read-mode tag:** every Inference Engine chain carries O/R/H; target ≥85% O. Any R-read carries a justification or is rewritten.
-- [ ] **Field-not-vector:** every chain names ≥2 release paths at Z. No single-vector terminal steps.
+- [ ] **Read-mode tag:** every Inference Engine chain carries the mode it earns;
+  there is no O quota. Any R-read carries a justification or is rewritten.
+- [ ] **Field-not-vector:** every O chain names 2–3 discriminating release
+  paths at Z, each with positive and exclusion tells.
 - [ ] **Ripeness:** every untested-instrument read carries a near/far ripeness clause (bounded interval, not a date).
 - [ ] **Rule B:** no read carries a prior-period analogue as present fact (the read-mode form of the cross-year check).
+- [ ] **Falsifiability:** every chain includes explicit `CONFIRMS:` and
+  `REFUTES:` fields.
+- [ ] **Namespace:** READ uses O/R/H; epistemic status uses OBS/INF/HYP only.
 
 ## What This Discipline Does NOT Do
 

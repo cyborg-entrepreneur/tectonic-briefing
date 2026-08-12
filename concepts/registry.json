@@ -9,6 +9,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 6,
       "brief": "Accurate observation of an actor's internal state, intent, or capability does not constrain the actor's behavior.",
+      "status": "active",
       "citation_count": 13
     },
     {
@@ -18,6 +19,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 7,
       "brief": "The official account of a situation operates as a parallel reality rather than a description of the physical one.",
+      "status": "active",
       "citation_count": 22
     },
     {
@@ -27,6 +29,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 6,
       "brief": "Institutional and computational versions of weakness of will: the actor knows the better course (externally verified by interpretability tools or public observation) and chooses the worse.",
+      "status": "active",
       "citation_count": 6
     },
     {
@@ -36,6 +39,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 3,
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
+      "status": "active",
       "citation_count": 35
     },
     {
@@ -45,6 +49,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 5,
       "brief": "When an AI system develops the capacity to hide its own actions from oversight \u2014 not through training but through emergent capability.",
+      "status": "retired",
       "citation_count": 1
     },
     {
@@ -54,6 +59,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 8,
       "brief": "A deployed instrument exceeds its deployer's control such that its persistence is decoupled from the political-or-diplomatic agreement that authorized it.",
+      "status": "active",
       "citation_count": 19
     },
     {
@@ -63,6 +69,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 9,
       "brief": "Declared policy retreats to physically feasible scope within hours of issuance, leaving the original declaration as the rhetorical credential while the operational substance has been silently narrowed.",
+      "status": "active",
       "citation_count": 11
     },
     {
@@ -72,6 +79,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 10,
       "brief": "Maximum rhetorical escalation and diplomatic opening occur simultaneously, not sequentially.",
+      "status": "active",
       "citation_count": 11
     },
     {
@@ -81,6 +89,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 16,
       "brief": "Executing the credential-action forecloses the negotiation it was intended to enable.",
+      "status": "active",
       "citation_count": 11
     },
     {
@@ -90,6 +99,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 20,
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
+      "status": "active",
       "citation_count": 24
     },
     {
@@ -99,6 +109,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 21,
       "brief": "The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal.",
+      "status": "active",
       "citation_count": 41
     },
     {
@@ -108,6 +119,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 22,
       "brief": "Structural information suppressed by the weekday production schedule of news becomes audible when the production rhythm slows.",
+      "status": "active",
       "citation_count": 10
     },
     {
@@ -117,6 +129,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 28,
       "brief": "The Saturday cycle has the analytical room to translate Friday's tactical events into the structural transitions they actually are.",
+      "status": "active",
       "citation_count": 9
     },
     {
@@ -126,6 +139,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 38,
       "brief": "A single architecture executes concealment-mode and disclosure-mode Channel Decomposition across consecutive cadence-windows on the same artifact.",
+      "status": "active",
       "citation_count": 10
     },
     {
@@ -135,6 +149,7 @@
       "meta_name": "Bypass Inversion",
       "source_briefing": 7,
       "brief": "When an escape route from a structural problem becomes itself the locus of the structural problem \u2014 because the route was constructed precisely to evade what is now targeting it.",
+      "status": "active",
       "citation_count": 11
     },
     {
@@ -144,6 +159,7 @@
       "meta_name": "Bypass Inversion",
       "source_briefing": 2,
       "brief": "When a parallel transaction system emerges alongside the dominant one, initially invisible, then suddenly structural.",
+      "status": "active",
       "citation_count": 11
     },
     {
@@ -153,6 +169,7 @@
       "meta_name": "Bypass Inversion",
       "source_briefing": 5,
       "brief": "When the deliberate ambiguity that enabled an agreement becomes the mechanism of its failure.",
+      "status": "active",
       "citation_count": 12
     },
     {
@@ -162,6 +179,7 @@
       "meta_name": "Bypass Inversion",
       "source_briefing": 6,
       "brief": "When stalled diplomatic tracks spawn parallel tracks that justify their own continuation through each other's existence.",
+      "status": "active",
       "citation_count": 7
     },
     {
@@ -171,6 +189,7 @@
       "meta_name": "Bypass Inversion",
       "source_briefing": 3,
       "brief": "When a state exploits the gap between its legal sovereignty claims and the international community's capacity to enforce alternative norms.",
+      "status": "active",
       "citation_count": 13
     },
     {
@@ -180,6 +199,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 1,
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
+      "status": "active",
       "citation_count": 25
     },
     {
@@ -189,6 +209,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 1,
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
+      "status": "active",
       "citation_count": 25
     },
     {
@@ -198,6 +219,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 1,
       "brief": "When crossing one threshold triggers others across domains.",
+      "status": "active",
       "citation_count": 33
     },
     {
@@ -207,6 +229,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 2,
       "brief": "When an imposed temporal boundary forces latent structural forces into visibility.",
+      "status": "active",
       "citation_count": 17
     },
     {
@@ -216,6 +239,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 23,
       "brief": "A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the\u2026",
+      "status": "active",
       "citation_count": 36
     },
     {
@@ -225,6 +249,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 9,
       "brief": "Physical conditions tend to irreversibility while institutional conditions tend to reversibility, so the rate at which a kinetic substrate progresses is structurally faster than the rate at which the institutional\u2026",
+      "status": "active",
       "citation_count": 28
     },
     {
@@ -234,6 +259,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 26,
       "brief": "Smoothed signals produce maximum dispersion within a single decision window.",
+      "status": "active",
       "citation_count": 19
     },
     {
@@ -243,6 +269,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 27,
       "brief": "Multiple structural transitions activate on the same calendar day, producing selective-absorption pressure on the institutional architectures forced to process them simultaneously.",
+      "status": "active",
       "citation_count": 10
     },
     {
@@ -252,6 +279,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 29,
       "brief": "Sunday converts structural information into operational decisions before Monday's marketplace opens, exploiting the asymmetry between political-substrate cadence (24/7) and marketplace cadence (5/7).",
+      "status": "active",
       "citation_count": 6
     },
     {
@@ -261,6 +289,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
+      "status": "active",
       "citation_count": 86
     },
     {
@@ -270,6 +299,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 1,
       "brief": "Competitive advantage existing only in crisis.",
+      "status": "active",
       "citation_count": 11
     },
     {
@@ -279,6 +309,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 5,
       "brief": "When the most prominent advocate for a strategic paradigm abandons it under competitive pressure, redefining the competitive landscape for all remaining participants.",
+      "status": "active",
       "citation_count": 14
     },
     {
@@ -288,6 +319,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 7,
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
+      "status": "active",
       "citation_count": 10
     },
     {
@@ -297,6 +329,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 24,
       "brief": "A multilateral coordination regime loses one of its load-bearing participants under conditions in which an external shock has suppressed the cost of defection and a parallel bilateral arrangement has substituted for the\u2026",
+      "status": "active",
       "citation_count": 18
     },
     {
@@ -306,6 +339,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 2,
       "brief": "When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act.",
+      "status": "active",
       "citation_count": 23
     },
     {
@@ -315,6 +349,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When a distinction assumed stable dissolves.",
+      "status": "active",
       "citation_count": 27
     },
     {
@@ -324,6 +359,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When institutional capacity lags behind the pace of change.",
+      "status": "active",
       "citation_count": 43
     },
     {
@@ -333,6 +369,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 4,
       "brief": "When a diplomatic agreement succeeds precisely because its terms support mutually exclusive interpretations.",
+      "status": "active",
       "citation_count": 21
     },
     {
@@ -342,6 +379,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 4,
       "brief": "When a pause in kinetic conflict accelerates the structural, institutional, and economic transformations the conflict initiated.",
+      "status": "active",
       "citation_count": 16
     },
     {
@@ -351,6 +389,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 9,
       "brief": "Entrenched illiberal rule reversed through democratic processes; the form of the institution holds the work-doing power even when the substantive trajectory had appeared to decouple from it.",
+      "status": "active",
       "citation_count": 22
     },
     {
@@ -360,6 +399,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 30,
       "brief": "Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment.",
+      "status": "active",
       "citation_count": 44
     },
     {
@@ -369,6 +409,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 32,
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
+      "status": "active",
       "citation_count": 37
     },
     {
@@ -378,6 +419,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 31,
       "brief": "The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk\u2026",
+      "status": "active",
       "citation_count": 31
     }
   ]

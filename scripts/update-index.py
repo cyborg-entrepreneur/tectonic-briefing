@@ -16,6 +16,7 @@ Two-phase regenerator:
 Usage: python3 scripts/update-index.py
 """
 
+import json
 import os
 import re
 import sys
@@ -26,8 +27,19 @@ from pathlib import Path
 REPO_DIR = Path(__file__).resolve().parent.parent
 BRIEFINGS_DIR = REPO_DIR / "briefings"
 INDEX_FILE = REPO_DIR / "index.html"
+CONCEPT_REGISTRY = REPO_DIR / "concepts" / "registry.json"
 
 GITHUB_BASE = "https://github.com/cyborg-entrepreneur/tectonic-briefing/blob/main/briefings"
+
+
+def registry_vocab_status():
+    """Return active/retired vocabulary counts from canonical registry."""
+    try:
+        patterns = json.loads(CONCEPT_REGISTRY.read_text())["patterns"]
+    except (OSError, KeyError, json.JSONDecodeError):
+        return None
+    active = sum(p.get("status", "active") != "retired" for p in patterns)
+    return active, len(patterns) - active
 
 
 def atomic_write_text(path, content):
@@ -811,7 +823,10 @@ def render_hero(today_meta, archive_url, total_briefings=0):
         dd_block = ''
 
     # Vocabulary + liminal block
-    vocab_text = today_meta['vocab_status'] or 'Vocabulary status pending'
+    vocab_counts = registry_vocab_status()
+    vocab_text = (f"{vocab_counts[0]} active patterns · "
+                  f"{vocab_counts[1]} retired" if vocab_counts
+                  else today_meta['vocab_status'] or 'Vocabulary status pending')
     # Try to split number from descriptor
     vocab_num_match = re.match(r'(\d+)\s+(.*)', vocab_text)
     sparkline_html = ''
@@ -1011,8 +1026,8 @@ def render_archive(metas, audit_links):
         audit_cards = '\n'.join(audit_links)
         audits_html = f'''
 <div style="margin-bottom:1.6rem">
-  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--ambb);font-weight:500;margin-bottom:.8rem">Contingency Audits</h3>
-  <div style="color:var(--t3);font-size:.85rem;line-height:1.55;margin-bottom:.8rem;font-style:italic">Meta-analyses of the briefing's Inference Engine, every 30 briefings. The break points themselves are the data.</div>
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--ambb);font-weight:500;margin-bottom:.8rem">Analytical Reviews</h3>
+  <div style="color:var(--t3);font-size:.85rem;line-height:1.55;margin-bottom:.8rem;font-style:italic">Contingency audits examine inference-chain breaks every 30 briefings; quarterly portfolio reviews examine the full artifact ecology every 90.</div>
   {audit_cards}
 </div>
 '''
@@ -1083,21 +1098,24 @@ def render_stats(metas, audit_n=1):
         cn = re.search(r'(\d+)\s+Cycle 2', v)
         if cn:
             cand_n = cn.group(1)
+    vocab_counts = registry_vocab_status()
+    if vocab_counts:
+        vocab_n = str(vocab_counts[0])
     # audit_n is passed in from discover_audits() — do not hard-code (CLAUDE.md)
     return f"""
 <div class="stats">
 <div class="stat"><div class="stat-num">{n_total}</div><div class="stat-label">Briefings</div></div>
 <div class="stat"><div class="stat-num">{n_cycle1}</div><div class="stat-label">Cycle 1</div></div>
 <div class="stat"><div class="stat-num gold">{n_cycle2}</div><div class="stat-label">Cycle 2</div></div>
-<div class="stat"><div class="stat-num">{vocab_n or '—'}</div><div class="stat-label">Named patterns</div></div>
+<div class="stat"><div class="stat-num">{vocab_n or '—'}</div><div class="stat-label">Active patterns</div></div>
 <div class="stat"><div class="stat-num gold">{cand_n or '—'}</div><div class="stat-label">Cycle 2 candidates</div></div>
-<div class="stat"><div class="stat-num amber">{audit_n}</div><div class="stat-label">Contingency audits</div></div>
+<div class="stat"><div class="stat-num amber">{audit_n}</div><div class="stat-label">Analytical reviews</div></div>
 </div>
 """
 
 
 def discover_audits():
-    """Return links for known synthesis audits, if any."""
+    """Return links for known cycle audits and quarterly reviews, if any."""
     syn_dir = REPO_DIR / 'synthesis'
     out = []
     if syn_dir.exists():
@@ -1109,6 +1127,15 @@ def discover_audits():
                 f'<div class="audit-num">Cycle No. {num_str}</div>'
                 f'<div class="audit-title">Contingency Audit — Cycle {int(num_str)}</div>'
                 f'<div class="audit-blurb">Meta-analysis of the Inference Engine\'s conditional chains across the cycle window. Break-point taxonomy and LLM-cognition diagnostics.</div>'
+                f'</a>')
+        for p in sorted(syn_dir.glob('quarter-*.html')):
+            num = re.search(r'quarter-(\d+)', p.stem)
+            num_str = num.group(1) if num else '?'
+            out.append(
+                f'<a class="audit-card" href="synthesis/{p.name}">'
+                f'<div class="audit-num">Portfolio Review No. {num_str}</div>'
+                f'<div class="audit-title">Quarterly Portfolio Review — Q{int(num_str):03d}</div>'
+                f'<div class="audit-blurb">Corpus-level synthesis of themes, coverage, sources, vocabulary health, anomaly lifecycle, research fit, and production quality.</div>'
                 f'</a>')
     return out
 

@@ -91,7 +91,14 @@ def validate_local_links(path, text, report):
 
 def validate_latest(record, patterns, report):
     path, text = record["path"], record["html"]
+    number = record["number"]
     lower = text.casefold()
+    active_patterns = [
+        pattern for pattern in patterns if pattern.get("status", "active") != "retired"
+    ]
+    retired_patterns = [
+        pattern for pattern in patterns if pattern.get("status") == "retired"
+    ]
     for token in ("<!doctype html", "<html", "<head", "</head>", "<body", "</body>", "</html>"):
         if token not in lower:
             report.error(f"{path.name}: missing {token}")
@@ -119,16 +126,106 @@ def validate_latest(record, patterns, report):
     if not re.search(r'class=["\'][^"\']*\bsrc\b', source_section, re.I):
         report.error(f"{path.name}: source archive contains no source entries")
 
+    inference_section = sections.get("ie", "")
+    inference_cards = len(re.findall(
+        r'class=["\'][^"\']*\b(?:inf|chain)\b[^"\']*["\']',
+        inference_section, re.I,
+    ))
+    read_mode_tags = len(re.findall(r"READ:\s*[ORH]\b", inference_section, re.I))
+    if inference_cards and read_mode_tags < inference_cards:
+        report.error(
+            f"{path.name}: {inference_cards} inference chains but only "
+            f"{read_mode_tags} explicit O/R/H read-mode tags"
+        )
+    if re.search(
+        r"\[O\].{0,80}observed.{0,160}\[R\].{0,80}"
+        r"(?:reasoned|inferred).{0,160}\[H\].{0,80}hypothetical",
+        inference_section, re.I | re.S,
+    ):
+        report.error(
+            f"{path.name}: O/R/H is reused for epistemic status; use "
+            "OBS/INF/HYP and reserve O/R/H for read mode"
+        )
+    if number >= 91 and inference_cards:
+        confirms = len(re.findall(r"\bCONFIRMS\s*:", inference_section, re.I))
+        refutes = len(re.findall(r"\bREFUTES\s*:", inference_section, re.I))
+        if confirms < inference_cards or refutes < inference_cards:
+            report.error(
+                f"{path.name}: {inference_cards} inference chains require one "
+                f"CONFIRMS and REFUTES field each; found {confirms}/{refutes}"
+            )
+        if "release field" not in inference_section.casefold():
+            report.error(f"{path.name}: inference chains omit explicit Release field")
+
+    if number >= 91:
+        section_tags = len(re.findall(
+            r'<section\b[^>]*\bid=["\']s-(?:ov|ge|te|ec|sc|so|en|ig|li|ie|wa|an|sa)["\']',
+            text, re.I,
+        ))
+        if section_tags != len(REQUIRED_SECTIONS):
+            report.error(
+                f"{path.name}: semantic schema requires {len(REQUIRED_SECTIONS)} "
+                f"section elements; found {section_tags}"
+            )
+        anomaly_cards = len(re.findall(
+            r'<article\b[^>]*\bclass=["\'][^"\']*\banomaly\b[^"\']*["\']',
+            sections.get("an", ""), re.I,
+        ))
+        anomaly_ids = re.findall(
+            r'\bdata-anomaly-id=["\']([^"\']+)["\']', sections.get("an", ""), re.I
+        )
+        if anomaly_cards != anomalies or len(anomaly_ids) != anomalies:
+            report.error(
+                f"{path.name}: every anomaly must be an article with a stable "
+                f"data-anomaly-id ({anomalies} headings, {anomaly_cards} cards, "
+                f"{len(anomaly_ids)} ids)"
+            )
+        if len(anomaly_ids) != len(set(anomaly_ids)):
+            report.error(f"{path.name}: duplicate data-anomaly-id values")
+
+        total_topics = sum(
+            len(re.findall(r"<h3\b", sections.get(lens, ""), re.I))
+            for lens in LENSES
+        )
+        external_links = {
+            html.unescape(href) for href in re.findall(
+                r'href=["\'](https?://[^"\']+)["\']', text, re.I
+            )
+            if "cyborg-entrepreneur.github.io/tectonic-briefing" not in href
+            and "github.com/cyborg-entrepreneur/tectonic-briefing" not in href
+        }
+        if len(external_links) < total_topics:
+            report.error(
+                f"{path.name}: {total_topics} lens items but only "
+                f"{len(external_links)} unique external supporting links"
+            )
+        analytic = re.sub(r"<(?:style|script)\b.*?</(?:style|script)>", " ", text,
+                          flags=re.I | re.S)
+        analytic_words = len(re.findall(r"\b[\w’'-]+\b", plain_text(analytic)))
+        if not 6000 <= analytic_words <= 9000:
+            report.warn(
+                f"{path.name}: {analytic_words} words outside the 6,000–9,000 "
+                "public reading budget; document the editorial reason"
+            )
+        for pattern in retired_patterns:
+            if pattern["name"].casefold() in plain_text(text).casefold():
+                report.error(
+                    f"{path.name}: retired concept {pattern['name']} appears in new prose"
+                )
+
     vocab_entries = re.findall(
         r'<div\s+class=["\'][^"\']*\bvi\b[^"\']*["\'][^>]*>.*?</div>',
         text, re.I | re.S,
     )
-    if len(vocab_entries) < len(patterns):
+    if len(vocab_entries) < len(active_patterns):
         report.error(
-            f"{path.name}: {len(vocab_entries)} vocabulary cards for {len(patterns)} patterns"
+            f"{path.name}: {len(vocab_entries)} vocabulary cards for "
+            f"{len(active_patterns)} active patterns"
         )
     vocab_text = plain_text(" ".join(vocab_entries)).casefold()
-    absent_patterns = [p["name"] for p in patterns if p["name"].casefold() not in vocab_text]
+    absent_patterns = [
+        p["name"] for p in active_patterns if p["name"].casefold() not in vocab_text
+    ]
     if absent_patterns:
         report.error(f"{path.name}: vocabulary cards omit {', '.join(absent_patterns[:5])}")
 
@@ -212,11 +309,25 @@ def validate_history(records, report):
         detail = ", ".join(f"{number:03d} ({'/'.join(dates)})"
                            for number, dates in sorted(duplicates.items()))
         report.warn(f"historical duplicate issue numbers retained: {detail}")
+        future_duplicates = {
+            number: dates for number, dates in duplicates.items() if number >= 91
+        }
+        if future_duplicates:
+            report.error(
+                "post-quarter issue numbers must be unique: "
+                + ", ".join(f"{number:03d}" for number in sorted(future_duplicates))
+            )
     if by_number:
         missing = sorted(set(range(min(by_number), max(by_number) + 1)) - set(by_number))
         if missing:
             report.warn("historical missing issue numbers retained: "
                         + ", ".join(f"{number:03d}" for number in missing))
+            future_missing = [number for number in missing if number >= 91]
+            if future_missing:
+                report.error(
+                    "post-quarter issue sequence has gaps: "
+                    + ", ".join(f"{number:03d}" for number in future_missing)
+                )
         latest = max(records, key=lambda record: record["date"])
         if latest["number"] != max(by_number):
             report.error(

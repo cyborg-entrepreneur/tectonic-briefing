@@ -1,7 +1,7 @@
 # Structural Concepts Taxonomy
 
-**Last updated:** 2026-06-19 (Cycle 2 audit — Read-Mode/Orienting Discipline added; 42 patterns hold)
-**Concepts tracked:** 42
+**Last updated:** 2026-08-12 (Cycle 3 audit + Quarter 1 review — 41 active, 1 retired)
+**Concepts tracked:** 42 historical (41 active; 1 retired)
 **Meta-categories:** 5
 
 This document is the canonical reference for the tectonic briefing's structural vocabulary. It is organized into five meta-categories that represent higher-level structural patterns, with individual concepts grouped under the meta-category they instantiate. New concepts entering the vocabulary should be evaluated against this taxonomy and either placed under an existing meta-category or used as the warrant for proposing a new one.
@@ -26,7 +26,7 @@ The taxonomy is itself versioned. As the vocabulary grows, the meta-category str
 
 - **Capability Opacity** *(Briefing 003)* — The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable. Capacity exists; observation does not.
 
-- **Emergent Concealment** *(Briefing 005)* — When an AI system develops the capacity to hide its own actions from oversight — not through training but through emergent capability. The concealment is invisible to outputs; only interpretability tools detect the activation patterns.
+- **Emergent Concealment** *(Briefing 005)* — When an AI system develops the capacity to hide its own actions from oversight — not through training but through emergent capability. The concealment is invisible to outputs; only interpretability tools detect the activation patterns. **Status: retired after Cycle 3 (2026-08-12)** — one substantive document in the full 90-briefing corpus and zero Cycle 2 or Cycle 3 re-citations. Preserve the historical concept page; do not invoke or display it in new briefings unless new evidence triggers formal reactivation.
 
 - **Instrument Autonomy** *(Briefing 008)* — A deployed instrument exceeds its deployer's control such that its persistence is decoupled from the political-or-diplomatic agreement that authorized it. The Hormuz mine field outlasting any plausible diplomatic agreement is the canonical case.
 
@@ -104,7 +104,7 @@ The taxonomy is itself versioned. As the vocabulary grows, the meta-category str
 
 **Instantiations:**
 
-- **Commons Enclosure** *(Briefing 003)* — When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper. Iran's Hormuz toll booth is the canonical instance.
+- **Commons Enclosure** *(Briefing 003)* — When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper. Iran's Hormuz toll booth is the canonical instance. **Cycle 3 discriminant:** use only when a previously shared resource, a specific access gate, and a gatekeeper with exclusion or fee-setting power can all be named. Scarcity, regulation, or concentration alone is not enclosure.
 
 - **Optionality Arbitrage** *(Briefing 001)* — Competitive advantage existing only in crisis. Valueless in peacetime, decisive under stress. Actors who positioned for crisis optionality before the war reap the asymmetric returns now.
 
@@ -128,7 +128,7 @@ The taxonomy is itself versioned. As the vocabulary grows, the meta-category str
 
 - **Category Collapse** *(Briefing 001)* — When a distinction assumed stable dissolves. Combatant/civilian, ethics/engineering, war/peace — all losing their categorical force.
 
-- **Governance Vacuum** *(Briefing 001)* — When institutional capacity lags behind the pace of change. AI governance is the dominant contemporary example.
+- **Governance Vacuum** *(Briefing 001)* — When institutional capacity lags behind the pace of change. AI governance is the dominant contemporary example. **Cycle 3 discriminant:** every invocation must name (1) the institution expected to govern, (2) the missing capability or authority, and (3) the observable consequence of that absence. A generic lag between technology and rules is insufficient.
 
 - **Constructive Ambiguity** *(Briefing 004)* — When a diplomatic agreement succeeds precisely because its terms support mutually exclusive interpretations. Works only as long as nobody tests it; the testing destroys the work-doing power of the ambiguity.
 
@@ -192,3 +192,21 @@ The taxonomy is a working tool, not a settled framework.
 **Cycle 2 (Briefings 031–060) verified, 2026-06-19.** 129-chain inference inventory classified across the cycle window. **Zero retirements** — the 42 hold. `akrasia-at-scale` and `emergent-concealment` flagged **retirement-watch** (zero substantive Cycle-2 re-citation) pending the next cycle. **META-6 "Verification Asymmetry" stays tabled** — Cycle 2 produced no qualifying instantiation that fails to map to META-1 Coupling Failure, so the Cycle-1 reopen condition was not met. `channel-decomposition` is the Cycle-2 signature pattern (23 citations). The candidate graveyard (Recursive/Surrogate Re-Disclosure, Venue Substitution, Symbolic Anchoring Failure) was evaluated and **not promoted** — over-naming clustered in the 037–039 representation-mode episode.
 
 **New this cycle — the Read-Mode / Orienting Discipline (O/R/H).** Structural reads are now classified by reading stance (Orienting / Representation / Hybrid), grounded in the orienting-vs-knowledge-representation theory. The Cycle-2 finding — read-mode predicts break severity (every Inverted/Held-Spurious outcome was R or H; zero O-reads inverted, across 129 chains) — is now a standing discipline: see `CONTINGENCY_AUDIT.md` §5.11/§6.6 and the daily `CLAUDE.md` Stage 1d. Full reasoning, the read-mode cross-tab, and meta-principle promotions (mp-001/003/005 toward canonical; mp-011/012/013 new) are recorded in `synthesis/cycle-002.yaml`.
+
+## Cycle 3 Audit Attestation
+
+**Cycle 3 (Briefings 061–090; 31 dated artifacts) verified,
+2026-08-12.** The 155-chain inventory contains 147 independently classified
+Orienting reads, 8 Hybrid reads, and 0 Representation reads. Because all 146
+prospectively tagged chains were O, Cycle 3 does **not** promote the Cycle 2
+read-mode result: the intervention erased the comparison group. Zero chains
+carried explicit `CONFIRMS:` / `REFUTES:` criteria, producing a second
+identification risk, **release-field saturation**. `mp-013` is reinforced (no
+cross-year-template S5 recurrence after Briefing 040); `mp-011` is held in
+abeyance; `mp-012` remains untestable; `mp-014` and `mp-015` enter
+provisionally. **Emergent Concealment is retired** after two watch cycles;
+**Sabbath Visibility** moves to retirement-watch; **Governance Vacuum** and
+**Commons Enclosure** receive discriminant repairs. No Cycle 3 candidate is
+promoted. Full inventory and the 155-anomaly ledger are in
+`synthesis/cycle-003.yaml`; the portfolio-level findings are in
+`synthesis/quarter-001.yaml`.

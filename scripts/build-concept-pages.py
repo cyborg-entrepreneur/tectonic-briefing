@@ -125,6 +125,9 @@ def parse_structural_concepts():
             desc = it.group(3).strip()
             # Clean up trailing whitespace/markdown
             desc = re.sub(r'\n\n+', '\n\n', desc)
+            status = ('retired' if re.search(
+                r'\*\*Status:\s*retired\b', desc, re.IGNORECASE
+            ) else 'active')
 
             # Brief one-liner for tooltips. Prefer the first sentence; if
             # the first sentence is too long, prefer the first independent
@@ -149,6 +152,7 @@ def parse_structural_concepts():
                 'source_briefing': source_briefing,
                 'description': desc,
                 'brief': brief,
+                'status': status,
             })
 
     return patterns
@@ -551,6 +555,8 @@ def render_concept_page(pattern, citations_for_pattern, cross_refs,
 # Concepts index page
 # ──────────────────────────────────────────────────────────────────────
 def render_concepts_index(patterns, citations, total_briefings):
+    active_count = sum(p.get('status', 'active') != 'retired' for p in patterns)
+    retired_count = len(patterns) - active_count
     by_meta = defaultdict(list)
     for p in patterns:
         by_meta[p['meta']].append(p)
@@ -562,9 +568,12 @@ def render_concepts_index(patterns, citations, total_briefings):
         pattern_items = []
         for p in by_meta[meta_num]:
             n_cites = len(citations[p['name']])
+            retired_class = ' retired' if p.get('status') == 'retired' else ''
+            retired_label = ('<span class="cidx-status">Retired</span>'
+                             if p.get('status') == 'retired' else '')
             pattern_items.append(f'''
-<a class="cidx-item m{meta_num}" href="{p['slug']}.html">
-<div class="cidx-name">{escape(p['name'])}</div>
+<a class="cidx-item m{meta_num}{retired_class}" href="{p['slug']}.html">
+<div class="cidx-name">{escape(p['name'])} {retired_label}</div>
 <div class="cidx-brief">{escape(p['brief'])}</div>
 <div class="cidx-stats"><span>Briefing {p['source_briefing']:03d}</span><span class="cidx-cites">{n_cites} citations</span></div>
 </a>''')
@@ -580,7 +589,7 @@ def render_concepts_index(patterns, citations, total_briefings):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Structural Vocabulary — Tectonic Briefing Concepts Index</title>
-<meta name="description" content="All {len(patterns)} named structural patterns from the Tectonic Briefing, organized by meta-category.">
+<meta name="description" content="{active_count} active and {retired_count} retired structural patterns from the Tectonic Briefing, organized by meta-category.">
 <style>
 {CONCEPT_CSS}
 .cidx-intro{{color:var(--t3);font-style:italic;margin-bottom:2rem;line-height:1.7;font-size:1rem}}
@@ -599,6 +608,8 @@ def render_concepts_index(patterns, citations, total_briefings):
 .cidx-brief{{color:var(--t3);font-size:.84rem;line-height:1.5}}
 .cidx-stats{{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);letter-spacing:.08em;text-transform:uppercase;margin-top:auto;padding-top:.4rem;border-top:1px dotted rgba(75,142,242,.1)}}
 .cidx-cites{{color:var(--blub)}}
+.cidx-item.retired{{opacity:.68;border-left-style:dashed}}
+.cidx-status{{font-family:'JetBrains Mono',monospace;font-size:.52rem;letter-spacing:.08em;text-transform:uppercase;color:var(--t4);border:1px solid var(--brd);padding:.08rem .3rem;border-radius:2px;margin-left:.35rem}}
 .epi{{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.04rem;color:var(--t3);margin-top:1rem;max-width:680px;line-height:1.55;padding-left:1rem;border-left:2px solid var(--brds)}}
 .epi::first-letter{{font-family:'Cormorant Garamond',serif;font-size:2.6em;font-weight:400;color:var(--blub);float:left;line-height:.92;margin:.1em .12em 0 0;font-style:normal}}
 .concept-name{{font-size:2.3rem;letter-spacing:.018em}}
@@ -609,7 +620,7 @@ def render_concepts_index(patterns, citations, total_briefings):
 <div class="tb-nav-bar">
 <div class="tb-nav-left">
 <a href="../index.html">← Briefing Archive</a>
-<span class="tb-nav-counter">Structural Vocabulary · {len(patterns)} patterns</span>
+<span class="tb-nav-counter">Structural Vocabulary · {active_count} active · {retired_count} retired</span>
 </div>
 </div>
 
@@ -618,7 +629,7 @@ def render_concepts_index(patterns, citations, total_briefings):
 <header class="concept-head">
 <div class="concept-meta" style="color:var(--blub)">
 <span class="concept-meta-tag">Concepts</span>
-<span>{len(patterns)} patterns · 5 meta-categories · {total_briefings} briefings indexed</span>
+<span>{active_count} active patterns · {retired_count} retired · 5 meta-categories · {total_briefings} briefings indexed</span>
 </div>
 <h1 class="concept-name">Structural Vocabulary</h1>
 <div class="epi">The vocabulary accumulates across briefings. Each named pattern instantiates one of five higher-level meta-categories. Click any pattern to view its canonical definition, citation timeline across briefings, and co-occurring concepts.</div>
@@ -627,7 +638,7 @@ def render_concepts_index(patterns, citations, total_briefings):
 {''.join(meta_blocks)}
 
 <footer>
-<p>Tectonic Briefing · Structural Vocabulary Index · {len(patterns)} named patterns</p>
+<p>Tectonic Briefing · Structural Vocabulary Index · {active_count} active patterns · {retired_count} retired</p>
 </footer>
 
 </div>
@@ -688,6 +699,7 @@ def main():
                 'meta_name': p['meta_name'],
                 'source_briefing': p['source_briefing'],
                 'brief': p['brief'],
+                'status': p['status'],
                 'citation_count': len(citations[p['name']]),
             }
             for p in patterns
@@ -722,6 +734,7 @@ def main():
                 'brief': p['brief'],
                 'source_briefing': p['source_briefing'],
                 'citation_count': len(citations[p['name']]),
+                'status': p['status'],
                 'url': f"concepts/{p['slug']}.html",
             }
             for p in patterns
