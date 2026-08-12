@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-08-11T00:00:00",
+  "generated_at": "2026-08-12T00:00:00",
   "briefings": [
+    {
+      "number": "090",
+      "date": "2026-08-12",
+      "display_date": "12 August 2026",
+      "dow": "Wednesday",
+      "title": "Briefing 090 \u00b7 12 August 2026",
+      "thread": "",
+      "cycle": 1,
+      "url": "briefings/2026-08-12.html"
+    },
     {
       "number": "089",
       "date": "2026-08-11",
@@ -1000,7 +1010,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
       "source_briefing": 20,
-      "citation_count": 23,
+      "citation_count": 24,
       "url": "concepts/verification-mode-asymmetry.html"
     },
     {
@@ -1160,7 +1170,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Smoothed signals produce maximum dispersion within a single decision window.",
       "source_briefing": 26,
-      "citation_count": 18,
+      "citation_count": 19,
       "url": "concepts/verdict-compression.html"
     },
     {
@@ -1170,7 +1180,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Multiple structural transitions activate on the same calendar day, producing selective-absorption pressure on the institutional architectures forced to process them simultaneously.",
       "source_briefing": 27,
-      "citation_count": 9,
+      "citation_count": 10,
       "url": "concepts/effective-date-convergence.html"
     },
     {
@@ -1190,7 +1200,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 85,
+      "citation_count": 86,
       "url": "concepts/commons-enclosure.html"
     },
     {
@@ -1250,7 +1260,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When a distinction assumed stable dissolves.",
       "source_briefing": 1,
-      "citation_count": 26,
+      "citation_count": 27,
       "url": "concepts/category-collapse.html"
     },
     {

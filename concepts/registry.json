@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-11T00:00:00",
-  "total_briefings": 90,
+  "generated_at": "2026-08-12T00:00:00",
+  "total_briefings": 91,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -90,7 +90,7 @@
       "meta_name": "Coupling Failure",
       "source_briefing": 20,
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
-      "citation_count": 23
+      "citation_count": 24
     },
     {
       "name": "Peripheral Assertion",
@@ -234,7 +234,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 26,
       "brief": "Smoothed signals produce maximum dispersion within a single decision window.",
-      "citation_count": 18
+      "citation_count": 19
     },
     {
       "name": "Effective-Date Convergence",
@@ -243,7 +243,7 @@
       "meta_name": "Threshold Cascade",
       "source_briefing": 27,
       "brief": "Multiple structural transitions activate on the same calendar day, producing selective-absorption pressure on the institutional architectures forced to process them simultaneously.",
-      "citation_count": 9
+      "citation_count": 10
     },
     {
       "name": "Sabbath Operationalization",
@@ -261,7 +261,7 @@
       "meta_name": "Commons Enclosure",
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
-      "citation_count": 85
+      "citation_count": 86
     },
     {
       "name": "Optionality Arbitrage",
@@ -315,7 +315,7 @@
       "meta_name": "Institutional Hollowing",
       "source_briefing": 1,
       "brief": "When a distinction assumed stable dissolves.",
-      "citation_count": 26
+      "citation_count": 27
     },
     {
       "name": "Governance Vacuum",
