@@ -1,4 +1,4 @@
-# Tectonic Briefing — Claude Code Integration
+# Tectonic Briefing — Codex Integration
 
 > **Skill routing (added 2026-07-24).** Producing and QC-ing a briefing is the
 > `tectonic-briefing-production` skill, which carries the generation density
@@ -48,9 +48,11 @@ publishing. The pipeline is idempotent and safe to re-run.
 
 `~/workflow/workflowctl` may create the day's briefing as an automated private
 candidate. That job runs the full research/generation protocol in a disposable
-copy through a first-party Claude Code subscription login. It must refuse
-`ANTHROPIC_API_KEY`, Console, Bedrock, Vertex, and Foundry authentication. It
-transfers only a validator-passing briefing into this repository, runs
+archive copy through an ephemeral Codex execution authenticated with the local
+ChatGPT login. It strips API-key and custom-base-URL environment overrides. It
+first materializes a four-issue continuity manifest, then requires the candidate
+to pass the continuity/claim/source audit plus the structural validator. It
+transfers only a gate-passing briefing into this repository, runs
 the real build, and records `awaiting_review`. It is not a publishing path.
 Never commit, push, or invoke `publish.sh` from the automated job. Human review
 remains required because structural validation cannot adjudicate the final
