@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-12T00:00:00",
-  "total_briefings": 91,
+  "generated_at": "2026-08-17T00:00:00",
+  "total_briefings": 92,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -10,7 +10,7 @@
       "source_briefing": 6,
       "brief": "Accurate observation of an actor's internal state, intent, or capability does not constrain the actor's behavior.",
       "status": "active",
-      "citation_count": 13
+      "citation_count": 14
     },
     {
       "name": "Narrative-Physical Decoupling",
@@ -20,7 +20,7 @@
       "source_briefing": 7,
       "brief": "The official account of a situation operates as a parallel reality rather than a description of the physical one.",
       "status": "active",
-      "citation_count": 22
+      "citation_count": 23
     },
     {
       "name": "Akrasia at Scale",
@@ -40,7 +40,7 @@
       "source_briefing": 3,
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
       "status": "active",
-      "citation_count": 35
+      "citation_count": 36
     },
     {
       "name": "Emergent Concealment",
@@ -60,7 +60,7 @@
       "source_briefing": 8,
       "brief": "A deployed instrument exceeds its deployer's control such that its persistence is decoupled from the political-or-diplomatic agreement that authorized it.",
       "status": "active",
-      "citation_count": 19
+      "citation_count": 20
     },
     {
       "name": "Scope Retreat",
@@ -70,7 +70,7 @@
       "source_briefing": 9,
       "brief": "Declared policy retreats to physically feasible scope within hours of issuance, leaving the original declaration as the rhetorical credential while the operational substance has been silently narrowed.",
       "status": "active",
-      "citation_count": 11
+      "citation_count": 12
     },
     {
       "name": "Dual-Track Maximalism",
@@ -80,7 +80,7 @@
       "source_briefing": 10,
       "brief": "Maximum rhetorical escalation and diplomatic opening occur simultaneously, not sequentially.",
       "status": "active",
-      "citation_count": 11
+      "citation_count": 12
     },
     {
       "name": "Credential Foreclosure",
@@ -100,7 +100,7 @@
       "source_briefing": 20,
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
       "status": "active",
-      "citation_count": 24
+      "citation_count": 25
     },
     {
       "name": "Peripheral Assertion",
@@ -170,7 +170,7 @@
       "source_briefing": 5,
       "brief": "When the deliberate ambiguity that enabled an agreement becomes the mechanism of its failure.",
       "status": "active",
-      "citation_count": 12
+      "citation_count": 13
     },
     {
       "name": "Negotiation Multiplication",
@@ -200,7 +200,7 @@
       "source_briefing": 1,
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
       "status": "active",
-      "citation_count": 25
+      "citation_count": 26
     },
     {
       "name": "Chokepoint Cascade",
@@ -210,7 +210,7 @@
       "source_briefing": 1,
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "status": "active",
-      "citation_count": 25
+      "citation_count": 26
     },
     {
       "name": "Tipping Cascade",
@@ -220,7 +220,7 @@
       "source_briefing": 1,
       "brief": "When crossing one threshold triggers others across domains.",
       "status": "active",
-      "citation_count": 33
+      "citation_count": 34
     },
     {
       "name": "Deadline Revelation",
@@ -240,7 +240,7 @@
       "source_briefing": 23,
       "brief": "A configuration whose operational logic depends on a single load-bearing actor or interface loses that actor, and the substitution-architecture constructed for redundancy turns out to have been load-bearing on the\u2026",
       "status": "active",
-      "citation_count": 36
+      "citation_count": 37
     },
     {
       "name": "Reversibility Asymmetry",
@@ -260,7 +260,7 @@
       "source_briefing": 26,
       "brief": "Smoothed signals produce maximum dispersion within a single decision window.",
       "status": "active",
-      "citation_count": 19
+      "citation_count": 20
     },
     {
       "name": "Effective-Date Convergence",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 86
+      "citation_count": 87
     },
     {
       "name": "Optionality Arbitrage",
@@ -300,7 +300,7 @@
       "source_briefing": 1,
       "brief": "Competitive advantage existing only in crisis.",
       "status": "active",
-      "citation_count": 11
+      "citation_count": 12
     },
     {
       "name": "Paradigm Defection",
@@ -310,7 +310,7 @@
       "source_briefing": 5,
       "brief": "When the most prominent advocate for a strategic paradigm abandons it under competitive pressure, redefining the competitive landscape for all remaining participants.",
       "status": "active",
-      "citation_count": 14
+      "citation_count": 15
     },
     {
       "name": "Process as Destination",
@@ -320,7 +320,7 @@
       "source_briefing": 7,
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
       "status": "active",
-      "citation_count": 10
+      "citation_count": 11
     },
     {
       "name": "Cartel Dissolution",
@@ -340,7 +340,7 @@
       "source_briefing": 2,
       "brief": "When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act.",
       "status": "active",
-      "citation_count": 23
+      "citation_count": 24
     },
     {
       "name": "Category Collapse",
@@ -350,7 +350,7 @@
       "source_briefing": 1,
       "brief": "When a distinction assumed stable dissolves.",
       "status": "active",
-      "citation_count": 27
+      "citation_count": 28
     },
     {
       "name": "Governance Vacuum",
@@ -360,7 +360,7 @@
       "source_briefing": 1,
       "brief": "When institutional capacity lags behind the pace of change.",
       "status": "active",
-      "citation_count": 43
+      "citation_count": 44
     },
     {
       "name": "Constructive Ambiguity",
@@ -390,7 +390,7 @@
       "source_briefing": 9,
       "brief": "Entrenched illiberal rule reversed through democratic processes; the form of the institution holds the work-doing power even when the substantive trajectory had appeared to decouple from it.",
       "status": "active",
-      "citation_count": 22
+      "citation_count": 23
     },
     {
       "name": "Sanctuary Discount",
@@ -410,7 +410,7 @@
       "source_briefing": 32,
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
       "status": "active",
-      "citation_count": 37
+      "citation_count": 38
     },
     {
       "name": "Tail Calibration Failure",
