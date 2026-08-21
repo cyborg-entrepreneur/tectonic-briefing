@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-19T00:00:00",
-  "total_briefings": 93,
+  "generated_at": "2026-08-20T00:00:00",
+  "total_briefings": 94,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -40,7 +40,7 @@
       "source_briefing": 3,
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
       "status": "active",
-      "citation_count": 37
+      "citation_count": 38
     },
     {
       "name": "Emergent Concealment",
@@ -100,7 +100,7 @@
       "source_briefing": 20,
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
       "status": "active",
-      "citation_count": 26
+      "citation_count": 27
     },
     {
       "name": "Peripheral Assertion",
@@ -210,7 +210,7 @@
       "source_briefing": 1,
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "status": "active",
-      "citation_count": 27
+      "citation_count": 28
     },
     {
       "name": "Tipping Cascade",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 88
+      "citation_count": 89
     },
     {
       "name": "Optionality Arbitrage",
@@ -300,7 +300,7 @@
       "source_briefing": 1,
       "brief": "Competitive advantage existing only in crisis.",
       "status": "active",
-      "citation_count": 13
+      "citation_count": 14
     },
     {
       "name": "Paradigm Defection",
@@ -320,7 +320,7 @@
       "source_briefing": 7,
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
       "status": "active",
-      "citation_count": 12
+      "citation_count": 13
     },
     {
       "name": "Cartel Dissolution",
@@ -340,7 +340,7 @@
       "source_briefing": 2,
       "brief": "When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act.",
       "status": "active",
-      "citation_count": 25
+      "citation_count": 26
     },
     {
       "name": "Category Collapse",
@@ -370,7 +370,7 @@
       "source_briefing": 4,
       "brief": "When a diplomatic agreement succeeds precisely because its terms support mutually exclusive interpretations.",
       "status": "active",
-      "citation_count": 21
+      "citation_count": 22
     },
     {
       "name": "Ceasefire Acceleration",
