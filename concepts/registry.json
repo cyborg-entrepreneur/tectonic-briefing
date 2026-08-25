@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-20T00:00:00",
-  "total_briefings": 94,
+  "generated_at": "2026-08-25T00:00:00",
+  "total_briefings": 95,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -20,7 +20,7 @@
       "source_briefing": 7,
       "brief": "The official account of a situation operates as a parallel reality rather than a description of the physical one.",
       "status": "active",
-      "citation_count": 24
+      "citation_count": 25
     },
     {
       "name": "Akrasia at Scale",
@@ -100,7 +100,7 @@
       "source_briefing": 20,
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
       "status": "active",
-      "citation_count": 27
+      "citation_count": 28
     },
     {
       "name": "Peripheral Assertion",
@@ -150,7 +150,7 @@
       "source_briefing": 7,
       "brief": "When an escape route from a structural problem becomes itself the locus of the structural problem \u2014 because the route was constructed precisely to evade what is now targeting it.",
       "status": "active",
-      "citation_count": 12
+      "citation_count": 13
     },
     {
       "name": "Shadow Settlement",
@@ -200,7 +200,7 @@
       "source_briefing": 1,
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
       "status": "active",
-      "citation_count": 26
+      "citation_count": 27
     },
     {
       "name": "Chokepoint Cascade",
@@ -210,7 +210,7 @@
       "source_briefing": 1,
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "status": "active",
-      "citation_count": 28
+      "citation_count": 29
     },
     {
       "name": "Tipping Cascade",
@@ -230,7 +230,7 @@
       "source_briefing": 2,
       "brief": "When an imposed temporal boundary forces latent structural forces into visibility.",
       "status": "active",
-      "citation_count": 17
+      "citation_count": 18
     },
     {
       "name": "Keystone Removal",
@@ -260,7 +260,7 @@
       "source_briefing": 26,
       "brief": "Smoothed signals produce maximum dispersion within a single decision window.",
       "status": "active",
-      "citation_count": 21
+      "citation_count": 22
     },
     {
       "name": "Effective-Date Convergence",
@@ -270,7 +270,7 @@
       "source_briefing": 27,
       "brief": "Multiple structural transitions activate on the same calendar day, producing selective-absorption pressure on the institutional architectures forced to process them simultaneously.",
       "status": "active",
-      "citation_count": 11
+      "citation_count": 12
     },
     {
       "name": "Sabbath Operationalization",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 89
+      "citation_count": 90
     },
     {
       "name": "Optionality Arbitrage",
@@ -320,7 +320,7 @@
       "source_briefing": 7,
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
       "status": "active",
-      "citation_count": 13
+      "citation_count": 14
     },
     {
       "name": "Cartel Dissolution",
@@ -340,7 +340,7 @@
       "source_briefing": 2,
       "brief": "When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act.",
       "status": "active",
-      "citation_count": 26
+      "citation_count": 27
     },
     {
       "name": "Category Collapse",
