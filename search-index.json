@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-08-30T00:00:00",
+  "generated_at": "2026-08-31T00:00:00",
   "briefings": [
+    {
+      "number": "096",
+      "date": "2026-08-31",
+      "display_date": "31 August 2026",
+      "dow": "Monday",
+      "title": "Briefing 096 \u00b7 31 August 2026",
+      "thread": "",
+      "cycle": 1,
+      "url": "briefings/2026-08-31.html"
+    },
     {
       "number": "095",
       "date": "2026-08-30",
@@ -1190,7 +1200,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "source_briefing": 1,
-      "citation_count": 29,
+      "citation_count": 30,
       "status": "active",
       "url": "concepts/chokepoint-cascade.html"
     },
@@ -1212,7 +1222,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When an imposed temporal boundary forces latent structural forces into visibility.",
       "source_briefing": 2,
-      "citation_count": 18,
+      "citation_count": 19,
       "status": "active",
       "url": "concepts/deadline-revelation.html"
     },
@@ -1256,7 +1266,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Multiple structural transitions activate on the same calendar day, producing selective-absorption pressure on the institutional architectures forced to process them simultaneously.",
       "source_briefing": 27,
-      "citation_count": 12,
+      "citation_count": 13,
       "status": "active",
       "url": "concepts/effective-date-convergence.html"
     },
@@ -1278,7 +1288,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 91,
+      "citation_count": 92,
       "status": "active",
       "url": "concepts/commons-enclosure.html"
     },
@@ -1399,7 +1409,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment.",
       "source_briefing": 30,
-      "citation_count": 44,
+      "citation_count": 45,
       "status": "active",
       "url": "concepts/sanctuary-discount.html"
     },
@@ -1421,7 +1431,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk\u2026",
       "source_briefing": 31,
-      "citation_count": 32,
+      "citation_count": 33,
       "status": "active",
       "url": "concepts/tail-calibration-failure.html"
     }

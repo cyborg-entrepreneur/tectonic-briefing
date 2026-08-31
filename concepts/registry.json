@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-30T00:00:00",
-  "total_briefings": 96,
+  "generated_at": "2026-08-31T00:00:00",
+  "total_briefings": 97,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -210,7 +210,7 @@
       "source_briefing": 1,
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "status": "active",
-      "citation_count": 29
+      "citation_count": 30
     },
     {
       "name": "Tipping Cascade",
@@ -230,7 +230,7 @@
       "source_briefing": 2,
       "brief": "When an imposed temporal boundary forces latent structural forces into visibility.",
       "status": "active",
-      "citation_count": 18
+      "citation_count": 19
     },
     {
       "name": "Keystone Removal",
@@ -270,7 +270,7 @@
       "source_briefing": 27,
       "brief": "Multiple structural transitions activate on the same calendar day, producing selective-absorption pressure on the institutional architectures forced to process them simultaneously.",
       "status": "active",
-      "citation_count": 12
+      "citation_count": 13
     },
     {
       "name": "Sabbath Operationalization",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 91
+      "citation_count": 92
     },
     {
       "name": "Optionality Arbitrage",
@@ -400,7 +400,7 @@
       "source_briefing": 30,
       "brief": "Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment.",
       "status": "active",
-      "citation_count": 44
+      "citation_count": 45
     },
     {
       "name": "Channel Decomposition",
@@ -420,7 +420,7 @@
       "source_briefing": 31,
       "brief": "The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk\u2026",
       "status": "active",
-      "citation_count": 32
+      "citation_count": 33
     }
   ]
 }
