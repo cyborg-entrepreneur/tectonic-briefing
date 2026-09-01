@@ -58,6 +58,7 @@ EXCLUDED_PATTERNS = [
     re.compile(r'<div class="vi[^"]*">.*?</div>', re.DOTALL),
     re.compile(r'<div class="src[^"]*">.*?</div>', re.DOTALL),
     re.compile(r'<div class="tk[^"]*">.*?</div>', re.DOTALL),
+    re.compile(r'<div class="meta-label">.*?</div>', re.DOTALL),
     re.compile(r'<details class="footer-attest">.*?</details>', re.DOTALL),
     re.compile(r'<footer>.*?</footer>', re.DOTALL),
     re.compile(r'<h4 class="sh2"[^>]*>[^<]*META-\d+:[^<]*</h4>', re.DOTALL),

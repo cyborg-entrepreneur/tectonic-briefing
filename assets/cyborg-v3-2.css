@@ -141,3 +141,15 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid 
   html{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;
     animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+
+/* Stage-1e repairs — 2026-09-01 UX audit of Briefing 097 (applies archive-wide). */
+.chain{border-left-color:var(--purp)!important}
+.read,.step{color:var(--ambp)!important;border-color:var(--accent-dim)!important}
+.release{background:rgba(160,125,58,.08)!important;border-left-color:var(--purp)!important}
+.src-link{display:inline-flex;align-items:center;min-height:34px;padding:.3rem .55rem}
+.eyebrow,.count,.dt,.read,.step,.tag,.src-link{font-size:.68rem!important}
+.tb-site-foot{font-size:.7rem!important}
+.tb-nav-disabled{opacity:1!important}
+.tb-site-foot a{border-color:var(--brd)!important}
+a.vbadge{color:var(--accent-bright)!important;text-decoration:none;border-bottom:1px dotted var(--brds)}
+a.vbadge:hover{color:var(--ambp)!important}

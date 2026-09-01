@@ -228,6 +228,12 @@ materialize from a single edit to `STRUCTURAL_CONCEPTS.md`.
 ### Design Specs
 - Governing system: Cyborg Aesthetic v3.2, using the shared
   `assets/cyborg-v3-2.css` migration layer after the issue's embedded CSS.
+- Constitution: Cyborg Aesthetic v4.0 (manifesto + deployment guide via the
+  `cyborg-aesthetic` skill) governs any redesign or re-derivation of the
+  briefing surface; the v3.2 tokens above are its retained series livery.
+  **Every issue MUST carry its full per-issue embedded stylesheet** (inherit
+  from the previous issue) — the shared migration layer alone does not style
+  the issue body. Briefings 096–097 shipped without it (caught 2026-09-01).
 - Deep structure: tended radiance. The current interpretive or wise-action
   threshold may carry bounded Lantern Amber inside Night Indigo; color cannot
   substitute for the issue's structural relation.
