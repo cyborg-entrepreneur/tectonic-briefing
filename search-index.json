@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-08-31T00:00:00",
+  "generated_at": "2026-09-01T00:00:00",
   "briefings": [
+    {
+      "number": "097",
+      "date": "2026-09-01",
+      "display_date": "1 September 2026",
+      "dow": "Tuesday",
+      "title": "Briefing 097 \u00b7 1 September 2026",
+      "thread": "",
+      "cycle": 1,
+      "url": "briefings/2026-09-01.html"
+    },
     {
       "number": "096",
       "date": "2026-08-31",
@@ -1057,7 +1067,7 @@
       "meta_name": "Coupling Failure",
       "brief": "Maximum rhetorical escalation and diplomatic opening occur simultaneously, not sequentially.",
       "source_briefing": 10,
-      "citation_count": 12,
+      "citation_count": 13,
       "status": "active",
       "url": "concepts/dual-track-maximalism.html"
     },
@@ -1167,7 +1177,7 @@
       "meta_name": "Bypass Inversion",
       "brief": "When stalled diplomatic tracks spawn parallel tracks that justify their own continuation through each other's existence.",
       "source_briefing": 6,
-      "citation_count": 8,
+      "citation_count": 9,
       "status": "active",
       "url": "concepts/negotiation-multiplication.html"
     },
@@ -1200,7 +1210,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "source_briefing": 1,
-      "citation_count": 30,
+      "citation_count": 31,
       "status": "active",
       "url": "concepts/chokepoint-cascade.html"
     },
@@ -1222,7 +1232,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When an imposed temporal boundary forces latent structural forces into visibility.",
       "source_briefing": 2,
-      "citation_count": 19,
+      "citation_count": 20,
       "status": "active",
       "url": "concepts/deadline-revelation.html"
     },
@@ -1288,7 +1298,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 92,
+      "citation_count": 93,
       "status": "active",
       "url": "concepts/commons-enclosure.html"
     },
@@ -1321,7 +1331,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
       "source_briefing": 7,
-      "citation_count": 15,
+      "citation_count": 16,
       "status": "active",
       "url": "concepts/process-as-destination.html"
     },
@@ -1420,7 +1430,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
       "source_briefing": 32,
-      "citation_count": 39,
+      "citation_count": 40,
       "status": "active",
       "url": "concepts/channel-decomposition.html"
     },

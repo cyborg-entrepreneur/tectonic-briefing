@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-31T00:00:00",
-  "total_briefings": 97,
+  "generated_at": "2026-09-01T00:00:00",
+  "total_briefings": 98,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -80,7 +80,7 @@
       "source_briefing": 10,
       "brief": "Maximum rhetorical escalation and diplomatic opening occur simultaneously, not sequentially.",
       "status": "active",
-      "citation_count": 12
+      "citation_count": 13
     },
     {
       "name": "Credential Foreclosure",
@@ -180,7 +180,7 @@
       "source_briefing": 6,
       "brief": "When stalled diplomatic tracks spawn parallel tracks that justify their own continuation through each other's existence.",
       "status": "active",
-      "citation_count": 8
+      "citation_count": 9
     },
     {
       "name": "Sovereignty Arbitrage",
@@ -210,7 +210,7 @@
       "source_briefing": 1,
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "status": "active",
-      "citation_count": 30
+      "citation_count": 31
     },
     {
       "name": "Tipping Cascade",
@@ -230,7 +230,7 @@
       "source_briefing": 2,
       "brief": "When an imposed temporal boundary forces latent structural forces into visibility.",
       "status": "active",
-      "citation_count": 19
+      "citation_count": 20
     },
     {
       "name": "Keystone Removal",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 92
+      "citation_count": 93
     },
     {
       "name": "Optionality Arbitrage",
@@ -320,7 +320,7 @@
       "source_briefing": 7,
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
       "status": "active",
-      "citation_count": 15
+      "citation_count": 16
     },
     {
       "name": "Cartel Dissolution",
@@ -410,7 +410,7 @@
       "source_briefing": 32,
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
       "status": "active",
-      "citation_count": 39
+      "citation_count": 40
     },
     {
       "name": "Tail Calibration Failure",
