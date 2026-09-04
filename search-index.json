@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-09-01T00:00:00",
+  "generated_at": "2026-09-03T00:00:00",
   "briefings": [
+    {
+      "number": "098",
+      "date": "2026-09-03",
+      "display_date": "3 September 2026",
+      "dow": "Thursday",
+      "title": "Briefing 098 \u00b7 3 September 2026",
+      "thread": "",
+      "cycle": 1,
+      "url": "briefings/2026-09-03.html"
+    },
     {
       "number": "097",
       "date": "2026-09-01",
@@ -1089,7 +1099,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
       "source_briefing": 20,
-      "citation_count": 28,
+      "citation_count": 29,
       "status": "active",
       "url": "concepts/verification-mode-asymmetry.html"
     },
@@ -1166,7 +1176,7 @@
       "meta_name": "Bypass Inversion",
       "brief": "When the deliberate ambiguity that enabled an agreement becomes the mechanism of its failure.",
       "source_briefing": 5,
-      "citation_count": 13,
+      "citation_count": 14,
       "status": "active",
       "url": "concepts/conditional-collapse.html"
     },
@@ -1210,7 +1220,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "source_briefing": 1,
-      "citation_count": 31,
+      "citation_count": 32,
       "status": "active",
       "url": "concepts/chokepoint-cascade.html"
     },
@@ -1232,7 +1242,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When an imposed temporal boundary forces latent structural forces into visibility.",
       "source_briefing": 2,
-      "citation_count": 20,
+      "citation_count": 21,
       "status": "active",
       "url": "concepts/deadline-revelation.html"
     },
@@ -1254,7 +1264,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Physical conditions tend to irreversibility while institutional conditions tend to reversibility, so the rate at which a kinetic substrate progresses is structurally faster than the rate at which the institutional\u2026",
       "source_briefing": 9,
-      "citation_count": 29,
+      "citation_count": 30,
       "status": "active",
       "url": "concepts/reversibility-asymmetry.html"
     },
@@ -1298,7 +1308,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 93,
+      "citation_count": 94,
       "status": "active",
       "url": "concepts/commons-enclosure.html"
     },
@@ -1331,7 +1341,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
       "source_briefing": 7,
-      "citation_count": 16,
+      "citation_count": 17,
       "status": "active",
       "url": "concepts/process-as-destination.html"
     },
@@ -1364,7 +1374,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When a distinction assumed stable dissolves.",
       "source_briefing": 1,
-      "citation_count": 29,
+      "citation_count": 30,
       "status": "active",
       "url": "concepts/category-collapse.html"
     },
@@ -1375,7 +1385,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional capacity lags behind the pace of change.",
       "source_briefing": 1,
-      "citation_count": 45,
+      "citation_count": 46,
       "status": "active",
       "url": "concepts/governance-vacuum.html"
     },
@@ -1419,7 +1429,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment.",
       "source_briefing": 30,
-      "citation_count": 45,
+      "citation_count": 46,
       "status": "active",
       "url": "concepts/sanctuary-discount.html"
     },

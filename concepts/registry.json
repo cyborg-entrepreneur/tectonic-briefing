@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-01T00:00:00",
-  "total_briefings": 98,
+  "generated_at": "2026-09-03T00:00:00",
+  "total_briefings": 99,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -100,7 +100,7 @@
       "source_briefing": 20,
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
       "status": "active",
-      "citation_count": 28
+      "citation_count": 29
     },
     {
       "name": "Peripheral Assertion",
@@ -170,7 +170,7 @@
       "source_briefing": 5,
       "brief": "When the deliberate ambiguity that enabled an agreement becomes the mechanism of its failure.",
       "status": "active",
-      "citation_count": 13
+      "citation_count": 14
     },
     {
       "name": "Negotiation Multiplication",
@@ -210,7 +210,7 @@
       "source_briefing": 1,
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "status": "active",
-      "citation_count": 31
+      "citation_count": 32
     },
     {
       "name": "Tipping Cascade",
@@ -230,7 +230,7 @@
       "source_briefing": 2,
       "brief": "When an imposed temporal boundary forces latent structural forces into visibility.",
       "status": "active",
-      "citation_count": 20
+      "citation_count": 21
     },
     {
       "name": "Keystone Removal",
@@ -250,7 +250,7 @@
       "source_briefing": 9,
       "brief": "Physical conditions tend to irreversibility while institutional conditions tend to reversibility, so the rate at which a kinetic substrate progresses is structurally faster than the rate at which the institutional\u2026",
       "status": "active",
-      "citation_count": 29
+      "citation_count": 30
     },
     {
       "name": "Verdict Compression",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 93
+      "citation_count": 94
     },
     {
       "name": "Optionality Arbitrage",
@@ -320,7 +320,7 @@
       "source_briefing": 7,
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
       "status": "active",
-      "citation_count": 16
+      "citation_count": 17
     },
     {
       "name": "Cartel Dissolution",
@@ -350,7 +350,7 @@
       "source_briefing": 1,
       "brief": "When a distinction assumed stable dissolves.",
       "status": "active",
-      "citation_count": 29
+      "citation_count": 30
     },
     {
       "name": "Governance Vacuum",
@@ -360,7 +360,7 @@
       "source_briefing": 1,
       "brief": "When institutional capacity lags behind the pace of change.",
       "status": "active",
-      "citation_count": 45
+      "citation_count": 46
     },
     {
       "name": "Constructive Ambiguity",
@@ -400,7 +400,7 @@
       "source_briefing": 30,
       "brief": "Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment.",
       "status": "active",
-      "citation_count": 45
+      "citation_count": 46
     },
     {
       "name": "Channel Decomposition",

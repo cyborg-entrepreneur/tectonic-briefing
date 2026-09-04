@@ -102,6 +102,8 @@ def validate_latest(record, patterns, report):
     for token in ("<!doctype html", "<html", "<head", "</head>", "<body", "</body>", "</html>"):
         if token not in lower:
             report.error(f"{path.name}: missing {token}")
+    if not re.search(r"</html>\s*\Z", text, re.I):
+        report.error(f"{path.name}: content appears after the closing html element")
     if not re.search(r"<title>.+?</title>", text, re.I | re.S):
         report.error(f"{path.name}: missing non-empty title")
 
@@ -117,7 +119,11 @@ def validate_latest(record, patterns, report):
     deep_dives = len(re.findall(r'class=["\'][^"\']*\bdd-panel\b', text, re.I))
     if not 2 <= deep_dives <= 4:
         report.error(f"{path.name}: {deep_dives} deep dives; expected 2-4")
-    anomalies = len(re.findall(r"<h3\b", sections.get("an", ""), re.I))
+    anomaly_articles = re.findall(
+        r'<article\b[^>]*\bclass=["\'][^"\']*\banomaly\b[^"\']*["\'][^>]*>.*?</article>',
+        sections.get("an", ""), re.I | re.S,
+    )
+    anomalies = len(anomaly_articles)
     if anomalies < 4:
         report.error(f"{path.name}: anomaly section has {anomalies} items; minimum is 4")
     source_section = sections.get("sa", "")
@@ -158,14 +164,19 @@ def validate_latest(record, patterns, report):
             report.error(f"{path.name}: inference chains omit explicit Release field")
 
     if number >= 91:
-        section_tags = len(re.findall(
-            r'<section\b[^>]*\bid=["\']s-(?:ov|ge|te|ec|sc|so|en|ig|li|ie|wa|an|sa)["\']',
+        section_ids = re.findall(
+            r'<section\b[^>]*\bid=["\']s-(ov|ge|te|ec|sc|so|en|ig|li|ie|wa|an|sa)["\']',
             text, re.I,
-        ))
-        if section_tags != len(REQUIRED_SECTIONS):
+        )
+        if len(section_ids) != len(REQUIRED_SECTIONS):
             report.error(
                 f"{path.name}: semantic schema requires {len(REQUIRED_SECTIONS)} "
-                f"section elements; found {section_tags}"
+                f"section elements; found {len(section_ids)}"
+            )
+        elif tuple(section_ids) != REQUIRED_SECTIONS:
+            report.error(
+                f"{path.name}: sections are out of canonical reading order "
+                f"({' → '.join(section_ids)})"
             )
         anomaly_cards = len(re.findall(
             r'<article\b[^>]*\bclass=["\'][^"\']*\banomaly\b[^"\']*["\']',
@@ -174,11 +185,15 @@ def validate_latest(record, patterns, report):
         anomaly_ids = re.findall(
             r'\bdata-anomaly-id=["\']([^"\']+)["\']', sections.get("an", ""), re.I
         )
-        if anomaly_cards != anomalies or len(anomaly_ids) != anomalies:
+        anomaly_headings = sum(
+            bool(re.search(r"<h3\b", article, re.I)) for article in anomaly_articles
+        )
+        if (anomaly_cards != anomalies or anomaly_headings != anomalies
+                or len(anomaly_ids) != anomalies):
             report.error(
                 f"{path.name}: every anomaly must be an article with a stable "
-                f"data-anomaly-id ({anomalies} headings, {anomaly_cards} cards, "
-                f"{len(anomaly_ids)} ids)"
+                f"data-anomaly-id ({anomaly_headings} headings, {anomaly_cards} cards, "
+                f"{len(anomaly_ids)} ids, {anomalies} articles)"
             )
         if len(anomaly_ids) != len(set(anomaly_ids)):
             report.error(f"{path.name}: duplicate data-anomaly-id values")

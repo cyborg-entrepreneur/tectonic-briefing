@@ -280,10 +280,10 @@ def build_top_nav(meta, prev_meta, next_meta):
     archive = '<a href="../index.html" class="tb-nav-archive">Archive</a>'
     return (f'{NAV_TOP_MARK_START}\n'
             f'<a class="tb-skip" href="#s-ov">Skip to briefing</a>'
-            f'<div class="tb-nav-bar">'
+            f'<nav class="tb-nav-bar" aria-label="Briefing navigation">'
             f'<div class="tb-nav-left">{prev_href}{counter}{next_href}</div>'
             f'<div class="tb-nav-right">{archive}</div>'
-            f'</div>\n'
+            f'</nav>\n'
             f'{NAV_TOP_MARK_END}')
 
 
@@ -303,10 +303,10 @@ def build_bot_nav(meta, prev_meta, next_meta):
             '<a href="../index.html">Return to archive</a>'
             '</div>')
     return (f'{NAV_BOT_MARK_START}\n'
-            f'<div class="tb-nav-foot">'
+            f'<nav class="tb-nav-foot" aria-label="Briefing navigation footer">'
             f'<div class="tb-nav-left">{prev_href}{next_href}</div>'
             f'<div class="tb-nav-right">{archive}{github}</div>'
-            f'</div>\n'
+            f'</nav>\n'
             f'{foot}\n'
             f'{NAV_BOT_MARK_END}')
 

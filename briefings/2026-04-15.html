@@ -109,7 +109,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);
 </head>
 <body>
 <!-- TB-NAV-WRAP:TOP:START -->
-<a class="tb-skip" href="#s-ov">Skip to briefing</a><div class="tb-nav-bar"><div class="tb-nav-left"><a href="2026-04-14.html" title="Briefing No. 010 · 14 April 2026">← Prev</a><span class="tb-nav-counter">Briefing No. 011</span><a href="2026-04-16.html" title="Briefing No. 012 · 16 April 2026">Next →</a></div><div class="tb-nav-right"><a href="../index.html" class="tb-nav-archive">Archive</a></div></div>
+<a class="tb-skip" href="#s-ov">Skip to briefing</a><nav class="tb-nav-bar" aria-label="Briefing navigation"><div class="tb-nav-left"><a href="2026-04-14.html" title="Briefing No. 010 · 14 April 2026">← Prev</a><span class="tb-nav-counter">Briefing No. 011</span><a href="2026-04-16.html" title="Briefing No. 012 · 16 April 2026">Next →</a></div><div class="tb-nav-right"><a href="../index.html" class="tb-nav-archive">Archive</a></div></nav>
 <!-- TB-NAV-WRAP:TOP:END -->
 
 <div class="w">
@@ -468,7 +468,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--t4);
 function go(id){document.querySelectorAll('.s').forEach(s=>s.classList.remove('v'));document.getElementById('s-'+id).classList.add('v');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('on'));event.target.classList.add('on');window.scrollTo({top:document.querySelector('.bn').offsetTop-16,behavior:'smooth'})}
 </script>
 <!-- TB-NAV-WRAP:BOT:START -->
-<div class="tb-nav-foot"><div class="tb-nav-left"><a href="2026-04-14.html">← Briefing No. 010</a><a href="2026-04-16.html">Briefing No. 012 →</a></div><div class="tb-nav-right"><a href="../index.html">Archive</a><a href="https://github.com/cyborg-entrepreneur/tectonic-briefing/blob/main/briefings/2026-04-15.html" target="_blank" rel="noopener">View on GitHub</a></div></div>
+<nav class="tb-nav-foot" aria-label="Briefing navigation footer"><div class="tb-nav-left"><a href="2026-04-14.html">← Briefing No. 010</a><a href="2026-04-16.html">Briefing No. 012 →</a></div><div class="tb-nav-right"><a href="../index.html">Archive</a><a href="https://github.com/cyborg-entrepreneur/tectonic-briefing/blob/main/briefings/2026-04-15.html" target="_blank" rel="noopener">View on GitHub</a></div></nav>
 <div class="tb-site-foot">Tectonic Briefing No. 011 · 15 April 2026 · Cyborg Entrepreneurship Research Lab · <a href="../index.html">Return to archive</a></div>
 <!-- TB-NAV-WRAP:BOT:END -->
 </body>
