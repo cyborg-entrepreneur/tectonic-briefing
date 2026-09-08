@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-09-03T00:00:00",
+  "generated_at": "2026-09-08T00:00:00",
   "briefings": [
+    {
+      "number": "099",
+      "date": "2026-09-08",
+      "display_date": "8 September 2026",
+      "dow": "Tuesday",
+      "title": "Briefing 099 \u00b7 8 September 2026",
+      "thread": "",
+      "cycle": 1,
+      "url": "briefings/2026-09-08.html"
+    },
     {
       "number": "098",
       "date": "2026-09-03",
@@ -1000,7 +1010,7 @@
       "meta_name": "Coupling Failure",
       "brief": "Accurate observation of an actor's internal state, intent, or capability does not constrain the actor's behavior.",
       "source_briefing": 6,
-      "citation_count": 16,
+      "citation_count": 17,
       "status": "active",
       "url": "concepts/observation-action-decoupling.html"
     },
@@ -1011,7 +1021,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The official account of a situation operates as a parallel reality rather than a description of the physical one.",
       "source_briefing": 7,
-      "citation_count": 25,
+      "citation_count": 26,
       "status": "active",
       "url": "concepts/narrative-physical-decoupling.html"
     },
@@ -1033,7 +1043,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
       "source_briefing": 3,
-      "citation_count": 38,
+      "citation_count": 39,
       "status": "active",
       "url": "concepts/capability-opacity.html"
     },
@@ -1066,7 +1076,7 @@
       "meta_name": "Coupling Failure",
       "brief": "Declared policy retreats to physically feasible scope within hours of issuance, leaving the original declaration as the rhetorical credential while the operational substance has been silently narrowed.",
       "source_briefing": 9,
-      "citation_count": 13,
+      "citation_count": 14,
       "status": "active",
       "url": "concepts/scope-retreat.html"
     },
@@ -1088,7 +1098,7 @@
       "meta_name": "Coupling Failure",
       "brief": "Executing the credential-action forecloses the negotiation it was intended to enable.",
       "source_briefing": 16,
-      "citation_count": 12,
+      "citation_count": 13,
       "status": "active",
       "url": "concepts/credential-foreclosure.html"
     },
@@ -1099,7 +1109,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
       "source_briefing": 20,
-      "citation_count": 29,
+      "citation_count": 30,
       "status": "active",
       "url": "concepts/verification-mode-asymmetry.html"
     },
@@ -1187,7 +1197,7 @@
       "meta_name": "Bypass Inversion",
       "brief": "When stalled diplomatic tracks spawn parallel tracks that justify their own continuation through each other's existence.",
       "source_briefing": 6,
-      "citation_count": 9,
+      "citation_count": 10,
       "status": "active",
       "url": "concepts/negotiation-multiplication.html"
     },
@@ -1242,7 +1252,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When an imposed temporal boundary forces latent structural forces into visibility.",
       "source_briefing": 2,
-      "citation_count": 21,
+      "citation_count": 22,
       "status": "active",
       "url": "concepts/deadline-revelation.html"
     },
@@ -1308,7 +1318,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 94,
+      "citation_count": 95,
       "status": "active",
       "url": "concepts/commons-enclosure.html"
     },
@@ -1319,7 +1329,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "Competitive advantage existing only in crisis.",
       "source_briefing": 1,
-      "citation_count": 14,
+      "citation_count": 15,
       "status": "active",
       "url": "concepts/optionality-arbitrage.html"
     },
@@ -1341,7 +1351,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
       "source_briefing": 7,
-      "citation_count": 17,
+      "citation_count": 18,
       "status": "active",
       "url": "concepts/process-as-destination.html"
     },
@@ -1363,7 +1373,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act.",
       "source_briefing": 2,
-      "citation_count": 28,
+      "citation_count": 29,
       "status": "active",
       "url": "concepts/capacity-hollowing.html"
     },
@@ -1374,7 +1384,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When a distinction assumed stable dissolves.",
       "source_briefing": 1,
-      "citation_count": 30,
+      "citation_count": 31,
       "status": "active",
       "url": "concepts/category-collapse.html"
     },
@@ -1385,7 +1395,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional capacity lags behind the pace of change.",
       "source_briefing": 1,
-      "citation_count": 46,
+      "citation_count": 47,
       "status": "active",
       "url": "concepts/governance-vacuum.html"
     },
@@ -1396,7 +1406,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When a diplomatic agreement succeeds precisely because its terms support mutually exclusive interpretations.",
       "source_briefing": 4,
-      "citation_count": 22,
+      "citation_count": 23,
       "status": "active",
       "url": "concepts/constructive-ambiguity.html"
     },
@@ -1407,7 +1417,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When a pause in kinetic conflict accelerates the structural, institutional, and economic transformations the conflict initiated.",
       "source_briefing": 4,
-      "citation_count": 16,
+      "citation_count": 17,
       "status": "active",
       "url": "concepts/ceasefire-acceleration.html"
     },
@@ -1418,7 +1428,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Entrenched illiberal rule reversed through democratic processes; the form of the institution holds the work-doing power even when the substantive trajectory had appeared to decouple from it.",
       "source_briefing": 9,
-      "citation_count": 24,
+      "citation_count": 25,
       "status": "active",
       "url": "concepts/electoral-correction.html"
     },
@@ -1440,7 +1450,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
       "source_briefing": 32,
-      "citation_count": 40,
+      "citation_count": 41,
       "status": "active",
       "url": "concepts/channel-decomposition.html"
     },
