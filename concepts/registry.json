@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-08T00:00:00",
-  "total_briefings": 100,
+  "generated_at": "2026-09-14T00:00:00",
+  "total_briefings": 102,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -10,7 +10,7 @@
       "source_briefing": 6,
       "brief": "Accurate observation of an actor's internal state, intent, or capability does not constrain the actor's behavior.",
       "status": "active",
-      "citation_count": 17
+      "citation_count": 18
     },
     {
       "name": "Narrative-Physical Decoupling",
@@ -20,7 +20,7 @@
       "source_briefing": 7,
       "brief": "The official account of a situation operates as a parallel reality rather than a description of the physical one.",
       "status": "active",
-      "citation_count": 26
+      "citation_count": 27
     },
     {
       "name": "Akrasia at Scale",
@@ -40,7 +40,7 @@
       "source_briefing": 3,
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
       "status": "active",
-      "citation_count": 39
+      "citation_count": 40
     },
     {
       "name": "Emergent Concealment",
@@ -60,7 +60,7 @@
       "source_briefing": 8,
       "brief": "A deployed instrument exceeds its deployer's control such that its persistence is decoupled from the political-or-diplomatic agreement that authorized it.",
       "status": "active",
-      "citation_count": 22
+      "citation_count": 23
     },
     {
       "name": "Scope Retreat",
@@ -70,7 +70,7 @@
       "source_briefing": 9,
       "brief": "Declared policy retreats to physically feasible scope within hours of issuance, leaving the original declaration as the rhetorical credential while the operational substance has been silently narrowed.",
       "status": "active",
-      "citation_count": 14
+      "citation_count": 15
     },
     {
       "name": "Dual-Track Maximalism",
@@ -80,7 +80,7 @@
       "source_briefing": 10,
       "brief": "Maximum rhetorical escalation and diplomatic opening occur simultaneously, not sequentially.",
       "status": "active",
-      "citation_count": 13
+      "citation_count": 14
     },
     {
       "name": "Credential Foreclosure",
@@ -90,7 +90,7 @@
       "source_briefing": 16,
       "brief": "Executing the credential-action forecloses the negotiation it was intended to enable.",
       "status": "active",
-      "citation_count": 13
+      "citation_count": 14
     },
     {
       "name": "Verification-Mode Asymmetry",
@@ -100,7 +100,7 @@
       "source_briefing": 20,
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
       "status": "active",
-      "citation_count": 30
+      "citation_count": 32
     },
     {
       "name": "Peripheral Assertion",
@@ -110,7 +110,7 @@
       "source_briefing": 21,
       "brief": "The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal.",
       "status": "active",
-      "citation_count": 41
+      "citation_count": 42
     },
     {
       "name": "Sabbath Visibility",
@@ -150,7 +150,7 @@
       "source_briefing": 7,
       "brief": "When an escape route from a structural problem becomes itself the locus of the structural problem \u2014 because the route was constructed precisely to evade what is now targeting it.",
       "status": "active",
-      "citation_count": 13
+      "citation_count": 14
     },
     {
       "name": "Shadow Settlement",
@@ -180,7 +180,7 @@
       "source_briefing": 6,
       "brief": "When stalled diplomatic tracks spawn parallel tracks that justify their own continuation through each other's existence.",
       "status": "active",
-      "citation_count": 10
+      "citation_count": 11
     },
     {
       "name": "Sovereignty Arbitrage",
@@ -210,7 +210,7 @@
       "source_briefing": 1,
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "status": "active",
-      "citation_count": 32
+      "citation_count": 34
     },
     {
       "name": "Tipping Cascade",
@@ -250,7 +250,7 @@
       "source_briefing": 9,
       "brief": "Physical conditions tend to irreversibility while institutional conditions tend to reversibility, so the rate at which a kinetic substrate progresses is structurally faster than the rate at which the institutional\u2026",
       "status": "active",
-      "citation_count": 30
+      "citation_count": 31
     },
     {
       "name": "Verdict Compression",
@@ -260,7 +260,7 @@
       "source_briefing": 26,
       "brief": "Smoothed signals produce maximum dispersion within a single decision window.",
       "status": "active",
-      "citation_count": 22
+      "citation_count": 23
     },
     {
       "name": "Effective-Date Convergence",
@@ -270,7 +270,7 @@
       "source_briefing": 27,
       "brief": "Multiple structural transitions activate on the same calendar day, producing selective-absorption pressure on the institutional architectures forced to process them simultaneously.",
       "status": "active",
-      "citation_count": 13
+      "citation_count": 14
     },
     {
       "name": "Sabbath Operationalization",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 95
+      "citation_count": 97
     },
     {
       "name": "Optionality Arbitrage",
@@ -300,7 +300,7 @@
       "source_briefing": 1,
       "brief": "Competitive advantage existing only in crisis.",
       "status": "active",
-      "citation_count": 15
+      "citation_count": 16
     },
     {
       "name": "Paradigm Defection",
@@ -320,7 +320,7 @@
       "source_briefing": 7,
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
       "status": "active",
-      "citation_count": 18
+      "citation_count": 19
     },
     {
       "name": "Cartel Dissolution",
@@ -340,7 +340,7 @@
       "source_briefing": 2,
       "brief": "When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act.",
       "status": "active",
-      "citation_count": 29
+      "citation_count": 30
     },
     {
       "name": "Category Collapse",
@@ -350,7 +350,7 @@
       "source_briefing": 1,
       "brief": "When a distinction assumed stable dissolves.",
       "status": "active",
-      "citation_count": 31
+      "citation_count": 33
     },
     {
       "name": "Governance Vacuum",
@@ -360,7 +360,7 @@
       "source_briefing": 1,
       "brief": "When institutional capacity lags behind the pace of change.",
       "status": "active",
-      "citation_count": 47
+      "citation_count": 48
     },
     {
       "name": "Constructive Ambiguity",
@@ -370,7 +370,7 @@
       "source_briefing": 4,
       "brief": "When a diplomatic agreement succeeds precisely because its terms support mutually exclusive interpretations.",
       "status": "active",
-      "citation_count": 23
+      "citation_count": 24
     },
     {
       "name": "Ceasefire Acceleration",
@@ -400,7 +400,7 @@
       "source_briefing": 30,
       "brief": "Monday's marketplace systematically discounts Sunday-window decisions because the marketplace has learned that constraint-apparatus-absent announcements over-state actual commitment.",
       "status": "active",
-      "citation_count": 46
+      "citation_count": 47
     },
     {
       "name": "Channel Decomposition",
@@ -410,7 +410,7 @@
       "source_briefing": 32,
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
       "status": "active",
-      "citation_count": 41
+      "citation_count": 43
     },
     {
       "name": "Tail Calibration Failure",
@@ -420,7 +420,7 @@
       "source_briefing": 31,
       "brief": "The Sanctuary Discount's mean-trajectory calibration succeeds for modal-distribution events and fails catastrophically when operational deployment generates tail events that exceed the discounted-announcement's risk\u2026",
       "status": "active",
-      "citation_count": 33
+      "citation_count": 34
     }
   ]
 }

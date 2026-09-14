@@ -57,6 +57,8 @@ p,.c p,.prose p,.hero-thread-excerpt,.entry-tagline,.cidx-brief,.src-note{
 .tb-nav-bar .tb-nav-right{flex:none;flex-wrap:nowrap!important}
 .tb-nav-bar a,.tb-nav-foot a{color:var(--t3)!important;border-color:var(--brd)!important;
   min-height:44px;display:inline-flex;align-items:center;padding:.35rem .62rem!important}
+.tb-nav-bar .tb-nav-disabled,.tb-nav-foot .tb-nav-disabled{min-height:44px;display:inline-flex;
+  align-items:center;padding:.35rem .62rem;border:1px solid var(--brd)}
 .tb-nav-bar a:hover,.tb-nav-foot a:hover{color:var(--accent-bright)!important;
   border-color:var(--brds)!important}
 .tb-nav-counter{color:var(--accent-bright)!important}
@@ -156,3 +158,10 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid 
 .tb-site-foot a{border-color:var(--brd)!important;display:inline-flex;align-items:center;min-height:44px}
 a.vbadge{color:var(--accent-bright)!important;text-decoration:none;border-bottom:1px dotted var(--brds)}
 a.vbadge:hover{color:var(--ambp)!important}
+a.vbadge.m1{color:var(--m1)!important}a.vbadge.m2{color:var(--m2)!important}
+a.vbadge.m3{color:var(--m3)!important}a.vbadge.m4{color:var(--m4)!important}
+a.vbadge.m5{color:var(--m5)!important}
+
+@media(max-width:768px){
+  .topic-meta,.label,.section-kicker,.dd-marker,.read,.release-label,.nav a{font-size:.72rem!important}
+}

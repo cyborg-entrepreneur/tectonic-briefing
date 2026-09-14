@@ -82,9 +82,10 @@ def extract_metadata(filepath):
     content = re.sub(
         rf'{re.escape(NAV_BOT_MARK_START)}.*?{re.escape(NAV_BOT_MARK_END)}\s*',
         '', content, flags=re.DOTALL)
-    content = re.sub(
-        rf'{re.escape(NAV_STYLE_MARK)}.*?{re.escape(NAV_STYLE_MARK)}\s*',
-        '', content, flags=re.DOTALL)
+    for style_mark in (NAV_STYLE_MARK, LEGACY_NAV_STYLE_MARK):
+        content = re.sub(
+            rf'{re.escape(style_mark)}.*?{re.escape(style_mark)}\s*',
+            '', content, flags=re.DOTALL)
 
     meta = {
         'filename': filepath.name,
@@ -151,6 +152,10 @@ def extract_metadata(filepath):
         # Strip inner tags for the short tagline preview
         stripped = re.sub(r'<[^>]+>', '', raw).strip()
         meta['tagline'] = stripped
+    else:
+        dek_match = re.search(r'<p class="dek"[^>]*>(.*?)</p>', content, re.DOTALL)
+        if dek_match:
+            meta['tagline'] = re.sub(r'<[^>]+>', '', dek_match.group(1)).strip()
 
     # Unifying Thread (.th block — bold structural framing of the day)
     th_match = re.search(
@@ -168,15 +173,28 @@ def extract_metadata(filepath):
             if txt:
                 excerpt_parts.append(txt)
         meta['unifying_thread_excerpt'] = '\n\n'.join(excerpt_parts)
+    else:
+        hero_match = re.search(
+            r'<div class="hero"[^>]*>.*?<h1[^>]*>(.*?)</h1>',
+            content, re.DOTALL)
+        if hero_match:
+            meta['unifying_thread_title'] = re.sub(
+                r'<[^>]+>', '', hero_match.group(1)).strip()
+            meta['unifying_thread_excerpt'] = meta['tagline']
 
     # Deep dive titles (inside .dd-panel > h4)
     dd_titles = re.findall(
         r'<div class="dd-panel">\s*(?:<div class="dd-label">[^<]*</div>\s*)?<h4>([^<]+)</h4>',
         content)
+    if not dd_titles:
+        dd_titles = re.findall(
+            r'<aside class="dd-panel"[^>]*>.*?<h3[^>]*>([^<]+)</h3>',
+            content, re.DOTALL)
     meta['deep_dive_titles'] = [t.strip() for t in dd_titles[:6]]
 
     # Vocabulary status — look for "N named patterns" text
-    vocab_match = re.search(r'(\d+)\s+named\s+patterns?', content, re.IGNORECASE)
+    vocab_match = re.search(
+        r'(\d+)\s+(?:named|active)\s+patterns?', content, re.IGNORECASE)
     if vocab_match:
         n = vocab_match.group(1)
         # Cycle 2 candidate pool count if present
@@ -224,7 +242,8 @@ NAV_TOP_MARK_START = "<!-- TB-NAV-WRAP:TOP:START -->"
 NAV_TOP_MARK_END = "<!-- TB-NAV-WRAP:TOP:END -->"
 NAV_BOT_MARK_START = "<!-- TB-NAV-WRAP:BOT:START -->"
 NAV_BOT_MARK_END = "<!-- TB-NAV-WRAP:BOT:END -->"
-NAV_STYLE_MARK = "<!-- TB-NAV-WRAP:STYLE -->"
+NAV_STYLE_MARK = "/* TB-NAV-WRAP:STYLE */"
+LEGACY_NAV_STYLE_MARK = "<!-- TB-NAV-WRAP:STYLE -->"
 DESIGN_LINK_MARK = "<!-- TB-CYBORG-V3-2 -->"
 
 NAV_CSS = """
@@ -268,11 +287,11 @@ def build_top_nav(meta, prev_meta, next_meta):
     prev_href = (f'<a href="{prev_meta["filename"]}" '
                  f'title="Briefing No. {prev_meta["number"]} · {prev_meta["display_date"]}">'
                  f'← Prev</a>') if prev_meta else \
-        '<a class="tb-nav-disabled">← Prev</a>'
+        '<span class="tb-nav-disabled" aria-disabled="true">← Prev unavailable</span>'
     next_href = (f'<a href="{next_meta["filename"]}" '
                  f'title="Briefing No. {next_meta["number"]} · {next_meta["display_date"]}">'
                  f'Next →</a>') if next_meta else \
-        '<a class="tb-nav-disabled">Next →</a>'
+        '<span class="tb-nav-disabled" aria-disabled="true">Next unavailable →</span>'
     counter = (f'<span class="tb-nav-counter">Briefing No. {meta["number"]}'
                + (f' · Cycle {meta["cycle"]} · Day {meta["cycle_day"]}'
                   if meta["cycle_day"] else '')
@@ -290,10 +309,10 @@ def build_top_nav(meta, prev_meta, next_meta):
 def build_bot_nav(meta, prev_meta, next_meta):
     prev_href = (f'<a href="{prev_meta["filename"]}">'
                  f'← Briefing No. {prev_meta["number"]}</a>') if prev_meta else \
-        '<a class="tb-nav-disabled">← Prev</a>'
+        '<span class="tb-nav-disabled" aria-disabled="true">← Prev unavailable</span>'
     next_href = (f'<a href="{next_meta["filename"]}">'
                  f'Briefing No. {next_meta["number"]} →</a>') if next_meta else \
-        '<a class="tb-nav-disabled">Next →</a>'
+        '<span class="tb-nav-disabled" aria-disabled="true">Next unavailable →</span>'
     archive = '<a href="../index.html">Archive</a>'
     github = (f'<a href="{GITHUB_BASE}/{meta["filename"]}" '
               f'target="_blank" rel="noopener">View on GitHub</a>')
@@ -324,9 +343,10 @@ def inject_per_day_nav(filepath, meta, prev_meta, next_meta):
         rf'{re.escape(NAV_BOT_MARK_START)}.*?{re.escape(NAV_BOT_MARK_END)}\s*',
         '', content, flags=re.DOTALL)
     # Strip the previous CSS block if present.
-    content = re.sub(
-        rf'{re.escape(NAV_STYLE_MARK)}.*?{re.escape(NAV_STYLE_MARK)}\s*',
-        '', content, flags=re.DOTALL)
+    for style_mark in (NAV_STYLE_MARK, LEGACY_NAV_STYLE_MARK):
+        content = re.sub(
+            rf'{re.escape(style_mark)}.*?{re.escape(style_mark)}\s*',
+            '', content, flags=re.DOTALL)
     content = re.sub(
         rf'{re.escape(DESIGN_LINK_MARK)}.*?{re.escape(DESIGN_LINK_MARK)}\s*',
         '', content, flags=re.DOTALL)

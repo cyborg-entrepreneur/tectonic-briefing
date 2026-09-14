@@ -195,11 +195,16 @@ def load_briefings():
             thread_title = re.sub(r'<[^>]+>', '', thread_match.group(1))
             thread_title = thread_title.replace('Unifying Thread:', '').strip()
         else:
-            thread_title = ''
+            hero_match = re.search(
+                r'<div class="hero"[^>]*>.*?<h1[^>]*>(.*?)</h1>',
+                html, re.DOTALL)
+            thread_title = (re.sub(r'<[^>]+>', '', hero_match.group(1)).strip()
+                            if hero_match else '')
 
         # Cycle
         cycle_match = re.search(r'CYCLE\s*(\d+)', html)
-        cycle = int(cycle_match.group(1)) if cycle_match else 1
+        cycle = (int(cycle_match.group(1)) if cycle_match
+                 else (int(number) - 1) // 30 + 1)
 
         meta = {
             'filename': bf.name,
