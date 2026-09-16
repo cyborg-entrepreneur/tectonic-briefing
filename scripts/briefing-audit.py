@@ -33,13 +33,32 @@ IGNORED_LEADS = {
     "society institutions and infrastructure",
     "climate and civil protection",
     "what today s landscape means for the work",
+    # Fixed apparatus headings of the Briefing 091+ semantic schema. They recur
+    # by design and are not substantive leads (added 2026-09-16, Briefing 102).
+    "what changed",
+    "how to read the field",
+    "force interaction matrix",
+    "research program relevance",
+    "active pattern library",
+    "for builders",
+    "for institutional designers",
+    "for forecasters",
+    "for allocators",
+    "for research teams",
+    "for stewards",
+    "do not overclaim",
+    "official institutions primary releases",
+    "scientific analytical reporting",
+    "cultural technical infrastructure records",
+    "thinker registry serendipity queue",
 }
 
 
 def _substantive_lead(value):
     normalized = _normalize(value)
     return bool(normalized and normalized not in IGNORED_LEADS
-                and not re.fullmatch(r"meta \d+ .+ \d+", normalized))
+                and not re.fullmatch(r"meta \d+ .+ \d+", normalized)
+                and not re.match(r"meta \d+ ", normalized))
 
 
 def _material_number(value):

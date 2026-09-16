@@ -101,6 +101,10 @@ header h1 em,.site-head h1 em{color:var(--accent)!important}
 .dd{color:var(--accent-bright)!important;border-color:var(--brds)!important;
   background:rgba(201,136,46,.06)!important;min-height:32px}
 .dd-panel{background:var(--card)!important;border-color:var(--brd)!important}
+/* 2026-09-16 repair (Briefing 102 Stage 1e): keep the deep-dive gold rail and the
+   anomaly rose rail visible under the migration layer, as the .chain repair did. */
+.dd-panel{border-left-color:var(--accent-bright)!important}
+.c.anomaly{border-left-color:var(--red)!important}
 
 /* Archive and concepts: one tended threshold, no sourceless glow. */
 .hero{background:var(--card)!important;border-color:var(--brds)!important;
