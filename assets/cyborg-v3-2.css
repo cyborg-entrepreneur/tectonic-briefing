@@ -181,3 +181,6 @@ a.vbadge.m5{color:var(--m5)!important}
 .c.anomaly[data-status="closed"]{border-left-style:dashed!important;border-left-color:var(--t4)!important}
 .chain{border-left-width:4px!important}
 .hyp{border-left-color:var(--grn)!important}
+/* 2026-09-18 repair (Briefing 104 Stage 1e): hide the scrollbar of the nav bar's
+   scrolling left group so classic scrollbars cannot grow the bar past the chooser offset. */
+.tb-nav-bar .tb-nav-left{scrollbar-width:none}.tb-nav-bar .tb-nav-left::-webkit-scrollbar{display:none}

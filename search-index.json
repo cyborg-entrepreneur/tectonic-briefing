@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-09-17T00:00:00",
+  "generated_at": "2026-09-18T00:00:00",
   "briefings": [
+    {
+      "number": "104",
+      "date": "2026-09-18",
+      "display_date": "18 September 2026",
+      "dow": "Friday",
+      "title": "Briefing 104 \u00b7 18 September 2026",
+      "thread": "Opening the instrument",
+      "cycle": 4,
+      "url": "briefings/2026-09-18.html"
+    },
     {
       "number": "103",
       "date": "2026-09-17",
@@ -1050,7 +1060,7 @@
       "meta_name": "Coupling Failure",
       "brief": "Accurate observation of an actor's internal state, intent, or capability does not constrain the actor's behavior.",
       "source_briefing": 6,
-      "citation_count": 20,
+      "citation_count": 21,
       "status": "active",
       "url": "concepts/observation-action-decoupling.html"
     },
@@ -1083,7 +1093,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
       "source_briefing": 3,
-      "citation_count": 41,
+      "citation_count": 42,
       "status": "active",
       "url": "concepts/capability-opacity.html"
     },
@@ -1105,7 +1115,7 @@
       "meta_name": "Coupling Failure",
       "brief": "A deployed instrument exceeds its deployer's control such that its persistence is decoupled from the political-or-diplomatic agreement that authorized it.",
       "source_briefing": 8,
-      "citation_count": 25,
+      "citation_count": 26,
       "status": "active",
       "url": "concepts/instrument-autonomy.html"
     },
@@ -1149,7 +1159,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
       "source_briefing": 20,
-      "citation_count": 34,
+      "citation_count": 35,
       "status": "active",
       "url": "concepts/verification-mode-asymmetry.html"
     },
@@ -1160,7 +1170,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal.",
       "source_briefing": 21,
-      "citation_count": 42,
+      "citation_count": 43,
       "status": "active",
       "url": "concepts/peripheral-assertion.html"
     },
@@ -1237,7 +1247,7 @@
       "meta_name": "Bypass Inversion",
       "brief": "When stalled diplomatic tracks spawn parallel tracks that justify their own continuation through each other's existence.",
       "source_briefing": 6,
-      "citation_count": 12,
+      "citation_count": 13,
       "status": "active",
       "url": "concepts/negotiation-multiplication.html"
     },
@@ -1259,7 +1269,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
       "source_briefing": 1,
-      "citation_count": 29,
+      "citation_count": 30,
       "status": "active",
       "url": "concepts/buffer-collapse.html"
     },
@@ -1281,7 +1291,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When crossing one threshold triggers others across domains.",
       "source_briefing": 1,
-      "citation_count": 36,
+      "citation_count": 37,
       "status": "active",
       "url": "concepts/tipping-cascade.html"
     },
@@ -1325,7 +1335,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Smoothed signals produce maximum dispersion within a single decision window.",
       "source_briefing": 26,
-      "citation_count": 25,
+      "citation_count": 26,
       "status": "active",
       "url": "concepts/verdict-compression.html"
     },
@@ -1391,7 +1401,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
       "source_briefing": 7,
-      "citation_count": 20,
+      "citation_count": 21,
       "status": "active",
       "url": "concepts/process-as-destination.html"
     },
@@ -1413,7 +1423,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act.",
       "source_briefing": 2,
-      "citation_count": 31,
+      "citation_count": 32,
       "status": "active",
       "url": "concepts/capacity-hollowing.html"
     },
@@ -1424,7 +1434,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When a distinction assumed stable dissolves.",
       "source_briefing": 1,
-      "citation_count": 34,
+      "citation_count": 35,
       "status": "active",
       "url": "concepts/category-collapse.html"
     },
@@ -1435,7 +1445,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional capacity lags behind the pace of change.",
       "source_briefing": 1,
-      "citation_count": 49,
+      "citation_count": 50,
       "status": "active",
       "url": "concepts/governance-vacuum.html"
     },
@@ -1490,7 +1500,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
       "source_briefing": 32,
-      "citation_count": 45,
+      "citation_count": 46,
       "status": "active",
       "url": "concepts/channel-decomposition.html"
     },

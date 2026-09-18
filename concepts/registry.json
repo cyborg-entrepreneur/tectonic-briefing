@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-17T00:00:00",
-  "total_briefings": 104,
+  "generated_at": "2026-09-18T00:00:00",
+  "total_briefings": 105,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -10,7 +10,7 @@
       "source_briefing": 6,
       "brief": "Accurate observation of an actor's internal state, intent, or capability does not constrain the actor's behavior.",
       "status": "active",
-      "citation_count": 20
+      "citation_count": 21
     },
     {
       "name": "Narrative-Physical Decoupling",
@@ -40,7 +40,7 @@
       "source_briefing": 3,
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
       "status": "active",
-      "citation_count": 41
+      "citation_count": 42
     },
     {
       "name": "Emergent Concealment",
@@ -60,7 +60,7 @@
       "source_briefing": 8,
       "brief": "A deployed instrument exceeds its deployer's control such that its persistence is decoupled from the political-or-diplomatic agreement that authorized it.",
       "status": "active",
-      "citation_count": 25
+      "citation_count": 26
     },
     {
       "name": "Scope Retreat",
@@ -100,7 +100,7 @@
       "source_briefing": 20,
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
       "status": "active",
-      "citation_count": 34
+      "citation_count": 35
     },
     {
       "name": "Peripheral Assertion",
@@ -110,7 +110,7 @@
       "source_briefing": 21,
       "brief": "The periphery refuses to remain a backdrop while the corridor monopolizes attention; structural information arrives first from the under-attended domain because the corridor has stopped processing the periphery's signal.",
       "status": "active",
-      "citation_count": 42
+      "citation_count": 43
     },
     {
       "name": "Sabbath Visibility",
@@ -180,7 +180,7 @@
       "source_briefing": 6,
       "brief": "When stalled diplomatic tracks spawn parallel tracks that justify their own continuation through each other's existence.",
       "status": "active",
-      "citation_count": 12
+      "citation_count": 13
     },
     {
       "name": "Sovereignty Arbitrage",
@@ -200,7 +200,7 @@
       "source_briefing": 1,
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
       "status": "active",
-      "citation_count": 29
+      "citation_count": 30
     },
     {
       "name": "Chokepoint Cascade",
@@ -220,7 +220,7 @@
       "source_briefing": 1,
       "brief": "When crossing one threshold triggers others across domains.",
       "status": "active",
-      "citation_count": 36
+      "citation_count": 37
     },
     {
       "name": "Deadline Revelation",
@@ -260,7 +260,7 @@
       "source_briefing": 26,
       "brief": "Smoothed signals produce maximum dispersion within a single decision window.",
       "status": "active",
-      "citation_count": 25
+      "citation_count": 26
     },
     {
       "name": "Effective-Date Convergence",
@@ -320,7 +320,7 @@
       "source_briefing": 7,
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
       "status": "active",
-      "citation_count": 20
+      "citation_count": 21
     },
     {
       "name": "Cartel Dissolution",
@@ -340,7 +340,7 @@
       "source_briefing": 2,
       "brief": "When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act.",
       "status": "active",
-      "citation_count": 31
+      "citation_count": 32
     },
     {
       "name": "Category Collapse",
@@ -350,7 +350,7 @@
       "source_briefing": 1,
       "brief": "When a distinction assumed stable dissolves.",
       "status": "active",
-      "citation_count": 34
+      "citation_count": 35
     },
     {
       "name": "Governance Vacuum",
@@ -360,7 +360,7 @@
       "source_briefing": 1,
       "brief": "When institutional capacity lags behind the pace of change.",
       "status": "active",
-      "citation_count": 49
+      "citation_count": 50
     },
     {
       "name": "Constructive Ambiguity",
@@ -410,7 +410,7 @@
       "source_briefing": 32,
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
       "status": "active",
-      "citation_count": 45
+      "citation_count": 46
     },
     {
       "name": "Tail Calibration Failure",

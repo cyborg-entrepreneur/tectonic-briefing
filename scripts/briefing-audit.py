@@ -58,7 +58,11 @@ def _substantive_lead(value):
     normalized = _normalize(value)
     return bool(normalized and normalized not in IGNORED_LEADS
                 and not re.fullmatch(r"meta \d+ .+ \d+", normalized)
-                and not re.match(r"meta \d+ ", normalized))
+                and not re.match(r"meta \d+ ", normalized)
+                # Wise Action audience labels ("For builders", "For researchers")
+                # are schema headings, not leads (added 2026-09-18 after the
+                # shadow candidate for Briefing 104 was quarantined on one).
+                and not re.match(r"for [a-z]", normalized))
 
 
 def _material_number(value):
