@@ -169,3 +169,15 @@ a.vbadge.m5{color:var(--m5)!important}
 @media(max-width:768px){
   .topic-meta,.label,.section-kicker,.dd-marker,.read,.release-label,.nav a{font-size:.72rem!important}
 }
+
+/* 2026-09-17 repairs (Briefing 103 Stage 1e): keep the section chooser below the
+   nav bar in every stuck state, stop the disabled nav label wrapping, give anomaly
+   cards a status rail beside their text label, and match rail widths. */
+.tb-nav-bar .tb-nav-disabled{white-space:nowrap}
+.nav{top:65px!important}.s{scroll-margin-top:125px!important}
+@media(max-width:768px){.nav{top:64px!important}.s{scroll-margin-top:124px!important}}
+.c.anomaly[data-status="new"]{border-left-color:var(--accent-bright)!important}
+.c.anomaly[data-status="new"] .topic-meta{color:var(--accent-bright)!important}
+.c.anomaly[data-status="closed"]{border-left-style:dashed!important;border-left-color:var(--t4)!important}
+.chain{border-left-width:4px!important}
+.hyp{border-left-color:var(--grn)!important}
