@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-18T00:00:00",
-  "total_briefings": 105,
+  "generated_at": "2026-09-21T00:00:00",
+  "total_briefings": 106,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -10,7 +10,7 @@
       "source_briefing": 6,
       "brief": "Accurate observation of an actor's internal state, intent, or capability does not constrain the actor's behavior.",
       "status": "active",
-      "citation_count": 21
+      "citation_count": 22
     },
     {
       "name": "Narrative-Physical Decoupling",
@@ -100,7 +100,7 @@
       "source_briefing": 20,
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
       "status": "active",
-      "citation_count": 35
+      "citation_count": 36
     },
     {
       "name": "Peripheral Assertion",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 97
+      "citation_count": 98
     },
     {
       "name": "Optionality Arbitrage",
