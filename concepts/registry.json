@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-21T00:00:00",
-  "total_briefings": 106,
+  "generated_at": "2026-09-22T00:00:00",
+  "total_briefings": 107,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -200,7 +200,7 @@
       "source_briefing": 1,
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
       "status": "active",
-      "citation_count": 30
+      "citation_count": 31
     },
     {
       "name": "Chokepoint Cascade",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 98
+      "citation_count": 99
     },
     {
       "name": "Optionality Arbitrage",

@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-09-21T00:00:00",
+  "generated_at": "2026-09-22T00:00:00",
   "briefings": [
+    {
+      "number": "106",
+      "date": "2026-09-22",
+      "display_date": "22 September 2026",
+      "dow": "Tuesday",
+      "title": "Briefing 106 \u00b7 22 September 2026",
+      "thread": "The conditions that make an option useful",
+      "cycle": 4,
+      "url": "briefings/2026-09-22.html"
+    },
     {
       "number": "105",
       "date": "2026-09-21",
@@ -1279,7 +1289,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
       "source_briefing": 1,
-      "citation_count": 30,
+      "citation_count": 31,
       "status": "active",
       "url": "concepts/buffer-collapse.html"
     },
@@ -1378,7 +1388,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 98,
+      "citation_count": 99,
       "status": "active",
       "url": "concepts/commons-enclosure.html"
     },
