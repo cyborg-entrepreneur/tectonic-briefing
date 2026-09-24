@@ -184,3 +184,12 @@ a.vbadge.m5{color:var(--m5)!important}
 /* 2026-09-18 repair (Briefing 104 Stage 1e): hide the scrollbar of the nav bar's
    scrolling left group so classic scrollbars cannot grow the bar past the chooser offset. */
 .tb-nav-bar .tb-nav-left{scrollbar-width:none}.tb-nav-bar .tb-nav-left::-webkit-scrollbar{display:none}
+/* 2026-09-24 repairs (Briefing 107 Stage 1e): give concept badges and footer links a
+   non-colour cue (WCAG 1.4.1), mark updated anomaly cards, keep keyboard focus clear of
+   the sticky bars, and keep focus rings inside the scrolling nav groups. */
+a.vbadge{text-decoration:underline dotted 1px;text-underline-offset:.2em;border-bottom:0}
+.tb-site-foot a{text-decoration:underline;text-underline-offset:.18em;border-bottom:0}
+.c.anomaly[data-status="updated"]{border-left-color:var(--ornament)!important}
+html{scroll-padding-top:125px}
+@media(max-width:768px){html{scroll-padding-top:124px}}
+.nav a:focus-visible,.tb-nav-left a:focus-visible{outline-offset:-3px!important}

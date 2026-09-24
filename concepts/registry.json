@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-22T00:00:00",
-  "total_briefings": 107,
+  "generated_at": "2026-09-24T00:00:00",
+  "total_briefings": 108,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -210,7 +210,7 @@
       "source_briefing": 1,
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "status": "active",
-      "citation_count": 36
+      "citation_count": 37
     },
     {
       "name": "Tipping Cascade",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 99
+      "citation_count": 100
     },
     {
       "name": "Optionality Arbitrage",
@@ -350,7 +350,7 @@
       "source_briefing": 1,
       "brief": "When a distinction assumed stable dissolves.",
       "status": "active",
-      "citation_count": 35
+      "citation_count": 36
     },
     {
       "name": "Governance Vacuum",

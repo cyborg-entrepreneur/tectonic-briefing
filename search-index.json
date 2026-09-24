@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-09-22T00:00:00",
+  "generated_at": "2026-09-24T00:00:00",
   "briefings": [
+    {
+      "number": "107",
+      "date": "2026-09-24",
+      "display_date": "24 September 2026",
+      "dow": "Thursday",
+      "title": "Briefing 107 \u00b7 24 September 2026",
+      "thread": "Who performed the action",
+      "cycle": 4,
+      "url": "briefings/2026-09-24.html"
+    },
     {
       "number": "106",
       "date": "2026-09-22",
@@ -1300,7 +1310,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "source_briefing": 1,
-      "citation_count": 36,
+      "citation_count": 37,
       "status": "active",
       "url": "concepts/chokepoint-cascade.html"
     },
@@ -1388,7 +1398,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 99,
+      "citation_count": 100,
       "status": "active",
       "url": "concepts/commons-enclosure.html"
     },
@@ -1454,7 +1464,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When a distinction assumed stable dissolves.",
       "source_briefing": 1,
-      "citation_count": 35,
+      "citation_count": 36,
       "status": "active",
       "url": "concepts/category-collapse.html"
     },
