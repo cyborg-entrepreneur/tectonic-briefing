@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-24T00:00:00",
-  "total_briefings": 108,
+  "generated_at": "2026-09-25T00:00:00",
+  "total_briefings": 109,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -40,7 +40,7 @@
       "source_briefing": 3,
       "brief": "The gap between what an AI system can do and what its operators can verify about its behavior becomes structurally unbridgeable.",
       "status": "active",
-      "citation_count": 42
+      "citation_count": 43
     },
     {
       "name": "Emergent Concealment",
@@ -210,7 +210,7 @@
       "source_briefing": 1,
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "status": "active",
-      "citation_count": 37
+      "citation_count": 38
     },
     {
       "name": "Tipping Cascade",
@@ -230,7 +230,7 @@
       "source_briefing": 2,
       "brief": "When an imposed temporal boundary forces latent structural forces into visibility.",
       "status": "active",
-      "citation_count": 24
+      "citation_count": 25
     },
     {
       "name": "Keystone Removal",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 100
+      "citation_count": 101
     },
     {
       "name": "Optionality Arbitrage",

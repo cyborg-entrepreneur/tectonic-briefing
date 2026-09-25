@@ -193,3 +193,8 @@ a.vbadge{text-decoration:underline dotted 1px;text-underline-offset:.2em;border-
 html{scroll-padding-top:125px}
 @media(max-width:768px){html{scroll-padding-top:124px}}
 .nav a:focus-visible,.tb-nav-left a:focus-visible{outline-offset:-3px!important}
+/* 2026-09-25 correction (Briefing 108 Stage 1e): the html scroll-padding added on
+   2026-09-24 stacks with the 2026-09-17 .s scroll-margin, so section jumps landed
+   about 250px down. Keep the padding (it also protects keyboard focus) and zero the
+   margin; zero rather than remove, so archived issues' own .s margins stay overridden. */
+.s{scroll-margin-top:0!important}
