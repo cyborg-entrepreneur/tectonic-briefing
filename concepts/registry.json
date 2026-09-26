@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-25T00:00:00",
-  "total_briefings": 109,
+  "generated_at": "2026-09-26T00:00:00",
+  "total_briefings": 110,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 101
+      "citation_count": 102
     },
     {
       "name": "Optionality Arbitrage",
