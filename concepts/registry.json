@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-26T00:00:00",
-  "total_briefings": 110,
+  "generated_at": "2026-09-28T00:00:00",
+  "total_briefings": 111,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -100,7 +100,7 @@
       "source_briefing": 20,
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
       "status": "active",
-      "citation_count": 36
+      "citation_count": 37
     },
     {
       "name": "Peripheral Assertion",
@@ -160,7 +160,7 @@
       "source_briefing": 2,
       "brief": "When a parallel transaction system emerges alongside the dominant one, initially invisible, then suddenly structural.",
       "status": "active",
-      "citation_count": 12
+      "citation_count": 13
     },
     {
       "name": "Conditional Collapse",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 102
+      "citation_count": 103
     },
     {
       "name": "Optionality Arbitrage",
@@ -360,7 +360,7 @@
       "source_briefing": 1,
       "brief": "When institutional capacity lags behind the pace of change.",
       "status": "active",
-      "citation_count": 50
+      "citation_count": 51
     },
     {
       "name": "Constructive Ambiguity",
