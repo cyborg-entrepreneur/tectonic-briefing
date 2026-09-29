@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-09-28T00:00:00",
+  "generated_at": "2026-09-29T00:00:00",
   "briefings": [
+    {
+      "number": "111",
+      "date": "2026-09-29",
+      "display_date": "29 September 2026",
+      "dow": "Tuesday",
+      "title": "Briefing 111 \u00b7 29 September 2026",
+      "thread": "Tests from outside",
+      "cycle": 4,
+      "url": "briefings/2026-09-29.html"
+    },
     {
       "number": "110",
       "date": "2026-09-28",
@@ -1120,7 +1130,7 @@
       "meta_name": "Coupling Failure",
       "brief": "Accurate observation of an actor's internal state, intent, or capability does not constrain the actor's behavior.",
       "source_briefing": 6,
-      "citation_count": 22,
+      "citation_count": 23,
       "status": "active",
       "url": "concepts/observation-action-decoupling.html"
     },
@@ -1428,7 +1438,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 103,
+      "citation_count": 104,
       "status": "active",
       "url": "concepts/commons-enclosure.html"
     },
@@ -1505,7 +1515,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional capacity lags behind the pace of change.",
       "source_briefing": 1,
-      "citation_count": 51,
+      "citation_count": 52,
       "status": "active",
       "url": "concepts/governance-vacuum.html"
     },
