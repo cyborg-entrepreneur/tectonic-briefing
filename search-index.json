@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-09-29T00:00:00",
+  "generated_at": "2026-10-01T00:00:00",
   "briefings": [
+    {
+      "number": "112",
+      "date": "2026-10-01",
+      "display_date": "1 October 2026",
+      "dow": "Thursday",
+      "title": "Briefing 112 \u00b7 1 October 2026",
+      "thread": "What the count includes",
+      "cycle": 4,
+      "url": "briefings/2026-10-01.html"
+    },
     {
       "number": "111",
       "date": "2026-09-29",
@@ -1141,7 +1151,7 @@
       "meta_name": "Coupling Failure",
       "brief": "The official account of a situation operates as a parallel reality rather than a description of the physical one.",
       "source_briefing": 7,
-      "citation_count": 27,
+      "citation_count": 28,
       "status": "active",
       "url": "concepts/narrative-physical-decoupling.html"
     },
@@ -1438,7 +1448,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 104,
+      "citation_count": 105,
       "status": "active",
       "url": "concepts/commons-enclosure.html"
     },

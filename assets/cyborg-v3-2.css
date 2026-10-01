@@ -189,7 +189,11 @@ a.vbadge.m5{color:var(--m5)!important}
    the sticky bars, and keep focus rings inside the scrolling nav groups. */
 a.vbadge{text-decoration:underline dotted 1px;text-underline-offset:.2em;border-bottom:0}
 .tb-site-foot a{text-decoration:underline;text-underline-offset:.18em;border-bottom:0}
-.c.anomaly[data-status="updated"]{border-left-color:var(--ornament)!important}
+.c.anomaly:is([data-status="updated"],[data-status="reassessed"]){border-left-color:var(--ornament)!important}
+/* 2026-10-01 (Briefing 112): the generator writes "reassessed" from No. 110 on; distinguish it from carried entries. */
+.c.anomaly[data-status="reassessed"] .topic-meta{color:var(--ambp)!important}
+#s-an > .c.anomaly + .c.anomaly{margin-top:.6rem}
+#s-an > .section-kicker{margin:1.6rem 0 .6rem}
 html{scroll-padding-top:125px}
 @media(max-width:768px){html{scroll-padding-top:124px}}
 .nav a:focus-visible,.tb-nav-left a:focus-visible{outline-offset:-3px!important}

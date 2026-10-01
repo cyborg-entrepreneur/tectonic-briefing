@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-29T00:00:00",
-  "total_briefings": 112,
+  "generated_at": "2026-10-01T00:00:00",
+  "total_briefings": 113,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -20,7 +20,7 @@
       "source_briefing": 7,
       "brief": "The official account of a situation operates as a parallel reality rather than a description of the physical one.",
       "status": "active",
-      "citation_count": 27
+      "citation_count": 28
     },
     {
       "name": "Akrasia at Scale",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 104
+      "citation_count": 105
     },
     {
       "name": "Optionality Arbitrage",

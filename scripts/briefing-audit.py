@@ -51,6 +51,17 @@ IGNORED_LEADS = {
     "scientific analytical reporting",
     "cultural technical infrastructure records",
     "thinker registry serendipity queue",
+    # Wise Action closer and Source Archive subsection headings recur in every
+    # issue by schema; they are not substantive leads (added 2026-10-01,
+    # Briefing 112, after the candidate audit flagged six of them).
+    "evidence that would change today s readings",
+    "security diplomacy and governance sources",
+    "market price and commodity sources",
+    "technology science and environmental sources",
+    "social sources",
+    "research and register sources",
+    "overview deep dive and register sources",
+    "earlier issues consulted",
 }
 
 
