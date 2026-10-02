@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-01T00:00:00",
-  "total_briefings": 113,
+  "generated_at": "2026-10-02T00:00:00",
+  "total_briefings": 114,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -200,7 +200,7 @@
       "source_briefing": 1,
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
       "status": "active",
-      "citation_count": 31
+      "citation_count": 32
     },
     {
       "name": "Chokepoint Cascade",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 105
+      "citation_count": 106
     },
     {
       "name": "Optionality Arbitrage",
@@ -350,7 +350,7 @@
       "source_briefing": 1,
       "brief": "When a distinction assumed stable dissolves.",
       "status": "active",
-      "citation_count": 36
+      "citation_count": 37
     },
     {
       "name": "Governance Vacuum",
@@ -410,7 +410,7 @@
       "source_briefing": 32,
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
       "status": "active",
-      "citation_count": 46
+      "citation_count": 47
     },
     {
       "name": "Tail Calibration Failure",

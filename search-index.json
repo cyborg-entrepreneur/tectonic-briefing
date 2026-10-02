@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-10-01T00:00:00",
+  "generated_at": "2026-10-02T00:00:00",
   "briefings": [
+    {
+      "number": "113",
+      "date": "2026-10-02",
+      "display_date": "2 October 2026",
+      "dow": "Friday",
+      "title": "Briefing 113 \u00b7 2 October 2026",
+      "thread": "Who carries the decision",
+      "cycle": 4,
+      "url": "briefings/2026-10-02.html"
+    },
     {
       "number": "112",
       "date": "2026-10-01",
@@ -1349,7 +1359,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "When a shock-absorbing system fails, exposing the structural problem it masked.",
       "source_briefing": 1,
-      "citation_count": 31,
+      "citation_count": 32,
       "status": "active",
       "url": "concepts/buffer-collapse.html"
     },
@@ -1448,7 +1458,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 105,
+      "citation_count": 106,
       "status": "active",
       "url": "concepts/commons-enclosure.html"
     },
@@ -1514,7 +1524,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When a distinction assumed stable dissolves.",
       "source_briefing": 1,
-      "citation_count": 36,
+      "citation_count": 37,
       "status": "active",
       "url": "concepts/category-collapse.html"
     },
@@ -1580,7 +1590,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "Institutional architecture decomposes a previously-bundled commitment into independently-graspable channels, so that the form of the bundle persists while the substantive coupling between channels has departed.",
       "source_briefing": 32,
-      "citation_count": 46,
+      "citation_count": 47,
       "status": "active",
       "url": "concepts/channel-decomposition.html"
     },
