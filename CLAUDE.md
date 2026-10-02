@@ -2,7 +2,7 @@
 
 > **Skill routing (added 2026-07-24).** Producing and QC-ing a briefing is the
 > `tectonic-briefing-production` skill, which carries the generation density
-> requirements and sequences the four QC stages below. Invoke the skill; this
+> requirements and sequences the QC stages below (1, 1b, 1c, 1d, 1e). Invoke the skill; this
 > file remains the canonical protocol it reads. Deciding whether a briefing item
 > deserves a standalone article stays `tectonic-article-eval`.
 
@@ -24,76 +24,30 @@ Every change to the repo (new briefing, edited briefing, vocabulary update,
 new pattern, design change) must pass through the build pipeline before
 publishing. The pipeline is idempotent and safe to re-run.
 
-### Morning control-plane mode
+### Automated candidate path (retired by default)
 
-`~/workflow/workflowctl` may create the day's briefing as an automated private
-candidate. That job runs the full research/generation protocol in a disposable
-archive copy through an ephemeral Codex execution authenticated with the local
-ChatGPT login. It strips API-key and custom-base-URL environment overrides. It
-first materializes a four-issue continuity manifest, then requires the candidate
-to pass the continuity/claim/source audit plus the structural validator. It
-transfers only a gate-passing briefing into this repository, runs
-the real build, and records `awaiting_review`. It is not a publishing path.
-Never commit, push, or invoke `publish.sh` from the automated job. Human review
-remains required because structural validation cannot adjudicate the final
-editorial, factual, confidentiality, and wise-action judgments.
+`workflowctl`'s `tectonic.morning` job (retired and disabled by default since
+2026-07-28; handler kept as a supervised Codex candidate path) can transfer a
+gate-passing candidate into this repo and mark it `awaiting_review`. It is never
+a publishing path: **never commit, push, or invoke `publish.sh` from it**, and its
+candidate still needs the full QC stages and Dave's review.
 
-```bash
-./scripts/build.sh        # Just build (no git)
-./scripts/publish.sh      # Build + commit + push (default)
-```
+### Build and publish
 
-### What `build.sh` does (in order)
-
-1. **`build-concept-pages.py`**
-   - Parses `STRUCTURAL_CONCEPTS.md` → 42 canonical patterns
-   - Scans every briefing's prose for pattern citations
-   - Generates `concepts/<slug>.html` per pattern (timeline + co-occurrence)
-   - Writes `concepts/registry.json` (consumed by badge injector)
-   - Writes `search-index.json` (consumed by cmd+K modal)
-
-2. **`inject-vocab-badges.py`**
-   - Strips existing `<a class="vbadge">` wrappers (idempotent recovery)
-   - Excludes vocab cards, source archive, thinker registry, footer
-     attestation, `<style>`, `<script>` from injection
-   - Wraps pattern names in remaining prose with linked badges using a
-     single-pass alternation regex (cross-pattern contamination impossible)
-
-3. **`update-index.py`**
-   - Regenerates `index.html` as a hero landing page with today's
-     briefing, vocabulary sparkline, archive grouped by month
-   - Idempotently injects per-day prev/next nav wrappers into every
-     briefing inside `<!-- TB-NAV-WRAP -->` markers
-
-4. **`validate.py`**
-   - Enforces the latest issue's 13 sections, lens density, deep dives,
-     vocabulary coverage, anomalies, source archive, navigation, links, and
-     public-artifact privacy markers
-   - Verifies generated registry/search-index coherence and reports historical
-     number gaps/duplicates as explicit warnings
-
-`./scripts/build.sh --check` performs the full build in a temporary copy and
-compares outputs; it does not mutate the working tree.
-
-### Usage modes
-
-| Command | Behavior |
-| --- | --- |
-| `./scripts/publish.sh` | Build, commit with auto message, push |
-| `./scripts/publish.sh "Briefing No. NNN — Title"` | Build + commit with custom message + push |
-| `./scripts/publish.sh --build-only` | Build only, no git operations |
-| `./scripts/publish.sh --dry-run` | Build + show what would commit, but don't |
-| `./scripts/build.sh` | Just the build pipeline (no git) |
-| `./scripts/build.sh --quiet` | Suppress per-step output |
-| `./scripts/build.sh --check` | Build and report if working tree dirty |
+`./scripts/build.sh` runs `build-concept-pages.py` → `inject-vocab-badges.py` →
+`update-index.py` → `validate.py`; each script's header documents it, and the
+`build.sh`/`publish.sh` headers list their flags. `validate.py` checks structure
+and privacy markers only. **`./scripts/publish.sh` builds, commits, and pushes
+to the public site**; `--dry-run` and `--build-only` are the safe previews.
 
 ## Workflow for writing a new briefing
 
 ### Direct (Claude Code in conversation)
 
-1. Generate briefing HTML and save to `briefings/YYYY-MM-DD.html`
-2. Run `./scripts/publish.sh "Briefing No. NNN — N Mon 2026 (Day-of-week)"`
-3. That's it — pipeline handles concept pages, badges, index, commit, push
+1. Generate `briefings/YYYY-MM-DD.html`.
+2. Run the post-generation QC checklist and Stages 1–1e below.
+3. Publish only after Dave approves (as `AGENTS.md` also requires):
+   `./scripts/publish.sh "Briefing No. NNN — N Mon 2026 (Day-of-week)"`.
 
 ### Indirect (sub-agent approach, calibrated 2026-04-16)
 
@@ -114,8 +68,8 @@ spawn a fresh sub-agent. The agent prompt MUST include:
    events to fill each lens on the first pass; sparse one-item lenses
    are the recurring failure mode Dave has flagged
 
-After the agent writes the HTML, run `./scripts/publish.sh` from main
-context — the pipeline takes over from there.
+After the agent writes the HTML, run the QC stages from the main context before
+anything is published.
 
 ## Post-generation QC checklist (before publish)
 
@@ -146,6 +100,8 @@ integrity. Verify by hand or via the disciplines below before publish:
 - [ ] Factual Verification Discipline (Stage 1b) applied — see below
 - [ ] Confidentiality Discipline (Stage 1c) applied — see below
 - [ ] Read-Mode / Orienting Discipline (Stage 1d) applied — see below
+- [ ] Design / Accessibility Discipline (Stage 1e) applied — see below
+- [ ] VOICE-07 mannered-speech ban (Prose Coherence Rule 6) applied
 
 If any check fails, fix the missing/failing sections, then run
 `./scripts/publish.sh` to rebuild + republish.
@@ -167,25 +123,9 @@ materialize from a single edit to `STRUCTURAL_CONCEPTS.md`.
 
 ## Briefing Architecture
 
-### Eight Analytical Lenses
-1. Geopolitical (red accent)
-2. Technological (blue default)
-3. Economic (blue default)
-4. Scientific (blue default)
-5. Social & Cultural (blue default)
-6. Environmental & Ecological (green accent)
-7. Institutional & Governance (amber accent)
-8. Liminal Signals (gold accent)
-
-### Integrated Systems
-- Inference Engine (purple) — Conditional chains
-- Force Interaction Matrix — Amplify/Dampen
-- Wise Action (teal) — Entrepreneurship, Markets, Investment
-- Structural Vocabulary — Named patterns
-- Anomaly Detection — Conspicuous absences
-- Source Archive — Annotated with Thinker Registry + Serendipity Queue
-- Deep Dive Markers — ◉ signals for conversation topics
-- Research Program Relevance — Knowledge problems, cyborg, Glimpse, papers
+Sections follow the benchmark and the previous issue: the eight lenses
+(`ge te ec sc so en ig li`), then `ie wa an sa`. Colors come from the embedded
+stylesheet and the Design Specs below.
 
 ### Prospective schema contract (Briefing 091 onward)
 
@@ -217,15 +157,12 @@ materialize from a single edit to `STRUCTURAL_CONCEPTS.md`.
 - Deep structure: tended radiance. The current interpretive or wise-action
   threshold may carry bounded Lantern Amber inside Night Indigo; color cannot
   substitute for the issue's structural relation.
-- Background: Night Indigo / Ink Black (`#0B1C36` / `#0A0F1A`).
-- Cards: `#111d35`; elevated evidence: `#182744`; four-pixel corners.
-- Text: `#e2e8f0` primary, `#94a3b8` secondary, `#7E8B9C` faint.
-- Identity/action accent: Lantern Amber `#C9882E`; Harbor Gold `#E29A3C`.
+- Color and type tokens (Night Indigo / Ink Black ground, Lantern Amber and
+  Harbor Gold accents, Fraunces / Newsreader / Public Sans / IBM Plex Mono) are
+  defined in `assets/cyborg-v3-2.css` and the inherited per-issue stylesheet.
 - Taxonomy uses restrained Stone Blue, rose, ochre, and ecological evidence
   colors with redundant labels. Electric cyan, purple/magenta cyberpunk, and
   saturated blue are prohibited as identity.
-- Typography: Fraunces headings, Newsreader long-form text, Public Sans UI,
-  IBM Plex Mono code; use the fallbacks declared in the shared stylesheet.
 - Every generated briefing must include
   `<link rel="stylesheet" href="../assets/cyborg-v3-2.css">` after its embedded
   styles. The build pipeline also injects it idempotently.
@@ -371,13 +308,6 @@ Inserted between Stage 1b (factual verification) and Stage 2 (pre-publish review
 - [ ] **Collaborator-status scan:** grep for "awaiting", "overdue", "expected from", "draft from", combined with personal names. Any private accountability framing? Generalize or remove.
 - [ ] **Journal-name + Dave-identity coupling scan:** any journal named alongside a private workflow item with Dave's identity attached. If the journal is named generically (the briefing references journals in source citations all the time), that's fine; if the journal is named in the context of Dave's reviewing/editing/being-reviewed-by it, remove.
 
-## Two-Pass Discipline (updated)
-
-- **Stage 1 — Prose coherence (existing)**: five-rule coherence checks
-- **Stage 1b — Factual verification (existing 2026-05-13)**: date-stamp + cross-year + structural-template-projection check
-- **Stage 1c — Confidentiality (NEW 2026-05-26)**: five-rule exclusion-list pass per checklist above
-- **Stage 2 — Pre-publish review (existing)**: human/Claude final pass before `update-index.py` + `publish.sh`
-
 ## What This Discipline Does NOT Do
 
 - **Does NOT reduce analytical depth.** The feedback_briefing_depth.md rule still applies. Confidentiality and depth are not in tension; the discipline removes a small class of references that should never have been load-bearing in the first place.
@@ -386,7 +316,7 @@ Inserted between Stage 1b (factual verification) and Stage 2 (pre-publish review
 
 ## Anti-Pattern Briefing 047 Surfaced
 
-Briefing 047's Research Program Relevance section (as initially drafted) included two paragraphs that violated this discipline: one referencing a specific in-progress review (REV-2026-009, "Framing the Pivot") and one referencing his own paper's conditional-accept status awaiting a co-author's revised draft. Both were removed before publish. The retrospective recognition of the violation is the calibration event for this discipline.
+Briefing 047's Research Program Relevance section (as initially drafted) included two paragraphs that violated this discipline: one identifying a specific in-progress peer review by its review ID and manuscript title, and one disclosing the not-yet-public decision status of Dave's own paper along with a co-author's pending draft. Both were removed before publish. The retrospective recognition of the violation is the calibration event for this discipline.
 
 # ══════════════════════════════════════════════════════════════════
 # PROSE COHERENCE DISCIPLINE — Calibrated 2026-05-13 (after Briefings 037-038)
@@ -404,7 +334,7 @@ Dave flagged on 2026-05-13 that Briefings 037 and 038 had drifted toward dense c
 
 **Why this matters**: briefings are externally-facing analytical artifacts. The structural vocabulary's value depends on the prose remaining legible. Dense compound-noun stacking and vocabulary-deployment overload mean the message gets lost even when the analysis is sound.
 
-## Five Rules — Apply on Every Briefing
+## Six Rules — Apply on Every Briefing
 
 ### Rule 1: Compound-noun density limit
 
@@ -441,6 +371,10 @@ Passing: *"Across three architectures (Russia, Trump's, the Manhattan Project's)
 Failing: a deep-dive of 6 paragraphs, each 40+ words, no rhythmic interruption.
 Passing: same deep dive with at least one *"This is the third instance."* or *"The marketplace priced it within ninety minutes."* among the long sentences.
 
+### Rule 6: No mannered speech (VOICE-07, hard rule, calibrated 2026-09-05)
+
+**Never write self-aware, staged prose:** staged reveals ("Here is the unusual part:"), self-referential narration ("Two closing thoughts.", "The summary for your files is brief."), meta-commentary announcing what the text is about to do, direct-address stage direction ("Read it as orientation, not as an exam"), aphoristic punchline closers, or cascades of short declarative punches deployed as drama. Delete the announcement and keep what it announced. Rule 5's short declarative is one earned landing on the sharpest claim; the performance of landing is the tell. The reader must never see the author arranging the furniture.
+
 ## QC Checklist — New Items (post-generation, pre-publish)
 
 In addition to the existing structural checks (13 section IDs, 2-4 deep dives, full vocabulary display, anomaly count, etc.), every generated briefing must clear these prose-coherence checks before publish:
@@ -450,17 +384,18 @@ In addition to the existing structural checks (13 section IDs, 2-4 deep dives, f
 - [ ] **Vocabulary deployment density**: count named structural-vocabulary patterns per paragraph in the analytical prose (excluding the vocabulary display section). Any paragraph deploying 4+? Split.
 - [ ] **Subject-verb concreteness**: scan paragraph-opening sentences. What is the grammatical subject? If abstract ("the X's Y", "the X-Y Z-gap"), justify or rewrite with a concrete subject.
 - [ ] **Short declarative punches**: each deep-dive panel — count sentences ≤15 words. At least 1? If not, add one.
+- [ ] **Mannered speech (VOICE-07)**: scan for staged reveals, self-referential narration, meta-commentary, stage directions, punchline closers, and cascades of short declaratives. Delete the announcement; keep what it announced.
 
 ## Two-Pass Discipline
 
-**Stage 1 — Post-generation, pre-Dave-review**: sub-agent or in-conversation pass applies the five rules to the freshly-generated HTML; rewrites failing sections. Default behavior on every briefing. Same workflow as `feedback_writing_reviewer.md` requires for externally-facing writing tasks.
+**Stage 1 — Post-generation, pre-Dave-review**: sub-agent or in-conversation pass applies the six rules to the freshly-generated HTML; rewrites failing sections. Default behavior on every briefing. Same workflow as `feedback_writing_reviewer.md` requires for externally-facing writing tasks.
 
 **Stage 2 — Pre-publish, after Dave skims**: human/Claude pass catches remaining drift before `update-index.py` + `publish.sh`. Skip only on explicit "publish as-is" instruction.
 
 ## What This Discipline Does NOT Do
 
 - **Does NOT reduce analytical depth.** The feedback_briefing_depth.md rule (full depth regardless of session length) still applies. Depth and coherence are not in tension; the discipline preserves depth while restoring legibility.
-- **Does NOT strip the structural vocabulary.** The 42 named patterns + Cycle 2 candidates are load-bearing apparatus. The discipline applies to the prose *around* the vocabulary, keeping it legible enough that the vocabulary's analytical power lands rather than gets buried.
+- **Does NOT strip the structural vocabulary.** The named patterns + Cycle 2 candidates are load-bearing apparatus. The discipline applies to the prose *around* the vocabulary, keeping it legible enough that the vocabulary's analytical power lands rather than gets buried.
 - **Does NOT collapse the deep-dive panels into shorter analyses.** Deep dives remain 3-6 paragraphs of sustained argument. The coherence is achieved within that length, not by abbreviating it.
 
 The discipline is a craft constraint, not a content constraint. The briefing's analytical ambition stays the same; the prose carrying it gets tightened.
@@ -517,13 +452,7 @@ Inserted between Stage 1 (prose coherence) and Stage 2 (pre-publish review). App
 - [ ] **High-risk-category verification**: diplomatic events, economic data, principal movements, vocabulary-promotion anchors, and Cycle 2 candidate anchors have all been individually verified against current dated sources.
 - [ ] **Omission preference**: any claim that resisted verification has been omitted rather than included.
 
-## Two-Pass Discipline (updated)
-
-**Stage 1 — Prose coherence (existing)**: apply five-rule coherence checks per the PROSE COHERENCE DISCIPLINE section above.
-
-**Stage 1b — Factual verification (NEW 2026-05-13)**: apply the five-rule factual-verification checks above. Briefing does NOT advance to Stage 2 until Stage 1b passes.
-
-**Stage 2 — Pre-publish review (existing)**: human/Claude pass catches remaining drift before `update-index.py` + `publish.sh`.
+**Stage 1b is a gate:** a briefing does not advance to Stage 2 until Stage 1b passes.
 
 ## What This Discipline Does NOT Do
 
@@ -533,7 +462,9 @@ Inserted between Stage 1 (prose coherence) and Stage 2 (pre-publish review). App
 
 ## Retroactive Scope Check
 
-After this calibration date, any briefing that surfaces a sub-agent's structural-pattern claim with a 2025 historical analog should be retroactively checked for cross-year projection. **Briefings 037, 038, 039 examined and remediated 2026-05-13** (038 received an erratum note; 039 received a surgical rewrite). **Earlier briefings have not yet been audited.** The Day-60 Cycle 2 audit should include a retroactive cross-year-projection check across Briefings 031-039 to verify no other instances of the failure mode are propagating downstream citations. **Done 2026-06-19 (Cycle 2 audit):** the cross-year projection is confined to Briefings 037–039 (signature S5, 12 chains, zero after Briefing 040) — the 2026-05-13 factual-verification discipline eliminated it. The deeper cure is now the Read-Mode Discipline below (Rule B), which reframes the cross-year catch from a factual symptom to a representation-mode failure.
+Any briefing that surfaces a structural-pattern claim with a 2025 historical analog
+gets checked for cross-year projection. The 037–039 remediation and the Cycle 2
+retroactive audit are recorded in `synthesis/cycle-002.yaml`.
 
 # ══════════════════════════════════════════════════════════════════
 # READ-MODE / ORIENTING DISCIPLINE — Calibrated 2026-06-19 (Cycle 2 audit)
@@ -603,5 +534,36 @@ Inserted after Stage 1c (confidentiality), before Stage 2 (pre-publish):
 ## What This Discipline Does NOT Do
 
 - **Does NOT forbid representation.** Where the world is genuinely settled and fast-settling — a strait either opens or it does not — a representation read is correct and efficient. The discipline targets *flux*: contested, slow-settling clauses where orienting dominates. (Briefing 060's "clause that executes vs. clause that stalls" is exactly this boundary.)
-- **Does NOT reduce analytical depth or replace the other disciplines.** It is additive: a fourth stage in the two-pass discipline (1 → 1b → 1c → 1d → 2).
+- **Does NOT reduce analytical depth or replace the other disciplines.** It is additive: the fourth QC stage (full order 1 → 1b → 1c → 1d → 1e → 2).
 - **Watch for mono-explanation.** Do not absorb every weak read into "it was an H-read." The tag must be evidenced by the chain's terminal step, not assumed from its outcome (the audit's own §10.6 failure mode applied to this lens).
+
+# ══════════════════════════════════════════════════════════════════
+# DESIGN / ACCESSIBILITY DISCIPLINE — Stage 1e (calibrated 2026-06-16 after Briefing 055; 2026-09-01 after Briefings 096–097)
+# ══════════════════════════════════════════════════════════════════
+
+## The failure modes
+
+Briefing 055 exposed WCAG defects the shared template had carried from the start: a faint text tier below AA contrast, section titles with no `<h2>` landmarks, no visible focus states, and no reduced-motion guard. Briefings 096–097 shipped without their per-issue embedded stylesheet and rendered unstyled on the public site, because the shared `cyborg-v3-2.css` migration layer does not style the issue body. Content QC caught neither; a design pass did.
+
+## Five Rules — Apply on Every Briefing
+
+1. **Inherit the full embedded stylesheet.** Copy the previous issue's `<style>` block into the new `<head>`. A new markup class gets its rule in the issue idiom. The shared stylesheet loads after the embedded styles; the build injects it.
+2. **Every class resolves** to a rule in the embedded or shared stylesheet.
+3. **Contrast.** Text meets WCAG-AA (4.5:1; 3:1 only for genuinely large text) on the Night Indigo and card grounds. The faint tier is `#7E8B9C` (`--t4`); never introduce a darker text color. Small mono labels get no large-text exemption.
+4. **Structure.** One `<h1>`; every section title is an `<h2>` (keep `class="sh"` so the visuals hold); heading levels never skip; images carry alt text; link text names its destination.
+5. **Non-color cues and input.** Color never carries a state or category alone. Focus stays visible (`:focus-visible`), mobile targets stay ≥44px, content reflows at 200%, and every transition or animation has a `prefers-reduced-motion` equivalent.
+
+## QC Checklist — Stage 1e (Design / Accessibility Pass)
+
+Run on the built page, after Stage 1d and before Stage 2:
+
+- [ ] `./scripts/build.sh` passes. `validate.py` enforces the mechanical floor: embedded stylesheet present, shared stylesheet after it, every class resolved, focus and reduced-motion rules present, an `<h2>` in every section.
+- [ ] No text color below AA; any new inline color checked against its ground.
+- [ ] Headings sequential; images have alt text; links name their destination.
+- [ ] No color-only states; focus visible; 44px targets; 200% reflow; reduced-motion equivalents.
+- [ ] Claude Code runs the `ux-design-critic` Dimension 9 pass on the built page and fixes every S1 flag. Agents without it apply this checklist by hand.
+
+## What This Discipline Does NOT Do
+
+- **Does NOT redesign the briefing.** It holds the Cyborg Aesthetic v3.2 livery to its own contract; any redesign goes through the `cyborg-aesthetic` constitution (Design Specs above).
+- **Does NOT reduce analytical depth.** Accessibility and depth are not in tension.

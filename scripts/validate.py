@@ -18,6 +18,9 @@ BRIEFINGS = REPO / "briefings"
 REGISTRY = REPO / "concepts" / "registry.json"
 SEARCH_INDEX = REPO / "search-index.json"
 STRUCTURAL = REPO / "STRUCTURAL_CONCEPTS.md"
+SHARED_CSS = REPO / "assets" / "cyborg-v3-2.css"
+NAV_STYLE_MARK = "/* TB-NAV-WRAP:STYLE */"  # injected by update-index.py
+MIN_ISSUE_CSS_CHARS = 2000  # current issues carry ~7k; 096-097 shipped with none
 REQUIRED_SECTIONS = ("ov", "ge", "te", "ec", "sc", "so", "en", "ig",
                      "li", "ie", "wa", "an", "sa")
 LENSES = ("ge", "te", "ec", "sc", "so", "en", "ig", "li")
@@ -87,6 +90,57 @@ def validate_local_links(path, text, report):
         target = (path.parent / unquote(parsed.path)).resolve()
         if not target.exists():
             report.error(f"{path.name}: broken local link {href}")
+
+
+def css_has_class(css, name):
+    return re.search(r"\." + re.escape(name) + r"(?![\w-])", css) is not None
+
+
+def validate_styles(path, text, report, number):
+    """Stage 1e floor: the mechanical part of the design/accessibility pass."""
+    head_end = text.lower().find("</head>")
+    head = text[:head_end] if head_end >= 0 else ""
+    issue_css = "".join(re.findall(r"<style\b[^>]*>(.*?)</style>", head, re.I | re.S))
+    own_css = re.sub(re.escape(NAV_STYLE_MARK) + r".*?" + re.escape(NAV_STYLE_MARK),
+                     "", issue_css, flags=re.S)
+    if len(own_css.strip()) < MIN_ISSUE_CSS_CHARS:
+        report.error(
+            f"{path.name}: missing the per-issue embedded stylesheet; inherit the "
+            "previous issue's <style> block (the shared layer does not style the body)"
+        )
+    link = re.search(r'<link\b[^>]*href=["\'][^"\']*cyborg-v3-2\.css["\']', head, re.I)
+    if not link:
+        report.error(f"{path.name}: missing the shared cyborg-v3-2.css stylesheet link")
+    elif head.lower().rfind("</style>") > link.start():
+        report.error(f"{path.name}: cyborg-v3-2.css must load after the embedded stylesheet")
+    try:
+        shared_css = SHARED_CSS.read_text(encoding="utf-8")
+    except OSError as exc:
+        report.error(f"shared stylesheet unreadable: {exc}")
+        return
+    body = re.sub(r"<(style|script)\b.*?</\1>", " ", text[max(head_end, 0):],
+                  flags=re.I | re.S)
+    used = {name for value in re.findall(r'\bclass=["\']([^"\']+)["\']', body, re.I)
+            for name in value.split()}
+    unresolved = sorted(name for name in used
+                        if not css_has_class(issue_css, name)
+                        and not css_has_class(shared_css, name))
+    if unresolved:
+        report.error(
+            f"{path.name}: classes with no rule in the embedded or shared stylesheet: "
+            + ", ".join(unresolved[:8])
+        )
+    all_css = issue_css + shared_css
+    for token, label in ((":focus-visible", "visible focus states"),
+                         ("prefers-reduced-motion", "a reduced-motion guard")):
+        if token not in all_css:
+            report.error(f"{path.name}: stylesheets lack {label}")
+    if number >= 91:
+        sections = section_slices(text)
+        headless = [key for key in REQUIRED_SECTIONS
+                    if key in sections and not re.search(r"<h2\b", sections[key], re.I)]
+        if headless:
+            report.error(f"{path.name}: sections without an <h2> heading: {', '.join(headless)}")
 
 
 def validate_latest(record, patterns, report):
@@ -260,6 +314,7 @@ def validate_latest(record, patterns, report):
     }.items():
         if re.search(pattern, text, re.I):
             report.error(f"{path.name}: possible confidential {label} exposed")
+    validate_styles(path, text, report, number)
     validate_local_links(path, text, report)
 
 
