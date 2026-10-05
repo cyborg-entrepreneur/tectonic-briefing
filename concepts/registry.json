@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-02T00:00:00",
-  "total_briefings": 114,
+  "generated_at": "2026-10-05T00:00:00",
+  "total_briefings": 115,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -70,7 +70,7 @@
       "source_briefing": 9,
       "brief": "Declared policy retreats to physically feasible scope within hours of issuance, leaving the original declaration as the rhetorical credential while the operational substance has been silently narrowed.",
       "status": "active",
-      "citation_count": 15
+      "citation_count": 16
     },
     {
       "name": "Dual-Track Maximalism",
@@ -260,7 +260,7 @@
       "source_briefing": 26,
       "brief": "Smoothed signals produce maximum dispersion within a single decision window.",
       "status": "active",
-      "citation_count": 26
+      "citation_count": 27
     },
     {
       "name": "Effective-Date Convergence",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 106
+      "citation_count": 107
     },
     {
       "name": "Optionality Arbitrage",

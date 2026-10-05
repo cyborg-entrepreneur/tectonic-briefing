@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-10-02T00:00:00",
+  "generated_at": "2026-10-05T00:00:00",
   "briefings": [
+    {
+      "number": "114",
+      "date": "2026-10-05",
+      "display_date": "5 October 2026",
+      "dow": "Monday",
+      "title": "Briefing 114 \u00b7 5 October 2026",
+      "thread": "What counts as final",
+      "cycle": 4,
+      "url": "briefings/2026-10-05.html"
+    },
     {
       "number": "113",
       "date": "2026-10-02",
@@ -1216,7 +1226,7 @@
       "meta_name": "Coupling Failure",
       "brief": "Declared policy retreats to physically feasible scope within hours of issuance, leaving the original declaration as the rhetorical credential while the operational substance has been silently narrowed.",
       "source_briefing": 9,
-      "citation_count": 15,
+      "citation_count": 16,
       "status": "active",
       "url": "concepts/scope-retreat.html"
     },
@@ -1425,7 +1435,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Smoothed signals produce maximum dispersion within a single decision window.",
       "source_briefing": 26,
-      "citation_count": 26,
+      "citation_count": 27,
       "status": "active",
       "url": "concepts/verdict-compression.html"
     },
@@ -1458,7 +1468,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 106,
+      "citation_count": 107,
       "status": "active",
       "url": "concepts/commons-enclosure.html"
     },
