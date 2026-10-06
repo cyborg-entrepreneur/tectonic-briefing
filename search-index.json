@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-10-05T00:00:00",
+  "generated_at": "2026-10-06T00:00:00",
   "briefings": [
+    {
+      "number": "115",
+      "date": "2026-10-06",
+      "display_date": "6 October 2026",
+      "dow": "Tuesday",
+      "title": "Briefing 115 \u00b7 6 October 2026",
+      "thread": "What continues changing",
+      "cycle": 4,
+      "url": "briefings/2026-10-06.html"
+    },
     {
       "number": "114",
       "date": "2026-10-05",
@@ -1314,7 +1324,7 @@
       "meta_name": "Bypass Inversion",
       "brief": "When an escape route from a structural problem becomes itself the locus of the structural problem \u2014 because the route was constructed precisely to evade what is now targeting it.",
       "source_briefing": 7,
-      "citation_count": 14,
+      "citation_count": 15,
       "status": "active",
       "url": "concepts/bypass-capture.html"
     },
@@ -1468,7 +1478,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 107,
+      "citation_count": 108,
       "status": "active",
       "url": "concepts/commons-enclosure.html"
     },
@@ -1501,7 +1511,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
       "source_briefing": 7,
-      "citation_count": 21,
+      "citation_count": 22,
       "status": "active",
       "url": "concepts/process-as-destination.html"
     },
@@ -1523,7 +1533,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act.",
       "source_briefing": 2,
-      "citation_count": 32,
+      "citation_count": 33,
       "status": "active",
       "url": "concepts/capacity-hollowing.html"
     },
@@ -1545,7 +1555,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional capacity lags behind the pace of change.",
       "source_briefing": 1,
-      "citation_count": 52,
+      "citation_count": 53,
       "status": "active",
       "url": "concepts/governance-vacuum.html"
     },
