@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-10-06T00:00:00",
+  "generated_at": "2026-10-07T00:00:00",
   "briefings": [
+    {
+      "number": "116",
+      "date": "2026-10-07",
+      "display_date": "7 October 2026",
+      "dow": "Wednesday",
+      "title": "Briefing 116 \u00b7 7 October 2026",
+      "thread": "",
+      "cycle": 4,
+      "url": "briefings/2026-10-07.html"
+    },
     {
       "number": "115",
       "date": "2026-10-06",
@@ -1170,7 +1180,7 @@
       "meta_name": "Coupling Failure",
       "brief": "Accurate observation of an actor's internal state, intent, or capability does not constrain the actor's behavior.",
       "source_briefing": 6,
-      "citation_count": 23,
+      "citation_count": 24,
       "status": "active",
       "url": "concepts/observation-action-decoupling.html"
     },
@@ -1390,7 +1400,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "source_briefing": 1,
-      "citation_count": 38,
+      "citation_count": 39,
       "status": "active",
       "url": "concepts/chokepoint-cascade.html"
     },
@@ -1478,7 +1488,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 108,
+      "citation_count": 109,
       "status": "active",
       "url": "concepts/commons-enclosure.html"
     },
@@ -1511,7 +1521,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
       "source_briefing": 7,
-      "citation_count": 22,
+      "citation_count": 23,
       "status": "active",
       "url": "concepts/process-as-destination.html"
     },
