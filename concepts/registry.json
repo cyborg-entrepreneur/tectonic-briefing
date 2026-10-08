@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-07T00:00:00",
-  "total_briefings": 117,
+  "generated_at": "2026-10-08T00:00:00",
+  "total_briefings": 118,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -100,7 +100,7 @@
       "source_briefing": 20,
       "brief": "The verification regime is structurally blind to a class of failures that only the execution regime surfaces.",
       "status": "active",
-      "citation_count": 37
+      "citation_count": 38
     },
     {
       "name": "Peripheral Assertion",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 109
+      "citation_count": 110
     },
     {
       "name": "Optionality Arbitrage",
