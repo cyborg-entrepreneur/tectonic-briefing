@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-10-08T00:00:00",
+  "generated_at": "2026-10-09T00:00:00",
   "briefings": [
+    {
+      "number": "118",
+      "date": "2026-10-09",
+      "display_date": "9 October 2026",
+      "dow": "Friday",
+      "title": "Briefing 118 \u00b7 9 October 2026",
+      "thread": "",
+      "cycle": 4,
+      "url": "briefings/2026-10-09.html"
+    },
     {
       "number": "117",
       "date": "2026-10-08",
@@ -1498,7 +1508,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 110,
+      "citation_count": 111,
       "status": "active",
       "url": "concepts/commons-enclosure.html"
     },
@@ -1531,7 +1541,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
       "source_briefing": 7,
-      "citation_count": 23,
+      "citation_count": 24,
       "status": "active",
       "url": "concepts/process-as-destination.html"
     },

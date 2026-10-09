@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-08T00:00:00",
-  "total_briefings": 118,
+  "generated_at": "2026-10-09T00:00:00",
+  "total_briefings": 119,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 110
+      "citation_count": 111
     },
     {
       "name": "Optionality Arbitrage",
@@ -320,7 +320,7 @@
       "source_briefing": 7,
       "brief": "When the goal of a negotiation becomes the negotiation's own continuation rather than any substantive outcome.",
       "status": "active",
-      "citation_count": 23
+      "citation_count": 24
     },
     {
       "name": "Cartel Dissolution",
