@@ -24,6 +24,22 @@ MIN_ISSUE_CSS_CHARS = 2000  # current issues carry ~7k; 096-097 shipped with non
 REQUIRED_SECTIONS = ("ov", "ge", "te", "ec", "sc", "so", "en", "ig",
                      "li", "ie", "wa", "an", "sa")
 LENSES = ("ge", "te", "ec", "sc", "so", "en", "ig", "li")
+GLOBAL_MARKETS_START = "2026-10-11"
+
+
+def sections_for_date(issue_date):
+    """Apply new coverage prospectively without rewriting the public archive."""
+    if issue_date >= GLOBAL_MARKETS_START:
+        return REQUIRED_SECTIONS[:4] + ("gm",) + REQUIRED_SECTIONS[4:]
+    return REQUIRED_SECTIONS
+
+
+def lenses_for_date(issue_date):
+    if issue_date >= GLOBAL_MARKETS_START:
+        return LENSES[:3] + ("gm",) + LENSES[3:]
+    return LENSES
+
+
 HEADER_RE = re.compile(
     r'class=["\'][^"\']*\bbn\b[^"\']*["\'][^>]*>'
     r'(?:\s*<[^>]+>)*\s*BRIEFING\s+NO\.?\s*(\d+)',
@@ -137,7 +153,7 @@ def validate_styles(path, text, report, number):
             report.error(f"{path.name}: stylesheets lack {label}")
     if number >= 91:
         sections = section_slices(text)
-        headless = [key for key in REQUIRED_SECTIONS
+        headless = [key for key in sections_for_date(path.stem)
                     if key in sections and not re.search(r"<h2\b", sections[key], re.I)]
         if headless:
             report.error(f"{path.name}: sections without an <h2> heading: {', '.join(headless)}")
@@ -146,6 +162,8 @@ def validate_styles(path, text, report, number):
 def validate_latest(record, patterns, report):
     path, text = record["path"], record["html"]
     number = record["number"]
+    required_sections = sections_for_date(record["date"])
+    lenses = lenses_for_date(record["date"])
     lower = text.casefold()
     active_patterns = [
         pattern for pattern in patterns if pattern.get("status", "active") != "retired"
@@ -162,13 +180,18 @@ def validate_latest(record, patterns, report):
         report.error(f"{path.name}: missing non-empty title")
 
     sections = section_slices(text)
-    missing = [section for section in REQUIRED_SECTIONS if section not in sections]
+    missing = [section for section in required_sections if section not in sections]
     if missing:
         report.error(f"{path.name}: missing section ids {', '.join(missing)}")
-    for lens in LENSES:
+    for lens in lenses:
         count = len(re.findall(r"<h3\b", sections.get(lens, ""), re.I))
         if count < 3:
             report.error(f"{path.name}: lens {lens} has {count} topics; minimum is 3")
+
+    if "gm" in required_sections and not re.search(
+        r'class=["\'][^"\']*\bdd-panel\b', sections.get("gm", ""), re.I
+    ):
+        report.error(f"{path.name}: Global Markets requires a sustained dd-panel deep dive")
 
     deep_dives = len(re.findall(r'class=["\'][^"\']*\bdd-panel\b', text, re.I))
     if not 2 <= deep_dives <= 4:
@@ -219,15 +242,15 @@ def validate_latest(record, patterns, report):
 
     if number >= 91:
         section_ids = re.findall(
-            r'<section\b[^>]*\bid=["\']s-(ov|ge|te|ec|sc|so|en|ig|li|ie|wa|an|sa)["\']',
+            r'<section\b[^>]*\bid=["\']s-(ov|ge|te|ec|gm|sc|so|en|ig|li|ie|wa|an|sa)["\']',
             text, re.I,
         )
-        if len(section_ids) != len(REQUIRED_SECTIONS):
+        if len(section_ids) != len(required_sections):
             report.error(
-                f"{path.name}: semantic schema requires {len(REQUIRED_SECTIONS)} "
+                f"{path.name}: semantic schema requires {len(required_sections)} "
                 f"section elements; found {len(section_ids)}"
             )
-        elif tuple(section_ids) != REQUIRED_SECTIONS:
+        elif tuple(section_ids) != required_sections:
             report.error(
                 f"{path.name}: sections are out of canonical reading order "
                 f"({' → '.join(section_ids)})"
@@ -254,7 +277,7 @@ def validate_latest(record, patterns, report):
 
         total_topics = sum(
             len(re.findall(r"<h3\b", sections.get(lens, ""), re.I))
-            for lens in LENSES
+            for lens in lenses
         )
         external_links = {
             html.unescape(href) for href in re.findall(

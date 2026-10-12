@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-08T00:00:00",
-  "total_briefings": 118,
+  "generated_at": "2026-10-11T00:00:00",
+  "total_briefings": 119,
   "patterns": [
     {
       "name": "Observation-Action Decoupling",
@@ -10,7 +10,7 @@
       "source_briefing": 6,
       "brief": "Accurate observation of an actor's internal state, intent, or capability does not constrain the actor's behavior.",
       "status": "active",
-      "citation_count": 24
+      "citation_count": 25
     },
     {
       "name": "Narrative-Physical Decoupling",
@@ -290,7 +290,7 @@
       "source_briefing": 3,
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "status": "active",
-      "citation_count": 110
+      "citation_count": 111
     },
     {
       "name": "Optionality Arbitrage",
@@ -340,7 +340,7 @@
       "source_briefing": 2,
       "brief": "When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act.",
       "status": "active",
-      "citation_count": 33
+      "citation_count": 34
     },
     {
       "name": "Category Collapse",

@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-10-08T00:00:00",
+  "generated_at": "2026-10-11T00:00:00",
   "briefings": [
+    {
+      "number": "118",
+      "date": "2026-10-11",
+      "display_date": "11 October 2026",
+      "dow": "Sunday",
+      "title": "Briefing 118 \u00b7 11 October 2026",
+      "thread": "",
+      "cycle": 4,
+      "url": "briefings/2026-10-11.html"
+    },
     {
       "number": "117",
       "date": "2026-10-08",
@@ -1190,7 +1200,7 @@
       "meta_name": "Coupling Failure",
       "brief": "Accurate observation of an actor's internal state, intent, or capability does not constrain the actor's behavior.",
       "source_briefing": 6,
-      "citation_count": 24,
+      "citation_count": 25,
       "status": "active",
       "url": "concepts/observation-action-decoupling.html"
     },
@@ -1498,7 +1508,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 110,
+      "citation_count": 111,
       "status": "active",
       "url": "concepts/commons-enclosure.html"
     },
@@ -1553,7 +1563,7 @@
       "meta_name": "Institutional Hollowing",
       "brief": "When institutional personnel cuts reduce an organization's ability to perceive reality before they reduce its ability to act.",
       "source_briefing": 2,
-      "citation_count": 33,
+      "citation_count": 34,
       "status": "active",
       "url": "concepts/capacity-hollowing.html"
     },

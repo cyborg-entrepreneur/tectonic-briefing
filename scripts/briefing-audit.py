@@ -9,7 +9,7 @@ import re
 import sys
 import os
 import tempfile
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse
@@ -173,24 +173,66 @@ def extract_briefing(path):
     }
 
 
+def extract_market_history(path):
+    """Public issue evidence for cumulative market and investing research."""
+    raw = path.read_text(encoding="utf-8", errors="replace")
+    section = re.search(
+        r'<section\b[^>]*\bid=["\']s-gm["\'][^>]*>(.*?)</section>',
+        raw, re.I | re.S,
+    )
+    if not section:
+        return None
+    parser = BriefingExtractor()
+    parser.feed(section.group(1))
+    prose = " ".join(" ".join(parser.text_parts).split())
+    theses = []
+    for match in re.finditer(
+        r'<article\b[^>]*\bdata-anomaly-id=["\'](gm-[^"\']+)["\'][^>]*>'
+        r'(.*?)</article>', raw, re.I | re.S,
+    ):
+        thesis = BriefingExtractor()
+        thesis.feed(match.group(2))
+        thesis_text = " ".join(" ".join(thesis.text_parts).split())
+        theses.append({"id": match.group(1), "text": thesis_text[:3000],
+                       "truncated": len(thesis_text) > 3000})
+    return {"date": path.stem, "lead_titles": parser.headings,
+            "text": prose[:12000], "truncated": len(prose) > 12000,
+            "sources": sorted(set(parser.sources)), "theses": theses}
+
+
 def build_context_manifest(repo, target_date, limit=4):
     repo = Path(repo)
     target = date.fromisoformat(str(target_date))
     prior = []
+    eligible = []
     for path in sorted((repo / "briefings").glob("*.html"), reverse=True):
         try:
             issue_date = date.fromisoformat(path.stem)
         except ValueError:
             continue
         if issue_date < target:
-            prior.append(extract_briefing(path))
-        if len(prior) >= limit:
-            break
+            eligible.append(path)
+            if len(prior) < limit:
+                prior.append(extract_briefing(path))
+    # Seven-issue learning horizon plus a dated monthly comparison. This
+    # preserves the four-issue novelty window while making slow-moving theses
+    # and active/passive strategy rotation available to restricted writers.
+    recent_markets = [entry for path in eligible[:7]
+                      if (entry := extract_market_history(path)) is not None]
+    monthly = None
+    for path in eligible:
+        if date.fromisoformat(path.stem) <= target - timedelta(days=28):
+            monthly = extract_market_history(path)
+            if monthly:
+                break
     return {
         "schema_version": 1,
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "target_date": target.isoformat(),
         "issues": prior,
+        "markets_history": {"recent_issues": recent_markets,
+                            "monthly_baseline": monthly,
+                            "interpretation": "Prior published analysis, not fresh verification; an absent baseline is unavailable."},
         "continuity_contract": {
             "compare_lead_titles": True,
             "compare_numeric_claims": True,

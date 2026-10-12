@@ -16,16 +16,27 @@ tectonic-briefing/
 └── README.md
 ```
 
-## Eight Analytical Lenses
+## Nine Analytical Lenses
 
 1. **Geopolitical** — Power dynamics, conflict, alliance structures
 2. **Technological** — AI, compute, infrastructure, architectural shifts
-3. **Economic** — Markets, trade, energy, financial system structure
-4. **Scientific** — Paradigm shifts, foundational transitions, discovery
-5. **Social & Cultural** — Demographics, labor, inequality, cultural dynamics
-6. **Environmental & Ecological** — Climate tipping points, biophysical constraints
-7. **Institutional & Governance** — Regulatory architecture, constitutional dynamics, legitimacy
-8. **Liminal Signals** — Forces that resist categorization; held contemplatively
+3. **Economic** — Trade, production, productivity, industry, and commodities
+4. **Global Markets & Financial Stability** — Sovereign financing, monetary policy, bond markets, global funding, and crisis transmission
+5. **Scientific** — Paradigm shifts, foundational transitions, discovery
+6. **Social & Cultural** — Demographics, labor, inequality, cultural dynamics
+7. **Environmental & Ecological** — Climate tipping points, biophysical constraints
+8. **Institutional & Governance** — Regulatory architecture, constitutional dynamics, legitimacy
+9. **Liminal Signals** — Forces that resist categorization; held contemplatively
+
+Global Markets is required for issues dated 2026-10-11 onward (`s-gm`, after
+Economic). It includes three research threads and a sustained deep dive, with
+dated evidence, competing explanations, confirmation/refutation tests, and
+cumulative thesis review. Its Investing & Resilience perspective covers work
+and business investment alongside passive approaches to purchasing-power and
+monetary risk, including costs and failure conditions.
+The [production protocol](CLAUDE.md#global-markets--financial-stability--effective-2026-10-11)
+defines the research agenda, source standards, and monitoring cadence. Earlier
+issues retain their original architecture.
 
 ## Integrated Systems
 

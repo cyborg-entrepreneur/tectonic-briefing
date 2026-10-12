@@ -62,8 +62,8 @@ spawn a fresh sub-agent. The agent prompt MUST include:
 5. The current **active** vocabulary count and list (read from
    `concepts/registry.json`; omit entries whose `status` is `retired`)
 6. Explicit instruction to include 2-4 deep dive panels, full five-
-   meta-category vocabulary display, all 13 section IDs (ov, ge,
-   te, ec, sc, so, en, ig, li, ie, wa, an, sa), and **≥3 date-stamped
+   meta-category vocabulary display, all 14 section IDs (ov, ge,
+   te, ec, gm, sc, so, en, ig, li, ie, wa, an, sa), and **≥3 date-stamped
    topics per lens** (Geopolitical/Liminal target 4) — research enough
    events to fill each lens on the first pass; sparse one-item lenses
    are the recurring failure mode Dave has flagged
@@ -76,16 +76,16 @@ anything is published.
 The build pipeline does NOT enforce content quality — only structural
 integrity. Verify by hand or via the disciplines below before publish:
 
-- [ ] Count `dd-panel` elements → target 2-4 deep dives
+- [ ] Count `dd-panel` elements → target 2-4 deep dives, including at least one in Global Markets from 2026-10-11
 - [ ] **Public reading budget** → target 6,000–9,000 analytic words and
-  24–28 lens items. Briefing 090 is the compact benchmark (6,245 analytic
+  27–31 lens items (29 in the supervised candidate path). Briefing 090 is the compact benchmark (6,245 analytic
   words, 26 lens items, 31 external links, 3 deep dives). Length outside the
   range needs an explicit editorial reason; depth is not measured by length.
-- [ ] **Per-lens topic density** → each of the 8 lenses (ge, te, ec, sc, so, en, ig, li) carries **≥3 substantive, date-stamped `<h3>` topics** (Geopolitical and Liminal target 4). Benchmark 010 is the density reference. Dave has flagged sparse lenses twice (one lead-item per lens is the recurring failure mode) — do NOT ship a briefing where any lens runs 1-2 topics. This is a generation requirement, not just a QC catch: instruct the generation agent to research enough events to fill each lens to 3-4 topics on the first pass.
+- [ ] **Per-lens topic density** → each of the 9 lenses (ge, te, ec, gm, sc, so, en, ig, li) carries **≥3 substantive, date-stamped `<h3>` topics** (Geopolitical and Liminal target 4). Benchmark 010 is the density reference. Dave has flagged sparse lenses twice (one lead-item per lens is the recurring failure mode) — do NOT ship a briefing where any lens runs 1-2 topics. This is a generation requirement, not just a QC catch: instruct the generation agent to research enough events to fill each lens to 3-4 topics on the first pass.
 - [ ] Count `.vi` vocabulary entries displayed → target all **active**
   patterns; retired patterns remain in the historical concept archive but do
   not appear in the daily display or new prose
-- [ ] All 13 section IDs present: ov, ge, te, ec, sc, so, en, ig, li, ie, wa, **an**, sa
+- [ ] All 14 section IDs present: ov, ge, te, ec, gm, sc, so, en, ig, li, ie, wa, **an**, sa (issues dated 2026-10-11 onward)
 - [ ] Anomaly Detection section (s-an) has 4+ specific anomalies
 - [ ] Research Program Relevance includes only **Direct** connections: the
   item changes a construct, mechanism, boundary condition, empirical design,
@@ -123,15 +123,17 @@ materialize from a single edit to `STRUCTURAL_CONCEPTS.md`.
 
 ## Briefing Architecture
 
-Sections follow the benchmark and the previous issue: the eight lenses
-(`ge te ec sc so en ig li`), then `ie wa an sa`. Colors come from the embedded
-stylesheet and the Design Specs below.
+From 2026-10-11, use `ov`, the nine lenses (`ge te ec gm sc so en ig li`),
+then `ie wa an sa`. Add Global Markets after Economic even when the previous
+issue predates it. Earlier issues retain their 13-section schema; never
+retrofit historical briefings. Colors come from the embedded stylesheet and
+the Design Specs below.
 
 ### Prospective schema contract (Briefing 091 onward)
 
 - ISO date is the archive's primary key; the displayed issue number is unique,
   monotonic, and may not reuse or skip a post-quarter number.
-- All 13 required sections use semantic `<section class="s" id="s-…">`
+- All required sections (13 historically; 14 from 2026-10-11) use semantic `<section class="s" id="s-…">`
   wrappers.
 - Inference cards use `<article class="c chain">`; anomaly cards use
   `<article class="c anomaly" data-anomaly-id="…">`.
@@ -144,6 +146,238 @@ stylesheet and the Design Specs below.
 - Equivocality (teal)
 - Complexity (purple)
 - Ambiguity (gold)
+
+### Global Markets & Financial Stability — effective 2026-10-11
+
+`gm` is a dedicated ninth lens, immediately after Economic (`ec`). Its purpose
+is to build a cumulative, independent understanding of global finance: sovereign
+debt, bond markets, monetary policy, and the conditions under which financial
+stress develops, spreads, or recedes. The analytical standard is institutional
+macro research: traceable evidence, balance-sheet mechanics, competing accounts,
+explicit uncertainty, and a record of revisions. The objective is understanding;
+neither an investment-product pitch nor a standing prediction of crisis belongs
+in this section.
+
+Economic retains trade, production, productivity, industry, commodities, and
+real-economy developments. Global Markets owns financing, pricing of risk,
+monetary transmission, and financial stability. Cross-reference a shared event;
+do not count the same observation twice. Monetary policy belongs here even when
+markets are functioning normally.
+
+**Three research threads every issue.** Include one substantive, dated topic
+on sovereign financing, one on monetary policy and rates, and one on financial
+transmission or fragility. A quiet day can advance a mechanism, compare countries,
+or test an existing thesis against the latest available data; an older release
+keeps its real observation and publication dates. Never manufacture news or
+re-date a stale number to satisfy the topic count. Allocate roughly 1,000–1,500
+analytic words to this lens within the issue's reading budget. At least one of
+the issue's 2–4 deep dives belongs here. The other two topics may be shorter,
+but each must explain something substantive.
+
+**Global coverage.** Maintain a core watch on the US, euro area (including
+member-state spreads), UK, Japan, and China, with emerging/frontier sovereigns
+rotating by financing exposure and importance. Cover all five core systems and
+at least two emerging/frontier regions over seven issues. Do not let the US
+Treasury market become a proxy for the entire world. Distinguish monetary
+sovereigns, currency-union members, pegged currencies, and foreign-currency
+borrowers; their constraints and adjustment channels differ.
+
+#### Research agenda
+
+| Track | Questions and observables |
+|---|---|
+| Sovereign debt and fiscal capacity | Gross/net debt and debt held by the public on clearly identified definitions; primary balance; interest/revenue; gross financing needs; maturity and rollover schedule; currency/indexation; cash buffers; tax capacity and contingent liabilities. Which assumptions stabilize debt, and are they plausible? |
+| Bond supply and investor demand | Net issuance and duration supplied to private holders after central-bank transactions; auctions and concessions; investor composition; domestic savings, foreign demand and hedging costs. Who is the marginal buyer, at what price, and with what funding? |
+| Monetary policy and rates | Fed, ECB, BoE, BoJ, PBoC and relevant EM reaction functions; inflation composition, wages, growth and expectations; real rates, policy expectations and term premia; balance-sheet policy, reserves and collateral. Separate announced policy, implementation, transmission and market expectations. |
+| Market functioning and leverage | Repo rates and volumes, collateral haircuts, settlement fails, dealer capacity, cash/futures basis, margin calls, fund redemptions, pension/insurer collateral needs. Identify who may become a forced seller and who can absorb the position. |
+| Global funding and currencies | Dollar funding, FX swaps and cross-currency basis, external refinancing, usable reserves, currency mismatch, foreign investor flows and hedged returns. Track the link from exchange rates to balance sheets, rather than equating depreciation with default. |
+| Banks, nonbanks and private credit | Sovereign holdings, deposit funding, duration losses, credit losses, capital buffers, nonbank leverage and liquidity mismatch; private-credit opacity, refinancing and bank exposures. State the blind spots and reporting lags. |
+| Cross-asset and real-economy transmission | Credit spreads, lending standards, equity valuation/concentration, property and commodity financing. Explain how a move changes financing, collateral or demand; a market-price roundup is insufficient. |
+| Policy capacity and crisis containment | Facility eligibility, collateral, currencies, access, capacity, stigma and political constraints. Separate a liquidity backstop from a solvency solution, and implementation from an announcement. Ask whether intervention contains the loss or moves it to another balance sheet. |
+
+#### Evidence and analytical discipline
+
+1. **Start with the balance sheet and cash flow.** A large debt stock alone
+   does not establish impending crisis. Show debt service, refinancing exposure,
+   the investor base and the institutional setting. Distinguish liquidity,
+   solvency, inflation/financial repression, exchange-rate adjustment and
+   political default risk. They can interact but are not interchangeable.
+2. **Use debt arithmetic with explicit definitions.** For a consistent nominal
+   debt/GDP series, use `Δd = ((r - g)/(1 + g)) × d_previous - pb + sfa`, where
+   `r` is the effective nominal interest rate on the outstanding stock, `g`
+   nominal GDP growth, `pb` the primary surplus/GDP, and `sfa` stock-flow
+   adjustments/GDP. Document currency valuation, coverage and accounting
+   residuals. A new-issue yield is not the effective rate on the whole stock;
+   propagate changes through the maturity profile. Show sensitivities as
+   scenarios, never as an estimated crisis probability.
+3. **Decompose prices before assigning a story.** Assess expected policy rates,
+   inflation compensation, term premium, credit and liquidity compensation as
+   relevant. Term premia are model estimates; breakevens include risk/liquidity
+   effects; futures/OIS are prices with risk premia, not pure forecasts. State
+   what is observable and what is inferred. Do not identify fiscal stress from
+   a yield rise, or reassurance from a yield fall, without competing accounts.
+4. **Make the source trail reproducible.** Every important metric needs the
+   series/definition, geography, units, observation period, publication date,
+   retrieval/as-of cutoff, source URL, revision status and transformation.
+   Separate stocks/flows, nominal/real, gross/net, central/general government,
+   market/book values and local/foreign currency. Compare consistent definitions
+   and disclose coverage changes. Keep raw reported values alongside calculations.
+5. **Use honest comparisons.** Show changes over appropriate day/week/month and
+   longer baselines, matching release frequency and market closes. Slow fiscal
+   data should not pretend to be a daily signal. State the sample window for
+   percentiles or historical analogues, and explain regime differences. No
+   arbitrary universal debt/GDP or yield threshold establishes a crisis.
+6. **Interrogate consensus and incentives.** State the strongest benign and
+   adverse readings; distinguish an evidenced consensus from an assumed one.
+   Ask what prices already reflect and what observable would discriminate the
+   accounts. Primary data anchors factual claims; official interpretation is
+   still contestable. An institution quoting the same source is not independent
+   corroboration. Commercial commentary may suggest a question, but sales copy,
+   anonymous claims and chart screenshots are not the evidentiary foundation.
+7. **Separate vulnerability, trigger, propagation and outcome.** Trace a
+   conditional chain such as refinancing pressure → funding/margin constraint →
+   forced sale → collateral loss → credit contraction, naming the exposed
+   institutions and the break points. Mark unobserved links as hypotheses.
+   Also identify stabilizers: maturity buffers, capital, unlevered buyers,
+   domestic funding, external assets or usable policy tools, where supported.
+8. **State missing evidence.** Paywalled live prices, position books, dealer
+   depth, derivatives exposures and private-credit data may be unavailable or
+   lagged. Mark them unavailable; name a defensible proxy and its limits if
+   one exists. No invented terminal data, implied monitoring feed, or numerical
+   probability without an explicit model, event definition, horizon and
+   calibration. Confidence in evidence is distinct from probability of crisis.
+
+#### What the reader should receive
+
+Open the section with a compact **dated state of the system**: separate
+structural vulnerability, current funding/market functioning, and confidence or
+data limitations. Use an evidence table where helpful: indicator and definition;
+latest observation/date; prior comparable value/change; source; interpretation
+and caveat. Attach tables, state assessments, and deep dives to their owning
+`article[data-topic-id]` so the source verifier receives every material claim.
+Use `<h4>` for fixed apparatus labels and `<h3>` for the three substantive topic
+titles. Include the `gm` entry in section navigation, reuse the established card
+idiom, and keep tables inside keyboard-accessible `.matrix-wrap` containers.
+
+Each lead research note must answer: **what changed; what mechanism explains
+it; what the strongest alternative is; where losses or funding needs would
+travel; what would confirm/refute the thesis; and when to review it next.**
+Separate OBS/INF/HYP. For forward claims use 2–3 discriminating scenarios,
+bounded horizons, positive/exclusion tells, and explicit `CONFIRMS:` and
+`REFUTES:`. Explain one difficult concept through the case, in plain language.
+
+Use descriptive, evidence-backed assessments such as orderly funding,
+deteriorating conditions, or observed dysfunction, with a named market and
+horizon. These are editorial descriptions, not a calibrated scoring system.
+Escalation requires corroboration across distinct channels; several correlated
+yield measures are not several independent signals. A quiet market does not
+eliminate latent vulnerability; an alarming fiscal projection does not establish
+present dysfunction. Examine resilience with the same effort as fragility.
+
+**Cumulative learning.** Give recurring material theses stable `gm-…` anomaly
+IDs in `#s-an`, with first-raised date, current assessment, strongest contrary
+evidence, next observable and earliest fair review date. Carry them forward,
+revise them or close them explicitly. On the first issue each week, review what
+the prior evidence supported, weakened or left unresolved. Once each month,
+revisit a cross-country debt/financing comparison and one historical stress
+episode, including where the analogy fails. These are issue-level research
+requirements; no continuous market feed or separate scheduled job is implied.
+
+**Starting research sequence.** Build a comparable sovereign financing map;
+then examine marginal demand for government bonds under balance-sheet policy;
+repo/basis-trade funding and forced-sale channels; Japan and cross-border
+hedging/carry exposures; euro-area bank–sovereign links; China's property,
+local-government and bank exposures; and EM external refinancing. Reorder when
+verified evidence makes another question more consequential. These are research
+questions, not assertions that the named systems are in crisis.
+
+#### Investing, work and purchasing-power resilience
+
+Include a substantive **Investing & Resilience** perspective in every issue's
+Global Markets section. Cover both investing effort/capital in work or a
+business and passive portfolio approaches. Use a US-dollar household starting
+point for examples, explicitly stating the currency and horizon; do not assume
+the reader's holdings, tax bracket, account eligibility, liabilities or risk
+tolerance. This is conditional strategy research, not a model portfolio by
+default. When personalized allocation is requested, establish those facts
+before suggesting weights or transactions.
+
+**Define the exposure before the hedge.** Separate a rising price level from
+unexpected inflation, rising real yields, exchange-rate depreciation, an
+inflationary supply shock, and a deflationary credit/liquidity shock. Identify
+which spending need, income stream or liability is at risk. Evaluate real
+returns after fees and applicable taxes over that horizon, liquidity when
+needed, and loss in an adverse scenario. Headline CPI may differ from the
+reader's spending basket. Nominal capital stability, income stability and
+purchasing-power protection are different objectives.
+
+Research these avenues over time, with benefits and failure conditions:
+
+| Avenue | What the analysis must test |
+|---|---|
+| Work, skills and business investment | Pricing power, ability to renegotiate or index contracts, durable customer demand, transferable skills, productivity improvements, recurring revenue and customer/currency diversification. Compare the expected payoff with time, capital, execution risk and skill obsolescence. Ask whether new income shares the same recession/industry risk as the existing job and portfolio. Entrepreneurship and property management require work and are not passive hedges. |
+| Cash and short-maturity instruments | Match near-term obligations, access and maturity; verify deposit protection where relevant. Compare after-tax yield with inflation, reinvestment risk and issuer/counterparty exposure. Liquidity can prevent forced selling without guaranteeing a positive real return. |
+| Inflation-linked sovereign securities | Examine individual TIPS matched to spending dates and I Bonds where eligible. Distinguish an individual bond held to maturity from a fund with a changing portfolio; CPI indexation from personal inflation; principal protection from the price actually paid; and real-rate price risk from inflation protection. Verify current purchase, redemption, tax and access rules at use. |
+| Diversified public equities | Test the long-horizon case for productive businesses, pricing power and international exposure against valuation, margin compression, drawdowns and correlations with labor income. A long-run growth thesis is not evidence of reliable short-run inflation protection. Prefer broad, transparent, low-cost implementation as the comparison baseline. |
+| Property, infrastructure and other real assets | Examine rent/contract reset terms, purchase valuation, borrowing structure, refinancing, maintenance, insurance, taxes, concentration and liquidity. Real assets can have substantial financial and operating risk; the label alone does not establish a hedge. Distinguish direct ownership from listed funds and non-traded vehicles. |
+| Gold, commodities and currency exposure | Test the proposed role against real yields, cash-flow absence where applicable, volatility, storage/fund costs, futures roll effects and currency denomination. Distinguish physical assets, futures funds and producer shares. Foreign revenue is not identical to unhedged foreign currency. Never treat gold, commodities or crypto as guaranteed crisis protection. |
+| Diversifiers and explicit tail hedges | Consider trend strategies or options only when evidence supports a useful role after fees, carry/premium costs, implementation constraints, counterparty exposure and tax complexity. Compare with simpler diversification, liquidity and liability matching first; a successful backtest alone is insufficient. |
+| Household/business liabilities | Evaluate fixed versus floating borrowing, refinancing exposure, repayment and cash buffers jointly with assets. Include the opportunity cost and loss of liquidity from paying down debt. A liability can dominate the household's monetary exposure even when the investment portfolio looks diversified. |
+
+Each issue should develop one useful strategy question tied to its market
+analysis, with a plain-language mechanism, relevant evidence, an accessible
+implementation class, conditions where it helps, conditions where it fails,
+and a reason to retain or revise it. Rotate work/business and passive approaches;
+compare both directly at least once over seven issues. Keep this perspective
+inside an owning gm topic article under an `<h4>` so it receives source review.
+Do not add daily trade calls or repeat a shopping list of assets.
+
+For a major strategy comparison, use a regime table covering persistent
+inflation, disinflation with higher real rates, currency stress, and a liquidity
+or credit contraction. State the limits of historical evidence and how entry
+valuation or hedge cost changes the result. Prefer a robust allocation process
+with spending horizons, diversification and periodic rebalancing over
+all-or-nothing crisis timing. Where an unchanged position remains reasonable,
+say why; activity itself is not value.
+
+Evidence standards are identical to the market analysis. Research papers,
+official instrument terms and regulator guidance take priority over manager
+marketing; performance claims need the period, benchmark, fees, drawdowns and
+out-of-sample limitations. Verify any named product's current prospectus,
+structure, costs, liquidity and suitability constraints before comparison.
+Useful starting references are [TreasuryDirect's TIPS/I Bond comparison](https://www.treasurydirect.gov/research-center/history-of-savings-bond/comparing-tips-to-i/)
+and the [SEC's asset allocation, diversification and rebalancing guide](https://www.sec.gov/investor/pubs/assetallocation.htm).
+Neither is evidence that any strategy will protect against every regime.
+
+#### Source map and additional QC
+
+Methodological anchors: the [IMF sovereign-risk and debt-sustainability
+framework](https://www.imf.org/en/publications/dsa/sovereign-risk-and-debt-sustainability-analysis-for-market-access-countries)
+for fiscal analysis; the [Federal Reserve's monitoring
+framework](https://www.federalreserve.gov/publications/2026-may-financial-stability-report-purpose-and-framework.htm)
+for vulnerabilities versus shocks; and [BIS analysis of public debt and market
+intermediation](https://www.bis.org/publications/ii-high-public-debt-and-shifting-financial-markets-challenges-central-banks)
+for transmission hypotheses. These orient the research; they do not verify a
+current market assessment.
+
+Use national debt offices/treasuries and statistical releases, IMF Fiscal
+Monitor/WEO and country DSAs, BIS banking/debt/global-liquidity statistics,
+central-bank decisions/minutes/balance sheets, official financial-stability
+reports, regulator filings and exchange data. Useful US entry points include
+[Treasury refunding materials](https://home.treasury.gov/policy-issues/financing-the-government/quarterly-refunding),
+[New York Fed market data](https://www.newyorkfed.org/markets/data-hub/), and
+[ACM term-premium estimates](https://www.newyorkfed.org/research/data_indicators/term-premia-tabs).
+Record the underlying release vintage, not just the landing page's access date.
+Prefer accessible primary evidence and independent scholarly/official challenges
+before commercial analysis. Keep national sources in the original jurisdiction
+where possible and explain translation or comparability limits.
+
+Stages 1b/1d must additionally check definitions, data vintage, calculations,
+yield decomposition, causal links, alternative accounts, stabilizers and thesis
+revision. Reject crisis timing inferred solely from debt totals, unsupported
+fiscal-dominance claims, false precision, cherry-picked charts, and inevitable-
+collapse or product-selling language. Structural checks can enforce section,
+topic and deep-dive presence; only substantive review can assess this standard.
 
 ### Design Specs
 - Governing system: Cyborg Aesthetic v3.2, using the shared
@@ -196,7 +430,7 @@ Each briefing reads yesterday's briefing for thread continuity. This creates a p
 
 Starting with Briefing 008, every briefing must satisfy two constraints:
 
-**Constraint 1 — Fresh-domain content in at least 2 of 8 lenses.** For each briefing, at least two of the eight analytical lenses must include substantive content drawn from a domain that has not appeared in the previous three briefings. The Geopolitical lens should occasionally lead with Africa, Latin America, or Southeast Asia rather than the Middle East. The Technological lens should occasionally lead with robotics, quantum, or bioscience rather than language-model AI. The Economic lens should occasionally lead with critical minerals, insurance market stress, or commodity convergence rather than oil. The discipline is not to *avoid* the corridor topics — they remain important — but to ensure that **at least 25% of each briefing's substantive content comes from outside the recent thread structure.**
+**Constraint 1 — Fresh-domain content in at least 3 of 9 lenses.** For each briefing, at least three of the nine analytical lenses must include substantive content drawn from a domain that has not appeared in the previous three briefings. The Geopolitical lens should occasionally lead with Africa, Latin America, or Southeast Asia rather than the Middle East. The Technological lens should occasionally lead with robotics, quantum, or bioscience rather than language-model AI. The Economic lens should occasionally lead with critical minerals, insurance market stress, or commodity convergence rather than oil. The discipline is not to *avoid* the corridor topics — they remain important — but to ensure that **at least 25% of each briefing's substantive content comes from outside the recent thread structure.**
 
 **Constraint 2 — Liminal Signals as the wildcard channel.** The Liminal Signals section is the natural home for black swans, unique structural events, and signals that resist clean categorization. Going forward, **at least one Liminal Signals entry per briefing must come from outside the corridor** — a robotics deployment, a critical mineral movement, a quantum milestone, a demographic data point, an alternative energy breakthrough, a synthetic biology event, or a black swan watch-list update. The Liminal Signals section becomes the structural diversification channel by design.
 
@@ -377,7 +611,7 @@ Passing: same deep dive with at least one *"This is the third instance."* or *"T
 
 ## QC Checklist — New Items (post-generation, pre-publish)
 
-In addition to the existing structural checks (13 section IDs, 2-4 deep dives, full vocabulary display, anomaly count, etc.), every generated briefing must clear these prose-coherence checks before publish:
+In addition to the existing structural checks (date-appropriate section IDs, 2-4 deep dives, full vocabulary display, anomaly count, etc.), every generated briefing must clear these prose-coherence checks before publish:
 
 - [ ] **Compound-noun density**: scan every sentence in the Overview, Unifying Thread, and Deep-Dive panels. Any sentence with 3+ multi-hyphen compounds? Restructure.
 - [ ] **Concrete-anchoring frequency**: examine each 3-paragraph stretch of conceptual prose. Does at least one paragraph include a concrete-named-entity sentence? If not, insert one or restructure.

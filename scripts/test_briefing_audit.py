@@ -32,5 +32,32 @@ class ContinuityExtractionTest(unittest.TestCase):
             self.assertFalse(result['ok'])
             self.assertTrue(any('Repeated lead title' in e for e in result['errors']))
 
+    def test_market_history_extends_beyond_novelty_window_without_future_data(self):
+        import tempfile
+        from datetime import date, timedelta
+        with tempfile.TemporaryDirectory() as d:
+            repo = Path(d)
+            briefings = repo / 'briefings'
+            briefings.mkdir()
+            target = date(2026, 11, 20)
+            for offset in (0, 1, 2, 3, 4, 5, 6, 7, 29):
+                day = target - timedelta(days=offset)
+                (briefings / f'{day}.html').write_text(
+                    '<section id="s-gm"><h2>Global Markets</h2>'
+                    f'<h3>Thesis update {offset}</h3><p>Prior assessment.</p>'
+                    '<a href="https://example.org/data">Evidence</a></section>'
+                    '<section id="s-an"><article class="c anomaly" '
+                    'data-anomaly-id="gm-funding"><h3>Funding thesis</h3>'
+                    '<p>Next review and contrary evidence.</p></article></section>'
+                )
+            context = audit.build_context_manifest(repo, target)
+            self.assertEqual(len(context['issues']), 4)
+            history = context['markets_history']
+            self.assertEqual(len(history['recent_issues']), 7)
+            self.assertEqual(history['monthly_baseline']['date'], '2026-10-22')
+            self.assertNotIn('2026-11-20', [r['date'] for r in history['recent_issues']])
+            self.assertEqual(history['recent_issues'][0]['theses'][0]['id'], 'gm-funding')
+            self.assertIn('https://example.org/data', history['recent_issues'][0]['sources'])
+
 if __name__ == '__main__':
     unittest.main()
