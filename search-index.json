@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-10-11T00:00:00",
+  "generated_at": "2026-10-12T00:00:00",
   "briefings": [
+    {
+      "number": "120",
+      "date": "2026-10-12",
+      "display_date": "12 October 2026",
+      "dow": "Monday",
+      "title": "Briefing 120 \u00b7 12 October 2026",
+      "thread": "",
+      "cycle": 4,
+      "url": "briefings/2026-10-12.html"
+    },
     {
       "number": "119",
       "date": "2026-10-11",
@@ -1518,7 +1528,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 112,
+      "citation_count": 113,
       "status": "active",
       "url": "concepts/commons-enclosure.html"
     },

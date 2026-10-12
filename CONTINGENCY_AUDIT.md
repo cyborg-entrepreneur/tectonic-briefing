@@ -147,7 +147,17 @@ Two to three citation-ready paragraphs connecting the cycle's findings to broade
 - **LLM cognition under deep uncertainty** — the cognitive-signature taxonomy as empirical phenomenology of plausibility-engine failure modes; within-architecture baseline as input to cross-architecture experiments
 - **AI–human ensembles for analytical work** — the audit itself as an instance of the periodic-re-framing condition that distinguishes a working analytical ensemble from recursive-narrowing collapse
 
-Paragraphs should be self-contained for any reader interested in the theoretical questions; specific research portfolios are not the audit's idiom and should not appear here.
+Paragraphs should be self-contained. From 2026-10-12, explicitly connect the
+findings to named own studies and research questions under CLAUDE.md's research
+mandate. The former portfolio-naming exclusion is retired at Dave's request.
+Add a substantive research-yield section: trace dated phenomena and chain IDs
+to a theoretical puzzle, rival mechanisms, computational discriminants,
+empirical observables/designs, disanalogies and fresh questions. Keep proposed
+tests distinct from established findings and from public-event outcomes. Assess
+which prior questions acquired new evidence, changed a construct or design,
+remained promising, or should be retired; do not count repeated mentions as
+research progress. Editorial work and journal-confidential information remain
+excluded from all connections.
 
 ### 5.9 Recalibrations for the Next 30
 
@@ -390,7 +400,7 @@ After generation, verify:
 - [ ] §5.6 Vocabulary Curation produces concrete updates to `STRUCTURAL_CONCEPTS.md`
 - [ ] §5.6 META-6 candidate either promoted or formally tabled with reopen-condition
 - [ ] §5.7 Anomaly Accounting covers every named anomaly in the cycle's briefings
-- [ ] §5.8 Theoretical Implications produces 2-3 citation-ready paragraphs (no specific research portfolios named)
+- [ ] §5.8 Theoretical Implications produces 2-3 self-contained paragraphs plus substantive named-study research connections, rival accounts, proposed tests and new questions; editorial work remains excluded.
 - [ ] §5.9 Recalibrations are 3-5 specific, actionable, with tradeoffs and verification criteria
 - [ ] YAML artifact written to `tectonic-briefing/synthesis/cycle-NNN.yaml`
 - [ ] HTML artifact uses amber accent (`#c89545`) and distinct masthead

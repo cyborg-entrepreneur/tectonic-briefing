@@ -87,10 +87,10 @@ integrity. Verify by hand or via the disciplines below before publish:
   not appear in the daily display or new prose
 - [ ] All 14 section IDs present: ov, ge, te, ec, gm, sc, so, en, ig, li, ie, wa, **an**, sa (issues dated 2026-10-11 onward)
 - [ ] Anomaly Detection section (s-an) has 4+ specific anomalies
-- [ ] Research Program Relevance includes only **Direct** connections: the
-  item changes a construct, mechanism, boundary condition, empirical design,
-  or observable. Adjacent bridges go to the private TMS ledger; speculative
-  mappings and operational/editorial work are omitted.
+- [ ] Research Program Relevance develops three to five grounded connections
+  to named own studies/questions, including testable new conjectures, rivals,
+  computational or empirical comparisons, and evidence limits. Apply the
+  research mandate below; editorial work remains excluded.
 - [ ] Source Archive has categorized entries across 3+ subsections
 - [ ] **Source support density** → at least one unique external supporting link
   per lens item. Load-bearing scientific, regulatory, and macro claims use an
@@ -140,6 +140,58 @@ the Design Specs below.
 - Historical wrappers (`.chain-block`, `.inf`, nested vocabulary inside
   `#s-an`) remain supported only by audit compatibility parsers and must not be
   copied into new issues.
+
+### Research questions grounded in phenomena — effective 2026-10-12
+
+The briefing should actively develop Dave's theoretical, computational and
+empirical research by bringing relevant phenomena into contact with named
+research questions. This instruction supersedes the former Direct-only public
+mapping rule and the cycle audit's ban on naming specific research portfolios.
+Own studies may be named. A promising conjecture does not need to be an already
+established research finding to belong here.
+
+Develop three to five substantive connections across the issue, giving space
+to the strongest rather than attaching a project name to every topic. Each
+connection should make the following reasoning inspectable in ordinary prose:
+
+- **Phenomenon and puzzle:** a dated, linked observation and what existing
+  explanation leaves unresolved. Distinguish a new observation from a familiar
+  case or measurement revision.
+- **Research question:** the named study or research stream, its relevant
+  question or assumption, and the specific question this case generates.
+- **Mechanism and rival:** who acts, what changes, through which feedback or
+  constraint; the strongest alternative account and a useful disanalogy.
+- **Computational leverage:** where relevant, the model primitive, comparison,
+  ablation, interaction or boundary condition that could distinguish the
+  accounts. State the outcome and what would count against the mechanism.
+- **Empirical leverage:** the unit, observable, comparison and feasible data
+  source; identify selection, simultaneity and other obstacles to causal
+  inference. A public example is motivation, not model validation.
+- **Evidence status and next step:** distinguish observation, interpretation and
+  new conjecture; state the limit and a bounded next research action. Record
+  proposed work separately from completed analyses or accepted study changes.
+
+Some connections may chiefly inform theory, computation or empirical design;
+no item needs a contrived method in every category. Across the issue, make the
+implications for these forms of research explicit where defensible. Include
+challenges and boundary cases, not only illustrations that fit the program.
+Keep wide topical/geographic coverage and legitimate no-bridge items.
+
+Use `config/public-research-signature.yaml` in the parent workflow as the
+maintained map. It may name own studies and questions, but never editorial
+work, peer reviews, decisions received, confidential collaborator information,
+student records or private operational state. Generalized editorial-work
+analogies are also excluded from research connections. Do not expose private
+research results or imply that a speculative bridge is an established finding.
+
+In the private crosswalk, retain one row per topic and the existing classifier
+IDs. A `direct_bridge` describes relevance, not evidentiary confirmation.
+For each substantive cross-topic implication, retain the mechanism, boundary
+and discriminating evidence and add the phenomenon, named study/question,
+rival account, proposed comparison, evidence status and next action in prose.
+Keep hypothesis tests separate from dated public-event forecasts: each needs
+its own observable, review horizon and closure criterion. Carry promising
+questions by stable IDs; revisit, revise or close them with dated evidence.
 
 ### Knowledge Problem Tags
 - Knightian Uncertainty (blue)

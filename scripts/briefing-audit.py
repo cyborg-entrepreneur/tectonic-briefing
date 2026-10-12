@@ -98,6 +98,7 @@ class BriefingExtractor(HTMLParser):
         self.text_parts = []
         self.sources = []
         self._article_stack = []
+        self._section_stack = []
 
     def handle_starttag(self, tag, attrs):
         tag = tag.casefold()
@@ -106,12 +107,15 @@ class BriefingExtractor(HTMLParser):
             return
         if self._ignored:
             return
+        if tag == "section":
+            self._section_stack.append(dict(attrs).get("id", ""))
         if tag == "article":
             classes = dict(attrs).get("class", "").split()
             self._article_stack.append("anomaly" in classes)
         # Stable anomaly headings recur by contract; they are not new leads.
         # Keep their prose and source links in the evidence ledger below.
-        if tag == "h3" and not any(self._article_stack):
+        if (tag == "h3" and not any(self._article_stack)
+                and not any(section in {"s-sa", "sa"} for section in self._section_stack)):
             self._heading = tag
             self._heading_parts = []
         if tag == "a":
@@ -125,6 +129,8 @@ class BriefingExtractor(HTMLParser):
         if tag in {"script", "style", "svg"} and self._ignored:
             self._ignored -= 1
             return
+        if tag == "section" and self._section_stack and not self._ignored:
+            self._section_stack.pop()
         if tag == "article" and self._article_stack and not self._ignored:
             self._article_stack.pop()
         if not self._ignored and tag == self._heading:

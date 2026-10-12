@@ -19,6 +19,17 @@ class ContinuityExtractionTest(unittest.TestCase):
         self.assertIn('Claim 17 million ', parser.text_parts)
         self.assertIn('https://example.org/evidence', parser.sources)
 
+    def test_source_archive_labels_are_not_leads_but_evidence_survives(self):
+        parser = audit.BriefingExtractor()
+        parser.feed('<section id="s-gm"><h3>Rates and credit</h3></section>'
+                    '<section id="s-sa"><h3>Global markets and financial resilience</h3>'
+                    '<p>Reported 25 basis points '
+                    '<a href="https://example.org/primary">Primary source</a></p></section>'
+                    '<section id="s-te"><h3>Following substantive lead</h3></section>')
+        self.assertEqual(parser.headings, ['Rates and credit', 'Following substantive lead'])
+        self.assertIn('https://example.org/primary', parser.sources)
+        self.assertIn('Reported 25 basis points ', parser.text_parts)
+
     def test_actual_repeated_lens_lead_still_fails(self):
         import tempfile
         with tempfile.TemporaryDirectory() as d:
