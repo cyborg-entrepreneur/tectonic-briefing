@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-10-22T00:00:00",
+  "generated_at": "2026-10-26T00:00:00",
   "briefings": [
+    {
+      "number": "124",
+      "date": "2026-10-26",
+      "display_date": "26 October 2026",
+      "dow": "Monday",
+      "title": "Briefing 124 \u00b7 26 October 2026",
+      "thread": "Keeping capacity available",
+      "cycle": 5,
+      "url": "briefings/2026-10-26.html"
+    },
     {
       "number": "123",
       "date": "2026-10-22",
@@ -1470,7 +1480,7 @@
       "meta_name": "Threshold Cascade",
       "brief": "Failure at a single bottleneck propagates through every system that assumed it would remain open.",
       "source_briefing": 1,
-      "citation_count": 39,
+      "citation_count": 40,
       "status": "active",
       "url": "concepts/chokepoint-cascade.html"
     },
@@ -1558,7 +1568,7 @@
       "meta_name": "Commons Enclosure",
       "brief": "When a shared resource governed by collective norms is converted into a controlled access point with a fee structure and a gatekeeper.",
       "source_briefing": 3,
-      "citation_count": 116,
+      "citation_count": 117,
       "status": "active",
       "url": "concepts/commons-enclosure.html"
     },
